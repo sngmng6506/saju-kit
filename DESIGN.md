@@ -26,7 +26,7 @@
 
     pickDates({ purpose: 'move', from: '2027-01-01', to: '2027-03-31' })
     // [{ date: 'YYYY-MM-DD',
-    //    lunar: { year: 2027, month: 1, day: 9, leap: false },
+    //    lunar: { year: Number, month: Number, day: Number, leap: Boolean },
     //    flags: ['son_free'], reasons: ['son_free'] }, ...]
 
 - 범위 양끝을 포함하고 날짜 오름차순으로 반환한다. 조회 범위는 최대 366일로 제한한다.
