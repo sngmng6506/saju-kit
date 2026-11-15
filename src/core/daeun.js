@@ -1,8 +1,9 @@
 import { dateKey, getSaju, solarTermInstant } from './calendar.js';
 import { SajuError } from './error.js';
-import { STEMS, isYangStem } from './ganji.js';
+import { BRANCHES, STEMS, isYangStem, mod, pillarFromIndex } from './ganji.js';
 
 const JEOL_INDEXES = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
+const BAND_COUNT = 10;
 
 /** 정수 일수의 1사2입. 0은 1로 올리고 상한은 두지 않는다. */
 export function daeunSu(days) {
@@ -50,6 +51,35 @@ function countJeolDays(solar, forward) {
   return dayDistance(birth, previous);
 }
 
+function pillarIndex(stem, branch) {
+  const stemIndex = STEMS.indexOf(stem);
+  const branchIndex = BRANCHES.indexOf(branch);
+  if (stemIndex < 0 || branchIndex < 0 || stemIndex % 2 !== branchIndex % 2) {
+    throw new SajuError('pillar', '월주 간지가 올바르지 않습니다.');
+  }
+  const k = mod((5 * (branchIndex - stemIndex)) / 2, 6);
+  return stemIndex + 10 * k;
+}
+
+/** 세는나이 a살은 출생 양력 연도 + a − 1. 구간은 양력 해 단위다. */
+function yearBands({ month, forward, startAge, birthYear }) {
+  const step = forward ? 1 : -1;
+  const monthIndex = pillarIndex(month.stem, month.branch);
+  const pillars = [];
+  for (let i = 0; i < BAND_COUNT; i += 1) {
+    const fromAge = startAge + i * 10;
+    const toAge = fromAge + 9;
+    pillars.push({
+      ...pillarFromIndex(monthIndex + step * (i + 1)),
+      fromAge,
+      toAge,
+      fromYear: birthYear + fromAge - 1,
+      toYear: birthYear + toAge - 1,
+    });
+  }
+  return pillars;
+}
+
 export function daeunDirection({ yearStem, gender } = {}) {
   if (gender !== '남' && gender !== '여') {
     throw new SajuError('gender', '성별은 남 또는 여입니다.');
@@ -81,9 +111,17 @@ export function getDaeun({ saju, gender, birth } = {}) {
   }
   const forward = daeunDirection({ yearStem: saju.pillars.year.stem, gender }) === '순행';
   const days = countJeolDays(checked.solar, forward);
+  const startAge = daeunSu(days);
   return {
     direction: forward ? '순행' : '역행',
-    startAge: daeunSu(days),
+    startAge,
     days,
+    ageSystem: '세는나이',
+    pillars: yearBands({
+      month: checked.pillars.month,
+      forward,
+      startAge,
+      birthYear: checked.solar.y,
+    }),
   };
 }

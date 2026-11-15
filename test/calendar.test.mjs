@@ -111,18 +111,51 @@ test('2000-01-01의 대운수는 여 2, 남 8이다', () => {
   assert.equal(female.direction, '순행');
   assert.equal(female.days, 5);
   assert.equal(female.startAge, 2);
+  assert.equal(female.ageSystem, '세는나이');
+  assert.equal(female.pillars.length, 10);
+  assert.deepEqual(female.pillars[0], {
+    stem: '정', branch: '축', text: '정축', fromAge: 2, toAge: 11, fromYear: 2001, toYear: 2010,
+  });
+  assert.deepEqual(female.pillars[1], {
+    stem: '무', branch: '인', text: '무인', fromAge: 12, toAge: 21, fromYear: 2011, toYear: 2020,
+  });
   assert.equal(male.direction, '역행');
   assert.equal(male.days, 25);
   assert.equal(male.startAge, 8);
-  assert.equal(getDaeun({ saju, gender: '여', birth }).year, undefined);
+  assert.deepEqual(male.pillars[0], {
+    stem: '을', branch: '해', text: '을해', fromAge: 8, toAge: 17, fromYear: 2007, toYear: 2016,
+  });
+  assert.deepEqual(male.pillars[1], {
+    stem: '갑', branch: '술', text: '갑술', fromAge: 18, toAge: 27, fromYear: 2017, toYear: 2026,
+  });
+  assert.equal(female.pillars[9].fromAge, 92);
+  assert.equal(female.pillars[9].toYear - female.pillars[9].fromYear, 9);
 });
 
 test('절입일 2000-01-06 정오는 순행 10, 역행 1이다', () => {
   const saju = getSaju({ y: 2000, m: 1, d: 6, hh: 12, mm: 0 });
   const birth = { y: 2000, m: 1, d: 6, hh: 12, mm: 0 };
   assert.equal(saju.pillars.month.text, '정축');
-  assert.equal(getDaeun({ saju, gender: '여', birth }).startAge, 10);
-  assert.equal(getDaeun({ saju, gender: '남', birth }).startAge, 1);
+  const female = getDaeun({ saju, gender: '여', birth });
+  const male = getDaeun({ saju, gender: '남', birth });
+  assert.equal(female.startAge, 10);
+  assert.equal(female.pillars[0].text, '무인');
+  assert.equal(female.pillars[0].fromYear, 2009);
+  assert.equal(female.pillars[0].toYear, 2018);
+  assert.equal(male.startAge, 1);
+  assert.equal(male.pillars[0].text, '병자');
+  assert.equal(male.pillars[0].fromYear, 2000);
+  assert.equal(male.pillars[0].toYear, 2009);
+});
+
+test('역행이 갑자 월주 앞이면 계해로 넘어간다', () => {
+  const saju = getSaju({ y: 1989, m: 1, d: 1, hh: 12, mm: 0 });
+  const birth = { y: 1989, m: 1, d: 1, hh: 12, mm: 0 };
+  assert.equal(saju.pillars.month.text, '갑자');
+  const female = getDaeun({ saju, gender: '여', birth });
+  assert.equal(female.direction, '역행');
+  assert.equal(female.pillars[0].text, '계해');
+  assert.equal(female.pillars[0].fromYear, 1989 + female.startAge - 1);
 });
 
 test('성별이 없으면 대운 방향을 추측하지 않는다', () => {
