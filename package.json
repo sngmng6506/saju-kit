@@ -1,0 +1,16 @@
+{
+  "name": "saju-kit",
+  "private": true,
+  "type": "module",
+  "description": "브라우저에서 계산하는 사주 달력. 시주와 연도 추천은 아직 없다.",
+  "scripts": {
+    "test": "node --test",
+    "build-data": "node scripts/build-calendar-data.mjs"
+  },
+  "devDependencies": {
+    "manseryeok": "2.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
