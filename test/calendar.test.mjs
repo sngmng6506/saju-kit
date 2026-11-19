@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { daeunSu, getDaeun, getSaju, lunarToSolar, solarToLunar } from '../src/index.js';
 import { solarTermLabel } from '../src/core/calendar.js';
+import { LUNAR_MONTHS } from '../src/data/lunar-months.js';
 import { SajuError } from '../src/core/error.js';
 
 const official = JSON.parse(readFileSync(new URL('./fixtures/kasi-solar-terms.json', import.meta.url), 'utf8'));
@@ -113,6 +114,16 @@ test('1955년 4월 15일 정오는 30분 오프셋이어도 절과 멀어 계산
 test('지원 범위 밖과 없는 윤달은 오류다', () => {
   assert.throws(() => getSaju({ y: 1899, m: 12, d: 31 }), (error) => error instanceof SajuError);
   assert.throws(() => lunarToSolar(2016, 5, 1, true), (error) => error.code === 'lunar-date');
+});
+
+test('실제 존재하는 음력 2월 30일은 양력 검증에 막히지 않는다', () => {
+  const row = LUNAR_MONTHS.find(([year, month, , , , , days]) => year >= 1901 && year <= 2099 && month === 2 && days === 30);
+  assert.ok(row, '테스트용 30일 음력 2월이 있어야 함');
+  const [y, m, leap] = row;
+  const solar = lunarToSolar(y, m, 30, leap === 1);
+  const saju = getSaju({ y, m, d: 30, calendar: 'lunar', leapMonth: leap === 1, hh: 12, mm: 0 });
+  assert.deepEqual(saju.solar, solar);
+  assert.deepEqual(saju.lunar, { year: y, month: m, day: 30, leap: leap === 1 });
 });
 
 test('양력 날짜와 음력 날짜 입력에 소수·문자열·존재하지 않는 날짜를 허용하지 않는다', () => {
