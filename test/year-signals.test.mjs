@@ -65,7 +65,7 @@ test('원국의 동일 지지는 위치별 신호로 보존하며 시주 미입�
     pillars: {
       year: { stem: '갑', branch: '오', text: '갑오' },
       month: { stem: '병', branch: '오', text: '병오' },
-      day: { stem: '무', branch: '축', text: '무축' },
+      day: { stem: '기', branch: '축', text: '기축' },
       hour: null,
     },
   };
