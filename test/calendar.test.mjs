@@ -115,6 +115,40 @@ test('지원 범위 밖과 없는 윤달은 오류다', () => {
   assert.throws(() => lunarToSolar(2016, 5, 1, true), (error) => error.code === 'lunar-date');
 });
 
+test('양력 날짜와 음력 날짜 입력에 소수·문자열·존재하지 않는 날짜를 허용하지 않는다', () => {
+  const badSolar = [[2000, 2, 30], [1900, 2, 29], [2024, 4, 31], [2000, 1.5, 1], ['2000', 1, 1], [NaN, 1, 1]];
+  for (const [y, m, d] of badSolar) {
+    assert.throws(() => solarToLunar(y, m, d), (error) => error instanceof SajuError);
+  }
+  for (const day of [0, 1.5, NaN, '1', 32]) {
+    assert.throws(() => lunarToSolar(2000, 1, day), (error) => error.code === 'lunar-date');
+  }
+  assert.throws(() => lunarToSolar(2000, 1, 1, 'false'), (error) => error.code === 'lunar-date');
+  assert.throws(() => getSaju({ y: 2000, m: 1, d: 1, leapMonth: 'false' }), (error) => error.code === 'leap-month');
+  assert.deepEqual(solarToLunar(2000, 2, 29), { year: 2000, month: 1, day: 25, leap: false });
+});
+
+test('대운은 입력 사주와 출생일의 연월일주가 다르면 거부한다', () => {
+  const birth = { y: 2000, m: 1, d: 1, hh: 12, mm: 0 };
+  const saju = getSaju(birth);
+  for (const key of ['year', 'month', 'day', 'hour']) {
+    const altered = { ...saju, pillars: { ...saju.pillars, [key]: { ...saju.pillars[key], text: '갑자' } } };
+    assert.throws(() => getDaeun({ saju: altered, gender: '남', birth }), (error) => error.code === 'saju-mismatch', key);
+  }
+  assert.ok(getDaeun({ saju, gender: '남', birth }).pillars.length === 10);
+});
+
+test('음력과 양력 입력의 사주·대운 결과가 같다', () => {
+  const solar = getSaju({ y: 2000, m: 1, d: 1, hh: 12, mm: 0 });
+  const lunar = getSaju({ y: 1999, m: 11, d: 25, calendar: 'lunar', hh: 12, mm: 0 });
+  assert.deepEqual(lunar.pillars, solar.pillars);
+  assert.deepEqual(lunar.solar, solar.solar);
+  assert.deepEqual(
+    getDaeun({ saju: lunar, gender: '남', birth: { ...solar.solar, hh: 12, mm: 0 } }),
+    getDaeun({ saju: solar, gender: '남', birth: { ...solar.solar, hh: 12, mm: 0 } }),
+  );
+});
+
 test('정수일 1사2입', () => {
   assert.deepEqual([0, 1, 2, 3, 4, 5, 19, 20, 21, 25, 32].map(daeunSu), [1, 1, 1, 1, 1, 2, 6, 7, 7, 8, 11]);
 });
