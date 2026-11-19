@@ -133,6 +133,21 @@ function pillarsAt(y, m, d, hh, mm) {
   return { year, month, day };
 }
 
+// 시주: 표준시 자정부터 2시간 단위, 23시 자시의 일주 귀속은 정책 미확정.
+function hourPillar(dayStem, hour) {
+  const dayStemIndex = STEMS.indexOf(dayStem);
+  if (dayStemIndex < 0 || !Number.isInteger(hour) || hour < 0 || hour > 22) {
+    throw new SajuError('hour-pillar', '시주를 계산할 수 없는 시각 또는 일간입니다.');
+  }
+  const branchIndex = Math.floor((hour + 1) / 2) % 12;
+  const stemIndex = mod((dayStemIndex % 5) * 2 + branchIndex, 10);
+  return {
+    stem: STEMS[stemIndex],
+    branch: BRANCHES[branchIndex],
+    text: STEMS[stemIndex] + BRANCHES[branchIndex],
+  };
+}
+
 function samePillars(left, right) {
   return left.year.text === right.year.text && left.month.text === right.month.text;
 }
@@ -199,10 +214,17 @@ export function getSaju({
   }
   if (!lunar) lunar = solarToLunar(solar.y, solar.m, solar.d);
   const pillars = resolveClock(solar.y, solar.m, solar.d, hh, mm);
+  // 비표준 법정시에서는 시주를 임의로 보정하지 않는다.
+  const supportedHour = hh != null && koreaOffsetMin(solar.y, solar.m, solar.d, hh) === 540;
+  const hour = supportedHour ? hourPillar(pillars.day.stem, hh) : null;
   return {
-    pillars: { ...pillars, hour: null },
+    pillars: { ...pillars, hour },
     solar,
     lunar,
-    hourOmitted: '시주와 경도·서머타임 보정은 아직 계산하지 않습니다.',
+    hourOmitted: hh == null
+      ? '출생시각을 입력하지 않아 시주를 계산하지 않았습니다.'
+      : hour == null
+        ? '당시 한국 법정시 보정 정책이 확정되지 않아 시주를 계산하지 않았습니다.'
+        : null,
   };
 }
