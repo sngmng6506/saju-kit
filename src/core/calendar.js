@@ -70,6 +70,9 @@ function findLunarMonth(year, month, leap) {
 }
 
 export function lunarToSolar(year, month, day, leap = false) {
+  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day) || typeof leap !== 'boolean') {
+    throw new SajuError('lunar-date', '음력 연월일은 정수이고 윤달 여부는 참 또는 거짓이어야 합니다.');
+  }
   const found = findLunarMonth(year, month, leap);
   if (!found) throw new SajuError('lunar-date', '없는 음력 달입니다.');
   const days = found[6];
@@ -78,6 +81,7 @@ export function lunarToSolar(year, month, day, leap = false) {
 }
 
 export function solarToLunar(y, m, d) {
+  if (!validDate(y, m, d)) throw new SajuError('date', '없는 양력 날짜입니다.');
   const key = dateKey(y, m, d);
   let found = null;
   for (const item of LUNAR_MONTHS) {
@@ -191,6 +195,9 @@ export function getSaju({
   }
   if (calendar !== 'solar' && calendar !== 'lunar') {
     throw new SajuError('calendar', '달력은 양력 또는 음력입니다.');
+  }
+  if (typeof leapMonth !== 'boolean') {
+    throw new SajuError('leap-month', '윤달 여부는 참 또는 거짓이어야 합니다.');
   }
   if (leapMonth && calendar !== 'lunar') {
     throw new SajuError('leap-month', '윤달은 음력 입력에서만 고릅니다.');
