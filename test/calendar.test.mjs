@@ -52,10 +52,26 @@ test('2000-01-01 정오는 기묘년 병자월 무오일이다', () => {
   assert.equal(result.pillars.year.text, '기묘');
   assert.equal(result.pillars.month.text, '병자');
   assert.equal(result.pillars.day.text, '무오');
-  assert.equal(result.pillars.hour, null);
+  assert.equal(result.pillars.hour.text, '무오');
   assert.equal(result.lunar.year, 1999);
   assert.equal(result.lunar.month, 11);
   assert.equal(result.lunar.day, 25);
+});
+
+test('현대 한국 표준시의 시주 경계와 일간별 시간 천간을 계산한다', () => {
+  // 2000-01-01은 무오일이다: 00시 임자, 01시 계축, 03시 갑인, 21시 계해.
+  const expected = [[0, '임자'], [1, '계축'], [2, '계축'], [3, '갑인'], [21, '계해'], [22, '계해']];
+  for (const [hh, text] of expected) {
+    assert.equal(getSaju({ y: 2000, m: 1, d: 1, hh, mm: 0 }).pillars.hour.text, text, String(hh));
+  }
+  assert.equal(getSaju({ y: 2000, m: 1, d: 2 }).pillars.hour, null);
+  assert.throws(() => getSaju({ y: 2000, m: 1, d: 1, hh: 23, mm: 59 }), (e) => e.code === 'day-boundary');
+});
+
+test('과거 비표준 법정시의 시주는 추측하지 않고 생략한다', () => {
+  const result = getSaju({ y: 1955, m: 4, d: 15, hh: 12, mm: 0 });
+  assert.equal(result.pillars.hour, null);
+  assert.match(result.hourOmitted, /법정시/);
 });
 
 test('입춘 시각에 연주와 월주가 바뀐다', () => {
