@@ -106,8 +106,13 @@ export function getDaeun({ saju, gender, birth } = {}) {
     mm: birth.mm ?? null,
     calendar: 'solar',
   });
-  if (checked.pillars.year.stem !== saju.pillars.year.stem) {
-    throw new SajuError('saju-mismatch', '사주의 연간과 생일로 계산한 연간이 다릅니다.');
+  for (const key of ['year', 'month', 'day']) {
+    if (checked.pillars[key].text !== saju.pillars[key]?.text) {
+      throw new SajuError('saju-mismatch', '사주와 생일로 계산한 연월일주가 다릅니다.');
+    }
+  }
+  if (saju.pillars.hour != null && checked.pillars.hour?.text !== saju.pillars.hour.text) {
+    throw new SajuError('saju-mismatch', '사주와 생일로 계산한 시주가 다릅니다.');
   }
   const forward = daeunDirection({ yearStem: saju.pillars.year.stem, gender }) === '순행';
   const days = countJeolDays(checked.solar, forward);
