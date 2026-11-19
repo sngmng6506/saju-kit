@@ -208,7 +208,8 @@ export function getSaju({
   if (hh != null && (!Number.isInteger(hh) || hh < 0 || hh > 23 || !Number.isInteger(mm) || mm < 0 || mm > 59)) {
     throw new SajuError('time', '시각이 올바르지 않습니다.');
   }
-  if (!validDate(y, m, d)) throw new SajuError('date', '없는 날짜입니다.');
+  // 음력 2월 30일처럼 양력 날짜로는 존재하지 않아도 유효한 음력일 수 있다.
+  if (calendar === 'solar' && !validDate(y, m, d)) throw new SajuError('date', '없는 양력 날짜입니다.');
 
   let solar = { y, m, d };
   let lunar = null;
