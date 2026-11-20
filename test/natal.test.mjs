@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { analyzeNatalStructure, getSaju, tenGodForStem } from '../src/index.js';
+import { analyzeNatalStructure, getHiddenStems, HIDDEN_STEMS_VERSION, getSaju, tenGodForStem } from '../src/index.js';
 
 // Independent expected ten-god rows for ten day masters, target stems in
 // 갑 을 병 정 무 기 경 신 임 계 order. These are reference tables, not computed
@@ -41,22 +41,37 @@ test('천간 오행과 음양·12지지 표면 오행을 고정된 대응표로 
   assert.deepEqual(r.dayMaster, { stem: '병', element: 'fire', yinYang: 'yang' });
   assert.deepEqual(r.pillars.year, {
     stem: { element: 'wood', yinYang: 'yang', tenGod: '편인' },
-    branch: { element: 'water' },
+    branch: { element: 'water', hiddenStems: [
+      { stem: '임', role: 'residual', element: 'water', yinYang: 'yang', tenGod: '편관' },
+      { stem: '계', role: 'principal', element: 'water', yinYang: 'yin', tenGod: '정관' },
+    ] },
   });
   assert.deepEqual(r.pillars.month, {
     stem: { element: 'wood', yinYang: 'yin', tenGod: '정인' },
-    branch: { element: 'earth' },
+    branch: { element: 'earth', hiddenStems: [
+      { stem: '계', role: 'residual', element: 'water', yinYang: 'yin', tenGod: '정관' },
+      { stem: '신', role: 'middle', element: 'metal', yinYang: 'yin', tenGod: '정재' },
+      { stem: '기', role: 'principal', element: 'earth', yinYang: 'yin', tenGod: '상관' },
+    ] },
   });
   assert.deepEqual(r.pillars.day, {
     stem: { element: 'fire', yinYang: 'yang', tenGod: '비견' },
-    branch: { element: 'wood' },
+    branch: { element: 'wood', hiddenStems: [
+      { stem: '무', role: 'residual', element: 'earth', yinYang: 'yang', tenGod: '식신' },
+      { stem: '병', role: 'middle', element: 'fire', yinYang: 'yang', tenGod: '비견' },
+      { stem: '갑', role: 'principal', element: 'wood', yinYang: 'yang', tenGod: '편인' },
+    ] },
   });
   assert.deepEqual(r.pillars.hour, {
     stem: { element: 'fire', yinYang: 'yin', tenGod: '겁재' },
-    branch: { element: 'wood' },
+    branch: { element: 'wood', hiddenStems: [
+      { stem: '갑', role: 'residual', element: 'wood', yinYang: 'yang', tenGod: '편인' },
+      { stem: '을', role: 'principal', element: 'wood', yinYang: 'yin', tenGod: '정인' },
+    ] },
   });
   assert.deepEqual(r.elementCounts, { wood: 4, fire: 2, earth: 1, metal: 0, water: 1 });
-  assert.deepEqual(r.metadata, { basis: 'visible-stems-and-branches-v1', completeHour: true });
+  assert.deepEqual(r.metadata, { basis: 'visible-stems-and-branches-v1', completeHour: true,
+    hiddenStemsBasis: HIDDEN_STEMS_VERSION });
 });
 
 test('시주가 없으면 null을 보존하고 표면 오행은 총 여섯 글자다', () => {
@@ -105,4 +120,48 @@ test('입력 원국을 변경하지 않으며 두 번 계산한 결과는 동일
   const a = analyzeNatalStructure({ saju });
   assert.deepEqual(analyzeNatalStructure({ saju }), a);
   assert.equal(JSON.stringify(saju), snapshot);
+});
+
+test('지장간 표 12개를 여기→중기→정기 순서로 정확히 유지한다', () => {
+  const reference = {
+    자: ['임', '계'], 축: ['계', '신', '기'], 인: ['무', '병', '갑'],
+    묘: ['갑', '을'], 진: ['을', '계', '무'], 사: ['무', '경', '병'],
+    오: ['병', '기', '정'], 미: ['정', '을', '기'], 신: ['무', '임', '경'],
+    유: ['경', '신'], 술: ['신', '정', '무'], 해: ['무', '갑', '임'],
+  };
+  for (const [branch, stems] of Object.entries(reference)) {
+    const entries = getHiddenStems(branch);
+    assert.deepEqual(entries.map(x => x.stem), stems, branch);
+    assert.deepEqual(entries.map(x => x.role), stems.length === 2
+      ? ['residual', 'principal'] : ['residual', 'middle', 'principal'], branch);
+    assert.ok(entries.every(x => ['wood','fire','earth','metal','water'].includes(x.element)));
+  }
+  assert.throws(() => getHiddenStems('x'), e => e.code === 'branch');
+  const original = getHiddenStems('축');
+  original[0].stem = '갑';
+  assert.equal(getHiddenStems('축')[0].stem, '계', '테이블을 외부에서 수정할 수 없어야 함');
+});
+
+test('지장간 십성은 동일 일간의 천간 십성과 일관되며 표면 오행 집계에 포함하지 않는다', () => {
+  const saju = getSaju({ y: 2000, m: 1, d: 1, hh: 12, mm: 0 });
+  const result = analyzeNatalStructure({ saju });
+  for (const position of ['year', 'month', 'day', 'hour']) {
+    const branch = result.pillars[position].branch;
+    const hidden = getHiddenStems(saju.pillars[position].branch);
+    assert.equal(branch.hiddenStems.length, hidden.length);
+    for (let i = 0; i < hidden.length; i += 1) {
+      assert.equal(branch.hiddenStems[i].tenGod,
+        tenGodForStem(saju.pillars.day.stem, hidden[i].stem));
+    }
+  }
+  assert.equal(Object.values(result.elementCounts).reduce((a,b) => a+b,0),8);
+  assert.equal(result.metadata.hiddenStemsBasis, HIDDEN_STEMS_VERSION);
+});
+
+test('시주 미입력 상태에서도 지장간은 연월일지만 계산한다', () => {
+  const saju = getSaju({ y: 2000, m: 1, d: 1 });
+  const result = analyzeNatalStructure({ saju });
+  assert.equal(result.pillars.hour, null);
+  assert.ok(result.pillars.year.branch.hiddenStems.length > 0);
+  assert.equal(Object.values(result.elementCounts).reduce((a,b) => a+b,0),6);
 });
