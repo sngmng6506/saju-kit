@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { analyzeNatalStructure, getHiddenStems, HIDDEN_STEMS_VERSION, getSaju, tenGodForStem } from '../src/index.js';
+import { analyzeNatalStructure, findHiddenStemOccurrences, getHiddenStems, HIDDEN_STEMS_VERSION, getSaju, tenGodForStem } from '../src/index.js';
 
 // Independent expected ten-god rows for ten day masters, target stems in
 // 갑 을 병 정 무 기 경 신 임 계 order. These are reference tables, not computed
@@ -164,4 +164,25 @@ test('시주 미입력 상태에서도 지장간은 연월일지만 계산한다
   assert.equal(result.pillars.hour, null);
   assert.ok(result.pillars.year.branch.hiddenStems.length > 0);
   assert.equal(Object.values(result.elementCounts).reduce((a,b) => a+b,0),6);
+});
+
+test('지장간에 동일 천간의 출현 위치만 보고 강약/통근 결론은 내리지 않는다', () => {
+  const saju = { pillars: {
+    year: { stem: '갑', branch: '자', text: '갑자' },
+    month: { stem: '갑', branch: '인', text: '갑인' },
+    day: { stem: '갑', branch: '진', text: '갑진' },
+    hour: null,
+  } };
+  assert.deepEqual(findHiddenStemOccurrences({ saju, stem: '갑' }), [
+    { position: 'month', branch: '인', stem: '갑', role: 'principal' },
+  ]);
+  assert.deepEqual(findHiddenStemOccurrences({ saju, stem: '계' }), [
+    { position: 'year', branch: '자', stem: '계', role: 'principal' },
+    { position: 'day', branch: '진', stem: '계', role: 'middle' },
+  ]);
+  assert.deepEqual(findHiddenStemOccurrences({ saju, stem: '정' }), []);
+  assert.throws(() => findHiddenStemOccurrences({ saju, stem: '?' }), e => e.code === 'stem');
+  const original = JSON.stringify(saju);
+  findHiddenStemOccurrences({ saju, stem: '갑' });
+  assert.equal(JSON.stringify(saju), original);
 });
