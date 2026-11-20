@@ -11,6 +11,24 @@ const clashes = new Set(CLASH_PAIRS.map(([a, b]) => pairKey(a, b)));
 const combines = new Set(COMBINE_PAIRS.map(([a, b]) => pairKey(a, b)));
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 
+// Yeokma convention: natal year/day branch's three-harmony group -> horse branch.
+// This is a traditional correspondence, not evidence of an actual relocation.
+const YEOKMA_BY_BRANCH = {
+  신: '인', 자: '인', 진: '인',
+  인: '신', 오: '신', 술: '신',
+  사: '해', 유: '해', 축: '해',
+  해: '사', 묘: '사', 미: '사',
+};
+
+/** Traditional yeokma (驛馬) branch for one natal year/day branch. */
+export function getYeokmaBranch(natalBranch) {
+  if (!BRANCHES.includes(natalBranch)) {
+    throw new SajuError('branch', '역마 기준 지지는 12지 중 하나여야 합니다.');
+  }
+  return YEOKMA_BY_BRANCH[natalBranch];
+}
+
+
 function validateYear(year) {
   if (!Number.isInteger(year) || year < 1900 || year > 2100) {
     throw new SajuError('year-range', '연도는 1900년부터 2100년까지의 정수여야 합니다.');
@@ -111,6 +129,29 @@ export function getYearSignals({ saju, daeun, year } = {}) {
       add(relation === 'clash' ? 'SEUN_DAEUN_CLASH' : 'SEUN_DAEUN_COMBINE',
         'daeun', 'daeun', relation,
         { seunBranch: seun.pillar.branch, daeunBranch: band.branch, daeunPillar: band.text });
+    }
+  }
+  // Year-pillar and day-pillar yeokma conventions remain separate even when
+  // both resolve to the same branch. No weights or good/bad conclusions.
+  for (const basis of ['year', 'day']) {
+    const basisBranch = saju.pillars[basis].branch;
+    const yeokmaBranch = getYeokmaBranch(basisBranch);
+    const details = { basis, basisBranch, yeokmaBranch };
+
+    for (const position of POSITIONS) {
+      const natal = saju.pillars[position];
+      if (natal?.branch === yeokmaBranch) {
+        add('YEOKMA_NATAL', 'natal', position, 'yeokma',
+          { ...details, matchedBranch: natal.branch });
+      }
+    }
+    if (band?.branch === yeokmaBranch) {
+      add('YEOKMA_DAEUN', 'daeun', 'daeun', 'yeokma',
+        { ...details, matchedBranch: band.branch, daeunPillar: band.text });
+    }
+    if (seun.pillar.branch === yeokmaBranch) {
+      add('YEOKMA_SEUN', 'calendar', 'year', 'yeokma',
+        { ...details, matchedBranch: seun.pillar.branch });
     }
   }
   return { year, seun, daeun: band ? { ...band } : null, signals };
