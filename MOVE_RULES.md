@@ -24,7 +24,7 @@
 | B. 대운 | 원국, 성별, 출생 양력일 | 10년 구간과 해당 간지 | 구현; 정수일 1사2입과 세는나이 정책 |
 | C. 세운 | 양력 연도 | 입춘 기준 연간지 | **구현: `getSeun(year)`** |
 | D. 간지 관계 | 원국·대운·세운 | 타입 지정된 관계 기록 | **구현: `branchRelation()`, `getYearSignals()`** |
-| E. 해석 | 관계 기록과 검토된 학파별 규칙 | 중립 설명 키 | **검토 후 구현** |
+| E. 해석 | 관계 기록과 검토된 학파별 규칙 | 중립 한국어 설명 및 출처별 근거 | **구현: `explainYearSignals()` (명리 관계 설명만)** |
 | F. 연도 추천 | 해석 규칙과 검증 기준 | 연도 후보/근거 | **미승인·미구현** |
 
 세운은 해마다 입춘에 바뀐다. 사용자에게 보여주는 양력 연도 카드에는 “해당 연도의 1~2월 초는 전년도 세운일 수 있음”을 표시한다. 10년 대운 구간은 현행 `getDaeun`과 동일하게 양력 연도 단위로 매핑한다.
@@ -69,6 +69,22 @@ const result = getYearSignals({ saju, daeun, year: 2026 });
 - `getYeokmaBranch('자') === '인'`. 신·자·진→인, 인·오·술→신, 사·유·축→해, 해·묘·미→사. 모든 12지지의 출력을 고정 테스트한다.
 - 역마 신호의 `details`에 `basis: 'year'|'day'`, `basisBranch`, `yeokmaBranch`, `matchedBranch`를 포함한다. 원국은 `target`으로 해당 지지 위치를, 대운은 적용 간지를 추가한다. 시주를 모르면 시지의 역마를 추정하지 않는다.
 - 합충 관계를 산술적으로 합산하거나 이사 연도로 순위화하는 기능은 없다. 반환값에 `score`나 `level`도 없다.
+
+## 3-2. 한국어 관계 설명 API
+
+```js
+import { explainYearSignals, getYearSignals } from './src/index.js';
+const raw = getYearSignals({ saju, daeun, year: 2026 });
+const explained = explainYearSignals(raw);
+// { year, seunPillar, items: [{ key, title, description, source, target, relation, details }],
+//   notes: [이사 비예측 안내, 입춘 안내], interpretation: 'traditional-relationships-only-v1' }
+```
+
+- `getYearSignals` 계산 데이터는 변경하지 않는다. 설명은 별도 모듈 `src/core/year-explanation.js`에서 관리한다.
+- 각각의 `items`은 원래 신호와 1:1 대응한다. 합충 대상 위치·역마 기준(연지/일지)·근거 필드는 그대로 유지한다.
+- 현재 한국어만 제공한다. 미지원 키·잘못된 위치·잘못된 지지는 `signal-input` 오류로 반환한다.
+- 문장에는 실제 이사 확정, 길흉 점수, 최적 이동 연도, 방위, 손 없는 날과 같은 판단을 넣지 않는다.
+- 결과의 입춘 안내는 연주·세운의 기준 시각을 설명한다. 특정 양력 연도 전체의 이벤트를 보장하지 않는다.
 
 ## 4. 우선순위 및 충돌 처리 정책
 
