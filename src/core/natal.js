@@ -1,5 +1,6 @@
 import { BRANCHES, STEMS } from './ganji.js';
 import { SajuError } from './error.js';
+import { getHiddenStems, HIDDEN_STEMS_VERSION } from './hidden-stems.js';
 
 // Fixed, visible-stem/branch correspondences. These are not weighted strengths.
 const ELEMENTS = ['wood', 'fire', 'earth', 'metal', 'water'];
@@ -79,7 +80,13 @@ export function analyzeNatalStructure({ saju } = {}) {
       continue;
     }
     const stem = stemInfo(pillar.stem);
-    const branch = { element: BRANCH_ELEMENTS[branchIndex(pillar.branch)] };
+    const branch = {
+      element: BRANCH_ELEMENTS[branchIndex(pillar.branch)],
+      hiddenStems: getHiddenStems(pillar.branch).map((item) => ({
+        ...item,
+        tenGod: tenGodForStem(dayMaster.stem, item.stem),
+      })),
+    };
     elementCounts[stem.element] += 1;
     elementCounts[branch.element] += 1;
     resultPillars[position] = {
@@ -94,6 +101,7 @@ export function analyzeNatalStructure({ saju } = {}) {
     metadata: {
       basis: 'visible-stems-and-branches-v1',
       completeHour: pillars.hour !== null,
+      hiddenStemsBasis: HIDDEN_STEMS_VERSION,
     },
   };
 }
