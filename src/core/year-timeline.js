@@ -14,10 +14,15 @@ const DEFAULT_END_AGE = 80;
  * birthYear = firstBand.fromYear - daeun.startAge + 1.
  * An explicit current year is not needed. This is not an event prediction.
  */
-export function getYearTimeline({ saju, daeun, endAge = DEFAULT_END_AGE } = {}) {
+export function getYearTimeline(input = {}) {
+  if (!input || typeof input !== 'object' || Array.isArray(input) ||
+      ['anchorYear', 'yearsBefore', 'yearsAfter'].some(key => Object.prototype.hasOwnProperty.call(input, key))) {
+    throw new SajuError('timeline-input', '타임라인은 대운 시작부터 종료 나이까지를 조회합니다.');
+  }
+  const { saju, daeun, endAge = DEFAULT_END_AGE } = input;
   const first = daeun?.pillars?.[0];
   const startAge = daeun?.startAge;
-  if (!Number.isInteger(startAge) || startAge < 1 || !first
+  if (daeun?.ageSystem !== '세는나이' || !Number.isInteger(startAge) || startAge < 1 || !first
       || !Number.isInteger(first.fromYear) || first.fromAge !== startAge) {
     throw new SajuError('daeun-input', '대운의 시작 나이와 첫 구간이 필요합니다.');
   }
