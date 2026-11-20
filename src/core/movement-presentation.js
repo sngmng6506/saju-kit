@@ -19,7 +19,7 @@ const WEIGHTS = Object.freeze({
 });
 
 const PRESENTATION = Object.freeze([
-  { min: 0, icon: '🔎', comment: '올해는 두드러진 이동 관련 신호가 적어요.' },
+  { min: 0, icon: '🔎', comment: '두드러진 이동 관련 신호가 적어요.' },
   { min: 20, icon: '🌱', comment: '일부 변화 관련 신호가 보여요.' },
   { min: 40, icon: '🚶', comment: '전통 명리에서 이동과 연결하는 신호가 보여요.' },
   { min: 70, icon: '🔄', comment: '여러 이동·변화 관련 신호가 겹쳐 보여요.' },
