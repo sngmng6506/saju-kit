@@ -105,3 +105,27 @@ export function analyzeNatalStructure({ saju } = {}) {
     },
   };
 }
+
+/**
+ * Literal matching stem occurrences inside the chart's branches, without
+ * deciding rootedness strength, seasonal support or auspiciousness.
+ */
+export function findHiddenStemOccurrences({ saju, stem } = {}) {
+  stemIndex(stem);
+  const pillars = saju?.pillars;
+  if (!pillars || typeof pillars !== 'object' || Array.isArray(pillars)) {
+    throw new SajuError('saju-input', '만세력의 연월일주가 필요합니다.');
+  }
+  const matches = [];
+  for (const position of POSITIONS) {
+    const pillar = pillars[position];
+    if (position === 'hour' && pillar === null) continue;
+    validatePillar(pillar, position);
+    for (const entry of getHiddenStems(pillar.branch)) {
+      if (entry.stem === stem) {
+        matches.push({ position, branch: pillar.branch, stem, role: entry.role });
+      }
+    }
+  }
+  return matches;
+}
