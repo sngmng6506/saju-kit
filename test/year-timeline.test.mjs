@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getSaju, getDaeun, getYearSignals, explainYearSignals, getYearTimeline } from '../src/index.js';
+import { getSaju, getDaeun, getYearSignals, explainYearSignals, getYearTimeline, summarizeMovementSignals, MOVEMENT_INDEX_VERSION } from '../src/index.js';
 
 function fixture(gender = '여', hour = true) {
   const birth = { y: 2000, m: 1, d: 1, ...(hour ? { hh: 12, mm: 0 } : {}) };
@@ -41,6 +41,10 @@ test('모든 연도 결과가 기존 단일 연도 계산과 일치한다', () =
     assert.deepEqual(row.seun, raw.seun);
     assert.deepEqual(row.explanation.items, text.items);
     assert.deepEqual(row.explanation.notes, text.notes);
+    assert.deepEqual(row.display, summarizeMovementSignals(raw.signals));
+    assert.equal(row.display.version, MOVEMENT_INDEX_VERSION);
+    assert.ok(row.display.score >= 0 && row.display.score <= 100);
+    assert.ok(row.display.icon && row.display.comment);
   }
 });
 test('시주 없을 때 원국 시지를 추측하지 않는다', () => {
