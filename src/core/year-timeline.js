@@ -1,6 +1,7 @@
 import { SajuError } from './error.js';
 import { getYearSignals } from './year-signals.js';
 import { explainYearSignals } from './year-explanation.js';
+import { summarizeMovementSignals, MOVEMENT_INDEX_VERSION } from './movement-presentation.js';
 
 const MIN_YEAR = 1900;
 const MAX_YEAR = 2100;
@@ -49,6 +50,7 @@ export function getYearTimeline(input = {}) {
       seun: calculated.seun,
       daeun: calculated.daeun,
       signals: calculated.signals,
+      display: summarizeMovementSignals(calculated.signals),
       explanation: {
         items: explained.items,
         notes: explained.notes,
@@ -71,6 +73,7 @@ export function getYearTimeline(input = {}) {
       daeunBoundary: 'korean-counting-age-calendar-year',
       interpretation: 'traditional-relationships-only-v1',
       ranked: false,
+      movementIndex: MOVEMENT_INDEX_VERSION,
     },
   };
 }
