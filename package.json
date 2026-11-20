@@ -2,7 +2,7 @@
   "name": "saju-kit",
   "private": true,
   "type": "module",
-  "description": "브라우저에서 계산하는 만세력과 중립적 세운 관계 신호. 연도 추천은 아직 없다.",
+  "description": "브라우저에서 계산하는 만세력·원국 구조·중립적 세운 관계 신호. 연도 추천은 아직 없다.",
   "scripts": {
     "test": "node --test",
     "build-data": "node scripts/build-calendar-data.mjs"
