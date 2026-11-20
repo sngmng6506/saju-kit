@@ -6,3 +6,4 @@ export { analyzeNatalStructure, tenGodForStem, findHiddenStemOccurrences } from 
 export { getHiddenStems, HIDDEN_STEMS_VERSION } from './core/hidden-stems.js';
 export { explainYearSignals } from './core/year-explanation.js';
 export { getYearTimeline } from './core/year-timeline.js';
+export { summarizeMovementSignals, MOVEMENT_INDEX_VERSION } from './core/movement-presentation.js';
