@@ -4,41 +4,42 @@ import { explainYearSignals } from './year-explanation.js';
 
 const MIN_YEAR = 1900;
 const MAX_YEAR = 2100;
-const DEFAULT_WINDOW = 10;
-const MAX_WINDOW = 50;
-
-function checkWindow(anchorYear, yearsBefore, yearsAfter) {
-  if (!Number.isInteger(anchorYear) || anchorYear < MIN_YEAR || anchorYear > MAX_YEAR) {
-    throw new SajuError('year-range', '기준 연도는 1900~2100년의 정수여야 합니다.');
-  }
-  if (![yearsBefore, yearsAfter].every(n => Number.isInteger(n) && n >= 0 && n <= MAX_WINDOW)) {
-    throw new SajuError('timeline-range', '과거·미래 연도 수는 각각 0~50 사이의 정수여야 합니다.');
-  }
-  if (anchorYear - yearsBefore < MIN_YEAR || anchorYear + yearsAfter > MAX_YEAR) {
-    throw new SajuError('timeline-range', '조회 범위는 1900~2100년 안에 있어야 합니다.');
-  }
-}
+const DEFAULT_END_AGE = 80;
 
 /**
- * Analyze years on either side of an explicit anchor year.
+ * Annual traditional saju relationships from the first daeun year to
+ * the inclusive ending Korean counting age (default 80).
  *
- * Past = anchorYear-yearsBefore ... anchorYear-1 (ascending)
- * Current = anchorYear
- * Future = anchorYear+1 ... anchorYear+yearsAfter (ascending).
- *
- * This is traditional branch-relation data, NOT a ranking or move prediction.
- * No clock or persistence: the caller supplies the anchor year explicitly.
- * Fails as a whole if one year cannot be calculated (including daeun limits).
+ * The birth year is derived from the verified getDaeun() age/year mapping:
+ * birthYear = firstBand.fromYear - daeun.startAge + 1.
+ * An explicit current year is not needed. This is not an event prediction.
  */
-export function getYearTimeline({
-  saju, daeun, anchorYear, yearsBefore = DEFAULT_WINDOW, yearsAfter = DEFAULT_WINDOW,
-} = {}) {
-  checkWindow(anchorYear, yearsBefore, yearsAfter);
+export function getYearTimeline({ saju, daeun, endAge = DEFAULT_END_AGE } = {}) {
+  const first = daeun?.pillars?.[0];
+  const startAge = daeun?.startAge;
+  if (!Number.isInteger(startAge) || startAge < 1 || !first
+      || !Number.isInteger(first.fromYear) || first.fromAge !== startAge) {
+    throw new SajuError('daeun-input', '대운의 시작 나이와 첫 구간이 필요합니다.');
+  }
+  if (!Number.isInteger(endAge) || endAge < startAge || endAge > 120) {
+    throw new SajuError('timeline-range', '종료 나이는 대운 시작 나이 이상 120세 이하 정수여야 합니다.');
+  }
+  const birthYear = first.fromYear - startAge + 1;
+  const fromYear = first.fromYear;
+  const toYear = birthYear + endAge - 1;
+  if (!Number.isInteger(birthYear) || fromYear < MIN_YEAR || toYear > MAX_YEAR) {
+    throw new SajuError('timeline-range', '분석 연도가 지원 범위 1900~2100년을 벗어납니다.');
+  }
 
-  const readYear = year => {
+  // Validate every year as a whole. A missing daeun band or bad chart is
+  // an error, never a silently skipped or guessed year.
+  const years = [];
+  for (let age = startAge; age <= endAge; age += 1) {
+    const year = birthYear + age - 1;
     const calculated = getYearSignals({ saju, daeun, year });
     const explained = explainYearSignals(calculated);
-    return {
+    years.push({
+      age,
       year,
       seun: calculated.seun,
       daeun: calculated.daeun,
@@ -48,29 +49,21 @@ export function getYearTimeline({
         notes: explained.notes,
         interpretation: explained.interpretation,
       },
-    };
-  };
-
-  const past = [];
-  for (let year = anchorYear - yearsBefore; year < anchorYear; year += 1) {
-    past.push(readYear(year));
-  }
-  const current = readYear(anchorYear);
-  const future = [];
-  for (let year = anchorYear + 1; year <= anchorYear + yearsAfter; year += 1) {
-    future.push(readYear(year));
+    });
   }
 
   return {
-    anchorYear,
-    yearsBefore,
-    yearsAfter,
-    past,
-    current,
-    future,
+    birthYear,
+    startAge,
+    endAge,
+    ageSystem: '세는나이',
+    fromYear,
+    toYear,
+    years,
     metadata: {
       calendarYearRange: [MIN_YEAR, MAX_YEAR],
       seunBoundary: 'ipchun',
+      daeunBoundary: 'korean-counting-age-calendar-year',
       interpretation: 'traditional-relationships-only-v1',
       ranked: false,
     },
