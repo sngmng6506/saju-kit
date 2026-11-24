@@ -10,9 +10,13 @@ export function analyzeUsefulElementAuthority(input){
  const args={saju:input.saju,birthBasis:input.birthBasis};
  const legacy=analyzeUsefulElementReview({...args,policy:'useful-element-review-v1'});
  const climate=analyzeClimateUsefulElementV2({...args,policy:'climate-useful-element-v2'});
+ return composeAuthorityReview(legacy,climate,USEFUL_ELEMENT_AUTHORITY_VERSION,'parallel-doctrine-review-v2');
+}
+// Internal shared composition; the public v1 has no caller-selectable provider.
+export function composeAuthorityReview(legacy,climate,version,reviewVersion){
  const methods={...legacy.methods,climate};
- const review={...legacy,version:'parallel-doctrine-review-v2',methods,
+ const review={...legacy,version:reviewVersion,methods,
   comparisons:compareMethodEvidence(methods.balance,climate,methods.mediation,methods.remedy)};
- return {version:USEFUL_ELEMENT_AUTHORITY_VERSION,assessment:'conditional-authority-and-anchor-relations-only',
+ return {version,assessment:'conditional-authority-and-anchor-relations-only',
   review,authority:collectAuthorityReview(review),usefulElement:null,favorableElements:null,unfavorableElements:null,confirmed:false};
 }
