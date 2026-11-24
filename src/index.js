@@ -69,3 +69,7 @@ export { analyzeUsefulElementReview, USEFUL_ELEMENT_REVIEW_VERSION } from './fea
 export { analyzeClimateUsefulElementV2, CLIMATE_V2_VERSION } from './features/climate-useful-element-v2/index.js';
 export { analyzeUsefulElementAuthority, USEFUL_ELEMENT_AUTHORITY_VERSION } from './features/useful-element-authority-v1/index.js';
 export { analyzeUsefulElementTransit, USEFUL_ELEMENT_TRANSIT_VERSION } from './features/useful-element-transit-v1/index.js';
+
+export { analyzeClimateUsefulElementV3, CLIMATE_V3_VERSION } from './features/climate-useful-element-v3/index.js';
+export { analyzeUsefulElementAuthorityV2, USEFUL_ELEMENT_AUTHORITY_V2_VERSION } from './features/useful-element-authority-v2/index.js';
+export { analyzeUsefulElementTransitV2, USEFUL_ELEMENT_TRANSIT_V2_VERSION } from './features/useful-element-transit-v2/index.js';
