@@ -4,7 +4,7 @@ import { analyzeElementStructure } from '../../core/element-structure.js';
 import { stemInfo } from '../../core/elements.js';
 import { climateSourceRow,CLIMATE_SOURCE_COVERAGE } from './source.js';
 export const CLIMATE_USEFUL_ELEMENT_VERSION='climate-useful-element-v1';
-export function climateEvidence(context,structure,{lookup=climateSourceRow,coverage=CLIMATE_SOURCE_COVERAGE}={}){
+export function climateEvidence(context,structure,{lookup=climateSourceRow,coverage=CLIMATE_SOURCE_COVERAGE,projectAlternatives=false}={}){
  const {dayMaster,month}=context;
  // Xu commentary names these seasonal cases, not a universal thermometer.
  const seasonalNeed=month.season==='winter'&&['metal','water'].includes(dayMaster.element)?'warmth-review':
@@ -27,7 +27,7 @@ export function climateEvidence(context,structure,{lookup=climateSourceRow,cover
  return {seasonal:{sourceId:'xu-ziping-commentary-climate',source:'https://dao.time.actor/ziping-zhenquan-pingzhu/juan-2',
   season:month.season,need:seasonalNeed,candidate:seasonCandidate?elementEvidence(seasonCandidate):null,
   heatResolved:false,moistureResolved:false},
-  sourceProfile:source?{...source,groups:source.groups.map(g=>g.map(stemEvidence)),qualifiersResolved:false}:null,
+  sourceProfile:source?{...source,groups:source.groups.map(g=>g.map(stemEvidence)),...(projectAlternatives?{alternatives:(source.alternatives??[]).map(a=>({...a,evidence:a.stems.map(stemEvidence)}))}:{}),qualifiersResolved:false}:null,
   sourceCoverage:{covered:coverage,total:120},usefulElement:null,confirmed:false};
 }
 export function analyzeClimateUsefulElement(input){
