@@ -1,0 +1,152 @@
+{
+  "version": "ordinary-lin-holdout-v4-v1",
+  "author": "林庚白",
+  "book": "人鑑卷上",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+  "frozenEngine": "bd82161c91f4a8337aa0e90fd3cd1f17b16fc521",
+  "selection": "Visually read PDF indices 83–93, 95, 98–100, 102–103; indices 94,96,105 returned HTTP429 and not inspected. Selected explicit natal directions only, not random or exhaustive. Same author as earlier four Lin cases; new charts, not independent author. Strong/weak labels and formation status fixed before engine evaluation. Printed columns right to left. Ordinary status refers to cited directional rationale, not rejection of author's other techniques.",
+  "excluded": [
+    {
+      "printedPage": 79,
+      "reason": "not strong (究非強者) does not necessarily mean weak"
+    },
+    {
+      "printedPage": 81,
+      "reason": "killer shallow, no explicit day-master direction"
+    },
+    {
+      "printedPage": 84,
+      "reason": "author changes hour"
+    },
+    {
+      "printedPage": 85,
+      "reason": "special pattern"
+    },
+    {
+      "printedPage": 86,
+      "reason": "special pattern"
+    },
+    {
+      "printedPage": 87,
+      "reason": "special pattern"
+    },
+    {
+      "printedPage": 89,
+      "reason": "seasonal command not overall direction"
+    },
+    {
+      "printedPage": 92,
+      "reason": "author explicitly suspects another hour and timing dependent"
+    },
+    {
+      "printedPage": 93,
+      "reason": "no explicit natal direction"
+    },
+    {
+      "printedPage": 94,
+      "reason": "no explicit natal direction"
+    },
+    {
+      "printedPage": 97,
+      "reason": "element pressure not explicit day-master direction"
+    }
+  ],
+  "cases": [
+    {
+      "id": "L77",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "壬寅",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 77,
+      "pdfPageIndex": 83,
+      "reason": "Author explicitly states day master prosperous in autumn; peer and seasonal support; clash weakens food rather than successful transformation.",
+      "basis": "explicit-contextual-natal"
+    },
+    {
+      "id": "L78",
+      "pillars": [
+        "癸酉",
+        "丁巳",
+        "己卯",
+        "甲戌"
+      ],
+      "reference": "weak",
+      "formation": "dependent",
+      "formationDependent": true,
+      "printedPage": 78,
+      "pdfPageIndex": 84,
+      "reason": "Author judges prosperity becomes weakness, invoking a metal assembly with life palace Chou; auxiliary formation-dependent.",
+      "basis": "explicit-contextual-natal"
+    },
+    {
+      "id": "L80",
+      "pillars": [
+        "己巳",
+        "甲戌",
+        "壬辰",
+        "庚子"
+      ],
+      "reference": "weak",
+      "formation": "uncertain",
+      "formationDependent": true,
+      "printedPage": 80,
+      "pdfPageIndex": 86,
+      "reason": "Explicit very weak Ren; author considers an imperfect following-killer pattern and post-frost timing.",
+      "basis": "explicit-contextual-natal"
+    },
+    {
+      "id": "L82",
+      "pillars": [
+        "辛酉",
+        "庚寅",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 82,
+      "pdfPageIndex": 88,
+      "reason": "Author applies maxim about strong day master to this chart; concealed Wu resource and blade; virtual arch mentioned for usefulness, not required for direction.",
+      "basis": "explicit-contextual-natal"
+    },
+    {
+      "id": "L83",
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "丁卯",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 83,
+      "pdfPageIndex": 89,
+      "reason": "Explicit strong body with shallow killer after peer and resource accumulation; virtual wealth later concerns usefulness.",
+      "basis": "explicit-contextual-natal"
+    },
+    {
+      "id": "L96",
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "丙申",
+        "戊戌"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 96,
+      "pdfPageIndex": 102,
+      "reason": "Explicit change from prosperity to weakness because earth and metal excessive; Mao resource selected.",
+      "basis": "explicit-contextual-natal"
+    }
+  ]
+}
