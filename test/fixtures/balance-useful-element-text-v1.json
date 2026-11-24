@@ -1,0 +1,89 @@
+{
+  "version": "balance-useful-element-text-v1",
+  "source": {
+    "author": "徐樂吾",
+    "book": "子平真詮評注",
+    "section": "論用神（一）扶抑（1）扶抑日元為用",
+    "url": "https://sanqing.com.tw/en/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE%E8%A9%95%E8%A8%BC/",
+    "verification": "electronic witness; not print authenticated",
+    "selection": "all four consecutive day-master balance examples; distinct task labels, not necessarily novel strength charts"
+  },
+  "cases": [
+    {
+      "id": "BU-X01",
+      "pillars": [
+        "丁亥",
+        "丙午",
+        "壬寅",
+        "己酉"
+      ],
+      "direction": "weak",
+      "referenceElement": "metal",
+      "referenceCategory": "resource",
+      "reason": "Wealth and officer both strong; author chooses resource to support day master rather than officer."
+    },
+    {
+      "id": "BU-X02",
+      "pillars": [
+        "丁卯",
+        "癸丑",
+        "丙申",
+        "戊子"
+      ],
+      "direction": "weak",
+      "referenceElement": "fire",
+      "referenceCategory": "peer",
+      "reason": "Water strong, fire weak; author chooses peer assistance; water formation invoked, scope sensitive."
+    },
+    {
+      "id": "BU-X03",
+      "pillars": [
+        "癸巳",
+        "丁巳",
+        "丁卯",
+        "丙午"
+      ],
+      "direction": "strong",
+      "referenceElement": "water",
+      "referenceCategory": "officer",
+      "reason": "Day master excessive; author uses year stem 癸 for control."
+    },
+    {
+      "id": "BU-X04",
+      "pillars": [
+        "丙子",
+        "壬辰",
+        "壬申",
+        "乙巳"
+      ],
+      "direction": "strong",
+      "referenceElement": "wood",
+      "referenceCategory": "output",
+      "reason": "Day master excessive; author uses projected 乙 from 辰 to drain."
+    }
+  ],
+  "scopeControls": [
+    {
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "丁卯",
+        "戊申"
+      ],
+      "method": "month-command-balance",
+      "referenceElement": "metal",
+      "note": "Not scored as day-master balance; source discusses excessive month resource."
+    },
+    {
+      "pillars": [
+        "壬辰",
+        "癸丑",
+        "辛丑",
+        "甲午"
+      ],
+      "method": "climate",
+      "referenceElement": "fire",
+      "note": "Not scored as day-master balance; explicit climate section."
+    }
+  ]
+}
