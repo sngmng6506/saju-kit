@@ -50,3 +50,5 @@ export { analyzeMultiaxisStrengthV4, MULTIAXIS_V4_VERSION } from './features/str
 export { analyzeStrengthDecision, STRENGTH_DECISION_VERSION } from './features/strength-decision-v1/index.js';
 
 export { analyzeFormationEvidence, FORMATION_EVIDENCE_VERSION } from './core/formation-evidence.js';
+
+export { analyzeMonthCommand, monthCommandSources, MONTH_COMMAND_VERSION } from './core/month-command.js';
