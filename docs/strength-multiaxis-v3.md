@@ -21,3 +21,6 @@ All 96 existing textual inputs evaluated through V8 source adapter (unused calen
 Additional bounded-route-support ground in 14 charts: seven ordinary strong labels (W01 W14 W15 W20 W25 W26 XU29), one disputed XU04, six extreme-chapter review-required records. All already strong under v2. No additional directional classification, including R10/R11. Coverage remains 51.6%. The previous exploratory output-only comparison omitted full wealth/officer pressure, so its apparent new grounds do not imply improvement here. This integration provides explanations but no measured classification benefit; do not promote it to default or imply independent accuracy.
 
 Next: stop expanding speculative numerical modules without evidence. Audit reference labels and source provenance, execute native regression, measure rule redundancy and ablate individual gates (especially full pressure vs hypothetical allocation and inherited conflicts) on frozen development data. Only independently reviewed new charts can justify selecting a subsequent policy. No consumer migration or yongsin inference.
+
+## Decision ablation
+[Decision ablation](strength-ablation.md) measures eight single-condition variants; no runtime policy change.
