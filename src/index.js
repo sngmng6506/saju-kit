@@ -16,3 +16,5 @@ export * as movementV6 from './features/movement-v6/index.js';
 export { branchRelationsV2, analyzeBranchGroupsV2, EXTENDED_RELATIONS_VERSION } from './core/extended-relations.js';
 export { analyzeNatalRelations, analyzeCrossChartRelations } from './core/natal-relations.js';
 export { analyzeNatalContext } from './core/natal-context.js';
+
+export { analyzeDayMasterStrength, STRENGTH_POLICY_VERSION } from './features/strength-hybrid-v1/index.js';
