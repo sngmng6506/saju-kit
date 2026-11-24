@@ -1,0 +1,3192 @@
+{
+  "engine": "677b58f59a44f36535b6af88f663dcb6515bb075",
+  "method": "Actual pinned v1/v3, neutral-season v3, and no-weak-veto v3 run for all 19 charts that were weak under v4 or prior veto-removal result, in isolated V8 module graphs; unused throwing calendar stub. All 19 observed baseline and no-veto directions checked. The candidate guards only demote weak to null, so the other 73 directions are carried from historical recorded outcomes, not rerun in this experiment. No-veto sensitivity uses recorded no-veto outputs with observed v4 strong-only gate outcomes; not a fresh full v4 no-veto execution. G4 uses neutral v3 with veto retained even in this sensitivity table; not an interaction estimate.",
+  "variants": [
+    "G0",
+    "G1-any-principal",
+    "G2-unclashed-principal",
+    "G3-local-rooted-peer",
+    "G4-neutral-direction",
+    "G5-include-peer-root-mass"
+  ],
+  "metrics": {
+    "primary": {
+      "G0": {
+        "n": 65,
+        "agree": 35,
+        "disagree": 1,
+        "abstain": 29,
+        "coverage": 0.5538461538461539,
+        "conditionalAgreement": 0.9722222222222222
+      },
+      "G1-any-principal": {
+        "n": 65,
+        "agree": 35,
+        "disagree": 0,
+        "abstain": 30,
+        "coverage": 0.5384615384615384,
+        "conditionalAgreement": 1
+      },
+      "G2-unclashed-principal": {
+        "n": 65,
+        "agree": 35,
+        "disagree": 0,
+        "abstain": 30,
+        "coverage": 0.5384615384615384,
+        "conditionalAgreement": 1
+      },
+      "G3-local-rooted-peer": {
+        "n": 65,
+        "agree": 35,
+        "disagree": 0,
+        "abstain": 30,
+        "coverage": 0.5384615384615384,
+        "conditionalAgreement": 1
+      },
+      "G4-neutral-direction": {
+        "n": 65,
+        "agree": 33,
+        "disagree": 1,
+        "abstain": 31,
+        "coverage": 0.5230769230769231,
+        "conditionalAgreement": 0.9705882352941176
+      },
+      "G5-include-peer-root-mass": {
+        "n": 65,
+        "agree": 35,
+        "disagree": 1,
+        "abstain": 29,
+        "coverage": 0.5538461538461539,
+        "conditionalAgreement": 0.9722222222222222
+      }
+    },
+    "secondary": {
+      "G0": {
+        "n": 27,
+        "agree": 8,
+        "disagree": 1,
+        "abstain": 18,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.8888888888888888
+      },
+      "G1-any-principal": {
+        "n": 27,
+        "agree": 7,
+        "disagree": 1,
+        "abstain": 19,
+        "coverage": 0.2962962962962963,
+        "conditionalAgreement": 0.875
+      },
+      "G2-unclashed-principal": {
+        "n": 27,
+        "agree": 7,
+        "disagree": 1,
+        "abstain": 19,
+        "coverage": 0.2962962962962963,
+        "conditionalAgreement": 0.875
+      },
+      "G3-local-rooted-peer": {
+        "n": 27,
+        "agree": 7,
+        "disagree": 1,
+        "abstain": 19,
+        "coverage": 0.2962962962962963,
+        "conditionalAgreement": 0.875
+      },
+      "G4-neutral-direction": {
+        "n": 27,
+        "agree": 7,
+        "disagree": 1,
+        "abstain": 19,
+        "coverage": 0.2962962962962963,
+        "conditionalAgreement": 0.875
+      },
+      "G5-include-peer-root-mass": {
+        "n": 27,
+        "agree": 8,
+        "disagree": 1,
+        "abstain": 18,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.8888888888888888
+      }
+    },
+    "all": {
+      "G0": {
+        "n": 92,
+        "agree": 43,
+        "disagree": 2,
+        "abstain": 47,
+        "coverage": 0.4891304347826087,
+        "conditionalAgreement": 0.9555555555555556
+      },
+      "G1-any-principal": {
+        "n": 92,
+        "agree": 42,
+        "disagree": 1,
+        "abstain": 49,
+        "coverage": 0.4673913043478261,
+        "conditionalAgreement": 0.9767441860465116
+      },
+      "G2-unclashed-principal": {
+        "n": 92,
+        "agree": 42,
+        "disagree": 1,
+        "abstain": 49,
+        "coverage": 0.4673913043478261,
+        "conditionalAgreement": 0.9767441860465116
+      },
+      "G3-local-rooted-peer": {
+        "n": 92,
+        "agree": 42,
+        "disagree": 1,
+        "abstain": 49,
+        "coverage": 0.4673913043478261,
+        "conditionalAgreement": 0.9767441860465116
+      },
+      "G4-neutral-direction": {
+        "n": 92,
+        "agree": 40,
+        "disagree": 2,
+        "abstain": 50,
+        "coverage": 0.45652173913043476,
+        "conditionalAgreement": 0.9523809523809523
+      },
+      "G5-include-peer-root-mass": {
+        "n": 92,
+        "agree": 43,
+        "disagree": 2,
+        "abstain": 47,
+        "coverage": 0.4891304347826087,
+        "conditionalAgreement": 0.9555555555555556
+      }
+    }
+  },
+  "sensitivity": {
+    "primary": {
+      "G0": {
+        "n": 65,
+        "agree": 36,
+        "disagree": 1,
+        "abstain": 28,
+        "coverage": 0.5692307692307692,
+        "conditionalAgreement": 0.972972972972973
+      },
+      "G1-any-principal": {
+        "n": 65,
+        "agree": 36,
+        "disagree": 0,
+        "abstain": 29,
+        "coverage": 0.5538461538461539,
+        "conditionalAgreement": 1
+      },
+      "G2-unclashed-principal": {
+        "n": 65,
+        "agree": 36,
+        "disagree": 0,
+        "abstain": 29,
+        "coverage": 0.5538461538461539,
+        "conditionalAgreement": 1
+      },
+      "G3-local-rooted-peer": {
+        "n": 65,
+        "agree": 36,
+        "disagree": 0,
+        "abstain": 29,
+        "coverage": 0.5538461538461539,
+        "conditionalAgreement": 1
+      },
+      "G4-neutral-direction": {
+        "n": 65,
+        "agree": 33,
+        "disagree": 1,
+        "abstain": 31,
+        "coverage": 0.5230769230769231,
+        "conditionalAgreement": 0.9705882352941176
+      },
+      "G5-include-peer-root-mass": {
+        "n": 65,
+        "agree": 36,
+        "disagree": 1,
+        "abstain": 28,
+        "coverage": 0.5692307692307692,
+        "conditionalAgreement": 0.972972972972973
+      }
+    },
+    "secondary": {
+      "G0": {
+        "n": 27,
+        "agree": 10,
+        "disagree": 1,
+        "abstain": 16,
+        "coverage": 0.4074074074074074,
+        "conditionalAgreement": 0.9090909090909091
+      },
+      "G1-any-principal": {
+        "n": 27,
+        "agree": 9,
+        "disagree": 1,
+        "abstain": 17,
+        "coverage": 0.37037037037037035,
+        "conditionalAgreement": 0.9
+      },
+      "G2-unclashed-principal": {
+        "n": 27,
+        "agree": 9,
+        "disagree": 1,
+        "abstain": 17,
+        "coverage": 0.37037037037037035,
+        "conditionalAgreement": 0.9
+      },
+      "G3-local-rooted-peer": {
+        "n": 27,
+        "agree": 9,
+        "disagree": 1,
+        "abstain": 17,
+        "coverage": 0.37037037037037035,
+        "conditionalAgreement": 0.9
+      },
+      "G4-neutral-direction": {
+        "n": 27,
+        "agree": 7,
+        "disagree": 1,
+        "abstain": 19,
+        "coverage": 0.2962962962962963,
+        "conditionalAgreement": 0.875
+      },
+      "G5-include-peer-root-mass": {
+        "n": 27,
+        "agree": 9,
+        "disagree": 1,
+        "abstain": 17,
+        "coverage": 0.37037037037037035,
+        "conditionalAgreement": 0.9
+      }
+    },
+    "all": {
+      "G0": {
+        "n": 92,
+        "agree": 46,
+        "disagree": 2,
+        "abstain": 44,
+        "coverage": 0.5217391304347826,
+        "conditionalAgreement": 0.9583333333333334
+      },
+      "G1-any-principal": {
+        "n": 92,
+        "agree": 45,
+        "disagree": 1,
+        "abstain": 46,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.9782608695652174
+      },
+      "G2-unclashed-principal": {
+        "n": 92,
+        "agree": 45,
+        "disagree": 1,
+        "abstain": 46,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.9782608695652174
+      },
+      "G3-local-rooted-peer": {
+        "n": 92,
+        "agree": 45,
+        "disagree": 1,
+        "abstain": 46,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.9782608695652174
+      },
+      "G4-neutral-direction": {
+        "n": 92,
+        "agree": 40,
+        "disagree": 2,
+        "abstain": 50,
+        "coverage": 0.45652173913043476,
+        "conditionalAgreement": 0.9523809523809523
+      },
+      "G5-include-peer-root-mass": {
+        "n": 92,
+        "agree": 45,
+        "disagree": 2,
+        "abstain": 45,
+        "coverage": 0.5108695652173914,
+        "conditionalAgreement": 0.9574468085106383
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H02",
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "甲午",
+        "戊辰"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H03",
+      "pillars": [
+        "丙寅",
+        "癸巳",
+        "癸未",
+        "壬戌"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ]
+    },
+    {
+      "id": "H04",
+      "pillars": [
+        "丙辰",
+        "癸巳",
+        "壬戌",
+        "壬寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ]
+    },
+    {
+      "id": "H05",
+      "pillars": [
+        "丙辰",
+        "丙申",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H06",
+      "pillars": [
+        "甲申",
+        "壬申",
+        "乙巳",
+        "戊寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H07",
+      "pillars": [
+        "壬戌",
+        "丁未",
+        "戊申",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "H08",
+      "pillars": [
+        "乙卯",
+        "丁亥",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W10",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "庚子",
+        "丁亥"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W12",
+      "pillars": [
+        "庚子",
+        "庚辰",
+        "甲子",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DX01",
+      "pillars": [
+        "丁丑",
+        "庚戌",
+        "庚子",
+        "甲申"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "Y01",
+      "pillars": [
+        "戊子",
+        "乙卯",
+        "戊戌",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R01",
+      "pillars": [
+        "己酉",
+        "丙寅",
+        "庚申",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R02",
+      "pillars": [
+        "戊申",
+        "癸亥",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R03",
+      "pillars": [
+        "甲辰",
+        "己巳",
+        "戊辰",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R04",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "庚申",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R05",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "乙亥",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R07",
+      "pillars": [
+        "丙申",
+        "戊戌",
+        "丁卯",
+        "乙巳"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R09",
+      "pillars": [
+        "己卯",
+        "庚午",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R10",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬申",
+        "己酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R11",
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "丙寅",
+        "乙未"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W01",
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "甲子",
+        "甲子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W02",
+      "pillars": [
+        "甲寅",
+        "癸酉",
+        "乙亥",
+        "丙子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W03",
+      "pillars": [
+        "甲寅",
+        "丙子",
+        "壬寅",
+        "丙午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W04",
+      "pillars": [
+        "辛亥",
+        "丁酉",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W05",
+      "pillars": [
+        "戊申",
+        "庚申",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W06",
+      "pillars": [
+        "丙辰",
+        "庚寅",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W08",
+      "pillars": [
+        "辛巳",
+        "辛丑",
+        "壬寅",
+        "癸卯"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W09",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W14",
+      "pillars": [
+        "癸丑",
+        "乙卯",
+        "甲子",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W15",
+      "pillars": [
+        "己卯",
+        "丙寅",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W16",
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W17",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W18",
+      "pillars": [
+        "乙酉",
+        "丙戌",
+        "甲戌",
+        "乙丑"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W19",
+      "pillars": [
+        "庚寅",
+        "丙戌",
+        "甲寅",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W20",
+      "pillars": [
+        "丙戌",
+        "辛卯",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W22",
+      "pillars": [
+        "癸卯",
+        "乙卯",
+        "戊子",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W23",
+      "pillars": [
+        "戊戌",
+        "辛酉",
+        "戊申",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W24",
+      "pillars": [
+        "丙申",
+        "丙申",
+        "戊戌",
+        "庚申"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W25",
+      "pillars": [
+        "丙辰",
+        "戊戌",
+        "戊午",
+        "壬戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W26",
+      "pillars": [
+        "乙未",
+        "丙戌",
+        "戊午",
+        "己未"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W28",
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "戊戌",
+        "戊午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU01",
+      "pillars": [
+        "戊戌",
+        "乙卯",
+        "丙午",
+        "己亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU02",
+      "pillars": [
+        "壬寅",
+        "戊申",
+        "壬辰",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU03",
+      "pillars": [
+        "庚寅",
+        "乙酉",
+        "癸亥",
+        "丙辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU06",
+      "pillars": [
+        "乙亥",
+        "乙酉",
+        "乙卯",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU07",
+      "pillars": [
+        "丙寅",
+        "戊戌",
+        "壬戌",
+        "辛丑"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ]
+    },
+    {
+      "id": "XU08",
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU09",
+      "pillars": [
+        "甲申",
+        "乙亥",
+        "丙戌",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU10",
+      "pillars": [
+        "丙子",
+        "甲午",
+        "辛亥",
+        "辛卯"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU11",
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "戊寅",
+        "戊午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU12",
+      "pillars": [
+        "乙未",
+        "甲申",
+        "丙申",
+        "庚寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ]
+    },
+    {
+      "id": "XU13",
+      "pillars": [
+        "乙未",
+        "己卯",
+        "庚寅",
+        "辛巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU14",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU15",
+      "pillars": [
+        "壬辰",
+        "乙巳",
+        "癸巳",
+        "辛酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU16",
+      "pillars": [
+        "庚辰",
+        "戊子",
+        "戊寅",
+        "甲寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU17",
+      "pillars": [
+        "丁未",
+        "癸卯",
+        "癸亥",
+        "癸丑"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU19",
+      "pillars": [
+        "丁亥",
+        "癸卯",
+        "癸卯",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        null,
+        null,
+        null,
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        null,
+        null,
+        null,
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU20",
+      "pillars": [
+        "甲午",
+        "丁卯",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU21",
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "己卯",
+        "乙亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU23",
+      "pillars": [
+        "己未",
+        "己巳",
+        "甲寅",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU24",
+      "pillars": [
+        "甲子",
+        "乙亥",
+        "辛未",
+        "戊子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        null,
+        "weak"
+      ]
+    },
+    {
+      "id": "XU25",
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "丙寅",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU26",
+      "pillars": [
+        "丁酉",
+        "己酉",
+        "戊子",
+        "壬子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU27",
+      "pillars": [
+        "己未",
+        "丙子",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU28",
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "丙寅",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU29",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "癸酉",
+        "癸亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU30",
+      "pillars": [
+        "辛丑",
+        "庚寅",
+        "甲辰",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU31",
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "甲申",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "DX02",
+      "pillars": [
+        "庚申",
+        "辛巳",
+        "丙辰",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DX03",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DH02",
+      "pillars": [
+        "己酉",
+        "丙子",
+        "癸未",
+        "戊午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L76",
+      "pillars": [
+        "辛卯",
+        "庚子",
+        "丁丑",
+        "丁未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "L91",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬寅",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "L95",
+      "pillars": [
+        "乙亥",
+        "壬午",
+        "丙午",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "L98",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "辛亥",
+        "甲午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN01",
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "己巳",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN02",
+      "pillars": [
+        "壬戌",
+        "壬寅",
+        "丁卯",
+        "戊申"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN03",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "丁卯",
+        "甲辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN04",
+      "pillars": [
+        "辛卯",
+        "辛卯",
+        "戊寅",
+        "壬子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "ZN05",
+      "pillars": [
+        "乙卯",
+        "戊寅",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN06",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN07",
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN08",
+      "pillars": [
+        "丙子",
+        "丁酉",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN09",
+      "pillars": [
+        "甲戌",
+        "辛未",
+        "己酉",
+        "己巳"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN10",
+      "pillars": [
+        "戊寅",
+        "己未",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L77",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "壬寅",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L78",
+      "pillars": [
+        "癸酉",
+        "丁巳",
+        "己卯",
+        "甲戌"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L80",
+      "pillars": [
+        "己巳",
+        "甲戌",
+        "壬辰",
+        "庚子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L82",
+      "pillars": [
+        "辛酉",
+        "庚寅",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "weak",
+      "observedNoVeto": "weak",
+      "checks": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "results": [
+        "weak",
+        null,
+        null,
+        null,
+        "weak",
+        "weak"
+      ],
+      "noVetoSensitivity": [
+        "weak",
+        null,
+        null,
+        null,
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "L83",
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "丁卯",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "baseline": "strong",
+      "observedNoVeto": "strong",
+      "checks": null,
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "noVetoSensitivity": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "L96",
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "丙申",
+        "戊戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "baseline": null,
+      "observedNoVeto": null,
+      "checks": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "noVetoSensitivity": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}
