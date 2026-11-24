@@ -1,7 +1,7 @@
 {
   "version": 1,
   "reviewDate": "2026-11-24",
-  "note": "Prior review reports plus electronic text recheck in review 03; historical labels retained.",
+  "note": "Retrospective review reports 01–04; original fixture labels retained. Wei review 04 freshly compared with electronic text; evidence paraphrases are marked.",
   "entries": [
     {
       "fixture": "ordinary-xu-holdout-v1",
@@ -422,6 +422,426 @@
       "formation": "ordinary",
       "verification": "electronic-text-checked",
       "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W01",
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "甲子",
+        "甲子"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 甲寅 丁卯 甲子 甲子; chart at web-text line 50 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strongest; in season and supported",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W02",
+      "pillars": [
+        "甲寅",
+        "癸酉",
+        "乙亥",
+        "丙子"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 甲寅 癸酉 乙亥 丙子; chart at web-text line 56 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: moderately strong; abundant support despite loss of season",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W03",
+      "pillars": [
+        "甲寅",
+        "丙子",
+        "壬寅",
+        "丙午"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 甲寅 丙子 壬寅 丙午; chart at web-text line 62 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: moderately strong from seasonal advantage alone",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W04",
+      "pillars": [
+        "辛亥",
+        "丁酉",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 辛亥 丁酉 甲寅 丁卯; chart at web-text line 68 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: slightly strong from branch vitality despite lack of season and visible support",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W05",
+      "pillars": [
+        "戊申",
+        "庚申",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 戊申 庚申 甲午 庚午; chart at web-text line 105 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: weakest; out of season and heavily controlled/drained",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W06",
+      "pillars": [
+        "丙辰",
+        "庚寅",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 丙辰 庚寅 甲午 庚午; chart at web-text line 111 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: moderately weak despite seasonal advantage",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W08",
+      "pillars": [
+        "辛巳",
+        "辛丑",
+        "壬寅",
+        "癸卯"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "locator": "強弱篇; 辛巳 辛丑 壬寅 癸卯; chart at web-text line 123 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: slightly weak; branches lack vitality despite visible support",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W09",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/021/",
+      "locator": "評斷篇; 癸未 甲子 丙戌 己亥; chart at web-text line 76 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: Bing is judged weak after comparing overall restraint and support",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W14",
+      "pillars": [
+        "癸丑",
+        "乙卯",
+        "甲子",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 癸丑 乙卯 甲子 丙寅; chart at web-text line 316 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: spring wood and abundant support explicitly yield strength",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W15",
+      "pillars": [
+        "己卯",
+        "丙寅",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 己卯 丙寅 甲子 乙亥; chart at web-text line 321 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strong day master under the strong-body weak-wealth teaching heading; peers dominate",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W16",
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 庚申 甲申 甲戌 丙寅; chart at web-text line 327 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strong killer weak body heading; autumn metal outweighs wood",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W17",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 辛酉 丙申 甲戌 丙寅; chart at web-text line 333 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strong officer weak body heading; combination reduces officer pressure and raises the day master",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W18",
+      "pillars": [
+        "乙酉",
+        "丙戌",
+        "甲戌",
+        "乙丑"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 乙酉 丙戌 甲戌 乙丑; chart at web-text line 341 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: explicit weak body heading and weak day master in example explanation",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W19",
+      "pillars": [
+        "庚寅",
+        "丙戌",
+        "甲寅",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 庚寅 丙戌 甲寅 乙亥; chart at web-text line 348 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strong body heading; two Lu roots and growth stage overcome loss of season",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W20",
+      "pillars": [
+        "丙戌",
+        "辛卯",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・食神; 丙戌 辛卯 甲子 乙亥; chart at web-text line 354 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: spring wood explicitly strong before officer combination discussion",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W22",
+      "pillars": [
+        "癸卯",
+        "乙卯",
+        "戊子",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 癸卯 乙卯 戊子 丁巳; chart at web-text line 406 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: heavy officer light body; resource aids the weak body",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W23",
+      "pillars": [
+        "戊戌",
+        "辛酉",
+        "戊申",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 戊戌 辛酉 戊申 丁巳; chart at web-text line 412 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: weak body heavy output heading; rooted resource restrains drainage",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W24",
+      "pillars": [
+        "丙申",
+        "丙申",
+        "戊戌",
+        "庚申"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 丙申 丙申 戊戌 庚申; chart at web-text line 418 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: weak body heavy food heading; resource controls food and supports body",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W25",
+      "pillars": [
+        "丙辰",
+        "戊戌",
+        "戊午",
+        "壬戌"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 丙辰 戊戌 戊午 壬戌; chart at web-text line 426 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: extreme day-master strength explicitly stated; special-pattern status uncertain",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W26",
+      "pillars": [
+        "乙未",
+        "丙戌",
+        "戊午",
+        "己未"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 乙未 丙戌 戊午 己未; chart at web-text line 431 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: day master strong from abundant peers; resource over-supports",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W28",
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "戊戌",
+        "戊午"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://luckclub.cn/bazi/003/009/",
+      "locator": "六神篇・偏正印; 庚子 丙戌 戊戌 戊午; chart at web-text line 443 (2026-11-24 snapshot; line may drift)",
+      "evidence": "Paraphrase: strong body heading; heavy earth requires output, resource obstructs it",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-04.md"
     }
   ]
 }
