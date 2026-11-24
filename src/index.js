@@ -44,3 +44,5 @@ export { analyzeRouteBudget, ROUTE_BUDGET_VERSION } from './features/route-budge
 export { analyzeOutputCapacity, OUTPUT_CAPACITY_VERSION } from './features/output-capacity-v1/index.js';
 
 export { analyzeMultiaxisStrengthV3, MULTIAXIS_V3_VERSION } from './features/strength-multiaxis-v3/index.js';
+
+export { analyzeMultiaxisStrengthV4, MULTIAXIS_V4_VERSION } from './features/strength-multiaxis-v4/index.js';
