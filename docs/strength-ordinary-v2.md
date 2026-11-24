@@ -24,3 +24,22 @@ Using the existing 26-case development corpus, ordinary-direction references (DX
 
 ## Verification and next gate
 Five new test bodies passed in V8 using actual source and an ESM adapter, including partition/counts, position-aware clash and formation evidence, the DX02 counterexample, extreme boundaries, partial/provisional and privacy. 26 cases evaluated in the same harness. Native npm test and independent ordinary strong/weak/neutral reference set still pending. Next: quantify ordinary-only coverage and conflict reasons on broader inputs; curate independent cases before modifying thresholds or adding interaction adjustments. No automatic 합화/충 strength changes until a separately specified and tested policy. No yongsin or production exposure yet.
+
+## Coverage measurement (engine eaf0d17)
+
+Same deterministic Tokyo complete-chart sample as v1: years 1990–2000, every month on days 10 and 20, six clock hours 0/4/8/12/16/20 at minute zero. Also test 264 corresponding null-hour inputs. The actual committed source was executed in V8 via the ESM adapter; all 1,848 quantitative objects were identical between policies. All partial v2 inputs had no final category.
+
+| Result | v1 | v2 |
+| --- | ---: | ---: |
+| very-strong | 0 | 4 |
+| strong | 7 | 36 |
+| mixed | 18 | 111 |
+| weak | 16 | 286 |
+| very-weak | 0 | 68 |
+| unresolved | 388 | 1079 |
+| review-required | 1155 | 0 |
+| Candidate total | 41/1584 (2.59%) | 505/1584 (31.88%) |
+
+14 v1 mixed candidates become unresolved, so v2 is not merely a relaxed gate. Formation caveats occur on 1,510/1,584 complete charts (95.3%), clash caveats on 645/1,584 (40.7%), with overlap. Formation includes partial candidates; presence does not establish material impact. The high prevalence confirms that using every formation as an automatic stop would be inappropriate for this ordinary-chart model. It does not establish that ignoring actual formation effects is correct. No empirical or reference-case accuracy claim; no population inference.
+
+Reproduce the sample with `node --test test/strength-ordinary-coverage.test.mjs`. The native test file freezes the measured distribution, including unresolved cases. Native Node execution remains pending. Next priority: independently labelled ordinary references, interaction relevance and sensitivity rather than loosening thresholds solely for coverage.
