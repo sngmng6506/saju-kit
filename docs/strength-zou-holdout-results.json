@@ -1,0 +1,571 @@
+{
+  "engine": "5472d30e4f714003b6228019901f17ed1212842b",
+  "fixtureCommit": "21ef5974209d454977e7572d38e441703d556664",
+  "method": "Actual pinned engine source (20 fetched modules plus unused throwing hourPillar stub) executed in isolated V8 bindings for all eight charts. v1, v3, v4, neutral v3 and root evidence calculated; previously defined G1–G5 weak-only guards applied without tuning. Inputs cross-checked against frozen fixture. Not native Node integration.",
+  "variants": [
+    "v3",
+    "G0-v4",
+    "G1-any-principal",
+    "G2-unclashed-principal",
+    "G3-local-rooted-peer",
+    "G4-neutral-direction",
+    "G5-include-peer-root-mass"
+  ],
+  "metrics": {
+    "primary": {
+      "v3": {
+        "n": 6,
+        "agree": 4,
+        "disagree": 0,
+        "abstain": 2,
+        "coverage": 0.6666666666666666,
+        "conditionalAgreement": 1
+      },
+      "G0-v4": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G1-any-principal": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G2-unclashed-principal": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G3-local-rooted-peer": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G4-neutral-direction": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G5-include-peer-root-mass": {
+        "n": 6,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      }
+    },
+    "secondary": {
+      "v3": {
+        "n": 2,
+        "agree": 2,
+        "disagree": 0,
+        "abstain": 0,
+        "coverage": 1,
+        "conditionalAgreement": 1
+      },
+      "G0-v4": {
+        "n": 2,
+        "agree": 2,
+        "disagree": 0,
+        "abstain": 0,
+        "coverage": 1,
+        "conditionalAgreement": 1
+      },
+      "G1-any-principal": {
+        "n": 2,
+        "agree": 1,
+        "disagree": 0,
+        "abstain": 1,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G2-unclashed-principal": {
+        "n": 2,
+        "agree": 1,
+        "disagree": 0,
+        "abstain": 1,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G3-local-rooted-peer": {
+        "n": 2,
+        "agree": 2,
+        "disagree": 0,
+        "abstain": 0,
+        "coverage": 1,
+        "conditionalAgreement": 1
+      },
+      "G4-neutral-direction": {
+        "n": 2,
+        "agree": 2,
+        "disagree": 0,
+        "abstain": 0,
+        "coverage": 1,
+        "conditionalAgreement": 1
+      },
+      "G5-include-peer-root-mass": {
+        "n": 2,
+        "agree": 2,
+        "disagree": 0,
+        "abstain": 0,
+        "coverage": 1,
+        "conditionalAgreement": 1
+      }
+    },
+    "all": {
+      "v3": {
+        "n": 8,
+        "agree": 6,
+        "disagree": 0,
+        "abstain": 2,
+        "coverage": 0.75,
+        "conditionalAgreement": 1
+      },
+      "G0-v4": {
+        "n": 8,
+        "agree": 5,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 1
+      },
+      "G1-any-principal": {
+        "n": 8,
+        "agree": 4,
+        "disagree": 0,
+        "abstain": 4,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G2-unclashed-principal": {
+        "n": 8,
+        "agree": 4,
+        "disagree": 0,
+        "abstain": 4,
+        "coverage": 0.5,
+        "conditionalAgreement": 1
+      },
+      "G3-local-rooted-peer": {
+        "n": 8,
+        "agree": 5,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 1
+      },
+      "G4-neutral-direction": {
+        "n": 8,
+        "agree": 5,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 1
+      },
+      "G5-include-peer-root-mass": {
+        "n": 8,
+        "agree": 5,
+        "disagree": 0,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 1
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "ZW03",
+      "pillars": [
+        "丁丑",
+        "丙午",
+        "己亥",
+        "甲戌"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": "strong",
+      "v4": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "checks": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "root": {
+        "min": 55.5,
+        "max": 63.25
+      },
+      "principal": [
+        [
+          "year",
+          false
+        ],
+        [
+          "hour",
+          false
+        ]
+      ],
+      "localPeer": [],
+      "grounds": [
+        "bounded-route-support"
+      ],
+      "conflicts": [
+        "season-sensitive-resource-support"
+      ],
+      "gate": true,
+      "neutral": null
+    },
+    {
+      "id": "ZW04",
+      "pillars": [
+        "丁丑",
+        "辛亥",
+        "壬子",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": "strong",
+      "v4": "strong",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "root": {
+        "min": 67,
+        "max": 68.75
+      },
+      "principal": [
+        [
+          "month",
+          false
+        ],
+        [
+          "day",
+          false
+        ]
+      ],
+      "localPeer": [
+        "hour"
+      ],
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [],
+      "gate": false,
+      "neutral": "strong"
+    },
+    {
+      "id": "ZW05",
+      "pillars": [
+        "丁酉",
+        "壬寅",
+        "庚寅",
+        "丙子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": "weak",
+      "v4": "weak",
+      "results": [
+        "weak",
+        null,
+        null,
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "checks": [
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "root": {
+        "min": 10,
+        "max": 15
+      },
+      "principal": [
+        [
+          "year",
+          false
+        ]
+      ],
+      "localPeer": [],
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [],
+      "gate": false,
+      "neutral": "weak"
+    },
+    {
+      "id": "ZW06",
+      "pillars": [
+        "辛酉",
+        "庚子",
+        "戊子",
+        "癸亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": "weak",
+      "v4": "weak",
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "root": {
+        "min": 5,
+        "max": 5
+      },
+      "principal": [],
+      "localPeer": [],
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [],
+      "gate": false,
+      "neutral": "weak"
+    },
+    {
+      "id": "ZW10",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "己亥",
+        "辛未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": null,
+      "v4": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "checks": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "root": {
+        "min": 60,
+        "max": 62.5
+      },
+      "principal": [
+        [
+          "month",
+          false
+        ],
+        [
+          "hour",
+          false
+        ]
+      ],
+      "localPeer": [],
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [
+        "concentrated-pressure-versus-support"
+      ],
+      "gate": false,
+      "neutral": null
+    },
+    {
+      "id": "ZW11",
+      "pillars": [
+        "甲辰",
+        "丙子",
+        "己未",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": "strong",
+      "v4": "strong",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "root": {
+        "min": 70,
+        "max": 75
+      },
+      "principal": [
+        [
+          "year",
+          false
+        ],
+        [
+          "day",
+          false
+        ],
+        [
+          "hour",
+          false
+        ]
+      ],
+      "localPeer": [
+        "hour"
+      ],
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [],
+      "gate": false,
+      "neutral": "strong"
+    },
+    {
+      "id": "ZW12",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "己酉",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": null,
+      "v4": null,
+      "results": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "root": {
+        "min": 35,
+        "max": 37.25
+      },
+      "principal": [
+        [
+          "hour",
+          false
+        ]
+      ],
+      "localPeer": [
+        "month",
+        "hour"
+      ],
+      "grounds": [],
+      "conflicts": [],
+      "gate": false,
+      "neutral": null
+    },
+    {
+      "id": "ZW13",
+      "pillars": [
+        "癸未",
+        "丙辰",
+        "癸巳",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": "weak",
+      "v4": "weak",
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "checks": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "root": {
+        "min": 12.5,
+        "max": 19.5
+      },
+      "principal": [],
+      "localPeer": [],
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [],
+      "gate": false,
+      "neutral": "weak"
+    }
+  ]
+}
