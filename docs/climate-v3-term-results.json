@@ -1,0 +1,281 @@
+{
+  "engine": "05fd8360373690209a934668c5d806d05a7f8fca",
+  "method": "Actual committed term-condition and full calendar graph (no stubs). Synthetic births at one minute either side of solstice and equinox, with day stem Yi. No climatic or useful-element adjudication.",
+  "counts": {
+    "boundaryChecks": 6,
+    "missingInputChecks": 3,
+    "mismatchChecks": 1
+  },
+  "boundaries": [
+    {
+      "index": 11,
+      "year": 2041,
+      "checks": [
+        {
+          "birth": {
+            "y": 2041,
+            "m": 6,
+            "d": 21,
+            "hh": 8,
+            "mm": 35
+          },
+          "temporal": {
+            "status": "observed",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": -1,
+                "matched": true
+              },
+              {
+                "when": "after-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": -1,
+                "matched": false
+              }
+            ]
+          }
+        },
+        {
+          "birth": {
+            "y": 2041,
+            "m": 6,
+            "d": 21,
+            "hh": 8,
+            "mm": 36
+          },
+          "temporal": {
+            "status": "boundary-unresolved",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": 0,
+                "matched": null
+              },
+              {
+                "when": "after-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": 0,
+                "matched": null
+              }
+            ]
+          }
+        },
+        {
+          "birth": {
+            "y": 2041,
+            "m": 6,
+            "d": 21,
+            "hh": 8,
+            "mm": 37
+          },
+          "temporal": {
+            "status": "observed",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": 1,
+                "matched": false
+              },
+              {
+                "when": "after-summer-solstice",
+                "termIndex": 11,
+                "term": {
+                  "y": 2041,
+                  "m": 6,
+                  "d": 21,
+                  "hh": 8,
+                  "mm": 36,
+                  "key": "2041-06-21T08:36"
+                },
+                "deltaMinutes": 1,
+                "matched": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "year": 2027,
+      "checks": [
+        {
+          "birth": {
+            "y": 2027,
+            "m": 9,
+            "d": 23,
+            "hh": 15,
+            "mm": 1
+          },
+          "temporal": {
+            "status": "observed",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": -1,
+                "matched": true
+              },
+              {
+                "when": "after-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": -1,
+                "matched": false
+              }
+            ]
+          }
+        },
+        {
+          "birth": {
+            "y": 2027,
+            "m": 9,
+            "d": 23,
+            "hh": 15,
+            "mm": 2
+          },
+          "temporal": {
+            "status": "boundary-unresolved",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": 0,
+                "matched": null
+              },
+              {
+                "when": "after-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": 0,
+                "matched": null
+              }
+            ]
+          }
+        },
+        {
+          "birth": {
+            "y": 2027,
+            "m": 9,
+            "d": 23,
+            "hh": 15,
+            "mm": 3
+          },
+          "temporal": {
+            "status": "observed",
+            "timeBasis": "UTC+09:00-table-minute",
+            "conditions": [
+              {
+                "when": "before-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": 1,
+                "matched": false
+              },
+              {
+                "when": "after-autumn-equinox",
+                "termIndex": 17,
+                "term": {
+                  "y": 2027,
+                  "m": 9,
+                  "d": 23,
+                  "hh": 15,
+                  "mm": 2,
+                  "key": "2027-09-23T15:02"
+                },
+                "deltaMinutes": 1,
+                "matched": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
