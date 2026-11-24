@@ -1,0 +1,1631 @@
+{
+  "engine": "05fd8360373690209a934668c5d806d05a7f8fca",
+  "method": "Actual climate v1/v2/v3 source graph, V8, throwing unused calendar stub; 120 table lookups and 100 historical chart-only inputs, no selection or inferred dates.",
+  "counts": {
+    "cells": 63,
+    "legacyCells": 38,
+    "newCells": 25,
+    "conditionalOnlyCells": 4,
+    "alternatives": 32,
+    "historicalCharts": 100,
+    "oldProfiles": 33,
+    "newProfiles": 54,
+    "conditionalOnlyProfiles": 3
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H02",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "진",
+        "groups": [
+          [
+            "경"
+          ],
+          [
+            "임"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H03",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "신"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "xin-absent",
+            "stems": [
+              "경"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H04",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H05",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H06",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "을",
+        "monthBranch": "신",
+        "groups": [],
+        "alternatives": [
+          {
+            "when": "seasonal-general",
+            "stems": [
+              "병",
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0,
+              0
+            ],
+            "hidden": [
+              2,
+              0
+            ]
+          },
+          {
+            "when": "geng-excess",
+            "stems": [
+              "기"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              0
+            ]
+          },
+          {
+            "when": "geng-scarce",
+            "stems": [
+              "계",
+              "병"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0,
+              0
+            ],
+            "hidden": [
+              0,
+              2
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H07",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "H08",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W10",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W12",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "진",
+        "groups": [
+          [
+            "경"
+          ],
+          [
+            "임"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "DX01",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "Y01",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ],
+          [
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R01",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R02",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R03",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R04",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R05",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "을",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R07",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R09",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "오",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "정"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "정"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R10",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "R11",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W01",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W02",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "을",
+        "monthBranch": "유",
+        "groups": [],
+        "alternatives": [
+          {
+            "when": "before-autumn-equinox",
+            "stems": [
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              1
+            ]
+          },
+          {
+            "when": "after-autumn-equinox",
+            "stems": [
+              "병",
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1,
+              1
+            ],
+            "hidden": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "unresolved"
+    },
+    {
+      "id": "W03",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "임",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "무"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W04",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "유",
+        "groups": [
+          [
+            "정"
+          ],
+          [
+            "병"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W05",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "신",
+        "groups": [
+          [
+            "정"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W06",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "병",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W08",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "임",
+        "monthBranch": "축",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "정",
+            "갑"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "late-half",
+            "stems": [
+              "병",
+              "갑"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0,
+              0
+            ],
+            "hidden": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W09",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W14",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W15",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "병",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W16",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "신",
+        "groups": [
+          [
+            "정"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W17",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "신",
+        "groups": [
+          [
+            "정"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W18",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "술",
+        "groups": [
+          [
+            "정",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W19",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "술",
+        "groups": [
+          [
+            "정",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W20",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W22",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ],
+          [
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W23",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W24",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W25",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W26",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "W28",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU01",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "임"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "ren-absent",
+            "stems": [
+              "기"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU02",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU03",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU06",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "을",
+        "monthBranch": "유",
+        "groups": [],
+        "alternatives": [
+          {
+            "when": "before-autumn-equinox",
+            "stems": [
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          },
+          {
+            "when": "after-autumn-equinox",
+            "stems": [
+              "병",
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0,
+              0
+            ],
+            "hidden": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "unresolved"
+    },
+    {
+      "id": "XU07",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU08",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU09",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU10",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU11",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ],
+          [
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU12",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU13",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU14",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU15",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "신"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "xin-absent",
+            "stems": [
+              "경"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              3
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU16",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU17",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "경"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU19",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "경"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU20",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "경"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU21",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "유",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU23",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "정"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "metal-excess",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              0
+            ]
+          },
+          {
+            "when": "supporting-metal-review",
+            "stems": [
+              "경"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU24",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "신",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU25",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU26",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU27",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU28",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU29",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU30",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "병",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "XU31",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "병",
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "DX02",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "ren-absent",
+            "stems": [
+              "계"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "DX03",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "DH02",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "계",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L76",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L91",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L95",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "오",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L98",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN01",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              0
+            ]
+          },
+          {
+            "when": "water-source-review",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN02",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN03",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN04",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ],
+          [
+            "계"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN05",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "인",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "metal-assistance",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN06",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "임",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "무",
+            "병"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN07",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "갑",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "경",
+            "정"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN08",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN09",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              0
+            ]
+          },
+          {
+            "when": "water-source-review",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              2
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZN10",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L77",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L78",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "사",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              0
+            ]
+          },
+          {
+            "when": "water-source-review",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              2
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L80",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L82",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L83",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "L96",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "병",
+        "monthBranch": "묘",
+        "groups": [
+          [
+            "임"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "ren-absent",
+            "stems": [
+              "기"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              0
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW03",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "오",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              1
+            ]
+          },
+          {
+            "when": "water-source-review",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              2
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW04",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "임",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "무",
+            "병"
+          ],
+          [
+            "경"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW05",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW06",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "무",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW10",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ]
+        ],
+        "alternatives": [
+          {
+            "when": "gui-absent",
+            "stems": [
+              "임"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              0
+            ],
+            "hidden": [
+              2
+            ]
+          },
+          {
+            "when": "water-source-review",
+            "stems": [
+              "신"
+            ],
+            "conditionResolved": false,
+            "visible": [
+              1
+            ],
+            "hidden": [
+              0
+            ]
+          }
+        ]
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW11",
+      "priorProfile": true,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "자",
+        "groups": [
+          [
+            "병"
+          ],
+          [
+            "갑"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW12",
+      "priorProfile": false,
+      "profile": {
+        "dayStem": "기",
+        "monthBranch": "신",
+        "groups": [
+          [
+            "계"
+          ],
+          [
+            "병"
+          ],
+          [
+            "신"
+          ]
+        ],
+        "alternatives": []
+      },
+      "temporal": "not-applicable"
+    },
+    {
+      "id": "ZW13",
+      "priorProfile": false,
+      "profile": null,
+      "temporal": "not-applicable"
+    }
+  ]
+}
