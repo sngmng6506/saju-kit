@@ -1,7 +1,7 @@
 {
   "version": 1,
   "reviewDate": "2026-11-24",
-  "note": "Retrospective review reports 01–04; original fixture labels retained. Wei review 04 freshly compared with electronic text; evidence paraphrases are marked.",
+  "note": "Retrospective review reports 01–05; historical labels retained.",
   "entries": [
     {
       "fixture": "ordinary-xu-holdout-v1",
@@ -842,6 +842,546 @@
       "formation": "ordinary",
       "verification": "electronic-text-checked",
       "review": "docs/strength-source-review-04.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU01",
+      "pillars": [
+        "戊戌",
+        "乙卯",
+        "丙午",
+        "己亥"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/038/",
+      "locator": "chapter 38; chart 戊戌 乙卯 丙午 己亥; electronic text lines 50–48 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and abundant resource; output used to drain strength",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU02",
+      "pillars": [
+        "壬寅",
+        "戊申",
+        "壬辰",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/038/",
+      "locator": "chapter 38; chart 壬寅 戊申 壬辰 壬寅; electronic text lines 71–74 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Day master already strong; Shen-Chen arching is part of natal water explanation",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU03",
+      "pillars": [
+        "庚寅",
+        "乙酉",
+        "癸亥",
+        "丙辰"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/038/",
+      "locator": "chapter 38; chart 庚寅 乙酉 癸亥 丙辰; electronic text lines 132–135 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body with abundant resource; Yi-Geng combine without transformation; effect on strength not isolated",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU06",
+      "pillars": [
+        "乙亥",
+        "乙酉",
+        "乙卯",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 乙亥 乙酉 乙卯 丁丑; electronic text lines 21–25 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and strong killer; food controls killer",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU07",
+      "pillars": [
+        "丙寅",
+        "戊戌",
+        "壬戌",
+        "辛丑"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 丙寅 戊戌 壬戌 辛丑; electronic text lines 40–44 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Weak day master under heavy killer pressure despite Xin resource",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU08",
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 戊戌 甲子 丁未 庚戌; electronic text lines 51–55 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body by Xu through rooting and earth protection; Lin disputes interpretation of resource and wealth, not explicitly binary direction",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU09",
+      "pillars": [
+        "甲申",
+        "乙亥",
+        "丙戌",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 甲申 乙亥 丙戌 庚寅; electronic text lines 65–68 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and heavy resource after fire and wood combination reasoning",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU10",
+      "pillars": [
+        "丙子",
+        "甲午",
+        "辛亥",
+        "辛卯"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 丙子 甲午 辛亥 辛卯; electronic text lines 82–86 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Weak body and light resource; Xin lacks root",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU11",
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "戊寅",
+        "戊午"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "locator": "chapter 42; chart 戊辰 甲寅 戊寅 戊午; electronic text lines 95–99 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and strong killer; day master stronger than killer",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU12",
+      "pillars": [
+        "乙未",
+        "甲申",
+        "丙申",
+        "庚寅"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/036/",
+      "locator": "chapter 36; chart 乙未 甲申 丙申 庚寅; electronic text lines 48–52 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Body light and resource weak despite Yin growth; Geng in season",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU13",
+      "pillars": [
+        "乙未",
+        "己卯",
+        "庚寅",
+        "辛巳"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/036/",
+      "locator": "chapter 36; chart 乙未 己卯 庚寅 辛巳; electronic text lines 56–59 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Geng day master weak and wealth damages adjacent resource",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU14",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/036/",
+      "locator": "chapter 36; chart 庚戌 戊子 戊子 丙辰; electronic text lines 67–71 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Wu earth body light; later luck combinations separate",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU15",
+      "pillars": [
+        "壬辰",
+        "乙巳",
+        "癸巳",
+        "辛酉"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/035/",
+      "locator": "chapter 35; chart 壬辰 乙巳 癸巳 辛酉; electronic text lines 62–64 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and resource despite season; chapter 36 lines 73–77 attributes resource strength to natal combinations",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU16",
+      "pillars": [
+        "庚辰",
+        "戊子",
+        "戊寅",
+        "甲寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/035/",
+      "locator": "chapter 35; chart 庚辰 戊子 戊寅 甲寅; electronic text lines 79–83 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Body and killer both strong; food controls killer",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU17",
+      "pillars": [
+        "丁未",
+        "癸卯",
+        "癸亥",
+        "癸丑"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "locator": "chapter 40; chart 丁未 癸卯 癸亥 癸丑; electronic text lines 21–25 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and abundant food; Hai-Mao-Wei assembly central to explanation",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU19",
+      "pillars": [
+        "丁亥",
+        "癸卯",
+        "癸卯",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "locator": "chapter 40; chart 丁亥 癸卯 癸卯 甲寅; electronic text lines 38–42 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Body light despite Hai root; Hai-Mao combination and heavy drainage central",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU20",
+      "pillars": [
+        "甲午",
+        "丁卯",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "locator": "chapter 40; chart 甲午 丁卯 癸丑 丙辰; electronic text lines 44–48 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Same weak body as preceding chart, but wealth rather than food dominates",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU21",
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "己卯",
+        "乙亥"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "locator": "chapter 40; chart 癸酉 辛酉 己卯 乙亥; electronic text lines 79–82 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Weak body under both control and drainage",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU23",
+      "pillars": [
+        "己未",
+        "己巳",
+        "甲寅",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "locator": "chapter 40; chart 己未 己巳 甲寅 丙寅; electronic text lines 123–126 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Day master very strong with two Yin roots; no transformation required for cited direction",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU24",
+      "pillars": [
+        "甲子",
+        "乙亥",
+        "辛未",
+        "戊子"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "locator": "chapter 44; chart 甲子 乙亥 辛未 戊子; electronic text lines 27–31 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Day master very weak; Hai-Wei arching transforms output toward wealth in rationale",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU25",
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "丙寅",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "locator": "chapter 44; chart 己卯 丁丑 丙寅 庚寅; electronic text lines 33–36 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and light wealth",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU26",
+      "pillars": [
+        "丁酉",
+        "己酉",
+        "戊子",
+        "壬子"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "locator": "chapter 44; chart 丁酉 己酉 戊子 壬子; electronic text lines 55–59 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Abundant wealth and weak body; resource supports",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU27",
+      "pillars": [
+        "己未",
+        "丙子",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "locator": "chapter 44; chart 己未 丙子 庚子 丙子; electronic text lines 73–76 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Geng weak due to drainage; later luck combination distinct",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU28",
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "丙寅",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "locator": "chapter 44; chart 壬寅 丁未 丙寅 壬辰; electronic text lines 78–82 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body and abundant resource; natal Ding-Ren wood transformation",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU29",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "癸酉",
+        "癸亥"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/048/",
+      "locator": "chapter 48; chart 庚戌 戊子 癸酉 癸亥; electronic text lines 21–25 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body does not require extra resource",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU30",
+      "pillars": [
+        "辛丑",
+        "庚寅",
+        "甲辰",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/048/",
+      "locator": "chapter 48; chart 辛丑 庚寅 甲辰 乙亥; electronic text lines 115–118 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body can face killer; Yi-Geng combination does not remove killer; formation effect not isolated",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "ordinary-xu-v1",
+      "id": "XU31",
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "甲申",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://luckclub.cn/bazi/002/048/",
+      "locator": "chapter 48; chart 辛亥 庚寅 甲申 丙寅; electronic text lines 120–124 (snapshot 2026-11-24; line numbers may drift)",
+      "evidence": "Paraphrase: Strong body uses food to control rooted killer",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-05.md"
     }
   ]
 }
