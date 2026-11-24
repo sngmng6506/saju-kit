@@ -1,0 +1,2540 @@
+{
+  "engine": "8c415ad9720cfe6e043ffdfb4b57a39792251a09",
+  "method": "Actual pinned source executed in four isolated V8 module graphs (20 fetched source modules and unused throwing hourPillar stub per graph). Both v3 and v4 evaluated on each of 100 complete charts, 800 top-level calls. Two guarded position-map replacements for equal weights, one guarded central principal predicate replacement for relaxed position. All 100 v3 and v4 baselines cross-checked against recorded outcomes. R2/R3 retain the legacy central-root-capacity ground name in temporary variants, so v4 skips its season check for expanded root grounds; this is a coupled decision-path change, not isolated evidence for peripheral roots. No native Node regression.",
+  "variants": [
+    {
+      "id": "R0",
+      "equal": false,
+      "relax": false
+    },
+    {
+      "id": "R1",
+      "equal": true,
+      "relax": false
+    },
+    {
+      "id": "R2",
+      "equal": false,
+      "relax": true
+    },
+    {
+      "id": "R3",
+      "equal": true,
+      "relax": true
+    }
+  ],
+  "metrics": {
+    "primary": {
+      "v3": {
+        "R0": {
+          "n": 71,
+          "agree": 39,
+          "disagree": 3,
+          "abstain": 29,
+          "coverage": 0.5915492957746479,
+          "conditionalAgreement": 0.9285714285714286
+        },
+        "R1": {
+          "n": 71,
+          "agree": 36,
+          "disagree": 2,
+          "abstain": 33,
+          "coverage": 0.5352112676056338,
+          "conditionalAgreement": 0.9473684210526315
+        },
+        "R2": {
+          "n": 71,
+          "agree": 39,
+          "disagree": 3,
+          "abstain": 29,
+          "coverage": 0.5915492957746479,
+          "conditionalAgreement": 0.9285714285714286
+        },
+        "R3": {
+          "n": 71,
+          "agree": 37,
+          "disagree": 2,
+          "abstain": 32,
+          "coverage": 0.5492957746478874,
+          "conditionalAgreement": 0.9487179487179487
+        }
+      },
+      "v4": {
+        "R0": {
+          "n": 71,
+          "agree": 38,
+          "disagree": 1,
+          "abstain": 32,
+          "coverage": 0.5492957746478874,
+          "conditionalAgreement": 0.9743589743589743
+        },
+        "R1": {
+          "n": 71,
+          "agree": 35,
+          "disagree": 0,
+          "abstain": 36,
+          "coverage": 0.49295774647887325,
+          "conditionalAgreement": 1
+        },
+        "R2": {
+          "n": 71,
+          "agree": 39,
+          "disagree": 1,
+          "abstain": 31,
+          "coverage": 0.5633802816901409,
+          "conditionalAgreement": 0.975
+        },
+        "R3": {
+          "n": 71,
+          "agree": 37,
+          "disagree": 1,
+          "abstain": 33,
+          "coverage": 0.5352112676056338,
+          "conditionalAgreement": 0.9736842105263158
+        }
+      }
+    },
+    "secondary": {
+      "v3": {
+        "R0": {
+          "n": 29,
+          "agree": 10,
+          "disagree": 1,
+          "abstain": 18,
+          "coverage": 0.3793103448275862,
+          "conditionalAgreement": 0.9090909090909091
+        },
+        "R1": {
+          "n": 29,
+          "agree": 7,
+          "disagree": 1,
+          "abstain": 21,
+          "coverage": 0.27586206896551724,
+          "conditionalAgreement": 0.875
+        },
+        "R2": {
+          "n": 29,
+          "agree": 10,
+          "disagree": 1,
+          "abstain": 18,
+          "coverage": 0.3793103448275862,
+          "conditionalAgreement": 0.9090909090909091
+        },
+        "R3": {
+          "n": 29,
+          "agree": 8,
+          "disagree": 1,
+          "abstain": 20,
+          "coverage": 0.3103448275862069,
+          "conditionalAgreement": 0.8888888888888888
+        }
+      },
+      "v4": {
+        "R0": {
+          "n": 29,
+          "agree": 10,
+          "disagree": 1,
+          "abstain": 18,
+          "coverage": 0.3793103448275862,
+          "conditionalAgreement": 0.9090909090909091
+        },
+        "R1": {
+          "n": 29,
+          "agree": 6,
+          "disagree": 1,
+          "abstain": 22,
+          "coverage": 0.2413793103448276,
+          "conditionalAgreement": 0.8571428571428571
+        },
+        "R2": {
+          "n": 29,
+          "agree": 10,
+          "disagree": 1,
+          "abstain": 18,
+          "coverage": 0.3793103448275862,
+          "conditionalAgreement": 0.9090909090909091
+        },
+        "R3": {
+          "n": 29,
+          "agree": 7,
+          "disagree": 1,
+          "abstain": 21,
+          "coverage": 0.27586206896551724,
+          "conditionalAgreement": 0.875
+        }
+      }
+    },
+    "all": {
+      "v3": {
+        "R0": {
+          "n": 100,
+          "agree": 49,
+          "disagree": 4,
+          "abstain": 47,
+          "coverage": 0.53,
+          "conditionalAgreement": 0.9245283018867925
+        },
+        "R1": {
+          "n": 100,
+          "agree": 43,
+          "disagree": 3,
+          "abstain": 54,
+          "coverage": 0.46,
+          "conditionalAgreement": 0.9347826086956522
+        },
+        "R2": {
+          "n": 100,
+          "agree": 49,
+          "disagree": 4,
+          "abstain": 47,
+          "coverage": 0.53,
+          "conditionalAgreement": 0.9245283018867925
+        },
+        "R3": {
+          "n": 100,
+          "agree": 45,
+          "disagree": 3,
+          "abstain": 52,
+          "coverage": 0.48,
+          "conditionalAgreement": 0.9375
+        }
+      },
+      "v4": {
+        "R0": {
+          "n": 100,
+          "agree": 48,
+          "disagree": 2,
+          "abstain": 50,
+          "coverage": 0.5,
+          "conditionalAgreement": 0.96
+        },
+        "R1": {
+          "n": 100,
+          "agree": 41,
+          "disagree": 1,
+          "abstain": 58,
+          "coverage": 0.42,
+          "conditionalAgreement": 0.9761904761904762
+        },
+        "R2": {
+          "n": 100,
+          "agree": 49,
+          "disagree": 2,
+          "abstain": 49,
+          "coverage": 0.51,
+          "conditionalAgreement": 0.9607843137254902
+        },
+        "R3": {
+          "n": 100,
+          "agree": 44,
+          "disagree": 2,
+          "abstain": 54,
+          "coverage": 0.46,
+          "conditionalAgreement": 0.9565217391304348
+        }
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H02",
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "甲午",
+        "戊辰"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H03",
+      "pillars": [
+        "丙寅",
+        "癸巳",
+        "癸未",
+        "壬戌"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "H04",
+      "pillars": [
+        "丙辰",
+        "癸巳",
+        "壬戌",
+        "壬寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "H05",
+      "pillars": [
+        "丙辰",
+        "丙申",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H06",
+      "pillars": [
+        "甲申",
+        "壬申",
+        "乙巳",
+        "戊寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "H07",
+      "pillars": [
+        "壬戌",
+        "丁未",
+        "戊申",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "H08",
+      "pillars": [
+        "乙卯",
+        "丁亥",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W10",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "庚子",
+        "丁亥"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W12",
+      "pillars": [
+        "庚子",
+        "庚辰",
+        "甲子",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DX01",
+      "pillars": [
+        "丁丑",
+        "庚戌",
+        "庚子",
+        "甲申"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        "strong"
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        "strong"
+      ]
+    },
+    {
+      "id": "Y01",
+      "pillars": [
+        "戊子",
+        "乙卯",
+        "戊戌",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R01",
+      "pillars": [
+        "己酉",
+        "丙寅",
+        "庚申",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R02",
+      "pillars": [
+        "戊申",
+        "癸亥",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R03",
+      "pillars": [
+        "甲辰",
+        "己巳",
+        "戊辰",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R04",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "庚申",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        null,
+        "strong",
+        null
+      ],
+      "v4": [
+        "strong",
+        null,
+        "strong",
+        null
+      ]
+    },
+    {
+      "id": "R05",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "乙亥",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R07",
+      "pillars": [
+        "丙申",
+        "戊戌",
+        "丁卯",
+        "乙巳"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R09",
+      "pillars": [
+        "己卯",
+        "庚午",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "R10",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬申",
+        "己酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "R11",
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "丙寅",
+        "乙未"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W01",
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "甲子",
+        "甲子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W02",
+      "pillars": [
+        "甲寅",
+        "癸酉",
+        "乙亥",
+        "丙子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W03",
+      "pillars": [
+        "甲寅",
+        "丙子",
+        "壬寅",
+        "丙午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W04",
+      "pillars": [
+        "辛亥",
+        "丁酉",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W05",
+      "pillars": [
+        "戊申",
+        "庚申",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W06",
+      "pillars": [
+        "丙辰",
+        "庚寅",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W08",
+      "pillars": [
+        "辛巳",
+        "辛丑",
+        "壬寅",
+        "癸卯"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W09",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W14",
+      "pillars": [
+        "癸丑",
+        "乙卯",
+        "甲子",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W15",
+      "pillars": [
+        "己卯",
+        "丙寅",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W16",
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W17",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W18",
+      "pillars": [
+        "乙酉",
+        "丙戌",
+        "甲戌",
+        "乙丑"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W19",
+      "pillars": [
+        "庚寅",
+        "丙戌",
+        "甲寅",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W20",
+      "pillars": [
+        "丙戌",
+        "辛卯",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W22",
+      "pillars": [
+        "癸卯",
+        "乙卯",
+        "戊子",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "W23",
+      "pillars": [
+        "戊戌",
+        "辛酉",
+        "戊申",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W24",
+      "pillars": [
+        "丙申",
+        "丙申",
+        "戊戌",
+        "庚申"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "W25",
+      "pillars": [
+        "丙辰",
+        "戊戌",
+        "戊午",
+        "壬戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W26",
+      "pillars": [
+        "乙未",
+        "丙戌",
+        "戊午",
+        "己未"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "W28",
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "戊戌",
+        "戊午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU01",
+      "pillars": [
+        "戊戌",
+        "乙卯",
+        "丙午",
+        "己亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU02",
+      "pillars": [
+        "壬寅",
+        "戊申",
+        "壬辰",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU03",
+      "pillars": [
+        "庚寅",
+        "乙酉",
+        "癸亥",
+        "丙辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        null,
+        "strong",
+        null
+      ]
+    },
+    {
+      "id": "XU06",
+      "pillars": [
+        "乙亥",
+        "乙酉",
+        "乙卯",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        null,
+        "strong",
+        null
+      ],
+      "v4": [
+        "strong",
+        null,
+        "strong",
+        null
+      ]
+    },
+    {
+      "id": "XU07",
+      "pillars": [
+        "丙寅",
+        "戊戌",
+        "壬戌",
+        "辛丑"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU08",
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU09",
+      "pillars": [
+        "甲申",
+        "乙亥",
+        "丙戌",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU10",
+      "pillars": [
+        "丙子",
+        "甲午",
+        "辛亥",
+        "辛卯"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU11",
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "戊寅",
+        "戊午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU12",
+      "pillars": [
+        "乙未",
+        "甲申",
+        "丙申",
+        "庚寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        null,
+        "weak",
+        null
+      ],
+      "v4": [
+        "weak",
+        null,
+        "weak",
+        null
+      ]
+    },
+    {
+      "id": "XU13",
+      "pillars": [
+        "乙未",
+        "己卯",
+        "庚寅",
+        "辛巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU14",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU15",
+      "pillars": [
+        "壬辰",
+        "乙巳",
+        "癸巳",
+        "辛酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU16",
+      "pillars": [
+        "庚辰",
+        "戊子",
+        "戊寅",
+        "甲寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU17",
+      "pillars": [
+        "丁未",
+        "癸卯",
+        "癸亥",
+        "癸丑"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        null,
+        "strong",
+        null
+      ],
+      "v4": [
+        "strong",
+        null,
+        "strong",
+        null
+      ]
+    },
+    {
+      "id": "XU19",
+      "pillars": [
+        "丁亥",
+        "癸卯",
+        "癸卯",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        "weak",
+        null,
+        "weak",
+        null
+      ],
+      "v4": [
+        "weak",
+        null,
+        "weak",
+        null
+      ]
+    },
+    {
+      "id": "XU20",
+      "pillars": [
+        "甲午",
+        "丁卯",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU21",
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "己卯",
+        "乙亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU23",
+      "pillars": [
+        "己未",
+        "己巳",
+        "甲寅",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU24",
+      "pillars": [
+        "甲子",
+        "乙亥",
+        "辛未",
+        "戊子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU25",
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "丙寅",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU26",
+      "pillars": [
+        "丁酉",
+        "己酉",
+        "戊子",
+        "壬子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU27",
+      "pillars": [
+        "己未",
+        "丙子",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "XU28",
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "丙寅",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "XU29",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "癸酉",
+        "癸亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU30",
+      "pillars": [
+        "辛丑",
+        "庚寅",
+        "甲辰",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "XU31",
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "甲申",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "DX02",
+      "pillars": [
+        "庚申",
+        "辛巳",
+        "丙辰",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DX03",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "DH02",
+      "pillars": [
+        "己酉",
+        "丙子",
+        "癸未",
+        "戊午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L76",
+      "pillars": [
+        "辛卯",
+        "庚子",
+        "丁丑",
+        "丁未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "L91",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬寅",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "L95",
+      "pillars": [
+        "乙亥",
+        "壬午",
+        "丙午",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "L98",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "辛亥",
+        "甲午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN01",
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "己巳",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN02",
+      "pillars": [
+        "壬戌",
+        "壬寅",
+        "丁卯",
+        "戊申"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN03",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "丁卯",
+        "甲辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN04",
+      "pillars": [
+        "辛卯",
+        "辛卯",
+        "戊寅",
+        "壬子"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "ZN05",
+      "pillars": [
+        "乙卯",
+        "戊寅",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN06",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZN07",
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        "strong"
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN08",
+      "pillars": [
+        "丙子",
+        "丁酉",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN09",
+      "pillars": [
+        "甲戌",
+        "辛未",
+        "己酉",
+        "己巳"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZN10",
+      "pillars": [
+        "戊寅",
+        "己未",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L77",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "壬寅",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L78",
+      "pillars": [
+        "癸酉",
+        "丁巳",
+        "己卯",
+        "甲戌"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L80",
+      "pillars": [
+        "己巳",
+        "甲戌",
+        "壬辰",
+        "庚子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "L82",
+      "pillars": [
+        "辛酉",
+        "庚寅",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "weak",
+        null,
+        "weak",
+        null
+      ],
+      "v4": [
+        "weak",
+        null,
+        "weak",
+        null
+      ]
+    },
+    {
+      "id": "L83",
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "丁卯",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "L96",
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "丙申",
+        "戊戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZW03",
+      "pillars": [
+        "丁丑",
+        "丙午",
+        "己亥",
+        "甲戌"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        null,
+        null,
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZW04",
+      "pillars": [
+        "丁丑",
+        "辛亥",
+        "壬子",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZW05",
+      "pillars": [
+        "丁酉",
+        "壬寅",
+        "庚寅",
+        "丙子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "v3": [
+        "weak",
+        null,
+        "weak",
+        null
+      ],
+      "v4": [
+        "weak",
+        null,
+        "weak",
+        null
+      ]
+    },
+    {
+      "id": "ZW06",
+      "pillars": [
+        "辛酉",
+        "庚子",
+        "戊子",
+        "癸亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    },
+    {
+      "id": "ZW10",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "己亥",
+        "辛未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZW11",
+      "pillars": [
+        "甲辰",
+        "丙子",
+        "己未",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "v4": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ]
+    },
+    {
+      "id": "ZW12",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "己酉",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "v3": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "v4": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "ZW13",
+      "pillars": [
+        "癸未",
+        "丙辰",
+        "癸巳",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "v3": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "v4": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ]
+    }
+  ]
+}
