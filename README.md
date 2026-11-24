@@ -69,3 +69,15 @@ New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-r
 [Integrated multiaxis v3](docs/strength-multiaxis-v3.md): experimental explanation policy; no demonstrated classification gain.
 
 [Strength decision ablation](docs/strength-ablation.md): frozen development comparison.
+
+## Experimental useful-element reviews
+
+```js
+import { getSaju, analyzeUsefulElementReview } from 'saju-kit';
+const saju = getSaju({ y: 2026, m: 2, d: 9, hh: 12, mm: 0 });
+const review = analyzeUsefulElementReview({
+  saju, birthBasis: 'verified-chart', policy: 'useful-element-review-v1'
+});
+```
+
+The opt-in review preserves separate balance, climate, mediation and disease/remedy hypotheses; no final 用神/喜忌, special-pattern or event judgment. The climate source table covers only 11 of 120 stem-month cells; unsupported cells remain unresolved. Partial/provisional inputs have restricted evidence. See [method contracts and evaluation](docs/useful-element-review.md), [balance candidates](docs/balance-useful-element.md), [balance priority diagnostics](docs/balance-priority.md), and [balance route review](docs/balance-route-review.md). New research APIs do not change any movement or existing strength policy.
