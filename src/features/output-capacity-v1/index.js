@@ -52,14 +52,14 @@ function evaluate(network,scenario,budget){
   conditionalResource:sum(resources.map(n=>n.conditionalDirect)),directOfficer:budget.directOfficer,directWealth:budget.directWealth,
   rejected:sum(allocations.map(a=>a.rejected))};
 }
-export function analyzeOutputCapacity(input){
+export function analyzeOutputCapacity(input,context){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','분석 입력 객체가 필요합니다.');
  if(input.policy!==OUTPUT_CAPACITY_VERSION)throw new SajuError('strength-policy','식상 수용 한도 정책을 명시해야 합니다.');
  const args={saju:input.saju,birthBasis:input.birthBasis};
- const budget=analyzeRouteBudget({...args,policy:'route-budget-v1'});
+ const budget=analyzeRouteBudget({...args,policy:'route-budget-v1'},context);
  const meta={version:OUTPUT_CAPACITY_VERSION,completeHour:budget.completeHour,assessment:'hypothetical-target-cap-only',effectsConfirmed:false};
  if(!budget.analysis)return {...meta,status:budget.status,analysis:null};
- const q=analyzeQuantitativeStrength({...args,policy:'strength-quantitative-v3'}).quantitative;
+ const q=analyzeQuantitativeStrength({...args,policy:'strength-quantitative-v3'},context).quantitative;
  const network=analyzeSupportNetwork({saju:input.saju});
  const rows=budget.analysis.rows.map((b,i)=>evaluate(network,q.scenarios[Math.floor(i/2)],b));
  const keys=['outputTotal','outputLocal','outputControlAccepted','outputResidualHypothesis','conditionalResource','directOfficer','directWealth','rejected'];
