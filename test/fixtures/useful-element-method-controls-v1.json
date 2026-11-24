@@ -1,0 +1,127 @@
+{
+  "version": "useful-element-method-controls-v1",
+  "source": {
+    "author": "徐樂吾",
+    "book": "子平真詮評注",
+    "section": "論用神（三）調候、（五）通關、（二）病藥",
+    "url": "https://dao.time.actor/ziping-zhenquan-pingzhu/juan-2",
+    "verification": "electronic witness; not print authenticated",
+    "selection": "all two climate, two mediation and two disease-remedy examples in the respective sections; previously known climate scope control included deliberately. Author's methods, not strength labels."
+  },
+  "cases": [
+    {
+      "id": "CL-X01",
+      "method": "climate",
+      "pillars": [
+        "壬辰",
+        "癸丑",
+        "辛丑",
+        "甲午"
+      ],
+      "referenceElement": "fire",
+      "referenceStem": null,
+      "note": "Cold metal and water; author uses fire in hour branch 午. Exact stem not specified."
+    },
+    {
+      "id": "CL-X02",
+      "method": "climate",
+      "pillars": [
+        "辛亥",
+        "己亥",
+        "壬午",
+        "辛亥"
+      ],
+      "referenceElement": "fire",
+      "referenceStem": "정",
+      "note": "Author explicitly identifies 丁 in day branch 午 as indispensable climate support; officer is a separate use."
+    },
+    {
+      "id": "ME-X01",
+      "method": "mediation",
+      "pillars": [
+        "癸亥",
+        "庚申",
+        "甲寅",
+        "乙亥"
+      ],
+      "from": "metal",
+      "to": "wood",
+      "referenceElement": "water",
+      "note": "Author identifies metal/wood confrontation and water mediation."
+    },
+    {
+      "id": "ME-X02",
+      "method": "mediation",
+      "pillars": [
+        "丁酉",
+        "丙午",
+        "丁酉",
+        "己酉"
+      ],
+      "from": "fire",
+      "to": "metal",
+      "referenceElement": "earth",
+      "note": "Author identifies fire/metal confrontation and earth mediation."
+    },
+    {
+      "id": "DR-X01",
+      "method": "disease-remedy",
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "己巳",
+        "戊辰"
+      ],
+      "target": "water",
+      "threat": "earth",
+      "referenceElement": "wood",
+      "note": "Author identifies peer contesting wealth and officer controlling peer; separate fire climate requirement."
+    },
+    {
+      "id": "DR-X02",
+      "method": "disease-remedy",
+      "pillars": [
+        "壬戌",
+        "己酉",
+        "丁丑",
+        "甲辰"
+      ],
+      "target": "water",
+      "threat": "earth",
+      "referenceElement": "wood",
+      "note": "Author identifies output damaging officer, resource removes obstruction; not the same scope as DR-X01 despite identical elemental chain."
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": "ME-DT01",
+      "pillars": [
+        "戊辰",
+        "乙卯",
+        "辛丑",
+        "丁酉"
+      ],
+      "from": "fire",
+      "to": "metal",
+      "referenceElement": "earth",
+      "reference": "blocked-in-natal",
+      "source": "https://luckclub.cn/bazi/007/022/",
+      "note": "Text explicitly identifies distance and wood controlling earth; do not infer successful mediation from presence."
+    },
+    {
+      "id": "ME-DT02",
+      "pillars": [
+        "己巳",
+        "丁卯",
+        "辛卯",
+        "乙未"
+      ],
+      "from": "fire",
+      "to": "metal",
+      "referenceElement": "earth",
+      "reference": "blocked-in-natal",
+      "source": "https://luckclub.cn/bazi/007/022/",
+      "note": "Author invokes weak metal, wood/fire command, distant resource and formation."
+    }
+  ]
+}
