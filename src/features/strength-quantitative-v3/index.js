@@ -53,11 +53,11 @@ function rootFactor(entry,position,profile){
     profile.distanceCost*Math.abs(POSITIONS.indexOf(position)-POSITIONS.indexOf(m.position))));
 }
 
-function compute(e,positionProfile,roleProfile,rootProfile,seasonProfile,basis){
+function compute(e,positionProfile,roleProfile,rootProfile,seasonProfile,basis,seasonMode){
   const mass=Object.fromEntries(CATEGORIES.map(c=>[c,0])),contributions=[];
   const weights=WEIGHTS[positionProfile],roles=ROLES[roleProfile],roots=ROOTS[rootProfile],season=SEASON[seasonProfile];
   function add(slot,element,role,share,root,weight){
-    const seasonal=season[classifyElement(basis.element,element)],category=classifyElement(e.day,element);
+    const seasonal=seasonMode==='neutral'?100:season[classifyElement(basis.element,element)],category=classifyElement(e.day,element);
     const units=weight*share*root*seasonal;
     mass[category]+=units;
     contributions.push({slot,element,role,category,weight,share,rootFactor:root,seasonFactor:seasonal,units});
@@ -78,11 +78,11 @@ function compute(e,positionProfile,roleProfile,rootProfile,seasonProfile,basis){
     categories:Object.fromEntries(CATEGORIES.map(c=>[c,round(100*mass[c]/total)])),mass,contributions};
 }
 
-function scenariosFor(saju){
+function scenariosFor(saju,seasonMode){
   const e=evidence(saju),rows=[];
   for(const position of Object.keys(WEIGHTS))for(const role of Object.keys(ROLES))
     for(const root of Object.keys(ROOTS))for(const season of Object.keys(SEASON))for(const basis of e.seasonBases)
-      rows.push(compute(e,position,role,root,season,basis));
+      rows.push(compute(e,position,role,root,season,basis,seasonMode));
   return rows;
 }
 // Totals are <= 140,000,000. Use BigInt for exact cross-product ordering.
@@ -100,7 +100,9 @@ function summarize(rows){
 }
 
 /** Standalone quantitative hypothesis, not final strength or probability. */
-export function analyzeQuantitativeStrength(input){
+// Second argument is an internal diagnostic context; the v3 input contract is unchanged.
+export function analyzeQuantitativeStrength(input,{seasonMode='standard'}={}){
+  if(!['standard','neutral'].includes(seasonMode))throw new SajuError('strength-season-mode','계절 보정 모드가 올바르지 않습니다.');
   if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
   const {saju,policy,birthBasis}=input;
   if(policy!==QUANTITATIVE_STRENGTH_VERSION)throw new SajuError('strength-policy','정량 강약 정책을 명시해야 합니다.');
@@ -113,12 +115,12 @@ export function analyzeQuantitativeStrength(input){
   if(!completeHour){
     // Missing hour can also change the anchoring of the other visible stems.
     const completions=Array.from({length:12},(_,i)=>hourPillar(pillars.day.stem,i*2));
-    const rows=completions.flatMap(hour=>scenariosFor({pillars:{...pillars,hour}}));
+    const rows=completions.flatMap(hour=>scenariosFor({pillars:{...pillars,hour}},seasonMode));
     return {...meta,status:'partial',direction:null,quantitative:{...summarize(rows),stableDirection:null,
       baseline:null,scenarios:[],scenarioCount:rows.length,completionCount:12,rangeBasis:'fixed-year-month-day-hour-completions'},
       caveats:[...caveats,'missing-hour']};
   }
-  const scenarios=scenariosFor(saju),summary=summarize(scenarios);
+  const scenarios=scenariosFor(saju,seasonMode),summary=summarize(scenarios);
   return {...meta,status:summary.stableDirection?'hypothesis':'unresolved',direction:summary.stableDirection,
     quantitative:{...summary,baseline:scenarios[0],scenarios,scenarioCount:scenarios.length,completionCount:1,
       rangeBasis:'profile-sensitivity'},caveats};
