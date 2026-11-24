@@ -21,3 +21,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Interaction context and sensitivity](interaction-sensitivity-v1.md) are separate observational/diagnostic APIs. Scenario results must not replace actual ordinary-strength category.
 
 - [Root dynamics v1](root-dynamics-v1.md) provides neutral positional and life-stage observations and possible protection/mediation paths. No effective strength or successful mediation is inferred.
+
+- [Structural strength v3](strength-structural-v3.md) is an opt-in experimental qualitative hypothesis only; no final category or consumer migration.

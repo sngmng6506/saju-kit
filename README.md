@@ -47,3 +47,5 @@ Interaction diagnostics: `analyzeInteractionContext({saju})`, `analyzeInteractio
 New ordinary-strength reference comparison (Xu commentary): [ordinary-reference-v1](docs/ordinary-reference-v1.md). Reproduce with `node scripts/evaluate-ordinary-reference.mjs`; frozen policies unchanged.
 
 Root-quality diagnostics: `lifeStage(stem, branch)` and `analyzeRootDynamics({saju})`. [Contract](docs/root-dynamics-v1.md). Neutral observations only; no strength changes.
+
+Experimental qualitative v3: `analyzeStructuralStrength({saju,policy:'strength-structural-v3',birthBasis:'verified-chart'})`. [Contract and development comparison](docs/strength-structural-v3.md). Not a final strength classifier.

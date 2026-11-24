@@ -37,3 +37,6 @@ All 31 existing Xu reference charts evaluated against actual source in a V8 adap
 
 ## Verification
 Seven new test bodies passed against source in V8 using a small ESM/assertion adapter; 120 stem-branch stage cells checked against independent sequences, stage/root separation, XU08/XU23 evidence, transition months, vertical direction, path identity and directed edge validity, unknown hour, privacy and immutability. 31-reference diagnostic run completed. Native Node suite not run. No new dependencies. Next increment should compare explicit structural decision candidates on an additional unseen reference set before changing the quantitative or final decision policy. No automatic scoring or consumer release.
+
+## Follow-up
+[Structural strength v3](strength-structural-v3.md) consumes these observations in an isolated qualitative experiment; existing classifiers and core outputs remain unchanged.

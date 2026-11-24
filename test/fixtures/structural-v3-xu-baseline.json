@@ -1,0 +1,354 @@
+{
+  "version": "strength-structural-v3",
+  "fixtureVersion": "ordinary-xu-reference-v1",
+  "total": 31,
+  "metrics": {
+    "agrees": 12,
+    "disagrees": 1,
+    "abstained": 14,
+    "matrix": {
+      "strong": {
+        "strong": 9,
+        "weak": 0,
+        "abstained": 7
+      },
+      "weak": {
+        "strong": 1,
+        "weak": 3,
+        "abstained": 7
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "XU01",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "season-root-support",
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    },
+    {
+      "id": "XU02",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "season-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU03",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "season-root-support",
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU04",
+      "reference": "disputed",
+      "direction": "strong",
+      "strongGrounds": [
+        "season-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU05",
+      "reference": "balanced",
+      "direction": null,
+      "strongGrounds": [
+        "season-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    },
+    {
+      "id": "XU06",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU07",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU08",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    },
+    {
+      "id": "XU09",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU10",
+      "reference": "weak",
+      "direction": "weak",
+      "strongGrounds": [],
+      "weakGrounds": [
+        "shallow-or-absent-roots-adverse-season"
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "XU11",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    },
+    {
+      "id": "XU12",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU13",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU14",
+      "reference": "weak",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU15",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU16",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [
+        "remote-root-concentrated-burden"
+      ],
+      "conflicts": [
+        "weak-root-versus-local-support"
+      ]
+    },
+    {
+      "id": "XU17",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU18",
+      "reference": "disputed",
+      "direction": "weak",
+      "strongGrounds": [],
+      "weakGrounds": [
+        "remote-root-concentrated-burden"
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "XU19",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [
+        "remote-root-concentrated-burden"
+      ],
+      "conflicts": [
+        "weak-root-versus-local-support"
+      ]
+    },
+    {
+      "id": "XU20",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU21",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [
+        "shallow-or-absent-roots-adverse-season",
+        "remote-root-concentrated-burden"
+      ],
+      "conflicts": [
+        "weak-root-versus-protection-or-mediation"
+      ]
+    },
+    {
+      "id": "XU22",
+      "reference": "balanced",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU23",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    },
+    {
+      "id": "XU24",
+      "reference": "weak",
+      "direction": null,
+      "strongGrounds": [],
+      "weakGrounds": [
+        "shallow-or-absent-roots-adverse-season"
+      ],
+      "conflicts": [
+        "weak-root-versus-local-support"
+      ]
+    },
+    {
+      "id": "XU25",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU26",
+      "reference": "weak",
+      "direction": "weak",
+      "strongGrounds": [],
+      "weakGrounds": [
+        "shallow-or-absent-roots-adverse-season",
+        "remote-root-concentrated-burden"
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "XU27",
+      "reference": "weak",
+      "direction": "weak",
+      "strongGrounds": [],
+      "weakGrounds": [
+        "shallow-or-absent-roots-adverse-season"
+      ],
+      "conflicts": []
+    },
+    {
+      "id": "XU28",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU29",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "season-root-support",
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU30",
+      "reference": "strong",
+      "direction": "strong",
+      "strongGrounds": [
+        "distributed-substantial-roots",
+        "season-root-support",
+        "central-principal-root-support"
+      ],
+      "weakGrounds": [],
+      "conflicts": []
+    },
+    {
+      "id": "XU31",
+      "reference": "strong",
+      "direction": null,
+      "strongGrounds": [
+        "distributed-substantial-roots"
+      ],
+      "weakGrounds": [],
+      "conflicts": [
+        "root-support-versus-concentrated-burden"
+      ]
+    }
+  ]
+}

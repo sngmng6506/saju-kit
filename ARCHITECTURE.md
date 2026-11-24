@@ -9,3 +9,5 @@ Core element-structure exposes neutral elemental profiles, generating/controllin
 Core interaction-context adds occurrence-aware formation/clash context. The separate interaction-sensitivity-v1 feature uses frozen strength policies to run isolated hypothetical perturbations without changing baseline classifications. [ADR-0003](docs/adr/0003-interaction-sensitivity.md), [contract](docs/interaction-sensitivity-v1.md).
 
 Core root-dynamics exposes versioned life stages, positional literal roots, season/principal context and occurrence-aware protective/mediating paths. It depends only on core modules; no classifier consumes it yet. [ADR-0004](docs/adr/0004-root-dynamics.md), [contract](docs/root-dynamics-v1.md).
+
+The experimental structural strength v3 feature consumes root-dynamics and existing elemental category mapping, returns qualitative hypotheses only, and leaves earlier classifiers unchanged. [ADR-0005](docs/adr/0005-structural-strength.md), [contract](docs/strength-structural-v3.md).

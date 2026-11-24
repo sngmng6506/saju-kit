@@ -57,3 +57,6 @@ Prioritize a separate testable structural model of day-master root depth and loc
 ## Root evidence follow-up
 
 [Root dynamics v1](root-dynamics-v1.md) records the actual roots and position-aware protection/mediation candidates for the two known strong-reference failures. No policy changes or claims of corrected final classifications; further unseen references required.
+
+## V3 qualitative development experiment
+See [structural strength v3](strength-structural-v3.md) for the new traceable hypotheses, frozen comparison and remaining limitations. The Xu reference set is now development evidence for v3, not an unseen evaluation set.
