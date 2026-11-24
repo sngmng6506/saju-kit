@@ -14,3 +14,6 @@ Frozen engine a4b1dfd7c5444347179e3195c4937e86bd23bdbd; A original, B removes re
 H03/H04 weak agreement lost under neutral season; H02 weak agreement gained (formation-dependent). H07 strong agreement retained by all. H01/H05/H06/H08 unresolved by all. Weak veto removal changes no chart; this set does not independently establish its benefit. Preserve seasonal multiplier and A runtime. B remains candidate, not selected production policy. More charts from a different author, especially explicit weak direction despite anchored resource, needed. No further tuning on this set while calling it independent.
 
 Actual source executed in four isolated V8 module graphs with exact guarded substitutions, unused calendar helper stubbed for full pillars. Native runner/test authored, not executed. Reproduce with `node scripts/evaluate-strength-holdout.mjs` or `node --test test/strength-holdout.test.mjs`.
+
+## Cross-author follow-up
+[Lin scan-based comparison](lin-reference.md) uses four visually transcribed original charts and documents transcription discrepancies. Prior labels still need provenance audit.

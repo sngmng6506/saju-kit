@@ -1,0 +1,61 @@
+{
+  "version": "ordinary-lin-scan-v1",
+  "author": "林庚白",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+  "selection": "Four explicit natal direction statements read visually from scan; selected from search hits, not representative sample. Online reconstructed chart tables conflict with scan; use scan only.",
+  "frozenEngine": "0d35859268ff06d523a6086876e34e761e0434ec",
+  "cases": [
+    {
+      "id": "L76",
+      "pillars": [
+        "辛卯",
+        "庚子",
+        "丁丑",
+        "丁未"
+      ],
+      "reference": "weak",
+      "printedPage": 76,
+      "pdfPageIndex": 82,
+      "reason": "煞旺身弱; visible peer support acknowledged"
+    },
+    {
+      "id": "L91",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬寅",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "printedPage": 91,
+      "pdfPageIndex": 97,
+      "reason": "四柱洩氣太過，究嫌身弱"
+    },
+    {
+      "id": "L95",
+      "pillars": [
+        "乙亥",
+        "壬午",
+        "丙午",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "printedPage": 95,
+      "pdfPageIndex": 101,
+      "reason": "身強殺淺，比劫太旺"
+    },
+    {
+      "id": "L98",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "辛亥",
+        "甲午"
+      ],
+      "reference": "weak",
+      "printedPage": 98,
+      "pdfPageIndex": 104,
+      "reason": "四柱水木太多，變旺為弱"
+    }
+  ]
+}
