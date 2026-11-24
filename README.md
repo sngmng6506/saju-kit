@@ -32,6 +32,8 @@ Existing design and sources: [DESIGN.md](DESIGN.md), [NATAL_METHOD.md](NATAL_MET
 
 Opt in to `branchRelationsV2`, `analyzeBranchGroupsV2`, `analyzeNatalRelations`, `analyzeCrossChartRelations` and `analyzeNatalContext`. The [contract](docs/extended-natal.md) distinguishes observed traditional structures from strength, compatibility scoring or event predictions. Existing APIs are unchanged.
 
-## Day-master strength design (not implemented)
+## Experimental day-master strength
 
-[Hybrid strength policy proposal](docs/strength-hybrid-v1.md): traditional structural evidence first, quantitative sensitivity as a cross-check, explicit abstention for incomplete or exceptional charts. Existing runtime APIs are unchanged.
+[Hybrid strength policy proposal](docs/strength-hybrid-v1.md): traditional structural evidence first, quantitative sensitivity as a cross-check, explicit abstention for incomplete or exceptional charts. The opt-in API is implemented as `analyzeDayMasterStrength({saju, policy:'strength-hybrid-v1', birthBasis:'verified-chart'})`. Existing APIs are unchanged; reference-case validation is pending.
+
+Architecture: [ARCHITECTURE.md](ARCHITECTURE.md).

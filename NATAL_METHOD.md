@@ -151,3 +151,7 @@ const locations = findHiddenStemOccurrences({ saju, stem: saju.pillars.day.stem 
 ## 9. 강약 혼합형 설계 결정 (2026-11-24)
 
 사용자가 C안(전통적 구조 우선, 정량 보조)을 선택했다. [strength-hybrid-v1 설계안](docs/strength-hybrid-v1.md)은 정성 규칙, 가중치 민감도, 시주 결측 범위, 합충/특수격 보류, API 및 검증 절차를 제안한다. 구현·수치/문헌 검토 전이며 용신은 별도 정책이다. 기존 계산을 변경하지 않는다.
+
+## 10. 혼합형 강약 실험 구현
+
+[강약 정책 계약](docs/strength-hybrid-v1.md)에 구현 및 검증 현황을 기록한다. 기존 점수는 불변이며 전문가 검토 전 서비스에는 연결하지 않는다.

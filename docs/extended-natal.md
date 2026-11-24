@@ -22,4 +22,4 @@ Strength and favorable-element methodology requires explicit review: same-stem v
 144 ordered branch comparisons, overlapping relations, candidate/group separation, positional evidence, cross-chart scope and root/projection consistency are covered by dedicated tests. Existing consumers remain pinned until independent native Node and application regression checks pass.
 
 ## Strength follow-up
-The selected hybrid approach is specified as a design proposal in [strength-hybrid-v1](strength-hybrid-v1.md). No new strength API is implemented by the design change.
+The selected hybrid approach is specified as a design proposal in [strength-hybrid-v1](strength-hybrid-v1.md). The opt-in experimental implementation and verification status are now in the strength contract.

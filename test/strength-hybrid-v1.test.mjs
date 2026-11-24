@@ -115,3 +115,20 @@ test('deterministic result, no private input echo, no mutation and no automatic 
   assert.ok(!JSON.stringify(r).includes('private-marker'));assert.equal('yongsin' in r,false);
   assert.ok(r.quantitative.min>=0&&r.quantitative.max<=100);
 });
+
+test('calendar-derived candidate regressions, not expert-labelled reference cases',()=>{
+  const fixtures=[
+    [{y:1990,m:8,d:10,hh:12},'mixed','Q5',40.1,50.5],
+    [{y:1990,m:9,d:10,hh:4},'weak','Q3',17,27.5],
+    [{y:1993,m:8,d:20,hh:8},'strong','Q1',73.5,79.05],
+  ];
+  for(const [birth,category,rule,min,max] of fixtures){
+    const result=analyze(getSaju({...birth,mm:0,timezone:'Asia/Tokyo'}));
+    assert.equal(result.status,'candidate');
+    assert.equal(result.category,category);
+    assert.equal(result.evidence.qualitativeRule.id,rule);
+    assert.equal(result.quantitative.min,min);
+    assert.equal(result.quantitative.max,max);
+    assert.deepEqual(result.reviewFlags,[]);
+  }
+});

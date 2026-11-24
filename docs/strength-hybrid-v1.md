@@ -1,6 +1,6 @@
 # 일간 강약 혼합형 관법 — strength-hybrid-v1 설계안
 
-상태: **C안 채택, 세부 판정 규칙 제안 / 구현 및 검증 전** (2026-11-24).
+상태: **C안 실험 구현 / 수치 검증 완료, 전문가 사례 및 네이티브 회귀 대기** (2026-11-24).
 기존 원국·궁합·이동수 API와 점수를 변경하지 않는다. 전통 명리학 내부에서의 일관성과 설명 가능성을 목표로 한다. 실제 성격, 건강, 운세, 이사나 인생 사건의 예측력 또는 통계적 확률을 의미하지 않는다.
 
 ## 1. 결정과 근거
@@ -15,8 +15,8 @@
 
 ## 2. 입력 및 관찰값
 
-신규 API 제안: `analyzeDayMasterStrength({saju, policy:'strength-hybrid-v1'})`.
-기존 `analyzeNatalStructure`, `analyzeNatalContext`, `analyzeNatalRelations`와 공통 오행/지장간 표를 이용한다. 연월일주 검증, 시주 null 허용. 일주 단독, 절입 미확정 명조, 소비자의 임시 시간 가정으로 연월주가 정해진 명조는 판정 대상에서 제외한다. API는 실제 출생시각을 독립적으로 검증할 수 없으므로 소비자가 provisional birth metadata를 전달하거나 호출하지 않아야 한다. 공개 계약 확정 시 명시적인 `birthBasis: 'verified-chart'|'provisional-chart'` 입력을 요구할 것을 제안한다. 사주 자체의 진위나 실제 운명은 검증하지 않는다.
+신규 API: `analyzeDayMasterStrength({saju, policy:'strength-hybrid-v1'})`.
+기존 `analyzeNatalStructure`, `analyzeNatalContext`, `analyzeNatalRelations`와 공통 오행/지장간 표를 이용한다. 연월일주 검증, 시주 null 허용. 일주 단독, 절입 미확정 명조, 소비자의 임시 시간 가정으로 연월주가 정해진 명조는 판정 대상에서 제외한다. API는 실제 출생시각을 독립적으로 검증할 수 없으므로 소비자가 provisional birth metadata를 전달하거나 호출하지 않아야 한다. 공개 계약에서 명시적인 `birthBasis: 'verified-chart'|'provisional-chart'` 입력을 요구한다. 사주 자체의 진위나 실제 운명은 검증하지 않는다.
 
 일간을 기준으로 오행을 다음 5개 범주로 분리한다.
 
@@ -99,14 +99,14 @@ I = sum(각 슬롯 가중치 × 해당 슬롯의 peer/resource 분율), 0~100.
 - day-stem-combination: 일간과 다른 천간의 합. 합화/쟁합/투합 판단은 별도 정책.
 - branch-formation: 원국에 완성된 삼합/방합, 또는 월지가 포함된 왕지 반합 후보. 합국 작용과 합화를 판단하지 않고 보류.
 - root-or-month-clash: 월지 또는 substantial root 지지가 육충에 포함. 뿌리 제거/파괴를 자동 처리하지 않음.
-- possible-special-pattern: 9개 시나리오 중 어느 하나의 지원 지수가 <=15 또는 >=85, 또는 관측된 동오행 통근 없음+앵커된 지지 천간 S=0+M이 burden. 종격·전왕·화격의 확정이 아니라 전문 검토 신호. 모든 특수격을 검출한다고 주장하지 않는다.
+- possible-special-pattern: 9개 시나리오 중 어느 하나의 지원 지수가 <=15 또는 >=85 (시주 결측에서는 시나리오 범위 전체가 해당 극단 구간에 포함될 때만), 또는 관측된 동오행 통근 없음+앵커된 지지 천간 S=0+M이 burden. 종격·전왕·화격의 확정이 아니라 전문 검토 신호. 모든 특수격을 검출한다고 주장하지 않는다.
 - provisional-chart: 연월주가 절입 경계에서 임시 시각으로 선택됨. 강약 계산 자체를 하지 않음.
 - missing-hour: 최종 판정 금지. 관측된 정성 후보와 지수 범위만 노출하며 review-required보다 낮은 우선순위.
 
 판정 순서: 입력 오류/임시 명조 → 구조 관찰 및 수치 범위 → 예외 플래그 → 시주 결측 → 정성/수치 합치.
 완전 원국에 대해 예외 없음 + Q1/Q2 + 전체 시나리오에서 strong이 모든 임계값 프로파일에 안정적이면 candidate-strong; Q3/Q4와 stable weak이면 candidate-weak; Q5와 stable middle이면 mixed-tendency. 그 외는 unresolved. 최종 판정은 제품 내격 모형의 후보이며 실제 명리 전문가의 확정이나 운세 예측이 아니다. 혼합형은 미분류를 허용한다. 보류 비율이 높다는 이유만으로 경계를 낮추지 않는다.
 
-## 6. API 계약 예시 (제안, 미구현)
+## 6. API 계약
 
 ```js
 analyzeDayMasterStrength({
@@ -142,3 +142,20 @@ B: 9개 수치 시나리오와 범위/경계 민감도.
 C: 구조 규칙 및 예외 게이트.
 D: 문헌/전문가 비교 검증, 고정 fixture, API/README.
 E: saju-friends 개인 상세 해석에 선택적으로 노출. 기존 친구 관계지도와 영끌각 v6에 자동 반영하지 않음.
+
+## 9. 구현 및 검증 기록
+
+API는 policy와 birthBasis를 명시해야 한다. 잘못된 입력은 SajuError(strength-input/strength-policy/strength-birth-basis 또는 기존 pillar 검증 오류)로 반환한다. quantitative.scenarios에는 정수 hundredths lowerUnits/upperUnits, knownWeight/missingWeight, 5범주 값과 소수점 지원 범위를 기록한다. stableCategory는 모든 임계값에 일치하는 경우만 반환한다. 실험 구현은 evidence, quantitative, index 세 모듈로 구성하며 [ADR](adr/0001-strength-hybrid.md)을 따른다.
+
+신규 테스트 10개 로직을 실제 GitHub 소스와 달력 데이터를 사용한 V8 실행으로 통과했다(ESM import/export 변환 및 소형 assertion harness; native Node runner 아님). 커밋 5bb41cf의 소스를 다시 읽어 같은 테스트를 통과했다. 첫 표본은 1900~2100년 5년 간격, 1/4/7/10월 15일, 시주 결측 및 4개 시각, 지원되는 서울/도쿄 시간대; 1,360개 입력이다. 두 번째 표본은 1990~2000년 매월 10/20일 6개 시각, 도쿄; 1,584개 완전 입력이다.
+
+| 상태 | 첫 표본 | 두 번째 표본 |
+| --- | ---: | ---: |
+| review-required | 838 | 1155 |
+| partial | 164 | 0 |
+| unresolved | 331 | 388 |
+| candidate:strong | 0 | 7 |
+| candidate:weak | 9 | 16 |
+| candidate:mixed | 18 | 18 |
+
+합계 2,944개 입력, 첫 표본 328개 시주 결측(예외가 동시에 있으면 review-required 우선). 완전 입력 2,616개 중 후보 68개(약 2.6%). 균등·무작위 인구 표본이 아니며 서울/도쿄 동일 명조 중복 가능. 이 수치는 정책 커버리지 진단이지 해석 정확도가 아니다. 신강/신약/혼재 각각의 실제 달력 입력과 결과를 회귀용으로 고정하되, 전문가 라벨로 취급하지 않는다. 낮은 커버리지를 해결하기 위해 임계값을 임의로 완화하지 않는다. 전문가 명조 비교, 실제 npm test 전체, 소비자 빌드는 미실행. 배포 전 검증 게이트 유지.
