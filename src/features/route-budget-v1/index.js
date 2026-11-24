@@ -54,10 +54,10 @@ function model(network,scenario,mode){
   budgets,allocations,routes,directResource:sum('resource-day'),conditionalResource:eligible.reduce((n,r)=>n+r.direct,0),
   officerResource:sum('officer-resource'),directOfficer:sum('officer-day'),directWealth:sum('wealth-day'),outputControl:sum('resource-output')};
 }
-export function analyzeRouteBudget(input){
+export function analyzeRouteBudget(input,context){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','분석 입력 객체가 필요합니다.');
  if(input.policy!==ROUTE_BUDGET_VERSION)throw new SajuError('strength-policy','경로 배분 정책을 명시해야 합니다.');
- const q=analyzeQuantitativeStrength({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-quantitative-v3'});
+ const q=analyzeQuantitativeStrength({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-quantitative-v3'},context);
  const meta={version:ROUTE_BUDGET_VERSION,completeHour:q.completeHour,assessment:'hypothetical-budget-only',effectsConfirmed:false};
  if(q.status==='provisional'||!q.completeHour)return {...meta,status:q.status,analysis:null};
  const network=analyzeSupportNetwork({saju:input.saju});
