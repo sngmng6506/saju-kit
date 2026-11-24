@@ -56,3 +56,5 @@ export { analyzeMonthCommand, monthCommandSources, MONTH_COMMAND_VERSION } from 
 export { analyzeMonthCommandSensitivity, COMMAND_SENSITIVITY_VERSION } from './features/strength-command-sensitivity-v1/index.js';
 
 export { analyzeBalanceUsefulElement, BALANCE_USEFUL_ELEMENT_VERSION } from './features/balance-useful-element-v1/index.js';
+
+export { analyzeBalancePriority, BALANCE_PRIORITY_VERSION } from './features/balance-priority-v1/index.js';
