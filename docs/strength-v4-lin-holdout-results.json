@@ -1,0 +1,214 @@
+{
+  "engine": "bd82161c91f4a8337aa0e90fd3cd1f17b16fc521",
+  "fixtureCommit": "73a091a22b00dd6dffc08dc47cb3a83e16cb7a8d",
+  "variants": [
+    "v3",
+    "v3 without resource weak veto",
+    "v4",
+    "v4 without resource weak veto"
+  ],
+  "method": "Actual pinned source in isolated V8 module graphs; 20 fetched source modules plus unused throwing hourPillar stub. Veto removal exact guarded substitution in v2, shared by both standard and neutral v4 calculations. Not native Node regression.",
+  "metrics": {
+    "primary": {
+      "F0": {
+        "n": 4,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 2,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.5
+      },
+      "F1": {
+        "n": 4,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 2,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.5
+      },
+      "F2": {
+        "n": 4,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 2,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.5
+      },
+      "F3": {
+        "n": 4,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 2,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.5
+      }
+    },
+    "all": {
+      "F0": {
+        "n": 6,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 4,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.5
+      },
+      "F1": {
+        "n": 6,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 4,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.5
+      },
+      "F2": {
+        "n": 6,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 4,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.5
+      },
+      "F3": {
+        "n": 6,
+        "agree": 1,
+        "disagree": 1,
+        "abstain": 4,
+        "coverage": 0.3333333333333333,
+        "conditionalAgreement": 0.5
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "L77",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "壬寅",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "grounds": [],
+      "conflicts": [],
+      "gateRequired": false,
+      "gatePassed": null
+    },
+    {
+      "id": "L78",
+      "pillars": [
+        "癸酉",
+        "丁巳",
+        "己卯",
+        "甲戌"
+      ],
+      "reference": "weak",
+      "formation": "dependent",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "grounds": [],
+      "conflicts": [],
+      "gateRequired": false,
+      "gatePassed": null
+    },
+    {
+      "id": "L80",
+      "pillars": [
+        "己巳",
+        "甲戌",
+        "壬辰",
+        "庚子"
+      ],
+      "reference": "weak",
+      "formation": "uncertain",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "grounds": [],
+      "conflicts": [],
+      "gateRequired": false,
+      "gatePassed": null
+    },
+    {
+      "id": "L82",
+      "pillars": [
+        "辛酉",
+        "庚寅",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [],
+      "gateRequired": false,
+      "gatePassed": null
+    },
+    {
+      "id": "L83",
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "丁卯",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "grounds": [
+        "local-resource-and-robust-support",
+        "bounded-route-support"
+      ],
+      "conflicts": [],
+      "gateRequired": true,
+      "gatePassed": true
+    },
+    {
+      "id": "L96",
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "丙申",
+        "戊戌"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "grounds": [],
+      "conflicts": [],
+      "gateRequired": false,
+      "gatePassed": null
+    }
+  ]
+}
