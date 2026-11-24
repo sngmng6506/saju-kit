@@ -24,3 +24,5 @@ export { analyzeOrdinaryStrength, ORDINARY_STRENGTH_POLICY_VERSION } from './fea
 
 export { analyzeInteractionContext } from './core/interaction-context.js';
 export { analyzeInteractionSensitivity, INTERACTION_SENSITIVITY_VERSION } from './features/interaction-sensitivity-v1/index.js';
+
+export { lifeStage, analyzeRootDynamics, LIFE_STAGE_VERSION } from './core/root-dynamics.js';

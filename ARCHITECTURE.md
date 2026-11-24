@@ -7,3 +7,5 @@ Strength v1 reuses natal context and relations: evidence -> quantitative cross-c
 Core element-structure exposes neutral elemental profiles, generating/controlling paths and positional relation observations. Experimental strength-ordinary-v2 consumes these plus frozen v1 quantitative scenarios, but not its review gate. See [ADR-0002](docs/adr/0002-ordinary-strength.md) and [contract](docs/strength-ordinary-v2.md).
 
 Core interaction-context adds occurrence-aware formation/clash context. The separate interaction-sensitivity-v1 feature uses frozen strength policies to run isolated hypothetical perturbations without changing baseline classifications. [ADR-0003](docs/adr/0003-interaction-sensitivity.md), [contract](docs/interaction-sensitivity-v1.md).
+
+Core root-dynamics exposes versioned life stages, positional literal roots, season/principal context and occurrence-aware protective/mediating paths. It depends only on core modules; no classifier consumes it yet. [ADR-0004](docs/adr/0004-root-dynamics.md), [contract](docs/root-dynamics-v1.md).

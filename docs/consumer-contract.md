@@ -19,3 +19,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - The separate experimental [ordinary strength v2 contract](strength-ordinary-v2.md) is conditional on ordinary-chart interpretation. No special-pattern inference or consumer migration; v1 remains frozen.
 
 - [Interaction context and sensitivity](interaction-sensitivity-v1.md) are separate observational/diagnostic APIs. Scenario results must not replace actual ordinary-strength category.
+
+- [Root dynamics v1](root-dynamics-v1.md) provides neutral positional and life-stage observations and possible protection/mediation paths. No effective strength or successful mediation is inferred.

@@ -53,3 +53,7 @@ V2 candidate coverage 12/27 (44.4%), conditional agreement 8/12 (66.7%), overall
 - In the 27 directional cases, 11 have at least one hypothetical formation scenario changing stable quantitative category; zero have a clash endpoint root-access scenario changing structural direction. These are diagnostic perturbations, not confirmed effects.
 
 Prioritize a separate testable structural model of day-master root depth and location, seasonal context versus principal hidden stem, and the distinction between rooted opposition and actual mediation/protection. Before selecting weights or rules, obtain further independent ordinary-direction references from additional authors and keep an unseen evaluation set. Reuse existing root/formation context; avoid fixed bonus/penalty or arbitrary threshold changes. Scope remains ordinary strength; no special-pattern or yongsin inference. Do not update consumers. Native npm test and independent expert review remain required.
+
+## Root evidence follow-up
+
+[Root dynamics v1](root-dynamics-v1.md) records the actual roots and position-aware protection/mediation candidates for the two known strong-reference failures. No policy changes or claims of corrected final classifications; further unseen references required.

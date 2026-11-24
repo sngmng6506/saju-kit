@@ -45,3 +45,5 @@ Experimental ordinary-strength v2: `analyzeElementStructure({saju})` and `analyz
 Interaction diagnostics: `analyzeInteractionContext({saju})`, `analyzeInteractionSensitivity({saju, policy:'interaction-sensitivity-v1', birthBasis:'verified-chart'})`. See [contract](docs/interaction-sensitivity-v1.md); hypothetical effects only, no baseline policy changes.
 
 New ordinary-strength reference comparison (Xu commentary): [ordinary-reference-v1](docs/ordinary-reference-v1.md). Reproduce with `node scripts/evaluate-ordinary-reference.mjs`; frozen policies unchanged.
+
+Root-quality diagnostics: `lifeStage(stem, branch)` and `analyzeRootDynamics({saju})`. [Contract](docs/root-dynamics-v1.md). Neutral observations only; no strength changes.
