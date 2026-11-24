@@ -1,0 +1,104 @@
+[
+  {
+    "id": "li-officer",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:신"
+    ]
+  },
+  {
+    "id": "mao-wealth",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:무",
+      "projected:무"
+    ]
+  },
+  {
+    "id": "li-wealth",
+    "candidateObserved": true,
+    "routeObserved": null,
+    "candidateIds": [
+      "principal:계"
+    ]
+  },
+  {
+    "id": "zhang-peer",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:계",
+      "peer:established-lu"
+    ]
+  },
+  {
+    "id": "pingzhang-peer",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:갑",
+      "peer:established-lu"
+    ]
+  },
+  {
+    "id": "peer-controls-killing",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:갑",
+      "peer:established-lu"
+    ]
+  },
+  {
+    "id": "hu-food",
+    "candidateObserved": true,
+    "routeObserved": null,
+    "candidateIds": [
+      "principal:무",
+      "projected:무"
+    ]
+  },
+  {
+    "id": "blade-officer",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "peer:yang-blade"
+    ]
+  },
+  {
+    "id": "cai-hurting",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:계"
+    ]
+  },
+  {
+    "id": "zhou-killing",
+    "candidateObserved": true,
+    "routeObserved": null,
+    "candidateIds": [
+      "principal:계"
+    ]
+  },
+  {
+    "id": "food-wealth-correction",
+    "candidateObserved": true,
+    "routeObserved": true,
+    "candidateIds": [
+      "principal:경",
+      "projected:경"
+    ]
+  },
+  {
+    "id": "mixed-wealth-officer",
+    "candidateObserved": true,
+    "routeObserved": null,
+    "candidateIds": [
+      "projected:계"
+    ]
+  }
+]

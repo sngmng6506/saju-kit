@@ -1,0 +1,166 @@
+[
+  {
+    "id": "li-officer",
+    "pillars": [
+      "경인",
+      "을유",
+      "갑자",
+      "무진"
+    ],
+    "family": "officer",
+    "route": "combine-killing-preserve-officer",
+    "assistantStem": "을",
+    "obstacleStem": "경",
+    "source": "https://m.donglishuzhai.net/chapter/3744.html",
+    "note": "Source describes combining killing while retaining officer."
+  },
+  {
+    "id": "mao-wealth",
+    "pillars": [
+      "을유",
+      "경진",
+      "갑오",
+      "무진"
+    ],
+    "family": "wealth",
+    "route": "combine-killing-preserve-wealth",
+    "assistantStem": "을",
+    "obstacleStem": "경",
+    "source": "https://bbs.donglishuzhai.net/chapter/3746.html",
+    "note": "Combining killing while retaining wealth."
+  },
+  {
+    "id": "li-wealth",
+    "pillars": [
+      "경진",
+      "무자",
+      "무인",
+      "갑인"
+    ],
+    "family": "wealth",
+    "source": "https://bbs.donglishuzhai.net/chapter/3746.html",
+    "note": "Controls killing and generates wealth; restored editorial passage."
+  },
+  {
+    "id": "zhang-peer",
+    "pillars": [
+      "갑자",
+      "병자",
+      "계축",
+      "병진"
+    ],
+    "family": "peer",
+    "route": "peer-output-wealth",
+    "assistantStem": "갑",
+    "source": "https://www.donglishuzhai.net/chapter/3758.html",
+    "note": "Lu/peer uses wealth through output."
+  },
+  {
+    "id": "pingzhang-peer",
+    "pillars": [
+      "신축",
+      "경인",
+      "갑진",
+      "을해"
+    ],
+    "family": "peer",
+    "route": "combine-killing-preserve-officer",
+    "assistantStem": "을",
+    "obstacleStem": "경",
+    "source": "https://www.donglishuzhai.net/chapter/3758.html",
+    "note": "Combines killing while retaining officer."
+  },
+  {
+    "id": "peer-controls-killing",
+    "pillars": [
+      "신해",
+      "경인",
+      "갑신",
+      "병인"
+    ],
+    "family": "peer",
+    "route": "food-controls-killing",
+    "assistantStem": "병",
+    "obstacleStem": "경",
+    "source": "https://www.donglishuzhai.net/chapter/3758.html",
+    "note": "Controls killing while retaining officer."
+  },
+  {
+    "id": "hu-food",
+    "pillars": [
+      "무술",
+      "임술",
+      "병자",
+      "무술"
+    ],
+    "family": "food",
+    "source": "https://www.donglishuzhai.net/chapter/3750.html",
+    "note": "Food pattern with visible killing without resource/wealth in source interpretation."
+  },
+  {
+    "id": "blade-officer",
+    "pillars": [
+      "기유",
+      "병자",
+      "임인",
+      "병오"
+    ],
+    "family": "blade",
+    "route": "officer-controls-blade",
+    "assistantStem": "기",
+    "source": "https://donglishuzhai.net/chapter/3756.html",
+    "note": "Visible officer supported by wealth."
+  },
+  {
+    "id": "cai-hurting",
+    "pillars": [
+      "기미",
+      "병자",
+      "경자",
+      "병자"
+    ],
+    "family": "hurting-officer",
+    "route": "resource-controls-hurting",
+    "assistantStem": "기",
+    "source": "https://donglishuzhai.net/chapter/3754.html",
+    "note": "Hurting officer uses killing and resource."
+  },
+  {
+    "id": "zhou-killing",
+    "pillars": [
+      "무술",
+      "갑자",
+      "정미",
+      "경술"
+    ],
+    "family": "killing",
+    "source": "https://donglishuzhai.net/chapter/3752.html",
+    "note": "Source explicitly describes obstruction of Wu by Jia and Geng intervention; not a standard food-controls-killing success."
+  },
+  {
+    "id": "food-wealth-correction",
+    "pillars": [
+      "기미",
+      "임신",
+      "무자",
+      "경신"
+    ],
+    "family": "food",
+    "route": "food-generates-wealth",
+    "assistantStem": "임",
+    "source": "https://donglishuzhai.net/chapter/3743.html",
+    "note": "Source rejects external pattern and identifies food generating wealth."
+  },
+  {
+    "id": "mixed-wealth-officer",
+    "pillars": [
+      "임신",
+      "계축",
+      "기축",
+      "갑술"
+    ],
+    "family": "wealth",
+    "source": "https://donglishuzhai.net/chapter/3743.html",
+    "note": "Source explicitly interprets mixed-qi wealth generating officer, not external killing pattern."
+  }
+]

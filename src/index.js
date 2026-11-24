@@ -82,3 +82,5 @@ export { analyzeUsefulElementAuthorityV3, USEFUL_ELEMENT_AUTHORITY_V3_VERSION } 
 export { analyzeUsefulElementTransitV3, USEFUL_ELEMENT_TRANSIT_V3_VERSION } from './features/useful-element-transit-v3/index.js';
 
 export { analyzePatternUsefulElement, PATTERN_USEFUL_ELEMENT_VERSION } from './features/pattern-useful-element-v1/index.js';
+
+export { analyzePatternUsefulElementV2, PATTERN_V2_VERSION } from './features/pattern-useful-element-v2/index.js';
