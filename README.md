@@ -27,3 +27,7 @@ Existing design and sources: [DESIGN.md](DESIGN.md), [NATAL_METHOD.md](NATAL_MET
 ## Versioned movement policy
 
 `movementV6` exposes the existing rent-or-buy-kr minute-based daeun, annual/decadal movement signals, v6 scores and timeline highlights without changing the legacy root API. See [movement contract](docs/movement-v6.md).
+
+## Extended natal observations
+
+Opt in to `branchRelationsV2`, `analyzeBranchGroupsV2`, `analyzeNatalRelations`, `analyzeCrossChartRelations` and `analyzeNatalContext`. The [contract](docs/extended-natal.md) distinguishes observed traditional structures from strength, compatibility scoring or event predictions. Existing APIs are unchanged.

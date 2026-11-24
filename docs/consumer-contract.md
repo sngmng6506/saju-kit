@@ -7,7 +7,7 @@ Status: initial shared API implemented; Node regression execution pending in a c
 - rent-or-buy-kr's existing v6 movement policy is now an explicitly versioned `movementV6` namespace. Existing root integer-day and v1 movement functions are retained; new consumers explicitly opt in. See [movement contract](movement-v6.md).
 - Day-only API uses a civil date at midnight without implying a full chart. Full chart calculation retains the existing explicit uncertainty rules and accepts Tokyo for Gregorian 1970–2100 only; Korean default remains unchanged. Japanese lunar conversion and earlier time-zone policies are out of scope.
 - Three-harmony and seasonal groups: pair candidates are not completed groups. Cardinal inclusion is a neutral flag. A complete group means all three distinct members are present, not that transformation is confirmed. No automatic luck score or claim of actual relationship quality.
-- Current scope is two day pillars. Full-chart compatibility, punishment, harm, break and school-specific transformations require a separate reviewed method and fixtures.
+- Existing day compatibility remains v1. Additive extended branch, natal, cross-chart and root/projection evidence APIs are specified in [extended natal contract](extended-natal.md). No automatic scoring, transformation or strength ruling.
 - Distribution is Git-only initially, versioned root API, no npm publication until source/data license review. Do not silently update consumers to main.
 
 ## Verification gate

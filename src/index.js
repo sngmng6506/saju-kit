@@ -12,3 +12,7 @@ export { stemCombination, branchPairRelations, analyzeBranchGroups } from './cor
 export { analyzeCompatibility } from './features/compatibility.js';
 
 export * as movementV6 from './features/movement-v6/index.js';
+
+export { branchRelationsV2, analyzeBranchGroupsV2, EXTENDED_RELATIONS_VERSION } from './core/extended-relations.js';
+export { analyzeNatalRelations, analyzeCrossChartRelations } from './core/natal-relations.js';
+export { analyzeNatalContext } from './core/natal-context.js';

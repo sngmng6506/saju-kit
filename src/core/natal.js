@@ -38,7 +38,7 @@ export function tenGodForStem(dayStem, targetStem) {
  * Descriptive natal chart structure, not a fortune score or a strong/weak ruling.
  * Without birth hour, counts cover six visible characters (not eight).
  */
-export function analyzeNatalStructure({ saju } = {}) {
+export function validateNatalPillars(saju) {
   const pillars = saju?.pillars;
   if (!pillars || typeof pillars !== 'object' || Array.isArray(pillars)) {
     throw new SajuError('saju-input', '만세력의 연월일주가 필요합니다.');
@@ -48,6 +48,11 @@ export function analyzeNatalStructure({ saju } = {}) {
     if (position === 'hour' && pillar === null) continue;
     validatePillar(pillar, position);
   }
+  return pillars;
+}
+
+export function analyzeNatalStructure({ saju } = {}) {
+  const pillars = validateNatalPillars(saju);
   const dayMaster = { stem: pillars.day.stem, ...stemInfo(pillars.day.stem) };
   const elementCounts = { wood: 0, fire: 0, earth: 0, metal: 0, water: 0 };
   const resultPillars = {};
