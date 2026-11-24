@@ -1,0 +1,347 @@
+{
+  "engine": "ae56cd2eb303e7601220a767cae142e8af226807",
+  "fixtureCommit": "8893abc0348b96e31c0a3970eaa0ce1862f9cab3",
+  "method": "Actual pinned source in V8, 20 fetched modules plus unused throwing calendar stub. Live evidence/decision and both season scenarios for 5 cases; frozen candidate predicate applied directly without historical bucket or labels. Newly added native script reproduces the same calculations, not native-executed here.",
+  "rows": [
+    {
+      "id": "ZW27",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "track": "prospective-same-author",
+      "fixed": "strong",
+      "eligible": false,
+      "p1": "strong",
+      "p2": "strong",
+      "root": {
+        "min": 57.5,
+        "max": 62.25
+      },
+      "grounds": [
+        "local-resource-and-robust-support",
+        "bounded-route-support"
+      ],
+      "conflicts": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "margins": [
+            [
+              42800000,
+              69420000
+            ],
+            [
+              66560000,
+              98580000
+            ],
+            [
+              66560000,
+              98580000
+            ]
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "margins": [
+            [
+              33600000,
+              47500000
+            ],
+            [
+              55200000,
+              71800000
+            ],
+            [
+              55200000,
+              71800000
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "track": "historical-diagnostic",
+      "fixed": null,
+      "eligible": true,
+      "p1": "weak",
+      "p2": "weak",
+      "root": {
+        "min": 22,
+        "max": 26.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -58380000,
+              -35460000
+            ],
+            [
+              -52780000,
+              -26730000
+            ],
+            [
+              -52780000,
+              -26730000
+            ]
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -33700000,
+              -23250000
+            ],
+            [
+              -26700000,
+              -13550000
+            ],
+            [
+              -26700000,
+              -13550000
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "H04",
+      "pillars": [
+        "丙辰",
+        "癸巳",
+        "壬戌",
+        "壬寅"
+      ],
+      "reference": "weak",
+      "track": "historical-diagnostic",
+      "fixed": "weak",
+      "eligible": false,
+      "p1": "weak",
+      "p2": "weak",
+      "root": {
+        "min": 5,
+        "max": 9.75
+      },
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -28310000,
+              -3660000
+            ],
+            [
+              -26150000,
+              -1500000
+            ],
+            [
+              -29350000,
+              -3660000
+            ]
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "margins": [
+            [
+              -7450000,
+              6350000
+            ],
+            [
+              -4750000,
+              8750000
+            ],
+            [
+              -8750000,
+              6350000
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "W09",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "track": "historical-diagnostic",
+      "fixed": null,
+      "eligible": true,
+      "p1": "weak",
+      "p2": "weak",
+      "root": {
+        "min": 22,
+        "max": 26.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -43010000,
+              -16050000
+            ],
+            [
+              -38690000,
+              -8290000
+            ],
+            [
+              -38690000,
+              -8290000
+            ]
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -28550000,
+              -11650000
+            ],
+            [
+              -21350000,
+              -1950000
+            ],
+            [
+              -21350000,
+              -1950000
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU14",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "track": "historical-diagnostic",
+      "fixed": null,
+      "eligible": true,
+      "p1": "weak",
+      "p2": "weak",
+      "root": {
+        "min": 35,
+        "max": 35
+      },
+      "grounds": [],
+      "conflicts": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -64280000,
+              -31025000
+            ],
+            [
+              -54680000,
+              -17525000
+            ],
+            [
+              -57880000,
+              -19820000
+            ]
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "margins": [
+            [
+              -36300000,
+              -18350000
+            ],
+            [
+              -24300000,
+              -3350000
+            ],
+            [
+              -28300000,
+              -5900000
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}
