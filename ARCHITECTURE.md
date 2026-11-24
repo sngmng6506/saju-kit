@@ -11,3 +11,5 @@ Core interaction-context adds occurrence-aware formation/clash context. The sepa
 Core root-dynamics exposes versioned life stages, positional literal roots, season/principal context and occurrence-aware protective/mediating paths. It depends only on core modules; no classifier consumes it yet. [ADR-0004](docs/adr/0004-root-dynamics.md), [contract](docs/root-dynamics-v1.md).
 
 The experimental structural strength v3 feature consumes root-dynamics and existing elemental category mapping, returns qualitative hypotheses only, and leaves earlier classifiers unchanged. [ADR-0005](docs/adr/0005-structural-strength.md), [contract](docs/strength-structural-v3.md).
+
+The experimental quantitative v3 feature consumes element structure and the existing internal hour-pillar calculation, returns a separate root/season-aware sensitivity index, and does not integrate structural v3 into a final classifier. [ADR-0006](docs/adr/0006-quantitative-strength.md), [contract](docs/strength-quantitative-v3.md).

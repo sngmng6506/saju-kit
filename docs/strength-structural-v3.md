@@ -52,3 +52,6 @@ Six newly authored test bodies passed in a V8 source adapter, including conflict
 ```sh
 node --test test/strength-structural-v3.test.mjs test/structural-v3-reference.test.mjs
 ```
+
+## Quantitative follow-up
+[Quantitative v3](strength-quantitative-v3.md) is a separate experiment. Its development results do not support adopting a final agreement gate. Structural v3 stays frozen.

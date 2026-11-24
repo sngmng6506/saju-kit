@@ -23,3 +23,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Root dynamics v1](root-dynamics-v1.md) provides neutral positional and life-stage observations and possible protection/mediation paths. No effective strength or successful mediation is inferred.
 
 - [Structural strength v3](strength-structural-v3.md) is an opt-in experimental qualitative hypothesis only; no final category or consumer migration.
+
+- [Quantitative strength v3](strength-quantitative-v3.md) is a separate experimental sensitivity index, not a final classification. No consumer migration.

@@ -145,7 +145,7 @@ function pillarsAt(y, m, d, hh, mm) {
 }
 
 // 시주: 표준시 자정부터 2시간 단위, 23시 자시의 일주 귀속은 정책 미확정.
-function hourPillar(dayStem, hour) {
+export function hourPillar(dayStem, hour) {
   const dayStemIndex = STEMS.indexOf(dayStem);
   if (dayStemIndex < 0 || !Number.isInteger(hour) || hour < 0 || hour > 22) {
     throw new SajuError('hour-pillar', '시주를 계산할 수 없는 시각 또는 일간입니다.');
