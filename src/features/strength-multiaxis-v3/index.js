@@ -31,17 +31,17 @@ export function assessIntegrated(base,capacity){
  return {direction:conflicts.length?null:strong?'strong':weak?'weak':null,grounds,conflicts,
   evidence:{robustSupport,resourcePresent,rows}};
 }
-export function analyzeMultiaxisStrengthV3(input){
+export function analyzeMultiaxisStrengthV3(input,context){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
  if(input.policy!==MULTIAXIS_V3_VERSION)throw new SajuError('strength-policy','다축 v3 정책을 명시해야 합니다.');
  const args={saju:input.saju,birthBasis:input.birthBasis};
- const base=analyzeMultiaxisStrengthV2({...args,policy:'strength-multiaxis-v2'});
+ const base=analyzeMultiaxisStrengthV2({...args,policy:'strength-multiaxis-v2'},context);
  const meta={version:MULTIAXIS_V3_VERSION,completeHour:base.completeHour,scope:base.scope,
   assessment:'experimental-integrated',specialPatternAssessment:'not-assessed',interactionAssessment:'hypothetical-only',
   baselinePolicy:base.version,baselineDirection:base.direction,axes:base.axes,caveats:base.caveats,
   baselineDecision:base.decision,completionCount:base.completionCount??null};
  if(!base.decision)return {...meta,status:base.status,direction:null,decision:null};
- const capacity=analyzeOutputCapacity({...args,policy:'output-capacity-v1'});
+ const capacity=analyzeOutputCapacity({...args,policy:'output-capacity-v1'},context);
  const decision=assessIntegrated(base,capacity.analysis);
  return {...meta,status:decision.direction?'hypothesis':'unresolved',direction:decision.direction,decision};
 }
