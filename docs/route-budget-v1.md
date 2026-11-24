@@ -15,3 +15,6 @@ Four test bodies checked via V8 source adapter, 48 Tokyo calendar charts and 4,6
 | Y01 | weak | 0 | 0 | 63–82.6 | 0 |
 
 Across all scenarios, conditional direct resource exceeds each direct officer and wealth allocation in 11 of the 39 charts (10 strong labels, W23 weak). This criterion ignores output drain and remote pressure; W23 has output control allocation 7–10.05 but that is not proven neutralization. Do not promote this rule to a classifier. The two allocation variants are not exhaustive or calibrated. Next compare output pressure and potential control using explicit target-side capacity and alternative priority assumptions, retain matched counterexamples. No multiaxis v3 integration or consumer migration until justified.
+
+## Follow-up
+[Output capacity v1](output-capacity-v1.md) bounds non-day incoming allocations and includes output pressure. No classifier changes.

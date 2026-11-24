@@ -23,3 +23,5 @@ Multiaxis v2 composes frozen v1 and support-network; numeric axes are unchanged,
 Resource-access v1 composes support-network and quantitative-v3; no classifier dependency or effective-force inference. [ADR-0009](docs/adr/0009-resource-access.md).
 
 Route-budget v1 composes support-network and quantitative-v3, with source-budget conservation and no effective-force inference. [ADR-0010](docs/adr/0010-route-budget.md).
+
+Output-capacity v1 composes route-budget and frozen quantitative evidence; incoming target caps are hypothetical and do not mutate source masses. [ADR-0011](docs/adr/0011-output-capacity.md).

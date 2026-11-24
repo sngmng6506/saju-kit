@@ -35,3 +35,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Resource access v1](resource-access-v1.md) returns exposure-conditioned diagnostics only, not actual support or strength.
 
 - [Route budget v1](route-budget-v1.md) is a hypothetical diagnostic, not a classifier.
+
+- [Output capacity v1](output-capacity-v1.md) provides hypothetical accepted control and residual output, not final strength.

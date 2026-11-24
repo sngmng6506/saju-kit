@@ -40,3 +40,5 @@ export { analyzeMultiaxisStrengthV2, MULTIAXIS_V2_VERSION } from './features/str
 export { analyzeResourceAccess, RESOURCE_ACCESS_VERSION } from './features/resource-access-v1/index.js';
 
 export { analyzeRouteBudget, ROUTE_BUDGET_VERSION } from './features/route-budget-v1/index.js';
+
+export { analyzeOutputCapacity, OUTPUT_CAPACITY_VERSION } from './features/output-capacity-v1/index.js';

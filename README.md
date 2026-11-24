@@ -63,3 +63,5 @@ New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-r
 [Resource access v1](docs/resource-access-v1.md): experimental local resource exposure diagnostics.
 
 [Route budget v1](docs/route-budget-v1.md): experimental competing-route allocation diagnostics.
+
+[Output capacity v1](docs/output-capacity-v1.md): experimental target-bounded output diagnostics.
