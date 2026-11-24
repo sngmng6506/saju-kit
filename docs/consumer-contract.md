@@ -29,3 +29,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Multi-axis strength v1](strength-multiaxis-v1.md) exposes experimental hypotheses and separate axes, not a final category. No consumer migration.
 
 - [Support network v1](support-network-v1.md): observation only; no effective strength or cancellation.
+
+- [Multiaxis v2](strength-multiaxis-v2.md) is experimental; inherited detail is v1 baseline, decision is v2. No consumer migration.

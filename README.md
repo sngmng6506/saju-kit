@@ -57,3 +57,5 @@ Experimental multi-axis strength: `analyzeMultiaxisStrength({saju,policy:'streng
 New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-reference-v1.md), including a counterexample to the multiaxis root-first rule.
 
 [Support network v1](docs/support-network-v1.md): neutral resource and burden interaction observations.
+
+[Multi-axis strength v2](docs/strength-multiaxis-v2.md): experimental pressure and resource-aware decision policy.

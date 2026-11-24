@@ -17,3 +17,5 @@ The experimental quantitative v3 feature consumes element structure and the exis
 Multi-axis strength v1 consumes root dynamics and frozen quantitative-v3 scenario contributions; root capacity, environment and interaction evidence remain separate. [ADR-0007](docs/adr/0007-multiaxis-strength.md), [contract](docs/strength-multiaxis-v1.md).
 
 Core support-network consumes root-dynamics and exposes category-specific directed interaction evidence, without a classifier dependency. [Contract](docs/support-network-v1.md).
+
+Multiaxis v2 composes frozen v1 and support-network; numeric axes are unchanged, decision policy separately versioned. [ADR-0008](docs/adr/0008-pressure-sensitive-strength.md).

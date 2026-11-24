@@ -34,3 +34,5 @@ export { analyzeQuantitativeStrength, QUANTITATIVE_STRENGTH_VERSION } from './fe
 export { analyzeMultiaxisStrength, MULTIAXIS_STRENGTH_VERSION } from './features/strength-multiaxis-v1/index.js';
 
 export { analyzeSupportNetwork } from './core/support-network.js';
+
+export { analyzeMultiaxisStrengthV2, MULTIAXIS_V2_VERSION } from './features/strength-multiaxis-v2/index.js';
