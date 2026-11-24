@@ -1,0 +1,218 @@
+{
+  "version": "ordinary-zhang-holdout-v1",
+  "author": "張楠",
+  "book": "神峰通考",
+  "frozenEngine": "c2367480ce05105c657e5d787ffa5f64cc66dc2f",
+  "selection": "Purposive source-only selection of explicit or context-explicit natal directions with resource present, including weak and strong controls. Not consecutive or population representative. No engine outputs inspected before freezing. Electronic edition derived from Wikisource; unidentified print base, transcription defects possible. All exact ordered pillars checked against 108 historical charts and sexagenary parity/month/hour derivation. Uncertain formation or within-month timing separately flagged. Strong labels are contrast controls, not proven veto-trigger counterexamples.",
+  "sources": {
+    "resource": {
+      "title": "印綬格",
+      "url": "https://changxianyi.com/guji/shenfeng/ws-text-20260928/text-019/"
+    },
+    "output": {
+      "title": "傷官食神格",
+      "url": "https://changxianyi.com/guji/shenfeng/ws-text-20260928/text-018/"
+    }
+  },
+  "excluded": [
+    {
+      "pillars": [
+        "壬寅",
+        "辛亥",
+        "丁巳",
+        "辛亥"
+      ],
+      "reason": "explicit 丁壬化木; exclude successful transformation from targeted ordinary set"
+    },
+    {
+      "pillars": [
+        "己酉",
+        "丙寅",
+        "甲子",
+        "乙丑"
+      ],
+      "reason": "month-internal timing and 酉丑 combination essential"
+    },
+    {
+      "pillars": [
+        "癸卯",
+        "甲寅",
+        "丙午",
+        "戊戌"
+      ],
+      "reason": "fire assembly explicitly central"
+    }
+  ],
+  "cases": [
+    {
+      "id": "ZN01",
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "己巳",
+        "庚午"
+      ],
+      "reference": "weak",
+      "source": "resource",
+      "locator": "numbered paragraphs 42–44",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "己土 has seasonal support but metal drainage changes strength to weakness; fire resource remains useful.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN02",
+      "pillars": [
+        "壬戌",
+        "壬寅",
+        "丁卯",
+        "戊申"
+      ],
+      "reference": "weak",
+      "source": "resource",
+      "locator": "numbered paragraphs 45–47",
+      "formation": "uncertain",
+      "formationDependent": true,
+      "reason": "Early spring cold, weak fire and damaged resource; within-month timing explicitly matters.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN03",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "丁卯",
+        "甲辰"
+      ],
+      "reference": "strong",
+      "source": "resource",
+      "locator": "numbered paragraphs 48–50",
+      "formation": "uncertain",
+      "formationDependent": true,
+      "reason": "Fire remains strong in Wei and abundant wood further supports it; Hai-Mao-Wei assembly is present although not explicitly invoked.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN04",
+      "pillars": [
+        "辛卯",
+        "辛卯",
+        "戊寅",
+        "壬子"
+      ],
+      "reference": "weak",
+      "source": "resource",
+      "locator": "numbered paragraphs 51–53",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Author explicitly calls day master weak and uses resource; resource hidden in Yin.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN05",
+      "pillars": [
+        "乙卯",
+        "戊寅",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "source": "resource",
+      "locator": "numbered paragraphs 54–56",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Weak Bing despite resource; excessive earth drainage, with southern luck discussed separately.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN06",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "source": "output",
+      "locator": "numbered paragraphs 77–79",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Originally seasonally strong Ren, weakened by heavy fire/earth and clash of Si with Hai; no successful transformation required.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN07",
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "source": "output",
+      "locator": "numbered paragraphs 92–94",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Jia changes from seasonal weakness to strength through roots and water support.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN08",
+      "pillars": [
+        "丙子",
+        "丁酉",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "source": "output",
+      "locator": "numbered paragraphs 98–100",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Ren has excess qi supported by metal; author recommends output to drain it.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN09",
+      "pillars": [
+        "甲戌",
+        "辛未",
+        "己酉",
+        "己巳"
+      ],
+      "reference": "strong",
+      "source": "output",
+      "locator": "numbered paragraphs 101–103",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Ji is explicitly prosperous in Wei and further supported by fire.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    },
+    {
+      "id": "ZN10",
+      "pillars": [
+        "戊寅",
+        "己未",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "source": "output",
+      "locator": "numbered paragraphs 120–122",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "reason": "Excess earth drains Bing; author identifies weak body and weak resource.",
+      "basis": "explicit-contextual-natal",
+      "track": "targeted"
+    }
+  ]
+}
