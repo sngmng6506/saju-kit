@@ -1,0 +1,6918 @@
+{
+  "engine": "101e45c9baff701072d4e11813e3263b75a4f560",
+  "method": "Actual pure comparison and authority functions on stored cohort records; no remedy motifs reconstructed and no live integrated wrapper executed. All source conditional alternatives excluded from anchor promotion.",
+  "counts": {
+    "charts": 100,
+    "branches": 150,
+    "oppositeBranches": 43,
+    "anchorHypotheses": 449,
+    "confirmedSelections": 0
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "신"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H07",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W10",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W12",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DX01",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Y01",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R01",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "local-route-observed"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "local-route-observed"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "wood",
+                  "to": "earth",
+                  "status": "local-route-observed"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "mediation",
+                  "from": "metal",
+                  "to": "wood",
+                  "status": "local-route-observed"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R07",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R09",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "정"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R11",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W01",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W02",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W03",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W04",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W05",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W06",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W08",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W09",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W14",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W15",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W16",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W17",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "mediation",
+                  "from": "fire",
+                  "to": "metal",
+                  "status": "local-route-observed"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "fire",
+                  "to": "metal",
+                  "status": "local-route-observed"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W18",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W19",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W20",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W22",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W23",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W24",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W25",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W26",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W28",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU01",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU02",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU03",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU06",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "metal",
+                  "to": "wood",
+                  "status": "local-route-observed"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU07",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU08",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU09",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU10",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU11",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU12",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU13",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU14",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "access-limited"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU15",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "mediation",
+                  "from": "fire",
+                  "to": "metal",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "신"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "fire",
+                  "to": "metal",
+                  "status": "access-limited"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "신"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU16",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU17",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU19",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU20",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU21",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU23",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "정"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU24",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU25",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU26",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU27",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU28",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU29",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU30",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU31",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DX02",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DX03",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "local-route-observed"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "local-route-observed"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DH02",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L76",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L91",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L95",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L98",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN01",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN02",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN03",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN04",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 3,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN05",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN06",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN07",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "정"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "정"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN08",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN09",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZN10",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "경"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-cue"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L77",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L78",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L80",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L82",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L83",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L96",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "임"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW03",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW04",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-cue"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW05",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW06",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW10",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "계"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW11",
+      "priorDirection": "strong",
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": true,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                },
+                {
+                  "method": "seasonal-source",
+                  "group": 2,
+                  "stem": "갑"
+                }
+              ]
+            },
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "seasonal-source",
+                  "group": 1,
+                  "stem": "병"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                },
+                {
+                  "method": "mediation",
+                  "from": "earth",
+                  "to": "water",
+                  "status": "supplement-hypothesis"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "opposite-method-tendencies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW12",
+      "priorDirection": null,
+      "branches": [
+        {
+          "assumedDirection": "strong",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "wood",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "officer"
+                }
+              ]
+            },
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "output"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "wealth"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "fire",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "earth",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection",
+            "strength-unresolved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW13",
+      "priorDirection": "weak",
+      "branches": [
+        {
+          "assumedDirection": "weak",
+          "oppositeTendencyObserved": false,
+          "anchors": [
+            {
+              "element": "metal",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "resource"
+                }
+              ]
+            },
+            {
+              "element": "water",
+              "origins": [
+                {
+                  "method": "balance",
+                  "category": "peer"
+                }
+              ]
+            }
+          ],
+          "reasons": [
+            "special-pattern-not-assessed",
+            "no-validated-method-precedence",
+            "no-validated-anchor-selection"
+          ]
+        }
+      ]
+    }
+  ]
+}
