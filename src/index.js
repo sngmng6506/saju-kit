@@ -54,3 +54,5 @@ export { analyzeFormationEvidence, FORMATION_EVIDENCE_VERSION } from './core/for
 export { analyzeMonthCommand, monthCommandSources, MONTH_COMMAND_VERSION } from './core/month-command.js';
 
 export { analyzeMonthCommandSensitivity, COMMAND_SENSITIVITY_VERSION } from './features/strength-command-sensitivity-v1/index.js';
+
+export { analyzeBalanceUsefulElement, BALANCE_USEFUL_ELEMENT_VERSION } from './features/balance-useful-element-v1/index.js';
