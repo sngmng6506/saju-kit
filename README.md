@@ -61,3 +61,5 @@ New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-r
 [Multi-axis strength v2](docs/strength-multiaxis-v2.md): experimental pressure and resource-aware decision policy.
 
 [Resource access v1](docs/resource-access-v1.md): experimental local resource exposure diagnostics.
+
+[Route budget v1](docs/route-budget-v1.md): experimental competing-route allocation diagnostics.

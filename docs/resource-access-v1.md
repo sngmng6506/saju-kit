@@ -21,3 +21,6 @@ Four new test bodies checked in V8 source adapter (including resource-free fixtu
 | Y01 | weak | 11.55–15.12 | 0–0 | 11.55–15.12 |
 
 Y01 illustrates why accessible mass alone cannot classify strength. R07 illustrates scenario sensitivity even for a strong textual label. R10 and R11 retain local resources with no wealth-dominant exposure; local officer generation is also observed. These are development observations, not a validated strength rule. No model tuning or consumer migration. Next compare anchored accessible resource and officer pressure jointly, without double-spending shared source mass; test against matched weak cases and new references.
+
+## Follow-up
+[Route budget v1](route-budget-v1.md) examines competing source allocations; W23 prevents adoption as a strength rule.

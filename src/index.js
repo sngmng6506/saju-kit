@@ -38,3 +38,5 @@ export { analyzeSupportNetwork } from './core/support-network.js';
 export { analyzeMultiaxisStrengthV2, MULTIAXIS_V2_VERSION } from './features/strength-multiaxis-v2/index.js';
 
 export { analyzeResourceAccess, RESOURCE_ACCESS_VERSION } from './features/resource-access-v1/index.js';
+
+export { analyzeRouteBudget, ROUTE_BUDGET_VERSION } from './features/route-budget-v1/index.js';

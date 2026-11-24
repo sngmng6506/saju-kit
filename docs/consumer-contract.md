@@ -33,3 +33,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Multiaxis v2](strength-multiaxis-v2.md) is experimental; inherited detail is v1 baseline, decision is v2. No consumer migration.
 
 - [Resource access v1](resource-access-v1.md) returns exposure-conditioned diagnostics only, not actual support or strength.
+
+- [Route budget v1](route-budget-v1.md) is a hypothetical diagnostic, not a classifier.

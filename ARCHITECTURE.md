@@ -21,3 +21,5 @@ Core support-network consumes root-dynamics and exposes category-specific direct
 Multiaxis v2 composes frozen v1 and support-network; numeric axes are unchanged, decision policy separately versioned. [ADR-0008](docs/adr/0008-pressure-sensitive-strength.md).
 
 Resource-access v1 composes support-network and quantitative-v3; no classifier dependency or effective-force inference. [ADR-0009](docs/adr/0009-resource-access.md).
+
+Route-budget v1 composes support-network and quantitative-v3, with source-budget conservation and no effective-force inference. [ADR-0010](docs/adr/0010-route-budget.md).
