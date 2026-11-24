@@ -13,3 +13,5 @@ Status: initial shared API implemented; Node regression execution pending in a c
 ## Verification gate
 
 Run `npm test` on the pinned checkout, including existing calendar, natal, year-signals and movement regressions plus the new all-pairs compatibility suite. The pure pair algorithm was separately checked over 3,600 ordered pairs in a JavaScript runtime; this does not replace the full Node suite or calendar fixtures. Check installation in saju-friends and a production Next build before deployment.
+
+- Proposed strength analysis is a separate opt-in policy: [strength-hybrid-v1](strength-hybrid-v1.md). Design only; do not consume until implemented and verified. It must not alter existing scores or select yongsin automatically.

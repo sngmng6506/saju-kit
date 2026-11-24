@@ -31,3 +31,7 @@ Existing design and sources: [DESIGN.md](DESIGN.md), [NATAL_METHOD.md](NATAL_MET
 ## Extended natal observations
 
 Opt in to `branchRelationsV2`, `analyzeBranchGroupsV2`, `analyzeNatalRelations`, `analyzeCrossChartRelations` and `analyzeNatalContext`. The [contract](docs/extended-natal.md) distinguishes observed traditional structures from strength, compatibility scoring or event predictions. Existing APIs are unchanged.
+
+## Day-master strength design (not implemented)
+
+[Hybrid strength policy proposal](docs/strength-hybrid-v1.md): traditional structural evidence first, quantitative sensitivity as a cross-check, explicit abstention for incomplete or exceptional charts. Existing runtime APIs are unchanged.
