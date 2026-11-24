@@ -19,3 +19,5 @@ Multi-axis strength v1 consumes root dynamics and frozen quantitative-v3 scenari
 Core support-network consumes root-dynamics and exposes category-specific directed interaction evidence, without a classifier dependency. [Contract](docs/support-network-v1.md).
 
 Multiaxis v2 composes frozen v1 and support-network; numeric axes are unchanged, decision policy separately versioned. [ADR-0008](docs/adr/0008-pressure-sensitive-strength.md).
+
+Resource-access v1 composes support-network and quantitative-v3; no classifier dependency or effective-force inference. [ADR-0009](docs/adr/0009-resource-access.md).

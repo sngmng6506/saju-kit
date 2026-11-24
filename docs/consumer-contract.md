@@ -31,3 +31,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Support network v1](support-network-v1.md): observation only; no effective strength or cancellation.
 
 - [Multiaxis v2](strength-multiaxis-v2.md) is experimental; inherited detail is v1 baseline, decision is v2. No consumer migration.
+
+- [Resource access v1](resource-access-v1.md) returns exposure-conditioned diagnostics only, not actual support or strength.

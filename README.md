@@ -59,3 +59,5 @@ New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-r
 [Support network v1](docs/support-network-v1.md): neutral resource and burden interaction observations.
 
 [Multi-axis strength v2](docs/strength-multiaxis-v2.md): experimental pressure and resource-aware decision policy.
+
+[Resource access v1](docs/resource-access-v1.md): experimental local resource exposure diagnostics.
