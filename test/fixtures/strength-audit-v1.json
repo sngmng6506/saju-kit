@@ -1,7 +1,7 @@
 {
   "version": 1,
   "reviewDate": "2026-11-24",
-  "note": "Retrospective review reports 01–05; historical labels retained.",
+  "note": "Retrospective reviews 01–06; historical labels retained; all 76 directional cases have a review record. Prior reports 01–05 not freshly repeated in review 06.",
   "entries": [
     {
       "fixture": "ordinary-xu-holdout-v1",
@@ -1382,6 +1382,147 @@
       "formation": "ordinary",
       "verification": "electronic-text-checked",
       "review": "docs/strength-source-review-05.md"
+    },
+    {
+      "fixture": "strength-ditiansui-v1",
+      "id": "DX02",
+      "pillars": [
+        "庚申",
+        "辛巳",
+        "丙辰",
+        "乙未"
+      ],
+      "reference": "weak",
+      "author": "任鐵樵",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十、形象",
+      "locator": "形象, third chart; lines 1919–1937",
+      "evidence": "財多身弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "strength-ditiansui-v1",
+      "id": "DX03",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "author": "任鐵樵",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十、形象",
+      "locator": "形象, fourth chart; lines 1939–1957",
+      "evidence": "日主孤弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "strength-ditiansui-v1",
+      "id": "DH02",
+      "pillars": [
+        "己酉",
+        "丙子",
+        "癸未",
+        "戊午"
+      ],
+      "reference": "weak",
+      "author": "任鐵樵",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十八、中和",
+      "locator": "中和, second chart; lines 2995–3013",
+      "evidence": "旺中變弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "ordinary-lin-scan-v1",
+      "id": "L76",
+      "pillars": [
+        "辛卯",
+        "庚子",
+        "丁丑",
+        "丁未"
+      ],
+      "reference": "weak",
+      "author": "林庚白",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+      "locator": "printed p.76; PDF index 82",
+      "evidence": "煞旺身弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "scan-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "ordinary-lin-scan-v1",
+      "id": "L91",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬寅",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "author": "林庚白",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+      "locator": "printed p.91; PDF index 97",
+      "evidence": "究嫌身弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "scan-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "ordinary-lin-scan-v1",
+      "id": "L95",
+      "pillars": [
+        "乙亥",
+        "壬午",
+        "丙午",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "author": "林庚白",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+      "locator": "printed p.95; PDF index 101",
+      "evidence": "身強殺淺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "scan-checked",
+      "review": "docs/strength-source-review-06.md"
+    },
+    {
+      "fixture": "ordinary-lin-scan-v1",
+      "id": "L98",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "辛亥",
+        "甲午"
+      ],
+      "reference": "weak",
+      "author": "林庚白",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/NLC416-17jh001751-107289_%E4%BA%BA%E9%91%92.pdf",
+      "locator": "printed p.98; PDF index 104; post-Guyu timing explicitly considered",
+      "evidence": "變旺為弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "scan-checked",
+      "review": "docs/strength-source-review-06.md",
+      "timingDependency": "within-month post-Guyu timing stated; engine input only pillars"
     }
   ]
 }
