@@ -27,3 +27,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Quantitative strength v3](strength-quantitative-v3.md) is a separate experimental sensitivity index, not a final classification. No consumer migration.
 
 - [Multi-axis strength v1](strength-multiaxis-v1.md) exposes experimental hypotheses and separate axes, not a final category. No consumer migration.
+
+- [Support network v1](support-network-v1.md): observation only; no effective strength or cancellation.

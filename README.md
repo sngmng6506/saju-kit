@@ -55,3 +55,5 @@ Experimental quantitative v3: `analyzeQuantitativeStrength({saju,policy:'strengt
 Experimental multi-axis strength: `analyzeMultiaxisStrength({saju,policy:'strength-multiaxis-v1',birthBasis:'verified-chart'})`. [Model and comparison](docs/strength-multiaxis-v1.md).
 
 New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-reference-v1.md), including a counterexample to the multiaxis root-first rule.
+
+[Support network v1](docs/support-network-v1.md): neutral resource and burden interaction observations.
