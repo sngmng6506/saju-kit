@@ -11,3 +11,6 @@ Frozen source 9e54b5109f3820574ada63a6e030833b10d84f18. In an isolated source co
 
 Actual source executed in two isolated V8 module graphs, with unused calendar helper stubbed for complete pillars. Native reproduction script copies src to a temporary directory, applies exact guarded substitution and cleans up; native script/test not executed here.
 Run `node scripts/evaluate-seasonal-ablation.mjs` or `node --test test/seasonal-ablation.test.mjs`.
+
+## Factorial follow-up
+[Four-way factorial comparison](strength-factorial.md): additive development gains, B preferred for independent validation. Runtime unchanged.
