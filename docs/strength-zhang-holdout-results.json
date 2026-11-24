@@ -1,0 +1,267 @@
+{
+  "engine": "c2367480ce05105c657e5d787ffa5f64cc66dc2f",
+  "fixtureCommit": "e974413c2d73c8373422c9fd1517616cba3b4e7e",
+  "method": "Pinned actual engine source executed for complete pillars in four isolated V8 module graphs. 19 source modules and throwing hourPillar stub, unused. Exact guarded patches matching earlier factorial study. Inputs and results matched against frozen fixture before recording. Not native Node regression.",
+  "metrics": {
+    "primary": {
+      "A": {
+        "n": 8,
+        "agree": 3,
+        "disagree": 2,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 0.6
+      },
+      "B": {
+        "n": 8,
+        "agree": 3,
+        "disagree": 2,
+        "abstain": 3,
+        "coverage": 0.625,
+        "conditionalAgreement": 0.6
+      },
+      "C": {
+        "n": 8,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 5,
+        "coverage": 0.375,
+        "conditionalAgreement": 1
+      },
+      "D": {
+        "n": 8,
+        "agree": 3,
+        "disagree": 0,
+        "abstain": 5,
+        "coverage": 0.375,
+        "conditionalAgreement": 1
+      }
+    },
+    "all": {
+      "A": {
+        "n": 10,
+        "agree": 3,
+        "disagree": 3,
+        "abstain": 4,
+        "coverage": 0.6,
+        "conditionalAgreement": 0.5
+      },
+      "B": {
+        "n": 10,
+        "agree": 3,
+        "disagree": 3,
+        "abstain": 4,
+        "coverage": 0.6,
+        "conditionalAgreement": 0.5
+      },
+      "C": {
+        "n": 10,
+        "agree": 4,
+        "disagree": 1,
+        "abstain": 5,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.8
+      },
+      "D": {
+        "n": 10,
+        "agree": 4,
+        "disagree": 1,
+        "abstain": 5,
+        "coverage": 0.5,
+        "conditionalAgreement": 0.8
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "ZN01",
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "己巳",
+        "庚午"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        "strong",
+        "strong",
+        null,
+        null
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN02",
+      "pillars": [
+        "壬戌",
+        "壬寅",
+        "丁卯",
+        "戊申"
+      ],
+      "reference": "weak",
+      "formation": "uncertain",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN03",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "丁卯",
+        "甲辰"
+      ],
+      "reference": "strong",
+      "formation": "uncertain",
+      "results": [
+        null,
+        null,
+        "strong",
+        "strong"
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN04",
+      "pillars": [
+        "辛卯",
+        "辛卯",
+        "戊寅",
+        "壬子"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        "weak",
+        "weak",
+        "weak",
+        "weak"
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN05",
+      "pillars": [
+        "乙卯",
+        "戊寅",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        "strong",
+        "strong",
+        null,
+        null
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN06",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN07",
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN08",
+      "pillars": [
+        "丙子",
+        "丁酉",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN09",
+      "pillars": [
+        "甲戌",
+        "辛未",
+        "己酉",
+        "己巳"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "results": [
+        "strong",
+        "strong",
+        "strong",
+        "strong"
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    },
+    {
+      "id": "ZN10",
+      "pillars": [
+        "戊寅",
+        "己未",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "results": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "conflictsA": [],
+      "vetoA": false
+    }
+  ]
+}
