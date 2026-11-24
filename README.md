@@ -99,3 +99,7 @@ const result = analyzeUsefulElementTransit({
 ```
 
 This is annual/decadal conditional evidence with existing civil-year daeun bands and Ipchun annual labels, not exact transition instants or a luck score. No automatic favorable/unfavorable selection. See [expanded source and transit contract](docs/useful-element-expansion.md).
+
+### Climate v3 and conditional temporal review
+
+Use `analyzeClimateUsefulElementV3({saju,birthBasis:'verified-chart',birth,policy:'climate-useful-element-v3'})` for 63/120 source cells, explicit unresolved alternatives, and verified solstice/equinox predicates where named in the text. Optional exact birth is needed only for the temporal predicate. `analyzeUsefulElementAuthorityV2({saju,birthBasis:'verified-chart',birth,policy:'useful-element-authority-v2'})` retains conditional alternatives outside unconditional anchors. `analyzeUsefulElementTransitV2` adds exact/other-polarity arrivals for those conditional requirements to the previous explicit daeun/seun policy. No final 용신/희신/기신 or auspiciousness score. [Contract and actual executed checks](docs/climate-v3-authority-transit.md).
