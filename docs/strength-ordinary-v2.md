@@ -47,3 +47,7 @@ Reproduce the sample with `node --test test/strength-ordinary-coverage.test.mjs`
 ## Interaction follow-up
 
 [Interaction sensitivity v1](interaction-sensitivity-v1.md) adds occurrence-aware context and independent hypothetical perturbations while preserving the ordinary v2 output exactly. Effective force calculation remains unvalidated.
+
+## New-source reference comparison
+
+[Ordinary reference v1](ordinary-reference-v1.md) adds 31 previously unused textual charts, including 27 directional references. V2 improves candidate concordance but performs poorly on strong cases and its standalone structural direction is worse than v1. No policy tuning or consumer release in this increment.

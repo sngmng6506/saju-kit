@@ -1,0 +1,499 @@
+{
+  "version": "ordinary-xu-reference-v1",
+  "sourceBook": "子平真詮評注",
+  "commentator": "徐樂吾",
+  "selection": "New reference set relative to frozen v1/v2; selected explicit natal strength statements in inspected chapters. Not a random sample or blinded expert evaluation. No special-pattern labels. Exclude ambiguous or partial charts and reserve conflicting/balance references outside directional metrics.",
+  "sources": {
+    "35": {
+      "title": "論財",
+      "url": "https://luckclub.cn/bazi/002/035/",
+      "section": "原文 / 徐注"
+    },
+    "36": {
+      "title": "論財取運",
+      "url": "https://luckclub.cn/bazi/002/036/",
+      "section": "原文 / 徐注"
+    },
+    "38": {
+      "title": "論印綬取運",
+      "url": "https://luckclub.cn/bazi/002/038/",
+      "section": "原文 / 徐注"
+    },
+    "40": {
+      "title": "論食神取運",
+      "url": "https://luckclub.cn/bazi/002/040/",
+      "section": "原文 / 徐注"
+    },
+    "42": {
+      "title": "論偏官取運",
+      "url": "https://luckclub.cn/bazi/002/042/",
+      "section": "原文 / 徐注"
+    },
+    "44": {
+      "title": "論傷官取運",
+      "url": "https://luckclub.cn/bazi/002/044/",
+      "section": "原文 / 徐注"
+    },
+    "48": {
+      "title": "論建祿月劫取運",
+      "url": "https://luckclub.cn/bazi/002/048/",
+      "section": "原文 / 徐注"
+    }
+  },
+  "cases": [
+    {
+      "id": "XU01",
+      "chapter": 38,
+      "pillars": [
+        "戊戌",
+        "乙卯",
+        "丙午",
+        "己亥"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "인성이 왕하고 식상으로 설기하는 신강 사례.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU02",
+      "chapter": 38,
+      "pillars": [
+        "壬寅",
+        "戊申",
+        "壬辰",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "일원이 본래 왕하다고 판정.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU03",
+      "chapter": 38,
+      "pillars": [
+        "庚寅",
+        "乙酉",
+        "癸亥",
+        "丙辰"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "인왕·신강을 명시.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU04",
+      "chapter": 38,
+      "pillars": [
+        "己巳",
+        "癸酉",
+        "癸未",
+        "庚申"
+      ],
+      "reference": "disputed",
+      "labelBasis": "conflicting-commentators",
+      "labels": [
+        {
+          "commentator": "徐樂吾",
+          "direction": "weak"
+        },
+        {
+          "commentator": "林注",
+          "direction": "strong"
+        }
+      ],
+      "reason": "서락오는 신약, 같은 페이지 임 주석은 신강으로 반론.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU05",
+      "chapter": 38,
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "甲戌",
+        "乙亥"
+      ],
+      "reference": "balanced",
+      "labelBasis": "classical-balance-description",
+      "reason": "재와 인의 조절 구조를 중화라고 기술.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU06",
+      "chapter": 42,
+      "pillars": [
+        "乙亥",
+        "乙酉",
+        "乙卯",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신강·살왕의 식신제살 사례.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU07",
+      "chapter": 42,
+      "pillars": [
+        "丙寅",
+        "戊戌",
+        "壬戌",
+        "辛丑"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "일주가 약하고 칠살이 무거움.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU08",
+      "chapter": 42,
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "술미에 통근하고 토의 보호를 받아 신강. 임 주석은 용신 해석에 이견 있으나 반대 강약 명시는 없음.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU09",
+      "chapter": 42,
+      "pillars": [
+        "甲申",
+        "乙亥",
+        "丙戌",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "인중·신강을 명시.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU10",
+      "chapter": 42,
+      "pillars": [
+        "丙子",
+        "甲午",
+        "辛亥",
+        "辛卯"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "신금 무근, 신약·인경.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU11",
+      "chapter": 42,
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "戊寅",
+        "戊午"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신강·살왕, 일원이 살보다 왕함.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU12",
+      "chapter": 36,
+      "pillars": [
+        "乙未",
+        "甲申",
+        "丙申",
+        "庚寅"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "재왕, 신경·인약.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU13",
+      "chapter": 36,
+      "pillars": [
+        "乙未",
+        "己卯",
+        "庚寅",
+        "辛巳"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "재가 인을 극하고 경금 일원이 약함.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU14",
+      "chapter": 36,
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "무토 신경을 명시.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU15",
+      "chapter": 35,
+      "pillars": [
+        "壬辰",
+        "乙巳",
+        "癸巳",
+        "辛酉"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "실령에도 인왕·신강이라고 판정.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU16",
+      "chapter": 35,
+      "pillars": [
+        "庚辰",
+        "戊子",
+        "戊寅",
+        "甲寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "일간과 칠살이 모두 왕하다고 판정.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU17",
+      "chapter": 40,
+      "pillars": [
+        "丁未",
+        "癸卯",
+        "癸亥",
+        "癸丑"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신강·식왕·재투.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU18",
+      "chapter": 40,
+      "pillars": [
+        "己未",
+        "壬申",
+        "戊子",
+        "庚申"
+      ],
+      "reference": "disputed",
+      "labelBasis": "conflicting-commentators",
+      "labels": [
+        {
+          "commentator": "徐樂吾",
+          "direction": "strong"
+        },
+        {
+          "commentator": "林注",
+          "direction": "weak"
+        }
+      ],
+      "reason": "서락오는 신강, 임 주석은 신약으로 반론.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU19",
+      "chapter": 40,
+      "pillars": [
+        "丁亥",
+        "癸卯",
+        "癸卯",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "통근에도 설기가 지나쳐 신경.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU20",
+      "chapter": 40,
+      "pillars": [
+        "甲午",
+        "丁卯",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "앞 사례와 재식 비중은 다르나 신약은 같다고 설명.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU21",
+      "chapter": 40,
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "己卯",
+        "乙亥"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "신약에 극과 설이 겹침.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU22",
+      "chapter": 40,
+      "pillars": [
+        "丙午",
+        "癸巳",
+        "甲子",
+        "丙寅"
+      ],
+      "reference": "balanced",
+      "labelBasis": "classical-balance-description",
+      "reason": "인성이 득록하여 기상이 중화되었다고 설명.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU23",
+      "chapter": 40,
+      "pillars": [
+        "己未",
+        "己巳",
+        "甲寅",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "일원이 매우 왕하다고 판정.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU24",
+      "chapter": 44,
+      "pillars": [
+        "甲子",
+        "乙亥",
+        "辛未",
+        "戊子"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "일원이 지나치게 약하다고 설명.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU25",
+      "chapter": 44,
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "丙寅",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신왕·재경.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU26",
+      "chapter": 44,
+      "pillars": [
+        "丁酉",
+        "己酉",
+        "戊子",
+        "壬子"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "재다신약.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU27",
+      "chapter": 44,
+      "pillars": [
+        "己未",
+        "丙子",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "weak",
+      "labelBasis": "explicit-commentary",
+      "reason": "경금의 기운이 설기되어 약함.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU28",
+      "chapter": 44,
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "丙寅",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신강·인왕.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU29",
+      "chapter": 48,
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "癸酉",
+        "癸亥"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신왕으로 인성의 추가 생조가 필요 없다고 설명.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU30",
+      "chapter": 48,
+      "pillars": [
+        "辛丑",
+        "庚寅",
+        "甲辰",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신왕으로 살에 대항.",
+      "split": "reference-v1-v2-frozen"
+    },
+    {
+      "id": "XU31",
+      "chapter": 48,
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "甲申",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "labelBasis": "explicit-commentary",
+      "reason": "신강을 전제로 식신제살.",
+      "split": "reference-v1-v2-frozen"
+    }
+  ]
+}

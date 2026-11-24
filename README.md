@@ -43,3 +43,5 @@ Classical development-case comparison: [strength reference v1](docs/strength-ref
 Experimental ordinary-strength v2: `analyzeElementStructure({saju})` and `analyzeOrdinaryStrength({saju, policy:'strength-ordinary-v2', birthBasis:'verified-chart'})`. [Contract](docs/strength-ordinary-v2.md). Special-pattern interpretation is out of scope; not production-ready.
 
 Interaction diagnostics: `analyzeInteractionContext({saju})`, `analyzeInteractionSensitivity({saju, policy:'interaction-sensitivity-v1', birthBasis:'verified-chart'})`. See [contract](docs/interaction-sensitivity-v1.md); hypothetical effects only, no baseline policy changes.
+
+New ordinary-strength reference comparison (Xu commentary): [ordinary-reference-v1](docs/ordinary-reference-v1.md). Reproduce with `node scripts/evaluate-ordinary-reference.mjs`; frozen policies unchanged.

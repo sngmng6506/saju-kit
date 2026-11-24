@@ -56,3 +56,7 @@ DX02 (庚申 辛巳 丙辰 乙未): baseline support range 34–38.85; full-slot
 DX01: year-day six-harmony reallocation gives 70–78.2 versus baseline 48–55.8, while a different day-hour partial three-harmony reallocation gives 37.5–44.6. This illustrates why concurrent relations must not be added or selected by desired outcome.
 
 The results show material sensitivity to hypothetical perturbation, not evidence that the assumed effects occur. Freeze the measurement using `node --test test/interaction-reference.test.mjs`. Native test execution remains pending; no change to production consumers.
+
+## New-source diagnostic comparison
+
+[Ordinary reference v1](ordinary-reference-v1.md) records 11/27 directional charts with formation-sensitive quantitative categories, zero with clash-sensitive structural direction, and two strong-reference/weak-candidate counterexamples not resolved by the current perturbations.

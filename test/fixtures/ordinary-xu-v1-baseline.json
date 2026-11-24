@@ -1,0 +1,801 @@
+{
+  "fixtureVersion": "ordinary-xu-reference-v1",
+  "total": 31,
+  "metrics": {
+    "v1": {
+      "n": 27,
+      "classified": 4,
+      "agrees": 1,
+      "disagrees": 3,
+      "abstained": 23,
+      "matrix": {
+        "strong": {
+          "strong": 0,
+          "weak": 1,
+          "mixed": 2,
+          "abstained": 13
+        },
+        "weak": {
+          "strong": 0,
+          "weak": 1,
+          "mixed": 0,
+          "abstained": 10
+        }
+      }
+    },
+    "v2": {
+      "n": 27,
+      "classified": 12,
+      "agrees": 8,
+      "disagrees": 4,
+      "abstained": 15,
+      "matrix": {
+        "strong": {
+          "strong": 1,
+          "weak": 2,
+          "mixed": 2,
+          "abstained": 11
+        },
+        "weak": {
+          "strong": 0,
+          "weak": 7,
+          "mixed": 0,
+          "abstained": 4
+        }
+      }
+    },
+    "v1Structural": {
+      "n": 27,
+      "classified": 23,
+      "agrees": 13,
+      "disagrees": 10,
+      "abstained": 4,
+      "matrix": {
+        "strong": {
+          "strong": 6,
+          "weak": 1,
+          "mixed": 7,
+          "abstained": 2
+        },
+        "weak": {
+          "strong": 0,
+          "weak": 7,
+          "mixed": 2,
+          "abstained": 2
+        }
+      }
+    },
+    "v2Structural": {
+      "n": 27,
+      "classified": 27,
+      "agrees": 10,
+      "disagrees": 17,
+      "abstained": 0,
+      "matrix": {
+        "strong": {
+          "strong": 3,
+          "weak": 7,
+          "mixed": 6,
+          "abstained": 0
+        },
+        "weak": {
+          "strong": 1,
+          "weak": 7,
+          "mixed": 3,
+          "abstained": 0
+        }
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "XU01",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "strong",
+      "v2Structural": "weak",
+      "range": {
+        "min": 58,
+        "max": 66
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU02",
+      "reference": "strong",
+      "v1": null,
+      "v2": "mixed",
+      "v1Structural": "strong",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 44,
+        "max": 50.1
+      },
+      "stable": "mixed",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "root-or-month-clash"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU03",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "strong",
+      "v2Structural": "weak",
+      "range": {
+        "min": 46.5,
+        "max": 58.3
+      },
+      "stable": "mixed",
+      "v1Status": "unresolved",
+      "v2Status": "unresolved",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU04",
+      "reference": "disputed",
+      "v1": null,
+      "v2": null,
+      "v1Structural": null,
+      "v2Structural": "strong",
+      "range": {
+        "min": 63,
+        "max": 67
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU05",
+      "reference": "balanced",
+      "v1": null,
+      "v2": "mixed",
+      "v1Structural": null,
+      "v2Structural": "mixed",
+      "range": {
+        "min": 48,
+        "max": 56.3
+      },
+      "stable": "mixed",
+      "v1Status": "unresolved",
+      "v2Status": "candidate",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU06",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "strong",
+      "range": {
+        "min": 43.3,
+        "max": 50
+      },
+      "stable": "mixed",
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation",
+        "root-or-month-clash"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU07",
+      "reference": "weak",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 14.35,
+        "max": 27.7
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU08",
+      "reference": "strong",
+      "v1": "weak",
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 18.9,
+        "max": 29.5
+      },
+      "stable": "weak",
+      "v1Status": "candidate",
+      "v2Status": "candidate",
+      "v1Flags": [],
+      "v2Caveats": [],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU09",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 37.7,
+        "max": 46
+      },
+      "stable": null,
+      "v1Status": "unresolved",
+      "v2Status": "unresolved",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU10",
+      "reference": "weak",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 16.1,
+        "max": 23.2
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "day-stem-combination",
+        "root-or-month-clash",
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU11",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "strong",
+      "range": {
+        "min": 46.25,
+        "max": 60.5
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU12",
+      "reference": "weak",
+      "v1": null,
+      "v2": null,
+      "v1Structural": null,
+      "v2Structural": "mixed",
+      "range": {
+        "min": 28.2,
+        "max": 36.5
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "root-or-month-clash"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU13",
+      "reference": "weak",
+      "v1": null,
+      "v2": null,
+      "v1Structural": null,
+      "v2Structural": "mixed",
+      "range": {
+        "min": 27.6,
+        "max": 39.5
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "day-stem-combination",
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU14",
+      "reference": "weak",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "strong",
+      "range": {
+        "min": 30.4,
+        "max": 43.75
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation",
+        "root-or-month-clash"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU15",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": null,
+      "v2Structural": "mixed",
+      "range": {
+        "min": 39,
+        "max": 49.5
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU16",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "weak",
+      "range": {
+        "min": 24,
+        "max": 34.5
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU17",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 35,
+        "max": 41.75
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "branch-formation"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU18",
+      "reference": "disputed",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "mixed",
+      "v2Structural": "weak",
+      "range": {
+        "min": 12.85,
+        "max": 22
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU19",
+      "reference": "weak",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "mixed",
+      "v2Structural": "weak",
+      "range": {
+        "min": 13,
+        "max": 19.5
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU20",
+      "reference": "weak",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 8,
+        "max": 15.2
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU21",
+      "reference": "weak",
+      "v1": null,
+      "v2": "very-weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 0.7,
+        "max": 3
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "root-or-month-clash",
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU22",
+      "reference": "balanced",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "weak",
+      "range": {
+        "min": 38,
+        "max": 43.25
+      },
+      "stable": null,
+      "v1Status": "unresolved",
+      "v2Status": "unresolved",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU23",
+      "reference": "strong",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": null,
+      "v2Structural": "weak",
+      "range": {
+        "min": 20.4,
+        "max": 28.8
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "day-stem-combination"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU24",
+      "reference": "weak",
+      "v1": "weak",
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 24.7,
+        "max": 27.25
+      },
+      "stable": "weak",
+      "v1Status": "candidate",
+      "v2Status": "candidate",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU25",
+      "reference": "strong",
+      "v1": "mixed",
+      "v2": "mixed",
+      "v1Structural": "mixed",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 45.8,
+        "max": 55.25
+      },
+      "stable": "mixed",
+      "v1Status": "candidate",
+      "v2Status": "candidate",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU26",
+      "reference": "weak",
+      "v1": null,
+      "v2": "weak",
+      "v1Structural": "weak",
+      "v2Structural": "weak",
+      "range": {
+        "min": 13,
+        "max": 19
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU27",
+      "reference": "weak",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "weak",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 8,
+        "max": 14.5
+      },
+      "stable": "weak",
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "possible-special-pattern"
+      ],
+      "v2Caveats": [],
+      "formationSensitive": false,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU28",
+      "reference": "strong",
+      "v1": "mixed",
+      "v2": null,
+      "v1Structural": "mixed",
+      "v2Structural": "weak",
+      "range": {
+        "min": 46.75,
+        "max": 53.3
+      },
+      "stable": "mixed",
+      "v1Status": "candidate",
+      "v2Status": "unresolved",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU29",
+      "reference": "strong",
+      "v1": null,
+      "v2": "strong",
+      "v1Structural": "strong",
+      "v2Structural": "strong",
+      "range": {
+        "min": 72.5,
+        "max": 79.9
+      },
+      "stable": "strong",
+      "v1Status": "review-required",
+      "v2Status": "candidate",
+      "v1Flags": [
+        "day-stem-combination"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU30",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "strong",
+      "v2Structural": "weak",
+      "range": {
+        "min": 47.5,
+        "max": 53.45
+      },
+      "stable": "mixed",
+      "v1Status": "unresolved",
+      "v2Status": "unresolved",
+      "v1Flags": [],
+      "v2Caveats": [
+        "formation-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    },
+    {
+      "id": "XU31",
+      "reference": "strong",
+      "v1": null,
+      "v2": null,
+      "v1Structural": "strong",
+      "v2Structural": "mixed",
+      "range": {
+        "min": 34,
+        "max": 48.75
+      },
+      "stable": null,
+      "v1Status": "review-required",
+      "v2Status": "unresolved",
+      "v1Flags": [
+        "root-or-month-clash"
+      ],
+      "v2Caveats": [
+        "formation-effects-unmodeled",
+        "clash-effects-unmodeled"
+      ],
+      "formationSensitive": true,
+      "clashSensitive": false
+    }
+  ]
+}
