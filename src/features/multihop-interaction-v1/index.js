@@ -1,4 +1,5 @@
 import { analyzeSupportNetwork } from '../../core/support-network.js';
+import { analyzeRootDynamics } from '../../core/root-dynamics.js';
 import { analyzeQuantitativeStrength } from '../strength-quantitative-v3/index.js';
 import { SajuError } from '../../core/error.js';
 
@@ -21,7 +22,7 @@ export function enumerateInteractionPaths(network,maxDistance){
  function add(kind,nodes){paths.push({id:kind+':'+nodes.join('>'),kind,nodes,origin:nodes[0]});}
  function walk(nodes){
   const from=byId.get(nodes.at(-1)),category=next[from.category];
-  for(const e of edges.filter(e=>e.from===from.id&&e.type==='generate'&&e.toCategory===category)){
+  for(const e of edges.filter(e=>e.from===from.id&&e.type==='generate'&&byId.get(e.to).category===category)){
    const to=byId.get(e.to);
    if(nodes.some(id=>slot(byId.get(id))===slot(to)))continue;
    if(to.id===DAY){add('generation',[...nodes,DAY]);continue;}
@@ -108,7 +109,7 @@ export function analyzeMultihopInteraction(input,context){
  const q=analyzeQuantitativeStrength({...input,policy:'strength-quantitative-v3'},context);
  const meta={version:MULTIHOP_VERSION,assessment:'hypothetical-path-reservation-only',effectsConfirmed:false,direction:null,completeHour:q.completeHour};
  if(q.status==='provisional'||!q.completeHour)return {...meta,status:q.status,analysis:null};
- const network=analyzeSupportNetwork({saju:input.saju});
+ const network={...analyzeSupportNetwork({saju:input.saju}),edges:analyzeRootDynamics({saju:input.saju}).edges};
  const variants=modes.map(mode=>{
   const paths=enumerateInteractionPaths(network,mode.maxDistance);
   const rows=q.quantitative.scenarios.map(s=>evaluateInteractionScenario(network,s,paths));
