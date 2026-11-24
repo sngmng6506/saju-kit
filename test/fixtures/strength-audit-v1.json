@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "reviewDate": "2026-11-24",
+  "note": "Transcription of prior review reports; no fresh source verification in this commit.",
+  "entries": [
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/44",
+      "locator": "chapter 44; 壬申 壬子 戊午 乙卯",
+      "evidence": "身旺坐印",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H02",
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "甲午",
+        "戊辰"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/45",
+      "locator": "chapter 45; 乙酉 庚辰 甲午 戊辰",
+      "evidence": "究嫌身弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H03",
+      "pillars": [
+        "丙寅",
+        "癸巳",
+        "癸未",
+        "壬戌"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/45",
+      "locator": "chapter 45; 丙寅 癸巳 癸未 壬戌",
+      "evidence": "財旺身輕",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H04",
+      "pillars": [
+        "丙辰",
+        "癸巳",
+        "壬戌",
+        "壬寅"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/45",
+      "locator": "chapter 45; 丙辰 癸巳 壬戌 壬寅",
+      "evidence": "根輕身弱",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H05",
+      "pillars": [
+        "丙辰",
+        "丙申",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/44",
+      "locator": "chapter 44; 丙辰 丙申 丙午 壬辰",
+      "evidence": "身強敵煞",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H06",
+      "pillars": [
+        "甲申",
+        "壬申",
+        "乙巳",
+        "戊寅"
+      ],
+      "reference": "weak",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/43",
+      "locator": "chapter 43; 甲申 壬申 乙巳 戊寅",
+      "evidence": "身稍輕",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H07",
+      "pillars": [
+        "壬戌",
+        "丁未",
+        "戊申",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/43",
+      "locator": "chapter 43; 壬戌 丁未 戊申 乙卯",
+      "evidence": "日元當旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-xu-holdout-v1",
+      "id": "H08",
+      "pillars": [
+        "乙卯",
+        "丁亥",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "author": "徐樂吾",
+      "url": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/43",
+      "locator": "chapter 43; 乙卯 丁亥 丁未 庚戌",
+      "evidence": "身旺印重",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-02.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W10",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "庚子",
+        "丁亥"
+      ],
+      "reference": "weak",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/021/",
+      "locator": "壬子 癸丑 庚子 丁亥",
+      "evidence": "弱不堪言",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-01.md"
+    },
+    {
+      "fixture": "ordinary-wei-v1",
+      "id": "W12",
+      "pillars": [
+        "庚子",
+        "庚辰",
+        "甲子",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "author": "韋千里",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/021/",
+      "locator": "庚子 庚辰 甲子 戊辰",
+      "evidence": "专弱为强",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "dependent",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-01.md"
+    },
+    {
+      "fixture": "strength-ditiansui-v1",
+      "id": "DX01",
+      "pillars": [
+        "丁丑",
+        "庚戌",
+        "庚子",
+        "甲申"
+      ],
+      "reference": "strong",
+      "author": "任鐵樵",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十、形象",
+      "locator": "丁丑 庚戌 庚子 甲申",
+      "evidence": "秋金堅銳，官星虛脫",
+      "basis": "inferred",
+      "scope": "element-only",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-01.md"
+    }
+  ]
+}
