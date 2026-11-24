@@ -4,7 +4,7 @@ import { analyzeElementStructure } from '../../core/element-structure.js';
 import { stemInfo } from '../../core/elements.js';
 import { climateSourceRow,CLIMATE_SOURCE_COVERAGE } from './source.js';
 export const CLIMATE_USEFUL_ELEMENT_VERSION='climate-useful-element-v1';
-export function climateEvidence(context,structure){
+export function climateEvidence(context,structure,{lookup=climateSourceRow,coverage=CLIMATE_SOURCE_COVERAGE}={}){
  const {dayMaster,month}=context;
  // Xu commentary names these seasonal cases, not a universal thermometer.
  const seasonalNeed=month.season==='winter'&&['metal','water'].includes(dayMaster.element)?'warmth-review':
@@ -23,12 +23,12 @@ export function climateEvidence(context,structure){
    exactHidden:p.roots.flatMap(r=>r.matches.filter(m=>m.stem===stem).map(m=>({position:r.position,role:m.role,clashExposed:clashed.has(r.position)}))),
    elementalEvidence:elementEvidence(element)};
  }
- const source=climateSourceRow(dayMaster.stem,month.branch);
+ const source=lookup(dayMaster.stem,month.branch);
  return {seasonal:{sourceId:'xu-ziping-commentary-climate',source:'https://dao.time.actor/ziping-zhenquan-pingzhu/juan-2',
   season:month.season,need:seasonalNeed,candidate:seasonCandidate?elementEvidence(seasonCandidate):null,
   heatResolved:false,moistureResolved:false},
   sourceProfile:source?{...source,groups:source.groups.map(g=>g.map(stemEvidence)),qualifiersResolved:false}:null,
-  sourceCoverage:{covered:CLIMATE_SOURCE_COVERAGE,total:120},usefulElement:null,confirmed:false};
+  sourceCoverage:{covered:coverage,total:120},usefulElement:null,confirmed:false};
 }
 export function analyzeClimateUsefulElement(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('climate-input','조후 분석 입력 객체가 필요합니다.');
