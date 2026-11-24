@@ -23,3 +23,7 @@ const result = analyzeCompatibility({ left, right, scope: 'day' });
 Install a fixed Git commit after reviewing source and data licensing; npm publication intentionally disabled (`private: true`). The version is an internal API baseline, not a released npm package. No runtime dependencies. `npm test` runs all regression tests without installing runtime dependencies.
 
 Existing design and sources: [DESIGN.md](DESIGN.md), [NATAL_METHOD.md](NATAL_METHOD.md), [MOVE_RULES.md](MOVE_RULES.md). No scientific prediction claims.
+
+## Versioned movement policy
+
+`movementV6` exposes the existing rent-or-buy-kr minute-based daeun, annual/decadal movement signals, v6 scores and timeline highlights without changing the legacy root API. See [movement contract](docs/movement-v6.md).

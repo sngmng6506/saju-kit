@@ -62,7 +62,7 @@ function pillarIndex(stem, branch) {
 }
 
 /** 세는나이 a살은 출생 양력 연도 + a − 1. 구간은 양력 해 단위다. */
-function yearBands({ month, forward, startAge, birthYear }) {
+export function yearBands({ month, forward, startAge, birthYear }) {
   const step = forward ? 1 : -1;
   const monthIndex = pillarIndex(month.stem, month.branch);
   const pillars = [];
@@ -91,7 +91,7 @@ export function daeunDirection({ yearStem, gender } = {}) {
   return forward ? '순행' : '역행';
 }
 
-export function getDaeun({ saju, gender, birth } = {}) {
+export function prepareDaeun({ saju, gender, birth } = {}) {
   if (gender !== '남' && gender !== '여') {
     throw new SajuError('gender', '성별은 남 또는 여입니다.');
   }
@@ -116,6 +116,12 @@ export function getDaeun({ saju, gender, birth } = {}) {
     throw new SajuError('saju-mismatch', '사주와 생일로 계산한 시주가 다릅니다.');
   }
   const forward = daeunDirection({ yearStem: saju.pillars.year.stem, gender }) === '순행';
+  return { checked, forward };
+}
+
+// Legacy integer-day policy, kept stable for existing consumers.
+export function getDaeun(input = {}) {
+  const { checked, forward } = prepareDaeun(input);
   const days = countJeolDays(checked.solar, forward);
   const startAge = daeunSu(days);
   return {

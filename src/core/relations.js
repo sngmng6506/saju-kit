@@ -104,3 +104,9 @@ export function analyzeBranchGroups(branches) {
   }
   return out;
 }
+
+/** Defensive copies of the canonical three-branch sets, for temporal formation analysis. */
+export function branchGroupDefinitions() {
+  const describe = group => ({ branches: group.slice(0, 3), element: group[3] });
+  return { three: THREE.map(describe), seasonal: SEASON.map(describe) };
+}

@@ -10,3 +10,5 @@ export { summarizeMovementSignals, MOVEMENT_INDEX_VERSION } from './core/movemen
 export { stemInfo, branchElement, elementRelation } from './core/elements.js';
 export { stemCombination, branchPairRelations, analyzeBranchGroups } from './core/relations.js';
 export { analyzeCompatibility } from './features/compatibility.js';
+
+export * as movementV6 from './features/movement-v6/index.js';
