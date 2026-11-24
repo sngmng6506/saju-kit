@@ -30,4 +30,4 @@ W17 is uncertain because the source includes a stem combination which changes th
 
 ## Validation
 
-Pure-function verification unavailable: ReferenceError: structuredClone is not defined. Native Node test and full engine execution not performed; GitHub direct clone failed DNS resolution in the container. Retain A runtime. Updated expected audit partition: 29 primary, 13 secondary, 34 unreviewed directional, 32 non-directional.
+V8 pure-function smoke checks passed against committed fixtures with synthetic abstention rows: partition counts, primary ID expectations, duplicate/stale/missing rejection, paired transitions and empty denominator (7 checks). Initial harness used unsupported structuredClone; retried with JSON clone. Native Node test and full engine execution not performed; GitHub direct clone failed DNS resolution in the container. Retain A runtime. Updated expected audit partition: 29 primary, 13 secondary, 34 unreviewed directional, 32 non-directional.
