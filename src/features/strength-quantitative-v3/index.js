@@ -78,10 +78,10 @@ function compute(e,positionProfile,roleProfile,rootProfile,seasonProfile,basis,s
     categories:Object.fromEntries(CATEGORIES.map(c=>[c,round(100*mass[c]/total)])),mass,contributions};
 }
 
-function scenariosFor(saju,seasonMode){
+function scenariosFor(saju,seasonMode,bases){
   const e=evidence(saju),rows=[];
   for(const position of Object.keys(WEIGHTS))for(const role of Object.keys(ROLES))
-    for(const root of Object.keys(ROOTS))for(const season of Object.keys(SEASON))for(const basis of e.seasonBases)
+    for(const root of Object.keys(ROOTS))for(const season of Object.keys(SEASON))for(const basis of bases??e.seasonBases)
       rows.push(compute(e,position,role,root,season,basis,seasonMode));
   return rows;
 }
@@ -124,4 +124,14 @@ export function analyzeQuantitativeStrength(input,{seasonMode='standard'}={}){
   return {...meta,status:summary.stableDirection?'hypothesis':'unresolved',direction:summary.stableDirection,
     quantitative:{...summary,baseline:scenarios[0],scenarios,scenarioCount:scenarios.length,completionCount:1,
       rangeBasis:'profile-sensitivity'},caveats};
+}
+
+// Internal research adapter. Existing analyzeQuantitativeStrength never uses
+// an override supplied by callers. Same kernel, weights and profile grid.
+export function quantifyExplicitSeasonBasis(saju,element){
+ const pillars=validateNatalPillars(saju);
+ if(pillars.hour===null)throw new SajuError('strength-season-basis','완전한 원국이 필요합니다.');
+ if(!['wood','fire','earth','metal','water'].includes(element))throw new SajuError('strength-season-basis','올바른 계절 기준 오행이 아닙니다.');
+ const scenarios=scenariosFor(saju,'standard',[{id:'command-diagnostic',element}]);
+ return {...summarize(scenarios),scenarioCount:scenarios.length,scenarios};
 }
