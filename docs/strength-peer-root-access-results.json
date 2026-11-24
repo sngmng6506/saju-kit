@@ -1,0 +1,9029 @@
+{
+  "engine": "c390cd7f25e085b20156dfa95b95c26f253c7d98",
+  "method": "Executed actual pinned quantitative v3 and root dynamics on 100 complete charts in V8, standard and neutral season. No strength decisions changed. Root mass and stem premium are diagnostics in native nominal units; premium derived from actual root profile floors. All peer stem and branch masses reconcile exactly to quantitative peer mass. Discount mode removes peer stem root premium as a sensitivity assumption, not physical conservation. All 100 records linked to frozen corpus.",
+  "modes": [
+    "external",
+    "include-peer-branch",
+    "include-peer-branch-remove-peer-stem-root-premium"
+  ],
+  "summary": [
+    [
+      {
+        "pressure": 16,
+        "weak": 12,
+        "strong": 4,
+        "support": 0
+      },
+      {
+        "pressure": 10,
+        "weak": 9,
+        "strong": 1,
+        "support": 2
+      },
+      {
+        "pressure": 10,
+        "weak": 9,
+        "strong": 1,
+        "support": 2
+      }
+    ],
+    [
+      {
+        "pressure": 14,
+        "weak": 12,
+        "strong": 2,
+        "support": 0
+      },
+      {
+        "pressure": 10,
+        "weak": 9,
+        "strong": 1,
+        "support": 2
+      },
+      {
+        "pressure": 10,
+        "weak": 9,
+        "strong": 1,
+        "support": 1
+      }
+    ]
+  ],
+  "rows": [
+    {
+      "id": "H01",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -58380000,
+              -35460000
+            ],
+            "full": [
+              -52780000,
+              -26730000
+            ],
+            "discount": [
+              -52780000,
+              -26730000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            5600000,
+            8730000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -33700000,
+              -23250000
+            ],
+            "full": [
+              -26700000,
+              -13550000
+            ],
+            "discount": [
+              -26700000,
+              -13550000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7000000,
+            9700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "H02",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -50120000,
+              1880000
+            ],
+            "full": [
+              -46520000,
+              11680000
+            ],
+            "discount": [
+              -46720000,
+              11400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            2800000,
+            12600000
+          ],
+          "premium": [
+            80000,
+            700000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -26800000,
+              -14800000
+            ],
+            "full": [
+              -22300000,
+              -7800000
+            ],
+            "discount": [
+              -22550000,
+              -8000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            3500000,
+            9000000
+          ],
+          "premium": [
+            100000,
+            500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "H03",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -29770000,
+              -7380000
+            ],
+            "full": [
+              -29770000,
+              -7380000
+            ],
+            "discount": [
+              -29770000,
+              -7380000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -10550000,
+              1850000
+            ],
+            "full": [
+              -10550000,
+              1850000
+            ],
+            "discount": [
+              -10550000,
+              1850000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "H04",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": true
+        },
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "middle",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "year"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -28310000,
+              -3660000
+            ],
+            "full": [
+              -26150000,
+              -1500000
+            ],
+            "discount": [
+              -29350000,
+              -3660000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1920000,
+            2700000
+          ],
+          "premium": [
+            1440000,
+            4725000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -7450000,
+              6350000
+            ],
+            "full": [
+              -4750000,
+              8750000
+            ],
+            "discount": [
+              -8750000,
+              6350000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            2400000,
+            3000000
+          ],
+          "premium": [
+            1800000,
+            5250000
+          ]
+        }
+      }
+    },
+    {
+      "id": "H05",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -17880000,
+              725000
+            ],
+            "full": [
+              -6120000,
+              13965000
+            ],
+            "discount": [
+              -9840000,
+              10450000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            11200000,
+            17010000
+          ],
+          "premium": [
+            1920000,
+            8550000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -8900000,
+              5950000
+            ],
+            "full": [
+              5800000,
+              19950000
+            ],
+            "discount": [
+              650000,
+              16000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14000000,
+            18900000
+          ],
+          "premium": [
+            2400000,
+            9500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "H06",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -14790000,
+              7655000
+            ],
+            "full": [
+              -9390000,
+              13655000
+            ],
+            "discount": [
+              -10290000,
+              12775000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            7200000
+          ],
+          "premium": [
+            330000,
+            2400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -5250000,
+              10850000
+            ],
+            "full": [
+              3750000,
+              18350000
+            ],
+            "discount": [
+              2250000,
+              17250000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            7500000,
+            9000000
+          ],
+          "premium": [
+            550000,
+            3000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "H07",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -17560000,
+              -1880000
+            ],
+            "full": [
+              10130000,
+              23880000
+            ],
+            "discount": [
+              10130000,
+              23880000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            20900000,
+            35700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -20300000,
+              -10200000
+            ],
+            "full": [
+              4900000,
+              8800000
+            ],
+            "discount": [
+              4900000,
+              8800000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            19000000,
+            25500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "H08",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              14330000,
+              29210000
+            ],
+            "full": [
+              18420000,
+              34310000
+            ],
+            "discount": [
+              17220000,
+              33500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            3900000,
+            7920000
+          ],
+          "premium": [
+            540000,
+            2400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              11150000,
+              23850000
+            ],
+            "full": [
+              18350000,
+              32350000
+            ],
+            "discount": [
+              15350000,
+              31000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            6500000,
+            9900000
+          ],
+          "premium": [
+            900000,
+            3000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W10",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -82070000,
+              -6600000
+            ],
+            "full": [
+              -76070000,
+              4200000
+            ],
+            "discount": [
+              -76070000,
+              4200000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6000000,
+            10800000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -53050000,
+              -37000000
+            ],
+            "full": [
+              -47050000,
+              -28000000
+            ],
+            "discount": [
+              -47050000,
+              -28000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6000000,
+            9000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W12",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -25700000,
+              29000000
+            ],
+            "full": [
+              -22100000,
+              38800000
+            ],
+            "discount": [
+              -22100000,
+              38800000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            2800000,
+            12600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              6500000,
+              18000000
+            ],
+            "full": [
+              11000000,
+              25000000
+            ],
+            "discount": [
+              11000000,
+              25000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            3500000,
+            9000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "DX01",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -3820000,
+              30300000
+            ],
+            "full": [
+              13470000,
+              47940000
+            ],
+            "discount": [
+              7170000,
+              46260000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14740000,
+            22680000
+          ],
+          "premium": [
+            1540000,
+            7350000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -2600000,
+              8100000
+            ],
+            "full": [
+              11300000,
+              22600000
+            ],
+            "discount": [
+              6050000,
+              21200000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            13400000,
+            16200000
+          ],
+          "premium": [
+            1400000,
+            5250000
+          ]
+        }
+      }
+    },
+    {
+      "id": "Y01",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -66940000,
+              -43930000
+            ],
+            "full": [
+              -58480000,
+              -32180000
+            ],
+            "discount": [
+              -59530000,
+              -32740000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7800000,
+            14160000
+          ],
+          "premium": [
+            420000,
+            2800000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -43700000,
+              -32600000
+            ],
+            "full": [
+              -29600000,
+              -18700000
+            ],
+            "discount": [
+              -31350000,
+              -19400000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13000000,
+            17700000
+          ],
+          "premium": [
+            700000,
+            3500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "R01",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -8690000,
+              7125000
+            ],
+            "full": [
+              8590000,
+              25125000
+            ],
+            "discount": [
+              5390000,
+              22605000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            15600000,
+            21780000
+          ],
+          "premium": [
+            1360000,
+            3600000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              7700000,
+              14750000
+            ],
+            "full": [
+              29950000,
+              34750000
+            ],
+            "discount": [
+              25950000,
+              32350000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            19500000,
+            24200000
+          ],
+          "premium": [
+            1700000,
+            4000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "R02",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -52600000,
+              -36240000
+            ],
+            "full": [
+              -44200000,
+              -24060000
+            ],
+            "discount": [
+              -44200000,
+              -24060000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            8400000,
+            15120000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -36500000,
+              -29200000
+            ],
+            "full": [
+              -22500000,
+              -13000000
+            ],
+            "discount": [
+              -22500000,
+              -13000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            14000000,
+            18900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "R03",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -12095000,
+              4350000
+            ],
+            "full": [
+              8805000,
+              29550000
+            ],
+            "discount": [
+              2475000,
+              27450000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            20900000,
+            27600000
+          ],
+          "premium": [
+            1870000,
+            7200000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -15550000,
+              -4750000
+            ],
+            "full": [
+              3450000,
+              16500000
+            ],
+            "discount": [
+              -2250000,
+              14450000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            false
+          ],
+          "root": [
+            19000000,
+            23000000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "R04",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -27200000,
+              1495000
+            ],
+            "full": [
+              -15200000,
+              19965000
+            ],
+            "discount": [
+              -18400000,
+              17670000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            11600000,
+            18630000
+          ],
+          "premium": [
+            1360000,
+            5400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -6100000,
+              10550000
+            ],
+            "full": [
+              8900000,
+              30950000
+            ],
+            "discount": [
+              4900000,
+              28400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14500000,
+            20700000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "R05",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -500000,
+              12100000
+            ],
+            "full": [
+              35700000,
+              65520000
+            ],
+            "discount": [
+              35700000,
+              65520000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            34200000,
+            57540000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -2500000,
+              6600000
+            ],
+            "full": [
+              28000000,
+              42600000
+            ],
+            "discount": [
+              28000000,
+              42600000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            28500000,
+            41100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "R07",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -13910000,
+              4200000
+            ],
+            "full": [
+              3430000,
+              17700000
+            ],
+            "discount": [
+              600000,
+              17160000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            10800000,
+            18000000
+          ],
+          "premium": [
+            480000,
+            3000000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              4350000,
+              12000000
+            ],
+            "full": [
+              21450000,
+              27000000
+            ],
+            "discount": [
+              18500000,
+              26400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            13500000,
+            18000000
+          ],
+          "premium": [
+            600000,
+            3000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "R09",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -51380000,
+              -34800000
+            ],
+            "full": [
+              -16880000,
+              2200000
+            ],
+            "discount": [
+              -16880000,
+              2200000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            34500000,
+            39200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -36700000,
+              -29000000
+            ],
+            "full": [
+              -2200000,
+              8100000
+            ],
+            "discount": [
+              -2200000,
+              8100000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            34500000,
+            39200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "R10",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -18000000,
+              8760000
+            ],
+            "full": [
+              -11700000,
+              16410000
+            ],
+            "discount": [
+              -11700000,
+              16410000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6000000,
+            8100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              0,
+              12000000
+            ],
+            "full": [
+              6300000,
+              19700000
+            ],
+            "discount": [
+              6300000,
+              19700000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            6000000,
+            8100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "R11",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -7850000,
+              19625000
+            ],
+            "full": [
+              -2270000,
+              27305000
+            ],
+            "discount": [
+              -2270000,
+              27305000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            8880000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -750000,
+              20100000
+            ],
+            "full": [
+              8550000,
+              29700000
+            ],
+            "discount": [
+              8550000,
+              29700000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            7500000,
+            11100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W01",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              39800000,
+              44320000
+            ],
+            "full": [
+              69800000,
+              92320000
+            ],
+            "discount": [
+              61700000,
+              88080000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            28800000,
+            49560000
+          ],
+          "premium": [
+            2880000,
+            11200000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              37600000,
+              41600000
+            ],
+            "full": [
+              62600000,
+              74700000
+            ],
+            "discount": [
+              56000000,
+              71500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            24000000,
+            35400000
+          ],
+          "premium": [
+            2400000,
+            8000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W02",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              3000000,
+              30325000
+            ],
+            "full": [
+              9480000,
+              40645000
+            ],
+            "discount": [
+              8130000,
+              39845000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            6480000,
+            10320000
+          ],
+          "premium": [
+            600000,
+            3600000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              10000000,
+              31550000
+            ],
+            "full": [
+              20800000,
+              43650000
+            ],
+            "discount": [
+              18550000,
+              42650000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            10800000,
+            12900000
+          ],
+          "premium": [
+            1000000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W03",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -36080000,
+              -24000000
+            ],
+            "full": [
+              -12080000,
+              18000000
+            ],
+            "discount": [
+              -12080000,
+              18000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            24000000,
+            42000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -45100000,
+              -38500000
+            ],
+            "full": [
+              -25100000,
+              -8500000
+            ],
+            "discount": [
+              -25100000,
+              -8500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            20000000,
+            30000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W04",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -43390000,
+              -24420000
+            ],
+            "full": [
+              -26470000,
+              2460000
+            ],
+            "discount": [
+              -26470000,
+              2460000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            16800000,
+            26880000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -30350000,
+              -23300000
+            ],
+            "full": [
+              -2150000,
+              10300000
+            ],
+            "discount": [
+              -2150000,
+              10300000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            28000000,
+            33600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W05",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -48560000,
+              -33330000
+            ],
+            "full": [
+              -48560000,
+              -33330000
+            ],
+            "discount": [
+              -48560000,
+              -33330000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -33400000,
+              -26800000
+            ],
+            "full": [
+              -33400000,
+              -26800000
+            ],
+            "discount": [
+              -33400000,
+              -26800000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W06",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -45720000,
+              -39870000
+            ],
+            "full": [
+              -29480000,
+              -17190000
+            ],
+            "discount": [
+              -29480000,
+              -17190000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13920000,
+            26460000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -37700000,
+              -36000000
+            ],
+            "full": [
+              -26100000,
+              -17100000
+            ],
+            "discount": [
+              -26100000,
+              -17100000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            11600000,
+            18900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W08",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -4340000,
+              22500000
+            ],
+            "full": [
+              -1540000,
+              24100000
+            ],
+            "discount": [
+              -1540000,
+              24100000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1200000,
+            8400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -300000,
+              15750000
+            ],
+            "full": [
+              1700000,
+              19750000
+            ],
+            "discount": [
+              1700000,
+              19750000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            2000000,
+            6000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W09",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -43010000,
+              -16050000
+            ],
+            "full": [
+              -38690000,
+              -8290000
+            ],
+            "discount": [
+              -38690000,
+              -8290000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4200000,
+            7760000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -28550000,
+              -11650000
+            ],
+            "full": [
+              -21350000,
+              -1950000
+            ],
+            "discount": [
+              -21350000,
+              -1950000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7000000,
+            9700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W14",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              23200000,
+              38500000
+            ],
+            "full": [
+              67000000,
+              79400000
+            ],
+            "discount": [
+              59600000,
+              75600000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            33000000,
+            54600000
+          ],
+          "premium": [
+            2400000,
+            9450000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              22600000,
+              35100000
+            ],
+            "full": [
+              59900000,
+              63300000
+            ],
+            "discount": [
+              53750000,
+              59600000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            27500000,
+            39000000
+          ],
+          "premium": [
+            2000000,
+            6750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W15",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              16500000,
+              26175000
+            ],
+            "full": [
+              46025000,
+              65700000
+            ],
+            "discount": [
+              42875000,
+              63100000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            27000000,
+            44100000
+          ],
+          "premium": [
+            1800000,
+            4900000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              16750000,
+              26250000
+            ],
+            "full": [
+              41250000,
+              53000000
+            ],
+            "discount": [
+              38750000,
+              51000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            22500000,
+            31500000
+          ],
+          "premium": [
+            1500000,
+            3500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W16",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23260000,
+              -8760000
+            ],
+            "full": [
+              -17860000,
+              -1680000
+            ],
+            "discount": [
+              -20850000,
+              -3360000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            7200000
+          ],
+          "premium": [
+            840000,
+            4200000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -9800000,
+              -1900000
+            ],
+            "full": [
+              -800000,
+              7000000
+            ],
+            "discount": [
+              -4300000,
+              4900000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7500000,
+            9000000
+          ],
+          "premium": [
+            1400000,
+            5250000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W17",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -40400000,
+              -26640000
+            ],
+            "full": [
+              -35900000,
+              -19440000
+            ],
+            "discount": [
+              -35900000,
+              -19440000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            7200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -29900000,
+              -24200000
+            ],
+            "full": [
+              -22400000,
+              -16100000
+            ],
+            "discount": [
+              -22400000,
+              -16100000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7500000,
+            9000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W18",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -47940000,
+              -11400000
+            ],
+            "full": [
+              -47940000,
+              -11400000
+            ],
+            "discount": [
+              -47940000,
+              -11400000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -29850000,
+              -8500000
+            ],
+            "full": [
+              -29850000,
+              -8500000
+            ],
+            "discount": [
+              -29850000,
+              -8500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W19",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -21500000,
+              -5700000
+            ],
+            "full": [
+              -5900000,
+              11650000
+            ],
+            "discount": [
+              -9100000,
+              9550000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            11700000,
+            22950000
+          ],
+          "premium": [
+            1020000,
+            3600000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -13550000,
+              -8000000
+            ],
+            "full": [
+              7450000,
+              14750000
+            ],
+            "discount": [
+              4750000,
+              12000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            19500000,
+            25500000
+          ],
+          "premium": [
+            1700000,
+            4000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W20",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              25150000,
+              40620000
+            ],
+            "full": [
+              54550000,
+              82660000
+            ],
+            "discount": [
+              50850000,
+              80560000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            29400000,
+            48300000
+          ],
+          "premium": [
+            1800000,
+            4900000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              22700000,
+              35200000
+            ],
+            "full": [
+              47200000,
+              66550000
+            ],
+            "discount": [
+              45700000,
+              63400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            24500000,
+            34500000
+          ],
+          "premium": [
+            1500000,
+            3500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W22",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -47600000,
+              -30700000
+            ],
+            "full": [
+              -45800000,
+              -29500000
+            ],
+            "discount": [
+              -45800000,
+              -29500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            900000,
+            2400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31500000,
+              -24000000
+            ],
+            "full": [
+              -28500000,
+              -22500000
+            ],
+            "discount": [
+              -28500000,
+              -22500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W23",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -58840000,
+              -33200000
+            ],
+            "full": [
+              -49840000,
+              -21350000
+            ],
+            "discount": [
+              -52090000,
+              -23350000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            9000000,
+            12400000
+          ],
+          "premium": [
+            1000000,
+            4500000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31600000,
+              -20500000
+            ],
+            "full": [
+              -22300000,
+              -9000000
+            ],
+            "discount": [
+              -24550000,
+              -11000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            9000000,
+            12400000
+          ],
+          "premium": [
+            1000000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W24",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -47860000,
+              -17970000
+            ],
+            "full": [
+              -29860000,
+              1535000
+            ],
+            "discount": [
+              -29860000,
+              1535000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            16500000,
+            22100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -26450000,
+              -7800000
+            ],
+            "full": [
+              -8450000,
+              11550000
+            ],
+            "discount": [
+              -8450000,
+              11550000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            16500000,
+            22100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "W25",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": true
+        },
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "principal",
+          "clash": true
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              22760000,
+              49260000
+            ],
+            "full": [
+              56060000,
+              96720000
+            ],
+            "discount": [
+              51550000,
+              91760000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            28500000,
+            54180000
+          ],
+          "premium": [
+            2000000,
+            9450000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              31600000,
+              39500000
+            ],
+            "full": [
+              64900000,
+              73400000
+            ],
+            "discount": [
+              60250000,
+              69000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            28500000,
+            38700000
+          ],
+          "premium": [
+            2000000,
+            6750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W26",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              29440000,
+              48830000
+            ],
+            "full": [
+              59940000,
+              94620000
+            ],
+            "discount": [
+              55800000,
+              91620000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            28500000,
+            54180000
+          ],
+          "premium": [
+            2000000,
+            6300000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              30050000,
+              42600000
+            ],
+            "full": [
+              61050000,
+              74200000
+            ],
+            "discount": [
+              57250000,
+              72000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            28500000,
+            38700000
+          ],
+          "premium": [
+            2000000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "W28",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              16420000,
+              42160000
+            ],
+            "full": [
+              40920000,
+              87940000
+            ],
+            "discount": [
+              39200000,
+              85270000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            24500000,
+            49140000
+          ],
+          "premium": [
+            1700000,
+            5600000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              30250000,
+              39750000
+            ],
+            "full": [
+              54750000,
+              72450000
+            ],
+            "discount": [
+              52000000,
+              70750000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            24500000,
+            35100000
+          ],
+          "premium": [
+            1700000,
+            4000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU01",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              20840000,
+              46280000
+            ],
+            "full": [
+              39540000,
+              67160000
+            ],
+            "discount": [
+              39540000,
+              67160000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            18700000,
+            25560000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              6300000,
+              17800000
+            ],
+            "full": [
+              23300000,
+              35200000
+            ],
+            "discount": [
+              23300000,
+              35200000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            17000000,
+            21300000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU02",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "middle",
+          "clash": true
+        },
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "middle",
+          "clash": true
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -11150000,
+              14060000
+            ],
+            "full": [
+              4360000,
+              32420000
+            ],
+            "discount": [
+              235000,
+              30260000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            13200000,
+            18360000
+          ],
+          "premium": [
+            1980000,
+            6000000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -14350000,
+              4100000
+            ],
+            "full": [
+              -250000,
+              19400000
+            ],
+            "discount": [
+              -4000000,
+              17600000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            12000000,
+            15300000
+          ],
+          "premium": [
+            1800000,
+            5000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU03",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              6100000,
+              35050000
+            ],
+            "full": [
+              25900000,
+              55570000
+            ],
+            "discount": [
+              25900000,
+              55570000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            15950000,
+            24840000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -4800000,
+              12050000
+            ],
+            "full": [
+              13200000,
+              29150000
+            ],
+            "discount": [
+              13200000,
+              29150000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14500000,
+            20700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU06",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "principal",
+          "clash": true
+        },
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31620000,
+              -1360000
+            ],
+            "full": [
+              -17400000,
+              17260000
+            ],
+            "discount": [
+              -20850000,
+              14620000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13800000,
+            23520000
+          ],
+          "premium": [
+            1470000,
+            7600000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -13600000,
+              7550000
+            ],
+            "full": [
+              10100000,
+              31200000
+            ],
+            "discount": [
+              4350000,
+              27900000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            23000000,
+            29400000
+          ],
+          "premium": [
+            2450000,
+            9500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU07",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -52960000,
+              -10920000
+            ],
+            "full": [
+              -52060000,
+              -7320000
+            ],
+            "discount": [
+              -52060000,
+              -7320000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            900000,
+            3600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -35300000,
+              -20600000
+            ],
+            "full": [
+              -33800000,
+              -17600000
+            ],
+            "discount": [
+              -33800000,
+              -17600000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU08",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -24840000,
+              -1720000
+            ],
+            "full": [
+              -19260000,
+              6930000
+            ],
+            "discount": [
+              -19260000,
+              6930000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            5580000,
+            9840000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -19000000,
+              -8100000
+            ],
+            "full": [
+              -9500000,
+              4200000
+            ],
+            "discount": [
+              -9500000,
+              4200000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            9300000,
+            12300000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU09",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              8520000,
+              26140000
+            ],
+            "full": [
+              15000000,
+              32695000
+            ],
+            "discount": [
+              15000000,
+              32695000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            6300000,
+            10080000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              8450000,
+              21350000
+            ],
+            "full": [
+              19250000,
+              31850000
+            ],
+            "discount": [
+              19250000,
+              31850000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            10500000,
+            12600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU10",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -22860000,
+              -10100000
+            ],
+            "full": [
+              -22860000,
+              -10100000
+            ],
+            "discount": [
+              -22860000,
+              -10100000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -22400000,
+              -9500000
+            ],
+            "full": [
+              -22400000,
+              -9500000
+            ],
+            "discount": [
+              -22400000,
+              -9500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU11",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "year",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23980000,
+              -4050000
+            ],
+            "full": [
+              -15580000,
+              10580000
+            ],
+            "discount": [
+              -18730000,
+              8580000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            8400000,
+            15360000
+          ],
+          "premium": [
+            1500000,
+            6000000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -5900000,
+              5000000
+            ],
+            "full": [
+              8100000,
+              22500000
+            ],
+            "discount": [
+              2850000,
+              19700000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14000000,
+            19200000
+          ],
+          "premium": [
+            2500000,
+            7500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU12",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -41170000,
+              -8360000
+            ],
+            "full": [
+              -36850000,
+              -2510000
+            ],
+            "discount": [
+              -36850000,
+              -2510000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4240000,
+            5850000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -15150000,
+              4400000
+            ],
+            "full": [
+              -9750000,
+              10900000
+            ],
+            "discount": [
+              -9750000,
+              10900000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            5300000,
+            6500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU13",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -52170000,
+              -18790000
+            ],
+            "full": [
+              -48570000,
+              -14740000
+            ],
+            "discount": [
+              -50970000,
+              -16090000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            3600000,
+            4050000
+          ],
+          "premium": [
+            1200000,
+            2700000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23050000,
+              -4300000
+            ],
+            "full": [
+              -18550000,
+              200000
+            ],
+            "discount": [
+              -21550000,
+              -1300000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            4500000
+          ],
+          "premium": [
+            1500000,
+            3000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU14",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": true
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -64280000,
+              -31025000
+            ],
+            "full": [
+              -54680000,
+              -17525000
+            ],
+            "discount": [
+              -57880000,
+              -19820000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            9200000,
+            13500000
+          ],
+          "premium": [
+            1360000,
+            5400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -36300000,
+              -18350000
+            ],
+            "full": [
+              -24300000,
+              -3350000
+            ],
+            "discount": [
+              -28300000,
+              -5900000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            11500000,
+            15000000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU15",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -15260000,
+              14150000
+            ],
+            "full": [
+              -13100000,
+              16850000
+            ],
+            "discount": [
+              -14300000,
+              15500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1920000,
+            2700000
+          ],
+          "premium": [
+            600000,
+            2700000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              13950000,
+              26500000
+            ],
+            "full": [
+              16650000,
+              29500000
+            ],
+            "discount": [
+              15150000,
+              28000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            2400000,
+            3000000
+          ],
+          "premium": [
+            750000,
+            3000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU16",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31700000,
+              -10955000
+            ],
+            "full": [
+              -24500000,
+              -155000
+            ],
+            "discount": [
+              -27700000,
+              -2450000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            7200000,
+            11160000
+          ],
+          "premium": [
+            1360000,
+            5400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -12400000,
+              -4450000
+            ],
+            "full": [
+              -3400000,
+              7550000
+            ],
+            "discount": [
+              -7400000,
+              5000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            9000000,
+            12400000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU17",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "residual",
+          "clash": true
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "residual",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -32000000,
+              -6500000
+            ],
+            "full": [
+              -18500000,
+              9400000
+            ],
+            "discount": [
+              -26500000,
+              5150000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13000000,
+            17700000
+          ],
+          "premium": [
+            3400000,
+            10000000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -15500000,
+              -250000
+            ],
+            "full": [
+              -2000000,
+              15950000
+            ],
+            "discount": [
+              -10000000,
+              11700000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13000000,
+            17700000
+          ],
+          "premium": [
+            3400000,
+            10000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU19",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -92280000,
+              -58050000
+            ],
+            "full": [
+              -86880000,
+              -53050000
+            ],
+            "discount": [
+              -90880000,
+              -55600000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4000000,
+            6000000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -63200000,
+              -45950000
+            ],
+            "full": [
+              -57800000,
+              -40950000
+            ],
+            "discount": [
+              -61800000,
+              -43500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4000000,
+            6000000
+          ],
+          "premium": [
+            1700000,
+            6000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU20",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -47950000,
+              -24210000
+            ],
+            "full": [
+              -39250000,
+              -16110000
+            ],
+            "discount": [
+              -39250000,
+              -16110000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6500000,
+            9900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31550000,
+              -20250000
+            ],
+            "full": [
+              -23450000,
+              -10350000
+            ],
+            "discount": [
+              -23450000,
+              -10350000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6500000,
+            9900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU21",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -68600000,
+              -51600000
+            ],
+            "full": [
+              -67100000,
+              -48600000
+            ],
+            "discount": [
+              -67100000,
+              -48600000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -49000000,
+              -43000000
+            ],
+            "full": [
+              -47500000,
+              -40000000
+            ],
+            "discount": [
+              -47500000,
+              -40000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU23",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -54880000,
+              -39325000
+            ],
+            "full": [
+              -31240000,
+              -13680000
+            ],
+            "discount": [
+              -31240000,
+              -13680000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            20500000,
+            27600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -40550000,
+              -34400000
+            ],
+            "full": [
+              -20050000,
+              -6800000
+            ],
+            "discount": [
+              -20050000,
+              -6800000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            20500000,
+            27600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU24",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -38720000,
+              -15120000
+            ],
+            "full": [
+              -38720000,
+              -15120000
+            ],
+            "discount": [
+              -38720000,
+              -15120000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -16900000,
+              -5800000
+            ],
+            "full": [
+              -16900000,
+              -5800000
+            ],
+            "discount": [
+              -16900000,
+              -5800000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU25",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -8130000,
+              31280000
+            ],
+            "full": [
+              2670000,
+              38840000
+            ],
+            "discount": [
+              170000,
+              37760000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            6300000,
+            12600000
+          ],
+          "premium": [
+            720000,
+            3750000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              8050000,
+              25950000
+            ],
+            "full": [
+              18850000,
+              38550000
+            ],
+            "discount": [
+              16350000,
+              36750000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            10500000,
+            12600000
+          ],
+          "premium": [
+            1200000,
+            3750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU26",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -51950000,
+              -30300000
+            ],
+            "full": [
+              -51950000,
+              -30300000
+            ],
+            "discount": [
+              -51950000,
+              -30300000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -41000000,
+              -25000000
+            ],
+            "full": [
+              -41000000,
+              -25000000
+            ],
+            "discount": [
+              -41000000,
+              -25000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU27",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -84800000,
+              -51600000
+            ],
+            "full": [
+              -84800000,
+              -51600000
+            ],
+            "discount": [
+              -84800000,
+              -51600000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -56500000,
+              -39000000
+            ],
+            "full": [
+              -56500000,
+              -39000000
+            ],
+            "discount": [
+              -56500000,
+              -39000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU28",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "day",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -11200000,
+              18420000
+            ],
+            "full": [
+              800000,
+              36720000
+            ],
+            "discount": [
+              -1700000,
+              34200000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            false
+          ],
+          "root": [
+            11000000,
+            21000000
+          ],
+          "premium": [
+            1200000,
+            5250000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              6500000,
+              17800000
+            ],
+            "full": [
+              18500000,
+              30300000
+            ],
+            "discount": [
+              16000000,
+              28500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            11000000,
+            15000000
+          ],
+          "premium": [
+            1200000,
+            3750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU29",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              22425000,
+              30100000
+            ],
+            "full": [
+              55975000,
+              81920000
+            ],
+            "discount": [
+              50575000,
+              79120000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            33000000,
+            54600000
+          ],
+          "premium": [
+            2400000,
+            6300000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              18250000,
+              21850000
+            ],
+            "full": [
+              46250000,
+              59000000
+            ],
+            "discount": [
+              41750000,
+              57000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            27500000,
+            39000000
+          ],
+          "premium": [
+            2000000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU30",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              3230000,
+              16000000
+            ],
+            "full": [
+              25430000,
+              50440000
+            ],
+            "discount": [
+              23150000,
+              48340000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            22200000,
+            34440000
+          ],
+          "premium": [
+            1800000,
+            4900000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -1300000,
+              3200000
+            ],
+            "full": [
+              17200000,
+              27800000
+            ],
+            "discount": [
+              15700000,
+              26300000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            18500000,
+            24600000
+          ],
+          "premium": [
+            1500000,
+            3500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "XU31",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -20355000,
+              -12500000
+            ],
+            "full": [
+              5045000,
+              26880000
+            ],
+            "discount": [
+              5045000,
+              26880000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            23880000,
+            41580000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23950000,
+              -13700000
+            ],
+            "full": [
+              -2450000,
+              14800000
+            ],
+            "discount": [
+              -2450000,
+              14800000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            19900000,
+            29700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "DX02",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -17900000,
+              -9860000
+            ],
+            "full": [
+              1000000,
+              12800000
+            ],
+            "discount": [
+              1000000,
+              12800000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            15600000,
+            27300000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -21250000,
+              -10000000
+            ],
+            "full": [
+              -7750000,
+              8000000
+            ],
+            "discount": [
+              -7750000,
+              8000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13000000,
+            19500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "DX03",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -69970000,
+              -30500000
+            ],
+            "full": [
+              -61570000,
+              -13800000
+            ],
+            "discount": [
+              -61570000,
+              -13800000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            8400000,
+            18900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -49550000,
+              -38000000
+            ],
+            "full": [
+              -35550000,
+              -21850000
+            ],
+            "discount": [
+              -35550000,
+              -21850000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            14000000,
+            18900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "DH02",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23590000,
+              -14200000
+            ],
+            "full": [
+              410000,
+              27800000
+            ],
+            "discount": [
+              410000,
+              27800000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            24000000,
+            42000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -27100000,
+              -20000000
+            ],
+            "full": [
+              -7100000,
+              10000000
+            ],
+            "discount": [
+              -7100000,
+              10000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            20000000,
+            30000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L76",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "residual",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -27780000,
+              -5250000
+            ],
+            "full": [
+              -25980000,
+              -3650000
+            ],
+            "discount": [
+              -26580000,
+              -4050000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            900000,
+            2400000
+          ],
+          "premium": [
+            300000,
+            800000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -14200000,
+              -4500000
+            ],
+            "full": [
+              -11200000,
+              -1500000
+            ],
+            "discount": [
+              -12200000,
+              -2500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            500000,
+            1000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "L91",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -51040000,
+              -18450000
+            ],
+            "full": [
+              -51040000,
+              -18450000
+            ],
+            "discount": [
+              -51040000,
+              -18450000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31850000,
+              -10500000
+            ],
+            "full": [
+              -31850000,
+              -10500000
+            ],
+            "discount": [
+              -31850000,
+              -10500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L95",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -9670000,
+              4100000
+            ],
+            "full": [
+              38460000,
+              51490000
+            ],
+            "discount": [
+              38460000,
+              51490000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            39000000,
+            56280000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -5650000,
+              950000
+            ],
+            "full": [
+              32250000,
+              38950000
+            ],
+            "discount": [
+              32250000,
+              38950000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            32500000,
+            40200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L98",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -34800000,
+              21760000
+            ],
+            "full": [
+              -33520000,
+              22840000
+            ],
+            "discount": [
+              -33520000,
+              22840000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            640000,
+            2400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -11200000,
+              3900000
+            ],
+            "full": [
+              -9600000,
+              4800000
+            ],
+            "discount": [
+              -9600000,
+              4800000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            800000,
+            2000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN01",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              5840000,
+              36840000
+            ],
+            "full": [
+              25090000,
+              54840000
+            ],
+            "discount": [
+              25090000,
+              54840000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            15400000,
+            23040000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -7950000,
+              6600000
+            ],
+            "full": [
+              9550000,
+              21600000
+            ],
+            "discount": [
+              9550000,
+              21600000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            14000000,
+            19200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN02",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              9550000,
+              39100000
+            ],
+            "full": [
+              19450000,
+              53140000
+            ],
+            "discount": [
+              19450000,
+              53140000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            9240000,
+            14040000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              3550000,
+              20600000
+            ],
+            "full": [
+              12550000,
+              32300000
+            ],
+            "discount": [
+              12550000,
+              32300000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            8400000,
+            11700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN03",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -500000,
+              31840000
+            ],
+            "full": [
+              2500000,
+              36640000
+            ],
+            "discount": [
+              2500000,
+              36640000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            2000000,
+            8400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              20300000,
+              29800000
+            ],
+            "full": [
+              23300000,
+              33800000
+            ],
+            "discount": [
+              23300000,
+              33800000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            2000000,
+            6000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN04",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -64680000,
+              -40890000
+            ],
+            "full": [
+              -63420000,
+              -36570000
+            ],
+            "discount": [
+              -63420000,
+              -36570000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1200000,
+            4320000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -45300000,
+              -33400000
+            ],
+            "full": [
+              -43200000,
+              -28000000
+            ],
+            "discount": [
+              -43200000,
+              -28000000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            2000000,
+            5400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN05",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              12400000,
+              43820000
+            ],
+            "full": [
+              30200000,
+              63980000
+            ],
+            "discount": [
+              30200000,
+              63980000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            14850000,
+            21960000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -2950000,
+              11700000
+            ],
+            "full": [
+              12650000,
+              28500000
+            ],
+            "discount": [
+              12650000,
+              28500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            13500000,
+            18300000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN06",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -23060000,
+              -5740000
+            ],
+            "full": [
+              -8920000,
+              17420000
+            ],
+            "discount": [
+              -8920000,
+              17420000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            12000000,
+            25200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -31550000,
+              -19100000
+            ],
+            "full": [
+              -19550000,
+              -3500000
+            ],
+            "discount": [
+              -19550000,
+              -3500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            10000000,
+            18000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN07",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -1470000,
+              17770000
+            ],
+            "full": [
+              15140000,
+              40450000
+            ],
+            "discount": [
+              15140000,
+              40450000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            16610000,
+            22680000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -7350000,
+              3200000
+            ],
+            "full": [
+              7750000,
+              21950000
+            ],
+            "discount": [
+              7750000,
+              21950000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            15100000,
+            18900000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN08",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              29640000,
+              66340000
+            ],
+            "full": [
+              55490000,
+              95500000
+            ],
+            "discount": [
+              55490000,
+              95500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            25080000,
+            30120000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              19700000,
+              43850000
+            ],
+            "full": [
+              43200000,
+              68150000
+            ],
+            "discount": [
+              43200000,
+              68150000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            22800000,
+            25100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN09",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "residual",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -30320000,
+              11760000
+            ],
+            "full": [
+              -6985000,
+              40080000
+            ],
+            "discount": [
+              -11420000,
+              38400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            18700000,
+            34860000
+          ],
+          "premium": [
+            1540000,
+            4900000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -24450000,
+              -11400000
+            ],
+            "full": [
+              -7450000,
+              12900000
+            ],
+            "discount": [
+              -10950000,
+              11500000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            17000000,
+            24900000
+          ],
+          "premium": [
+            1400000,
+            3500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZN10",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -61900000,
+              -27115000
+            ],
+            "full": [
+              -49400000,
+              -5515000
+            ],
+            "discount": [
+              -49400000,
+              -5515000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            12500000,
+            25200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -33950000,
+              -22150000
+            ],
+            "full": [
+              -21000000,
+              -4150000
+            ],
+            "discount": [
+              -21000000,
+              -4150000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            12500000,
+            18000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L77",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "middle",
+          "clash": true
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "middle",
+          "clash": true
+        }
+      ],
+      "uniqueRoots": [
+        "month"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -2150000,
+              22900000
+            ],
+            "full": [
+              4450000,
+              33700000
+            ],
+            "discount": [
+              875000,
+              31900000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            6600000,
+            10800000
+          ],
+          "premium": [
+            1650000,
+            5400000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -5300000,
+              9900000
+            ],
+            "full": [
+              700000,
+              18900000
+            ],
+            "discount": [
+              -2550000,
+              17400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            false
+          ],
+          "root": [
+            6000000,
+            9000000
+          ],
+          "premium": [
+            1500000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "L78",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-other",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -1300000,
+              15000000
+            ],
+            "full": [
+              11350000,
+              29400000
+            ],
+            "discount": [
+              11350000,
+              29400000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            12100000,
+            16200000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -7200000,
+              2000000
+            ],
+            "full": [
+              4300000,
+              14000000
+            ],
+            "discount": [
+              4300000,
+              14000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            11000000,
+            13500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L80",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -35510000,
+              -7930000
+            ],
+            "full": [
+              -22730000,
+              18770000
+            ],
+            "discount": [
+              -22730000,
+              18770000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            12600000,
+            27720000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -23550000,
+              -14850000
+            ],
+            "full": [
+              -2250000,
+              8150000
+            ],
+            "discount": [
+              -2250000,
+              8150000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            21000000,
+            23100000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "L82",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "year",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -25400000,
+              -9705000
+            ],
+            "full": [
+              -19000000,
+              -705000
+            ],
+            "discount": [
+              -25600000,
+              -4800000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6400000,
+            9000000
+          ],
+          "premium": [
+            2160000,
+            9450000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -20750000,
+              -6450000
+            ],
+            "full": [
+              -12750000,
+              3550000
+            ],
+            "discount": [
+              -21000000,
+              -1000000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            8000000,
+            10000000
+          ],
+          "premium": [
+            2700000,
+            10500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "L83",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              84820000,
+              103150000
+            ],
+            "full": [
+              88120000,
+              106390000
+            ],
+            "discount": [
+              84275000,
+              104030000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            2640000,
+            3600000
+          ],
+          "premium": [
+            1320000,
+            4500000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              70500000,
+              73250000
+            ],
+            "full": [
+              73500000,
+              75950000
+            ],
+            "discount": [
+              69750000,
+              73550000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            2400000,
+            3000000
+          ],
+          "premium": [
+            1200000,
+            3750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "L96",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-low-root",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -8040000,
+              23100000
+            ],
+            "full": [
+              -3090000,
+              28500000
+            ],
+            "discount": [
+              -3090000,
+              28500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4950000,
+            5400000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -20550000,
+              -3900000
+            ],
+            "full": [
+              -16050000,
+              600000
+            ],
+            "discount": [
+              -16050000,
+              600000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            4500000,
+            4500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW03",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              28720000,
+              46200000
+            ],
+            "full": [
+              53470000,
+              73800000
+            ],
+            "discount": [
+              53470000,
+              73800000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            24750000,
+            30600000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              21050000,
+              29000000
+            ],
+            "full": [
+              43550000,
+              52000000
+            ],
+            "discount": [
+              43550000,
+              52000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            true,
+            true,
+            true
+          ],
+          "root": [
+            22500000,
+            25500000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW04",
+      "reference": "strong",
+      "group": "secondary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "day"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -4800000,
+              5340000
+            ],
+            "full": [
+              41060000,
+              60300000
+            ],
+            "discount": [
+              36260000,
+              57920000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            38400000,
+            55860000
+          ],
+          "premium": [
+            2040000,
+            5600000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -3800000,
+              5500000
+            ],
+            "full": [
+              34000000,
+              44700000
+            ],
+            "discount": [
+              30000000,
+              43000000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            32000000,
+            39900000
+          ],
+          "premium": [
+            1700000,
+            4000000
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW05",
+      "reference": "weak",
+      "group": "secondary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -39780000,
+              -21190000
+            ],
+            "full": [
+              -32580000,
+              -13990000
+            ],
+            "discount": [
+              -32580000,
+              -13990000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6400000,
+            9000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -26400000,
+              -17100000
+            ],
+            "full": [
+              -16500000,
+              -8100000
+            ],
+            "discount": [
+              -16500000,
+              -8100000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            8000000,
+            10000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW06",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -98000000,
+              -69000000
+            ],
+            "full": [
+              -96800000,
+              -66300000
+            ],
+            "discount": [
+              -96800000,
+              -66300000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1200000,
+            2700000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -70000000,
+              -57500000
+            ],
+            "full": [
+              -68500000,
+              -54500000
+            ],
+            "discount": [
+              -68500000,
+              -54500000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            1500000,
+            3000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW10",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "conflict",
+      "connections": [],
+      "uniqueRoots": [],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -27795000,
+              -12400000
+            ],
+            "full": [
+              -845000,
+              27500000
+            ],
+            "discount": [
+              -845000,
+              27500000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            25850000,
+            42000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -32050000,
+              -17750000
+            ],
+            "full": [
+              -7550000,
+              10750000
+            ],
+            "discount": [
+              -7550000,
+              10750000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            23500000,
+            30000000
+          ],
+          "premium": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW11",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": "strong",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "day",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "day",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -39220000,
+              -9120000
+            ],
+            "full": [
+              -19960000,
+              15720000
+            ],
+            "discount": [
+              -23560000,
+              13920000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            18000000,
+            27000000
+          ],
+          "premium": [
+            1600000,
+            4050000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -19100000,
+              800000
+            ],
+            "full": [
+              5500000,
+              28100000
+            ],
+            "discount": [
+              1000000,
+              26100000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            true
+          ],
+          "root": [
+            22500000,
+            30000000
+          ],
+          "premium": [
+            2000000,
+            4500000
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW12",
+      "reference": "strong",
+      "group": "primary",
+      "fixed": null,
+      "bucket": "no-ground-pressure-all",
+      "connections": [
+        {
+          "stem": "month",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "month",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "year",
+          "role": "middle",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "month",
+          "role": "residual",
+          "clash": false
+        },
+        {
+          "stem": "hour",
+          "root": "hour",
+          "role": "principal",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "year",
+        "month",
+        "hour"
+      ],
+      "stats": {
+        "standard": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -30560000,
+              -5600000
+            ],
+            "full": [
+              -15860000,
+              8900000
+            ],
+            "discount": [
+              -23860000,
+              4800000
+            ]
+          },
+          "allPressure": [
+            true,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            13400000,
+            16200000
+          ],
+          "premium": [
+            3400000,
+            9750000
+          ]
+        },
+        "neutral": {
+          "n": 24,
+          "margin": {
+            "base": [
+              -13700000,
+              1100000
+            ],
+            "full": [
+              1000000,
+              15600000
+            ],
+            "discount": [
+              -7000000,
+              11500000
+            ]
+          },
+          "allPressure": [
+            false,
+            false,
+            false
+          ],
+          "allSupport": [
+            false,
+            true,
+            false
+          ],
+          "root": [
+            13400000,
+            16200000
+          ],
+          "premium": [
+            3400000,
+            9750000
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZW13",
+      "reference": "weak",
+      "group": "primary",
+      "fixed": "weak",
+      "bucket": null,
+      "connections": [
+        {
+          "stem": "year",
+          "root": "month",
+          "role": "middle",
+          "clash": false
+        }
+      ],
+      "uniqueRoots": [
+        "month"
+      ],
+      "stats": {
+        "standard": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -46220000,
+              -23780000
+            ],
+            "full": [
+              -40220000,
+              -16740000
+            ],
+            "discount": [
+              -41470000,
+              -17220000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            3600000,
+            9000000
+          ],
+          "premium": [
+            360000,
+            2500000
+          ]
+        },
+        "neutral": {
+          "n": 48,
+          "margin": {
+            "base": [
+              -33650000,
+              -24100000
+            ],
+            "full": [
+              -27650000,
+              -15100000
+            ],
+            "discount": [
+              -28900000,
+              -15700000
+            ]
+          },
+          "allPressure": [
+            true,
+            true,
+            true
+          ],
+          "allSupport": [
+            false,
+            false,
+            false
+          ],
+          "root": [
+            6000000,
+            9000000
+          ],
+          "premium": [
+            600000,
+            2500000
+          ]
+        }
+      }
+    }
+  ]
+}
