@@ -2,7 +2,7 @@
   "name": "saju-kit",
   "private": true,
   "type": "module",
-  "description": "브라우저에서 계산하는 만세력·원국 구조·중립적 세운 관계 신호·한국어 설명. 연도 추천은 아직 없다.",
+  "description": "Dependency-free Korean Four Pillars calendar and neutral traditional relationship signals.",
   "scripts": {
     "test": "node --test",
     "build-data": "node scripts/build-calendar-data.mjs"
@@ -12,5 +12,12 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "version": "0.1.0",
+  "exports": "./src/index.js",
+  "main": "./src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ]
 }

@@ -105,6 +105,7 @@ export function getDaeun({ saju, gender, birth } = {}) {
     hh: birth.hh ?? null,
     mm: birth.mm ?? null,
     calendar: 'solar',
+    timezone: birth.timezone ?? 'Asia/Seoul',
   });
   for (const key of ['year', 'month', 'day']) {
     if (checked.pillars[key].text !== saju.pillars[key]?.text) {

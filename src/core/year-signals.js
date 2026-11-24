@@ -1,14 +1,9 @@
 import { solarTermInstant } from './calendar.js';
 import { SajuError } from './error.js';
+import { branchPairRelations } from './relations.js';
 import { BRANCHES, STEMS, pillarFromIndex } from './ganji.js';
 
 // A relation is a textual traditional correspondence, not a prediction.
-const CLASH_PAIRS = [['자', '오'], ['축', '미'], ['인', '신'], ['묘', '유'], ['진', '술'], ['사', '해']];
-const COMBINE_PAIRS = [['자', '축'], ['인', '해'], ['묘', '술'], ['진', '유'], ['사', '신'], ['오', '미']];
-
-const pairKey = (a, b) => [a, b].sort((x, y) => BRANCHES.indexOf(x) - BRANCHES.indexOf(y)).join(':');
-const clashes = new Set(CLASH_PAIRS.map(([a, b]) => pairKey(a, b)));
-const combines = new Set(COMBINE_PAIRS.map(([a, b]) => pairKey(a, b)));
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 
 // Yeokma convention: natal year/day branch's three-harmony group -> horse branch.
@@ -48,9 +43,9 @@ export function branchRelation(left, right) {
   if (!BRANCHES.includes(left) || !BRANCHES.includes(right)) {
     throw new SajuError('branch', '지지는 12지 중 하나여야 합니다.');
   }
-  const pair = pairKey(left, right);
-  if (clashes.has(pair)) return 'clash';
-  if (combines.has(pair)) return 'combine';
+  const relations = branchPairRelations(left, right);
+  if (relations.some(r => r.type === 'branch.clash')) return 'clash';
+  if (relations.some(r => r.type === 'branch.sixHarmony')) return 'combine';
   return null;
 }
 

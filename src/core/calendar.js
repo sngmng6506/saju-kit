@@ -121,6 +121,14 @@ function jeolOnDate(y, m, d) {
   return false;
 }
 
+/** Civil Gregorian date, midnight boundary; independent of solar terms and legal clock policy. */
+export function getDayPillar({ y, m, d } = {}) {
+  if (!validDate(y, m, d)) throw new SajuError('date', '없는 양력 날짜입니다.');
+  if (!inBirthRange(y, m, d)) throw new SajuError('range', '지원 날짜 범위 밖입니다.');
+  const dayNumber = Math.round((Date.UTC(y, m - 1, d) - DAY_ANCHOR) / 86400000);
+  return pillarFromIndex(54 + dayNumber);
+}
+
 function pillarsAt(y, m, d, hh, mm) {
   const key = instantKey(y, m, d, hh, mm);
   const lichun = solarTermInstant(y, 2);
@@ -132,8 +140,7 @@ function pillarsAt(y, m, d, hh, mm) {
   const branchIndex = JEOL_BRANCH[jeol.index];
   const stemIndex = mod(inMonthStem + mod(branchIndex - 2, 12), 10);
   const month = { stem: STEMS[stemIndex], branch: BRANCHES[branchIndex], text: STEMS[stemIndex] + BRANCHES[branchIndex] };
-  const dayNumber = Math.round((Date.UTC(y, m - 1, d) - DAY_ANCHOR) / 86400000);
-  const day = pillarFromIndex(54 + dayNumber);
+  const day = getDayPillar({ y, m, d });
   return { year, month, day };
 }
 
@@ -156,12 +163,13 @@ function samePillars(left, right) {
   return left.year.text === right.year.text && left.month.text === right.month.text;
 }
 
-function resolveClock(y, m, d, hh, mm) {
+function resolveClock(y, m, d, hh, mm, timezone) {
+  const offsetAt = timezone === 'Asia/Tokyo' ? () => 540 : koreaOffsetMin;
   if (hh == null) {
     if (jeolOnDate(y, m, d)) {
       throw new SajuError('time-required', '절입일이라 태어난 시각이 있어야 연주와 월주를 정합니다.');
     }
-    const offset = koreaOffsetMin(y, m, d, 12);
+    const offset = offsetAt(y, m, d, 12);
     if (offset !== 540) {
       const legal = shiftWall(y, m, d, 12, 0, 540 - offset);
       const asUtc9 = pillarsAt(y, m, d, 12, 0);
@@ -175,7 +183,7 @@ function resolveClock(y, m, d, hh, mm) {
   if (hh === 23) {
     throw new SajuError('day-boundary', '23시는 일주 경계를 정하기 전에 계산하지 않습니다.');
   }
-  const offset = koreaOffsetMin(y, m, d, hh);
+  const offset = offsetAt(y, m, d, hh);
   if (offset !== 540) {
     const legal = shiftWall(y, m, d, hh, mm, 540 - offset);
     const asUtc9 = pillarsAt(y, m, d, hh, mm);
@@ -188,8 +196,14 @@ function resolveClock(y, m, d, hh, mm) {
 }
 
 export function getSaju({
-  y, m, d, hh = null, mm = null, calendar = 'solar', leapMonth = false, options,
+  y, m, d, hh = null, mm = null, calendar = 'solar', leapMonth = false, options, timezone = 'Asia/Seoul',
 } = {}) {
+  if (timezone !== 'Asia/Seoul' && timezone !== 'Asia/Tokyo') {
+    throw new SajuError('timezone', '지원하지 않는 출생 시간대입니다.');
+  }
+  if (timezone === 'Asia/Tokyo' && calendar !== 'solar') {
+    throw new SajuError('calendar', '일본 출생 시간대는 양력 입력만 지원합니다.');
+  }
   if (options && (options.trueSolarTime || options.dayBoundary || options.tzCorrection)) {
     throw new SajuError('option-open', '시간 보정과 자시 옵션은 아직 쓰지 않습니다.');
   }
@@ -220,10 +234,13 @@ export function getSaju({
   if (!inBirthRange(solar.y, solar.m, solar.d)) {
     throw new SajuError('range', '1900년 1월 1일부터 2100년 12월 31일까지 계산합니다.');
   }
+  if (timezone === 'Asia/Tokyo' && solar.y < 1970) {
+    throw new SajuError('timezone-range', '일본 출생 시간대는 1970년 이후만 지원합니다.');
+  }
   if (!lunar) lunar = solarToLunar(solar.y, solar.m, solar.d);
-  const pillars = resolveClock(solar.y, solar.m, solar.d, hh, mm);
+  const pillars = resolveClock(solar.y, solar.m, solar.d, hh, mm, timezone);
   // 비표준 법정시에서는 시주를 임의로 보정하지 않는다.
-  const supportedHour = hh != null && koreaOffsetMin(solar.y, solar.m, solar.d, hh) === 540;
+  const supportedHour = hh != null && (timezone === 'Asia/Tokyo' || koreaOffsetMin(solar.y, solar.m, solar.d, hh) === 540);
   const hour = supportedHour ? hourPillar(pillars.day.stem, hh) : null;
   return {
     pillars: { ...pillars, hour },

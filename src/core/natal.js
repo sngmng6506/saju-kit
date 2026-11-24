@@ -1,13 +1,8 @@
-import { BRANCHES, STEMS } from './ganji.js';
+import { stemIndex, branchIndex, stemInfo, branchElement } from './elements.js';
 import { SajuError } from './error.js';
 import { getHiddenStems, HIDDEN_STEMS_VERSION } from './hidden-stems.js';
 
 // Fixed, visible-stem/branch correspondences. These are not weighted strengths.
-const ELEMENTS = ['wood', 'fire', 'earth', 'metal', 'water'];
-const BRANCH_ELEMENTS = [
-  'water', 'earth', 'wood', 'wood', 'earth', 'fire',
-  'fire', 'earth', 'metal', 'metal', 'earth', 'water',
-];
 const TEN_GODS = [
   ['비견', '겁재'], // same element
   ['식신', '상관'], // day master produces target
@@ -16,23 +11,6 @@ const TEN_GODS = [
   ['편인', '정인'], // target produces day master
 ];
 const POSITIONS = ['year', 'month', 'day', 'hour'];
-
-function stemIndex(stem) {
-  const index = STEMS.indexOf(stem);
-  if (index < 0) throw new SajuError('stem', '올바른 천간이 아닙니다.');
-  return index;
-}
-
-function branchIndex(branch) {
-  const index = BRANCHES.indexOf(branch);
-  if (index < 0) throw new SajuError('branch', '올바른 지지가 아닙니다.');
-  return index;
-}
-
-function stemInfo(stem) {
-  const index = stemIndex(stem);
-  return { element: ELEMENTS[Math.floor(index / 2)], yinYang: index % 2 === 0 ? 'yang' : 'yin' };
-}
 
 function validatePillar(pillar, position) {
   if (!pillar || typeof pillar !== 'object' || Array.isArray(pillar)) {
@@ -81,7 +59,7 @@ export function analyzeNatalStructure({ saju } = {}) {
     }
     const stem = stemInfo(pillar.stem);
     const branch = {
-      element: BRANCH_ELEMENTS[branchIndex(pillar.branch)],
+      element: branchElement(pillar.branch),
       hiddenStems: getHiddenStems(pillar.branch).map((item) => ({
         ...item,
         tenGod: tenGodForStem(dayMaster.stem, item.stem),
