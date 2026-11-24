@@ -1,7 +1,7 @@
 {
   "version": 1,
   "reviewDate": "2026-11-24",
-  "note": "Transcription of prior review reports; no fresh source verification in this commit.",
+  "note": "Prior review reports plus electronic text recheck in review 03; historical labels retained.",
   "entries": [
     {
       "fixture": "ordinary-xu-holdout-v1",
@@ -222,6 +222,206 @@
       "formation": "uncertain",
       "verification": "electronic-text-checked",
       "review": "docs/strength-source-review-01.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "Y01",
+      "pillars": [
+        "戊子",
+        "乙卯",
+        "戊戌",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "author": "袁树珊",
+      "url": "https://taoly.app/library/bazi/ming-li-tan-yuan/008/",
+      "locator": "戊子 乙卯 戊戌 甲寅",
+      "evidence": "木盛又嫌土衰",
+      "basis": "inferred",
+      "scope": "element-only",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R01",
+      "pillars": [
+        "己酉",
+        "丙寅",
+        "庚申",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "locator": "己酉 丙寅 庚申 庚辰",
+      "evidence": "弱中变旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R02",
+      "pillars": [
+        "戊申",
+        "癸亥",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "locator": "戊申 癸亥 丙午 壬辰",
+      "evidence": "究竟休囚",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R03",
+      "pillars": [
+        "甲辰",
+        "己巳",
+        "戊辰",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "locator": "甲辰 己巳 戊辰 乙卯",
+      "evidence": "日主未尝不旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R04",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "庚申",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "locator": "丙辰 辛卯 庚申 丁丑",
+      "evidence": "弱中变旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R05",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "乙亥",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "locator": "丙辰 辛卯 乙亥 庚辰",
+      "evidence": "木旺不从",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R07",
+      "pillars": [
+        "丙申",
+        "戊戌",
+        "丁卯",
+        "乙巳"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/022/",
+      "locator": "丙申 戊戌 丁卯 乙巳",
+      "evidence": "劫印重叠，旺可知矣",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R09",
+      "pillars": [
+        "己卯",
+        "庚午",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/022/",
+      "locator": "己卯 庚午 甲寅 丁卯",
+      "evidence": "日元强",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R10",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬申",
+        "己酉"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/022/",
+      "locator": "庚午 己卯 壬申 己酉",
+      "evidence": "日元生旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "uncertain",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
+    },
+    {
+      "fixture": "ordinary-ran-yuan-v1",
+      "id": "R11",
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "丙寅",
+        "乙未"
+      ],
+      "reference": "strong",
+      "author": "任铁樵",
+      "url": "https://luckclub.cn/zhongyi/027/023/",
+      "locator": "癸酉 甲子 丙寅 乙未",
+      "evidence": "弱中之旺",
+      "basis": "explicit",
+      "scope": "natal",
+      "formation": "ordinary",
+      "verification": "electronic-text-checked",
+      "review": "docs/strength-source-review-03.md"
     }
   ]
 }
