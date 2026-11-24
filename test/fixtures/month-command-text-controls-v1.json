@@ -1,0 +1,40 @@
+{
+  "version": "month-command-text-controls-v1",
+  "engine": "370a9be9080291e27b234adda0038cde25e158d8",
+  "source": "https://wk.100ke.info/zh-hant/%E6%BB%B4%E5%A4%A9%E9%AB%93%E9%97%A1%E5%BE%AE",
+  "chapter": "十五、月令",
+  "crossCheck": "https://ctext.org/wiki.pl?chapter=826601&if=en",
+  "basis": "Electronic textual witnesses, not independently authenticated printed edition. Explicit author-reported commander only; no exact birth instant or inferred elapsed minutes. No labels fitted. Same previously used text; not independent-author validation.",
+  "cases": [
+    {
+      "id": "MC-DT01",
+      "pillars": [
+        "甲戌",
+        "丙寅",
+        "戊寅",
+        "丙辰"
+      ],
+      "annotation": "立春十五日後",
+      "reportedStem": "갑",
+      "reportedElement": "wood",
+      "reference": null,
+      "reason": "The author rejects the apparent weakness reading by discussing protected resource and killer-to-resource mediation; no unqualified binary strong label.",
+      "previous": null
+    },
+    {
+      "id": "MC-DT02",
+      "pillars": [
+        "甲戌",
+        "丙寅",
+        "戊辰",
+        "庚申"
+      ],
+      "annotation": "立春後六日",
+      "reportedStem": "무",
+      "reportedElement": "earth",
+      "reference": "strong",
+      "reason": "Explicit natal rooted strong body; resource and output control discussed.",
+      "previous": null
+    }
+  ]
+}
