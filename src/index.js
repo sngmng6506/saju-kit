@@ -60,3 +60,8 @@ export { analyzeBalanceUsefulElement, BALANCE_USEFUL_ELEMENT_VERSION } from './f
 export { analyzeBalancePriority, BALANCE_PRIORITY_VERSION } from './features/balance-priority-v1/index.js';
 
 export { analyzeBalanceRouteReview, BALANCE_ROUTE_REVIEW_VERSION } from './features/balance-route-review-v1/index.js';
+
+export { analyzeClimateUsefulElement, CLIMATE_USEFUL_ELEMENT_VERSION } from './features/climate-useful-element-v1/index.js';
+export { analyzeMediationUsefulElement, MEDIATION_USEFUL_ELEMENT_VERSION } from './features/mediation-useful-element-v1/index.js';
+export { analyzeRemedyEvidence, REMEDY_EVIDENCE_VERSION } from './features/remedy-evidence-v1/index.js';
+export { analyzeUsefulElementReview, USEFUL_ELEMENT_REVIEW_VERSION } from './features/useful-element-review-v1/index.js';
