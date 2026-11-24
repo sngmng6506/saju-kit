@@ -26,7 +26,7 @@ export function observePatternCandidates(context,interaction){
  // Wu/Horse blade convention is independent of the hidden principal.
  if(peerClass)candidates.push({id:'peer:'+peerClass,kind:'month-peer-class',family:blade?'blade':'peer',
   tenGod:null,stems:[],peerClass,selected:false,selectionAuthority:false});
- return {sources:PATTERN_SOURCES,monthHidden:rows,peerClass,
+ return {sources:{...PATTERN_SOURCES},monthHidden:rows,peerClass,
   principalStem:principal.stem,principalProjected:principal.projected,
   alternateProjections:rows.filter(r=>r.role!=='principal'&&r.projected===true).map(r=>r.stem),
   candidates,selectionResolved:false,selectedPattern:null};

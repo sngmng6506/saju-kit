@@ -1,13 +1,13 @@
 // Selective abstractions of 子平真詮, not sufficient conditions of 成格.
-export const PATTERN_SOURCES={
+export const PATTERN_SOURCES=Object.freeze({
  selection:'https://donglishuzhai.net/chapter/3721.html',
  change:'https://www.donglishuzhai.net/chapter/3723.html',
  outcome:'https://www.donglishuzhai.net/chapter/3722.html',
  blade:'https://donglishuzhai.net/chapter/3756.html',
  peer:'https://www.donglishuzhai.net/chapter/3758.html'
-};
-export const LU={갑:'인',을:'묘',병:'사',정:'오',무:'사',기:'오',경:'신',신:'유',임:'해',계:'자'};
-export const BLADE={갑:'묘',병:'오',무:'오',경:'유',임:'자'};
+});
+export const LU=Object.freeze({갑:'인',을:'묘',병:'사',정:'오',무:'사',기:'오',경:'신',신:'유',임:'해',계:'자'});
+export const BLADE=Object.freeze({갑:'묘',병:'오',무:'오',경:'유',임:'자'});
 export function patternFamily(tenGod){
  if(['정재','편재'].includes(tenGod))return 'wealth';
  if(['정인','편인'].includes(tenGod))return 'resource';

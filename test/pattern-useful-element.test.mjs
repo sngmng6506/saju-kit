@@ -39,3 +39,10 @@ test('provisional charts are withheld and day reference is not a projection',()=
  assert.equal(analyzePatternUsefulElement({saju,birthBasis:'provisional-chart',policy:PATTERN_USEFUL_ELEMENT_VERSION}).status,'unavailable');
  assert.throws(()=>analyzePatternUsefulElement({saju,birthBasis:'verified-chart',policy:'other'}));
 });
+
+test('returned source metadata cannot mutate later observations',()=>{
+ const saju=chart('갑인','경오','무신','갑인');
+ const first=analyze(saju),expected=first.selection.sources.selection;
+ first.selection.sources.selection='changed';
+ assert.equal(analyze(saju).selection.sources.selection,expected);
+});
