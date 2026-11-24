@@ -20,3 +20,6 @@ Central root ground has unique contribution to 12 correct labels. Removing minim
 ## Reproduction
 `node scripts/evaluate-strength-ablation.mjs` and `node --test test/strength-ablation.test.mjs`.
 Actual feature modules and equivalent decision function executed via V8 adapter per corpus; baseline parity verified. Unused calendar helper stubbed for full pillars; native runner and snapshot test not yet executed. Seasonal weighting ablation requires recomputation of all downstream masses, not removal of a decision gate; not included in this experiment.
+
+## Seasonal multiplier follow-up
+[Seasonal mass ablation](seasonal-ablation.md) recomputes all downstream masses; runtime policy unchanged.
