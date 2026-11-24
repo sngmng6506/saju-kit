@@ -35,3 +35,24 @@ No composite scenario, weights, score penalties, probabilities or causal inferen
 Seven new test bodies executed against actual source modules in V8 via an ESM adapter: duplicate occurrence alternatives, cardinal vs noncardinal candidates, layer-specific overlaps, retained alternate roots, sole-root exposure, excluded scenarios, partial/provisional and baseline/input immutability. Native Node test suite and independent expert evaluation remain pending. These APIs are diagnostics only, not a public service release gate pass.
 
 Next increment: measure material sensitivity on an ordinary reference corpus and distinguish cases requiring interaction-aware classification. A later scoring policy needs an independently justified mechanism, explicit version and separate test set. No fixed 합/충 bonus or penalty.
+
+## Development-corpus measurement (2026-11-24)
+
+Actual committed source at 4dad5f2 was executed in V8 through an ESM adapter using the frozen Ditiansui reference corpus. The six non-extreme cases (four direction references and two descriptive balance cases) are separate from the 20 extreme-chapter cases. All are development inputs, not independently labelled ordinary cases.
+
+| Diagnostic | Non-extreme six | All 26 (diagnostic only) |
+| --- | ---: | ---: |
+| Formation observations | 19 | 77 |
+| Simulated | 8 | 40 |
+| Not modeled | 11 | 37 |
+| Quantitative stable category changed | 5 | 14 |
+| Charts with at least one formation category change | 4 | 9 |
+| Clash endpoint scenarios | 6 | 12 |
+| Structural direction changed | 2 | 3 |
+| Conditional candidate category changed by clash stress | 0 | 0 |
+
+DX02 (庚申 辛巳 丙辰 乙未): baseline support range 34–38.85; full-slot reallocation for the year-month 巳申 relation to its associated water element gives 12.6–22.5 (stable weak). This agrees in direction with the textual reference under that hypothesis only. No actual transformation or changed chart category is inferred.
+
+DX01: year-day six-harmony reallocation gives 70–78.2 versus baseline 48–55.8, while a different day-hour partial three-harmony reallocation gives 37.5–44.6. This illustrates why concurrent relations must not be added or selected by desired outcome.
+
+The results show material sensitivity to hypothetical perturbation, not evidence that the assumed effects occur. Freeze the measurement using `node --test test/interaction-reference.test.mjs`. Native test execution remains pending; no change to production consumers.
