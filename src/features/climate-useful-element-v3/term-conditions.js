@@ -2,6 +2,7 @@ import { analyzeMonthCommand } from '../../core/month-command.js';
 import { solarTermInstant } from '../../core/calendar.js';
 const minute=t=>Date.UTC(t.y,t.m-1,t.d,t.hh,t.mm)/60000;
 const conditions={'before-summer-solstice':{index:11,side:'before'},'after-summer-solstice':{index:11,side:'after'},
+ 'before-grain-rain':{index:7,side:'before'},'after-grain-rain':{index:7,side:'after'},
  'before-autumn-equinox':{index:17,side:'before'},'after-autumn-equinox':{index:17,side:'after'}};
 // Resolve only explicit astronomical predicates, not textual prescriptions.
 // At the minute boundary neither textual "before" nor "after" is asserted.

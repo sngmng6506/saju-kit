@@ -73,3 +73,5 @@ export { analyzeUsefulElementTransit, USEFUL_ELEMENT_TRANSIT_VERSION } from './f
 export { analyzeClimateUsefulElementV3, CLIMATE_V3_VERSION } from './features/climate-useful-element-v3/index.js';
 export { analyzeUsefulElementAuthorityV2, USEFUL_ELEMENT_AUTHORITY_V2_VERSION } from './features/useful-element-authority-v2/index.js';
 export { analyzeUsefulElementTransitV2, USEFUL_ELEMENT_TRANSIT_V2_VERSION } from './features/useful-element-transit-v2/index.js';
+
+export { analyzeClimateUsefulElementV4, CLIMATE_V4_VERSION } from './features/climate-useful-element-v4/index.js';
