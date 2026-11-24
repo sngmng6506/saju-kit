@@ -17,3 +17,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - Proposed strength analysis is a separate opt-in policy: [strength-hybrid-v1](strength-hybrid-v1.md). Experimental opt-in API implemented; do not consume until the release gate is satisfied. It must not alter existing scores or select yongsin automatically.
 
 - The separate experimental [ordinary strength v2 contract](strength-ordinary-v2.md) is conditional on ordinary-chart interpretation. No special-pattern inference or consumer migration; v1 remains frozen.
+
+- [Interaction context and sensitivity](interaction-sensitivity-v1.md) are separate observational/diagnostic APIs. Scenario results must not replace actual ordinary-strength category.

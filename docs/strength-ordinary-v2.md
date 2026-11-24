@@ -43,3 +43,7 @@ Same deterministic Tokyo complete-chart sample as v1: years 1990–2000, every m
 14 v1 mixed candidates become unresolved, so v2 is not merely a relaxed gate. Formation caveats occur on 1,510/1,584 complete charts (95.3%), clash caveats on 645/1,584 (40.7%), with overlap. Formation includes partial candidates; presence does not establish material impact. The high prevalence confirms that using every formation as an automatic stop would be inappropriate for this ordinary-chart model. It does not establish that ignoring actual formation effects is correct. No empirical or reference-case accuracy claim; no population inference.
 
 Reproduce the sample with `node --test test/strength-ordinary-coverage.test.mjs`. The native test file freezes the measured distribution, including unresolved cases. Native Node execution remains pending. Next priority: independently labelled ordinary references, interaction relevance and sensitivity rather than loosening thresholds solely for coverage.
+
+## Interaction follow-up
+
+[Interaction sensitivity v1](interaction-sensitivity-v1.md) adds occurrence-aware context and independent hypothetical perturbations while preserving the ordinary v2 output exactly. Effective force calculation remains unvalidated.

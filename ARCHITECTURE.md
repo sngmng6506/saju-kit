@@ -5,3 +5,5 @@ The dependency-free ESM engine uses a functional core. `src/data` contains pinne
 Strength v1 reuses natal context and relations: evidence -> quantitative cross-check and qualitative rules -> review gate. No circular dependencies, network, new package, or consumer update. See [strength contract](docs/strength-hybrid-v1.md), [ADR-0001](docs/adr/0001-strength-hybrid.md), [consumer contract](docs/consumer-contract.md).
 
 Core element-structure exposes neutral elemental profiles, generating/controlling paths and positional relation observations. Experimental strength-ordinary-v2 consumes these plus frozen v1 quantitative scenarios, but not its review gate. See [ADR-0002](docs/adr/0002-ordinary-strength.md) and [contract](docs/strength-ordinary-v2.md).
+
+Core interaction-context adds occurrence-aware formation/clash context. The separate interaction-sensitivity-v1 feature uses frozen strength policies to run isolated hypothetical perturbations without changing baseline classifications. [ADR-0003](docs/adr/0003-interaction-sensitivity.md), [contract](docs/interaction-sensitivity-v1.md).

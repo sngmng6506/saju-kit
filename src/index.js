@@ -21,3 +21,6 @@ export { analyzeDayMasterStrength, STRENGTH_POLICY_VERSION } from './features/st
 
 export { analyzeElementStructure } from './core/element-structure.js';
 export { analyzeOrdinaryStrength, ORDINARY_STRENGTH_POLICY_VERSION } from './features/strength-ordinary-v2/index.js';
+
+export { analyzeInteractionContext } from './core/interaction-context.js';
+export { analyzeInteractionSensitivity, INTERACTION_SENSITIVITY_VERSION } from './features/interaction-sensitivity-v1/index.js';
