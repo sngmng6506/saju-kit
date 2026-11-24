@@ -48,3 +48,33 @@ test('all 3600 day pairs: symmetric neutral types; element direction inverts',()
   assert.throws(()=>analyzeCompatibility({left:{stem:'갑',branch:'축',text:'갑축'},right:pillars[0]}),{code:'pillar'});
   assert.throws(()=>analyzeCompatibility({left:pillars[0],right:pillars[0],scope:'full'}),{code:'scope'});
 });
+
+test('compatibility exposes only pillar fields, never caller metadata', () => {
+  const result = analyzeCompatibility({ left: { ...pillars[0], privateData: 'not a pillar' }, right: pillars[1] });
+  assert.deepEqual(result.left, pillars[0]);
+  assert.deepEqual(result.right, pillars[1]);
+});
+
+test('every canonical pair and group has the declared neutral classification', () => {
+  const combines = [['갑','기'],['을','경'],['병','신'],['정','임'],['무','계']];
+  const six = [['자','축'],['인','해'],['묘','술'],['진','유'],['사','신'],['오','미']];
+  const clashes = [['자','오'],['축','미'],['인','신'],['묘','유'],['진','술'],['사','해']];
+  const hasPair = (pairs, a, b) => pairs.some(p => a !== b && p.includes(a) && p.includes(b));
+  for (const a of stems) for (const b of stems) {
+    assert.equal(stemCombination(a, b) !== null, hasPair(combines, a, b));
+  }
+  for (const a of branches) for (const b of branches) {
+    const types = branchPairRelations(a, b).map(s => s.type);
+    assert.equal(types.includes('branch.sixHarmony'), hasPair(six, a, b));
+    assert.equal(types.includes('branch.clash'), hasPair(clashes, a, b));
+  }
+  for (const [type, groups] of [
+    ['branch.threeHarmony', [['신','자','진'],['해','묘','미'],['인','오','술'],['사','유','축']]],
+    ['branch.seasonalHarmony', [['인','묘','진'],['사','오','미'],['신','유','술'],['해','자','축']]],
+  ]) {
+    for (const group of groups) {
+      assert.ok(analyzeBranchGroups(group).some(s => s.type === type));
+      assert.ok(!analyzeBranchGroups(group.slice(0, 2)).some(s => s.type === type));
+    }
+  }
+});
