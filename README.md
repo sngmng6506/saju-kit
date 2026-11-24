@@ -81,3 +81,21 @@ const review = analyzeUsefulElementReview({
 ```
 
 The opt-in review preserves separate balance, climate, mediation and disease/remedy hypotheses; no final 用神/喜忌, special-pattern or event judgment. The climate source table covers only 11 of 120 stem-month cells; unsupported cells remain unresolved. Partial/provisional inputs have restricted evidence. See [method contracts and evaluation](docs/useful-element-review.md), [balance candidates](docs/balance-useful-element.md), [balance priority diagnostics](docs/balance-priority.md), and [balance route review](docs/balance-route-review.md). New research APIs do not change any movement or existing strength policy.
+
+### Expanded source and temporal review
+
+`analyzeClimateUsefulElementV2({saju,birthBasis:'verified-chart',policy:'climate-useful-element-v2'})` adds a source-specific 38/120-cell table while preserving v1. `analyzeUsefulElementAuthority({saju,birthBasis:'verified-chart',policy:'useful-element-authority-v1'})` reports withheld selection and conditional anchor relations, not final 喜忌.
+
+```js
+import { getSaju, analyzeUsefulElementTransit } from 'saju-kit';
+const birth = { y: 2000, m: 2, d: 9, hh: 12, mm: 0 };
+const saju = getSaju(birth);
+const result = analyzeUsefulElementTransit({
+  saju, birth, gender: '남', birthBasis: 'verified-chart',
+  policy: 'useful-element-transit-v1',
+  daeunPolicy: 'movement-minute-v6',
+  fromYear: 2026, toYear: 2035
+});
+```
+
+This is annual/decadal conditional evidence with existing civil-year daeun bands and Ipchun annual labels, not exact transition instants or a luck score. No automatic favorable/unfavorable selection. See [expanded source and transit contract](docs/useful-element-expansion.md).
