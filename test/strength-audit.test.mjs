@@ -8,8 +8,8 @@ test('audit overlay partitions all historical rows and rejects stale evidence',a
  const audit=await read('strength-audit-v1');
  const evaluation={corpora:fixtures.map(f=>({name:f.name,rows:f.cases.map(c=>({id:c.id,reference:c.reference,results:[null,null,null,null]}))}))};
  const g=classifyAuditedRows(fixtures,audit,evaluation);
- assert.deepEqual(Object.fromEntries(Object.entries(g).map(([k,v])=>[k,v.length])),{primary:3,secondary:8,unreviewed:65,nonDirectional:32});
- assert.deepEqual(g.primary.map(r=>r.id),['H04','H05','H06']);
+ assert.deepEqual(Object.fromEntries(Object.entries(g).map(([k,v])=>[k,v.length])),{primary:10,secondary:11,unreviewed:55,nonDirectional:32});
+ assert.deepEqual(g.primary.map(r=>r.id),['R01','R02','R03','R04','R07','R09','R11','H04','H05','H06']);
  const stale=structuredClone(audit);stale.entries[0].pillars[0]='甲子';
  assert.throws(()=>classifyAuditedRows(fixtures,stale,evaluation),/stale/);
  const duplicate=structuredClone(audit);duplicate.entries.push(duplicate.entries[0]);
