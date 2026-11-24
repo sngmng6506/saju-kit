@@ -1,0 +1,181 @@
+{
+  "version": "ordinary-ran-yuan-v1",
+  "frozenEngine": "4f4bd0e9f09394a9c6f2a32bd4de390260dd4a9e",
+  "selection": "Selected explicit natal direction and qualified statements from inspected original-text sections before model execution; not random or independent expert labels.",
+  "sources": {
+    "yuan": {
+      "url": "https://taoly.app/library/bazi/ming-li-tan-yuan/008/",
+      "author": "袁树珊"
+    },
+    "officer": {
+      "url": "https://luckclub.cn/zhongyi/027/021/",
+      "author": "任铁樵"
+    },
+    "output": {
+      "url": "https://luckclub.cn/zhongyi/027/022/",
+      "author": "任铁樵"
+    },
+    "clear": {
+      "url": "https://luckclub.cn/zhongyi/027/023/",
+      "author": "任铁樵"
+    }
+  },
+  "cases": [
+    {
+      "id": "Y01",
+      "source": "yuan",
+      "pillars": [
+        "戊子",
+        "乙卯",
+        "戊戌",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "reason": "목왕에 토쇠, 화금의 지원 부족"
+    },
+    {
+      "id": "R01",
+      "source": "officer",
+      "pillars": [
+        "己酉",
+        "丙寅",
+        "庚申",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "reason": "실령에도 두 녹왕과 인비로 왕"
+    },
+    {
+      "id": "R02",
+      "source": "officer",
+      "pillars": [
+        "戊申",
+        "癸亥",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "reason": "일지 왕근에도 해월 휴수"
+    },
+    {
+      "id": "R03",
+      "source": "officer",
+      "pillars": [
+        "甲辰",
+        "己巳",
+        "戊辰",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "reason": "사월 무토 왕"
+    },
+    {
+      "id": "R04",
+      "source": "officer",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "庚申",
+        "丁丑"
+      ],
+      "reference": "strong",
+      "reason": "좌록과 인성으로 왕"
+    },
+    {
+      "id": "R05",
+      "source": "officer",
+      "pillars": [
+        "丙辰",
+        "辛卯",
+        "乙亥",
+        "庚辰"
+      ],
+      "reference": "strong",
+      "reason": "월록과 일지 생조, 목왕 불종"
+    },
+    {
+      "id": "R06",
+      "source": "officer",
+      "pillars": [
+        "丙辰",
+        "丁酉",
+        "庚午",
+        "戊寅"
+      ],
+      "reference": "balanced",
+      "reason": "중화 서술"
+    },
+    {
+      "id": "R07",
+      "source": "output",
+      "pillars": [
+        "丙申",
+        "戊戌",
+        "丁卯",
+        "乙巳"
+      ],
+      "reference": "strong",
+      "reason": "겁인 중첩으로 왕"
+    },
+    {
+      "id": "R08",
+      "source": "output",
+      "pillars": [
+        "癸亥",
+        "乙卯",
+        "壬申",
+        "乙巳"
+      ],
+      "reference": "qualified",
+      "reason": "일주 불약, 강으로 단정하지 않음"
+    },
+    {
+      "id": "R09",
+      "source": "output",
+      "pillars": [
+        "己卯",
+        "庚午",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "reason": "지지 근기와 일원 강"
+    },
+    {
+      "id": "R10",
+      "source": "output",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬申",
+        "己酉"
+      ],
+      "reference": "strong",
+      "reason": "관인 통근 및 일원 생왕"
+    },
+    {
+      "id": "R11",
+      "source": "clear",
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "丙寅",
+        "乙未"
+      ],
+      "reference": "strong",
+      "reason": "좌장생과 깊은 인근으로 왕"
+    },
+    {
+      "id": "R12",
+      "source": "clear",
+      "pillars": [
+        "甲子",
+        "丙寅",
+        "己亥",
+        "辛未"
+      ],
+      "reference": "qualified",
+      "reason": "일주 기운 불박, 방향 미확정"
+    }
+  ]
+}

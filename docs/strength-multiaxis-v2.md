@@ -17,3 +17,6 @@ Actual source executed in V8 adapter. Four new test cases checked, including W24
 W01/W02/W20 change unresolved to strong, W24 false strong becomes unresolved, W10 correct weak becomes unresolved. XU07/XU24 correct weak become unresolved. XU04 disputed reference changes to strong and W13 balanced description changes strong to unresolved; neither is scored. Excluded extreme chapter remains outside metrics. Total 28 agreements unchanged, false direction 1→0, abstentions 25→26. No general accuracy improvement established. All three sets are now development evidence; no independent evaluation for v2. Next obtain unseen ordinary examples and assess whether resource exposure and pressure conflicts are sufficient, rather than relaxing gates to fit known charts. No consumer migration.
 
 Reproduce with `node --test test/strength-multiaxis-v2.test.mjs test/multiaxis-v2-reference.test.mjs`.
+
+## Unseen-chart comparison
+See [Ran/Yuan references](ordinary-ran-yuan-reference-v1.md). V2 agrees on five of ten directional cases, no opposite direction, five abstentions. No rule changes.
