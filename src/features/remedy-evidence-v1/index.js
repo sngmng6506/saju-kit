@@ -1,3 +1,4 @@
+import { observePathNode } from '../../core/path-node-evidence.js';
 import { analyzeRootDynamics } from '../../core/root-dynamics.js';
 import { analyzeElementStructure } from '../../core/element-structure.js';
 import { elementRelation } from '../../core/elements.js';
@@ -8,14 +9,7 @@ const slot=n=>n.position+':'+n.layer;
 const controls=(a,b)=>{const r=elementRelation(a,b);return r.type==='control'&&r.direction==='left-to-right';};
 export function observeRemedyEvidence(dynamics,structure){
  const byId=new Map(dynamics.nodes.map(n=>[n.id,n]));
- const clash=new Set(structure.clashes.flatMap(c=>c.positions));
- const evidence=n=>{
-  const profile=structure.profiles.find(p=>p.element===n.element);
-  const visible=n.layer==='stem'?profile.visible.find(v=>v.position===n.position):null;
-  return {id:n.id,element:n.element,position:n.position,layer:n.layer,
-   anchored:n.layer==='stem'?n.rooted:n.role==='principal',
-   intactSubstantialRoot:n.layer==='stem'?visible.matches.some(m=>m.role!=='residual'&&!clash.has(m.position)):n.role!=='residual'&&!clash.has(n.position)};
- };
+ const evidence=n=>observePathNode(n,structure);
  const control=dynamics.edges.filter(e=>e.type==='control');
  const month=dynamics.nodes.find(n=>n.position==='month'&&n.layer==='branch'&&n.role==='principal');
  return control.map(e=>{
