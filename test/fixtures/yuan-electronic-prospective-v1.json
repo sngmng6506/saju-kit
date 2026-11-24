@@ -1,0 +1,201 @@
+{
+  "version": "yuan-electronic-prospective-v1",
+  "engine": "d56631f57cf862bda01f023663efea2f461edafd",
+  "author": "袁樹珊 (attributed)",
+  "book": "命譜 (online transcription)",
+  "source": "https://www.suanzhun.net/book/1376.html",
+  "scan": "https://upload.wikimedia.org/wikipedia/commons/c/cd/NLC416-07jh011618-5225_%E5%91%BD%E8%AD%9C.pdf",
+  "verification": "Electronic witness only; archive scan screenshot failed due to file size, edition alignment unconfirmed. Do not count as print-authenticated or independent-author evidence. Explicit labels selected before engine run; not consecutive sampling. No retrospective relabeling.",
+  "policy": "Existing fixed; original P1; P1 with seated principal resource guard; P1 with seated anchored chain guard. Existing directions and conflicts preserved.",
+  "excluded": [],
+  "cases": [
+    {
+      "id": "YS06",
+      "pillars": [
+        "戊午",
+        "乙丑",
+        "壬申",
+        "乙巳"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "pages": [
+        1,
+        2
+      ],
+      "reason": "Explicit killer-dominant weak day master; ordinary strength argument also discusses command after Great Cold.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS07",
+      "pillars": [
+        "己巳",
+        "丁丑",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "formation": "formation-sensitive",
+      "pages": [
+        2
+      ],
+      "reason": "Explicit slightly weak day master, but virtual metal combination and month command are invoked.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS09",
+      "pillars": [
+        "乙亥",
+        "乙酉",
+        "己卯",
+        "庚午"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "pages": [
+        2
+      ],
+      "reason": "Explicit weak earth contrasted with strong metal; seated hour fire maintains support.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS14",
+      "pillars": [
+        "己未",
+        "庚午",
+        "戊戌",
+        "壬子"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "pages": [
+        3
+      ],
+      "reason": "Explicit strong body able to bear wealth and excessive peers.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS15",
+      "pillars": [
+        "癸未",
+        "乙丑",
+        "壬戌",
+        "庚子"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "pages": [
+        3
+      ],
+      "reason": "Explicit strong killer and weak body; output restrains killer.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS19",
+      "pillars": [
+        "乙卯",
+        "丙戌",
+        "癸酉",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "formation": "formation-sensitive",
+      "pages": [
+        3
+      ],
+      "reason": "Weak water under ordinary reading; virtual enclosure is subsequently central to interpretation.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS24",
+      "pillars": [
+        "壬戌",
+        "壬子",
+        "庚子",
+        "丙子"
+      ],
+      "reference": "weak",
+      "formation": "formation-sensitive",
+      "pages": [
+        4
+      ],
+      "reason": "Explicit weak day master; alternative flying-lu and output patterns discussed.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS28",
+      "pillars": [
+        "壬午",
+        "庚戌",
+        "己酉",
+        "庚午"
+      ],
+      "reference": "weak",
+      "formation": "formation-sensitive",
+      "pages": [
+        5
+      ],
+      "reason": "Explicit ordinary strength reversal to weak due to output; virtual enclosure invoked.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS38",
+      "pillars": [
+        "庚午",
+        "癸未",
+        "庚申",
+        "丁亥"
+      ],
+      "reference": "strong",
+      "formation": "formation-sensitive",
+      "pages": [
+        7
+      ],
+      "reason": "Explicit strong body based on late-summer earth and day root; virtual wealth and month command also discussed.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS42",
+      "pillars": [
+        "癸丑",
+        "戊午",
+        "己巳",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "formation": "formation-sensitive",
+      "pages": [
+        8
+      ],
+      "reason": "Explicit very strong day master under ordinary reading, with virtual configurations also mentioned.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    },
+    {
+      "id": "YS43",
+      "pillars": [
+        "己未",
+        "乙亥",
+        "癸亥",
+        "丙辰"
+      ],
+      "reference": "strong",
+      "formation": "formation-sensitive",
+      "pages": [
+        8
+      ],
+      "reason": "Explicit very strong day master; virtual resource routes discussed.",
+      "verification": "single-electronic-witness",
+      "basis": "explicit-natal-direction"
+    }
+  ]
+}
