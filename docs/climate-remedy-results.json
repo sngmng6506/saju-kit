@@ -1,0 +1,1198 @@
+{
+  "engine": "a63e946be9a11e3c3fd3f63c195d3f0fd46c904f",
+  "method": "Actual climate and remedy public entry modules and dependencies in V8; 100 frozen historical charts plus four method-specific source controls. Source coverage checked across all 120 combinations. No native Node full suite.",
+  "counts": {
+    "charts": 100,
+    "sourceRows": 11,
+    "seasonalCue": 16,
+    "sourceProfile": 5,
+    "remedyMotifs": 3056,
+    "remedyPaths": 5751,
+    "adjacentRemedyPaths": 1547
+  },
+  "controls": [
+    {
+      "id": "CL-X01",
+      "referenceElement": "fire",
+      "seasonal": {
+        "element": "fire",
+        "visible": [],
+        "roots": [
+          {
+            "position": "hour",
+            "role": "principal",
+            "clashExposed": false
+          }
+        ],
+        "presentOutsideDay": true
+      },
+      "sourceProfile": {
+        "sourceId": "qiongtong-electronic-v1",
+        "url": "https://zh.wikisource.org/zh-hant/%E7%A9%AE%E9%80%9A%E5%AF%B6%E9%91%91",
+        "section": "三冬辛金",
+        "dayStem": "신",
+        "monthBranch": "축",
+        "groups": [
+          [
+            {
+              "stem": "병",
+              "element": "fire",
+              "exactVisible": [],
+              "exactHidden": [
+                {
+                  "position": "hour",
+                  "role": "residual",
+                  "clashExposed": false
+                }
+              ],
+              "elementalEvidence": {
+                "element": "fire",
+                "visible": [],
+                "roots": [
+                  {
+                    "position": "hour",
+                    "role": "principal",
+                    "clashExposed": false
+                  }
+                ],
+                "presentOutsideDay": true
+              }
+            }
+          ],
+          [
+            {
+              "stem": "임",
+              "element": "water",
+              "exactVisible": [
+                "year"
+              ],
+              "exactHidden": [],
+              "elementalEvidence": {
+                "element": "water",
+                "visible": [
+                  {
+                    "position": "year",
+                    "stem": "임"
+                  },
+                  {
+                    "position": "month",
+                    "stem": "계"
+                  }
+                ],
+                "roots": [
+                  {
+                    "position": "year",
+                    "role": "middle",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "month",
+                    "role": "residual",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "day",
+                    "role": "residual",
+                    "clashExposed": false
+                  }
+                ],
+                "presentOutsideDay": true
+              }
+            }
+          ],
+          [
+            {
+              "stem": "무",
+              "element": "earth",
+              "exactVisible": [],
+              "exactHidden": [
+                {
+                  "position": "year",
+                  "role": "principal",
+                  "clashExposed": false
+                }
+              ],
+              "elementalEvidence": {
+                "element": "earth",
+                "visible": [],
+                "roots": [
+                  {
+                    "position": "year",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "month",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "day",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "hour",
+                    "role": "middle",
+                    "clashExposed": false
+                  }
+                ],
+                "presentOutsideDay": true
+              }
+            },
+            {
+              "stem": "기",
+              "element": "earth",
+              "exactVisible": [],
+              "exactHidden": [
+                {
+                  "position": "month",
+                  "role": "principal",
+                  "clashExposed": false
+                },
+                {
+                  "position": "day",
+                  "role": "principal",
+                  "clashExposed": false
+                },
+                {
+                  "position": "hour",
+                  "role": "middle",
+                  "clashExposed": false
+                }
+              ],
+              "elementalEvidence": {
+                "element": "earth",
+                "visible": [],
+                "roots": [
+                  {
+                    "position": "year",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "month",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "day",
+                    "role": "principal",
+                    "clashExposed": false
+                  },
+                  {
+                    "position": "hour",
+                    "role": "middle",
+                    "clashExposed": false
+                  }
+                ],
+                "presentOutsideDay": true
+              }
+            }
+          ]
+        ],
+        "qualifiers": [
+          "water-excess-earth-remedy"
+        ],
+        "scope": "partial-seasonal-use-text-not-pure-climate",
+        "orderStatus": "source-baseline-context-unresolved",
+        "qualifiersResolved": false
+      }
+    },
+    {
+      "id": "CL-X02",
+      "referenceElement": "fire",
+      "seasonal": {
+        "element": "fire",
+        "visible": [],
+        "roots": [
+          {
+            "position": "day",
+            "role": "principal",
+            "clashExposed": false
+          }
+        ],
+        "presentOutsideDay": true
+      },
+      "sourceProfile": null
+    },
+    {
+      "id": "DR-X01",
+      "target": "water",
+      "threat": "earth",
+      "referenceElement": "wood",
+      "motifs": 11,
+      "paths": 16,
+      "adjacentPaths": 8,
+      "contextualPaths": 11
+    },
+    {
+      "id": "DR-X02",
+      "target": "water",
+      "threat": "earth",
+      "referenceElement": "wood",
+      "motifs": 10,
+      "paths": 15,
+      "adjacentPaths": 2,
+      "contextualPaths": 15
+    }
+  ],
+  "rows": [
+    {
+      "id": "H01",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 24,
+      "remedyPaths": 38,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "H02",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 32,
+      "remedyPaths": 60,
+      "adjacentRemedyPaths": 19
+    },
+    {
+      "id": "H03",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 45,
+      "remedyPaths": 110,
+      "adjacentRemedyPaths": 37
+    },
+    {
+      "id": "H04",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 47,
+      "remedyPaths": 110,
+      "adjacentRemedyPaths": 34
+    },
+    {
+      "id": "H05",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 41,
+      "remedyPaths": 86,
+      "adjacentRemedyPaths": 25
+    },
+    {
+      "id": "H06",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 47,
+      "remedyPaths": 112,
+      "adjacentRemedyPaths": 26
+    },
+    {
+      "id": "H07",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 35,
+      "remedyPaths": 72,
+      "adjacentRemedyPaths": 29
+    },
+    {
+      "id": "H08",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 31,
+      "remedyPaths": 60,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "W10",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 21,
+      "remedyPaths": 28,
+      "adjacentRemedyPaths": 5
+    },
+    {
+      "id": "W12",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 23,
+      "remedyPaths": 34,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "DX01",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 30,
+      "remedyPaths": 62,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "Y01",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 26,
+      "remedyPaths": 36,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "R01",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 32,
+      "remedyPaths": 64,
+      "adjacentRemedyPaths": 22
+    },
+    {
+      "id": "R02",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 44,
+      "remedyPaths": 85,
+      "adjacentRemedyPaths": 27
+    },
+    {
+      "id": "R03",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 38,
+      "remedyPaths": 54,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "R04",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 33,
+      "remedyPaths": 72,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "R05",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 33,
+      "remedyPaths": 64,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "R07",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 31,
+      "remedyPaths": 60,
+      "adjacentRemedyPaths": 14
+    },
+    {
+      "id": "R09",
+      "priorDirection": "strong",
+      "seasonal": "water",
+      "source": null,
+      "remedyMotifs": 18,
+      "remedyPaths": 22,
+      "adjacentRemedyPaths": 10
+    },
+    {
+      "id": "R10",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 19,
+      "remedyPaths": 31,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "R11",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 23,
+      "remedyPaths": 42,
+      "adjacentRemedyPaths": 5
+    },
+    {
+      "id": "W01",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 10,
+      "remedyPaths": 10,
+      "adjacentRemedyPaths": 0
+    },
+    {
+      "id": "W02",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 23,
+      "remedyPaths": 40,
+      "adjacentRemedyPaths": 11
+    },
+    {
+      "id": "W03",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 23,
+      "remedyPaths": 38,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "W04",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 24,
+      "remedyPaths": 44,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "W05",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 29,
+      "remedyPaths": 58,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "W06",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 31,
+      "remedyPaths": 64,
+      "adjacentRemedyPaths": 23
+    },
+    {
+      "id": "W08",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 68,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "W09",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 35,
+      "remedyPaths": 70,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "W14",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 24,
+      "remedyPaths": 38,
+      "adjacentRemedyPaths": 4
+    },
+    {
+      "id": "W15",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 22,
+      "remedyPaths": 28,
+      "adjacentRemedyPaths": 7
+    },
+    {
+      "id": "W16",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 46,
+      "remedyPaths": 110,
+      "adjacentRemedyPaths": 27
+    },
+    {
+      "id": "W17",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 62,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "W18",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 36,
+      "remedyPaths": 74,
+      "adjacentRemedyPaths": 24
+    },
+    {
+      "id": "W19",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 41,
+      "remedyPaths": 86,
+      "adjacentRemedyPaths": 16
+    },
+    {
+      "id": "W20",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 25,
+      "remedyPaths": 42,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "W22",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 18,
+      "remedyPaths": 26,
+      "adjacentRemedyPaths": 6
+    },
+    {
+      "id": "W23",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 20,
+      "remedyPaths": 20,
+      "adjacentRemedyPaths": 4
+    },
+    {
+      "id": "W24",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 35,
+      "remedyPaths": 66,
+      "adjacentRemedyPaths": 21
+    },
+    {
+      "id": "W25",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 32,
+      "remedyPaths": 69,
+      "adjacentRemedyPaths": 13
+    },
+    {
+      "id": "W26",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 23,
+      "remedyPaths": 23,
+      "adjacentRemedyPaths": 6
+    },
+    {
+      "id": "W28",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 19,
+      "remedyPaths": 27,
+      "adjacentRemedyPaths": 6
+    },
+    {
+      "id": "XU01",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 26,
+      "remedyPaths": 37,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "XU02",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 50,
+      "remedyPaths": 108,
+      "adjacentRemedyPaths": 32
+    },
+    {
+      "id": "XU03",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 72,
+      "adjacentRemedyPaths": 16
+    },
+    {
+      "id": "XU06",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 25,
+      "remedyPaths": 36,
+      "adjacentRemedyPaths": 6
+    },
+    {
+      "id": "XU07",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 39,
+      "remedyPaths": 84,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "XU08",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 31,
+      "remedyPaths": 64,
+      "adjacentRemedyPaths": 20
+    },
+    {
+      "id": "XU09",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 46,
+      "remedyPaths": 108,
+      "adjacentRemedyPaths": 27
+    },
+    {
+      "id": "XU10",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 22,
+      "remedyPaths": 41,
+      "adjacentRemedyPaths": 15
+    },
+    {
+      "id": "XU11",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 31,
+      "adjacentRemedyPaths": 5
+    },
+    {
+      "id": "XU12",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 47,
+      "remedyPaths": 110,
+      "adjacentRemedyPaths": 33
+    },
+    {
+      "id": "XU13",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 64,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "XU14",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 25,
+      "remedyPaths": 42,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "XU15",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 33,
+      "remedyPaths": 68,
+      "adjacentRemedyPaths": 23
+    },
+    {
+      "id": "XU16",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 36,
+      "remedyPaths": 68,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "XU17",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 35,
+      "remedyPaths": 66,
+      "adjacentRemedyPaths": 10
+    },
+    {
+      "id": "XU19",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 19,
+      "remedyPaths": 26,
+      "adjacentRemedyPaths": 4
+    },
+    {
+      "id": "XU20",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 30,
+      "remedyPaths": 55,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "XU21",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 17,
+      "remedyPaths": 22,
+      "adjacentRemedyPaths": 6
+    },
+    {
+      "id": "XU23",
+      "priorDirection": "strong",
+      "seasonal": "water",
+      "source": null,
+      "remedyMotifs": 29,
+      "remedyPaths": 30,
+      "adjacentRemedyPaths": 11
+    },
+    {
+      "id": "XU24",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": {
+        "dayStem": "신",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "병"
+          ]
+        ]
+      },
+      "remedyMotifs": 26,
+      "remedyPaths": 46,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "XU25",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 31,
+      "remedyPaths": 58,
+      "adjacentRemedyPaths": 23
+    },
+    {
+      "id": "XU26",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 11,
+      "remedyPaths": 12,
+      "adjacentRemedyPaths": 0
+    },
+    {
+      "id": "XU27",
+      "priorDirection": "weak",
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 20,
+      "remedyPaths": 30,
+      "adjacentRemedyPaths": 8
+    },
+    {
+      "id": "XU28",
+      "priorDirection": null,
+      "seasonal": "water",
+      "source": {
+        "dayStem": "병",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ]
+      },
+      "remedyMotifs": 38,
+      "remedyPaths": 76,
+      "adjacentRemedyPaths": 15
+    },
+    {
+      "id": "XU29",
+      "priorDirection": "strong",
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 22,
+      "remedyPaths": 28,
+      "adjacentRemedyPaths": 2
+    },
+    {
+      "id": "XU30",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 47,
+      "remedyPaths": 104,
+      "adjacentRemedyPaths": 26
+    },
+    {
+      "id": "XU31",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 46,
+      "remedyPaths": 110,
+      "adjacentRemedyPaths": 35
+    },
+    {
+      "id": "DX02",
+      "priorDirection": null,
+      "seasonal": "water",
+      "source": null,
+      "remedyMotifs": 45,
+      "remedyPaths": 108,
+      "adjacentRemedyPaths": 19
+    },
+    {
+      "id": "DX03",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 33,
+      "remedyPaths": 48,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "DH02",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 21,
+      "remedyPaths": 37,
+      "adjacentRemedyPaths": 14
+    },
+    {
+      "id": "L76",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 27,
+      "remedyPaths": 48,
+      "adjacentRemedyPaths": 10
+    },
+    {
+      "id": "L91",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 28,
+      "remedyPaths": 56,
+      "adjacentRemedyPaths": 19
+    },
+    {
+      "id": "L95",
+      "priorDirection": "strong",
+      "seasonal": "water",
+      "source": {
+        "dayStem": "병",
+        "monthBranch": "오",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ]
+      },
+      "remedyMotifs": 32,
+      "remedyPaths": 66,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "L98",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 41,
+      "remedyPaths": 89,
+      "adjacentRemedyPaths": 29
+    },
+    {
+      "id": "ZN01",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 30,
+      "remedyPaths": 58,
+      "adjacentRemedyPaths": 11
+    },
+    {
+      "id": "ZN02",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 36,
+      "remedyPaths": 76,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "ZN03",
+      "priorDirection": null,
+      "seasonal": "water",
+      "source": null,
+      "remedyMotifs": 28,
+      "remedyPaths": 42,
+      "adjacentRemedyPaths": 10
+    },
+    {
+      "id": "ZN04",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 19,
+      "remedyPaths": 30,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "ZN05",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 26,
+      "remedyPaths": 26,
+      "adjacentRemedyPaths": 9
+    },
+    {
+      "id": "ZN06",
+      "priorDirection": null,
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 38,
+      "remedyPaths": 89,
+      "adjacentRemedyPaths": 25
+    },
+    {
+      "id": "ZN07",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": {
+        "dayStem": "갑",
+        "monthBranch": "해",
+        "groups": [
+          [
+            "경",
+            "정"
+          ],
+          [
+            "병"
+          ]
+        ]
+      },
+      "remedyMotifs": 45,
+      "remedyPaths": 106,
+      "adjacentRemedyPaths": 25
+    },
+    {
+      "id": "ZN08",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 24,
+      "remedyPaths": 44,
+      "adjacentRemedyPaths": 12
+    },
+    {
+      "id": "ZN09",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 27,
+      "remedyPaths": 48,
+      "adjacentRemedyPaths": 13
+    },
+    {
+      "id": "ZN10",
+      "priorDirection": null,
+      "seasonal": "water",
+      "source": {
+        "dayStem": "병",
+        "monthBranch": "미",
+        "groups": [
+          [
+            "임"
+          ],
+          [
+            "경"
+          ]
+        ]
+      },
+      "remedyMotifs": 29,
+      "remedyPaths": 30,
+      "adjacentRemedyPaths": 11
+    },
+    {
+      "id": "L77",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 44,
+      "remedyPaths": 94,
+      "adjacentRemedyPaths": 30
+    },
+    {
+      "id": "L78",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 25,
+      "remedyPaths": 48,
+      "adjacentRemedyPaths": 11
+    },
+    {
+      "id": "L80",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 34,
+      "remedyPaths": 70,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "L82",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 18,
+      "remedyPaths": 22,
+      "adjacentRemedyPaths": 8
+    },
+    {
+      "id": "L83",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 14,
+      "remedyPaths": 16,
+      "adjacentRemedyPaths": 2
+    },
+    {
+      "id": "L96",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 32,
+      "remedyPaths": 66,
+      "adjacentRemedyPaths": 17
+    },
+    {
+      "id": "ZW03",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 36,
+      "remedyPaths": 77,
+      "adjacentRemedyPaths": 18
+    },
+    {
+      "id": "ZW04",
+      "priorDirection": "strong",
+      "seasonal": "fire",
+      "source": null,
+      "remedyMotifs": 22,
+      "remedyPaths": 36,
+      "adjacentRemedyPaths": 8
+    },
+    {
+      "id": "ZW05",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 26,
+      "remedyPaths": 48,
+      "adjacentRemedyPaths": 22
+    },
+    {
+      "id": "ZW06",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 11,
+      "remedyPaths": 6,
+      "adjacentRemedyPaths": 3
+    },
+    {
+      "id": "ZW10",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 47,
+      "remedyPaths": 102,
+      "adjacentRemedyPaths": 30
+    },
+    {
+      "id": "ZW11",
+      "priorDirection": "strong",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 36,
+      "remedyPaths": 60,
+      "adjacentRemedyPaths": 13
+    },
+    {
+      "id": "ZW12",
+      "priorDirection": null,
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 28,
+      "remedyPaths": 38,
+      "adjacentRemedyPaths": 8
+    },
+    {
+      "id": "ZW13",
+      "priorDirection": "weak",
+      "seasonal": null,
+      "source": null,
+      "remedyMotifs": 44,
+      "remedyPaths": 106,
+      "adjacentRemedyPaths": 33
+    }
+  ]
+}
