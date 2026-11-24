@@ -1,0 +1,350 @@
+{
+  "engine": "2d078af9675b415dff1777fe4d03f2be95ea742c",
+  "method": "Actual source module graph including full bundled solar-term and lunar data, V8. No calendar stub. Full 1900–2100 month starts, boundaries tested on the source resolver, sampled exact calendar boundary integration and missing-birth corpus checks.",
+  "counts": {
+    "modules": 11,
+    "intervals": 2412,
+    "boundaries": 6432,
+    "normalized": 6432,
+    "literalTail": 1608,
+    "modeDisagreement": 0,
+    "calendarBoundaryChecks": 242,
+    "historicalWithoutBirth": 100,
+    "minDurationMinutes": 42417,
+    "maxDurationMinutes": 45272
+  },
+  "examples": [
+    {
+      "birth": {
+        "y": 2026,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0
+      },
+      "month": "인",
+      "elapsed": 7618,
+      "duration": 42837,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "병"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "병"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "conditional",
+          "기"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "conditional",
+          "기"
+        ]
+      ],
+      "elements": [
+        "fire",
+        "earth"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2026,
+        "m": 2,
+        "d": 15,
+        "hh": 12,
+        "mm": 0
+      },
+      "month": "인",
+      "elapsed": 16258,
+      "duration": 42837,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "갑"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "갑"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "conditional",
+          "병"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "conditional",
+          "병"
+        ]
+      ],
+      "elements": [
+        "wood",
+        "fire"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2026,
+        "m": 4,
+        "d": 14,
+        "hh": 12,
+        "mm": 0
+      },
+      "month": "진",
+      "elapsed": 13460,
+      "duration": 44229,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "임"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "임"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "source-unresolved",
+          null
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "source-unresolved",
+          null
+        ]
+      ],
+      "elements": [
+        "water"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2026,
+        "m": 12,
+        "d": 20,
+        "hh": 12,
+        "mm": 0
+      },
+      "month": "자",
+      "elapsed": 18727,
+      "duration": 42437,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "계"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "계"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "source-unresolved",
+          null
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "source-unresolved",
+          null
+        ]
+      ],
+      "elements": [
+        "water"
+      ]
+    },
+    {
+      "birth": {
+        "y": 1997,
+        "m": 6,
+        "d": 28,
+        "hh": 8,
+        "mm": 0
+      },
+      "month": "오",
+      "elapsed": 32127,
+      "duration": 45256,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "정"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "정"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "source-unresolved",
+          null
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "source-unresolved",
+          null
+        ]
+      ],
+      "elements": [
+        "fire"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2023,
+        "m": 11,
+        "d": 27,
+        "hh": 11,
+        "mm": 0
+      },
+      "month": "해",
+      "elapsed": 27924,
+      "duration": 42777,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "임"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "임"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "source-unresolved",
+          null
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "source-unresolved",
+          null
+        ]
+      ],
+      "elements": [
+        "water"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2026,
+        "m": 1,
+        "d": 1,
+        "hh": 12,
+        "mm": 0
+      },
+      "month": "자",
+      "elapsed": 36355,
+      "duration": 42438,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "계"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "계"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "source-unresolved",
+          null
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "source-unresolved",
+          null
+        ]
+      ],
+      "elements": [
+        "water"
+      ]
+    },
+    {
+      "birth": {
+        "y": 2026,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0,
+        "timezone": "Asia/Tokyo"
+      },
+      "month": "인",
+      "elapsed": 7618,
+      "duration": 42837,
+      "commands": [
+        [
+          "sanming-tonghui-juan2",
+          "literal-days",
+          "conditional",
+          "병"
+        ],
+        [
+          "sanming-tonghui-juan2",
+          "normalized-30",
+          "conditional",
+          "병"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "literal-days",
+          "conditional",
+          "기"
+        ],
+        [
+          "zou-zi-ping-ming-shu-p8",
+          "normalized-30",
+          "conditional",
+          "기"
+        ]
+      ],
+      "elements": [
+        "fire",
+        "earth"
+      ]
+    }
+  ]
+}
