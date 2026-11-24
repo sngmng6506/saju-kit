@@ -39,3 +39,5 @@ Opt in to `branchRelationsV2`, `analyzeBranchGroupsV2`, `analyzeNatalRelations`,
 Architecture: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 Classical development-case comparison: [strength reference v1](docs/strength-reference-v1.md). Run `node scripts/evaluate-strength-reference.mjs` to reproduce; this is not empirical validation.
+
+Experimental ordinary-strength v2: `analyzeElementStructure({saju})` and `analyzeOrdinaryStrength({saju, policy:'strength-ordinary-v2', birthBasis:'verified-chart'})`. [Contract](docs/strength-ordinary-v2.md). Special-pattern interpretation is out of scope; not production-ready.

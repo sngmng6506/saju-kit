@@ -61,3 +61,7 @@ Add independent ordinary strong/weak cases from other chapters/books and separat
 
 ## Verification
 The comparator and actual v1 source modules were executed in a V8 environment using an import/export adapter. All 26 inputs evaluated successfully and the baseline was saved. Native Node runner/full npm regression and independent expert review remain pending. The new regression test freezes known limitations intentionally; it does not assert the classical interpretations are objectively correct.
+
+## Follow-up scope
+
+The extreme-chapter corpus is excluded from ordinary-strength agreement statistics; v1 baseline remains unchanged. See [ordinary strength v2](strength-ordinary-v2.md) for the new development comparison and unresolved issues.

@@ -15,3 +15,5 @@ Status: initial shared API implemented; Node regression execution pending in a c
 Run `npm test` on the pinned checkout, including existing calendar, natal, year-signals and movement regressions plus the new all-pairs compatibility suite. The pure pair algorithm was separately checked over 3,600 ordered pairs in a JavaScript runtime; this does not replace the full Node suite or calendar fixtures. Check installation in saju-friends and a production Next build before deployment.
 
 - Proposed strength analysis is a separate opt-in policy: [strength-hybrid-v1](strength-hybrid-v1.md). Experimental opt-in API implemented; do not consume until the release gate is satisfied. It must not alter existing scores or select yongsin automatically.
+
+- The separate experimental [ordinary strength v2 contract](strength-ordinary-v2.md) is conditional on ordinary-chart interpretation. No special-pattern inference or consumer migration; v1 remains frozen.

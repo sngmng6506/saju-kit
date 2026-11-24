@@ -18,3 +18,6 @@ export { analyzeNatalRelations, analyzeCrossChartRelations } from './core/natal-
 export { analyzeNatalContext } from './core/natal-context.js';
 
 export { analyzeDayMasterStrength, STRENGTH_POLICY_VERSION } from './features/strength-hybrid-v1/index.js';
+
+export { analyzeElementStructure } from './core/element-structure.js';
+export { analyzeOrdinaryStrength, ORDINARY_STRENGTH_POLICY_VERSION } from './features/strength-ordinary-v2/index.js';
