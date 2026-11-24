@@ -8,8 +8,8 @@ test('audit overlay partitions all historical rows and rejects stale evidence',a
  const audit=await read('strength-audit-v1');
  const evaluation={corpora:fixtures.map(f=>({name:f.name,rows:f.cases.map(c=>({id:c.id,reference:c.reference,results:[null,null,null,null]}))}))};
  const g=classifyAuditedRows(fixtures,audit,evaluation);
- assert.deepEqual(Object.fromEntries(Object.entries(g).map(([k,v])=>[k,v.length])),{primary:46,secondary:23,unreviewed:7,nonDirectional:32});
- assert.deepEqual(g.primary.map(r=>r.id),["XU01","XU06","XU07","XU10","XU11","XU12","XU13","XU14","XU16","XU20","XU21","XU23","XU25","XU26","XU27","XU29","XU31","W01","W02","W03","W04","W05","W06","W08","W09","W14","W15","W16","W18","W19","W20","W22","W23","W24","W26","W28","R01","R02","R03","R04","R07","R09","R11","H04","H05","H06"]);
+ assert.deepEqual(Object.fromEntries(Object.entries(g).map(([k,v])=>[k,v.length])),{primary:53,secondary:23,unreviewed:0,nonDirectional:32});
+ assert.deepEqual(g.primary.map(r=>r.id),["XU01","XU06","XU07","XU10","XU11","XU12","XU13","XU14","XU16","XU20","XU21","XU23","XU25","XU26","XU27","XU29","XU31","W01","W02","W03","W04","W05","W06","W08","W09","W14","W15","W16","W18","W19","W20","W22","W23","W24","W26","W28","DX02","DX03","DH02","R01","R02","R03","R04","R07","R09","R11","H04","H05","H06","L76","L91","L95","L98"]);
  const stale=structuredClone(audit);stale.entries[0].pillars[0]='甲子';
  assert.throws(()=>classifyAuditedRows(fixtures,stale,evaluation),/stale/);
  const duplicate=structuredClone(audit);duplicate.entries.push(duplicate.entries[0]);
