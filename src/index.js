@@ -52,3 +52,5 @@ export { analyzeStrengthDecision, STRENGTH_DECISION_VERSION } from './features/s
 export { analyzeFormationEvidence, FORMATION_EVIDENCE_VERSION } from './core/formation-evidence.js';
 
 export { analyzeMonthCommand, monthCommandSources, MONTH_COMMAND_VERSION } from './core/month-command.js';
+
+export { analyzeMonthCommandSensitivity, COMMAND_SENSITIVITY_VERSION } from './features/strength-command-sensitivity-v1/index.js';
