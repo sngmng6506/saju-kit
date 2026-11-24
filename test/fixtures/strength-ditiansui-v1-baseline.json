@@ -1,0 +1,1121 @@
+{
+  "policy": "strength-hybrid-v1",
+  "total": 26,
+  "counts": {
+    "review-missed-abstained": 4,
+    "review-detected": 15,
+    "review-missed-candidate": 1,
+    "abstained": 4,
+    "descriptive-only": 2
+  },
+  "rows": [
+    {
+      "id": "DW01",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "unresolved",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 65.6,
+      "min": 58.25,
+      "max": 72,
+      "stable": null,
+      "flags": [],
+      "outcome": "review-missed-abstained",
+      "counters": {
+        "Mplus": true,
+        "R": 1,
+        "Rcentral": true,
+        "S": 1,
+        "P": 3,
+        "burdens": [
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW02",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 90.1,
+      "min": 86.2,
+      "max": 94.25,
+      "stable": "strong",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 3,
+        "Rcentral": true,
+        "S": 3,
+        "P": 0,
+        "burdens": []
+      }
+    },
+    {
+      "id": "DW03",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "unresolved",
+      "category": null,
+      "qualitative": "unresolved",
+      "rule": "Q0",
+      "baseline": 35.7,
+      "min": 27.6,
+      "max": 39,
+      "stable": null,
+      "flags": [],
+      "outcome": "review-missed-abstained",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 2,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "hourStem",
+            "category": "officer"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW04",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 0,
+      "min": 0,
+      "max": 0,
+      "stable": "weak",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 0,
+        "P": 7,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourStem",
+            "category": "output"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "output"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW05",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 52.8,
+      "min": 52,
+      "max": 55.6,
+      "stable": "mixed",
+      "flags": [
+        "branch-formation"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 3,
+        "Rcentral": true,
+        "S": 0,
+        "P": 2,
+        "burdens": [
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW06",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "unresolved",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 75.5,
+      "min": 68.3,
+      "max": 83,
+      "stable": null,
+      "flags": [],
+      "outcome": "review-missed-abstained",
+      "counters": {
+        "Mplus": true,
+        "R": 3,
+        "Rcentral": true,
+        "S": 2,
+        "P": 1,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW07",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "mixed",
+      "rule": "Q5",
+      "baseline": 15.4,
+      "min": 13,
+      "max": 19.5,
+      "stable": "weak",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 1,
+        "Rcentral": false,
+        "S": 1,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW08",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 10.2,
+      "min": 6.15,
+      "max": 13.6,
+      "stable": "weak",
+      "flags": [
+        "day-stem-combination",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 0,
+        "P": 7,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "officer"
+          },
+          {
+            "slot": "hourStem",
+            "category": "output"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "output"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "officer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW09",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "candidate",
+      "category": "strong",
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 73,
+      "min": 72.8,
+      "max": 75.5,
+      "stable": "strong",
+      "flags": [],
+      "outcome": "review-missed-candidate",
+      "counters": {
+        "Mplus": true,
+        "R": 3,
+        "Rcentral": true,
+        "S": 3,
+        "P": 1,
+        "burdens": [
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW10",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 76.3,
+      "min": 70.1,
+      "max": 86.25,
+      "stable": "strong",
+      "flags": [
+        "root-or-month-clash",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 2,
+        "Rcentral": true,
+        "S": 3,
+        "P": 0,
+        "burdens": []
+      }
+    },
+    {
+      "id": "DW11",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "unresolved",
+      "rule": "Q0",
+      "baseline": 17.4,
+      "min": 16.7,
+      "max": 20,
+      "stable": "weak",
+      "flags": [
+        "day-stem-combination",
+        "branch-formation"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 2,
+        "Rcentral": false,
+        "S": 0,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "output"
+          },
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW12",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 0,
+      "min": 0,
+      "max": 0,
+      "stable": "weak",
+      "flags": [
+        "day-stem-combination",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 0,
+        "P": 6,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW13",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 65.3,
+      "min": 62.5,
+      "max": 68.9,
+      "stable": null,
+      "flags": [
+        "branch-formation"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 2,
+        "Rcentral": true,
+        "S": 2,
+        "P": 2,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "output"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW14",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 75,
+      "min": 71.5,
+      "max": 81.5,
+      "stable": "strong",
+      "flags": [
+        "day-stem-combination",
+        "branch-formation"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 2,
+        "Rcentral": true,
+        "S": 2,
+        "P": 0,
+        "burdens": []
+      }
+    },
+    {
+      "id": "DW15",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "unresolved",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 28.5,
+      "min": 22.8,
+      "max": 31,
+      "stable": null,
+      "flags": [],
+      "outcome": "review-missed-abstained",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 1,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "officer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW16",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 8,
+      "min": 5.5,
+      "max": 13,
+      "stable": "weak",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 0,
+        "P": 6,
+        "burdens": [
+          {
+            "slot": "monthStem",
+            "category": "officer"
+          },
+          {
+            "slot": "hourStem",
+            "category": "officer"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW17",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 70,
+      "min": 67.5,
+      "max": 72.75,
+      "stable": null,
+      "flags": [
+        "branch-formation"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 2,
+        "Rcentral": true,
+        "S": 3,
+        "P": 2,
+        "burdens": [
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "officer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW18",
+      "reference": "review-required",
+      "direction": "strong",
+      "labelBasis": "chapter-inference",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 84.4,
+      "min": 78.5,
+      "max": 91.25,
+      "stable": "strong",
+      "flags": [
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": true,
+        "R": 4,
+        "Rcentral": true,
+        "S": 2,
+        "P": 0,
+        "burdens": []
+      }
+    },
+    {
+      "id": "DW19",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 12.7,
+      "min": 9.6,
+      "max": 14,
+      "stable": "weak",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 1,
+        "P": 6,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "output"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DW20",
+      "reference": "review-required",
+      "direction": "weak",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "weak",
+      "rule": "Q3",
+      "baseline": 5,
+      "min": 4,
+      "max": 7,
+      "stable": "weak",
+      "flags": [
+        "branch-formation",
+        "possible-special-pattern"
+      ],
+      "outcome": "review-detected",
+      "counters": {
+        "Mplus": false,
+        "R": 0,
+        "Rcentral": false,
+        "S": 0,
+        "P": 6,
+        "burdens": [
+          {
+            "slot": "monthStem",
+            "category": "officer"
+          },
+          {
+            "slot": "hourStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "output"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DX01",
+      "reference": "strong",
+      "direction": "strong",
+      "labelBasis": "inferred-from-metal-strength-and-weak-officer",
+      "split": "development",
+      "status": "unresolved",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 49.6,
+      "min": 48,
+      "max": 55.8,
+      "stable": "mixed",
+      "flags": [],
+      "outcome": "abstained",
+      "counters": {
+        "Mplus": true,
+        "R": 1,
+        "Rcentral": false,
+        "S": 1,
+        "P": 2,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "officer"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DX02",
+      "reference": "weak",
+      "direction": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "strong",
+      "rule": "Q1",
+      "baseline": 36.1,
+      "min": 34,
+      "max": 38.85,
+      "stable": null,
+      "flags": [
+        "day-stem-combination"
+      ],
+      "outcome": "abstained",
+      "counters": {
+        "Mplus": true,
+        "R": 1,
+        "Rcentral": true,
+        "S": 1,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DX03",
+      "reference": "weak",
+      "direction": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "unresolved",
+      "rule": "Q0",
+      "baseline": 16.2,
+      "min": 15.5,
+      "max": 18.3,
+      "stable": "weak",
+      "flags": [
+        "root-or-month-clash"
+      ],
+      "outcome": "abstained",
+      "counters": {
+        "Mplus": false,
+        "R": 1,
+        "Rcentral": true,
+        "S": 0,
+        "P": 6,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "officer"
+          },
+          {
+            "slot": "monthStem",
+            "category": "officer"
+          },
+          {
+            "slot": "hourStem",
+            "category": "officer"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "output"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DH01",
+      "reference": "balanced",
+      "direction": "balanced",
+      "labelBasis": "explicit-author",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "mixed",
+      "rule": "Q5",
+      "baseline": 26.7,
+      "min": 21.4,
+      "max": 31.25,
+      "stable": null,
+      "flags": [
+        "root-or-month-clash"
+      ],
+      "outcome": "descriptive-only",
+      "counters": {
+        "Mplus": false,
+        "R": 1,
+        "Rcentral": false,
+        "S": 2,
+        "P": 4,
+        "burdens": [
+          {
+            "slot": "monthStem",
+            "category": "output"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DH02",
+      "reference": "weak",
+      "direction": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "mixed",
+      "rule": "Q5",
+      "baseline": 39,
+      "min": 35,
+      "max": 43,
+      "stable": null,
+      "flags": [
+        "day-stem-combination",
+        "root-or-month-clash"
+      ],
+      "outcome": "abstained",
+      "counters": {
+        "Mplus": true,
+        "R": 1,
+        "Rcentral": true,
+        "S": 0,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "officer"
+          },
+          {
+            "slot": "monthStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourStem",
+            "category": "officer"
+          },
+          {
+            "slot": "dayBranch",
+            "category": "officer"
+          },
+          {
+            "slot": "hourBranch",
+            "category": "wealth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DL01",
+      "reference": "balanced",
+      "direction": "balanced",
+      "labelBasis": "explicit-author",
+      "split": "development",
+      "status": "review-required",
+      "category": null,
+      "qualitative": "unresolved",
+      "rule": "Q0",
+      "baseline": 27.9,
+      "min": 23.5,
+      "max": 31.4,
+      "stable": null,
+      "flags": [
+        "day-stem-combination"
+      ],
+      "outcome": "descriptive-only",
+      "counters": {
+        "Mplus": false,
+        "R": 2,
+        "Rcentral": true,
+        "S": 0,
+        "P": 5,
+        "burdens": [
+          {
+            "slot": "yearStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthStem",
+            "category": "wealth"
+          },
+          {
+            "slot": "hourStem",
+            "category": "officer"
+          },
+          {
+            "slot": "yearBranch",
+            "category": "wealth"
+          },
+          {
+            "slot": "monthBranch",
+            "category": "officer"
+          }
+        ]
+      }
+    }
+  ]
+}

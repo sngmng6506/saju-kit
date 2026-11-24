@@ -37,3 +37,5 @@ Opt in to `branchRelationsV2`, `analyzeBranchGroupsV2`, `analyzeNatalRelations`,
 [Hybrid strength policy proposal](docs/strength-hybrid-v1.md): traditional structural evidence first, quantitative sensitivity as a cross-check, explicit abstention for incomplete or exceptional charts. The opt-in API is implemented as `analyzeDayMasterStrength({saju, policy:'strength-hybrid-v1', birthBasis:'verified-chart'})`. Existing APIs are unchanged; reference-case validation is pending.
 
 Architecture: [ARCHITECTURE.md](ARCHITECTURE.md).
+
+Classical development-case comparison: [strength reference v1](docs/strength-reference-v1.md). Run `node scripts/evaluate-strength-reference.mjs` to reproduce; this is not empirical validation.

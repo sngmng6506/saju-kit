@@ -1,0 +1,443 @@
+{
+  "version": "ditiansui-reference-v1",
+  "referenceType": "historical-commentary-not-empirical-ground-truth",
+  "sources": {
+    "extreme": {
+      "title": "滴天髓闡微・衰旺",
+      "url": "https://m.gushiwen.cn/guwen/bookv_4d7a9cd02bf6.aspx",
+      "alternate": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十七、衰旺",
+      "scope": "20 consecutive charts in order; author explicitly describes the chapter set as extreme. Direction and degree are separately encoded; degree not always explicit."
+    },
+    "form": {
+      "title": "滴天髓闡微・形象",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十、形象",
+      "scope": "Selected charts with explicit strength or interpretable structural description."
+    },
+    "balance": {
+      "title": "滴天髓闡微・中和",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十八、中和",
+      "alternate": "https://guoxue3000.com/tw/books/378/chapters/21",
+      "scope": "Both consecutive charts."
+    },
+    "flow": {
+      "title": "滴天髓闡微・源流",
+      "url": "https://zh.wikisource.org/zh-hant/滴天髓闡微#十九、源流",
+      "scope": "First chart, explicit 中和."
+    }
+  },
+  "cases": [
+    {
+      "id": "DW01",
+      "source": "extreme",
+      "ordinal": 1,
+      "pillars": [
+        "甲辰",
+        "丁卯",
+        "甲子",
+        "戊辰"
+      ],
+      "direction": "strong",
+      "degree": "overstrong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW02",
+      "source": "extreme",
+      "ordinal": 2,
+      "pillars": [
+        "癸卯",
+        "乙卯",
+        "甲寅",
+        "乙亥"
+      ],
+      "direction": "strong",
+      "degree": "extremely-strong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW03",
+      "source": "extreme",
+      "ordinal": 3,
+      "pillars": [
+        "乙丑",
+        "甲申",
+        "甲申",
+        "辛未"
+      ],
+      "direction": "weak",
+      "degree": "overweak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW04",
+      "source": "extreme",
+      "ordinal": 4,
+      "pillars": [
+        "己巳",
+        "己巳",
+        "乙酉",
+        "丙戌"
+      ],
+      "direction": "weak",
+      "degree": "extremely-weak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW05",
+      "source": "extreme",
+      "ordinal": 5,
+      "pillars": [
+        "乙丑",
+        "壬午",
+        "丙戌",
+        "甲午"
+      ],
+      "direction": "strong",
+      "degree": "overstrong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW06",
+      "source": "extreme",
+      "ordinal": 6,
+      "pillars": [
+        "戊寅",
+        "丁巳",
+        "丙寅",
+        "甲午"
+      ],
+      "direction": "strong",
+      "degree": "extremely-strong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW07",
+      "source": "extreme",
+      "ordinal": 7,
+      "pillars": [
+        "辛巳",
+        "丁酉",
+        "丁酉",
+        "辛丑"
+      ],
+      "direction": "weak",
+      "degree": "weak-in-extreme-chapter",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW08",
+      "source": "extreme",
+      "ordinal": 8,
+      "pillars": [
+        "辛亥",
+        "壬辰",
+        "丙申",
+        "己亥"
+      ],
+      "direction": "weak",
+      "degree": "extremely-weak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW09",
+      "source": "extreme",
+      "ordinal": 9,
+      "pillars": [
+        "戊辰",
+        "戊午",
+        "戊申",
+        "己未"
+      ],
+      "direction": "strong",
+      "degree": "overstrong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW10",
+      "source": "extreme",
+      "ordinal": 10,
+      "pillars": [
+        "戊戌",
+        "丙辰",
+        "己巳",
+        "己巳"
+      ],
+      "direction": "strong",
+      "degree": "extremely-strong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW11",
+      "source": "extreme",
+      "ordinal": 11,
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "戊子",
+        "癸丑"
+      ],
+      "direction": "weak",
+      "degree": "overweak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW12",
+      "source": "extreme",
+      "ordinal": 12,
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "戊子",
+        "壬子"
+      ],
+      "direction": "weak",
+      "degree": "extremely-weak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW13",
+      "source": "extreme",
+      "ordinal": 13,
+      "pillars": [
+        "壬申",
+        "己酉",
+        "庚子",
+        "庚辰"
+      ],
+      "direction": "strong",
+      "degree": "overstrong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW14",
+      "source": "extreme",
+      "ordinal": 14,
+      "pillars": [
+        "庚申",
+        "乙酉",
+        "庚戌",
+        "庚辰"
+      ],
+      "direction": "strong",
+      "degree": "extremely-strong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW15",
+      "source": "extreme",
+      "ordinal": 15,
+      "pillars": [
+        "己卯",
+        "庚午",
+        "辛卯",
+        "甲午"
+      ],
+      "direction": "weak",
+      "degree": "overweak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW16",
+      "source": "extreme",
+      "ordinal": 16,
+      "pillars": [
+        "己亥",
+        "丁卯",
+        "庚寅",
+        "丙子"
+      ],
+      "direction": "weak",
+      "degree": "extremely-weak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW17",
+      "source": "extreme",
+      "ordinal": 17,
+      "pillars": [
+        "壬寅",
+        "辛亥",
+        "壬子",
+        "辛丑"
+      ],
+      "direction": "strong",
+      "degree": "overstrong",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW18",
+      "source": "extreme",
+      "ordinal": 18,
+      "pillars": [
+        "癸亥",
+        "癸亥",
+        "壬子",
+        "庚子"
+      ],
+      "direction": "strong",
+      "degree": "extreme-inferred-from-chapter",
+      "reference": "review-required",
+      "labelBasis": "chapter-inference",
+      "split": "development"
+    },
+    {
+      "id": "DW19",
+      "source": "extreme",
+      "ordinal": 19,
+      "pillars": [
+        "丙辰",
+        "乙未",
+        "壬午",
+        "癸卯"
+      ],
+      "direction": "weak",
+      "degree": "overweak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DW20",
+      "source": "extreme",
+      "ordinal": 20,
+      "pillars": [
+        "癸卯",
+        "戊午",
+        "壬寅",
+        "丙午"
+      ],
+      "direction": "weak",
+      "degree": "extremely-weak",
+      "reference": "review-required",
+      "labelBasis": "author-direction-and-chapter-scope",
+      "split": "development"
+    },
+    {
+      "id": "DX01",
+      "source": "form",
+      "pillars": [
+        "丁丑",
+        "庚戌",
+        "庚子",
+        "甲申"
+      ],
+      "direction": "strong",
+      "degree": "ordinary-unspecified",
+      "reference": "strong",
+      "labelBasis": "inferred-from-metal-strength-and-weak-officer",
+      "split": "development"
+    },
+    {
+      "id": "DX02",
+      "source": "form",
+      "pillars": [
+        "庚申",
+        "辛巳",
+        "丙辰",
+        "乙未"
+      ],
+      "direction": "weak",
+      "degree": "ordinary-unspecified",
+      "reference": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development"
+    },
+    {
+      "id": "DX03",
+      "source": "form",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "丙午",
+        "壬辰"
+      ],
+      "direction": "weak",
+      "degree": "ordinary-unspecified",
+      "reference": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development"
+    },
+    {
+      "id": "DH01",
+      "source": "balance",
+      "ordinal": 1,
+      "pillars": [
+        "辛巳",
+        "甲午",
+        "癸卯",
+        "癸亥"
+      ],
+      "direction": "balanced",
+      "degree": "ordinary-unspecified",
+      "reference": "balanced",
+      "labelBasis": "explicit-author",
+      "split": "development"
+    },
+    {
+      "id": "DH02",
+      "source": "balance",
+      "ordinal": 2,
+      "pillars": [
+        "己酉",
+        "丙子",
+        "癸未",
+        "戊午"
+      ],
+      "direction": "weak",
+      "degree": "ordinary-unspecified",
+      "reference": "weak",
+      "labelBasis": "explicit-author",
+      "split": "development"
+    },
+    {
+      "id": "DL01",
+      "source": "flow",
+      "ordinal": 1,
+      "pillars": [
+        "辛酉",
+        "庚子",
+        "丙寅",
+        "癸巳"
+      ],
+      "direction": "balanced",
+      "degree": "ordinary-unspecified",
+      "reference": "balanced",
+      "labelBasis": "explicit-author",
+      "split": "development"
+    }
+  ]
+}
