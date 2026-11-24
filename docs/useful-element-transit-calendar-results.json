@@ -1,0 +1,4078 @@
+{
+  "engine": "b0e35569b23e581fd2c59e9c827c630f5e2a0653",
+  "method": "Actual calendar, legacy and minute daeun, seun and transit evidence modules in V8. Three synthetic exact births, both directions and both policies; not full authority wrapper.",
+  "counts": {
+    "configurations": 12,
+    "years": 312,
+    "beforeDaeun": 47,
+    "yearPairs": 2573
+  },
+  "rows": [
+    {
+      "birth": {
+        "y": 2000,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0
+      },
+      "gender": "남",
+      "policy": "legacy-day-v1",
+      "startAge": 8,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2000,
+          "daeun": null,
+          "seun": "경진",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "기묘",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2008,
+          "daeun": "기묘",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2009,
+          "daeun": "기묘",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "기묘",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "기묘",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "기묘",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "기묘",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2014,
+          "daeun": "기묘",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2015,
+          "daeun": "기묘",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "기묘",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2017,
+          "daeun": "경진",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2018,
+          "daeun": "경진",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "경진",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "경진",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "경진",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "경진",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "경진",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "경진",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "경진",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2000,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0
+      },
+      "gender": "남",
+      "policy": "movement-minute-v6",
+      "startAge": 8,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2000,
+          "daeun": null,
+          "seun": "경진",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "기묘",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2008,
+          "daeun": "기묘",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2009,
+          "daeun": "기묘",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "기묘",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "기묘",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "기묘",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "기묘",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2014,
+          "daeun": "기묘",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2015,
+          "daeun": "기묘",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "기묘",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2017,
+          "daeun": "경진",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2018,
+          "daeun": "경진",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "경진",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "경진",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "경진",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "경진",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "경진",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "경진",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "경진",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2000,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0
+      },
+      "gender": "여",
+      "policy": "legacy-day-v1",
+      "startAge": 2,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2000,
+          "daeun": null,
+          "seun": "경진",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2001,
+          "daeun": "정축",
+          "seun": "신사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2002,
+          "daeun": "정축",
+          "seun": "임오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": "정축",
+          "seun": "계미",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2004,
+          "daeun": "정축",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": "정축",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": "정축",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "정축",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "정축",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "정축",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "정축",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2011,
+          "daeun": "병자",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "병자",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "병자",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "병자",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "병자",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2016,
+          "daeun": "병자",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2017,
+          "daeun": "병자",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2018,
+          "daeun": "병자",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "병자",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "병자",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "을해",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "을해",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "을해",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "을해",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "을해",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2000,
+        "m": 2,
+        "d": 9,
+        "hh": 12,
+        "mm": 0
+      },
+      "gender": "여",
+      "policy": "movement-minute-v6",
+      "startAge": 1,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2000,
+          "daeun": "정축",
+          "seun": "경진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2001,
+          "daeun": "정축",
+          "seun": "신사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2002,
+          "daeun": "정축",
+          "seun": "임오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": "정축",
+          "seun": "계미",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2004,
+          "daeun": "정축",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": "정축",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": "정축",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "정축",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "정축",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "정축",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "병자",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2011,
+          "daeun": "병자",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "병자",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "병자",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "병자",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "병자",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2016,
+          "daeun": "병자",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2017,
+          "daeun": "병자",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2018,
+          "daeun": "병자",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "병자",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "을해",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "을해",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "을해",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "을해",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "인",
+                "묘",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "을해",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "을해",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2001,
+        "m": 7,
+        "d": 1,
+        "hh": 8,
+        "mm": 0
+      },
+      "gender": "남",
+      "policy": "legacy-day-v1",
+      "startAge": 9,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": null,
+          "seun": "정해",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": null,
+          "seun": "무자",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "계사",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "계사",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2011,
+          "daeun": "계사",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "계사",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "계사",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "계사",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "계사",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "계사",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "계사",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "계사",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "임진",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "임진",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "임진",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "임진",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "임진",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2024,
+          "daeun": "임진",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "임진",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2026,
+          "daeun": "임진",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2001,
+        "m": 7,
+        "d": 1,
+        "hh": 8,
+        "mm": 0
+      },
+      "gender": "남",
+      "policy": "movement-minute-v6",
+      "startAge": 8,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": null,
+          "seun": "정해",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "계사",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "계사",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "계사",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2011,
+          "daeun": "계사",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "계사",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "계사",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "계사",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "계사",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "계사",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "계사",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "임진",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "임진",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "임진",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "임진",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "임진",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2023,
+          "daeun": "임진",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2024,
+          "daeun": "임진",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2025,
+          "daeun": "임진",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2026,
+          "daeun": "임진",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": []
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2001,
+        "m": 7,
+        "d": 1,
+        "hh": 8,
+        "mm": 0
+      },
+      "gender": "여",
+      "policy": "legacy-day-v1",
+      "startAge": 2,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": "을미",
+          "seun": "임오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2003,
+          "daeun": "을미",
+          "seun": "계미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": "을미",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2005,
+          "daeun": "을미",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2006,
+          "daeun": "을미",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "축",
+                "술",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "을미",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2008,
+          "daeun": "을미",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2009,
+          "daeun": "을미",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "을미",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "을미",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "병신",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "병신",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "병신",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "병신",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "병신",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "병신",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "병신",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "병신",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "병신",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "daeun": "병신",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "정유",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "정유",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "정유",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "정유",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2026,
+          "daeun": "정유",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2001,
+        "m": 7,
+        "d": 1,
+        "hh": 8,
+        "mm": 0
+      },
+      "gender": "여",
+      "policy": "movement-minute-v6",
+      "startAge": 2,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2001,
+          "daeun": null,
+          "seun": "신사",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2002,
+          "daeun": "을미",
+          "seun": "임오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2003,
+          "daeun": "을미",
+          "seun": "계미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": "을미",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2005,
+          "daeun": "을미",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2006,
+          "daeun": "을미",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "축",
+                "술",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2007,
+          "daeun": "을미",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2008,
+          "daeun": "을미",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2009,
+          "daeun": "을미",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "을미",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "을미",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "daeun": "병신",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2013,
+          "daeun": "병신",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "병신",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "병신",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "병신",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "병신",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "병신",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "병신",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "병신",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "daeun": "병신",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "정유",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "정유",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "정유",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "정유",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2026,
+          "daeun": "정유",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2002,
+        "m": 12,
+        "d": 15,
+        "hh": 16,
+        "mm": 0,
+        "timezone": "Asia/Tokyo"
+      },
+      "gender": "남",
+      "policy": "legacy-day-v1",
+      "startAge": 7,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": null,
+          "seun": "정해",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "계축",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "계축",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "계축",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "계축",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "계축",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "계축",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "계축",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "계축",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "계축",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "계축",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "갑인",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "갑인",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2020,
+          "daeun": "갑인",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "daeun": "갑인",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2022,
+          "daeun": "갑인",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "갑인",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "갑인",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "갑인",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2026,
+          "daeun": "갑인",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2027,
+          "daeun": "갑인",
+          "seun": "정미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2002,
+        "m": 12,
+        "d": 15,
+        "hh": 16,
+        "mm": 0,
+        "timezone": "Asia/Tokyo"
+      },
+      "gender": "남",
+      "policy": "movement-minute-v6",
+      "startAge": 7,
+      "direction": "순행",
+      "years": [
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": null,
+          "seun": "갑신",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": null,
+          "seun": "을유",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": null,
+          "seun": "병술",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": null,
+          "seun": "정해",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "계축",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "계축",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2010,
+          "daeun": "계축",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "계축",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "계축",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "계축",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "계축",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "계축",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "계축",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "계축",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "사",
+                "유",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "갑인",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2019,
+          "daeun": "갑인",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2020,
+          "daeun": "갑인",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "daeun": "갑인",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2022,
+          "daeun": "갑인",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": []
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "갑인",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "daeun": "갑인",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "갑인",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2026,
+          "daeun": "갑인",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2027,
+          "daeun": "갑인",
+          "seun": "정미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "daeun"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2002,
+        "m": 12,
+        "d": 15,
+        "hh": 16,
+        "mm": 0,
+        "timezone": "Asia/Tokyo"
+      },
+      "gender": "여",
+      "policy": "legacy-day-v1",
+      "startAge": 3,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": null,
+          "seun": "계미",
+          "pairCount": 4,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": "신해",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": "신해",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": "신해",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": "신해",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "신해",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "신해",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "해",
+                "자",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "신해",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "신해",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "신해",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "신해",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "경술",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "경술",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "경술",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "경술",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "신",
+                "유",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "경술",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "경술",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "경술",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "경술",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "경술",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "경술",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2024,
+          "daeun": "기유",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "기유",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2026,
+          "daeun": "기유",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2027,
+          "daeun": "기유",
+          "seun": "정미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "birth": {
+        "y": 2002,
+        "m": 12,
+        "d": 15,
+        "hh": 16,
+        "mm": 0,
+        "timezone": "Asia/Tokyo"
+      },
+      "gender": "여",
+      "policy": "movement-minute-v6",
+      "startAge": 2,
+      "direction": "역행",
+      "years": [
+        {
+          "year": 2002,
+          "daeun": null,
+          "seun": "임오",
+          "pairCount": 4,
+          "newGroups": []
+        },
+        {
+          "year": 2003,
+          "daeun": "신해",
+          "seun": "계미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2004,
+          "daeun": "신해",
+          "seun": "갑신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2005,
+          "daeun": "신해",
+          "seun": "을유",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2006,
+          "daeun": "신해",
+          "seun": "병술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2007,
+          "daeun": "신해",
+          "seun": "정해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2008,
+          "daeun": "신해",
+          "seun": "무자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2009,
+          "daeun": "신해",
+          "seun": "기축",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "해",
+                "자",
+                "축"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2010,
+          "daeun": "신해",
+          "seun": "경인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "daeun": "신해",
+          "seun": "신묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2012,
+          "daeun": "신해",
+          "seun": "임진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "daeun": "경술",
+          "seun": "계사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2014,
+          "daeun": "경술",
+          "seun": "갑오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2015,
+          "daeun": "경술",
+          "seun": "을미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "daeun": "경술",
+          "seun": "병신",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2017,
+          "daeun": "경술",
+          "seun": "정유",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "신",
+                "유",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2018,
+          "daeun": "경술",
+          "seun": "무술",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2019,
+          "daeun": "경술",
+          "seun": "기해",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2020,
+          "daeun": "경술",
+          "seun": "경자",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2021,
+          "daeun": "경술",
+          "seun": "신축",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2022,
+          "daeun": "경술",
+          "seun": "임인",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "인",
+                "오",
+                "술"
+              ],
+              "requiredTransitLayers": [
+                "daeun",
+                "seun"
+              ]
+            },
+            {
+              "type": "branch.threePunishment",
+              "members": [
+                "인",
+                "사",
+                "신"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "daeun": "기유",
+          "seun": "계묘",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2024,
+          "daeun": "기유",
+          "seun": "갑진",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.threeHarmony",
+              "members": [
+                "신",
+                "자",
+                "진"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "daeun": "기유",
+          "seun": "을사",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2026,
+          "daeun": "기유",
+          "seun": "병오",
+          "pairCount": 9,
+          "newGroups": []
+        },
+        {
+          "year": 2027,
+          "daeun": "기유",
+          "seun": "정미",
+          "pairCount": 9,
+          "newGroups": [
+            {
+              "type": "branch.seasonalHarmony",
+              "members": [
+                "사",
+                "오",
+                "미"
+              ],
+              "requiredTransitLayers": [
+                "seun"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
