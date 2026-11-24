@@ -1,0 +1,1252 @@
+{
+  "engine": "a63e946be9a11e3c3fd3f63c195d3f0fd46c904f",
+  "method": "Actual mediation entry module and dependencies executed in V8; unused throwing calendar stub. 100 historical charts, two explicit mediation controls and two blocked-natal controls. No effective interaction or equality assertion.",
+  "counts": {
+    "charts": 100,
+    "pairs": 454,
+    "routes": 5938,
+    "robustTopTwoCharts": 12,
+    "robustTopTwoPairs": 12,
+    "reviewStatuses": {
+      "access-limited": 5,
+      "local-route-observed": 6,
+      "supplement-hypothesis": 1
+    }
+  },
+  "controls": [
+    {
+      "id": "ME-X01",
+      "referenceElement": "water",
+      "reference": "mediation-in-natal",
+      "pair": {
+        "from": "metal",
+        "to": "wood",
+        "via": "water",
+        "controlCount": 10,
+        "localControlCount": 6,
+        "routeCount": 31,
+        "adjacentAnchored": 2,
+        "adjacentIntact": 2,
+        "oneGapAnchored": 16,
+        "absentMediator": false,
+        "reviewStatus": "not-robust-top-two",
+        "nominalConfrontation": {
+          "standard": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 0,
+            "minRatio": 0.44846938775510203,
+            "maxRatio": 0.8098765432098766
+          },
+          "neutral": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 8,
+            "minRatio": 0.823170731707317,
+            "maxRatio": 0.9556313993174061
+          },
+          "robustTopTwo": false,
+          "equalityResolved": false
+        }
+      },
+      "obstructedRoutes": 31
+    },
+    {
+      "id": "ME-X02",
+      "referenceElement": "earth",
+      "reference": "mediation-in-natal",
+      "pair": {
+        "from": "fire",
+        "to": "metal",
+        "via": "earth",
+        "controlCount": 12,
+        "localControlCount": 7,
+        "routeCount": 21,
+        "adjacentAnchored": 2,
+        "adjacentIntact": 8,
+        "oneGapAnchored": 6,
+        "absentMediator": false,
+        "reviewStatus": "local-route-observed",
+        "nominalConfrontation": {
+          "standard": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 24,
+            "minRatio": 0.4983388704318937,
+            "maxRatio": 0.9876543209876543
+          },
+          "neutral": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 24,
+            "minRatio": 0.675,
+            "maxRatio": 0.86
+          },
+          "robustTopTwo": true,
+          "equalityResolved": false
+        }
+      },
+      "obstructedRoutes": 0
+    },
+    {
+      "id": "ME-DT01",
+      "referenceElement": "earth",
+      "reference": "blocked-in-natal",
+      "pair": {
+        "from": "fire",
+        "to": "metal",
+        "via": "earth",
+        "controlCount": 3,
+        "localControlCount": 3,
+        "routeCount": 8,
+        "adjacentAnchored": 2,
+        "adjacentIntact": 2,
+        "oneGapAnchored": 2,
+        "absentMediator": false,
+        "reviewStatus": "not-robust-top-two",
+        "nominalConfrontation": {
+          "standard": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 0,
+            "minRatio": 0.291005291005291,
+            "maxRatio": 0.5714285714285714
+          },
+          "neutral": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 0,
+            "minRatio": 0.23809523809523808,
+            "maxRatio": 0.38095238095238093
+          },
+          "robustTopTwo": false,
+          "equalityResolved": false
+        }
+      },
+      "obstructedRoutes": 8
+    },
+    {
+      "id": "ME-DT02",
+      "referenceElement": "earth",
+      "reference": "blocked-in-natal",
+      "pair": {
+        "from": "fire",
+        "to": "metal",
+        "via": "earth",
+        "controlCount": 5,
+        "localControlCount": 3,
+        "routeCount": 10,
+        "adjacentAnchored": 1,
+        "adjacentIntact": 1,
+        "oneGapAnchored": 4,
+        "absentMediator": false,
+        "reviewStatus": "not-robust-top-two",
+        "nominalConfrontation": {
+          "standard": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 0,
+            "minRatio": 0.07424593967517401,
+            "maxRatio": 0.13470066518847007
+          },
+          "neutral": {
+            "scenarioCount": 24,
+            "positive": 24,
+            "topTwo": 0,
+            "minRatio": 0.11136890951276102,
+            "maxRatio": 0.16463414634146342
+          },
+          "robustTopTwo": false,
+          "equalityResolved": false
+        }
+      },
+      "obstructedRoutes": 10
+    }
+  ],
+  "rows": [
+    {
+      "id": "H01",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 25,
+      "robustPairs": []
+    },
+    {
+      "id": "H02",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "H03",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 90,
+      "robustPairs": []
+    },
+    {
+      "id": "H04",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 90,
+      "robustPairs": []
+    },
+    {
+      "id": "H05",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 68,
+      "robustPairs": []
+    },
+    {
+      "id": "H06",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 94,
+      "robustPairs": []
+    },
+    {
+      "id": "H07",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 70,
+      "robustPairs": []
+    },
+    {
+      "id": "H08",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 66,
+      "robustPairs": []
+    },
+    {
+      "id": "W10",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 32,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 10,
+          "localControlCount": 5,
+          "routeCount": 14,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 0,
+          "absentMediator": false,
+          "reviewStatus": "access-limited",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.11246890883529793,
+              "maxRatio": 0.8053097345132744
+            },
+            "neutral": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.1968205904617714,
+              "maxRatio": 0.34513274336283184
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "W12",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 40,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 10,
+          "localControlCount": 5,
+          "routeCount": 20,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 0,
+          "absentMediator": false,
+          "reviewStatus": "access-limited",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.3626373626373626,
+              "maxRatio": 0.9818181818181818
+            },
+            "neutral": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.6043956043956044,
+              "maxRatio": 0.8505747126436781
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "DX01",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 66,
+      "robustPairs": []
+    },
+    {
+      "id": "Y01",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 36,
+      "robustPairs": []
+    },
+    {
+      "id": "R01",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 68,
+      "robustPairs": []
+    },
+    {
+      "id": "R02",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 57,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 22,
+          "localControlCount": 12,
+          "routeCount": 14,
+          "adjacentAnchored": 3,
+          "adjacentIntact": 3,
+          "oneGapAnchored": 5,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.3031674208144796,
+              "maxRatio": 0.5107142857142857
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.5305429864253394,
+              "maxRatio": 0.680952380952381
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "priorDirection": "strong",
+      "pairCount": 4,
+      "routeCount": 40,
+      "robustPairs": [
+        {
+          "from": "wood",
+          "to": "earth",
+          "via": "fire",
+          "controlCount": 23,
+          "localControlCount": 12,
+          "routeCount": 18,
+          "adjacentAnchored": 10,
+          "adjacentIntact": 10,
+          "oneGapAnchored": 18,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.732662192393736,
+              "maxRatio": 0.9960258320914058
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.8366583541147132,
+              "maxRatio": 0.9863201094391245
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": [
+        {
+          "from": "metal",
+          "to": "wood",
+          "via": "water",
+          "controlCount": 8,
+          "localControlCount": 4,
+          "routeCount": 16,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 4,
+          "oneGapAnchored": 0,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.44025157232704404,
+              "maxRatio": 0.9903409090909091
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.5900709219858156,
+              "maxRatio": 0.8673139158576052
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 66,
+      "robustPairs": []
+    },
+    {
+      "id": "R07",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 70,
+      "robustPairs": []
+    },
+    {
+      "id": "R09",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 31,
+      "robustPairs": []
+    },
+    {
+      "id": "R10",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 35,
+      "robustPairs": []
+    },
+    {
+      "id": "R11",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "W01",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 22,
+      "robustPairs": []
+    },
+    {
+      "id": "W02",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "W03",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 50,
+      "robustPairs": []
+    },
+    {
+      "id": "W04",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 40,
+      "robustPairs": []
+    },
+    {
+      "id": "W05",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 68,
+      "robustPairs": []
+    },
+    {
+      "id": "W06",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": []
+    },
+    {
+      "id": "W08",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": []
+    },
+    {
+      "id": "W09",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 64,
+      "robustPairs": []
+    },
+    {
+      "id": "W14",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 42,
+      "robustPairs": []
+    },
+    {
+      "id": "W15",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 36,
+      "robustPairs": []
+    },
+    {
+      "id": "W16",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 102,
+      "robustPairs": []
+    },
+    {
+      "id": "W17",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 64,
+      "robustPairs": [
+        {
+          "from": "fire",
+          "to": "metal",
+          "via": "earth",
+          "controlCount": 15,
+          "localControlCount": 7,
+          "routeCount": 31,
+          "adjacentAnchored": 3,
+          "adjacentIntact": 3,
+          "oneGapAnchored": 9,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.4574780058651026,
+              "maxRatio": 0.9720216606498195
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.7715877437325905,
+              "maxRatio": 0.9941176470588236
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "W18",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 60,
+      "robustPairs": []
+    },
+    {
+      "id": "W19",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 96,
+      "robustPairs": []
+    },
+    {
+      "id": "W20",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "W22",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 30,
+      "robustPairs": []
+    },
+    {
+      "id": "W23",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 64,
+      "robustPairs": []
+    },
+    {
+      "id": "W24",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 94,
+      "robustPairs": []
+    },
+    {
+      "id": "W25",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 67,
+      "robustPairs": []
+    },
+    {
+      "id": "W26",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 77,
+      "robustPairs": []
+    },
+    {
+      "id": "W28",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 50,
+      "robustPairs": []
+    },
+    {
+      "id": "XU01",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 54,
+      "robustPairs": []
+    },
+    {
+      "id": "XU02",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 62,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 23,
+          "localControlCount": 15,
+          "routeCount": 15,
+          "adjacentAnchored": 8,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 15,
+          "absentMediator": false,
+          "reviewStatus": "access-limited",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.7898211829436038,
+              "maxRatio": 0.9983766233766234
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.7180192572214581,
+              "maxRatio": 0.9927272727272727
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "XU03",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 74,
+      "robustPairs": []
+    },
+    {
+      "id": "XU06",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 36,
+      "robustPairs": [
+        {
+          "from": "metal",
+          "to": "wood",
+          "via": "water",
+          "controlCount": 10,
+          "localControlCount": 7,
+          "routeCount": 13,
+          "adjacentAnchored": 2,
+          "adjacentIntact": 2,
+          "oneGapAnchored": 4,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.4683229813664596,
+              "maxRatio": 0.8518950437317784
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.5030800821355236,
+              "maxRatio": 0.9151193633952255
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "XU07",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 100,
+      "robustPairs": []
+    },
+    {
+      "id": "XU08",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 70,
+      "robustPairs": []
+    },
+    {
+      "id": "XU09",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 102,
+      "robustPairs": []
+    },
+    {
+      "id": "XU10",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 39,
+      "robustPairs": []
+    },
+    {
+      "id": "XU11",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 60,
+      "robustPairs": []
+    },
+    {
+      "id": "XU12",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 100,
+      "robustPairs": []
+    },
+    {
+      "id": "XU13",
+      "priorDirection": "weak",
+      "pairCount": 3,
+      "routeCount": 48,
+      "robustPairs": []
+    },
+    {
+      "id": "XU14",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 42,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 11,
+          "localControlCount": 7,
+          "routeCount": 19,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 0,
+          "absentMediator": false,
+          "reviewStatus": "access-limited",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.22136422136422138,
+              "maxRatio": 0.49803370786516854
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.38738738738738737,
+              "maxRatio": 0.6640449438202247
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "XU15",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": [
+        {
+          "from": "fire",
+          "to": "metal",
+          "via": "earth",
+          "controlCount": 6,
+          "localControlCount": 4,
+          "routeCount": 10,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 2,
+          "absentMediator": false,
+          "reviewStatus": "access-limited",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.5644257703081232,
+              "maxRatio": 0.972972972972973
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.5405405405405406,
+              "maxRatio": 0.7593052109181141
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "XU16",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 54,
+      "robustPairs": []
+    },
+    {
+      "id": "XU17",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 54,
+      "robustPairs": []
+    },
+    {
+      "id": "XU19",
+      "priorDirection": "weak",
+      "pairCount": 3,
+      "routeCount": 36,
+      "robustPairs": []
+    },
+    {
+      "id": "XU20",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 58,
+      "robustPairs": []
+    },
+    {
+      "id": "XU21",
+      "priorDirection": "weak",
+      "pairCount": 3,
+      "routeCount": 24,
+      "robustPairs": []
+    },
+    {
+      "id": "XU23",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 94,
+      "robustPairs": []
+    },
+    {
+      "id": "XU24",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 34,
+      "robustPairs": []
+    },
+    {
+      "id": "XU25",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 70,
+      "robustPairs": []
+    },
+    {
+      "id": "XU26",
+      "priorDirection": "weak",
+      "pairCount": 3,
+      "routeCount": 16,
+      "robustPairs": []
+    },
+    {
+      "id": "XU27",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 22,
+      "robustPairs": []
+    },
+    {
+      "id": "XU28",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 88,
+      "robustPairs": []
+    },
+    {
+      "id": "XU29",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "XU30",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 84,
+      "robustPairs": []
+    },
+    {
+      "id": "XU31",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 102,
+      "robustPairs": []
+    },
+    {
+      "id": "DX02",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 102,
+      "robustPairs": []
+    },
+    {
+      "id": "DX03",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 29,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 16,
+          "localControlCount": 8,
+          "routeCount": 9,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 3,
+          "oneGapAnchored": 0,
+          "absentMediator": false,
+          "reviewStatus": "local-route-observed",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.25553894250373793,
+              "maxRatio": 0.997709049255441
+            },
+            "neutral": {
+              "scenarioCount": 48,
+              "positive": 48,
+              "topTwo": 48,
+              "minRatio": 0.44719314938154137,
+              "maxRatio": 0.8430379746835444
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "DH02",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 29,
+      "robustPairs": []
+    },
+    {
+      "id": "L76",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "L91",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 57,
+      "robustPairs": []
+    },
+    {
+      "id": "L95",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": []
+    },
+    {
+      "id": "L98",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 85,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN01",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 78,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN02",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 66,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN03",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 52,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN04",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 28,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN05",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 60,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN06",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 87,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN07",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 108,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN08",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 40,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN09",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 54,
+      "robustPairs": []
+    },
+    {
+      "id": "ZN10",
+      "priorDirection": null,
+      "pairCount": 3,
+      "routeCount": 94,
+      "robustPairs": []
+    },
+    {
+      "id": "L77",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 55,
+      "robustPairs": []
+    },
+    {
+      "id": "L78",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 46,
+      "robustPairs": []
+    },
+    {
+      "id": "L80",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 72,
+      "robustPairs": []
+    },
+    {
+      "id": "L82",
+      "priorDirection": "weak",
+      "pairCount": 4,
+      "routeCount": 22,
+      "robustPairs": []
+    },
+    {
+      "id": "L83",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 24,
+      "robustPairs": []
+    },
+    {
+      "id": "L96",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 66,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW03",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 82,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW04",
+      "priorDirection": "strong",
+      "pairCount": 5,
+      "routeCount": 42,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW05",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 44,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW06",
+      "priorDirection": "weak",
+      "pairCount": 3,
+      "routeCount": 30,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW10",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 80,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW11",
+      "priorDirection": "strong",
+      "pairCount": 3,
+      "routeCount": 44,
+      "robustPairs": [
+        {
+          "from": "earth",
+          "to": "water",
+          "via": "metal",
+          "controlCount": 13,
+          "localControlCount": 6,
+          "routeCount": 0,
+          "adjacentAnchored": 0,
+          "adjacentIntact": 0,
+          "oneGapAnchored": 0,
+          "absentMediator": true,
+          "reviewStatus": "supplement-hypothesis",
+          "nominalConfrontation": {
+            "standard": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.49923195084485406,
+              "maxRatio": 0.990990990990991
+            },
+            "neutral": {
+              "scenarioCount": 24,
+              "positive": 24,
+              "topTwo": 24,
+              "minRatio": 0.6725,
+              "maxRatio": 0.9946236559139785
+            },
+            "robustTopTwo": true,
+            "equalityResolved": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ZW12",
+      "priorDirection": null,
+      "pairCount": 5,
+      "routeCount": 43,
+      "robustPairs": []
+    },
+    {
+      "id": "ZW13",
+      "priorDirection": "weak",
+      "pairCount": 5,
+      "routeCount": 90,
+      "robustPairs": []
+    }
+  ]
+}
