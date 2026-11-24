@@ -11,7 +11,7 @@ test('research fixture identities, baseline joins and metrics agree',async()=>{
  // Frozen experiment cohort size; new fixture expansion is deliberate.
  assert.equal(r.baselineCount,100);
  assert.equal(r.abstentionCount,50);
- assert.equal(r.referenceCount,135);
+ assert.equal(r.referenceCount,146);
  assert.equal(r.uniqueCharts,r.referenceCount);
  assert.equal(r.uniqueIds,r.referenceCount);
  assert.equal(r.metricChecks,42);
