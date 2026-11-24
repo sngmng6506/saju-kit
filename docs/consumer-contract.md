@@ -37,3 +37,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Route budget v1](route-budget-v1.md) is a hypothetical diagnostic, not a classifier.
 
 - [Output capacity v1](output-capacity-v1.md) provides hypothetical accepted control and residual output, not final strength.
+
+- [Multiaxis v3](strength-multiaxis-v3.md) is experimental and does not replace earlier policies.

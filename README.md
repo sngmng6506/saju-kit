@@ -65,3 +65,5 @@ New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-r
 [Route budget v1](docs/route-budget-v1.md): experimental competing-route allocation diagnostics.
 
 [Output capacity v1](docs/output-capacity-v1.md): experimental target-bounded output diagnostics.
+
+[Integrated multiaxis v3](docs/strength-multiaxis-v3.md): experimental explanation policy; no demonstrated classification gain.

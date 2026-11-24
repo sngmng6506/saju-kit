@@ -25,3 +25,5 @@ Resource-access v1 composes support-network and quantitative-v3; no classifier d
 Route-budget v1 composes support-network and quantitative-v3, with source-budget conservation and no effective-force inference. [ADR-0010](docs/adr/0010-route-budget.md).
 
 Output-capacity v1 composes route-budget and frozen quantitative evidence; incoming target caps are hypothetical and do not mutate source masses. [ADR-0011](docs/adr/0011-output-capacity.md).
+
+Integrated multiaxis v3 composes v2 and output-capacity, matching scenario profiles without overriding baseline conflicts. [ADR-0012](docs/adr/0012-integrated-strength.md).
