@@ -1,0 +1,52 @@
+{
+  "version": "zou-peer-pressure-controls-v1",
+  "frozenEngine": "ae56cd2eb303e7601220a767cae142e8af226807",
+  "author": "鄒文耀",
+  "book": "子平命術要訣",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/c7/NLC416-13jh000981-42624_%E5%AD%90%E5%B9%B3%E5%91%BD%E8%A1%93%E8%A6%81%E8%A8%A3.pdf",
+  "selection": "Printed pp25–31 (PDF indices28–34) inspected visually. One nonduplicate explicit strong example, same previously used author. No weak cases or independent-author claim. Freeze before execution.",
+  "excluded": [
+    {
+      "example": 16,
+      "reason": "duplicate XU06"
+    },
+    {
+      "example": 25,
+      "reason": "Apparent Li zhuangyuan example, hour character and textual variants require collation."
+    },
+    {
+      "example": 26,
+      "reason": "Explicit weak reference, first pillar differs or is ambiguous compared to other editions; exclude pending collation."
+    },
+    {
+      "example": 28,
+      "reason": "Apparent year/month combination inconsistent; page break requires collation."
+    },
+    {
+      "example": 30,
+      "reason": "duplicate XU18"
+    },
+    {
+      "examples": "14–15,17–24,29,31–33",
+      "reason": "No unambiguous example-specific natal direction established or special pattern rationale."
+    }
+  ],
+  "cases": [
+    {
+      "id": "ZW27",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "壬申",
+        "辛亥"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "printedPage": 28,
+      "pdfPageIndex": 31,
+      "reason": "印綬 section example 27 illustrates strong day master and prosperous resource; wealth advised to moderate excess.",
+      "verification": "scan-checked",
+      "basis": "explicit-contextual-natal"
+    }
+  ]
+}
