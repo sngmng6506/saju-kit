@@ -1,0 +1,1703 @@
+{
+  "engine": "8ebd32f24a45c2d9ad595259f88c0d31bd8b5128",
+  "method": "Actual comparison function executed on the three stored cohort reports, preserving recorded v4 direction. Remedy motif records not reconstructed; comparison columns are independent of remedy motif counts. Not a live wrapper execution.",
+  "counts": {
+    "charts": 100,
+    "branches": 150,
+    "seasonalOverlap": 13,
+    "seasonalOpposite": 13,
+    "sourceFirstGroupOverlap": 5,
+    "sourceFirstGroupOpposite": 4,
+    "mediationOverlap": 10,
+    "mediationOpposite": 10
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H07",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W10",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W12",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DX01",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "Y01",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R01",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "wood",
+              "to": "earth",
+              "via": "fire",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "metal",
+              "to": "wood",
+              "via": "water",
+              "comparison": "overlap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R07",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R09",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "R11",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W01",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W02",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W03",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W04",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W05",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W06",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W08",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W09",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W14",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W15",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W16",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W17",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "fire",
+              "to": "metal",
+              "via": "earth",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "fire",
+              "to": "metal",
+              "via": "earth",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W18",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W19",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W20",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W22",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W23",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W24",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W25",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W26",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "W28",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU01",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU02",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU03",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU06",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "metal",
+              "to": "wood",
+              "via": "water",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU07",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU08",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU09",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU10",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU11",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU12",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU13",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU14",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU15",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "fire",
+              "to": "metal",
+              "via": "earth",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "fire",
+              "to": "metal",
+              "via": "earth",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XU16",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU17",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU19",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU20",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU21",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU23",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU24",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": {
+            "overlap": [
+              "water"
+            ],
+            "oppositeTendency": []
+          },
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": {
+            "overlap": [],
+            "oppositeTendency": [
+              "water"
+            ]
+          },
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU25",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU26",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU27",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU28",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": {
+            "overlap": [
+              "water"
+            ],
+            "oppositeTendency": []
+          },
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": {
+            "overlap": [],
+            "oppositeTendency": [
+              "water"
+            ]
+          },
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU29",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU30",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "XU31",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "DX02",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "DX03",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "opposite-tendency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DH02",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L76",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L91",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L95",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": {
+            "overlap": [
+              "water"
+            ],
+            "oppositeTendency": []
+          },
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L98",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN01",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN02",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN03",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN04",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN05",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN06",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN07",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": {
+            "overlap": [
+              "metal",
+              "fire"
+            ],
+            "oppositeTendency": []
+          },
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": {
+            "overlap": [],
+            "oppositeTendency": [
+              "metal",
+              "fire"
+            ]
+          },
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN08",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN09",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZN10",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": {
+            "overlap": [
+              "water"
+            ],
+            "oppositeTendency": []
+          },
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "opposite-tendency",
+          "sourceFirstGroup": {
+            "overlap": [],
+            "oppositeTendency": [
+              "water"
+            ]
+          },
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L77",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L78",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L80",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L82",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L83",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "L96",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW03",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW04",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "overlap",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW05",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW06",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW10",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW11",
+      "priorDirection": "strong",
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": [
+            {
+              "from": "earth",
+              "to": "water",
+              "via": "metal",
+              "comparison": "overlap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZW12",
+      "priorDirection": null,
+      "comparisons": [
+        {
+          "assumedDirection": "strong",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        },
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    },
+    {
+      "id": "ZW13",
+      "priorDirection": "weak",
+      "comparisons": [
+        {
+          "assumedDirection": "weak",
+          "seasonal": "unavailable",
+          "sourceFirstGroup": null,
+          "mediation": []
+        }
+      ]
+    }
+  ]
+}
