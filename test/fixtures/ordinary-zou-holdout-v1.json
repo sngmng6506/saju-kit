@@ -1,0 +1,175 @@
+{
+  "version": "ordinary-zou-holdout-v1",
+  "author": "鄒文耀",
+  "book": "子平命術要訣",
+  "edition": "民國十六年 (1927), title page",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/c7/NLC416-13jh000981-42624_%E5%AD%90%E5%B9%B3%E5%91%BD%E8%A1%93%E8%A6%81%E8%A8%A3.pdf",
+  "frozenEngine": "5472d30e4f714003b6228019901f17ed1212842b",
+  "selection": "Consecutive numbered examples 3–13 in printed pp22–24, sections 45–51, excluding ambiguous and exact duplicate charts. Scan visually read before engine evaluation, not OCR. New author, not proof of independent textual lineage. G1–G3 target boundary not guaranteed; distinguish ordinary and formation-dependent, keep all eligible charts in this bounded section.",
+  "excluded": [
+    {
+      "example": 7,
+      "reason": "Intra-month timing and not-wang wording insufficient for binary weak."
+    },
+    {
+      "example": 8,
+      "reason": "Not weak is not necessarily strong; timing and luck discussed."
+    },
+    {
+      "id": "ZW09",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reason": "Exact ordered chart already in historical corpus; not a new holdout."
+    }
+  ],
+  "cases": [
+    {
+      "id": "ZW03",
+      "pillars": [
+        "丁丑",
+        "丙午",
+        "己亥",
+        "甲戌"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 22,
+      "pdfPageIndex": 25,
+      "reason": "Seasonal support, earth peers in Chou and Xu, visible resource; example of strength.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW04",
+      "pillars": [
+        "丁丑",
+        "辛亥",
+        "壬子",
+        "癸卯"
+      ],
+      "reference": "strong",
+      "formation": "dependent",
+      "formationDependent": true,
+      "printedPage": 22,
+      "pdfPageIndex": 25,
+      "reason": "Explicit very strong; Hai-Zi-Chou northern assembly and resource support.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW05",
+      "pillars": [
+        "丁酉",
+        "壬寅",
+        "庚寅",
+        "丙子"
+      ],
+      "reference": "weak",
+      "formation": "dependent",
+      "formationDependent": true,
+      "printedPage": 22,
+      "pdfPageIndex": 25,
+      "reason": "Heavy killer and light body; author invokes Ding-Ren transforming into wood. Year You is metal principal.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW06",
+      "pillars": [
+        "辛酉",
+        "庚子",
+        "戊子",
+        "癸亥"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 22,
+      "pdfPageIndex": 25,
+      "reason": "Winter earth with metal/water stems and branches; abundant wealth and weak body.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW10",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "己亥",
+        "辛未"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 23,
+      "pdfPageIndex": 26,
+      "reason": "Earth in Wei judged weak owing to abundant water/wood and exposed metal drainage.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW11",
+      "pillars": [
+        "甲辰",
+        "丙子",
+        "己未",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 23,
+      "pdfPageIndex": 26,
+      "reason": "Winter Ji supported by earth and visible resource. Chart spans printed pages 23–24.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW12",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "己酉",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 23,
+      "pdfPageIndex": 26,
+      "reason": "Ji in Shen receives Lu in year Wu and earth peer/Chen support; Lu is not literal principal peer root in Wu.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    },
+    {
+      "id": "ZW13",
+      "pillars": [
+        "癸未",
+        "丙辰",
+        "癸巳",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "formation": "ordinary",
+      "formationDependent": false,
+      "printedPage": 24,
+      "pdfPageIndex": 27,
+      "reason": "Explicit natal wealth-heavy weak body; favorable subsequent metal/water luck described separately.",
+      "basis": "explicit-contextual-natal",
+      "verification": "scan-checked",
+      "track": "consecutive-strength-section"
+    }
+  ]
+}
