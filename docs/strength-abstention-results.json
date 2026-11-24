@@ -1,0 +1,1822 @@
+{
+  "engine": "d198db59c7abf47d278b9db20473c1f8d2a91c9d",
+  "method": "Actual committed separated-decision and v1 source run for all 50 historical abstentions in isolated V8 bindings, 20 fetched modules plus unused throwing calendar stub. All 50 remain null; reference/group linked to committed corpus. No changes to engine, no new holdout, no native replay.",
+  "metrics": {
+    "primary": {
+      "conflict": {
+        "n": 6,
+        "strong": 1,
+        "weak": 5
+      },
+      "no-ground-low-root": {
+        "n": 4,
+        "strong": 1,
+        "weak": 3
+      },
+      "no-ground-other": {
+        "n": 6,
+        "strong": 5,
+        "weak": 1
+      },
+      "no-ground-pressure-all": {
+        "n": 16,
+        "strong": 4,
+        "weak": 12
+      }
+    },
+    "secondary": {
+      "conflict": {
+        "n": 3,
+        "strong": 0,
+        "weak": 3
+      },
+      "no-ground-low-root": {
+        "n": 4,
+        "strong": 3,
+        "weak": 1
+      },
+      "no-ground-other": {
+        "n": 7,
+        "strong": 6,
+        "weak": 1
+      },
+      "no-ground-pressure-all": {
+        "n": 4,
+        "strong": 2,
+        "weak": 2
+      }
+    },
+    "all": {
+      "conflict": {
+        "n": 9,
+        "strong": 1,
+        "weak": 8
+      },
+      "no-ground-low-root": {
+        "n": 8,
+        "strong": 4,
+        "weak": 4
+      },
+      "no-ground-other": {
+        "n": 13,
+        "strong": 11,
+        "weak": 2
+      },
+      "no-ground-pressure-all": {
+        "n": 20,
+        "strong": 6,
+        "weak": 14
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 22,
+        "max": 26.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "H02",
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "甲午",
+        "戊辰"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 10,
+        "max": 12.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "H05",
+      "pillars": [
+        "丙辰",
+        "丙申",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 40
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "H06",
+      "pillars": [
+        "甲申",
+        "壬申",
+        "乙巳",
+        "戊寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 20,
+        "max": 25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "H08",
+      "pillars": [
+        "乙卯",
+        "丁亥",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 20.5,
+        "max": 21.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": true,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "W10",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "庚子",
+        "丁亥"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 12.5,
+        "max": 19.5
+      },
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [
+        "local-resource-versus-weak"
+      ],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "W12",
+      "pillars": [
+        "庚子",
+        "庚辰",
+        "甲子",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 10,
+        "max": 12.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "DX01",
+      "pillars": [
+        "丁丑",
+        "庚戌",
+        "庚子",
+        "甲申"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 35,
+        "max": 37.25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "Y01",
+      "pillars": [
+        "戊子",
+        "乙卯",
+        "戊戌",
+        "甲寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 40,
+        "max": 45
+      },
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [
+        "concentrated-pressure-versus-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": true,
+        "central": true,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "R02",
+      "pillars": [
+        "戊申",
+        "癸亥",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 40
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "officer"
+      ],
+      "concentrated": [],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "R07",
+      "pillars": [
+        "丙申",
+        "戊戌",
+        "丁卯",
+        "乙巳"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 37.5,
+        "max": 39.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "R10",
+      "pillars": [
+        "庚午",
+        "己卯",
+        "壬申",
+        "己酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 20,
+        "max": 22.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "R11",
+      "pillars": [
+        "癸酉",
+        "甲子",
+        "丙寅",
+        "乙未"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 25,
+        "max": 27.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "W03",
+      "pillars": [
+        "甲寅",
+        "丙子",
+        "壬寅",
+        "丙午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 25,
+        "max": 30
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W06",
+      "pillars": [
+        "丙辰",
+        "庚寅",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 27,
+        "max": 33.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W08",
+      "pillars": [
+        "辛巳",
+        "辛丑",
+        "壬寅",
+        "癸卯"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 5,
+        "max": 7.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "W09",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 22,
+        "max": 26.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W16",
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 20,
+        "max": 25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W17",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 20,
+        "max": 25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W23",
+      "pillars": [
+        "戊戌",
+        "辛酉",
+        "戊申",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 23,
+        "max": 28.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "W24",
+      "pillars": [
+        "丙申",
+        "丙申",
+        "戊戌",
+        "庚申"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 51.25,
+        "max": 52
+      },
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [
+        "concentrated-pressure-versus-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": true,
+        "central": true,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "XU02",
+      "pillars": [
+        "壬寅",
+        "戊申",
+        "壬辰",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 32.5,
+        "max": 42.25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "XU07",
+      "pillars": [
+        "丙寅",
+        "戊戌",
+        "壬戌",
+        "辛丑"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 5,
+        "max": 5
+      },
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [
+        "local-resource-versus-weak"
+      ],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "XU08",
+      "pillars": [
+        "戊戌",
+        "甲子",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 25.5,
+        "max": 31.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "XU09",
+      "pillars": [
+        "甲申",
+        "乙亥",
+        "丙戌",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 32.5,
+        "max": 35.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": true,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "XU11",
+      "pillars": [
+        "戊辰",
+        "甲寅",
+        "戊寅",
+        "戊午"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 35.5,
+        "max": 44.25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "XU14",
+      "pillars": [
+        "庚戌",
+        "戊子",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 35
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth"
+      ],
+      "concentrated": [
+        "wealth"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "XU15",
+      "pillars": [
+        "壬辰",
+        "乙巳",
+        "癸巳",
+        "辛酉"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 5,
+        "max": 9.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "XU16",
+      "pillars": [
+        "庚辰",
+        "戊子",
+        "戊寅",
+        "甲寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 23,
+        "max": 28.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "XU20",
+      "pillars": [
+        "甲午",
+        "丁卯",
+        "癸丑",
+        "丙辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 20.5,
+        "max": 21.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "XU24",
+      "pillars": [
+        "甲子",
+        "乙亥",
+        "辛未",
+        "戊子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 0,
+        "max": 0
+      },
+      "grounds": [
+        "low-root-capacity-and-dominant-pressure"
+      ],
+      "conflicts": [
+        "local-resource-versus-weak"
+      ],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "output",
+        "wealth"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "XU25",
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "丙寅",
+        "庚寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 32.5,
+        "max": 35.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "XU28",
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "丙寅",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 30,
+        "max": 40
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "DX02",
+      "pillars": [
+        "庚申",
+        "辛巳",
+        "丙辰",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 30,
+        "max": 35
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "DX03",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 40
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output",
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "DH02",
+      "pillars": [
+        "己酉",
+        "丙子",
+        "癸未",
+        "戊午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 25,
+        "max": 30
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "L98",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "辛亥",
+        "甲午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 2,
+        "max": 3.75
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "ZN01",
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "己巳",
+        "庚午"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 35.5,
+        "max": 44.25
+      },
+      "grounds": [
+        "local-resource-and-robust-support",
+        "bounded-route-support"
+      ],
+      "conflicts": [
+        "season-sensitive-resource-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": false,
+        "pressureAll": false,
+        "supportAll": true,
+        "localResource": true,
+        "routeSupport": true,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "conflict"
+    },
+    {
+      "id": "ZN03",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "丁卯",
+        "甲辰"
+      ],
+      "reference": "strong",
+      "group": "secondary",
+      "root": {
+        "min": 5,
+        "max": 7.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "ZN05",
+      "pillars": [
+        "乙卯",
+        "戊寅",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 37.5,
+        "max": 47.25
+      },
+      "grounds": [
+        "local-resource-and-robust-support"
+      ],
+      "conflicts": [
+        "season-sensitive-resource-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": true,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "conflict"
+    },
+    {
+      "id": "ZN06",
+      "pillars": [
+        "乙巳",
+        "丁亥",
+        "壬午",
+        "庚戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 25,
+        "max": 30
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "wealth"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "ZN07",
+      "pillars": [
+        "壬辰",
+        "辛亥",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 39.5,
+        "max": 43.25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "ZN10",
+      "pillars": [
+        "戊寅",
+        "己未",
+        "丙戌",
+        "乙未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 45
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "L77",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "壬寅",
+        "壬寅"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 12.5,
+        "max": 19.5
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "L78",
+      "pillars": [
+        "癸酉",
+        "丁巳",
+        "己卯",
+        "甲戌"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 27.5,
+        "max": 30
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-other"
+    },
+    {
+      "id": "L80",
+      "pillars": [
+        "己巳",
+        "甲戌",
+        "壬辰",
+        "庚子"
+      ],
+      "reference": "weak",
+      "group": "secondary",
+      "root": {
+        "min": 42.75,
+        "max": 45
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": true,
+        "central": false,
+        "peripheral": true,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": true,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [
+        "officer"
+      ],
+      "concentrated": [
+        "officer"
+      ],
+      "bucket": "no-ground-pressure-all"
+    },
+    {
+      "id": "L96",
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "丙申",
+        "戊戌"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 12.5,
+        "max": 13
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": true,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "no-ground-low-root"
+    },
+    {
+      "id": "ZW03",
+      "pillars": [
+        "丁丑",
+        "丙午",
+        "己亥",
+        "甲戌"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 55.5,
+        "max": 63.25
+      },
+      "grounds": [
+        "bounded-route-support"
+      ],
+      "conflicts": [
+        "season-sensitive-resource-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": true,
+        "central": false,
+        "peripheral": true,
+        "centralBurden": true,
+        "pressureAll": false,
+        "supportAll": true,
+        "localResource": false,
+        "routeSupport": true,
+        "routeResource": true
+      },
+      "dominant": [],
+      "concentrated": [],
+      "bucket": "conflict"
+    },
+    {
+      "id": "ZW10",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "己亥",
+        "辛未"
+      ],
+      "reference": "weak",
+      "group": "primary",
+      "root": {
+        "min": 60,
+        "max": 62.5
+      },
+      "grounds": [
+        "central-root-capacity"
+      ],
+      "conflicts": [
+        "concentrated-pressure-versus-support"
+      ],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": true,
+        "central": true,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "wealth",
+        "officer"
+      ],
+      "concentrated": [
+        "wealth"
+      ],
+      "bucket": "conflict"
+    },
+    {
+      "id": "ZW12",
+      "pillars": [
+        "壬午",
+        "戊申",
+        "己酉",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "group": "primary",
+      "root": {
+        "min": 35,
+        "max": 37.25
+      },
+      "grounds": [],
+      "conflicts": [],
+      "flags": {
+        "rootLow": false,
+        "rootHigh": false,
+        "central": false,
+        "peripheral": false,
+        "centralBurden": true,
+        "pressureAll": true,
+        "supportAll": false,
+        "localResource": false,
+        "routeSupport": false,
+        "routeResource": false
+      },
+      "dominant": [
+        "output"
+      ],
+      "concentrated": [
+        "output"
+      ],
+      "bucket": "no-ground-pressure-all"
+    }
+  ]
+}
