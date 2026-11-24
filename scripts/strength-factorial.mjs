@@ -15,7 +15,7 @@ function metrics(rows){
  const l=rows.filter(r=>['strong','weak'].includes(r.reference));
  return variants.map((_,j)=>[l.filter(r=>r.results[j]===r.reference).length,l.filter(r=>r.results[j]&&r.results[j]!==r.reference).length,l.filter(r=>!r.results[j]).length]);
 }
-export async function evaluateStrengthFactorial(){
+export async function evaluateStrengthFactorial(fixtureNames=names){
  const dir=await mkdtemp(join(tmpdir(),'saju-factorial-'));
  try{
   const engines=[];
@@ -30,7 +30,7 @@ export async function evaluateStrengthFactorial(){
    engines.push((await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v3/index.js')).href)).analyzeMultiaxisStrengthV3);
   }
   const corpora=[];
-  for(const name of names){
+  for(const name of fixtureNames){
    const fixture=JSON.parse(await readFile(join(root,'test/fixtures',name+'.json'),'utf8'));
    const rows=fixture.cases.map(c=>{
     const results=engines.map((fn,j)=>{
@@ -38,7 +38,7 @@ export async function evaluateStrengthFactorial(){
      if(variants[j].remove&&x.decision.conflicts.includes('local-resource-versus-weak'))throw Error('veto retained');
      return x.direction;
     });
-    return {id:c.id,reference:c.reference,results};
+    return {id:c.id,reference:c.reference,formationDependent:c.formationDependent===true,results};
    });
    corpora.push({name,rows,metrics:metrics(rows)});
   }

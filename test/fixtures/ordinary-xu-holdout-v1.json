@@ -1,0 +1,117 @@
+{
+  "version": "ordinary-xu-holdout-v1",
+  "frozenEngine": "a4b1dfd7c5444347179e3195c4937e86bd23bdbd",
+  "author": "徐樂吾",
+  "selection": "Explicit natal direction in chapters 43–45 of linked online edition; same author, unseen charts, not independent expert validation. Formation-dependent cases flagged.",
+  "sources": {
+    "43": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/43",
+    "44": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/44",
+    "45": "https://www.tianjihq.com/zh-CN/learn/books/ziping-zhenquan-pingzhu/45"
+  },
+  "cases": [
+    {
+      "id": "H01",
+      "pillars": [
+        "壬申",
+        "壬子",
+        "戊午",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "chapter": 44,
+      "reason": "일간 왕 및 좌인 명시",
+      "formationDependent": false
+    },
+    {
+      "id": "H02",
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "甲午",
+        "戊辰"
+      ],
+      "reference": "weak",
+      "chapter": 45,
+      "reason": "원국 신약 명시; 합화 의존 검토",
+      "formationDependent": true
+    },
+    {
+      "id": "H03",
+      "pillars": [
+        "丙寅",
+        "癸巳",
+        "癸未",
+        "壬戌"
+      ],
+      "reference": "weak",
+      "chapter": 45,
+      "reason": "재왕신경",
+      "formationDependent": false
+    },
+    {
+      "id": "H04",
+      "pillars": [
+        "丙辰",
+        "癸巳",
+        "壬戌",
+        "壬寅"
+      ],
+      "reference": "weak",
+      "chapter": 45,
+      "reason": "근경신약",
+      "formationDependent": false
+    },
+    {
+      "id": "H05",
+      "pillars": [
+        "丙辰",
+        "丙申",
+        "丙午",
+        "壬辰"
+      ],
+      "reference": "strong",
+      "chapter": 44,
+      "reason": "신강으로 살에 대항",
+      "formationDependent": false
+    },
+    {
+      "id": "H06",
+      "pillars": [
+        "甲申",
+        "壬申",
+        "乙巳",
+        "戊寅"
+      ],
+      "reference": "weak",
+      "chapter": 43,
+      "reason": "재관 과왕, 신경",
+      "formationDependent": false
+    },
+    {
+      "id": "H07",
+      "pillars": [
+        "壬戌",
+        "丁未",
+        "戊申",
+        "乙卯"
+      ],
+      "reference": "strong",
+      "chapter": 43,
+      "reason": "일원 당왕",
+      "formationDependent": false
+    },
+    {
+      "id": "H08",
+      "pillars": [
+        "乙卯",
+        "丁亥",
+        "丁未",
+        "庚戌"
+      ],
+      "reference": "strong",
+      "chapter": 43,
+      "reason": "신왕인중; 삼합 의존 검토",
+      "formationDependent": true
+    }
+  ]
+}

@@ -13,3 +13,6 @@ Frozen source: 28a0e0a99d6cb12eb0fca3719a016270c314bb38. Four isolated module gr
 
 Actual feature sources evaluated in four isolated V8 module graphs with guarded substitutions, unused calendar helper stubbed for complete pillars. Native reproduction scripts and snapshot test authored, not run natively.
 Run `node scripts/evaluate-strength-factorial.mjs` or `node --test test/strength-factorial.test.mjs`.
+
+## Unseen chart follow-up
+[Eight unseen Xu charts](strength-holdout.md) favor retaining season; B has no new coverage on this subset. Runtime unchanged.
