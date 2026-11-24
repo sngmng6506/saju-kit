@@ -53,3 +53,5 @@ Experimental qualitative v3: `analyzeStructuralStrength({saju,policy:'strength-s
 Experimental quantitative v3: `analyzeQuantitativeStrength({saju,policy:'strength-quantitative-v3',birthBasis:'verified-chart'})`. [Model and development comparison](docs/strength-quantitative-v3.md); not a validated replacement.
 
 Experimental multi-axis strength: `analyzeMultiaxisStrength({saju,policy:'strength-multiaxis-v1',birthBasis:'verified-chart'})`. [Model and comparison](docs/strength-multiaxis-v1.md).
+
+New-source strength comparison: [Wei ordinary references v1](docs/ordinary-wei-reference-v1.md), including a counterexample to the multiaxis root-first rule.

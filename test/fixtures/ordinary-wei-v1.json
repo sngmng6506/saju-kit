@@ -1,0 +1,464 @@
+{
+  "version": "ordinary-wei-v1",
+  "author": "韋千里",
+  "book": "千里命稿",
+  "frozenEngine": "548c66520d51b4ef82d0952f44ab414628550c05",
+  "selection": "All examples in strength and judgment sections and all example charts in the food/resource benefit/harm subsections, except recorded source defects. Teaching charts are not authenticated births; no model outputs used in selection.",
+  "sources": {
+    "strength": {
+      "title": "強弱篇",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/008/",
+      "alternate": "https://8s8s.com/text/literature/78/18696.573870.html"
+    },
+    "judgment": {
+      "title": "評斷篇",
+      "url": "https://taoly.app/library/bazi/qian-li-ming-gao/021/"
+    },
+    "food": {
+      "title": "六神篇・食神",
+      "url": "https://luckclub.cn/bazi/003/009/"
+    },
+    "resource": {
+      "title": "六神篇・偏正印",
+      "url": "https://luckclub.cn/bazi/003/009/"
+    }
+  },
+  "cases": [
+    {
+      "id": "W01",
+      "source": "strength",
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "甲子",
+        "甲子"
+      ],
+      "reference": "strong",
+      "reason": "최강: 득령과 생조",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W02",
+      "source": "strength",
+      "pillars": [
+        "甲寅",
+        "癸酉",
+        "乙亥",
+        "丙子"
+      ],
+      "reference": "strong",
+      "reason": "중강: 실령이나 생조",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W03",
+      "source": "strength",
+      "pillars": [
+        "甲寅",
+        "丙子",
+        "壬寅",
+        "丙午"
+      ],
+      "reference": "strong",
+      "reason": "중강: 득령이나 다른 생조 적음",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W04",
+      "source": "strength",
+      "pillars": [
+        "辛亥",
+        "丁酉",
+        "甲寅",
+        "丁卯"
+      ],
+      "reference": "strong",
+      "reason": "차강: 실령이나 지지의 근기",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W05",
+      "source": "strength",
+      "pillars": [
+        "戊申",
+        "庚申",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "reason": "최약: 실령과 극설",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W06",
+      "source": "strength",
+      "pillars": [
+        "丙辰",
+        "庚寅",
+        "甲午",
+        "庚午"
+      ],
+      "reference": "weak",
+      "reason": "중약: 득령이나 극설 과다",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W08",
+      "source": "strength",
+      "pillars": [
+        "辛巳",
+        "辛丑",
+        "壬寅",
+        "癸卯"
+      ],
+      "reference": "weak",
+      "reason": "차약: 천간 생조에도 지지 근기 부족",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W09",
+      "source": "judgment",
+      "pillars": [
+        "癸未",
+        "甲子",
+        "丙戌",
+        "己亥"
+      ],
+      "reference": "weak",
+      "reason": "겨울 수의 극과 토의 설기",
+      "kind": "commentary",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W10",
+      "source": "judgment",
+      "pillars": [
+        "壬子",
+        "癸丑",
+        "庚子",
+        "丁亥"
+      ],
+      "reference": "weak",
+      "reason": "수왕설기 및 지지 합화 해석",
+      "kind": "commentary",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": true,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W11",
+      "source": "judgment",
+      "pillars": [
+        "己亥",
+        "癸酉",
+        "甲辰",
+        "丙寅"
+      ],
+      "reference": "qualified",
+      "reason": "실령 및 극설, 근기로 지극히 약하지는 않다고 서술",
+      "kind": "commentary",
+      "labelBasis": "qualified-or-balance",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W12",
+      "source": "judgment",
+      "pillars": [
+        "庚子",
+        "庚辰",
+        "甲子",
+        "戊辰"
+      ],
+      "reference": "strong",
+      "reason": "자진 반합에 따른 인성 생조를 근거로 강으로 전환",
+      "kind": "commentary",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": true,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W13",
+      "source": "judgment",
+      "pillars": [
+        "壬子",
+        "丙午",
+        "癸亥",
+        "戊午"
+      ],
+      "reference": "balanced",
+      "reason": "약하나 생조로 중화, 용신 설명에서는 다소 약함",
+      "kind": "commentary",
+      "labelBasis": "qualified-or-balance",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W14",
+      "source": "food",
+      "pillars": [
+        "癸丑",
+        "乙卯",
+        "甲子",
+        "丙寅"
+      ],
+      "reference": "strong",
+      "reason": "춘목 및 수목 생조",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W15",
+      "source": "food",
+      "pillars": [
+        "己卯",
+        "丙寅",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "reason": "비겁 집중",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W16",
+      "source": "food",
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "reason": "목금 수량보다 가을 금의 세력 우세",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W17",
+      "source": "food",
+      "pillars": [
+        "辛酉",
+        "丙申",
+        "甲戌",
+        "丙寅"
+      ],
+      "reference": "weak",
+      "reason": "가을 관성 과다",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W18",
+      "source": "food",
+      "pillars": [
+        "乙酉",
+        "丙戌",
+        "甲戌",
+        "乙丑"
+      ],
+      "reference": "weak",
+      "reason": "토금 부담과 설기",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W19",
+      "source": "food",
+      "pillars": [
+        "庚寅",
+        "丙戌",
+        "甲寅",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "reason": "실령에도 인목 통근과 해의 장생",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W20",
+      "source": "food",
+      "pillars": [
+        "丙戌",
+        "辛卯",
+        "甲子",
+        "乙亥"
+      ],
+      "reference": "strong",
+      "reason": "춘목과 생조",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W21",
+      "source": "resource",
+      "pillars": [
+        "丁卯",
+        "辛亥",
+        "戊子",
+        "丙辰"
+      ],
+      "reference": "qualified",
+      "reason": "약한 일간을 양인성이 생조하여 재관을 감당한다고 설명; 최종 방향 불명",
+      "kind": "teaching",
+      "labelBasis": "qualified-or-balance",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W22",
+      "source": "resource",
+      "pillars": [
+        "癸卯",
+        "乙卯",
+        "戊子",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "reason": "관중신경과 인성의 보호",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W23",
+      "source": "resource",
+      "pillars": [
+        "戊戌",
+        "辛酉",
+        "戊申",
+        "丁巳"
+      ],
+      "reference": "weak",
+      "reason": "금의 설기와 인성의 제어",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W24",
+      "source": "resource",
+      "pillars": [
+        "丙申",
+        "丙申",
+        "戊戌",
+        "庚申"
+      ],
+      "reference": "weak",
+      "reason": "식상 과다와 인성의 생조",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W25",
+      "source": "resource",
+      "pillars": [
+        "丙辰",
+        "戊戌",
+        "戊午",
+        "壬戌"
+      ],
+      "reference": "strong",
+      "reason": "화토 집중",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W26",
+      "source": "resource",
+      "pillars": [
+        "乙未",
+        "丙戌",
+        "戊午",
+        "己未"
+      ],
+      "reference": "strong",
+      "reason": "비겁 과다",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    },
+    {
+      "id": "W28",
+      "source": "resource",
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "戊戌",
+        "戊午"
+      ],
+      "reference": "strong",
+      "reason": "토왕과 식신의 설기",
+      "kind": "teaching",
+      "labelBasis": "explicit-contextual-direction",
+      "formationDependent": false,
+      "split": "new-source-frozen-multiaxis-v1"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "W07",
+      "source": "strength",
+      "reference": "weak",
+      "variants": [
+        "甲寅 丙子 丁卯 乙巳",
+        "甲寅 丙子 丁卯 己巳"
+      ],
+      "reason": "시주 판본 불일치. 乙巳 is consistent with 丁 day, 己巳 is not; neither silently selected.",
+      "alternate": "https://8s8s.com/text/literature/78/18696.573870.html"
+    },
+    {
+      "id": "W27",
+      "source": "resource",
+      "reference": "strong",
+      "text": "丙戌 辛旺 戊戌 戊午",
+      "reason": "월지 旺 is not a branch; no reconstruction."
+    }
+  ]
+}

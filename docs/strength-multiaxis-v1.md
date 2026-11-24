@@ -47,3 +47,6 @@ Reproduce:
 node --test test/strength-multiaxis-v1.test.mjs test/multiaxis-reference.test.mjs
 node scripts/evaluate-multiaxis.mjs
 ```
+
+## New-source comparison
+[Wei ordinary references v1](ordinary-wei-reference-v1.md) compares the frozen policies on 26 new textual charts. Multiaxis agrees on 11/23 directional cases with one false strong, versus 13/23 and no disagreement for quantitative v3. Preserve this result; investigate differentiated pressure and resource routes before modifying the rule.
