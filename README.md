@@ -51,3 +51,5 @@ Root-quality diagnostics: `lifeStage(stem, branch)` and `analyzeRootDynamics({sa
 Experimental qualitative v3: `analyzeStructuralStrength({saju,policy:'strength-structural-v3',birthBasis:'verified-chart'})`. [Contract and development comparison](docs/strength-structural-v3.md). Not a final strength classifier.
 
 Experimental quantitative v3: `analyzeQuantitativeStrength({saju,policy:'strength-quantitative-v3',birthBasis:'verified-chart'})`. [Model and development comparison](docs/strength-quantitative-v3.md); not a validated replacement.
+
+Experimental multi-axis strength: `analyzeMultiaxisStrength({saju,policy:'strength-multiaxis-v1',birthBasis:'verified-chart'})`. [Model and comparison](docs/strength-multiaxis-v1.md).

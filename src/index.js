@@ -30,3 +30,5 @@ export { lifeStage, analyzeRootDynamics, LIFE_STAGE_VERSION } from './core/root-
 export { analyzeStructuralStrength, STRUCTURAL_STRENGTH_VERSION } from './features/strength-structural-v3/index.js';
 
 export { analyzeQuantitativeStrength, QUANTITATIVE_STRENGTH_VERSION } from './features/strength-quantitative-v3/index.js';
+
+export { analyzeMultiaxisStrength, MULTIAXIS_STRENGTH_VERSION } from './features/strength-multiaxis-v1/index.js';

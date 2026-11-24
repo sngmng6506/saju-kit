@@ -13,3 +13,5 @@ Core root-dynamics exposes versioned life stages, positional literal roots, seas
 The experimental structural strength v3 feature consumes root-dynamics and existing elemental category mapping, returns qualitative hypotheses only, and leaves earlier classifiers unchanged. [ADR-0005](docs/adr/0005-structural-strength.md), [contract](docs/strength-structural-v3.md).
 
 The experimental quantitative v3 feature consumes element structure and the existing internal hour-pillar calculation, returns a separate root/season-aware sensitivity index, and does not integrate structural v3 into a final classifier. [ADR-0006](docs/adr/0006-quantitative-strength.md), [contract](docs/strength-quantitative-v3.md).
+
+Multi-axis strength v1 consumes root dynamics and frozen quantitative-v3 scenario contributions; root capacity, environment and interaction evidence remain separate. [ADR-0007](docs/adr/0007-multiaxis-strength.md), [contract](docs/strength-multiaxis-v1.md).

@@ -69,3 +69,6 @@ Reproduce:
 node --test test/strength-quantitative-v3.test.mjs test/quantitative-v3-reference.test.mjs
 node scripts/evaluate-quantitative-v3.mjs
 ```
+
+## Follow-up
+[Multi-axis strength v1](strength-multiaxis-v1.md) separates root capacity, external support and pressure while preserving this model. Continue library development independently of service release.
