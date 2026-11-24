@@ -46,3 +46,5 @@ export { analyzeOutputCapacity, OUTPUT_CAPACITY_VERSION } from './features/outpu
 export { analyzeMultiaxisStrengthV3, MULTIAXIS_V3_VERSION } from './features/strength-multiaxis-v3/index.js';
 
 export { analyzeMultiaxisStrengthV4, MULTIAXIS_V4_VERSION } from './features/strength-multiaxis-v4/index.js';
+
+export { analyzeStrengthDecision, STRENGTH_DECISION_VERSION } from './features/strength-decision-v1/index.js';
