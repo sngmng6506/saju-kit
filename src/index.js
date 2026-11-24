@@ -75,3 +75,5 @@ export { analyzeUsefulElementAuthorityV2, USEFUL_ELEMENT_AUTHORITY_V2_VERSION } 
 export { analyzeUsefulElementTransitV2, USEFUL_ELEMENT_TRANSIT_V2_VERSION } from './features/useful-element-transit-v2/index.js';
 
 export { analyzeClimateUsefulElementV4, CLIMATE_V4_VERSION } from './features/climate-useful-element-v4/index.js';
+
+export { analyzeClimateUsefulElementV5, CLIMATE_V5_VERSION } from './features/climate-useful-element-v5/index.js';
