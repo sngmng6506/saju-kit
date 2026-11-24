@@ -1,3 +1,4 @@
+import { observePathNode } from '../../core/path-node-evidence.js';
 import { elementRelation } from '../../core/elements.js';
 const ELEMENTS=['wood','fire','earth','metal','water'];
 const slot=n=>n.position+':'+n.layer;
@@ -5,16 +6,7 @@ const relation=(a,b,type)=>{const r=elementRelation(a,b);return r.type===type&&r
 const pathKey=ids=>ids.join('>');
 export function observeMediationPairs(dynamics,structure){
  const nodes=dynamics.nodes,byId=new Map(nodes.map(n=>[n.id,n]));
- const clashed=new Set(structure.clashes.flatMap(c=>c.positions));
- function nodeEvidence(n){
-  const profile=structure.profiles.find(p=>p.element===n.element);
-  const visible=n.layer==='stem'?profile.visible.find(v=>v.position===n.position):null;
-  return {id:n.id,element:n.element,layer:n.layer,position:n.position,
-   anchorObserved:n.layer==='stem'?n.rooted:n.role==='principal',
-   intactSubstantialRoot:n.layer==='stem'?visible.matches.some(m=>m.role!=='residual'&&!clashed.has(m.position)):
-    n.role!=='residual'&&!clashed.has(n.position),
-   dayReference:n.id==='day:stem'};
- }
+ const nodeEvidence=n=>observePathNode(n,structure);
  const evidence=new Map(nodes.map(n=>[n.id,nodeEvidence(n)]));
  const pairs=[];
  for(const from of ELEMENTS)for(const to of ELEMENTS){
