@@ -86,3 +86,6 @@ export { analyzePatternUsefulElement, PATTERN_USEFUL_ELEMENT_VERSION } from './f
 export { analyzePatternUsefulElementV2, PATTERN_V2_VERSION } from './features/pattern-useful-element-v2/index.js';
 
 export { analyzePatternUsefulElementV3, PATTERN_V3_VERSION } from './features/pattern-useful-element-v3/index.js';
+
+export { analyzeUsefulElementAuthorityV4, USEFUL_ELEMENT_AUTHORITY_V4_VERSION } from './features/useful-element-authority-v4/index.js';
+export { analyzeUsefulElementTransitV4, USEFUL_ELEMENT_TRANSIT_V4_VERSION } from './features/useful-element-transit-v4/index.js';
