@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 
-export const FIXTURES=['ordinary-xu-v1','ordinary-wei-v1','strength-ditiansui-v1','ordinary-ran-yuan-v1','ordinary-xu-holdout-v1','ordinary-lin-scan-v1','ordinary-zhang-holdout-v1','ordinary-lin-holdout-v4-v1','ordinary-zou-holdout-v1','zou-peer-pressure-controls-v1','month-command-text-controls-v1'];
+export const FIXTURES=['ordinary-xu-v1','ordinary-wei-v1','strength-ditiansui-v1','ordinary-ran-yuan-v1','ordinary-xu-holdout-v1','ordinary-lin-scan-v1','ordinary-zhang-holdout-v1','ordinary-lin-holdout-v4-v1','ordinary-zou-holdout-v1','zou-peer-pressure-controls-v1','month-command-text-controls-v1','yuan-electronic-prospective-v1'];
 export const REPORTS=['strength-root-position-results','strength-separated-decision-results','strength-abstention-results','strength-peer-root-access-results','strength-resource-route-sensitivity-results','strength-multihop-results','strength-clash-formation-results','formation-evidence-results'];
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const direction=x=>x==='strong'||x==='weak';
