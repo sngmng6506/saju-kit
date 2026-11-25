@@ -204,3 +204,36 @@ npm run audit:dead-code
 ```
 
 The native CLI compares legacy and scoped role-contrast witnesses on identical full v10 graphs, without the strength proxy to isolate anchor scope. Native regression still pending. Next: actually run this comparison, then evaluate layer-specific mechanisms and independently adjudicated positive/negative references. Do not simply remove the inherited hidden-access blocker or treat exact projection as effective hidden action. No main merge or final decision authority.
+
+
+## Layer-specific mechanisms and coherent projection v1
+
+Research-only engineering refinement; uses the existing hidden-stem convention, actual interaction context, access review and efficacy screen. No new classical source collation or effective-force thresholds. The literal presence of a principal constituent is not a claim that it commands the month. Six mechanism classes: direct visible relation; vertical principal relation; vertical nonprincipal constituent relation; branch-principal relation; branch-constituent relation; cross-pillar mixed relation. Principal/middle/residual labels are preserved separately at both endpoints. For a vertical relation the principal stem/branch relation is a literal structural observation, not an independent hidden actor with a separate external root requirement. Nonprincipal constituent participation is explicitly unresolved. For branch-to-branch relations distinguish a mere elemental relation from a shared actual branch formation/disruption context (including incomplete formation candidates); the latter does not prove the elemental action. Contact with only one endpoint is kept separate from a shared two-position context. For cross-layer transfer, look for exact visible counterparts and actual directed edges; the hidden edge itself remains unresolved. Preserve all legacy reasons for auditing. For visible-visible relations, the new screen must be equivalent to the existing screen. Branch formations, disruptions, clash exposures, competing local pressure and distance are evidence, never cancellation or automatic transformation.
+
+The coherent projection review enumerates one assignment of visible occurrences to all roles in a hidden-participant witness. Require distinct visible actors, exact projection alternatives, actual directed edges of the same kinds, and a visible actor from the scoped candidate for its anchor role. Do not combine independently projected edges if they require inconsistent assignments or collapse multiple roles. No visible actor is created and no hidden occurrence is replaced in the original graph. Retain the additional wealth-generates-killing edge if it appears in the projected assignment. Passing all primary edge screens is not a complete path efficacy decision. Deduplicate alternative assignments by chart/candidate/pattern/role mapping while separately reporting original witness references.
+
+Execution on 17 actual source modules (core, access, efficacy, layer modules; adapted ESM loader and stem-force occurrence/clash adapter, no candidate or role pipeline) at c44e16b, 101 textual charts, zero errors:
+
+| Layer | Shen 67 | Xu 34 | Total | With separate visible alternative (total) |
+|---|---:|---:|---:|---:|
+| visible-visible | 330 | 164 | 494 | n/a |
+| same-pillar mixed | 584 | 274 | 858 | 188 |
+| cross-pillar mixed | 1758 | 841 | 2599 | 584 |
+| branch-branch | 2364 | 1089 | 3453 | 194 |
+| Total | 5036 | 2368 | 7404 | 966 |
+
+Vertical principal 322 and nonprincipal 536; branch principal-principal 483 and at least one nonprincipal 2970. Shared branch context 1988 of 3453, elemental relation only 1465. All 494 visible screens exactly matched the old screen (22 necessary-screen-met, 472 review-required); all 6910 hidden-participant edges remain unresolved as effects. Visible alternatives are separate edge evidence, not extra effective actions.
+
+Additional executed integration on 19 actual modules: Xu principal-only adapter for resource/food/killing families (17 of 34 charts; no alternate projection/storage candidates, no full v10 or strength proxy). Of 250 scoped hidden role witnesses, 40 had coherent visible alternatives, 210 had none observed; 42 alternative references deduplicate to 11 chart/candidate/pattern/role assignments. Zero all-primary-screen passes, zero errors. This demonstrates why edge-level projection availability must not be mistaken for complete route availability. Two synthetic test groups passed on actual final module sources with adapted assertions, including branch context, distinct actor assignments, anchor restriction, invalid edge binding and deduplication. Native tests include an additional complete cohort invariant.
+
+```sh
+node scripts/audit-classical-patterns.mjs --layers
+node scripts/audit-classical-patterns.mjs --layers --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:architecture
+npm run audit:layout
+npm run audit:dead-code
+```
+
+Native checkout was reattempted: Node v22.16.0 available, git ls-remote failed DNS resolution for github.com. Full native v10 audit, role projections across every candidate, and full regression remain unexecuted. No main merge, runtime/public API change or final efficacy authority. Next prioritize a source-adjudicated set of positive and negative vertical/branch/visible route cases with exact participant annotations; examine the 22 passing visible screens and the 11 deduplicated principal-only alternatives to identify false positives/negatives of the necessary screens. Avoid adding more unvalidated diagnostic models or treating fewer blockers as better classical accuracy.
