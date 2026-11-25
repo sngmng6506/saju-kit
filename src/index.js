@@ -97,3 +97,5 @@ export { analyzePatternUsefulElementV5, PATTERN_V5_VERSION } from './features/pa
 export { analyzePatternUsefulElementV6, PATTERN_V6_VERSION } from './features/pattern-useful-element-v6/index.js';
 
 export { analyzePatternUsefulElementV7, PATTERN_V7_VERSION } from './features/pattern-useful-element-v7/index.js';
+
+export { analyzePatternUsefulElementV8, PATTERN_V8_VERSION } from './features/pattern-useful-element-v8/index.js';

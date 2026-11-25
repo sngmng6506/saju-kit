@@ -29,3 +29,5 @@ Output-capacity v1 composes route-budget and frozen quantitative evidence; incom
 Integrated multiaxis v3 composes v2 and output-capacity, matching scenario profiles without overriding baseline conflicts. [ADR-0012](docs/adr/0012-integrated-strength.md).
 
 The opt-in pattern v7 composes v6 and a source-scoped composition review. Original-pattern preservation and explicit secondary-pattern hypotheses are separate; generic projected pairs remain neutral. No final selection authority or consumer promotion. [Contract](docs/pattern-useful-element-v7.md).
+
+Pattern v8 adds a separate mixed-month source review of projected stems and complete month groups. It keeps structural relations, source-scoped affinity motifs and research preference separate; no effective-force or final selection authority. [Contract](docs/pattern-useful-element-v8.md).
