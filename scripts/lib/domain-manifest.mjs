@@ -129,6 +129,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/architecture.test.mjs",
     "test/dead-code-audit.test.mjs",
     "test/failures-reporter.test.mjs",
-    "test/layout.test.mjs"
+    "test/layout.test.mjs",
+    "test/validation-provenance.test.mjs"
   ]
 }).map(([name,files])=>[name,Object.freeze(files)])));
