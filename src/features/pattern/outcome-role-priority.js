@@ -1,6 +1,5 @@
 import {stemInfo} from '../../core/elements.js';
-const ref=(r,w)=>({ruleId:r.id,witnessId:w.id});
-const key=(r,w)=>JSON.stringify([r,w]);
+import {ref,key,edgeKey,validStates,premise,unknown,combinePremises,dayDirection,hasEdge,createRoleEvidence,createRoleEdgeReader,createRegistryReader} from './outcome-role-contract.js';
 const sorted=xs=>[...new Set(xs)].sort();
 // An ordered review is not a preference for an effective useful element.
 // Directional evidence is never promoted to role excess or deficiency.
@@ -55,7 +54,7 @@ export function observeConditionalRolePriority(review,prior,capacity,comparisons
  if([capacity,comparisons,flow].some(x=>!x||x.status==='invalid-evidence')||rootContext?.status==='invalid-evidence'||commandReview?.status==='invalid-evidence')return empty('invalid-evidence');
  const complete=prior.completeHour,day=prior.stemForce.occurrences.find(o=>o.dayReference);
  if(!day)return empty('invalid-evidence');
- const direction=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
+ const direction=dayDirection(complete,strength);
  const polarity=stemInfo(day.stem).yinYang;
  const actors=new Map(capacity.occurrences.map(o=>[o.id,o]));
  const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
@@ -125,30 +124,17 @@ export function observeConditionalRolePriority(review,prior,capacity,comparisons
 // R02 and K02: source-scoped conditional objectives, not a new force engine.
 // Distinguish required role, comparative capacity and actual causal efficacy.
 const clauseSources={R02:'https://luckclub.cn/bazi/002/037/',K02:'https://luckclub.cn/bazi/002/041/'};
-const premise=(id,state,evidence)=>({id,state,evidence});
-const edgeKey=(from,to,kind)=>JSON.stringify([from,to,kind]);
-const validStates=['supported','opposed','conflicting','unresolved'];
-function combinePremises(ps){
- if(ps.some(p=>p.state==='conflicting'))return 'conflicting';
- if(ps.some(p=>p.state==='opposed'))return 'opposed';
- return ps.length&&ps.every(p=>p.state==='supported')?'supported':'unresolved';
-}
 export function assessRoleObjectives(review,prior,capacity,comparisons,mechanism,strength,rootContext,commandReview){
  const base={version:'role-objective-policy-v1',candidateId:review.candidateId,selectionAuthority:false,
   preferredObjective:null,excessConfirmed:null,deficiencyConfirmed:null,effectConfirmed:null};
  const empty=status=>({...base,status,objectives:[]});
  if(review.status==='out-of-scope'||!['resource','killing'].includes(review.family))return empty('out-of-scope');
  if([capacity,comparisons,mechanism,rootContext,commandReview].some(x=>!x||x.status==='invalid-evidence'))return empty('invalid-evidence');
- const complete=prior.completeHour,actors=new Map(capacity.occurrences.map(o=>[o.id,o])),roots=new Map(rootContext.occurrences.map(o=>[o.id,o]));
- const edges=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
- const routeMap=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
- if(actors.size!==capacity.occurrences.length||roots.size!==rootContext.occurrences.length||actors.size!==roots.size||
-  [...actors.keys()].some(id=>!roots.has(id))||edges.size!==mechanism.edges.length||
-  routeMap.size!==entries.length||mechanism.routes.length!==entries.length||entries.some(({r,w})=>!routeMap.has(key(r.id,w.id))))return empty('invalid-evidence');
- const day=[...actors.values()].filter(a=>a.dayReference);
- if(day.length!==1)return empty('invalid-evidence');
- const dayId=day[0].id,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
+ const complete=prior.completeHour,evidence=createRoleEvidence(review,capacity,mechanism,{rootContext});
+ if(!evidence)return empty('invalid-evidence');
+ const {actors,roots,entries,registry,distinct}=evidence;
+ const dayId=evidence.day.id,dir=dayDirection(complete,strength);
+ const reader=createRegistryReader(registry,complete,{missingReason:true});
  const objectives=[];
  let invalid=false;
  const rooted=(id,label)=>{
@@ -172,16 +158,10 @@ export function assessRoleObjectives(review,prior,capacity,comparisons,mechanism
   return premise(label,state,{from:a,to:b,expected:want,comparison,readiness,
    basis:stable&&readiness.status==='context-review'?'chart-only-conditional':'contextual-profile'});
  };
- const directed=(from,to,kind,label,required=false)=>{
-  const e=edges.get(edgeKey(from,to,kind));
-  if(!e){if(required)invalid=true;return premise(label,'unresolved',{from,to,kind,reason:'route-edge-not-projected'});}
-  if(!validStates.includes(e.status)||e.effective!==null){invalid=true;return premise(label,'unresolved',{from,to,kind});}
-  return premise(label,complete?e.status:'unresolved',{from,to,kind,edgeId:e.id,conditions:e.conditions});
- };
+ const directed=(from,to,kind,label,required=false)=>reader.directed(from,to,kind,label,required);
  const dayPremise=want=>premise('day-capacity-hypothesis',dir===null?'unresolved':dir===want?'supported':'opposed',
   {occurrenceId:dayId,direction:dir,expected:want,policy:strength?.policy??null});
- const distinct=(ids)=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
- const has=(w,a,b,k)=>w.edges.some(e=>e.from===a&&e.to===b&&e.kind===k);
+ const has=hasEdge;
  const push=(clause,objective,d,related,ps,unresolvedRequirements)=>{
   objectives.push({clause,source:clauseSources[clause],objective,route:ref(d.r,d.w),relatedRoutes:related.map(x=>ref(x.r,x.w)),
    premises:ps,conditionalStatus:combinePremises(ps),unresolvedRequirements,
@@ -221,7 +201,7 @@ export function assessRoleObjectives(review,prior,capacity,comparisons,mechanism
   push('K02','excess-food-moderation',d,support,[relative(output,killing,'left-evidence-dominates','food-relative-dominance'),rooted(resource,'resource-root-access'),control,dayBurden],
    ['food-excess-not-proven','necessary-killing-control-preserved','resource-day-support-unresolved']);
  }
- if(invalid)return empty('invalid-evidence');
+ if(invalid||reader.invalid())return empty('invalid-evidence');
  return {...base,status:complete?'diagnostic':'partial',objectives,
   limitations:['conditional-premises-not-effective-force','relative-profile-not-role-excess','literal-food-clause-only','no-final-objective-selection']};
 }
@@ -234,40 +214,13 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
  const empty=status=>({...base,status,food:[],mediation:[],comparisons:[]});
  if(review.status==='out-of-scope'||review.family!=='killing')return empty('out-of-scope');
  if([capacity,flow,mechanism].some(x=>!x||x.status==='invalid-evidence'))return empty('invalid-evidence');
- const complete=prior.completeHour,actors=new Map(capacity.occurrences.map(o=>[o.id,o]));
- const raw=new Map(prior.relativeForce.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const registry=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const day=capacity.occurrences.filter(o=>o.dayReference);
- const originalActors=new Map(prior.stemForce.occurrences.map(o=>[o.id,o]));
- const visible=capacity.occurrences.filter(o=>o.layer==='visible');
- if(originalActors.size!==prior.stemForce.occurrences.length||originalActors.size!==actors.size||
-  new Set(visible.map(o=>o.position)).size!==visible.length||
-  visible.some(o=>o.id!=='visible:'+o.position)||
-  capacity.occurrences.some(o=>{const a=originalActors.get(o.id);return !a||['position','layer','tenGod','dayReference'].some(k=>a[k]!==o[k]);}))return empty('invalid-evidence');
- if(day.length!==1||actors.size!==capacity.occurrences.length||raw.size!==prior.relativeForce.edges.length||
-  registry.size!==mechanism.edges.length||typeof assessEdge!=='function')return empty('invalid-evidence');
- const dayId=day[0].id,dayStem=prior.stemForce.occurrences.find(o=>o.id===dayId&&o.dayReference)?.stem;
+ const complete=prior.completeHour,evidence=createRoleEvidence(review,capacity,mechanism,{prior,flow,rawRequired:true});
+ if(!evidence||typeof assessEdge!=='function')return empty('invalid-evidence');
+ const {actors,entries,routes:routeRows,distinct}=evidence;
+ const dayId=evidence.day.id,dayStem=evidence.original.get(dayId)?.stem;
  if(!dayStem)return empty('invalid-evidence');
- const polarity=stemInfo(dayStem).yinYang,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
- const routeRows=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
- const flowRows=new Map(flow.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
- const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
- const refs=entries.map(({r,w})=>key(r.id,w.id));
- if(new Set(refs).size!==refs.length||routeRows.size!==refs.length||mechanism.routes.length!==refs.length||
-  flowRows.size!==refs.length||flow.routes.length!==refs.length||refs.some(k=>!routeRows.has(k)||!flowRows.has(k)))return empty('invalid-evidence');
- let invalid=false;
- const distinct=ids=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
- const edge=(from,to,kind,required=true)=>{
-  const k=edgeKey(from,to,kind),r=raw.get(k);
-  if(!r){if(required)invalid=true;return null;}
-  const assessed=assessEdge({from,to,kind,edgeId:r.id});
-  if(!assessed||assessed.from!==from||assessed.to!==to||assessed.kind!==kind||
-   assessed.effective!==null||!validStates.includes(assessed.status)){invalid=true;return null;}
-  const existing=registry.get(k);
-  if(existing&&(existing.status!==assessed.status||existing.effective!==null||
-   JSON.stringify(existing.conditions)!==JSON.stringify(assessed.conditions)))invalid=true;
-  return {from,to,kind,edgeId:r.id,status:complete?assessed.status:'unresolved',conditions:assessed.conditions,effective:null};
- };
+ const polarity=stemInfo(dayStem).yinYang,dir=dayDirection(complete,strength);
+ const reader=createRoleEdgeReader(evidence,complete,assessEdge),{edge,bound}=reader;
  const ep=(label,e)=>premise(label,e?.status??'unresolved',e);
  const dayFitness=()=>{
   // Original text asks for a healthy day. Xu adds a polarity distinction:
@@ -285,7 +238,7 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
   if(d!==dayId||!distinct([f,k,d])||actors.get(f).tenGod!=='식신'||actors.get(k).tenGod!=='편관'||
    !review.anchorIds.includes(k))return empty('invalid-evidence');
   const required=[[f,k,'control'],[k,d,'control'],[d,f,'generate']];
-  if(required.some(([a,b,c])=>!w.edges.some(e=>e.from===a&&e.to===b&&e.kind===c&&e.edgeId===raw.get(edgeKey(a,b,c))?.id)))return empty('invalid-evidence');
+  if(required.some(([a,b,c])=>!w.edges.some(e=>bound(e,a,b,c))))return empty('invalid-evidence');
   const [control,pressure,drain]=required.map(args=>edge(...args));
   const route=routeRows.get(key(r.id,w.id));
   if(!validStates.includes(route.status)||route.effective!==null)return empty('invalid-evidence');
@@ -302,7 +255,7 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
    actors.get(k).tenGod!=='편관'||actors.get(i).layer!=='visible'||!['정인','편인'].includes(actors.get(i).tenGod))return empty('invalid-evidence');
   ids.add(m.id);
   const required=[[k,i,'generate'],[i,d,'generate'],[k,d,'control']];
-  if(m.edges.length!==3||required.some(([a,b,c])=>!m.edges.some(e=>e.from===a&&e.to===b&&e.kind===c&&e.edgeId===raw.get(edgeKey(a,b,c))?.id)))return empty('invalid-evidence');
+  if(m.edges.length!==3||required.some(([a,b,c])=>!m.edges.some(e=>bound(e,a,b,c))))return empty('invalid-evidence');
   const [supply,delivery,pressure]=required.map(args=>edge(...args));
   // Independent structural path is assessed even when no food witness exists.
   // Weak day is a source-specific motive, not a universal requirement for
@@ -334,7 +287,7 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
    unresolvedRequirements:['no-proof-of-net-pressure-reduction','shared-killing-pressure-not-additive','resource-food-contact-not-confirmed-injury'],
    preferredStrategy:null,effectConfirmed:null});
  }
- return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',food,mediation,comparisons,
+ return reader.invalid()?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',food,mediation,comparisons,
   limitations:['source-conditional-strategy-not-final-choice','no-synthetic-support-witness','no-cross-anchor-comparison','no-effective-pressure-cancellation']};
 }
 
@@ -348,29 +301,19 @@ export function assessKillingWealth(review,prior,capacity,mechanism,compound,str
  if(review.status==='out-of-scope'||review.family!=='killing')return empty('out-of-scope');
  if([capacity,mechanism,strategies,comparisons,rootContext,commandReview].some(x=>!x||x.status==='invalid-evidence')||
   !compound||compound.violations?.length||strategies.candidateId!==review.candidateId)return empty('invalid-evidence');
- const complete=prior.completeHour,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
- const actors=new Map(capacity.occurrences.map(o=>[o.id,o])),day=capacity.occurrences.filter(o=>o.dayReference);
- const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
- const lookup=new Map(entries.map(x=>[key(x.r.id,x.w.id),x]));
- const edges=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const routes=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
+ const complete=prior.completeHour,dir=dayDirection(complete,strength);
+ const evidence=createRoleEvidence(review,capacity,mechanism);
+ if(!evidence)return empty('invalid-evidence');
+ const {actors,entries,lookup,registry,distinct}=evidence;
  const refKey=r=>key(r.ruleId,r.witnessId);
- const distinct=ids=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
- if(day.length!==1||actors.size!==capacity.occurrences.length||lookup.size!==entries.length||edges.size!==mechanism.edges.length||
-  routes.size!==entries.length||mechanism.routes.length!==entries.length||entries.some(x=>!routes.has(key(x.r.id,x.w.id))))return empty('invalid-evidence');
- const dayId=day[0].id,wealth=id=>actors.get(id)?.layer==='visible'&&['정재','편재'].includes(actors.get(id)?.tenGod);
+ const dayId=evidence.day.id,wealth=id=>actors.get(id)?.layer==='visible'&&['정재','편재'].includes(actors.get(id)?.tenGod);
  const killing=id=>actors.get(id)?.tenGod==='편관'&&review.anchorIds.includes(id);
  const resource=id=>actors.get(id)?.layer==='visible'&&['정인','편인'].includes(actors.get(id)?.tenGod);
  const output=id=>actors.get(id)?.layer==='visible'&&['식신','상관'].includes(actors.get(id)?.tenGod);
- const has=(w,a,b,k)=>w.edges.some(e=>e.from===a&&e.to===b&&e.kind===k);
+ const has=hasEdge;
  let invalid=false;
- const directed=(from,to,kind,label)=>{
-  const e=edges.get(edgeKey(from,to,kind));
-  if(!e||e.effective!==null||!validStates.includes(e.status)){invalid=true;return premise(label,'unresolved',{from,to,kind});}
-  return premise(label,complete?e.status:'unresolved',{from,to,kind,conditions:e.conditions,edgeId:e.id??null});
- };
+ const reader=createRegistryReader(registry,complete,{nullMissingId:true}),{directed}=reader;
  const dayPremise=want=>premise('day-capacity-hypothesis',dir===null?'unresolved':dir===want?'supported':'opposed',{direction:dir,expected:want,policy:strength?.policy??null});
- const unknown=(id,evidence=null)=>premise(id,'unresolved',evidence);
  const objective=(id,premises)=>({id,premises,conditionalStatus:combinePremises(premises),actualDemand:null,effectConfirmed:null});
  const supply=[],dualRoles=[],mediationContacts=[];
  const supplyMap=new Map();
@@ -441,7 +384,7 @@ export function assessKillingWealth(review,prior,capacity,mechanism,compound,str
     netEffectConfirmed:null,effectConfirmed:null});
   }
  }
- return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',supply,dualRoles,mediationContacts,
+ return invalid||reader.invalid()?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',supply,dualRoles,mediationContacts,
   limitations:['exact-bound-compound-motif-only','placement-not-protection','relative-contrast-not-deficiency','no-summed-or-confirmed-effects']};
 }
 
@@ -454,40 +397,19 @@ export function assessResourceStrategies(review,prior,capacity,mechanism,strengt
  const empty=status=>({...base,status,outputDrain:[],killingSupply:[],officerContext:[]});
  if(review.status==='out-of-scope'||review.family!=='resource')return empty('out-of-scope');
  if([capacity,mechanism,rootContext].some(x=>!x||x.status==='invalid-evidence')||typeof assessEdge!=='function')return empty('invalid-evidence');
- const complete=prior.completeHour,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
- const actors=new Map(capacity.occurrences.map(o=>[o.id,o])),original=new Map(prior.stemForce.occurrences.map(o=>[o.id,o]));
- const roots=new Map(rootContext.occurrences.map(o=>[o.id,o])),raw=new Map(prior.relativeForce.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const registry=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
- const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w}))),refs=entries.map(x=>key(x.r.id,x.w.id));
- const routes=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
- const day=capacity.occurrences.filter(o=>o.dayReference),visible=capacity.occurrences.filter(o=>o.layer==='visible');
- if(day.length!==1||day[0].id!=='visible:day'||actors.size!==capacity.occurrences.length||
-  original.size!==prior.stemForce.occurrences.length||original.size!==actors.size||roots.size!==rootContext.occurrences.length||roots.size!==actors.size||
-  capacity.occurrences.some(o=>{const a=original.get(o.id);return !a||!roots.has(o.id)||['position','layer','tenGod','dayReference'].some(k=>a[k]!==o[k]);})||
-  visible.some(o=>o.id!=='visible:'+o.position)||new Set(visible.map(o=>o.position)).size!==visible.length||
-  raw.size!==prior.relativeForce.edges.length||registry.size!==mechanism.edges.length||
-  new Set(refs).size!==refs.length||routes.size!==refs.length||mechanism.routes.length!==refs.length||
-  refs.some(k=>!routes.has(k)))return empty('invalid-evidence');
- const d=day[0].id,resource=id=>review.anchorIds.includes(id)&&['정인','편인'].includes(actors.get(id)?.tenGod);
- const distinct=ids=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
- let invalid=false;
- const unknown=(id,evidence=null)=>premise(id,'unresolved',evidence);
+ const complete=prior.completeHour,dir=dayDirection(complete,strength);
+ const evidence=createRoleEvidence(review,capacity,mechanism,{prior,rootContext,rawRequired:true});
+ if(!evidence||evidence.day.id!=='visible:day')return empty('invalid-evidence');
+ const {actors,entries,roots,routes,visible,distinct}=evidence;
+ const d=evidence.day.id,resource=id=>review.anchorIds.includes(id)&&['정인','편인'].includes(actors.get(id)?.tenGod);
+ const reader=createRoleEdgeReader(evidence,complete,assessEdge),{edge,bound}=reader;
  const dayPremise=want=>premise('day-capacity-hypothesis',dir===null?'unresolved':dir===want?'supported':'opposed',{occurrenceId:d,direction:dir,expected:want,policy:strength?.policy??null});
  const rootPremise=id=>{
   const a=actors.get(id),r=roots.get(id);
   return premise('resource-root-observation',complete&&a.layer==='visible'&&r.rootAxes.anySubstantial===true?'supported':'unresolved',
    {occurrenceId:id,layer:a.layer,rootState:r.rootAxes.anySubstantial,uncontestedRootIds:[...r.uncontestedRootIds],contestedRootIds:[...r.contestedRootIds]});
  };
- const edge=(from,to,kind,required=true)=>{
-  const k=edgeKey(from,to,kind),r=raw.get(k);
-  if(!r){if(required)invalid=true;return null;}
-  const e=assessEdge({from,to,kind,edgeId:r.id}),old=registry.get(k);
-  if(!e||e.from!==from||e.to!==to||e.kind!==kind||e.effective!==null||!validStates.includes(e.status)||
-   old&&(old.status!==e.status||old.effective!==null||JSON.stringify(old.conditions)!==JSON.stringify(e.conditions))){invalid=true;return null;}
-  return {from,to,kind,edgeId:r.id,status:complete?e.status:'unresolved',conditions:e.conditions,effective:null};
- };
  const ep=(id,e)=>premise(id,e?.status??'unresolved',e);
- const bound=(e,a,b,k)=>e&&e.from===a&&e.to===b&&e.kind===k&&e.edgeId===raw.get(edgeKey(a,b,k))?.id;
  const routeValid=(r,w)=>{const row=routes.get(key(r.id,w.id));return row&&validStates.includes(row.status)&&row.effective===null;};
  const objective=(clause,id,premises,scope='ordinary')=>({clause,id,scope,premises,conditionalStatus:combinePremises(premises),
   actualDemand:null,excessConfirmed:null,deficiencyConfirmed:null,effectConfirmed:null,selectionAuthority:false});
@@ -545,6 +467,6 @@ export function assessResourceStrategies(review,prior,capacity,mechanism,strengt
    commentary:{mao:'Xu treats the weak-day/heavy-resource example as exceptional; no ordinary positive rule is inferred.',
     ma:'Xu emphasizes resource supply despite rooted day and output drain; preservation matters.',scopeResolved:null}});
  }
- return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',outputDrain,killingSupply,officerContext,
+ return reader.invalid()?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',outputDrain,killingSupply,officerContext,
   limitations:['no-role-count-or-force-weights','exact-anchor-alternatives-only','root-not-abundance','original-and-commentary-scope-distinct','no-special-pattern-or-selection-authority']};
 }
