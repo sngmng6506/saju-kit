@@ -35,3 +35,95 @@ npm test
 ```
 
 Next: independently cross-check remaining 13 appendix-only and variants; extend with more ordinary-pattern cases and negative contrasts (no fabricated historical labels). Establish actual selection and role references before granting any selection authority. Keep special patterns out.
+
+
+## Outcome research checkpoint after v10
+
+The v3–v10 progression can now be compared on the same frozen corpus without changing any released policy. The research-only outcome projection consumes v10, requires observed anchor-bound routes and distinct slots, normalizes reverse legacy directions and matches a rescue only against the identical directed obstacle/protected occurrence pair within the same candidate. Unmatched rescue witnesses remain visible; a matched rescue never removes a threat. Named role paths and unresolved motif predicates remain separate evidence, not scores. A root/locality screen is not efficacy. No selection, 成敗救應, useful/assistant/unfavorable stem or transit authority is granted.
+
+```sh
+node scripts/audit-classical-patterns.mjs --progression
+node scripts/audit-classical-patterns.mjs --outcomes
+node scripts/audit-classical-patterns.mjs --outcomes --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:layout
+npm run audit:architecture
+npm run audit:dead-code
+```
+
+Reference inventory (executed against the actual frozen JSON): 81 total, 67 eligible, 14 excluded, 13 selected-family labels, 23 support and 2 obstruction probes. There are zero eligible formed, exact useful-stem, exact assistant-stem or unfavorable-stem labels, and zero confirmed held-out cases. All 81 cases remain in the annotation review queue. Negative labels must be distinguished from missing labels. This is an inventory, not independent adjudication. Do not add synthetic cases as historical references or backfill labels from predictions. For the next corpus, record the source edition and exact location, transcription, explicit role/formation scope, adjudicator and disagreement; freeze a separate blind split before rule tuning. Special patterns remain excluded.
+
+Three new synthetic controls passed in isolated JavaScript using the actual research module and test assertions adapted to that environment (JSON clone for plain control data). The native full-corpus test has been authored but not executed; repository clone was blocked by DNS and a full dependency fetch exceeded connector call limits. No new outcome counts or improvement in prediction accuracy are claimed. Public API and runtime modules are unchanged. Keep the research branch separate until the final native regression and pinned equivalence gate is passed. 
+
+
+## Separate Xu Lek-wu commentary cohort (commentary-v1)
+
+34 additional four-pillar references transcribed from the electronic edition of 徐樂吾's commentary: https://ncc.com.tw/fate/paleo/bg/bg_033.htm (chapters 九, 十一, 十二, 十五, 十六, 二十). The source locator, raw Chinese pillars, author layer and narrow paraphrase are recorded per case. This is a single electronic witness and single annotation pass. No independent edition agreement, birth-date confirmation, or empirical validation is claimed. The original 81-row Shen corpus is unchanged. The combined 115 pillar strings are unique, but alternative charts of one subject and source comparisons are related and must stay grouped when eventually splitting a corpus.
+
+The executed inventory validates 34/34 rows for unique pillar strings, valid sexagenary parity, year/month stem and day/hour stem consistency, exact transcription mapping, visible annotated stems and provenance. This does not validate an actual historical birth date. Source-family labels (16) are not necessarily final selected-family labels. Explicit outcome expressions: formed 3, broken 1, rescued 4, formed-with-damage 5; 21 unlabelled. Explicit assistant stem 1, commentary-useful visible stems 5, rescue participant probes 6, obstruction probes 7. Xu's use of 用神 may differ from Shen's monthly anchor; do not compare it directly to patternUsefulGod or pool these metrics across source layers. Empty arrays mean unannotated, not proven absent. The fixture is entirely development commentary, not a blind holdout.
+
+```sh
+node scripts/audit-classical-patterns.mjs --commentary
+node --test test/pattern-classical-v2.test.mjs
+npm run audit:layout
+```
+
+The commentary audit reports candidate inclusion separately from strict matched-threat rescue probes, unmatched paths, and damage-actor probes. A role witness alone cannot satisfy a matched rescue probe. No outcome or assistant accuracy is reported until a real prediction contract exists. Cases without a family label are searched across candidates for the broad structural probes; this is not a family-specific adjudication. Source variants and related cases remain identified, not independent observations. All 34 are development cases. No new runtime policy or final authority is granted. Native v10 execution and full regression remain pending: git ls-remote in the execution environment failed DNS even though Node 22.16.0 is available. The next step is a second-witness transcription review, a separate adjudication pass and independent split before calibrating any final decision rules.
+
+
+## Efficacy review v1 (research-only, after pattern v10)
+
+Text basis: [論用神格局高低](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-ge-ju-gao-di), [論生剋先後分吉凶](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-sheng-ke-xian-hou-fen-ji-xiong), [論用神成敗救應](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-cheng-bai-jiu-ying). The first two electronic chapters were inspected. The text distinguishes appropriateness, available force, relative balance and position; it does not specify a numeric threshold. The screen below is an engineering hypothesis about evidence sufficiency, not a complete classical efficacy rule or empirical claim.
+
+The research module consumes the existing v10 occurrence graph, route bindings and candidate outcome review. No duplicate natal/force calculation, no fixture-dependent inference, no change to public runtime/API or consumer policies. Reverse-oriented legacy links are normalized; explicit edge identity, direction, type and screen must match the upstream graph. Missing or non-comparable access and combinations are unresolved, while clash exposure, rooted local pressure, distance or insufficient root evidence trigger review. For control, target evidence dominance and mixed relative evidence also require review; that dominance rule is not applied to generation. Unknown evidence does not erase known concerns. No weighted sum, numerical force or claim that dominance of evidence equals dominance of force.
+
+States: necessary-screen-met, review-required, unresolved. Passing a screen means only the listed engineering checks passed, never that an action is effective. A multi-edge role witness retains every unresolved source condition. A matched rescue screens the original damage and helper edge separately, but source-order/interference and net rescue effect remain unresolved even when both edge screens pass; the threat is never removed. Food/killing/day triads bind only to the candidate's actual killing anchor and retain day-capacity and balance conditions. There is no positive or negative final efficacy prediction. Counts are candidate-route/witness occurrences, not independent charts; the same physical edge may occur in multiple candidate routes.
+
+```sh
+node scripts/audit-classical-patterns.mjs --efficacy
+node scripts/audit-classical-patterns.mjs --efficacy --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+```
+
+The audit keeps the eligible Shen 67 and Xu commentary 34 separate (14 Shen review-only cases excluded). It reports state counts and matched rescue screens, not final outcome accuracy. Three new synthetic test groups passed using the actual module and adapted assertions in an isolated JavaScript environment, including inconsistent edge direction/screen, relative control and generation contrasts, hidden access, partial/unavailable input, noncancellation, unresolved source conditions and triad anchor isolation. Native Node 22.16.0 is installed, but git ls-remote failed to resolve github.com; native corpus and full regression remain unexecuted. Do not merge before the pinned native regression gate. Future calibration requires independently adjudicated action efficacy and negative controls; neither a source outcome label nor an unlabelled case can serve as a negative edge label.
+
+
+## Outcome decision v1 (research-only)
+
+Text cross-check: [論用神成敗救應, Shen electronic text](https://www.tianyashuku.com/yijing/9643/814110.html), [parallel reading](https://changxianyi.com/guji/ziping/wz-20260914/chapter-010/), [論用神因成得敗因敗得成](https://www.donglishuzhai.net/chapter/3726.html). The search-visible passages distinguish formation, damage, formation with damage, and rescue; full fetches of the first and third links failed (403/502). No independent full-edition collation is claimed. The existing eight-family motif source table remains unchanged, and is explicitly nonexhaustive.
+
+The decision module is a pure three-valued algebra (true/false/null), plus a projection over existing v10, outcome and efficacy research evidence. It evaluates conjunctions, alternatives and negation without conflating unknown with false. A refuted motif is excluded only as that particular alternative. A satisfied literal motif is not confirmed effectiveness. An open inventory of alternatives may not be closed merely because all known alternatives are false. Damage and rescue are evaluated per directed threat occurrence; a rescued threat cannot cancel another independent threat. Conditional hypotheses: cleanFormation, formationWithDamage, damageWithoutSupport, formationAfterRescue. These are conditional compositions of supplied premises, not confirmed whole-pattern judgements, and damageWithoutSupport is not automatically 破格. The pure algebra supports explicit exhaustive hypothetical inventories for testing; the actual projection never marks the inventory exhaustive, never injects source labels and never promotes necessary screens to true effects. Therefore current corpus final decision coverage is expected to be zero, not measured accuracy. No runtime policy or public API change.
+
+The new audit separates Shen (67 eligible; 14 excluded) and Xu (34). It reports literal motif matches, refutations, unresolved motifs, abstentions and a contextual condition backlog ranked by distinct charts then occurrence count; refuted motifs are excluded from that backlog. The backlog measures implementation coverage, not source importance or empirical accuracy.
+
+```sh
+node scripts/audit-classical-patterns.mjs --decisions
+node scripts/audit-classical-patterns.mjs --decisions --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:layout
+npm run audit:architecture
+npm run audit:dead-code
+```
+
+Executed four new synthetic test groups in an isolated JavaScript environment with actual research module source and adapted assertions: three-valued truth tables and De Morgan checks, open-world coverage, independent rescue obligations, motif predicate consistency, backlog exclusion, missing-hour and unavailable handling. Exhaustive enumeration of 972 two-threat combinations produced zero conflicting hypotheses and zero final-authority grants. This proves only the tested algebraic contracts, not correctness of classical astrology. Native Node 22.16.0 is available but git ls-remote again failed DNS resolution; native corpus and full regression have not run. The branch must remain separate until native regression and pinned equivalence checks pass. Next: use measured backlog to implement individually sourced contextual predicates with explicit negative contrasts, add independently adjudicated force/efficacy labels and freeze an independent corpus before tuning. Do not activate final selection or transit authority.
+
+
+## Contextual condition review v1
+
+The pattern decision research consumes the existing opt-in strength-decision-v1 output for the same chart, not a new strength classifier. Relevant source/engineering contracts: [separated strength decision](strength-separated-decision.md), [integrated strength v3](strength-multiaxis-v3.md), [resource access](resource-access-v1.md), [output capacity](output-capacity-v1.md), and the classical discussions already cited above. No new textual collation is claimed for this integration.
+
+A complete, conflict-free ordinary-chart strong/weak hypothesis with explicit grounds is required for a conditional day-strong proxy. Weak may also refute the conjunction day-and-resource-strong under that proxy; strong alone cannot establish the conjunction. Partial, unavailable, wrong policy/scope and conflicting or unresolved directions abstain. The proxy is kept in a parallel conditionalPredicate field; the original motif truth, doctrinalValue, effective effect and final authority remain unchanged. Special-chart exclusion is an assumption, not proof of ordinary classification.
+
+The matched scenarios compare support with each burden, conditional resource with nominal wealth and hypothetical residual output, and visible peer with nominal wealth. Comparisons use integer mass within the same scenario row, report all-left/all-right/equal or sensitivity, and never compare independently selected marginal extrema. These are inherited hypothetical units, not effective force. Do not infer excessive/deficient resource, sufficient day capacity or peer victory from these comparisons. Candidate-local edge evidence binds to the upstream anchor occurrences, excludes the day reference from peer pressure, preserves relative evidence and blockers, includes actual food-killing-day triads and flags combination/order review. No duplication of the strength calculation or fixture-dependent inference. Current upstream anchor identity is retained, including its known scope limitations.
+
+```sh
+node scripts/audit-classical-patterns.mjs --context
+node scripts/audit-classical-patterns.mjs --context --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+```
+
+The audit keeps Shen 67 and Xu 34 separate (14 excluded Shen rows). It reports conditional proxy coverage, ordinary-strength direction distribution, and conditional motif changes without claiming doctrine or final outcome accuracy. Two new synthetic test groups passed in isolated JavaScript with actual context and logical algebra sources and adapted assertions; matched scenario sensitivity, conflict/missing hour abstention, candidate/peer isolation, input immutability, positive and negative proxy values and authority boundaries were exercised. Native corpus and complete regression remain pending: Node 22.16.0 is installed, but git ls-remote failed to resolve github.com. No actual corpus coverage numbers were measured. Next run native corpus and use the condition backlog to scope the first genuinely adjudicated context/efficacy predicates; avoid new weights or definitive force thresholds without independent reference evidence.

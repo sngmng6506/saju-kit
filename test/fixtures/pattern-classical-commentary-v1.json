@@ -1,0 +1,1132 @@
+{
+  "version": "pattern-classical-commentary-v1",
+  "sourceScope": "Xu commentary only; not Shen original, not empirical truth. Empty stem arrays mean not annotated, not absence. Family may be mentioned classification rather than final selection. Alternative charts must not be independent trials.",
+  "cases": [
+    {
+      "id": "xu-09-01",
+      "pillars": [
+        "임술",
+        "기유",
+        "정축",
+        "갑진"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "劉澄如",
+        "rawPillars": "壬戌己酉丁丑甲辰",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "wealth",
+        "outcome": "rescued",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "갑"
+        ],
+        "obstructionStems": [
+          "기"
+        ],
+        "note": "인성이 식신을 제어하여 관성을 보존한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-02",
+      "pillars": [
+        "기묘",
+        "병자",
+        "경인",
+        "신사"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "史量才",
+        "rawPillars": "己卯丙子庚寅辛巳",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "hurting-officer",
+        "outcome": "formed-with-damage",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "인성이 재지에 놓여 상관 제어와 살의 화해가 어렵다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-03",
+      "pillars": [
+        "기묘",
+        "병자",
+        "병자",
+        "정유"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "胡漢民",
+        "rawPillars": "己卯丙子丙子丁酉",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "hu-variant-cluster",
+      "annotation": {
+        "family": "officer",
+        "outcome": "formed",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "연의 인성과 시의 재성이 서로 방해하지 않는다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-04",
+      "pillars": [
+        "기묘",
+        "병자",
+        "병인",
+        "병신"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "胡漢民 異說",
+        "rawPillars": "己卯丙子丙寅丙申",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "hu-variant-cluster",
+      "annotation": {
+        "family": "officer",
+        "outcome": "formed-with-damage",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "인신충으로 재인 양쪽이 손상된다는 대안 명조.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-05",
+      "pillars": [
+        "갑자",
+        "병자",
+        "병인",
+        "병신"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "周湘舲",
+        "rawPillars": "甲子丙子丙寅丙申",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "hu-variant-cluster",
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "앞의 재인 충돌 사례와 유사하다고만 설명한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-06",
+      "pillars": [
+        "계사",
+        "병진",
+        "임신",
+        "계묘"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "楊杏佛",
+        "rawPillars": "癸巳丙辰壬申癸卯",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": "formed-with-damage",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [
+          "계"
+        ],
+        "note": "상관생재 구조에 겁재의 재성 침해가 있다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-07",
+      "pillars": [
+        "기묘",
+        "정축",
+        "계축",
+        "을묘"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "譚延闓",
+        "rawPillars": "己卯丁丑癸丑乙卯",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": "rescued",
+        "selectedUsefulStems": [
+          "을"
+        ],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "식신과 재성이 일간으로 떨어져 있어 살에 재가 전달되지 않는다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-08",
+      "pillars": [
+        "정해",
+        "병오",
+        "임인",
+        "기유"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "伍朝樞",
+        "rawPillars": "丁亥丙午壬寅己酉",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": "rescued",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "연지의 녹과 시지의 인으로 일간을 돕는다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-09",
+      "pillars": [
+        "계사",
+        "신유",
+        "경신",
+        "병술"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "石友三",
+        "rawPillars": "癸巳辛酉庚申丙戌",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "blade",
+        "outcome": "formed-with-damage",
+        "selectedUsefulStems": [
+          "병"
+        ],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [
+          "신",
+          "계"
+        ],
+        "note": "신금의 합과 계수의 제어로 칠살이 손상된다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-10",
+      "pillars": [
+        "계미",
+        "병진",
+        "병오",
+        "무자"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "郭松齡",
+        "rawPillars": "癸未丙辰丙午戊子",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": "formed-with-damage",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "성중유패의 추가 사례로 열거한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-11",
+      "pillars": [
+        "정묘",
+        "병오",
+        "병자",
+        "임진"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "龍濟光",
+        "rawPillars": "丁卯丙午丙子壬辰",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "blade",
+        "outcome": "formed",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "살인격(煞刃格)의 성립 사례로 열거한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-12",
+      "pillars": [
+        "정유",
+        "병오",
+        "정유",
+        "기유"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "江萬平",
+        "rawPillars": "丁酉丙午丁酉己酉",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "peer",
+        "outcome": "formed",
+        "selectedUsefulStems": [
+          "기"
+        ],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "건록에서 식신생재를 취하는 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-13",
+      "pillars": [
+        "정사",
+        "기유",
+        "경자",
+        "정해"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "朱古薇",
+        "rawPillars": "丁巳己酉庚子丁亥",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "blade",
+        "outcome": null,
+        "selectedUsefulStems": [
+          "정"
+        ],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "기"
+        ],
+        "obstructionStems": [],
+        "note": "연관을 인성으로 분리하고 시간의 관성을 취한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-14",
+      "pillars": [
+        "계유",
+        "을축",
+        "경인",
+        "병자"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "張載陽",
+        "rawPillars": "癸酉乙丑庚寅丙子",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": "rescued",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "경"
+        ],
+        "obstructionStems": [],
+        "note": "일간과 재성의 합이 상관의 생재를 방해하여 제살을 가능하게 한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-15",
+      "pillars": [
+        "계유",
+        "정사",
+        "기묘",
+        "갑술"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "褚輔成",
+        "rawPillars": "癸酉丁巳己卯甲戌",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "계"
+        ],
+        "obstructionStems": [],
+        "note": "계수로 인성을 제어하고 관성을 생한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-09-16",
+      "pillars": [
+        "신사",
+        "임진",
+        "을해",
+        "임오"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "九、論用神成敗救應",
+        "locator": "陳陶遺",
+        "rawPillars": "辛巳壬辰乙亥壬午",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "임"
+        ],
+        "obstructionStems": [
+          "신"
+        ],
+        "note": "식신생재 구성에 칠살이 나타나며 임수 인성이 이를 화한다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-11-01",
+      "pillars": [
+        "갑자",
+        "정묘",
+        "기해",
+        "무진"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十一、論用神純雜",
+        "locator": "楊增新",
+        "rawPillars": "甲子丁卯己亥戊辰",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "재관인의 연속적 생을 순수한 구조로 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-11-02",
+      "pillars": [
+        "계미",
+        "갑자",
+        "병술",
+        "신묘"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十一、論用神純雜",
+        "locator": "梁鴻志",
+        "rawPillars": "癸未甲子丙戌辛卯",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "일간의 합이 재의 인성 침해를 방지하고 인성이 상관을 제어한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-01",
+      "pillars": [
+        "무자",
+        "갑인",
+        "무오",
+        "갑인"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "pair-upper",
+        "rawPillars": "戊子甲寅戊午甲寅",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "relative-force-pair",
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "살중용인 비교 중 인성이 가깝고 유력하다는 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-02",
+      "pillars": [
+        "기해",
+        "병인",
+        "무자",
+        "갑인"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "pair-lower",
+        "rawPillars": "己亥丙寅戊子甲寅",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "relative-force-pair",
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "동일한 살중용인 비교에서 재성이 일지에 가깝다는 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-03",
+      "pillars": [
+        "계미",
+        "신유",
+        "을유",
+        "정해"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "閻錫山",
+        "rawPillars": "癸未辛酉乙酉丁亥",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "killing-force-contrast",
+      "annotation": {
+        "family": "killing",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "식신·칠살·일간의 힘을 비교하는 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-04",
+      "pillars": [
+        "무자",
+        "신유",
+        "을미",
+        "병자"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "商震",
+        "rawPillars": "戊子辛酉乙未丙子",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "killing-force-contrast",
+      "annotation": {
+        "family": "killing",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "병신합으로 제살 작용이 제한된다고 평한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-05",
+      "pillars": [
+        "무오",
+        "신유",
+        "을묘",
+        "병술"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "陸榮廷",
+        "rawPillars": "戊午辛酉乙卯丙戌",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "killing-force-contrast",
+      "annotation": {
+        "family": "killing",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "병신합 때문에 앞의 식신제살 사례보다 낮다고 평한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-06",
+      "pillars": [
+        "계유",
+        "신유",
+        "을축",
+        "신사"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "許世英",
+        "rawPillars": "癸酉辛酉乙丑辛巳",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "killing-force-contrast",
+      "annotation": {
+        "family": "killing",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "일간이 약하고 사중 병화의 제살이 무력하다고 평한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-07",
+      "pillars": [
+        "정미",
+        "기유",
+        "을해",
+        "계미"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "negative-control",
+        "rawPillars": "丁未己酉乙亥癸未",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": "killing-force-contrast",
+      "annotation": {
+        "family": "killing",
+        "outcome": "broken",
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "신금이 투출하지 않은 불성격 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-12-08",
+      "pillars": [
+        "신유",
+        "경자",
+        "병인",
+        "계사"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十二、論用神格局高低",
+        "locator": "滴天髓征義",
+        "rawPillars": "辛酉庚子丙寅癸巳",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "officer",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "일간과 재관의 유력성에 관한 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-15-01",
+      "pillars": [
+        "무술",
+        "갑자",
+        "기사",
+        "무진"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十五、論相神緊要",
+        "locator": "explicit-assistant",
+        "rawPillars": "戊戌甲子己巳戊辰",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [
+          "갑"
+        ],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "사중 병화를 조후용신으로, 갑목을 상신으로 명시한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-16-01",
+      "pillars": [
+        "병술",
+        "임진",
+        "병신",
+        "병신"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "十六、論雜氣如何取用",
+        "locator": "徐樂吾",
+        "rawPillars": "丙戌壬辰丙申丙申",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "절입 직후 을목 사령을 근거로 진중 을목을 취하는 사례.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-01",
+      "pillars": [
+        "경신",
+        "무인",
+        "임자",
+        "갑진"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "no-rescue",
+        "rawPillars": "庚申戊寅壬子甲辰",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [
+          "경"
+        ],
+        "note": "편인의 식신 침해에 재성 구응이 없다고 설명한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-02",
+      "pillars": [
+        "정미",
+        "임인",
+        "을묘",
+        "기묘"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "female-example",
+        "rawPillars": "丁未壬寅乙卯己卯",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [
+          "정"
+        ],
+        "selectedAssistantStems": [],
+        "rescueStems": [
+          "기"
+        ],
+        "obstructionStems": [
+          "임"
+        ],
+        "note": "정화를 용신, 임수를 병, 기토를 약으로 설명한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-03",
+      "pillars": [
+        "병오",
+        "신묘",
+        "기해",
+        "계유"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "no-rescue-two",
+        "rawPillars": "丙午辛卯己亥癸酉",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "식신이 합되고 재가 살을 생하며 구응이 없다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-04",
+      "pillars": [
+        "계유",
+        "갑자",
+        "정묘",
+        "병오"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "four-clash",
+        "rawPillars": "癸酉甲子丁卯丙午",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": null,
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "지지의 위치와 연속 생으로 인화살을 설명한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-05",
+      "pillars": [
+        "신묘",
+        "정유",
+        "무자",
+        "무오"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "four-clash-damage",
+        "rawPillars": "辛卯丁酉戊子戊午",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "hurting-officer",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "재가 인성의 뿌리를 충하고 관인 생이 방해된다고 설명한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    },
+    {
+      "id": "xu-20-06",
+      "pillars": [
+        "신묘",
+        "정유",
+        "경오",
+        "병자"
+      ],
+      "source": {
+        "author": "徐樂吾",
+        "book": "子平真詮評註",
+        "layer": "commentary",
+        "chapter": "二十、論生剋先後分吉凶",
+        "locator": "blade-control",
+        "rawPillars": "辛卯丁酉庚午丙子",
+        "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+        "verification": "single-electronic-witness"
+      },
+      "split": "development-commentary",
+      "relatedGroup": null,
+      "annotation": {
+        "family": "blade",
+        "outcome": null,
+        "selectedUsefulStems": [],
+        "selectedAssistantStems": [],
+        "rescueStems": [],
+        "obstructionStems": [],
+        "note": "충이 재생관살과 재의 월령 침해를 조절한다고 해석한다.",
+        "scope": "commentary-explicit-or-narrow-paraphrase",
+        "independentlyAdjudicated": false
+      }
+    }
+  ],
+  "excluded": []
+}
