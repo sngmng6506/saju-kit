@@ -4,7 +4,7 @@ Current architecture: [ARCHITECTURE](../ARCHITECTURE.md). Consumer entry points:
 
 ## Current navigation
 
-- [Active plan](../PLAN.md) and [refactor validation](refactor-validation.md)
+- [Active plan](../PLAN.md), [pattern refactor validation](refactor-validation.md), [strength refactor validation](strength-refactor-validation.md)
 - [Historical initial plan](history/initial-plan.md)
 - [Latest pattern evidence contract (v10)](pattern-useful-element-v10.md), [strength multiaxis v4](strength-multiaxis-v4.md), [climate v5](climate-v5.md), [five-method authority/transit v4](useful-element-five-method-v4.md). All are experimental, not final authority.
 
