@@ -10,6 +10,7 @@ import {analyzePatternUsefulElementV9,PATTERN_V9_VERSION} from '../src/features/
 import {analyzePatternUsefulElementV10,PATTERN_V10_VERSION} from '../src/features/pattern-useful-element-v10/index.js';
 import {reviewPatternOutcome,summarizeReferenceReadiness,summarizeOutcomeReviews} from './lib/pattern-outcome-review.mjs';
 import {reviewPatternEfficacy,summarizeEfficacyReviews,EFFICACY_REVIEW_VERSION} from './lib/pattern-efficacy-review.mjs';
+import {reviewOutcomeDecision,summarizeOutcomeDecisions,OUTCOME_DECISION_VERSION} from './lib/pattern-outcome-decision.mjs';
 import {runCommentaryReview} from './lib/classical-commentary-evaluation.mjs';
 import {evaluateClassicalCase,summarizeClassical} from './lib/classical-pattern-evaluation.mjs';
 const data=JSON.parse(await readFile(new URL('../test/fixtures/pattern-classical-v2.json',import.meta.url),'utf8'));
@@ -46,10 +47,23 @@ export function auditPatternEfficacy({includeRows=false}={}){
   xu:{version:commentary.version,summary:summarizeEfficacyReviews(xu),...(includeRows?{rows:xu}:{})},
   excludedShen:data.cases.filter(c=>!c.eligible).length,independentValidation:false};
 }
+export function auditOutcomeDecisions({includeRows=false}={}){
+ const run=cases=>cases.map(c=>{
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,pillar(c.pillars[i])]))};
+  const result=analyzePatternUsefulElementV10({saju,birthBasis:'verified-chart',policy:PATTERN_V10_VERSION});
+  const outcome=reviewPatternOutcome(result),efficacy=reviewPatternEfficacy(result,outcome);
+  return {id:c.id,...reviewOutcomeDecision(result,outcome,efficacy)};
+ });
+ const shen=run(data.cases.filter(c=>c.eligible)),xu=run(commentary.cases);
+ return {policy:OUTCOME_DECISION_VERSION,basePolicy:PATTERN_V10_VERSION,
+  shen:{version:data.version,summary:summarizeOutcomeDecisions(shen),...(includeRows?{rows:shen}:{})},
+  xu:{version:commentary.version,summary:summarizeOutcomeDecisions(xu),...(includeRows?{rows:xu}:{})},
+  excludedShen:data.cases.filter(c=>!c.eligible).length,independentValidation:false};
+}
 export function auditPatternProgression(){
  return [PATTERN_V3_VERSION,PATTERN_V4_VERSION,PATTERN_V5_VERSION,PATTERN_V6_VERSION,PATTERN_V7_VERSION,PATTERN_V8_VERSION,PATTERN_V9_VERSION,PATTERN_V10_VERSION].map(policy=>{
   const {summary,newReference,developmentKnown}=auditClassicalPatterns(policy);
   return {policy,summary,newReference,developmentKnown};
  });
 }
-if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)console.log(JSON.stringify(process.argv.includes('--efficacy')?auditPatternEfficacy({includeRows:process.argv.includes('--rows')}):process.argv.includes('--commentary')?auditClassicalCommentary():process.argv.includes('--outcomes')?auditPatternOutcomes({includeRows:process.argv.includes('--rows')}):process.argv.includes('--progression')?auditPatternProgression():process.argv.includes('--mixed-compare')?{baseline:auditClassicalPatterns(PATTERN_V7_VERSION),experimental:auditClassicalPatterns(PATTERN_V8_VERSION)}:process.argv.includes('--composition-compare')?{baseline:auditClassicalPatterns(PATTERN_V6_VERSION),experimental:auditClassicalPatterns(PATTERN_V7_VERSION)}:process.argv.includes('--preference-compare')?{baseline:auditClassicalPatterns(PATTERN_V5_VERSION),experimental:auditClassicalPatterns(PATTERN_V6_VERSION)}:process.argv.includes('--preference')?auditClassicalPatterns(PATTERN_V5_VERSION):process.argv.includes('--compare')?{baseline:auditClassicalPatterns(),experimental:auditClassicalPatterns(PATTERN_V4_VERSION)}:auditClassicalPatterns(),null,2));
+if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)console.log(JSON.stringify(process.argv.includes('--decisions')?auditOutcomeDecisions({includeRows:process.argv.includes('--rows')}):process.argv.includes('--efficacy')?auditPatternEfficacy({includeRows:process.argv.includes('--rows')}):process.argv.includes('--commentary')?auditClassicalCommentary():process.argv.includes('--outcomes')?auditPatternOutcomes({includeRows:process.argv.includes('--rows')}):process.argv.includes('--progression')?auditPatternProgression():process.argv.includes('--mixed-compare')?{baseline:auditClassicalPatterns(PATTERN_V7_VERSION),experimental:auditClassicalPatterns(PATTERN_V8_VERSION)}:process.argv.includes('--composition-compare')?{baseline:auditClassicalPatterns(PATTERN_V6_VERSION),experimental:auditClassicalPatterns(PATTERN_V7_VERSION)}:process.argv.includes('--preference-compare')?{baseline:auditClassicalPatterns(PATTERN_V5_VERSION),experimental:auditClassicalPatterns(PATTERN_V6_VERSION)}:process.argv.includes('--preference')?auditClassicalPatterns(PATTERN_V5_VERSION):process.argv.includes('--compare')?{baseline:auditClassicalPatterns(),experimental:auditClassicalPatterns(PATTERN_V4_VERSION)}:auditClassicalPatterns(),null,2));
