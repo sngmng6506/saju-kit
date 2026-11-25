@@ -67,3 +67,45 @@ test('v10 outcome corpus review retains missing-label and authority boundaries',
  assert.equal(a.all.threatWitnesses,a.all.threatsWithPossibleRescue+a.all.threatsWithoutMatchedRescue);
  assert.equal(a.all.formedConfirmed+a.all.brokenConfirmed+a.all.rescuedConfirmed,0);
 });
+
+import {inspectCommentaryCorpus,evaluateCommentaryCase,summarizeCommentary} from '../scripts/lib/classical-commentary-evaluation.mjs';
+import {auditClassicalCommentary} from '../scripts/audit-classical-patterns.mjs';
+test('Xu commentary remains a distinct, unique and calendar-coherent development cohort',async()=>{
+ const original=JSON.parse(await readFile(new URL('./fixtures/pattern-classical-v2.json',import.meta.url),'utf8'));
+ const data=JSON.parse(await readFile(new URL('./fixtures/pattern-classical-commentary-v1.json',import.meta.url),'utf8'));
+ const inv=inspectCommentaryCorpus(data,original);
+ assert.deepEqual(inv,{total:34,combinedUnique:115,errors:[]});
+ const invalid=structuredClone(data);
+ invalid.cases[1].pillars=[...invalid.cases[0].pillars];
+ assert.ok(inspectCommentaryCorpus(invalid,original).errors.some(e=>e.reason==='duplicate-chart'));
+ const changed=structuredClone(data);
+ changed.cases[0].pillars[3]='갑오';
+ assert.ok(inspectCommentaryCorpus(changed,original).errors.some(e=>e.reason==='day-hour-incoherence'));
+});
+test('commentary rescue probes require a matched threat, not any role or an unmatched rescue',()=>{
+ const c={id:'control',relatedGroup:null,annotation:{family:'wealth',outcome:'rescued',selectedUsefulStems:[],selectedAssistantStems:['갑'],rescueStems:['갑'],obstructionStems:['을']}};
+ const r={selection:{candidates:[{family:'wealth'}]},routeReview:{occurrences:[{id:'a',stem:'갑',layer:'visible'},{id:'b',stem:'을',layer:'visible'}]}};
+ const review={candidates:[{family:'wealth',threats:[{from:'b',possibleRescues:[]}],unmatchedRescues:[{helper:'a'}],paths:[{helperIds:['a']}]}]};
+ const row=evaluateCommentaryCase(c,r,review);
+ assert.equal(row.familyRetrieved,true);
+ assert.equal(row.rescueProbes[0].observed,false);
+ assert.equal(row.obstructionProbes[0].observed,true);
+ assert.equal(row.outcomePrediction,null);
+ assert.equal(summarizeCommentary([row]).finalOutcomeAccuracy,null);
+ review.candidates[0].threats[0].possibleRescues.push({helper:'a'});
+ assert.equal(evaluateCommentaryCase(c,r,review).rescueProbes[0].observed,true);
+});
+test('native v10 commentary audit preserves source label counts and abstains on unimplemented decisions',()=>{
+ const r=auditClassicalCommentary();
+ assert.equal(r.summary.total,34);
+ assert.equal(r.inventory.combinedUnique,115);
+ assert.equal(r.summary.sourceFamilyLabels,16);
+ assert.deepEqual(r.summary.sourceOutcomeCounts,{formed:3,broken:1,rescued:4,'formed-with-damage':5});
+ assert.equal(r.summary.explicitAssistantLabels,1);
+ assert.equal(r.summary.commentaryUsefulStemLabels,5);
+ assert.equal(r.summary.matchedRescueProbe.total,6);
+ assert.equal(r.summary.damageActorProbe.total,7);
+ assert.equal(r.summary.finalOutcomeAccuracy,null);
+ assert.equal(r.summary.finalAssistantAccuracy,null);
+ assert.ok(r.rows.every(x=>x.selectionAuthority===false));
+});
