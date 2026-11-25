@@ -330,7 +330,7 @@ test('native context audit pins strength policy and separates the two developmen
  }
 });
 
-import {observeStemInterference,reviewCandidateInterference,reviewPatternInterference,summarizeInterference} from '../scripts/lib/pattern-stem-interference.mjs';
+import {observeStemInterference,reviewCandidateInterference,reviewPatternInterference,reviewInterferenceConditions,summarizeInterference} from '../scripts/lib/pattern-stem-interference.mjs';
 import {auditPatternInterference} from '../scripts/audit-classical-patterns.mjs';
 const intStem=(position,stem,tenGod,contacts=[],layer='visible')=>({id:layer==='visible'?'visible:'+position:'hidden:'+position+':'+stem,position,stem,tenGod,contacts,layer,dayReference:position==='day'&&layer==='visible'});
 const intEdge=(from,to,kind)=>({id:from+'>'+to,from,to,kind});
@@ -390,4 +390,16 @@ test('native interference audit retains cohort scope and does not remove or pres
  for(const s of [r.shen.summary,r.xu.summary]){
   assert.equal(s.pairs,s.adjacent+s.separated);assert.equal(s.confirmedRemoval,0);assert.equal(s.confirmedPreservation,0);assert.equal(s.selectionAuthority,false);
  }
+});
+
+test('related interference witnesses are not doctrinal truth and excluded motifs remain excluded',()=>{
+ const candidate={witnesses:[{ruleId:'combine-killing-preserve-officer',combinationId:'a',helper:'h',obstacle:'o',target:'t'}],separation:[{edgeId:'b'}]};
+ const motif=(id,name,predicate=null)=>({id,predicate,clauses:[{kind:'contextual',name}]});
+ const rows=reviewInterferenceConditions([
+  motif('m','killing-combined-without-loss-of-officer'),
+  motif('n','wealth-resource-noninterference',false),
+  motif('x','wealth-controls-resource-preserves-food'),
+  motif('z','unimplemented')],candidate);
+ assert.equal(rows.length,3);assert.equal(rows[0].status,'related-structure-observed');assert.equal(rows[1].status,'literal-motif-excluded');
+ assert.equal(rows[2].status,'no-related-structure-observed');assert.ok(rows.every(r=>r.doctrinalValue===null&&r.effective===null));
 });
