@@ -2,11 +2,11 @@ import {readFileSync} from 'node:fs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 import {analyzeNatalStructure} from '../src/core/natal.js';
 import {validateRoleSourcePacket,evaluateRoleSourceCase,summarizeRoleSourceReplay,inspectLiteralSourceChart} from './lib/pattern-outcome-role-policy-source.mjs';
-import {summarizeGroundedSupplyReview,summarizeInterpositionReview,summarizeRoleDemandReview,summarizeResourceDemandConditions,summarizeOutputDemandConditions} from './lib/pattern-outcome-role-policy-triage.mjs';
+import {summarizeGroundedSupplyReview,summarizeInterpositionReview,summarizeRoleDemandReview,summarizeResourceDemandConditions,summarizeOutputDemandConditions,summarizeOfficerDemandConditions} from './lib/pattern-outcome-role-policy-triage.mjs';
 const packet=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
 const packetErrors=validateRoleSourcePacket(packet);
 if(packetErrors.length){console.log(JSON.stringify({errors:packetErrors},null,2));process.exit(1);}
-const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[];
+const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[];
 for(const c of packet.cases)for(const partial of [false,true]){
  try{
   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,partial&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
@@ -17,6 +17,7 @@ for(const c of packet.cases)for(const partial of [false,true]){
   roleDemandRows.push(summarizeRoleDemandReview(c,r.efficacyReview?.mechanismReview,partial));
   resourceDemandRows.push(summarizeResourceDemandConditions(c,r.efficacyReview?.mechanismReview,partial));
   outputDemandRows.push(summarizeOutputDemandConditions(c,r.efficacyReview?.mechanismReview,partial));
+  officerDemandRows.push(summarizeOfficerDemandConditions(c,r.efficacyReview?.mechanismReview,partial));
   rows.push(evaluateRoleSourceCase(c,r,{partial}));
  }catch(e){rows.push({id:c.id,partial,probes:[],errors:[e.name+':'+e.message]});}
 }
@@ -45,5 +46,9 @@ report.outputDemandRows=outputDemandRows;
 report.outputDemandCoverage={expected:report.expectedVariants,executed:outputDemandRows.length,passed:outputDemandRows.filter(r=>!r.errors.length).length};
 if(outputDemandRows.length!==report.expectedVariants)report.errors.push('output-demand-variant-coverage');
 for(const r of outputDemandRows)for(const e of r.errors)report.errors.push(r.id+':output-demand:'+e);
+report.officerDemandRows=officerDemandRows;
+report.officerDemandCoverage={expected:report.expectedVariants,executed:officerDemandRows.length,passed:officerDemandRows.filter(r=>!r.errors.length).length};
+if(officerDemandRows.length!==report.expectedVariants)report.errors.push('officer-demand-variant-coverage');
+for(const r of officerDemandRows)for(const e of r.errors)report.errors.push(r.id+':officer-demand:'+e);
 console.log(JSON.stringify(report,null,2));
 if(report.errors.length)process.exitCode=1;
