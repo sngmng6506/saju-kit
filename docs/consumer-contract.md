@@ -57,3 +57,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v4](pattern-outcome-evidence-v4.md) adds opt-in regulation candidates and day-strength hypothesis context; no confirmed excess, efficacy or consumer migration.
 
 - [Pattern outcome evidence v5](pattern-outcome-evidence-v5.md) adds conditional storage/clearing evidence, without final selection or consumer pin changes.
+
+- [Pattern outcome evidence v6](pattern-outcome-evidence-v6.md) adds position and source-scoped winter exception review without final authority or consumer migration.

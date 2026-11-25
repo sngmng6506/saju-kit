@@ -91,3 +91,5 @@ The concise reporter displays file-completion progress rather than guessing the 
 The [dead-code inventory](docs/dead-code-inventory.md) distinguishes pure compatibility re-exports, research-only exports and local declaration candidates. `npm run audit:dead-code` is a conservative textual report, not a scope-aware call graph or automatic removal tool.
 
 Outcome V5 adds [storage projection and peer officer clearing](docs/pattern-outcome-evidence-v5.md) via a request-local V4 builder; no synthetic hidden stems or selective cancellation authority.
+
+Outcome V6 adds [position and winter exception evidence](docs/pattern-outcome-evidence-v6.md). Climate remains a separate diagnostic policy; spatial order does not confirm effects.

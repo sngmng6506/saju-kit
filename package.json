@@ -25,7 +25,8 @@
     "audit:pattern-outcome-v2": "node scripts/audit-pattern-outcome-v2.mjs",
     "audit:pattern-outcome-v3": "node scripts/audit-pattern-outcome-v3.mjs",
     "audit:pattern-outcome-v4": "node scripts/audit-pattern-outcome-v4.mjs",
-    "audit:pattern-outcome-v5": "node scripts/audit-pattern-outcome-v5.mjs"
+    "audit:pattern-outcome-v5": "node scripts/audit-pattern-outcome-v5.mjs",
+    "audit:pattern-outcome-v6": "node scripts/audit-pattern-outcome-v6.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
