@@ -6,10 +6,10 @@ export function analyzePatternOutcomeV3(input){
  return buildOutcomeV3(input).result;
 }
 // Request-local extension contract, not a public root export.
-export function buildOutcomeV3(input){
+export function buildOutcomeV3(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==PATTERN_OUTCOME_V3_VERSION)throw new SajuError('pattern-policy','성패구응 분석 정책을 명시해야 합니다.');
- const {prior,result,formation}=buildOutcomeV2({...input,policy:PATTERN_OUTCOME_V2_VERSION});
+ const {prior,result,formation}=buildOutcomeV2({...input,policy:PATTERN_OUTCOME_V2_VERSION},provider);
  return {prior,formation,result:{...result,version:PATTERN_OUTCOME_V3_VERSION,scope:'ordinary-pattern-structural-subclauses-with-secondary-role-review',
   reviews:result.access?result.reviews.map(q=>reviewSecondaryOutcome(prior,result.access,q)):result.reviews}};
 }

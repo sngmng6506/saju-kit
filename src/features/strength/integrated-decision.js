@@ -38,6 +38,10 @@ export function analyzeMultiaxisStrengthV3(input,context){
 export function evaluateIntegratedDecision(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
  if(input.policy!==MULTIAXIS_V3_VERSION)throw new SajuError('strength-policy','다축 v3 정책을 명시해야 합니다.');
+ const compute=()=>computeIntegratedDecision(input,provider);
+ return provider.integrated?provider.integrated(input,compute):compute();
+}
+function computeIntegratedDecision(input,provider){
  const args={saju:input.saju,birthBasis:input.birthBasis};
  const base=evaluateNetworkDecision({...args,policy:'strength-multiaxis-v2'},provider);
  const meta={version:MULTIAXIS_V3_VERSION,completeHour:base.completeHour,scope:base.scope,

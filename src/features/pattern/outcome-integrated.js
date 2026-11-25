@@ -1,5 +1,5 @@
 import {SajuError} from '../../core/error.js';
-import {analyzeClimateUsefulElementV5,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
+import {evaluateClimateRequirements,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
 import {buildOutcomeV5,PATTERN_OUTCOME_V5_VERSION} from './outcome-review-v5.js';
 import {completeStorageStages,retainStorageConditions} from './outcome-storage-extension.js';
 import {needsWinterClimate,projectWinterClimate,reviewWinterOfficer} from './outcome-winter-exception.js';
@@ -18,14 +18,14 @@ export function analyzePatternOutcomeIntegrated(input){
  return buildIntegratedOutcome(input).result;
 }
 // Internal request-local evidence for downstream diagnostic policies.
-export function buildIntegratedOutcome(input){
+export function buildIntegratedOutcome(input,provider,birth){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==PATTERN_OUTCOME_INTEGRATED_VERSION)throw new SajuError('pattern-policy','성패구응 분석 정책을 명시해야 합니다.');
- const {prior,result,formation}=buildOutcomeV5({...input,policy:PATTERN_OUTCOME_V5_VERSION});
+ const {prior,result,formation}=buildOutcomeV5({...input,policy:PATTERN_OUTCOME_V5_VERSION},provider);
  const base={...result,version:PATTERN_OUTCOME_INTEGRATED_VERSION,scope:'ordinary-pattern-integrated-structural-evidence'};
  if(!result.access)return {prior,result:{...base,positionContext:null,winterClimate:null,compoundReview:null,assistantReview:null,purityReview:null,clarityReview:null,extensionReview:null,integrity:null}};
  const month=input.saju.pillars.month.branch,complete=prior.completeHour;
- const climateResult=needsWinterClimate(prior,month)?analyzeClimateUsefulElementV5({saju:input.saju,birthBasis:input.birthBasis,policy:CLIMATE_V5_VERSION}):null;
+ const climateResult=needsWinterClimate(prior,month)?evaluateClimateRequirements({saju:input.saju,birthBasis:input.birthBasis,birth,policy:CLIMATE_V5_VERSION},provider):null;
  const winterClimate=climateResult?projectWinterClimate(input,climateResult):null;
  const reviews=result.reviews.map(q=>retainStorageConditions(extendAssistantRoutes(
   reviewWinterOfficer(prior,completeStorageStages(prior,result.access,q,result.regulationStrength),month,winterClimate),

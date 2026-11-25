@@ -10,16 +10,16 @@ export function analyzePatternOutcomeV2(input){
  return buildOutcomeV2(input).result;
 }
 // Internal request-local evidence for additive policies; not a root API.
-export function buildOutcomeV2(input){
+export function buildOutcomeV2(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==PATTERN_OUTCOME_V2_VERSION)throw new SajuError('pattern-policy','성패구응 분석 정책을 명시해야 합니다.');
- const prior=analyzePatternPolicy({...input,policy:'pattern-useful-element-v10'},10);
+ const prior=analyzePatternPolicy({...input,policy:'pattern-useful-element-v10'},10,provider);
  const base={version:PATTERN_OUTCOME_V2_VERSION,baselinePolicy:prior.version,completeHour:prior.completeHour,
   source:OUTCOME_SOURCE,scope:'ordinary-pattern-structural-subclauses-with-hidden-and-group-review',specialPatternsAssessed:false,
   selectedPattern:null,formed:null,broken:null,rescued:null,assistantGod:null,patternUsefulGod:null,usefulElement:null,
   selectionAuthority:false,confirmed:false};
  if(!prior.selection)return {prior,result:{...base,status:'unavailable',reason:prior.reason,reviews:[],access:null}};
- const formation=analyzeFormationEvidence({saju:input.saju});
+ const formation=provider?provider.formation(input.saju):analyzeFormationEvidence({saju:input.saju});
  const access=observeOutcomeAccess(prior,formation);
  const reviews=prior.selection.candidates.map(c=>reviewExtendedOutcome(prior,access,reviewOutcomeGraph(prior,c,outcomeRules(c.family))));
  return {prior,formation,result:{...base,status:prior.completeHour?'diagnostic':'partial',preference:prior.preference,reviews,access}};

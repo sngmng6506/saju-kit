@@ -19,11 +19,14 @@ function kind(f){
 /** Observations and a conservative context screen, never transformation authority. */
 export function analyzeFormationEvidence({saju}={}){
  const observation=createElementObservation(saju),structure=observation.structure();
- const context=observeInteractionContext(observation.pillars,structure,observation.relations());
+ return observeFormationEvidence(observation.pillars,structure,observeInteractionContext(observation.pillars,structure,observation.relations()));
+}
+// Pure projection of the same request's validated natal observations.
+export function observeFormationEvidence(pillars,structure,context){
  const seasonElement=SEASON[structure.month.season],monthPrincipalElement=structure.month.principalElement;
  const day=structure.dayMaster.element;
  const clashed=new Set(context.clashes.flatMap(c=>c.positions));
- const branchByPosition=Object.fromEntries(Object.entries(saju.pillars).filter(([,p])=>p!=null).map(([k,p])=>[k,p.branch]));
+ const branchByPosition=Object.fromEntries(Object.entries(pillars).filter(([,p])=>p!=null).map(([k,p])=>[k,p.branch]));
  const formations=context.formations.map(f=>{
   const target=f.associatedElement,classification=kind({...f,branchByPosition});
   const profile=structure.profiles.find(p=>p.element===target);

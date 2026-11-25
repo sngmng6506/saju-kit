@@ -1,6 +1,6 @@
 import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
-import { analyzeMultiaxisStrengthV3, evaluateIntegratedDecision } from './integrated-decision.js';
+import { evaluateIntegratedDecision } from './integrated-decision.js';
 
 export const STRENGTH_DECISION_VERSION='strength-decision-v1';
 const RESOURCE_GROUNDS=['local-resource-and-robust-support','bounded-route-support'];
@@ -36,9 +36,9 @@ function needsNeutral(standard,structure){
 
 // Existing numerical/route models remain the observation providers.
 // Neutral season is a diagnostic stress test, not a second classical doctrine.
-export function collectStrengthEvidence(input){
+export function collectStrengthEvidence(input,methodProvider){
  const args={saju:input.saju,birthBasis:input.birthBasis,policy:'strength-multiaxis-v3'};
- const provider=createStrengthEvidenceProvider();
+ const provider=methodProvider?.standard??createStrengthEvidenceProvider();
  const standard=evaluateIntegratedDecision(args,provider);
  checkGrounds(standard);
  if(!standard.decision)return {standard,structure:null,environment:null,interaction:null,neutral:null};
@@ -47,7 +47,7 @@ export function collectStrengthEvidence(input){
   throw new SajuError('strength-ground-contract','중심 통근 근거가 관찰 결과와 일치하지 않습니다.');
  const environment=standard.baselineDecision.evidence;
  const interaction=standard.decision.evidence;
- const neutral=needsNeutral(standard,structure)?analyzeMultiaxisStrengthV3(args,{seasonMode:'neutral'}):null;
+ const neutral=needsNeutral(standard,structure)?evaluateIntegratedDecision(args,methodProvider?.neutral??createStrengthEvidenceProvider({seasonMode:'neutral'})):null;
  if(neutral)checkGrounds(neutral);
  return {standard,structure,environment,interaction,neutral};
 }
@@ -92,9 +92,12 @@ export function resolveStrengthEvidence(evidence,{peripheralAuthority='observe-o
 }
 
 export function analyzeStrengthDecision(input){
+ return evaluateStrengthDecision(input);
+}
+export function evaluateStrengthDecision(input,methodProvider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
  if(input.policy!==STRENGTH_DECISION_VERSION)throw new SajuError('strength-policy','강약 결정 정책을 명시해야 합니다.');
- const evidence=collectStrengthEvidence(input);
+ const evidence=collectStrengthEvidence(input,methodProvider);
  const result=resolveStrengthEvidence(evidence);
  const {standard,structure,environment,interaction}=evidence;
  return {...standard,...result,version:STRENGTH_DECISION_VERSION,

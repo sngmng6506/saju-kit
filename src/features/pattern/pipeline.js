@@ -19,16 +19,16 @@ import { bindRelativePattern } from './relative-bindings.js';
 // All policies keep their original public outputs. This orchestration
 // computes shared natal evidence once per request, with no persistent cache.
 // Later-stage outputs that replace earlier ones are constructed only once.
-export function analyzePatternPolicy(input,revision){
+export function analyzePatternPolicy(input,revision,provider){
  if(!Number.isInteger(revision)||revision<1||revision>10)throw new SajuError('pattern-policy','격국 분석 정책을 명시해야 합니다.');
  const version='pattern-useful-element-v'+revision;
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==version)throw new SajuError('pattern-policy','격국 분석 정책을 명시해야 합니다.');
  if(!['verified-chart','provisional-chart'].includes(input.birthBasis))throw new SajuError('strength-birth-basis','원국 확정 여부를 명시해야 합니다.');
- const observation=createElementObservation(input.saju),context=observation.context();
+ const observation=provider?provider.observation(input.saju):createElementObservation(input.saju),context=observation.context();
  const unavailable=input.birthBasis==='provisional-chart';
  const structure=unavailable?null:observation.structure();
- const interaction=unavailable?null:observeInteractionContext(observation.pillars,structure,observation.relations());
+ const interaction=unavailable?null:provider?provider.interaction(input.saju):observeInteractionContext(observation.pillars,structure,observation.relations());
  let selection=unavailable?null:observePatternCandidates(context,interaction);
  const storageReview=revision>=4&&!unavailable?observeStorageProjection(structure):null;
  if(storageReview)selection={...selection,candidates:[...selection.candidates,...storageReview.candidates]};
@@ -52,7 +52,7 @@ export function analyzePatternPolicy(input,revision){
   result={...result,mixedUse,preference:refineMixedPreference(result.preference,mixedUse,selection)};
  }
  if(revision>=9){
-  const stemForce=unavailable?null:observeStemForce(observation.pillars,observeRootDynamics(observation.pillars,structure),interaction);
+  const stemForce=unavailable?null:observeStemForce(observation.pillars,provider?provider.standard.dynamics(input.saju):observeRootDynamics(observation.pillars,structure),interaction);
   result={...result,stemForce,patternForce:unavailable?null:observePatternForce(result,stemForce)};
  }
  if(revision>=10){

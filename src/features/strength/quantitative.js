@@ -30,8 +30,8 @@ const SEASON_ELEMENT={spring:'wood',summer:'fire',autumn:'metal',winter:'water'}
 const THRESHOLDS=[[40,60],[35,65],[45,55]];
 const round=x=>Math.round(x*100)/100;
 
-function evidence(saju){
-  const s=analyzeElementStructure({saju}),slots=new Map();
+function evidence(saju,readStructure){
+  const s=readStructure(saju),slots=new Map();
   for(const profile of s.profiles){
     for(const v of profile.visible){
       if(v.position==='day')continue;
@@ -78,8 +78,8 @@ function compute(e,positionProfile,roleProfile,rootProfile,seasonProfile,basis,s
     categories:Object.fromEntries(CATEGORIES.map(c=>[c,round(100*mass[c]/total)])),mass,contributions};
 }
 
-function scenariosFor(saju,seasonMode,bases){
-  const e=evidence(saju),rows=[];
+function scenariosFor(saju,seasonMode,bases,readStructure=saju=>analyzeElementStructure({saju})){
+  const e=evidence(saju,readStructure),rows=[];
   for(const position of Object.keys(WEIGHTS))for(const role of Object.keys(ROLES))
     for(const root of Object.keys(ROOTS))for(const season of Object.keys(SEASON))for(const basis of bases??e.seasonBases)
       rows.push(compute(e,position,role,root,season,basis,seasonMode));
@@ -102,6 +102,10 @@ function summarize(rows){
 /** Standalone quantitative hypothesis, not final strength or probability. */
 // Second argument is an internal diagnostic context; the v3 input contract is unchanged.
 export function analyzeQuantitativeStrength(input,{seasonMode='standard'}={}){
+ return evaluateQuantitativeStrength(input,{seasonMode});
+}
+// Internal provider only; the public wrapper accepts the established season mode.
+export function evaluateQuantitativeStrength(input,{seasonMode='standard'}={},readStructure){
   if(!['standard','neutral'].includes(seasonMode))throw new SajuError('strength-season-mode','계절 보정 모드가 올바르지 않습니다.');
   if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
   const {saju,policy,birthBasis}=input;
@@ -115,12 +119,12 @@ export function analyzeQuantitativeStrength(input,{seasonMode='standard'}={}){
   if(!completeHour){
     // Missing hour can also change the anchoring of the other visible stems.
     const completions=Array.from({length:12},(_,i)=>hourPillar(pillars.day.stem,i*2));
-    const rows=completions.flatMap(hour=>scenariosFor({pillars:{...pillars,hour}},seasonMode));
+    const rows=completions.flatMap(hour=>scenariosFor({pillars:{...pillars,hour}},seasonMode,undefined,readStructure));
     return {...meta,status:'partial',direction:null,quantitative:{...summarize(rows),stableDirection:null,
       baseline:null,scenarios:[],scenarioCount:rows.length,completionCount:12,rangeBasis:'fixed-year-month-day-hour-completions'},
       caveats:[...caveats,'missing-hour']};
   }
-  const scenarios=scenariosFor(saju,seasonMode),summary=summarize(scenarios);
+  const scenarios=scenariosFor(saju,seasonMode,undefined,readStructure),summary=summarize(scenarios);
   return {...meta,status:summary.stableDirection?'hypothesis':'unresolved',direction:summary.stableDirection,
     quantitative:{...summary,baseline:scenarios[0],scenarios,scenarioCount:scenarios.length,completionCount:1,
       rangeBasis:'profile-sensitivity'},caveats};
