@@ -60,7 +60,7 @@ export function reviewRoleContrasts(result,outcome,context,interference){
     return [{id:JSON.stringify([d.id,roles]),roles,allVisible:Object.values(a).every(o=>o.layer==='visible'),edges:edgeReviews,additionalEdges,conditions,contacts,status,
      conditionalPredicate:allOf(conditions.map(k=>k.proxy)),effective:null,favorable:null}];
    });
-   return {id:d.id,source:sources[d.family],witnesses,observed:witnesses.length?true:complete?false:null,effective:null};
+   return {id:d.id,anchorRole:Object.keys(d.roles).find(k=>d.roles[k]==='anchor'),source:sources[d.family],witnesses,observed:witnesses.length?true:complete?false:null,effective:null};
   });
   const rows=id=>patterns.find(p=>p.id===id)?.witnesses??[];
   const contrast=(left,right,keys)=>rows(left).flatMap(a=>rows(right).filter(b=>keys.every(k=>{
