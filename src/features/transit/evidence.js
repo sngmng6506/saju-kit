@@ -1,3 +1,4 @@
+import { layerArrivals } from './arrivals.js';
 import { stemInfo,branchElement,elementRelation,stemIndex,branchIndex } from '../../core/elements.js';
 import { getHiddenStems } from '../../core/hidden-stems.js';
 import { tenGodForStem,validateNatalPillars } from '../../core/natal.js';
@@ -49,8 +50,7 @@ export function compareTransitAnchors(authority,transit){
    const sourceStems=[...new Set(h.origins.filter(o=>o.method==='seasonal-source').map(o=>o.stem))];
    const byElement=new Map(h.relations.map(r=>[r.element,r.relation]));
    const layers=transit.layers.map(l=>{
-    const arrivals=[{location:'stem',stem:l.stem.stem,element:l.stem.element},
-     ...l.branch.hiddenStems.map(x=>({location:'hidden-stem',stem:x.stem,element:x.element,role:x.role}))];
+    const arrivals=layerArrivals(l);
     return {id:l.id,arrivals:arrivals.map(a=>({...a,relationToAnchor:byElement.get(a.element),exactSourceStem:sourceStems.includes(a.stem)})),
      branchElement:{element:l.branch.element,relationToAnchor:byElement.get(l.branch.element)}};
    });

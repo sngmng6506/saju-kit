@@ -1,4 +1,4 @@
-import { observeConditionalArrivals } from './conditional.js';
+import { observeConditionalArrivals } from './conditional-arrivals.js';
 // Natal source conditions stay natal. A transit cannot retrospectively
 // satisfy a birth-time condition or resolve a textual prescription.
 export function observeSourceArrivals(sourceReview,transit){

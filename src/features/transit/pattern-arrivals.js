@@ -1,3 +1,4 @@
+import { layerArrivals } from './arrivals.js';
 import { elementRelation } from '../../core/elements.js';
 // Project natal roles once, then reference them across annual observations.
 // An annual stem can contact the role without making it useful or harmful.
@@ -20,8 +21,7 @@ export function collectPatternRoles(pattern){
 }
 export function observePatternTransit(roles,transit){
  return roles.map(role=>({occurrenceId:role.occurrenceId,layers:transit.layers.map(l=>{
-  const arrivals=[{location:'stem',stem:l.stem.stem,element:l.stem.element},
-   ...l.branch.hiddenStems.map(h=>({location:'hidden-stem',stem:h.stem,element:h.element,role:h.role}))];
+  const arrivals=layerArrivals(l);
   const contacts=transit.pairs.filter(p=>p.left===l.id);
   return {id:l.id,arrivals:arrivals.map(a=>({...a,exact:a.stem===role.stem,sameElementOtherStem:a.element===role.element&&a.stem!==role.stem,
     relation:elementRelation(a.element,role.element)})),

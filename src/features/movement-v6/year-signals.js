@@ -1,5 +1,6 @@
+import { prepareYearContext } from '../../core/year-context.js';
 import { SajuError } from '../../core/error.js';
-import { BRANCHES, STEMS } from '../../core/ganji.js';
+import { BRANCHES } from '../../core/ganji.js';
 import { branchRelation, getSeun, getYeokmaBranch } from '../../core/year-signals.js';
 import { branchGroupDefinitions } from '../../core/relations.js';
 import { getCombinationSignals } from './combination-formation.js';
@@ -13,47 +14,12 @@ export function getJisalBranch(natalBranch) {
   return THREE_GROUPS.find(group => group.branches.includes(natalBranch)).branches[0];
 }
 
-function validatePillar(pillar, key) {
-  const si = STEMS.indexOf(pillar?.stem);
-  const bi = BRANCHES.indexOf(pillar?.branch);
-  if (si < 0 || bi < 0 || si % 2 !== bi % 2 || pillar.text !== pillar.stem + pillar.branch) {
-    throw new SajuError('pillar', key + ' 간지가 올바르지 않습니다.');
-  }
-}
-
-function validateDaeun(daeun) {
-  if (!Array.isArray(daeun?.pillars) || daeun.pillars.length !== 10) {
-    throw new SajuError('daeun-input', '10개 대운 구간이 필요합니다.');
-  }
-  let previous = null;
-  for (const band of daeun.pillars) {
-    validatePillar(band, '대운');
-    if (!Number.isInteger(band.fromYear) || !Number.isInteger(band.toYear)
-        || band.toYear - band.fromYear !== 9
-        || (previous && band.fromYear !== previous.toYear + 1)) {
-      throw new SajuError('daeun-input', '대운 구간은 겹침 없이 연속한 10년이어야 합니다.');
-    }
-    previous = band;
-  }
-}
-
 /**
  * Neutral annual signals. No scores, move recommendations, or event predictions.
  * Year means the annual pillar after Ipchun; Jan/early Feb may still be prior pillar.
  */
 export function getYearSignals({ saju, daeun, year } = {}) {
-  const seun = getSeun(year);
-  for (const position of POSITIONS) {
-    const pillar = saju?.pillars?.[position];
-    if (position === 'hour' && pillar == null) continue;
-    validatePillar(pillar, '원국 ' + position);
-  }
-  validateDaeun(daeun);
-  const bands = daeun.pillars;
-  const band = bands.find((item) => item.fromYear <= year && year <= item.toYear);
-  if (!band && year > bands[bands.length - 1].toYear) {
-    throw new SajuError('daeun-range', '대운 계산 구간 이후의 연도입니다.');
-  }
+  const {seun,bands,band}=prepareYearContext({saju,daeun,year},getSeun);
 
   const signals = [];
   const add = (key, source, target, relation, details) => {
