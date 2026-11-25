@@ -7,6 +7,8 @@ import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
 import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies,assessKillingWealth,assessResourceStrategies} from './outcome-role-priority.js';
+import {observeOutputSupplyContext,assessOutputDemandConditions} from './outcome-output-demand.js';
+import {observeOfficerSupplyContext,assessOfficerDemandConditions} from './outcome-officer-demand.js';
 import {observeResourceSupplyContext,assessResourceDemandConditions} from './outcome-resource-demand.js';
 import {observeRoleDemand} from './outcome-role-demand.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
