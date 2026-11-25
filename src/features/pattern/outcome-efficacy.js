@@ -58,10 +58,13 @@ export function observeWitnessEfficacy(review,integrity,compound,context,complet
  if(review.status==='out-of-scope')return {...base,status:'out-of-scope',witnesses:[],threats:[]};
  if(!integrity||integrity.status!=='consistent'||!compound||compound.violations.length)return {...base,status:'invalid-evidence',witnesses:[],threats:[]};
  const rows=review.rules.flatMap(r=>r.witnesses.map(w=>{
-  const edges=w.edges.map(context.assess),anchorAlternatives=(w.anchorBindings??[]).map(b=>({anchorId:b.anchorId,edge:b.edge?context.assess(b.edge):null,effective:null}));
+  const edges=w.edges.map(context.assess),anchorAlternatives=(w.anchorBindings??[]).map(b=>({
+   anchorId:b.anchorId,targetId:b.targetId??null,basis:b.basis??null,
+   identityOnly:b.basis==='target-is-anchor'&&b.anchorId===b.targetId&&w.roles.target===b.targetId&&b.edge===null&&b.independentSlots===false,
+   edge:b.edge?context.assess(b.edge):null,effective:null}));
   const invalid=edges.some(e=>e.status==='invalid-evidence')||anchorAlternatives.some(a=>a.edge?.status==='invalid-evidence');
   const mandatoryScreen=edges.length>0&&edges.every(e=>e.status==='root-locality-screen-met');
-  const anchorScreen=!anchorAlternatives.length||anchorAlternatives.some(a=>a.edge?.status==='root-locality-screen-met');
+  const anchorScreen=!anchorAlternatives.length||anchorAlternatives.some(a=>a.identityOnly||a.edge?.status==='root-locality-screen-met');
   const flags=[];
   if(!completeHour)flags.push('missing-hour');
   if(review.storageProjection)flags.push('storage-access-and-family-unresolved');

@@ -53,3 +53,17 @@ test('native synthesis fixed policies, prior chart unchanged and caller approval
  assert.equal(r.status,'diagnostic');assert.equal(r.selectionAuthority,false);assert.equal(r.usefulElement,null);assert.equal(r.elements.length,5);assert.equal(JSON.stringify(saju),before);
  const p=analyzeUsefulElementSynthesis({saju,birthBasis:'provisional-chart',policy:USEFUL_ELEMENT_SYNTHESIS_VERSION});assert.equal(p.status,'unavailable');
 });
+
+test('duplicate candidate projections and duplicate climate requirements fail closed',()=>{
+ for(const k of ['assistantReview','decision','mechanism']){
+  const x=sample(),rows=k==='assistantReview'?x.pattern.assistantReview:k==='decision'?x.pattern.decisionReview.candidates:x.pattern.efficacyReview.mechanismReview.candidates;
+  rows.push({...rows[0]});assert.equal(run(x).status,'invalid-evidence');
+ }
+ const x=sample(),rs=x.pattern.efficacyReview.mechanismReview.climate.requirements;
+ rs.push({...rs[0]});assert.equal(run(x).status,'invalid-evidence');
+});
+test('duplicate witnesses and incompatible assistant role kind cannot be silently accepted',()=>{
+ const x=sample(),ws=x.pattern.reviews[0].rules[0].witnesses;
+ ws.push({...ws[0]});assert.equal(run(x).status,'invalid-evidence');
+ const y=sample();y.pattern.assistantReview[0].candidates[0].roles[0].kind='rescue';assert.equal(run(y).status,'invalid-evidence');
+});

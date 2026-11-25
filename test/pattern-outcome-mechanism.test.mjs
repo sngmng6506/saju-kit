@@ -57,3 +57,16 @@ test('native V10 mechanism coverage preserves abstention and no authority',()=>{
  assert.ok(m.candidates.every(c=>c.status!=='invalid-evidence'&&c.routes.every(w=>w.effective===null)));
  for(const c of r.efficacyReview.candidates){const v=m.candidates.find(x=>x.candidateId===c.candidateId);assert.equal(v.routes.length,c.witnesses.length);}
 });
+
+test('same edge with conflicting valid evidence cannot inherit an earlier hypothesis',()=>{
+ const q={...review,rules:[{id:'s',witnesses:[{id:'w'},{id:'w2'}]}]};
+ const e={...efficacy,witnesses:[{...row,edges:[edge()]},{...row,witnessId:'w2',edges:[edge('control','right-evidence-dominates')]}]};
+ assert.equal(observeMechanismReview(q,e,null,{requirements:[]},true).status,'invalid-evidence');
+});
+test('an anchor identity is not a missing causal edge, but co-presence remains unresolved',()=>{
+ const a={anchorId:'visible:year',targetId:'visible:year',basis:'target-is-anchor',identityOnly:true,edge:null};
+ const e={...efficacy,witnesses:[{...row,roles:{target:a.anchorId},anchorAlternatives:[a]}]};
+ assert.equal(observeMechanismReview(review,e,null,{requirements:[]},true).routes[0].status,'supported');
+ a.basis='same-branch-constituent-context';
+ assert.equal(observeMechanismReview(review,e,null,{requirements:[]},true).routes[0].status,'unresolved');
+});

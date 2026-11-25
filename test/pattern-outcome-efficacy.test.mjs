@@ -65,3 +65,11 @@ test('native efficacy preserves integrated fields and cannot grant authority',()
  assert.equal(efficacyReview.status,'diagnostic');assert.equal(efficacyReview.effective,null);assert.ok(efficacyReview.candidates.every(q=>q.selectionAuthority===false&&q.witnesses.every(w=>w.effective===null)));
  assert.equal(analyzePatternOutcomeEfficacy({...args,birthBasis:'provisional-chart',policy:PATTERN_OUTCOME_EFFICACY_VERSION}).efficacyReview,null);
 });
+
+test('target-is-anchor satisfies identity only, unlike same-branch co-presence',()=>{
+ const q={...review,rules:[{...review.rules[0],witnesses:[{...review.rules[0].witnesses[0],roles:{target:a.id},anchorBindings:[{anchorId:a.id,targetId:a.id,basis:'target-is-anchor',edge:null,independentSlots:false}]}]}]};
+ const run=()=>observeWitnessEfficacy(q,integrity,comp,{assess:()=>pass},true).witnesses[0];
+ assert.equal(run().status,'edge-screens-met');assert.equal(run().anchorAlternatives[0].identityOnly,true);
+ q.rules[0].witnesses[0].anchorBindings[0].basis='same-branch-constituent-context';
+ assert.equal(run().status,'requires-review');assert.equal(run().effective,null);
+});

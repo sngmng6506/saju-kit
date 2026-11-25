@@ -14,10 +14,13 @@ export function composeOutcomeSynthesis(saju,balance,pattern){
  const m=pattern.efficacyReview?.mechanismReview,decision=pattern.decisionReview;
  if(!m||!m.climate||pattern.integrity?.status!=='consistent'||pattern.efficacyReview.status==='invalid-evidence'||decision?.status!=='abstained'||m.selectionAuthority!==false||m.effective!==null)
   return withheld('invalid-evidence',['upstream-evidence-invalid']);
- const reviews=pattern.reviews,ms=index(m.candidates,'candidateId'),assist=index(pattern.assistantReview,'candidateId');
- const d=index(decision.candidates,'candidateId');
- if([ms,assist,d].some(x=>x.size!==reviews.length||reviews.some(q=>!x.has(q.candidateId)))||
-  new Set(reviews.map(q=>q.candidateId)).size!==reviews.length)return withheld('invalid-evidence',['candidate-coverage-mismatch']);
+ const reviews=pattern.reviews,collections=[m.candidates,pattern.assistantReview,decision.candidates];
+ if(!Array.isArray(reviews)||reviews.some(q=>!q||typeof q.candidateId!=='string')||
+  new Set(reviews.map(q=>q.candidateId)).size!==reviews.length||
+  collections.some(xs=>!Array.isArray(xs)||xs.length!==reviews.length||xs.some(q=>!q||typeof q.candidateId!=='string')||
+   new Set(xs.map(q=>q.candidateId)).size!==xs.length||reviews.some(q=>!xs.some(x=>x.candidateId===q.candidateId))))
+  return withheld('invalid-evidence',['candidate-coverage-mismatch']);
+ const [ms,assist,d]=collections.map(xs=>index(xs,'candidateId'));
  const actors=new Map(Object.entries(saju.pillars).filter(([,p])=>p).map(([position,p])=>['visible:'+position,{element:stemInfo(p.stem).element,stem:p.stem,layer:'visible'}]));
  for(const h of pattern.access.hidden)actors.set(h.id,{element:h.element,stem:h.stem,layer:'hidden'});
  for(const g of pattern.access.groups)actors.set(g.id,{element:g.element,stem:null,layer:'group'});
@@ -28,6 +31,7 @@ export function composeOutcomeSynthesis(saju,balance,pattern){
  const compare=element=>branches.map(b=>({assumedDirection:b.assumedDirection,membership:b.candidates.some(c=>c.element===element)?'candidate':'outside-candidates'}));
  const climate=m.climate;
  const requirements=index(climate.requirements,'stem');
+ if(requirements.size!==climate.requirements.length)return withheld('invalid-evidence',['duplicate-climate-requirement']);
  const climateGroups=climate.groups.map((g,i)=>({id:'baseline:'+i,stems:[...g.stems],elements:unique(g.stems.map(s=>stemInfo(s).element)),allExactVisibleAndRootObserved:g.allExactVisibleAndRootObserved,effectiveSupply:null}));
  const climateAlternatives=climate.alternatives.map((a,i)=>({id:'alternative:'+i,when:a.when,stems:[...a.stems],elements:unique(a.stems.map(s=>stemInfo(s).element)),conditionResolved:false}));
  const climateExact=new Map();
@@ -44,7 +48,7 @@ export function composeOutcomeSynthesis(saju,balance,pattern){
   if(a.status==='invalid-evidence'||mechanism.status==='invalid-evidence'||gate.status!=='abstained')return withheld('invalid-evidence',['candidate-evidence-invalid']);
   const routes=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
   const raw=new Map(q.rules.flatMap(r=>r.witnesses.map(w=>[key(r.id,w.id),{r,w}])));
-  if(routes.size!==raw.size||mechanism.routes.length!==raw.size||[...raw.keys()].some(k=>!routes.has(k)))return withheld('invalid-evidence',['route-coverage-mismatch']);
+  if(raw.size!==q.rules.reduce((n,r)=>n+r.witnesses.length,0)||routes.size!==raw.size||mechanism.routes.length!==raw.size||[...raw.keys()].some(k=>!routes.has(k)))return withheld('invalid-evidence',['route-coverage-mismatch']);
   const anchors=q.anchorIds.map(id=>({id,...actors.get(id),meaning:q.anchorBasis==='day-reference-proxy'?'day-reference-proxy':'pattern-anchor-not-favorable-element'}));
   if(anchors.some(o=>!o.element))return withheld('invalid-evidence',['unknown-anchor']);
   const participants=[];
@@ -54,7 +58,8 @@ export function composeOutcomeSynthesis(saju,balance,pattern){
    const roles=[];
    for(const role of p.roles){
     const k=key(role.ruleId,role.witnessId),w=raw.get(k),r=routes.get(k);
-    if(!w||!r||w.w.roles[role.role]!==p.occurrenceId)return withheld('invalid-evidence',['assistant-route-mismatch']);
+    const expectedKind=w?.r.impact==='conditional-regulation-not-confirmed-support'?'regulation':w?.r.kind;
+    if(!w||!r||expectedKind!==role.kind||w.w.roles[role.role]!==p.occurrenceId)return withheld('invalid-evidence',['assistant-route-mismatch']);
     roles.push({role:role.role,kind:role.kind,ruleId:role.ruleId,witnessId:role.witnessId,mechanismHypothesis:r.status,unresolvedConditions:[...r.unresolvedClassicalConditions]});
    }
    participants.push({occurrenceId:p.occurrenceId,...actor,classification:p.classification,anchorAlias:p.anchorAlias,roles,

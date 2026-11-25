@@ -57,25 +57,46 @@ export function observeSupplementaryMethods(saju,synthesis,pattern,mediation,rem
  };
  const edge=e=>{
   const a=byOccurrence.get(e.from),b=byOccurrence.get(e.to);
-  return a&&b?key(a,b,e.kind):null;
+  return a&&b?{key:key(a,b,e.kind),fromNode:a,toNode:b,from:e.from,to:e.to}:null;
  };
  // Index exact candidate/witness identities; one alternative anchor at a
  // time. Do not join mandatory edges of separate witnesses into a route.
  const paths=[];
  for(const q of pattern.reviews.filter(q=>candidates.has(q.candidateId)))for(const r of q.rules)for(const w of r.witnesses){
-  const mandatory=new Set(w.edges.map(edge).filter(Boolean));
-  const variants=[{scope:'mandatory',anchorId:null,edges:mandatory},...(w.anchorBindings??[]).filter(b=>b.edge).map(b=>({scope:'anchor-alternative',anchorId:b.anchorId,edges:new Set([...mandatory,edge(b.edge)].filter(Boolean))}))];
+  const mandatory=w.edges.map(edge).filter(Boolean);
+  const variants=[{scope:'mandatory',anchorId:null,bindingKey:null,edges:mandatory},...(w.anchorBindings??[]).filter(b=>b.edge).map(b=>({
+   scope:'anchor-alternative',anchorId:b.anchorId,bindingKey:JSON.stringify([b.anchorId,b.targetId??null,b.basis??null,b.edge.from,b.edge.to,b.edge.kind]),
+   edges:[...mandatory,edge(b.edge)].filter(Boolean)}))];
   paths.push({candidateId:q.candidateId,ruleId:r.id,witnessId:w.id,kind:r.kind,threatRuleId:r.threatRuleId??null,threatWitnessId:w.threatWitnessId??null,variants});
  }
  const link=(keys,kind)=>{
   const rows=[];
   for(const p of paths){
    if(kind&&p.kind!==kind)continue;
-   const matched=p.variants.filter(v=>keys.every(k=>v.edges.has(k)));
-   // Mandatory match subsumes its alternative variants.
-   const ms=matched.some(v=>v.scope==='mandatory')?matched.filter(v=>v.scope==='mandatory'):matched;
-   for(const v of ms)rows.push({candidateId:p.candidateId,ruleId:p.ruleId,witnessId:p.witnessId,kind:p.kind,scope:v.scope,anchorId:v.anchorId,
-    threatRuleId:p.threatRuleId,threatWitnessId:p.threatWitnessId,effective:null});
+   // Join on literal occurrence identity as well as aggregate graph node.
+   // A hidden 丙 feeding the first edge cannot silently become 丁 in the second.
+   const mandatoryMatches=new Set(),seen=new Set();
+   for(const v of p.variants){
+    let allocations=[new Map()];
+    for(const k of keys){
+     const next=[];
+     for(const a of allocations)for(const e of v.edges.filter(e=>e.key===k)){
+      if(a.has(e.fromNode)&&a.get(e.fromNode)!==e.from||a.has(e.toNode)&&a.get(e.toNode)!==e.to)continue;
+      const b=new Map(a);b.set(e.fromNode,e.from);b.set(e.toNode,e.to);next.push(b);
+     }
+     allocations=next;
+    }
+    for(const a of allocations){
+     const literalBindings=Object.fromEntries([...a].sort(([a],[b])=>a.localeCompare(b)));
+     const signature=JSON.stringify(literalBindings);
+     if(v.scope==='anchor-alternative'&&mandatoryMatches.has(signature))continue;
+     if(v.scope==='mandatory')mandatoryMatches.add(signature);
+     const identity=JSON.stringify([v.scope,v.bindingKey,signature]);
+     if(seen.has(identity))continue;seen.add(identity);
+     rows.push({candidateId:p.candidateId,ruleId:p.ruleId,witnessId:p.witnessId,kind:p.kind,scope:v.scope,anchorId:v.anchorId,
+      bindingKey:v.bindingKey,literalBindings,threatRuleId:p.threatRuleId,threatWitnessId:p.threatWitnessId,effective:null});
+    }
+   }
   }
   return rows;
  };
@@ -92,11 +113,19 @@ export function observeSupplementaryMethods(saju,synthesis,pattern,mediation,rem
  const motifs=remedy.motifs.map((m,i)=>{
   const target=node(m.target),threat=node(m.threat);
   const damages=link([key(threat.nodeId,target.nodeId,'control')],'damage');
-  const damageKeys=new Set(damages.map(d=>refKey(d.candidateId,d.ruleId,d.witnessId)));
+  const damageKeys=new Map();
+  for(const d of damages){
+   const k=refKey(d.candidateId,d.ruleId,d.witnessId);
+   if(!damageKeys.has(k))damageKeys.set(k,[]);
+   damageKeys.get(k).push(d);
+  }
   return {id:'remedy:'+i,target,threat,remedyElement:m.remedyElement,targetContext:{...m.targetContext},damageLinks:damages,
    remedies:m.remedies.map(r=>{
     const n=node(r.remedy);
-    const links=link([key(n.nodeId,threat.nodeId,'control')],'rescue').filter(x=>damageKeys.has(refKey(x.candidateId,x.threatRuleId,x.threatWitnessId)));
+    const links=link([key(n.nodeId,threat.nodeId,'control')],'rescue').filter(x=>
+     (damageKeys.get(refKey(x.candidateId,x.threatRuleId,x.threatWitnessId))??[]).some(d=>
+      d.literalBindings[threat.nodeId]===x.literalBindings[threat.nodeId]&&
+      (!d.bindingKey||!x.bindingKey||d.bindingKey===x.bindingKey)));
     return {node:n,adjacent:r.adjacent,obstructionNodeIds:uniq(r.obstructions.map(o=>node(o.node).nodeId)),rescueLinks:links,
      linkBasis:[target,threat,n].some(n=>n.layer==='branch')?'shared-branch-element-context':'exact-visible-path',effective:null};
    }),diseaseConfirmed:null,remedyConfirmed:null};

@@ -81,3 +81,16 @@ test('partial and provisional charts keep authority absent',()=>{
  const b=analyzePatternOutcomeIntegrated({...args(['임자','무진','갑인','병인']),birthBasis:'provisional-chart',policy:PATTERN_OUTCOME_INTEGRATED_VERSION});
  assert.equal(b.integrity,null);assert.equal(b.assistantReview,null);
 });
+
+test('binding target must match the relation and same-branch context is not a causal edge',()=>{
+ const q=sample(),w=q.rules[0].witnesses[0],b={anchorId:'visible:year',targetId:'visible:year',edge:{from:'visible:year',to:'visible:month',kind:'generate',effective:null},effective:null};
+ w.anchorBindings=[b];assert.ok(check(q).violations.some(v=>v.kind==='binding-edge-target-mismatch'));
+ w.anchorBindings=[{anchorId:'visible:year',targetId:'visible:month',basis:'same-branch-constituent-context',edge:null,independentSlots:false,effective:null}];
+ assert.ok(check(q).violations.some(v=>v.kind==='invalid-same-branch-binding'));
+});
+test('target-is-anchor identity requires the actual target and no independent edge',()=>{
+ const q=sample(),w=q.rules[0].witnesses[0];
+ w.anchorBindings=[{anchorId:'visible:year',targetId:'visible:year',basis:'target-is-anchor',edge:null,independentSlots:false,effective:null}];
+ assert.equal(check(q).status,'consistent');
+ w.anchorBindings[0].targetId='visible:month';assert.ok(check(q).violations.some(v=>v.kind==='invalid-anchor-alias'));
+});

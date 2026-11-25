@@ -92,3 +92,26 @@ test('request cache separates chart identity, basis, policy and provider; thrown
  assert.throws(()=>p.integrated(fresh,()=>{throw Error('fixture');}),/fixture/);
  assert.equal(p.integrated(fresh,build).n,6);
 });
+
+test('same witness cannot splice different hidden stems through a shared aggregate node',()=>{
+ const x=sample();x.saju=chart(['갑자','임오','무인','무오']);x.remedy.motifs=[];
+ const a=v('year','wood'),b=v('hour','fire','branch'),c=v('day','earth');
+ x.mediation.pairs[0]={from:'wood',to:'earth',via:'fire',mediatorNodes:[b],routes:[{id:'p',nodes:[a,b,c],obstructions:[]}]};
+ const w=x.pattern.reviews[0].rules[2].witnesses[0];
+ w.edges=[edge('visible:year','hidden:hour:병','generate'),edge('hidden:hour:정','visible:day','generate')];
+ assert.deepEqual(run(x).mediation.pairs[0].routes[0].patternLinks,[]);
+ w.edges[1].from='hidden:hour:병';
+ const link=run(x).mediation.pairs[0].routes[0].patternLinks[0];
+ assert.equal(link.literalBindings['hour:branch:fire'],'hidden:hour:병');assert.equal(link.effective,null);
+});
+test('remedy must control the same literal hidden threat as its bound damage',()=>{
+ const x=sample();x.saju=chart(['경자','임오','경진','무오']);x.mediation.pairs=[];
+ const a=v('hour','fire','branch'),b=v('day','metal'),c=v('month','water');
+ x.remedy.motifs=[{target:b,threat:a,remedyElement:'water',targetContext:{},remedies:[{remedy:c,obstructions:[]}]}];
+ const [d,r]=x.pattern.reviews[0].rules;
+ d.witnesses[0].edges=[edge('hidden:hour:병','visible:day','control')];
+ r.witnesses[0].edges=[edge('visible:month','hidden:hour:정','control')];
+ assert.deepEqual(run(x).remedy.motifs[0].remedies[0].rescueLinks,[]);
+ r.witnesses[0].edges[0].to='hidden:hour:병';
+ assert.equal(run(x).remedy.motifs[0].remedies[0].rescueLinks[0].literalBindings['hour:branch:fire'],'hidden:hour:병');
+});

@@ -87,7 +87,10 @@ export function observeMechanismReview(review,efficacy,clarity,climate,complete)
   // Validate each reference before reuse; an invalid duplicate must not inherit a valid cached edge.
   const assessed=evaluateMechanismEdge(e,complete);
   if(assessed.status==='invalid-evidence')return {id:k,...assessed};
-  if(!registry.has(k))registry.set(k,{id:k,...assessed});
+  const projected={id:k,...assessed};
+  if(registry.has(k)&&JSON.stringify(registry.get(k))!==JSON.stringify(projected))
+   return {...projected,status:'invalid-evidence',conditions:[state('inconsistent-edge-evidence','conflicting',k)]};
+  if(!registry.has(k))registry.set(k,projected);
   return registry.get(k);
  };
  const contacts=clarity?.routeInjury?.contacts??[];
@@ -95,13 +98,13 @@ export function observeMechanismReview(review,efficacy,clarity,climate,complete)
  const routes=efficacy.witnesses.map(row=>{
   const entry=lookup.get(key(row.ruleId,row.witnessId));
   if(!entry)return {ruleId:row.ruleId,witnessId:row.witnessId,status:'invalid-evidence',effective:null};
-  const mandatory=row.edges.map(assess),alternatives=row.anchorAlternatives.map(a=>({anchorId:a.anchorId,edge:a.edge?assess(a.edge):null}));
+  const mandatory=row.edges.map(assess),alternatives=row.anchorAlternatives.map(a=>({anchorId:a.anchorId,targetId:a.targetId??null,basis:a.basis??null,identityOnly:a.identityOnly===true&&a.basis==='target-is-anchor'&&a.anchorId===a.targetId&&row.roles.target===a.targetId&&!a.edge,edge:a.edge?assess(a.edge):null}));
   const participants=new Set([...Object.values(row.roles),...row.edges.flatMap(e=>[e.from,e.to]),...row.anchorAlternatives.flatMap(a=>[a.anchorId,...(a.edge?[a.edge.from,a.edge.to]:[])])]);
   const relevantClimate=climate.requirements.filter(r=>r.exactVisibleIds.some(id=>participants.has(id))).map(r=>({stem:r.stem,visibleIds:r.exactVisibleIds.filter(id=>participants.has(id)),status:r.status}));
   const hits=contacts.filter(c=>c.route.ruleId===row.ruleId&&c.route.witnessId===row.witnessId);
   const groups=groupContext.filter(c=>c.route.ruleId===row.ruleId&&c.route.witnessId===row.witnessId);
   const cond=[state('mandatory-edge-path',mandatory.some(e=>e.status==='invalid-evidence')?'unresolved':composeMechanismConditions(mandatory.map(e=>({state:e.status}))),mandatory.map(e=>e.id))];
-  if(alternatives.length)cond.push(state('anchor-alternative-path',chooseMechanismAlternative(alternatives.map(a=>a.edge?.status??'unresolved')),alternatives.map(a=>({anchorId:a.anchorId,edgeId:a.edge?.id??null}))));
+  if(alternatives.length)cond.push(state('anchor-alternative-path',chooseMechanismAlternative(alternatives.map(a=>a.identityOnly?'supported':a.edge?.status??'unresolved')),alternatives.map(a=>({anchorId:a.anchorId,targetId:a.targetId,basis:a.basis,identityOnly:a.identityOnly,edgeId:a.edge?.id??null}))));
   if(!complete)cond.push(state('complete-chart','unresolved',null));
   if(row.flags.length)cond.push(state('witness-context','unresolved',row.flags));
   if(hits.length||groups.some(g=>g.clashIds.length||g.competingContacts.length))cond.push(state('assistant-contact','unresolved',{contacts:hits.map(c=>({assistantId:c.assistantId,obstacleId:c.obstacleId,kind:c.contact.kind})),groups:groups.map(g=>g.formationId)}));
