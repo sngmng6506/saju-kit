@@ -654,3 +654,51 @@ test('native action reference audit preserves annotation scope and does not clai
  assert.equal(r.summary.groups.blocked.references,0);assert.equal(r.summary.finalEfficacyAccuracy,null);
  assert.equal(r.summary.selectionAuthority,false);
 });
+
+import {reviewActionRequirements,observeOutputControllerScope,compareReferenceRequirements,summarizeRequirementComparison} from '../scripts/lib/pattern-action-requirements.mjs';
+import {auditActionRequirements} from '../scripts/audit-classical-patterns.mjs';
+const reqFixture=()=>{
+ const {result,access,interaction}=layerFixture();
+ const gods={'visible:year':'편재','visible:month':'정인','visible:day':'비견','visible:hour':'식신','hidden:year:병':'정인','hidden:month:갑':'편재','hidden:day:임':'상관','hidden:hour:무':'편관'};
+ result.routeReview.occurrences=result.routeReview.occurrences.map(o=>({...o,tenGod:gods[o.id]}));
+ result.relativeForce.profiles=Object.fromEntries(result.routeReview.occurrences.map(o=>[o.id,{axes:{anySubstantial:false},rootClashExposed:[]}]));
+ return {result,access,interaction,layers:reviewLayerMechanisms(result,access,interaction)};
+};
+test('action requirements keep weak roots and distance as observations, not failure or proof',()=>{
+ const {result,interaction,layers}=reqFixture(),before=structuredClone({result,interaction,layers});
+ // Use a structurally valid wealth-control-resource relation in the synthetic role graph.
+ const e=result.relativeForce.edges.find(e=>e.from==='visible:year'&&e.to==='visible:day');
+ result.routeReview.occurrences.find(o=>o.id===e.to).tenGod='정인';
+ const r=reviewActionRequirements(result,layers,interaction),row=r.edges.find(x=>x.id===e.id);
+ assert.deepEqual(row.hypotheses.map(h=>h.purpose),['wealth-resource-damage','wealth-resource-regulation']);
+ assert.equal(row.context.find(c=>c.name==='source-substantial-root').category,'supporting');
+ assert.equal(row.context.find(c=>c.name==='source-substantial-root').value,false);
+ assert.ok(row.hypotheses[1].conditions.some(c=>c.name==='source-root-criterion-disputed'&&c.value===null));
+ assert.ok(row.hypotheses.every(h=>h.effective===null&&h.favorable===null));
+ assert.equal(row.structuralReview,'visible-conditional-review');
+ assert.deepEqual(interaction,before.interaction);assert.deepEqual(layers,before.layers);
+});
+test('exact pair contact differs from contact with another actor; food and hurting stay distinct',()=>{
+ const {result,interaction,layers}=reqFixture();
+ result.routeReview.occurrences.find(o=>o.id==='visible:year').tenGod='상관';
+ result.routeReview.occurrences.find(o=>o.id==='visible:day').tenGod='편관';
+ const id='visible:year>visible:day';
+ const combo=(id,positions)=>({id,positions,type:'stem.combine',layer:'stem'});
+ const other=reviewActionRequirements(result,layers,{...interaction,formations:[...interaction.formations,combo('other',['year','hour'])]}).edges.find(e=>e.id===id);
+ const direct=reviewActionRequirements(result,layers,{...interaction,formations:[...interaction.formations,combo('direct',['year','day'])]}).edges.find(e=>e.id===id);
+ assert.equal(other.structuralReview,'visible-conditional-review');
+ assert.equal(direct.structuralReview,'exact-pair-contact-review');
+ assert.deepEqual(direct.hypotheses.map(h=>h.purpose),['hurting-controls-killing']);
+ assert.equal(direct.hypotheses[0].outputScope,'hurting-only-not-strict-food');
+ const rows=observeOutputControllerScope(result,{status:'research-review',candidates:[{candidateId:'k',family:'killing',scopedAnchorIds:['visible:day']}]})[0];
+ assert.ok(rows.rows.some(x=>x.from==='visible:year'&&!x.strictFood&&x.broaderOutput));
+ assert.ok(rows.broadOutputCount>rows.strictFoodCount);
+ assert.equal(direct.effective,null);
+ const partial=reviewActionRequirements({...result,completeHour:false},layers,interaction);
+ assert.ok(partial.edges.every(e=>e.structuralReview==='partial-context'));
+});
+test('native action requirement comparison preserves reference denominator and no authority',()=>{
+ const a=auditActionRequirements();assert.equal(a.summary.references,12);assert.equal(a.summary.comparable,8);
+ assert.equal(a.summary.bySourceState.supported.references,5);assert.equal(a.summary.bySourceState.limited.references,3);
+ assert.equal(a.summary.accuracy,null);assert.equal(a.summary.confirmedEffects,0);
+});
