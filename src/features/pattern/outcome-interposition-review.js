@@ -1,0 +1,151 @@
+import {elementRelation} from '../../core/elements.js';
+const ORDER=['year','month','day','hour'];
+const uniq=xs=>[...new Set(xs)].sort();
+const index=(xs,key)=>Array.isArray(xs)&&new Set(xs.map(key)).size===xs.length?new Map(xs.map(x=>[key(x),x])):null;
+const slot=a=>a.position+':'+a.layer;
+const distance=(a,b)=>Math.abs(ORDER.indexOf(a.position)-ORDER.indexOf(b.position));
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const rootPositions=ids=>uniq(ids.map(id=>id.split(':')[1]));
+const nodeLayer=a=>a.layer==='visible'?'stem':'branch';
+const pressureClass=state=>state==='grounded-observation'?'rooted-controller-observed':
+ state==='no-substantial-root-observed'?'no-substantial-controller-observed':'controller-access-unresolved';
+const invalid=base=>({...base,status:'invalid-evidence',paths:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
+function validateNode(nodeId,groups,donors){
+ const members=groups.get(nodeId),d=donors.get(nodeId);
+ if(!members?.length||!d)return false;
+ const first=members[0],kind=first.layer==='visible'?'visible-stem':'local-branch-constituents';
+ if(d.position!==first.position||d.element!==first.element||d.kind!==kind||
+  !same(uniq(d.occurrenceIds),uniq(members.map(x=>x.id)))||
+  !same(d.contacts,first.contacts)||members.some(a=>a.position!==first.position||a.layer!==first.layer||
+   a.element!==first.element||!same(a.contacts,first.contacts)))return false;
+ if(first.layer==='visible'&&members.length!==1)return false;
+ return true;
+}
+function validateEdge(e,from,to,type,groups,donors){
+ const a=groups.get(from)?.[0],b=groups.get(to)?.[0],source=donors.get(from),target=donors.get(to);
+ if(!e||!a||!b||!source||!target||e.from!==from||e.to!==to||e.type!==type||
+  e.effectConfirmed!==null||e.sourceEvidence?.id!==from||e.targetEvidence?.id!==to||
+  e.sourceEvidence.position!==a.position||e.targetEvidence.position!==b.position||
+  e.sourceEvidence.layer!==nodeLayer(a)||e.targetEvidence.layer!==nodeLayer(b)||
+  e.sourceEvidence.element!==a.element||e.targetEvidence.element!==b.element||
+  !same(e.sourceEvidence.contacts,a.contacts)||!same(e.targetEvidence.contacts,b.contacts))return false;
+ const d=distance(a,b),r=elementRelation(a.element,b.element);
+ if(d!==e.distance||e.local!==(d<=1)||r.type!==type||r.direction!=='left-to-right')return false;
+ const sourceRoots=uniq([...source.groundedRootIds,...source.contestedRootIds]);
+ const targetRoots=uniq([...target.groundedRootIds,...target.contestedRootIds]);
+ return same(rootPositions(sourceRoots),uniq(e.sourceEvidence.substantialRootPositions??[]))&&
+  same(rootPositions(targetRoots),uniq(e.targetEvidence.substantialRootPositions??[]))&&
+  same(rootPositions(source.groundedRootIds),uniq(e.sourceEvidence.unexposedSubstantialRootPositions??[]))&&
+  same(rootPositions(target.groundedRootIds),uniq(e.targetEvidence.unexposedSubstantialRootPositions??[]));
+}
+function pressureFor(nodeId,groups,donors){
+ const members=groups.get(nodeId),first=members[0];
+ const rows=first.controlReceived??[];
+ const signature=e=>JSON.stringify([e.from,e.to,e.distance,e.local,e.sourceEvidence?.id,e.targetEvidence?.id]);
+ if(members.some(m=>!same((m.controlReceived??[]).map(signature).sort(),rows.map(signature).sort())))return null;
+ const result=[];
+ for(const e of rows){
+  if(e.to!==nodeId||e.type!=='control'||!validateEdge(e,e.from,nodeId,'control',groups,donors))return null;
+  const d=donors.get(e.from);
+  result.push({controllerNodeId:e.from,distance:e.distance,local:e.local,donorState:d.state,
+   classification:pressureClass(d.state),effectConfirmed:null});
+ }
+ return result.sort((a,b)=>a.controllerNodeId.localeCompare(b.controllerNodeId));
+}
+function classifyPath(path,groups,donors,pressures,complete){
+ const helper=donors.get(path.helper),threat=donors.get(path.threat),target=donors.get(path.target);
+ const helperPressure=pressures.get(path.helper),threatPressure=pressures.get(path.threat),targetPressure=pressures.get(path.target);
+ const participants=[path.helper,path.threat,path.target].map(id=>groups.get(id)[0]);
+ const hidden=participants.some(a=>a.layer!=='visible');
+ const contacts=participants.filter(a=>donors.get(a.graphNodeId??slot(a))?.contacts?.length).map(a=>a.id);
+ const expected=path.kind==='protection'?
+  [[path.helper,path.threat,'control'],[path.threat,path.target,'control']]:
+  [[path.threat,path.helper,'generate'],[path.helper,path.target,'generate'],[path.threat,path.target,'control']];
+ const edges=path.edges;
+ const chainEdges=path.kind==='protection'?edges:edges.slice(0,2);
+ const chainLocal=chainEdges.every(e=>e.local);
+ const directThreatControlLocal=path.kind==='mediation'?edges[2].local:null;
+ const blockers=[];
+ if(!complete)blockers.push('missing-hour');
+ if(hidden)blockers.push('hidden-participant-access');
+ if(participants.some(a=>donors.get(a.graphNodeId).contacts.length))blockers.push('participant-contact');
+ if(!chainLocal)blockers.push(path.kind==='protection'?'nonlocal-protection-chain':'nonlocal-generation-chain');
+ if(helper.state!=='grounded-observation')blockers.push(helper.state==='no-substantial-root-observed'?'helper-root-not-observed':'helper-root-access-unresolved');
+ if(threat.state!=='grounded-observation')blockers.push(threat.state==='no-substantial-root-observed'?'threat-root-not-observed':'threat-root-access-unresolved');
+ const helperPressureRooted=helperPressure.some(p=>p.donorState==='grounded-observation');
+ const helperPressureUnknown=helperPressure.some(p=>p.donorState!=='no-substantial-root-observed'&&p.donorState!=='grounded-observation');
+ if(helperPressureRooted)blockers.push('helper-under-rooted-control');
+ if(helperPressureUnknown)blockers.push('helper-control-context-unresolved');
+ const routeController=path.kind==='protection'?path.helper:path.threat;
+ const additionalThreatPressure=threatPressure.filter(p=>p.controllerNodeId!==routeController);
+ const additionalTargetPressure=targetPressure.filter(p=>p.controllerNodeId!==path.threat);
+ return {id:JSON.stringify([path.kind,path.helper,path.threat,path.target]),kind:path.kind,
+  helper:path.helper,threat:path.threat,target:path.target,sourceOccurrenceIds:uniq(path.sourceOccurrenceIds),
+  participants:{helper:{nodeId:path.helper,kind:helper.kind,state:helper.state,groundedRootIds:helper.groundedRootIds,
+    contestedRootIds:helper.contestedRootIds,contacts:helper.contacts},
+   threat:{nodeId:path.threat,kind:threat.kind,state:threat.state,groundedRootIds:threat.groundedRootIds,
+    contestedRootIds:threat.contestedRootIds,contacts:threat.contacts},
+   target:{nodeId:path.target,kind:target.kind,state:target.state,groundedRootIds:target.groundedRootIds,
+    contestedRootIds:target.contestedRootIds,contacts:target.contacts}},
+  edges:edges.map(e=>({from:e.from,to:e.to,type:e.type,distance:e.distance,local:e.local})),
+  chainLocal,directThreatControlLocal,
+  pressure:{helper:helperPressure,threat:threatPressure,target:targetPressure,
+   additionalThreatControllers:additionalThreatPressure,additionalTargetControllers:additionalTargetPressure,
+   helperRootedControllerObserved:helperPressureRooted,helperControllerUnresolved:helperPressureUnknown},
+  targetRootRequiredForPathObservation:false,
+  blockers,structuralScreen:blockers.length?'context-review':'grounded-structure-screen-met',
+  effectiveProtection:null,effectiveMediation:null,neutralizationConfirmed:null,effectConfirmed:null,
+  selectionAuthority:false};
+}
+export function observeInterpositionReview(prior,rootContext,groundedSupply){
+ const complete=prior?.completeHour;
+ const base={version:'interposition-review-v1',completeHour:complete,selectionAuthority:false,
+  effectConfirmed:null,neutralizationConfirmed:null};
+ if(!rootContext||rootContext.status==='invalid-evidence'||rootContext.completeHour!==complete||
+  !groundedSupply||groundedSupply.status==='invalid-evidence'||groundedSupply.completeHour!==complete)return invalid(base);
+ const actors=index(prior.stemForce?.occurrences,a=>a.id),rootRows=index(rootContext.occurrences,a=>a.id);
+ const groups=new Map();
+ if(!actors||!rootRows||actors.size!==rootRows.size||[...actors.keys()].some(id=>!rootRows.has(id)))return invalid(base);
+ for(const a of actors.values()){
+  if(!a.graphNodeId||!ORDER.includes(a.position)||!['visible','hidden'].includes(a.layer))return invalid(base);
+  if(!groups.has(a.graphNodeId))groups.set(a.graphNodeId,[]);
+  groups.get(a.graphNodeId).push(a);
+ }
+ const donors=index(groundedSupply.nodes,n=>n.nodeId);
+ if(!donors||donors.size!==groups.size||[...groups.keys()].some(id=>!donors.has(id))||
+  [...groups.keys()].some(id=>!validateNode(id,groups,donors)))return invalid(base);
+ const pressures=new Map();
+ for(const id of groups.keys()){
+  const p=pressureFor(id,groups,donors);if(!p)return invalid(base);pressures.set(id,p);
+ }
+ const candidates=new Map();
+ for(const a of actors.values())for(const p of a.protectionAndMediation??[]){
+  if(!['protection','mediation'].includes(p.kind)||p.target!==a.graphNodeId||p.effective!==null||
+   !Array.isArray(p.edges))return invalid(base);
+  const expected=p.kind==='protection'?
+   [[p.helper,p.threat,'control'],[p.threat,p.target,'control']]:
+   [[p.threat,p.helper,'generate'],[p.helper,p.target,'generate'],[p.threat,p.target,'control']];
+  if(p.edges.length!==expected.length||![p.helper,p.threat,p.target].every(id=>groups.has(id))||
+   new Set([p.helper,p.threat,p.target].map(id=>slot(groups.get(id)[0]))).size!==3)return invalid(base);
+  for(let i=0;i<expected.length;i++)if(!validateEdge(p.edges[i],...expected[i],groups,donors))return invalid(base);
+  const id=JSON.stringify([p.kind,p.helper,p.threat,p.target]),signature=JSON.stringify(p.edges);
+  const old=candidates.get(id);
+  if(old&&old.signature!==signature)return invalid(base);
+  if(old)old.sourceOccurrenceIds.push(a.id);
+  else candidates.set(id,{...p,signature,sourceOccurrenceIds:[a.id]});
+ }
+ const paths=[];
+ for(const p of candidates.values()){
+  const route=classifyPath(p,groups,donors,pressures,complete);
+  paths.push(route);
+ }
+ paths.sort((a,b)=>a.id.localeCompare(b.id));
+ const summary={candidatePaths:paths.length,protectionPaths:paths.filter(p=>p.kind==='protection').length,
+  mediationPaths:paths.filter(p=>p.kind==='mediation').length,
+  structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
+  hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
+  pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
+  nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
+ return {...base,status:complete?'diagnostic':'partial',paths,summary,
+  limitations:['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection']};
+}
