@@ -42,6 +42,10 @@ All v1–v10 public pattern entry points delegate to the request-local pipeline.
 
 `src/features/climate/` groups the versioned source tables, evidence projection, temporal predicates, structural predicates, requirement contexts and textual motifs. A shared kernel serves the five climate policy entry points; legacy v1/v2 omit the newer projections, and v5 reuses the existing natal structure for requirements and motifs. Historical paths remain compatible. See [climate refactor validation](docs/climate-refactor-validation.md).
 
+## Current balance, mediation and remedy domains
+
+The `balance/`, `mediation/` and `remedy/` directories own their respective doctrine evidence and review policies. The private `src/features/method-evidence.js` composes request-local structure and strength observations for the balance priority/route and parallel useful-element review. Standard/neutral scenarios remain distinct; no cross-method authority is inferred. See [method refactor validation](docs/methods-refactor-validation.md).
+
 Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
 ## Documentation ownership
@@ -56,6 +60,7 @@ npm run audit:architecture
 npm run verify:pattern-refactor
 npm run verify:strength-refactor
 npm run verify:climate-refactor
+npm run verify:methods-refactor
 ```
 
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.
