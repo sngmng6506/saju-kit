@@ -41,6 +41,15 @@ for(const c of data.cases){
     [...p.outputDrain,...p.killingSupply,...p.officerContext].some(x=>x.effectConfirmed!==null||x.netEffectConfirmed!==null||
      x.objectives.some(o=>o.selectionAuthority!==false||o.actualDemand!==null||o.excessConfirmed!==null||o.deficiencyConfirmed!==null||o.effectConfirmed!==null));
   }))errors.push(c.id+':resource-strategy-integrity');
+  if(m?.candidates.some(q=>{
+   const p=q.rolePriority?.interactions;
+   return !p||p.status==='invalid-evidence'||p.selectionAuthority!==false||p.selectedObjective!==null||p.netEffectConfirmed!==null||
+    [...p.interpretations,...p.anchorAlternatives,...p.simultaneousContexts,...p.sharedEvidence].some(x=>x.effectConfirmed!==null)||
+    p.interpretations.some(x=>x.exclusiveConfirmed!==null)||
+    p.anchorAlternatives.some(x=>x.selectedAnchorId!==null||x.simultaneousSupplyConfirmed!==null)||
+    p.simultaneousContexts.some(x=>x.simultaneousEffectConfirmed!==null)||
+    p.sharedEvidence.some(x=>x.independentSupplyConfirmed!==null||x.sharedRoots.some(r=>r.independentSupplyConfirmed!==null));
+  }))errors.push(c.id+':role-interaction-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
@@ -99,5 +108,7 @@ for(const id of ['li-resource-output','ma-resource-killing']){
  if(!matched.length)errors.push(id+':resource-source-coverage');
  resourceSourceRows.push({id,matched,structuralCoverage:matched.length>0,effectAgreement:null,independentGold:false});
 }
-console.log(JSON.stringify({resourceSourceRows,resourceObjectiveCounts,killingSourceRows,wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+const interactionCounts={interpretations:0,anchorAlternatives:0,simultaneousContexts:0,sharedEvidence:0};
+for(const row of rows)for(const p of row.priorities)for(const k of Object.keys(interactionCounts))interactionCounts[k]+=p.interactions?.[k]?.length??0;
+console.log(JSON.stringify({interactionCounts,resourceSourceRows,resourceObjectiveCounts,killingSourceRows,wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
