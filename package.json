@@ -9,7 +9,8 @@
     "audit:architecture": "node scripts/audit-architecture.mjs",
     "verify:pattern-refactor": "node scripts/verify-pattern-refactor.mjs",
     "verify:strength-refactor": "node scripts/verify-strength-refactor.mjs",
-    "test:failures": "node --test --test-reporter=./scripts/lib/failures-reporter.mjs"
+    "test:failures": "node --test --test-reporter=./scripts/lib/failures-reporter.mjs",
+    "verify:climate-refactor": "node scripts/verify-climate-refactor.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

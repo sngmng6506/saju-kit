@@ -38,6 +38,10 @@ All v1–v10 public pattern entry points delegate to the request-local pipeline.
 
 `src/features/strength/` contains hybrid evidence/quantitative, ordinary, structural, quantitative, multiaxis, network/integrated decisions, season robustness, separated decision, command sensitivity, resource access, route budget and output capacity. Historical paths retain explicit re-exports (or unchanged export-star shims). The internal request-evidence provider reuses quantitative observations, root dynamics and support-network projections for the same request. Standard/neutral season modes and distinct hour completions remain separate. Shared scenario-mass owns contribution aggregation. See [strength refactor validation](docs/strength-refactor-validation.md).
 
+## Current climate domain
+
+`src/features/climate/` groups the versioned source tables, evidence projection, temporal predicates, structural predicates, requirement contexts and textual motifs. A shared kernel serves the five climate policy entry points; legacy v1/v2 omit the newer projections, and v5 reuses the existing natal structure for requirements and motifs. Historical paths remain compatible. See [climate refactor validation](docs/climate-refactor-validation.md).
+
 Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
 ## Documentation ownership
@@ -51,6 +55,7 @@ npm test
 npm run audit:architecture
 npm run verify:pattern-refactor
 npm run verify:strength-refactor
+npm run verify:climate-refactor
 ```
 
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.
