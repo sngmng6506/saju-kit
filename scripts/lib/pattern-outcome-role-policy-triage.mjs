@@ -46,6 +46,8 @@ export function diagnoseDirectedPremise(p,context,partial=false){
  if(find('relative-generation-context')?.state==='unresolved')reasons.push('generation-comparison-context-unresolved');
  if(command?.status==='unresolved')reasons.push('command-not-assessed');
  const supply=(context?.groundedSupply?.actions??[]).filter(a=>a.from===from&&a.to===to&&a.kind===kind);
+ const neutralContexts=context?.interpositionReview?.roleNeutral?.pressureContexts??[];
+ const neutralTarget=neutralContexts.find(x=>x.targetId===to),neutralSource=neutralContexts.find(x=>x.targetId===from);
  const targetContext=(context?.interpositionReview?.pressureContexts??[]).find(x=>x.targetId===to);
  const sourceContext=(context?.interpositionReview?.pressureContexts??[]).find(x=>x.targetId===from);
  const sourceNode=(context?.groundedSupply?.nodes??[]).find(n=>n.occurrenceIds.includes(from))?.nodeId;
@@ -55,6 +57,8 @@ export function diagnoseDirectedPremise(p,context,partial=false){
   interpositionContext:{sourceScope:sourceContext?.targetScope??null,targetScope:targetContext?.targetScope??null,
    sourceControllers:sourceContext?.controllers??[],targetControllers:targetContext?.controllers??[],
    exactControl:kind==='control'?targetContext?.controllers.find(c=>c.controllerNodeId===sourceNode)??null:null,
+   roleNeutral:{sourceControllers:neutralSource?.controllers??[],targetControllers:neutralTarget?.controllers??[],
+    exactControl:kind==='control'?neutralTarget?.controllers.find(c=>c.controllerNodeId===sourceNode)??null:null},
    neutralizationConfirmed:null},
   source:a,target:b,comparison:{original,sensitivity,nonseason,seasonOnly,coverage:ps.length===1?'exact-pair':ps.length?'duplicate-pair':'not-projected'},
   command:{status:command?.status??null,reason:command?.reason??null,pairStatus:cmd?.status??null,hypotheses:(cmd?.hypotheses??[]).map(h=>({id:h.id,relation:orient(h.relation,cmd.left!==from)}))},
@@ -141,10 +145,10 @@ export function summarizeGroundedSupplyReview(c,review,partial){
  return {...base,counts,reasons,errors};
 }
 
-export function summarizeInterpositionReview(c,review,partial){
+function auditInterpositionScope(c,review,partial,neutral=false){
  const base={id:c.id,partial,effectConfirmed:null,neutralizationConfirmed:null};
  const errors=[];
- if(!review||review.version!=='interposition-review-v1'||review.targetScope!=='day-master-and-visible-peer-resource'||review.status!==(partial?'partial':'diagnostic')||
+ if(!review||review.version!==(neutral?'role-neutral-interposition-v1':'interposition-review-v1')||review.targetScope!==(neutral?'all-visible-stems':'day-master-and-visible-peer-resource')||review.status!==(partial?'partial':'diagnostic')||
   review.completeHour!==!partial||review.selectionAuthority!==false||review.effectConfirmed!==null||
   review.neutralizationConfirmed!==null||!Array.isArray(review.paths)||!review.summary)return {...base,errors:['interposition-review-invalid']};
  const paths=review.paths.filter(p=>p&&typeof p==='object'&&Array.isArray(p.blockers));
@@ -189,7 +193,7 @@ export function summarizeInterpositionReview(c,review,partial){
   for(const t of contexts){
    pressureCounts.visibleTargets++;
    if(targetIds.has(t.targetId)||!/^visible:(year|month|day|hour)$/.test(t.targetId)||t.targetNodeId!==t.targetId.slice(8)+':stem'||
-    !['in-scope','outside-target-scope'].includes(t.targetScope)||!Array.isArray(t.controllers)||t.effective!==null||t.allPressureResolved!==null){errors.push('pressure-target-contract');continue;}
+    !['in-scope','outside-target-scope'].includes(t.targetScope)||neutral&&t.targetScope!=='in-scope'||!Array.isArray(t.controllers)||t.effective!==null||t.allPressureResolved!==null){errors.push('pressure-target-contract');continue;}
    targetIds.add(t.targetId);
    const controllerIds=new Set();
    for(const c of t.controllers){
@@ -214,3 +218,30 @@ export function summarizeInterpositionReview(c,review,partial){
  return {...base,counts,pressureCounts,errors};
 }
 
+
+export function summarizeInterpositionReview(c,review,partial){
+ const legacy=auditInterpositionScope(c,review,partial),neutral=review?.roleNeutral;
+ const all=auditInterpositionScope(c,neutral,partial,true);
+ const errors=[...legacy.errors,...all.errors.map(e=>'role-neutral:'+e)];
+ if(!neutral||neutral.roleDemandConfirmed!==null)errors.push('role-neutral-demand-authority');
+ if(!legacy.errors.length&&!all.errors.length){
+  const paths=new Map(neutral.paths.map(p=>[p.id,p])),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  const oldPaths=new Set(review.paths.map(p=>p.id)),oldContexts=new Map(review.pressureContexts.map(t=>[t.targetId,t]));
+  const actualAdded=neutral.paths.filter(p=>!oldPaths.has(p.id));
+  if(review.paths.some(p=>!same(p,paths.get(p.id)))||
+   neutral.summary.excludedTargetPaths!==(review.summary.excludedReasons['hidden-or-branch-target']??0)||
+   Object.keys(neutral.summary.excludedReasons).some(k=>k!=='hidden-or-branch-target')||
+   actualAdded.length!==(review.summary.excludedReasons['non-supportive-visible-target']??0))errors.push('role-neutral-legacy-projection');
+  for(const t of neutral.pressureContexts){
+   const old=oldContexts.get(t.targetId);
+   if(!old||old.controllers.length!==t.controllers.length){errors.push('role-neutral-controller-coverage:'+t.targetId);continue;}
+   for(const a of t.controllers){
+    const b=old.controllers.find(x=>x.controllerNodeId===a.controllerNodeId);
+    if(!b||!same(a.candidatePathIds,b.candidatePathIds)||a.distance!==b.distance||a.local!==b.local||a.donorState!==b.donorState||a.classification!==b.classification||
+     old.targetScope==='in-scope'&&!same(a,b))errors.push('role-neutral-controller-parity:'+t.targetId);
+   }
+  }
+  if(actualAdded.some(p=>review.pressureContexts.find(t=>t.targetNodeId===p.target)?.targetScope!=='outside-target-scope'))errors.push('role-neutral-added-target-scope');
+ }
+ return {...legacy,roleNeutral:{counts:all.counts??null,pressureCounts:all.pressureCounts??null,effectConfirmed:null},errors};
+}
