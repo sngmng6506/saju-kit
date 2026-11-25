@@ -263,3 +263,30 @@ node --test test/pattern-classical-v2.test.mjs
 npm run audit:layout
 npm run test:failures
 ```
+
+
+## Action requirement policy v2 (research only)
+
+Separate three evidence responsibilities: structural requirements (complete chart and actual directed relation; effect-specific conditions remain unknown), supporting observations (substantial roots of each participant, locality, relative force evidence), and interference (exact same-pair stem combination, other stem contacts, exposed roots, local control pressure, intervening control or two-step generation). A supporting observation that is false is not a negative effect label. An interference observation is not cancellation. Missing hour remains partial. Mixed/hidden participation remains a distinct unresolved effect requirement. This policy does not change the v10 graph, legacy screen, candidate decisions, or public API.
+
+Purposes are derived from the actual ten gods and edge direction before any reference label is read. Wealth control of resource creates competing damage and regulation hypotheses, with different unresolved context conditions. Strict food control of killing and hurting control of killing are separate hypotheses. Resource control of hurting is distinct from resource control of food. Killing generates resource requires transmission, support and competing pressure review, not merely a favorable edge. Broad output controller scope is a separate candidate-scoped structural probe (exact scoped target, 식신 vs 상관 retained), not a replacement for strict food routes. No broad output label is used to assert a final pattern.
+
+Important source ambiguity: [Dongli 論印](https://www.donglishuzhai.net/chapter/3748.html) prints 不要根深 and records the 中州 edition's 祗要根深; [Xu parallel text](https://dao.time.actor/ziping-zhenquan-pingzhu/juan-4) prints 只要根深 and adds the Wang chart's combination and favorable luck conditions. This is a material disagreement about root requirements. Retain both explicit variants; do not resolve one by choosing the version that fits a development case. [論偏官](https://www.mastervt.com/books/zipingzhenquanpingzhu/juan-1/chapter-041) discusses context-sensitive regulation and food/killing relations. No independent philological adjudication or learned threshold is claimed.
+
+Executed 19 actual source modules in isolated JavaScript at 1bc307a (core graph and access/layer/efficacy/reference/requirement reviews; raw pillar transcription conversion, actual stem-force occurrence and clash adapter, no complete v10 candidate pipeline). All 12 references executed, 0 errors. Of eight directly comparable source interpretations:
+
+| Source state | Exact-pair combination review | Hidden source review | Hidden target review | Visible conditional review |
+|---|---:|---:|---:|---:|
+| supported (5) | 1 | 0 | 1 | 3 |
+| limited (3) | 2 | 1 | 0 | 0 |
+
+These counts are reference-level presence of a review type (multiple types can coexist in other samples), not efficacy predictions. Wang's supported reference also has exact pair combinations, so contact alone cannot discriminate success and limitation. The Zhou scoped month-principal adapter observes one strict-food edge and four broad-output edges; the year 戊 to monthly 癸 relation is retained as 傷官, not relabelled 食神. Later 35c1d3d adds explicit source variants and resource-hurting context; final two synthetic test groups pass including both variants. The earlier partial execution predates this metadata/purpose addition; review-type totals are unchanged by construction, not independently re-executed on the final commit.
+
+```sh
+node scripts/audit-classical-patterns.mjs --action-requirements
+node scripts/audit-classical-patterns.mjs --action-requirements --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+```
+
+No native full-suite execution in this pass. Prior checkout DNS restriction remains unresolved; isolated module execution is not a substitute for native regression. All effects remain null, no confirmed success/failure classification or holdout accuracy. Next prioritize annotation refinement and independent negative references, then mechanism-specific sufficient condition tests. Stop adding parallel research layers until the native integration and review denominator are verified. No main merge.
