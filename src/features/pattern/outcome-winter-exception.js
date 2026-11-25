@@ -3,8 +3,7 @@ const SOURCE='https://donglishuzhai.net/chapter/3754.html';
 const WINTER=new Set(['해','자','축']);
 const W=['정재','편재'],I=['정인','편인'];
 const tri=(xs,complete)=>xs.length?true:complete?false:null;
-export function projectWinterClimate(input){
- const c=analyzeClimateUsefulElementV5({saju:input.saju,birthBasis:input.birthBasis,policy:CLIMATE_V5_VERSION});
+export function projectWinterClimate(input,c=analyzeClimateUsefulElementV5({saju:input.saju,birthBasis:input.birthBasis,policy:CLIMATE_V5_VERSION})){
  return {policy:c.version,status:c.status,section:c.evidence?.sourceProfile?.section??null,
   requirements:(c.requirementContext?.requirements??[]).map(r=>({stem:r.stem,element:r.element,exactVisible:[...r.exactVisible],
    exactRootOutsideClash:r.exactRootOutsideClash,effectiveSupply:null})),usefulElement:null,confirmed:false};

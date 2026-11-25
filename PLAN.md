@@ -60,3 +60,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Post-V10 hardening](docs/pattern-outcome-hardening.md): corrected global decision and identity validation, stronger regression gate, one-command native audit and benchmark. Await actual receipts before new decision rules.
 
 - [P1 role evidence and prospective queue](docs/pattern-outcome-p1.md): generalized purity pair clauses, route injury contacts, six new source candidates. Native validation and independent review pending.
+
+- [P2 mechanism hypotheses](docs/pattern-outcome-mechanism-v1.md): directional control, root capacity, route logic and climate context; research hypotheses only, native and independent validation pending.

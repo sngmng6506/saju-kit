@@ -6,6 +6,7 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 
 ## Contracts, methods and research notes
 
+- [pattern-outcome-mechanism-v1.md](../pattern-outcome-mechanism-v1.md)
 - [pattern-outcome-p1.md](../pattern-outcome-p1.md)
 - [pattern-outcome-hardening.md](../pattern-outcome-hardening.md)
 - [pattern-outcome-decision-v10.md](../pattern-outcome-decision-v10.md)

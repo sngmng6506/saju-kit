@@ -1,4 +1,5 @@
 import {SajuError} from '../../core/error.js';
+import {analyzeClimateUsefulElementV5,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
 import {buildOutcomeV5,PATTERN_OUTCOME_V5_VERSION} from './outcome-review-v5.js';
 import {completeStorageStages,retainStorageConditions} from './outcome-storage-extension.js';
 import {needsWinterClimate,projectWinterClimate,reviewWinterOfficer} from './outcome-winter-exception.js';
@@ -24,7 +25,8 @@ export function buildIntegratedOutcome(input){
  const base={...result,version:PATTERN_OUTCOME_INTEGRATED_VERSION,scope:'ordinary-pattern-integrated-structural-evidence'};
  if(!result.access)return {prior,result:{...base,positionContext:null,winterClimate:null,compoundReview:null,assistantReview:null,purityReview:null,clarityReview:null,extensionReview:null,integrity:null}};
  const month=input.saju.pillars.month.branch,complete=prior.completeHour;
- const winterClimate=needsWinterClimate(prior,month)?projectWinterClimate(input):null;
+ const climateResult=needsWinterClimate(prior,month)?analyzeClimateUsefulElementV5({saju:input.saju,birthBasis:input.birthBasis,policy:CLIMATE_V5_VERSION}):null;
+ const winterClimate=climateResult?projectWinterClimate(input,climateResult):null;
  const reviews=result.reviews.map(q=>retainStorageConditions(extendAssistantRoutes(
   reviewWinterOfficer(prior,completeStorageStages(prior,result.access,q,result.regulationStrength),month,winterClimate),
   input.saju,result.access,complete)));
@@ -43,7 +45,7 @@ export function buildIntegratedOutcome(input){
   return {compound,assistant,clarity:{...clarity,routeInjury},extension,integrity:{candidateId:q.candidateId,...integrity}};
  });
  const integrityRows=rows.map(r=>r.integrity);
- return {prior,result:{...base,reviews,winterClimate,positionContext,compoundReview:rows.map(r=>r.compound),assistantReview:rows.map(r=>r.assistant),
+ return {prior,climateResult,result:{...base,reviews,winterClimate,positionContext,compoundReview:rows.map(r=>r.compound),assistantReview:rows.map(r=>r.assistant),
   purityReview:{...observeSourcePurity(input.saju,reviews,complete),generalized:observeGeneralPurity(prior,reviews,integrityRows)},clarityReview:rows.map(r=>r.clarity),extensionReview:rows.map(r=>r.extension),
   integrity:{status:integrityRows.some(r=>r.violations.length)?'invalid-evidence':'consistent',candidates:integrityRows,selectionAuthority:false}}};
 }
