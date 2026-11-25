@@ -93,3 +93,5 @@ export { analyzeUsefulElementTransitV4, USEFUL_ELEMENT_TRANSIT_V4_VERSION } from
 export { analyzePatternUsefulElementV4, PATTERN_V4_VERSION } from './features/pattern-useful-element-v4/index.js';
 
 export { analyzePatternUsefulElementV5, PATTERN_V5_VERSION } from './features/pattern-useful-element-v5/index.js';
+
+export { analyzePatternUsefulElementV6, PATTERN_V6_VERSION } from './features/pattern-useful-element-v6/index.js';

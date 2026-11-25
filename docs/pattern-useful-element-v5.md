@@ -11,3 +11,7 @@ node scripts/audit-classical-patterns.mjs --preference
 node --test test/pattern-v5.test.mjs
 npm test
 ```
+
+## Executed baseline
+
+The actual candidate/interaction/structure and preference graph (16 modules, ESM adapted; not full public wrapper) was executed for 81 source references and 240 complete/partial synthetic charts. 67/67 eligible chapter families retrieved; 49/67 eligible charts proposed a family. Among 13 selection references: 9 proposals, 8 matches, 1 mismatch, 4 abstentions (coverage 9/13, selective accuracy 8/9). All 120 partial charts abstained. The mismatch was li-officer, for which monthly officer is preserved in the source by combining killing. No final selectedPattern was emitted. This is development evidence, not independent validation. Full native tests remain pending.
