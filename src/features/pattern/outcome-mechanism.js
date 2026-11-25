@@ -84,7 +84,10 @@ export function observeMechanismReview(review,efficacy,clarity,climate,complete)
  const registry=new Map(),lookup=new Map(review.rules.flatMap(r=>r.witnesses.map(w=>[key(r.id,w.id),{r,w}])));
  const assess=e=>{
   const k=edgeKey(e);
-  if(!registry.has(k))registry.set(k,{id:k,...evaluateMechanismEdge(e,complete)});
+  // Validate each reference before reuse; an invalid duplicate must not inherit a valid cached edge.
+  const assessed=evaluateMechanismEdge(e,complete);
+  if(assessed.status==='invalid-evidence')return {id:k,...assessed};
+  if(!registry.has(k))registry.set(k,{id:k,...assessed});
   return registry.get(k);
  };
  const contacts=clarity?.routeInjury?.contacts??[];
@@ -93,7 +96,7 @@ export function observeMechanismReview(review,efficacy,clarity,climate,complete)
   const entry=lookup.get(key(row.ruleId,row.witnessId));
   if(!entry)return {ruleId:row.ruleId,witnessId:row.witnessId,status:'invalid-evidence',effective:null};
   const mandatory=row.edges.map(assess),alternatives=row.anchorAlternatives.map(a=>({anchorId:a.anchorId,edge:a.edge?assess(a.edge):null}));
-  const participants=new Set([...Object.values(row.roles),...row.edges.flatMap(e=>[e.from,e.to])]);
+  const participants=new Set([...Object.values(row.roles),...row.edges.flatMap(e=>[e.from,e.to]),...row.anchorAlternatives.flatMap(a=>[a.anchorId,...(a.edge?[a.edge.from,a.edge.to]:[])])]);
   const relevantClimate=climate.requirements.filter(r=>r.exactVisibleIds.some(id=>participants.has(id))).map(r=>({stem:r.stem,visibleIds:r.exactVisibleIds.filter(id=>participants.has(id)),status:r.status}));
   const hits=contacts.filter(c=>c.route.ruleId===row.ruleId&&c.route.witnessId===row.witnessId);
   const groups=groupContext.filter(c=>c.route.ruleId===row.ruleId&&c.route.witnessId===row.witnessId);

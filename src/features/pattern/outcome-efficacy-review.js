@@ -3,6 +3,7 @@ import {buildIntegratedOutcome,PATTERN_OUTCOME_INTEGRATED_VERSION} from './outco
 import {createEffectContext,observeWitnessEfficacy} from './outcome-efficacy.js';
 import {analyzeClimateUsefulElementV5,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
 import {projectMechanismClimate,observeMechanismReview} from './outcome-mechanism.js';
+import {observeJointOutcome} from './outcome-joint.js';
 export const PATTERN_OUTCOME_EFFICACY_VERSION='pattern-outcome-efficacy-v1';
 export function analyzePatternOutcomeEfficacy(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
@@ -16,7 +17,11 @@ export function analyzePatternOutcomeEfficacy(input){
  const candidates=result.reviews.map(q=>observeWitnessEfficacy(q,integrity.get(q.candidateId),compound.get(q.candidateId),context,prior.completeHour));
  const climate=projectMechanismClimate(climateResult??analyzeClimateUsefulElementV5({saju:input.saju,birthBasis:input.birthBasis,policy:CLIMATE_V5_VERSION}),prior.completeHour);
  const clarity=new Map(result.clarityReview.map(q=>[q.candidateId,q]));
- const mechanisms=result.reviews.map((q,i)=>observeMechanismReview(q,candidates[i],clarity.get(q.candidateId),climate,prior.completeHour));
+ const mechanisms=result.reviews.map((q,i)=>{
+  const m=observeMechanismReview(q,candidates[i],clarity.get(q.candidateId),climate,prior.completeHour);
+  const joint=observeJointOutcome(q,m,compound.get(q.candidateId),prior.completeHour);
+  return {...m,status:joint.status==='invalid-evidence'?'invalid-evidence':m.status,joint};
+ });
  return {...base,efficacyReview:{status:[...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}};
 }

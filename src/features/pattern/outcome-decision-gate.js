@@ -97,7 +97,12 @@ export function observeOutcomeDecision(result){
   xs.some(x=>!x||typeof x.candidateId!=='string')||new Set(xs.map(x=>x.candidateId)).size!==xs.length||xs.some(x=>!candidateIds.includes(x.candidateId)))))global.push('candidate-coverage-mismatch');
  const maps=collections.map(lookup);
  if(result.access&&reviews.some(q=>!witnessCoverage(q,maps[0].get(q.candidateId))))global.push('witness-coverage-mismatch');
- const candidates=reviews.map(q=>candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global));
+ const mechanism=lookup(result.efficacyReview?.mechanismReview?.candidates);
+ const candidates=reviews.map(q=>{
+  const c=candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global);
+  const joint=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||c.status!=='abstained'?null:mechanism.get(q.candidateId)?.joint??null;
+  return {...c,jointHypothesis:joint};
+ });
  const pref=result.preference,h=pref?.hypothesis;
  const hypothesis=h&&pref.status==='hypothesis'?{family:h.family,candidateIds:[...h.candidateIds],anchorStems:[...h.anchorStems],grounds:[...h.grounds],confirmed:false}:null;
  const globalInvalid=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||candidates.some(q=>q.status==='invalid-evidence');

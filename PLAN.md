@@ -62,3 +62,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [P1 role evidence and prospective queue](docs/pattern-outcome-p1.md): generalized purity pair clauses, route injury contacts, six new source candidates. Native validation and independent review pending.
 
 - [P2 mechanism hypotheses](docs/pattern-outcome-mechanism-v1.md): directional control, root capacity, route logic and climate context; research hypotheses only, native and independent validation pending.
+
+- [Conditional joint outcome](docs/pattern-outcome-joint.md): bounded exact-threat allocation search and source-action diagnostic audit; no authority, native run pending.

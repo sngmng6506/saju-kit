@@ -1,0 +1,44 @@
+{
+  "version": "outcome-mechanism-source-probes-v1",
+  "scope": "development-source-assertions-not-independent-gold",
+  "cases": [
+    {
+      "id": "zhou-mechanism",
+      "pillars": [
+        "무술",
+        "갑자",
+        "정미",
+        "경술"
+      ],
+      "source": "https://donglishuzhai.net/chapter/3752.html",
+      "family": "killing",
+      "probes": [
+        {
+          "id": "resource-restrains-output",
+          "from": "visible:month",
+          "to": "visible:year",
+          "kind": "control",
+          "sourceAssertion": "asserted-action",
+          "sourceReading": "The source describes 甲 restraining 戊."
+        },
+        {
+          "id": "wealth-relieves-output-obstruction",
+          "from": "visible:hour",
+          "to": "visible:month",
+          "kind": "control",
+          "sourceAssertion": "asserted-action",
+          "sourceReading": "The source describes 庚 wealth clearing the obstruction to output."
+        },
+        {
+          "id": "wealth-feeds-killing",
+          "from": "visible:hour",
+          "to": "hidden:month:계",
+          "kind": "generate",
+          "sourceAssertion": "asserted-action",
+          "sourceReading": "The source describes wealth nourishing insufficient killing; the exact hidden 癸 endpoint is the monthly principal in the chart."
+        }
+      ]
+    }
+  ],
+  "independentGold": 0
+}
