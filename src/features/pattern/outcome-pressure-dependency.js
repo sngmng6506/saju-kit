@@ -95,7 +95,10 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
    owner.screenedPathIds.includes(p.id)!==!p.blockers.length)return empty();
   paths.push({id:p.id,targetPressureId:id,dependencies:uniq(dependencies),otherBlockers:uniq(otherBlockers),effectConfirmed:null});
  }
- for(const p of pressures)if(p.candidatePathIds.some(id=>!pathMap.has(id))||p.screenedPathIds.some(id=>!p.candidatePathIds.includes(id)))return empty();
+ for(const p of pressures)if(new Set(p.candidatePathIds).size!==p.candidatePathIds.length||
+  p.candidatePathIds.some(id=>{const q=pathMap.get(id);return !q||q.threat!==p.controllerNodeId||q.target!==p.targetNodeId;})||
+  p.screenedPathIds.some(id=>!p.candidatePathIds.includes(id))||
+  !same([...p.screenedPathIds].sort(),p.candidatePathIds.filter(id=>pathMap.get(id).structuralScreen==='grounded-structure-screen-met').sort()))return empty();
  const closure=tracePressureDependencies(pressures.map(p=>p.id),paths);if(!closure)return empty();
  const ranks=new Map(closure.pressureRanks.map(p=>[p.id,p.rank])),pathRanks=new Map(closure.pathRanks.map(p=>[p.id,p.rank]));
  for(const p of paths){p.structuralDependencyRank=pathRanks.get(p.id)??null;p.neutralizationConfirmed=null;}
@@ -108,6 +111,8 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
   if(e.kind!=='generate'||a.layer!=='visible'||b.layer!=='visible')continue;
   const read=(ps,target)=>{
    if(!Array.isArray(ps))return null;
+   const expected=graph.get(target).controlReceived.filter(e=>e.local).map(e=>e.from).sort();
+   if(!same(ps.map(q=>q.nodeId).sort(),expected))return null;
    const refs=[];
    for(const q of ps){const p=pressureMap.get(key(q.nodeId,target));if(!p||!p.local||p.donorState!==q.donorState)return null;if(active(p))refs.push(p.id);}
    return uniq(refs);
