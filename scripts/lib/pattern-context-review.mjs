@@ -41,7 +41,7 @@ function candidateEvidence(result,c,e){
  const pairs=graph.filter(x=>anchors.has(x.from)||anchors.has(x.to)).map(x=>{
   const a=occurrences.get(x.from),b=occurrences.get(x.to);
   if(!a||!b)throw Error('unbound contextual edge');
-  return {id:x.id,from:x.from,to:x.to,fromCategory:category(a.tenGod),toCategory:category(b.tenGod),kind:x.kind,
+  return {id:x.id,from:x.from,to:x.to,fromCategory:a.dayReference?'day':category(a.tenGod),toCategory:b.dayReference?'day':category(b.tenGod),kind:x.kind,
    comparison:x.relative.relation,screen:x.screen,blockers:[...x.blockers]};
  });
  return {anchorIds:[...anchors],resourceWealth:pairs.filter(p=>p.fromCategory==='wealth'&&p.toCategory==='resource'&&p.kind==='control'),
@@ -51,7 +51,7 @@ function candidateEvidence(result,c,e){
   combinationOrOrderLinks:e.routes.flatMap(r=>r.links.filter(l=>l.kind==='combine'||l.reviewReasons.includes('nonadjacent')||l.reviewReasons.includes('participant-combination-or-group')).map(l=>({routeId:r.id,from:l.from,to:l.to,kind:l.kind,status:l.status}))),
   effective:null};
 }
-function condition(name,ctx,ev){
+function condition(name,ctx){
  const evidence=[];
  if(dayConditions.has(name)||burdenConditions.has(name))evidence.push('ordinary-day-strength','matched-support-burden');
  if(resourceConditions.has(name))evidence.push('matched-resource-wealth-output','anchor-resource-wealth');
@@ -80,7 +80,7 @@ export function reviewPatternContext(result,outcome,efficacy,decision,strength){
   const ev=candidateEvidence(result,o,e);
   const motifs=c.motifs.map(m=>{
    const clauses=m.clauses.map(k=>{
-    const review=k.kind==='contextual'&&k.value===null?condition(k.id,ctx,ev):null;
+    const review=k.kind==='contextual'&&k.value===null?condition(k.id,ctx):null;
     return {...k,context:review,conditionalValue:review?.proxyValue??k.value};
    });
    return {id:m.id,kind:m.kind,source:m.source,baselinePredicate:m.predicate,conditionalPredicate:allOf(clauses.map(k=>k.conditionalValue)),clauses,effective:m.effective};
