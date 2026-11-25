@@ -42,7 +42,20 @@ function validateNode(nodeId,groups,donors,rootContext,complete){
   grounded.length||contested.length?'context-review':complete?'no-substantial-root-observed':'partial';
  return d.state===expectedState&&d.independentSupplyConfirmed===null;
 }
-function validateEdge(e,from,to,type,groups,donors){
+function unexposedPositions(nodeId,groups,rootContext){
+ const members=groups.get(nodeId)??[];
+ if(!members.length)return null;
+ if(members[0].layer==='visible'){
+  const row=rootContext.occurrences.find(x=>x.id===members[0].id);
+  return row?uniq(row.roots.filter(r=>r.role!=='residual'&&r.state!=='clash-exposed').map(r=>r.position)):null;
+ }
+ const slots=index(rootContext.slots,x=>x.id);
+ if(!slots)return null;
+ const rows=members.map(a=>slots.get(a.id));
+ if(rows.some(r=>!r))return null;
+ return uniq(rows.filter(r=>r.role!=='residual'&&r.state!=='clash-exposed').map(r=>r.position));
+}
+function validateEdge(e,from,to,type,groups,donors,rootContext){
  const a=groups.get(from)?.[0],b=groups.get(to)?.[0],source=donors.get(from),target=donors.get(to);
  if(!e||!a||!b||!source||!target||!Array.isArray(e.sourceEvidence?.contacts)||
   !Array.isArray(e.targetEvidence?.contacts)||!Array.isArray(e.sourceEvidence?.substantialRootPositions)||
@@ -57,12 +70,14 @@ function validateEdge(e,from,to,type,groups,donors){
  if(d!==e.distance||e.local!==(d<=1)||r.type!==type||r.direction!=='left-to-right')return false;
  const sourceRoots=uniq([...source.groundedRootIds,...source.contestedRootIds]);
  const targetRoots=uniq([...target.groundedRootIds,...target.contestedRootIds]);
- return same(rootPositions(sourceRoots),uniq(e.sourceEvidence.substantialRootPositions??[]))&&
+ const sourceUnexposed=unexposedPositions(from,groups,rootContext),targetUnexposed=unexposedPositions(to,groups,rootContext);
+ return sourceUnexposed!==null&&targetUnexposed!==null&&
+  same(rootPositions(sourceRoots),uniq(e.sourceEvidence.substantialRootPositions??[]))&&
   same(rootPositions(targetRoots),uniq(e.targetEvidence.substantialRootPositions??[]))&&
-  same(rootPositions(source.groundedRootIds),uniq(e.sourceEvidence.unexposedSubstantialRootPositions??[]))&&
-  same(rootPositions(target.groundedRootIds),uniq(e.targetEvidence.unexposedSubstantialRootPositions??[]));
+  same(sourceUnexposed,uniq(e.sourceEvidence.unexposedSubstantialRootPositions??[]))&&
+  same(targetUnexposed,uniq(e.targetEvidence.unexposedSubstantialRootPositions??[]));
 }
-function pressureFor(nodeId,groups,donors){
+function pressureFor(nodeId,groups,donors,rootContext){
  const members=groups.get(nodeId),first=members[0];
  const rows=first.controlReceived??[];
  if(!Array.isArray(rows)||rows.some(e=>!e||typeof e!=='object')||members.some(m=>!Array.isArray(m.controlReceived)||m.controlReceived.some(e=>!e||typeof e!=='object')))return null;
@@ -70,7 +85,7 @@ function pressureFor(nodeId,groups,donors){
  if(members.some(m=>!same((m.controlReceived??[]).map(signature).sort(),rows.map(signature).sort())))return null;
  const result=[];
  for(const e of rows){
-  if(e.to!==nodeId||e.type!=='control'||!validateEdge(e,e.from,nodeId,'control',groups,donors))return null;
+  if(e.to!==nodeId||e.type!=='control'||!validateEdge(e,e.from,nodeId,'control',groups,donors,rootContext))return null;
   const d=donors.get(e.from);
   result.push({controllerNodeId:e.from,distance:e.distance,local:e.local,donorState:d.state,
    classification:pressureClass(d.state),effectConfirmed:null});
@@ -143,7 +158,7 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
   [...groups.keys()].some(id=>!validateNode(id,groups,donors,rootContext,complete)))return invalid(base);
  const pressures=new Map();
  for(const id of groups.keys()){
-  const p=pressureFor(id,groups,donors);if(!p)return invalid(base);pressures.set(id,p);
+  const p=pressureFor(id,groups,donors,rootContext);if(!p)return invalid(base);pressures.set(id,p);
  }
  const candidates=new Map();
  for(const a of actors.values())for(const p of a.protectionAndMediation??[]){
@@ -154,7 +169,7 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
    [[p.threat,p.helper,'generate'],[p.helper,p.target,'generate'],[p.threat,p.target,'control']];
   if(p.edges.length!==expected.length||![p.helper,p.threat,p.target].every(id=>groups.has(id))||
    new Set([p.helper,p.threat,p.target].map(id=>slot(groups.get(id)[0]))).size!==3)return invalid(base);
-  for(let i=0;i<expected.length;i++)if(!validateEdge(p.edges[i],...expected[i],groups,donors))return invalid(base);
+  for(let i=0;i<expected.length;i++)if(!validateEdge(p.edges[i],...expected[i],groups,donors,rootContext))return invalid(base);
   const id=JSON.stringify([p.kind,p.helper,p.threat,p.target]),signature=JSON.stringify(p.edges);
   const old=candidates.get(id);
   if(old&&old.signature!==signature)return invalid(base);
