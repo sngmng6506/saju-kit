@@ -155,18 +155,30 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
   if(old)old.sourceOccurrenceIds.push(a.id);
   else candidates.set(id,{...p,signature,sourceOccurrenceIds:[a.id]});
  }
- const paths=[];
+ const paths=[],excluded=new Map();
+ const day=actors.get('visible:day');
+ if(!day||!day.dayReference)return invalid(base);
  for(const p of candidates.values()){
+  const target=groups.get(p.target)?.[0];
+  const relation=target&&elementRelation(target.element,day.element);
+  const targetEligible=target?.layer==='visible'&&(target.element===day.element||
+   relation.type==='generate'&&relation.direction==='left-to-right');
+  if(!targetEligible){
+   const reason=!target||target.layer!=='visible'?'hidden-or-branch-target':'non-supportive-visible-target';
+   excluded.set(JSON.stringify([p.kind,p.helper,p.threat,p.target]),reason);
+   continue;
+  }
   const route=classifyPath(p,groups,donors,pressures,complete);
   paths.push(route);
  }
  paths.sort((a,b)=>a.id.localeCompare(b.id));
- const summary={candidatePaths:paths.length,protectionPaths:paths.filter(p=>p.kind==='protection').length,
+ const excludedReasons={};for(const reason of excluded.values())excludedReasons[reason]=(excludedReasons[reason]??0)+1;
+ const summary={candidatePaths:paths.length,excludedTargetPaths:excluded.size,excludedReasons,protectionPaths:paths.filter(p=>p.kind==='protection').length,
   mediationPaths:paths.filter(p=>p.kind==='mediation').length,
   structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
   hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
   pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
   nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
- return {...base,status:complete?'diagnostic':'partial',paths,summary,
+ return {...base,status:complete?'diagnostic':'partial',targetScope:'day-master-and-visible-peer-resource',paths,summary,
   limitations:['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection']};
 }
