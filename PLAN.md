@@ -70,3 +70,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Combination context](docs/pattern-outcome-combination-context.md): contact/role restriction/target supply separate, internal formation reuse, native validation pending.
 
 - [Branch access and month change](docs/pattern-outcome-branch-context.md): literal slot access, aggregate context and six source clauses; native validation pending.
+
+- [Useful-element synthesis v1](docs/useful-element-synthesis-v1.md): typed cross-method composition without authority; native validation pending.

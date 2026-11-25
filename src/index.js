@@ -131,3 +131,5 @@ export { analyzePatternOutcomeIntegrated, PATTERN_OUTCOME_INTEGRATED_VERSION } f
 export { analyzePatternOutcomeEfficacy, PATTERN_OUTCOME_EFFICACY_VERSION } from './features/pattern/outcome-efficacy-review.js';
 
 export { analyzePatternOutcomeV10, PATTERN_OUTCOME_V10_VERSION } from './features/pattern/outcome-review-v10.js';
+
+export { analyzeUsefulElementSynthesis, USEFUL_ELEMENT_SYNTHESIS_VERSION } from './features/useful-element/synthesis.js';

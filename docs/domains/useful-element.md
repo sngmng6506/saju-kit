@@ -13,6 +13,7 @@ Run the native domain tests: `npm run test:domain -- useful-element`. This catal
 - [climate-v4.md](../climate-v4.md)
 - [climate-v5.md](../climate-v5.md)
 - [useful-element-expansion.md](../useful-element-expansion.md)
+- [useful-element-synthesis-v1.md](../useful-element-synthesis-v1.md)
 - [useful-element-five-method-v4.md](../useful-element-five-method-v4.md)
 - [useful-element-review.md](../useful-element-review.md)
 - [useful-element-source-transit-v3.md](../useful-element-source-transit-v3.md)
