@@ -403,3 +403,62 @@ test('related interference witnesses are not doctrinal truth and excluded motifs
  assert.equal(rows.length,3);assert.equal(rows[0].status,'related-structure-observed');assert.equal(rows[1].status,'literal-motif-excluded');
  assert.equal(rows[2].status,'no-related-structure-observed');assert.ok(rows.every(r=>r.doctrinalValue===null&&r.effective===null));
 });
+
+import {reviewRoleContrasts,summarizeRoleContrasts} from '../scripts/lib/pattern-role-contrasts.mjs';
+import {auditRoleContrasts} from '../scripts/audit-classical-patterns.mjs';
+const contrastActor=(id,position,tenGod,layer='visible')=>({id,position,tenGod,layer,dayReference:id==='d'});
+const contrastEdge=(from,to,kind)=>({id:from+'>'+to,from,to,kind,screen:'root-and-locality-screen-met',relative:{relation:'same-evidence-profile'},blockers:[],sourceLocalControlNodes:[]});
+const contrastInput=(actors,edges,candidates,complete=true)=>({
+ result:{completeHour:complete,routeReview:{occurrences:actors},relativeForce:{completeHour:complete,edges}},
+ outcome:{status:complete?'structural-review':'partial',candidates}
+});
+const patternRows=(c,id)=>c.patterns.find(p=>p.id===id).witnesses;
+test('same wealth-resource relation preserves damage and regulation as alternatives, not a favorable verdict',()=>{
+ const a=[contrastActor('w','year','정재'),contrastActor('r','month','정인'),contrastActor('d','day','비견'),contrastActor('other','hour','편인')];
+ const edges=[contrastEdge('w','r','control'),contrastEdge('r','d','generate'),contrastEdge('other','d','generate')];
+ const {result,outcome}=contrastInput(a,edges,[{candidateId:'r',family:'resource',anchorIds:['r']},{candidateId:'o',family:'resource',anchorIds:['other']}]);
+ const before=structuredClone({result,outcome});
+ const review=reviewRoleContrasts(result,outcome,{strength:{dayStrongHypothesis:true}},{pairs:[]});
+ const c=review.candidates[0],damage=patternRows(c,'wealth-resource-damage')[0],regulation=patternRows(c,'wealth-resource-regulation')[0];
+ assert.deepEqual({result,outcome},before);
+ assert.deepEqual(damage.roles,regulation.roles);assert.equal(c.contrasts.length,1);
+ assert.equal(damage.favorable,null);assert.equal(regulation.favorable,null);assert.equal(regulation.conditionalPredicate,null);
+ assert.equal(patternRows(review.candidates[1],'wealth-resource-regulation').length,0);
+ const weak=reviewRoleContrasts(result,outcome,{strength:{dayStrongHypothesis:false}},{pairs:[]});
+ assert.equal(patternRows(weak.candidates[0],'wealth-resource-regulation')[0].status,'conditional-excluded');
+ assert.notEqual(patternRows(weak.candidates[0],'wealth-resource-damage')[0].status,'conditional-excluded');
+ const partial=reviewRoleContrasts({...result,completeHour:false},outcome,{strength:{dayStrongHypothesis:false}},{pairs:[]});
+ assert.equal(patternRows(partial.candidates[0],'wealth-resource-regulation')[0].conditionalPredicate,null);
+ assert.equal(partial.status,'partial');assert.equal(review.selectionAuthority,false);
+});
+test('food damage, wealth protection and killing-resource transmission share exact food and owl',()=>{
+ const actors=[contrastActor('w','year','정재','hidden'),contrastActor('r','year','편인'),contrastActor('f','month','식신'),contrastActor('d','day','비견'),contrastActor('k','hour','편관')];
+ const edges=[contrastEdge('r','f','control'),contrastEdge('w','r','control'),contrastEdge('k','r','generate'),contrastEdge('r','d','generate')];
+ const {result,outcome}=contrastInput(actors,edges,[{candidateId:'f',family:'food',anchorIds:['f']}]);
+ const r=reviewRoleContrasts(result,outcome,null,{pairs:[]}),c=r.candidates[0];
+ assert.equal(patternRows(c,'owl-food-damage').length,1);assert.equal(patternRows(c,'owl-food-protected-by-wealth').length,1);
+ assert.equal(patternRows(c,'food-to-killing-resource').length,1);assert.equal(c.contrasts.length,2);
+ assert.ok(c.contrasts.every(x=>x.resolution===null));assert.equal(c.rescued,null);
+ const reverse=reviewRoleContrasts({...result,relativeForce:{...result.relativeForce,edges:edges.filter(e=>e.from!=='k')}},outcome,null,{pairs:[]});
+ assert.equal(patternRows(reverse.candidates[0],'food-to-killing-resource').length,0);
+});
+test('killing alternatives retain direct pressure, wealth-fed killing, combination contacts and shared anchors',()=>{
+ const actors=[contrastActor('w','year','정재','hidden'),contrastActor('r','year','정인'),contrastActor('f','month','식신'),contrastActor('d','day','비견'),contrastActor('k','hour','편관'),contrastActor('k2','hour','편관','hidden')];
+ const edges=[contrastEdge('d','f','generate'),contrastEdge('f','k','control'),contrastEdge('k','d','control'),contrastEdge('k','r','generate'),contrastEdge('r','d','generate'),contrastEdge('r','f','control'),contrastEdge('w','r','control'),contrastEdge('w','k','generate')];
+ const {result,outcome}=contrastInput(actors,edges,[{candidateId:'k',family:'killing',anchorIds:['k']},{candidateId:'k2',family:'killing',anchorIds:['k2']}]);
+ const review=reviewRoleContrasts(result,outcome,{strength:{dayStrongHypothesis:true}},{pairs:[{id:'contact',participants:['r','w']}]});
+ const c=review.candidates[0],w=patternRows(c,'wealth-protects-food-controller')[0];
+ assert.equal(patternRows(c,'food-controls-killing').length,1);assert.equal(patternRows(c,'killing-resource-transmission').length,1);
+ assert.equal(w.additionalEdges[0].edgeId,'w>k');assert.deepEqual(w.contacts,['contact']);
+ assert.equal(w.status,'structure-requires-review');assert.equal(w.effective,null);
+ assert.ok(review.candidates[1].patterns.every(p=>p.witnesses.length===0));
+ assert.equal(summarizeRoleContrasts([review]).finalDecisions,0);
+ assert.equal(reviewRoleContrasts({}, {status:'unavailable'},null,null).status,'unavailable');
+});
+test('native role contrast audit preserves cohort counts and authority boundary',()=>{
+ const r=auditRoleContrasts();assert.equal(r.shen.summary.charts,67);assert.equal(r.xu.summary.charts,34);assert.equal(r.excludedShen,14);
+ for(const s of [r.shen.summary,r.xu.summary]){
+  assert.equal(s.confirmedEffective,0);assert.equal(s.finalDecisions,0);assert.equal(s.selectionAuthority,false);
+  for(const p of Object.values(s.byPattern))assert.equal(p.witnesses,p.screenMet+p.requiresReview+p.conditionalExcluded);
+ }
+});
