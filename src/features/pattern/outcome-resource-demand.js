@@ -48,11 +48,21 @@ export function observeResourceSupplyContext(capacity,supply,interposition,stren
   const o=observations.get(a.id),delivery=actions.get(edgeKey(a.id,d,'generate')),t=contexts.get(a.id);
   if(!Array.isArray(o.paths)||!Array.isArray(o.groundedPathIds)||new Set(o.groundedPathIds).size!==o.groundedPathIds.length||
    o.groundedPathIds.some(id=>!o.paths.some(p=>p.id===id&&p.recipientId===a.id&&p.upstream==='observed'&&p.effectiveSupply===null&&Array.isArray(p.donor?.groundedRootIds))))return empty('invalid-evidence');
-  const pathRoots=uniq(o.paths.filter(p=>o.groundedPathIds.includes(p.id)).flatMap(p=>p.donor.groundedRootIds));
+  const groundedPaths=o.paths.filter(p=>o.groundedPathIds.includes(p.id));
+  if(groundedPaths.some(p=>typeof p.donor.nodeId!=='string'||!p.donor.nodeId||
+   p.id!==JSON.stringify([p.donor.nodeId,a.id])||p.donor.independentSupplyConfirmed!==null||
+   !Array.isArray(p.donor.contestedRootIds)||p.donor.state!=='grounded-observation'))return empty('invalid-evidence');
+  const pathRoots=uniq(groundedPaths.flatMap(p=>p.donor.groundedRootIds));
   const rootIds=uniq([...o.directRoot.uncontestedRootIds,...pathRoots]);
+  const supplyContextRootIds=uniq([...rootIds,...o.directRoot.contestedRootIds,...groundedPaths.flatMap(p=>p.donor.contestedRootIds)]);
+  const observedSupplyDonorNodeIds=uniq(groundedPaths.map(p=>p.donor.nodeId));
   resources.push({id:a.id,layer:a.layer,tenGod:a.tenGod,directRootState:o.directRoot.state,
    directRootIds:[...o.directRoot.uncontestedRootIds],contestedRootIds:[...o.directRoot.contestedRootIds],groundedPathIds:[...o.groundedPathIds],observedSupplyRootIds:rootIds,
+   supplyContextRootIds,observedSupplyDonorNodeIds,
    delivery:delivery?refEdge(delivery):null,
+   deliveryObservation:!complete?'partial':a.layer!=='visible'?'hidden-access-review':
+    delivery?.generationScreen==='grounded-generation-context-screen-met'?'structural-delivery-screen-met':
+    delivery?'literal-delivery-context-review':'literal-delivery-not-observed',
    officerSupply:related(a.id,'generate','in').filter(e=>OFFICER.has(actors.get(e.from).tenGod)),
    wealthPressure:related(a.id,'control','in').filter(e=>WEALTH.has(actors.get(e.from).tenGod)),
    outputControl:related(a.id,'control','out').filter(e=>OUTPUT.has(actors.get(e.to).tenGod)),
@@ -63,13 +73,16 @@ export function observeResourceSupplyContext(capacity,supply,interposition,stren
  for(const a of resources)for(const b of resources){
   if(a.id===b.id||!b.delivery)continue;
   const sharedRootIds=a.observedSupplyRootIds.filter(id=>b.observedSupplyRootIds.includes(id));
+  const sharedContextRootIds=a.supplyContextRootIds.filter(id=>b.supplyContextRootIds.includes(id));
+  const sharedDonorNodeIds=a.observedSupplyDonorNodeIds.filter(id=>b.observedSupplyDonorNodeIds.includes(id));
   const coverage=a.layer!=='visible'||b.layer!=='visible'?'hidden-access-review':
-   sharedRootIds.length?'shared-root-review':!a.observedSupplyRootIds.length||!b.observedSupplyRootIds.length?'root-basis-unestablished':
+   sharedRootIds.length?'shared-root-review':sharedDonorNodeIds.length?'shared-donor-review':
+   sharedContextRootIds.length?'shared-context-root-review':!a.observedSupplyRootIds.length||!b.observedSupplyRootIds.length?'root-basis-unestablished':
    'distinct-observed-root-ids';
-  alternatives.push({resourceId:a.id,alternativeId:b.id,delivery:b.delivery,sharedRootIds,coverage,
+  alternatives.push({resourceId:a.id,alternativeId:b.id,delivery:b.delivery,sharedRootIds,sharedContextRootIds,sharedDonorNodeIds,coverage,
    independentSupplyConfirmed:null,substitutionConfirmed:null});
  }
- return {...base,status,day,resources,alternatives,limitations:['literal-delivery-to-same-day-only','distinct-root-ids-not-independent-capacity','hidden-access-unresolved','no-role-total-or-effect']};
+ return {...base,status,day,resources,alternatives,limitations:['literal-delivery-to-same-day-only','distinct-root-ids-not-independent-capacity','contested-root-and-shared-donor-context-retained','hidden-access-unresolved','no-role-total-or-effect']};
 }
 export function assessResourceDemandConditions(review,demand,chart,complete){
  const base={version:'resource-demand-conditions-v1',candidateId:review.candidateId,selectionAuthority:false,...confirmed};
@@ -101,7 +114,7 @@ export function assessResourceDemandConditions(review,demand,chart,complete){
    !relationObserved?'required-edge-unobserved':r.layer!=='visible'?'hidden-access-review':'source-context-observed';
   contexts.push({objectiveRef:o.id,objectiveId:o.objectiveId,clause:scenario.clause,source,resourceId:r.id,dayId:chart.day.id,axis:scenario.axis,
    scope:o.objectiveId==='weak-day-heavy-resource-original-reading'?'disputed-ordinary-scope':o.objectiveId==='killing-supply-with-both-day-and-resource-heavy'?'competing-interpretation':'source-conditional',
-   dayPremise,contextState,sourceConditionalStatus:o.conditionalStatus,delivery,wealthControl,officerSupply,outputDrain,
+   dayPremise,contextState,sourceConditionalStatus:o.conditionalStatus,delivery,deliveryObservation:r.deliveryObservation,wealthControl,officerSupply,outputDrain,
    alternativeIds:chart.alternatives.filter(a=>a.resourceId===r.id).map(a=>a.alternativeId),
    requirementRefs:o.obligations.filter(q=>q.role==='resource').map(q=>q.id),
    unprovedConditions:scenario.required.map(id=>({id,state:'unresolved'})),...confirmed});
