@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {summarizeRoleDemandReview} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {observeRoleDemand} from '../src/features/pattern/outcome-role-demand.js';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 const fixture=(complete=true)=>{
@@ -52,4 +53,15 @@ test('native V10 source objectives compose demand review without authority',()=>
   for(const c of r.efficacyReview.mechanismReview.candidates){const d=c.rolePriority.demandReview;
    assert.ok(['diagnostic','partial','out-of-scope'].includes(d.status));assert.equal(d.actualDemand,null);assert.equal(d.selectionAuthority,false);}
  }
+});
+
+test('audit detects dropped objectives and cross-occurrence requirement substitution',()=>{
+ const x=fixture(),r=run(x);
+ const mechanism={candidates:[{candidateId:x.review.candidateId,rolePriority:{...x.policies,demandReview:r}}]};
+ const audit=()=>summarizeRoleDemandReview({id:'fixture'},mechanism,false);
+ assert.deepEqual(audit().errors,[]);assert.equal(audit().counts.obligations,3);
+ const q=r.objectives[0].obligations[0];q.actorId='visible:hour';
+ assert.ok(audit().errors.some(e=>e.startsWith('demand-obligation-contract:')));
+ q.actorId='visible:month';r.objectives=[];
+ assert.ok(audit().errors.some(e=>e.startsWith('demand-objective-coverage:')));
 });
