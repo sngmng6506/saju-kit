@@ -337,3 +337,92 @@ export function summarizeResourceDemandConditions(c,mechanism,partial){
  }
  return {...base,counts,states,errors};
 }
+
+
+export function summarizeOutputDemandConditions(c,mechanism,partial){
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={outputs:0,visibleOutputs:0,food:0,hurtingOfficer:0,drainEdges:0,screenedDrains:0,killingControls:0,properOfficerControls:0,wealthFeeds:0,hiddenWealthFeeds:0,contexts:0},states={};
+ const chart=mechanism?.outputSupplyContext,status=partial?'partial':'diagnostic';
+ const noAuthority=x=>x&&x.necessityConfirmed===null&&x.excessConfirmed===null&&x.deficiencyConfirmed===null&&x.preservationConfirmed===null&&x.effective===null;
+ if(!noAuthority(chart)||chart.status!==status||chart.completeHour!==!partial||chart.selectionAuthority!==false||chart.day?.id!=='visible:day'||
+  (partial&&chart.day.direction!==null)||chart.day.actualBurdenConfirmed!==null||
+  !Array.isArray(chart.actorInventory)||!Array.isArray(chart.outputs)||!Array.isArray(chart.wealthFeeds)||!Array.isArray(mechanism.candidates))return {...base,errors:['output-context-contract']};
+ const actors=new Map(chart.actorInventory.map(a=>[a.id,a])),outputs=new Map(chart.outputs.map(a=>[a.id,a]));
+ const raw=mechanism.groundedSupply?.actions,capacity=mechanism.roleCapacity?.occurrences;
+ const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),key=e=>JSON.stringify([e.from,e.to,e.kind]);
+ const edgeRef=e=>({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,sourceBasis:e.sourceBasis,generationScreen:e.generationScreen,controlComparison:e.controlComparison,effective:null});
+ const gods={output:['식신','상관'],resource:['정인','편인'],wealth:['정재','편재'],officer:['정관','편관']};
+ if(!Array.isArray(raw)||!Array.isArray(capacity))return {...base,errors:['output-upstream-missing']};
+ const edges=new Map(raw.map(e=>[key(e),e]));
+ const expectedInventory=capacity.map(a=>({id:a.id,layer:a.layer,tenGod:a.tenGod,dayReference:!!a.dayReference}));
+ if(!eq(chart.actorInventory,expectedInventory)||actors.size!==chart.actorInventory.length||edges.size!==raw.length||
+  outputs.size!==chart.outputs.length||!eq(chart.outputs.map(a=>a.id),expectedInventory.filter(a=>!a.dayReference&&gods.output.includes(a.tenGod)).map(a=>a.id)))errors.push('output-inventory');
+ const related=(id,kind,dir,g)=>raw.filter(e=>e.kind===kind&&e[dir==='in'?'to':'from']===id&&
+  !actors.get(e[dir==='in'?'from':'to'])?.dayReference&&gods[g].includes(actors.get(e[dir==='in'?'from':'to'])?.tenGod)).map(edgeRef);
+ const daySupply=related(chart.day.id,'generate','in','resource'),dayPressure=related(chart.day.id,'control','in','officer');
+ const wealthControl=raw.filter(e=>e.kind==='control'&&gods.wealth.includes(actors.get(e.from)?.tenGod)&&gods.resource.includes(actors.get(e.to)?.tenGod)).map(edgeRef);
+ const wealthOfficer=raw.filter(e=>e.kind==='generate'&&gods.wealth.includes(actors.get(e.from)?.tenGod)&&gods.officer.includes(actors.get(e.to)?.tenGod)).map(edgeRef);
+ if(!eq(chart.day.resourceSupply,daySupply)||!eq(chart.day.officerPressure,dayPressure)||!eq(chart.wealthResourceControls,wealthControl)||!eq(chart.wealthOfficerSupply,wealthOfficer))errors.push('output-chart-edge-coverage');
+ const expectedFeeds=[];
+ for(const a of outputs.values()){
+  counts.outputs++;if(a.layer==='visible')counts.visibleOutputs++;if(a.tenGod==='식신')counts.food++;if(a.tenGod==='상관')counts.hurtingOfficer++;
+  const actor=actors.get(a.id),drain=edges.get(JSON.stringify([chart.day.id,a.id,'generate']));
+  const d=drain?edgeRef(drain):null;
+  const obs=partial?'partial':a.layer!=='visible'?'hidden-access-review':d?.generationScreen==='grounded-generation-context-screen-met'?'structural-drain-screen-met':d?'literal-drain-context-review':'literal-drain-not-observed';
+  if(d)counts.drainEdges++;if(obs==='structural-drain-screen-met')counts.screenedDrains++;
+  const control=related(a.id,'control','out','officer').map(e=>({...e,targetTenGod:actors.get(e.to).tenGod}));
+  const wealth=related(a.id,'generate','out','wealth'),resource=related(a.id,'control','in','resource');
+  counts.killingControls+=control.filter(e=>e.targetTenGod==='편관').length;counts.properOfficerControls+=control.filter(e=>e.targetTenGod==='정관').length;
+  if(!noAuthority(a)||!actor||a.layer!==actor.layer||a.tenGod!==actor.tenGod||!eq(a.drain,d)||a.drainObservation!==obs||
+   !eq(a.officerControl,control)||!eq(a.wealthSupply,wealth)||!eq(a.resourcePressure,resource)||
+   !Array.isArray(a.controllers)||a.controllers.some(c=>c.neutralizationConfirmed!==null))errors.push('output-edge-coverage:'+a.id);
+  for(const w of wealth)for(const f of wealthOfficer.filter(e=>e.from===w.to)){
+   const direct=edges.get(JSON.stringify([a.id,f.to,'control']));
+   expectedFeeds.push({id:JSON.stringify([a.id,w.to,f.to]),outputId:a.id,wealthId:w.to,officerId:f.to,
+    outputWealth:w,wealthOfficer:f,officerTenGod:actors.get(f.to).tenGod,directOutputControl:direct?edgeRef(direct):null,
+    scope:'literal-chain-only',accessReview:[a.id,w.to,f.to].some(id=>actors.get(id).layer!=='visible')?'hidden-access-review':'visible-context',netEffectConfirmed:null});
+  }
+ }
+ counts.wealthFeeds=chart.wealthFeeds.length;counts.hiddenWealthFeeds=chart.wealthFeeds.filter(f=>f.accessReview==='hidden-access-review').length;
+ if(!eq(chart.wealthFeeds,expectedFeeds))errors.push('output-wealth-feed-coverage');
+ const specs={
+  'resource-output:drain-resource-supported-strong-day':['R01','strong','necessary-drain'],
+  'resource-output:drain-burdens-weak-day':['R01','weak','excess-burden'],
+  'food:food-control':['K01','food-policy','control-balance'],
+  'objective:required-food-control-obstruction':['K02',null,'necessary-control-obstruction'],
+  'objective:excess-food-moderation':['K02',null,'excess-moderation'],
+  'killing-wealth-dual:wealth-relieves-output-obstruction':['K03',null,'restoration'],
+  'killing-wealth-dual:wealth-supplies-insufficient-killing':['K03','strong','relative-balance']
+ };
+ for(const m of mechanism.candidates){
+  const p=m.rolePriority,d=p?.outputDemandConditions,source=p?.demandReview;
+  if(!noAuthority(d)||d.candidateId!==m.candidateId||d.status!==source?.status||d.selectionAuthority!==false||!Array.isArray(d.contexts)||!Array.isArray(source?.objectives)){errors.push('output-demand-contract:'+m.candidateId);continue;}
+  const expected=source.objectives.filter(o=>Object.hasOwn(specs,o.collection+':'+o.objectiveId)),seen=new Set();
+  if(d.contexts.length!==expected.length)errors.push('output-objective-coverage:'+m.candidateId);
+  for(const x of d.contexts){
+   counts.contexts++;states[x.contextState]=(states[x.contextState]??0)+1;
+   const o=expected.find(o=>o.id===x.objectiveRef),a=outputs.get(x.outputId);
+   if(!o||!a||seen.has(x.objectiveRef)||!noAuthority(x)){errors.push('output-objective-binding:'+x.objectiveRef);continue;}seen.add(x.objectiveRef);
+   const [clause,want,axis]=specs[o.collection+':'+o.objectiveId],roles=o.roles;
+   const control=a.officerControl.find(e=>e.to===roles.killing&&e.targetTenGod==='편관')??null;
+   const resourcePressure=a.resourcePressure.find(e=>e.from===roles.resource)??null;
+   const resourceDelivery=daySupply.find(e=>e.from===roles.resource)??null,killingPressure=dayPressure.find(e=>e.from===roles.killing)??null;
+   const wc=wealthControl.find(e=>e.from===roles.wealth&&e.to===roles.resource)??null,wf=wealthOfficer.find(e=>e.from===roles.wealth&&e.to===roles.killing)??null;
+   const requiredRoles=clause==='R01'?['day','resource','output']:clause==='K01'?['day','output','killing']:clause==='K02'?['day','output','resource','killing']:['day','output','resource','wealth','killing'];
+   const access=requiredRoles.map(role=>({role,id:roles[role],layer:actors.get(roles[role])?.layer}));
+   const f=p.killingStrategies?.food?.find(f=>f.id===o.contextId),foodPremise=f?.premises?.find(q=>q.id==='day-capacity-for-control');
+   const dayState=want==='food-policy'?foodPremise?.state:want===null?'not-required':partial||chart.day.direction===null?'unresolved':chart.day.direction===want?'supported':'opposed';
+   const observed=clause==='R01'?!!a.drain&&!!resourceDelivery:clause==='K01'?!!a.drain&&!!control&&!!killingPressure:
+    clause==='K02'?!!control&&!!resourcePressure:axis==='restoration'?!!control&&!!resourcePressure&&!!wc&&!!wf:!!control&&!!wf;
+   const contextState=partial?'partial':dayState==='opposed'?'day-hypothesis-opposed':dayState==='unresolved'?'day-hypothesis-unresolved':!observed?'required-edge-unobserved':access.some(x=>x.layer!=='visible')?'hidden-access-review':'source-context-observed';
+   const feedIds=expectedFeeds.filter(f=>f.outputId===a.id&&(!roles.killing||f.officerId===roles.killing)&&(!roles.wealth||f.wealthId===roles.wealth)).map(f=>f.id);
+   if(x.clause!==clause||x.axis!==axis||x.outputId!==roles.output||x.outputTenGod!==a.tenGod||x.dayId!==roles.day||x.killingId!==(roles.killing??null)||
+    x.resourceId!==(roles.resource??null)||x.wealthId!==(roles.wealth??null)||(['K01','K02'].includes(clause)&&a.tenGod!=='식신')||
+    x.sourceConditionalStatus!==o.conditionalStatus||!eq(x.drain,a.drain)||x.drainObservation!==a.drainObservation||!eq(x.control,control)||
+    !eq(x.resourcePressure,resourcePressure)||!eq(x.resourceDelivery,resourceDelivery)||!eq(x.killingPressure,killingPressure)||
+    !eq(x.wealthControl,wc)||!eq(x.wealthKillingFeed,wf)||!eq(x.participantAccess,access)||!eq(x.wealthFeedIds,feedIds)||
+    x.dayPremise?.state!==dayState||x.dayPremise?.direction!==chart.day.direction||x.contextState!==contextState||
+    !Array.isArray(x.unprovedConditions)||!x.unprovedConditions.length||x.unprovedConditions.some(q=>q.state!=='unresolved'))errors.push('output-objective-binding:'+x.objectiveRef);
+  }
+ }
+ return {...base,counts,states,errors};
+}
