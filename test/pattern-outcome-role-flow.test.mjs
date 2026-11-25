@@ -54,3 +54,23 @@ test('native flow projection is diagnostic and preserves abstention',()=>{
  assert.equal(m.capacityComparisons.status,'diagnostic');assert.ok(m.candidates.every(c=>c.roleFlow.status!=='invalid-evidence'));
  assert.equal(r.decisionReview.status,'abstained');
 });
+
+const nativeKilling=ps=>{
+ const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))};
+ const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+ assert.equal(r.decisionReview.status,'abstained');
+ assert.ok(r.efficacyReview.mechanismReview.candidates.every(c=>c.rolePriority.killingWealth.status!=='invalid-evidence'&&c.rolePriority.killingWealth.selectionAuthority===false));
+ return r.efficacyReview.mechanismReview.candidates.map(c=>c.rolePriority.killingWealth);
+};
+test('native K03 Zhou source chart binds exact hidden killing, wealth, resource and hurting officer',()=>{
+ const rows=nativeKilling(['무술','갑자','정미','경술']).flatMap(c=>c.dualRoles);
+ const row=rows.find(r=>r.wealthId==='visible:hour'&&r.resourceId==='visible:month'&&r.outputId==='visible:year'&&r.killingId==='hidden:month:계');
+ assert.ok(row);assert.equal(row.outputTenGod,'상관');assert.equal(row.netEffectConfirmed,null);
+ assert.ok(row.objectives.every(o=>o.actualDemand===null&&o.effectConfirmed===null));
+});
+test('native K03 He source chart preserves placement without confirming resource protection',()=>{
+ const rows=nativeKilling(['병인','무술','임술','신축']).flatMap(c=>c.mediationContacts);
+ const row=rows.find(r=>r.wealthId==='visible:year'&&r.resourceId==='visible:hour'&&r.killingId==='visible:month');
+ assert.ok(row);assert.equal(row.placement.wealthResourceDistance,3);assert.equal(row.placement.protectionConfirmed,null);
+ assert.ok(row.objectives.every(o=>o.effectConfirmed===null));
+});
