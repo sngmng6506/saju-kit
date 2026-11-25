@@ -10,7 +10,7 @@ const nodeLayer=a=>a.layer==='visible'?'stem':'branch';
 const pressureClass=state=>state==='grounded-observation'?'rooted-controller-observed':
  state==='no-substantial-root-observed'?'no-substantial-controller-observed':'controller-access-unresolved';
 const invalid=base=>({...base,status:'invalid-evidence',paths:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
-function validateNode(nodeId,groups,donors){
+function validateNode(nodeId,groups,donors,rootContext,complete){
  const members=groups.get(nodeId),d=donors.get(nodeId);
  if(!members?.length||!d)return false;
  const first=members[0],kind=first.layer==='visible'?'visible-stem':'local-branch-constituents';
@@ -19,7 +19,25 @@ function validateNode(nodeId,groups,donors){
   !same(d.contacts,first.contacts)||members.some(a=>a.position!==first.position||a.layer!==first.layer||
    a.element!==first.element||!same(a.contacts,first.contacts)))return false;
  if(first.layer==='visible'&&members.length!==1)return false;
- return true;
+ let grounded=[],contested=[];
+ if(first.layer==='visible'){
+  const r=rootContext.occurrences.find(x=>x.id===first.id);
+  if(!r)return false;
+  grounded=r.uncontestedRootIds;contested=r.contestedRootIds;
+  if(!same(uniq(grounded),uniq(d.groundedRootIds))||!same(uniq(contested),uniq(d.contestedRootIds)))return false;
+ }else{
+  const slotRows=index(rootContext.slots,x=>x.id);
+  if(!slotRows)return false;
+  for(const a of members){
+   const r=slotRows.get(a.id);
+   if(!r||r.position!==a.position||r.element!==a.element||r.role!==a.hiddenRole)return false;
+   if(r.role!=='residual')(r.state==='uncontested-substantial-observation'?grounded:contested).push(r.id);
+  }
+  if(!same(uniq(grounded),uniq(d.groundedRootIds))||!same(uniq(contested),uniq(d.contestedRootIds)))return false;
+ }
+ const expectedState=grounded.length&&!d.contacts.length?'grounded-observation':
+  grounded.length||contested.length?'context-review':complete?'no-substantial-root-observed':'partial';
+ return d.state===expectedState&&d.independentSupplyConfirmed===null;
 }
 function validateEdge(e,from,to,type,groups,donors){
  const a=groups.get(from)?.[0],b=groups.get(to)?.[0],source=donors.get(from),target=donors.get(to);
@@ -57,10 +75,6 @@ function classifyPath(path,groups,donors,pressures,complete){
  const helperPressure=pressures.get(path.helper),threatPressure=pressures.get(path.threat),targetPressure=pressures.get(path.target);
  const participants=[path.helper,path.threat,path.target].map(id=>groups.get(id)[0]);
  const hidden=participants.some(a=>a.layer!=='visible');
- const contacts=participants.filter(a=>donors.get(a.graphNodeId??slot(a))?.contacts?.length).map(a=>a.id);
- const expected=path.kind==='protection'?
-  [[path.helper,path.threat,'control'],[path.threat,path.target,'control']]:
-  [[path.threat,path.helper,'generate'],[path.helper,path.target,'generate'],[path.threat,path.target,'control']];
  const edges=path.edges;
  const chainEdges=path.kind==='protection'?edges:edges.slice(0,2);
  const chainLocal=chainEdges.every(e=>e.local);
@@ -113,7 +127,7 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
  }
  const donors=index(groundedSupply.nodes,n=>n.nodeId);
  if(!donors||donors.size!==groups.size||[...groups.keys()].some(id=>!donors.has(id))||
-  [...groups.keys()].some(id=>!validateNode(id,groups,donors)))return invalid(base);
+  [...groups.keys()].some(id=>!validateNode(id,groups,donors,rootContext,complete)))return invalid(base);
  const pressures=new Map();
  for(const id of groups.keys()){
   const p=pressureFor(id,groups,donors);if(!p)return invalid(base);pressures.set(id,p);
