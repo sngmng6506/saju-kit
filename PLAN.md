@@ -64,3 +64,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [P2 mechanism hypotheses](docs/pattern-outcome-mechanism-v1.md): directional control, root capacity, route logic and climate context; research hypotheses only, native and independent validation pending.
 
 - [Conditional joint outcome](docs/pattern-outcome-joint.md): bounded exact-threat allocation search and source-action diagnostic audit; no authority, native run pending.
+
+- [Mechanism source v2](docs/pattern-outcome-mechanism-source-v2.md): expanded development source probes, explicit removal disputes and condition-level gap analysis; native diagnostic receipt required before tuning.

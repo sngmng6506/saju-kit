@@ -1,0 +1,7 @@
+# Mechanism source assessment v2
+
+Keep source v1 and joint audit frozen. V2 expands to seven previously exposed development charts and ten exact relation probes. All cases come from the existing development corpus. Sources were rechecked via accessible electronic editions; original Donglishuzhai endpoints returned errors. The main text and Xu commentary disagree on Mao's combination; retain this as disputed removal, not a binary gold label. Explicit source stems and interpreted endpoints are separate. Combining is symmetric, control/generation directional. A combination contact never certifies removal. No independent gold or empirical accuracy.
+
+The evaluator reports candidate-unavailable, uncovered, invalid-evidence, supported, opposed, conflicting, unresolved, candidate-dependent, with exact condition blockers and per-claim and endpoint-basis denominators. Missing/duplicate/error rows fail fixed-denominator contract. No hypothesis is converted to verified action and effectAgreement remains null. The audit passes on evidence-contract integrity, not on an arbitrary concordance threshold. Prior v1 source assertions unchanged. No runtime force-rule tuning before native diagnostics. Five isolated tests executed; native suite and new audit pending.
+
+Run npm run audit:pattern-outcome-mechanism-source or npm run validate:pattern-outcome. Read summary.blockerCounts and rows[].probes[].hits[].conditions for diagnosis. Independent reviewers should label conditions without seeing outputs; these previously exposed cases cannot serve as a blind holdout.

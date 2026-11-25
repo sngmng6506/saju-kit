@@ -1,0 +1,200 @@
+{
+  "version": "outcome-mechanism-source-probes-v2",
+  "scope": "previously-exposed-development-source-assertions",
+  "previousVersion": "outcome-mechanism-source-probes-v1",
+  "frozenAgainst": "dec04dc04e4dc8fd69ac94e21186b3410d275d53",
+  "independentGold": 0,
+  "cases": [
+    {
+      "id": "li-officer",
+      "pillars": [
+        "경인",
+        "을유",
+        "갑자",
+        "무진"
+      ],
+      "family": "officer",
+      "source": "https://tool.shixingji.club/library/zipingzhenquan",
+      "probes": [
+        {
+          "id": "combine-killing",
+          "from": "visible:month",
+          "to": "visible:year",
+          "kind": "combine",
+          "claim": "removal-asserted",
+          "endpointBasis": "explicit-stems",
+          "reading": "The main text treats the combination as removing mixed killing and preserving the officer.",
+          "commentaryDispute": null
+        }
+      ]
+    },
+    {
+      "id": "mao-wealth",
+      "pillars": [
+        "을유",
+        "경진",
+        "갑오",
+        "무진"
+      ],
+      "family": "wealth",
+      "source": "https://luckclub.cn/bazi/002/035/",
+      "probes": [
+        {
+          "id": "combine-killing",
+          "from": "visible:year",
+          "to": "visible:month",
+          "kind": "combine",
+          "claim": "removal-disputed",
+          "endpointBasis": "explicit-stems",
+          "reading": "The main text describes preserving wealth by combining killing.",
+          "commentaryDispute": "Xu commentary retains killing despite the combination and reads the branch relation differently."
+        }
+      ]
+    },
+    {
+      "id": "li-wealth",
+      "pillars": [
+        "경진",
+        "무자",
+        "무인",
+        "갑인"
+      ],
+      "family": "wealth",
+      "source": "https://www.diancangwang.cn/xuanxuewushu/03cf53eede8a/bc360c9f05f5.html",
+      "probes": [
+        {
+          "id": "food-controls-killing",
+          "from": "visible:year",
+          "to": "visible:hour",
+          "kind": "control",
+          "claim": "action-asserted",
+          "endpointBasis": "interpreted-endpoints",
+          "reading": "The source describes restraining killing and generating wealth; the visible food and killing are the interpreted endpoints.",
+          "commentaryDispute": null
+        },
+        {
+          "id": "food-generates-wealth",
+          "from": "visible:year",
+          "to": "hidden:month:계",
+          "kind": "generate",
+          "claim": "action-asserted",
+          "endpointBasis": "interpreted-endpoints",
+          "reading": "Monthly water wealth is the interpreted recipient of the food-to-wealth action.",
+          "commentaryDispute": null
+        }
+      ]
+    },
+    {
+      "id": "zp-3748-02",
+      "pillars": [
+        "병술",
+        "무술",
+        "신미",
+        "임진"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "probes": [
+        {
+          "id": "resource-controls-output",
+          "from": "visible:month",
+          "to": "visible:hour",
+          "kind": "control",
+          "claim": "action-asserted",
+          "endpointBasis": "explicit-stems",
+          "reading": "The text names 戊 restraining 壬, thereby avoiding injury to the officer.",
+          "commentaryDispute": null
+        }
+      ]
+    },
+    {
+      "id": "zhou-killing",
+      "pillars": [
+        "무술",
+        "갑자",
+        "정미",
+        "경술"
+      ],
+      "family": "killing",
+      "source": "https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan/",
+      "probes": [
+        {
+          "id": "resource-restrains-output",
+          "from": "visible:month",
+          "to": "visible:year",
+          "kind": "control",
+          "claim": "action-asserted",
+          "endpointBasis": "explicit-stems",
+          "reading": "The source describes 戊 constrained by 甲.",
+          "commentaryDispute": null
+        },
+        {
+          "id": "wealth-relieves-output-obstruction",
+          "from": "visible:hour",
+          "to": "visible:month",
+          "kind": "control",
+          "claim": "action-asserted",
+          "endpointBasis": "interpreted-endpoints",
+          "reading": "The source describes wealth relieving the food obstruction; the specific control edge is an interpretation.",
+          "commentaryDispute": null
+        },
+        {
+          "id": "wealth-feeds-killing",
+          "from": "visible:hour",
+          "to": "hidden:month:계",
+          "kind": "generate",
+          "claim": "action-asserted",
+          "endpointBasis": "interpreted-endpoints",
+          "reading": "The source describes nourishing insufficient killing; the hidden monthly principal is the interpreted recipient.",
+          "commentaryDispute": null
+        }
+      ]
+    },
+    {
+      "id": "zp-3758-13",
+      "pillars": [
+        "기유",
+        "을해",
+        "임술",
+        "경자"
+      ],
+      "family": "peer",
+      "source": "https://luckclub.cn/bazi/002/047/",
+      "probes": [
+        {
+          "id": "combine-hurting",
+          "from": "visible:hour",
+          "to": "visible:month",
+          "kind": "combine",
+          "claim": "removal-asserted",
+          "endpointBasis": "explicit-stems",
+          "reading": "The main text describes 庚 combining 乙 to retain the officer.",
+          "commentaryDispute": null
+        }
+      ]
+    },
+    {
+      "id": "pingzhang-peer",
+      "pillars": [
+        "신축",
+        "경인",
+        "갑진",
+        "을해"
+      ],
+      "family": "peer",
+      "source": "https://www.86027.cn/gudian/yijing/98129.html",
+      "probes": [
+        {
+          "id": "combine-killing",
+          "from": "visible:hour",
+          "to": "visible:month",
+          "kind": "combine",
+          "claim": "removal-asserted",
+          "endpointBasis": "interpreted-endpoints",
+          "reading": "The chart and main-text phrase about combining killing to retain officer identify the interpreted pair.",
+          "commentaryDispute": null
+        }
+      ]
+    }
+  ]
+}

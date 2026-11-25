@@ -37,7 +37,8 @@
     "validate:pattern-outcome": "node scripts/validate-pattern-outcome.mjs",
     "benchmark:outcome": "node scripts/benchmark-outcome.mjs",
     "audit:pattern-outcome-prospective": "node scripts/audit-pattern-outcome-prospective.mjs",
-    "audit:pattern-outcome-joint": "node scripts/audit-pattern-outcome-joint.mjs"
+    "audit:pattern-outcome-joint": "node scripts/audit-pattern-outcome-joint.mjs",
+    "audit:pattern-outcome-mechanism-source": "node scripts/audit-pattern-outcome-mechanism-source.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
