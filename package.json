@@ -20,7 +20,8 @@
     "audit:layout": "node scripts/audit-layout.mjs",
     "benchmark:refactor": "node scripts/benchmark-refactor.mjs",
     "verify:consumers": "node scripts/verify-consumers.mjs",
-    "audit:pattern-outcome": "node scripts/audit-pattern-outcome.mjs"
+    "audit:pattern-outcome": "node scripts/audit-pattern-outcome.mjs",
+    "audit:pattern-outcome-reference": "node scripts/audit-pattern-outcome-reference.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

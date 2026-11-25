@@ -1,0 +1,865 @@
+{
+  "version": "pattern-outcome-reference-v1",
+  "scope": "single-annotator source-derived development reference; no independent expert adjudication; no final outcome labels",
+  "sourceCorpus": "pattern-classical-v2",
+  "cases": [
+    {
+      "caseId": "li-officer",
+      "pillars": [
+        "경인",
+        "을유",
+        "갑자",
+        "무진"
+      ],
+      "family": "officer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan"
+      ],
+      "interpretation": "庚 interferes with the 酉 officer; 乙 combines with 庚, leaving the officer in the source reading.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "officer-mixing",
+          "kind": "damage",
+          "roles": {
+            "obstacle": "visible:year",
+            "target": "hidden:month:신"
+          },
+          "expected": "present",
+          "ruleId": "officer-killing-mix",
+          "gap": null
+        },
+        {
+          "id": "officer-clear-killing",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:month",
+            "obstacle": "visible:year",
+            "target": "hidden:month:신"
+          },
+          "expected": "present",
+          "ruleId": "officer-combine-killing",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3744-04",
+      "pillars": [
+        "기묘",
+        "신미",
+        "임인",
+        "신해"
+      ],
+      "family": "officer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan",
+        "https://www.suanzhun.net/book/2531.html"
+      ],
+      "interpretation": "The source treats the wood branch assembly as injury and the two 辛 as protection of the exposed 己 officer.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "branch-output-injury",
+          "kind": "damage",
+          "roles": {
+            "target": "visible:year"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "branch-assembly-threat"
+        },
+        {
+          "id": "branch-output-resource",
+          "kind": "rescue",
+          "roles": {
+            "target": "visible:year",
+            "helper": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "branch-assembly-rescue"
+        },
+        {
+          "id": "second-resource",
+          "kind": "rescue",
+          "roles": {
+            "target": "visible:year",
+            "helper": "visible:hour"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "branch-assembly-rescue"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3744-02",
+      "pillars": [
+        "임술",
+        "정미",
+        "무신",
+        "을묘"
+      ],
+      "family": "officer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan",
+        "https://www.donglishuzhai.net/chapter/3744.html"
+      ],
+      "interpretation": "The year wealth and month resource combine; the author treats the hour officer as deprived of assistance, not necessarily destroyed.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "wealth-resource-mutual-contact",
+          "kind": "damage",
+          "roles": {
+            "wealth": "visible:year",
+            "resource": "visible:month",
+            "target": "visible:hour"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "support-loss-not-anchor-destruction"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3746-07",
+      "pillars": [
+        "갑자",
+        "신미",
+        "신유",
+        "임진"
+      ],
+      "family": "wealth",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "https://www.donglishuzhai.net/chapter/3746.html"
+      ],
+      "interpretation": "The source connects exposed 甲 with 未 storage and uses 壬 output to mediate the visible 辛 peer.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "storage-wealth-mediation",
+          "kind": "rescue",
+          "roles": {
+            "target": "visible:year",
+            "obstacle": "visible:month",
+            "helper": "visible:hour"
+          },
+          "expected": "present",
+          "ruleId": "wealth-food-mediation",
+          "gap": "storage-anchor-excluded"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "mao-wealth",
+      "pillars": [
+        "을유",
+        "경진",
+        "갑오",
+        "무진"
+      ],
+      "family": "wealth",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "https://www.donglishuzhai.net/chapter/3746.html"
+      ],
+      "interpretation": "乙 combines with 庚 killing while the exposed 戊 wealth is retained.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "wealth-clear-killing",
+          "kind": "rescue",
+          "roles": {
+            "target": "visible:hour",
+            "helper": "visible:year",
+            "obstacle": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": "wealth-combine-killing",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "li-wealth",
+      "pillars": [
+        "경진",
+        "무자",
+        "무인",
+        "갑인"
+      ],
+      "family": "wealth",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "https://www.donglishuzhai.net/chapter/3746.html"
+      ],
+      "interpretation": "In the restored passage 庚 food restrains 甲 killing and generates the monthly water wealth.",
+      "reviewStatus": "editorial-restoration",
+      "probes": [
+        {
+          "id": "wealth-control-killing",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:year",
+            "obstacle": "visible:hour",
+            "target": "hidden:month:계"
+          },
+          "expected": "present",
+          "ruleId": "wealth-food-controls-killing",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3746-06",
+      "pillars": [
+        "임진",
+        "을사",
+        "계사",
+        "신유"
+      ],
+      "family": "wealth",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai"
+      ],
+      "interpretation": "辛 resource restrains 乙 food to preserve the hidden 戊 officer in 巳; this is not generic food-to-wealth support.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "wealth-protect-officer",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "target": "hidden:month:무"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "secondary-role-protection"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3748-01",
+      "pillars": [
+        "병인",
+        "무술",
+        "신유",
+        "무자"
+      ],
+      "family": "resource",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "https://www.donglishuzhai.net/chapter/3748.html"
+      ],
+      "interpretation": "丙 officer generates the two exposed 戊 resources; the text also discusses strong day and resource.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "officer-resource-month",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:year",
+            "target": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": "resource-officer",
+          "gap": null
+        },
+        {
+          "id": "officer-resource-hour",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:year",
+            "target": "visible:hour"
+          },
+          "expected": "present",
+          "ruleId": "resource-officer",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3748-02",
+      "pillars": [
+        "병술",
+        "무술",
+        "신미",
+        "임진"
+      ],
+      "family": "resource",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3748.html",
+        "https://gjwx.cc/yijing/525/60713.html"
+      ],
+      "interpretation": "戊 restrains 壬 hurting output and protects 丙 officer; target of protection is not the monthly resource itself.",
+      "reviewStatus": "editorial-restoration",
+      "probes": [
+        {
+          "id": "resource-protect-officer",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:month",
+            "obstacle": "visible:hour",
+            "target": "visible:year"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "secondary-role-protection"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3748-04",
+      "pillars": [
+        "무술",
+        "을묘",
+        "병오",
+        "을해"
+      ],
+      "family": "resource",
+      "source": [
+        "https://gjwx.cc/yijing/525/60713.html",
+        "https://www.donglishuzhai.net/chapter/3748.html"
+      ],
+      "interpretation": "The text uses 戊 output to drain strong day/resource; alternate hour readings exist.",
+      "reviewStatus": "variant-sensitive",
+      "probes": [
+        {
+          "id": "resource-output",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:year",
+            "target": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "conditional-output-support"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "food-wealth-correction",
+      "pillars": [
+        "기미",
+        "임신",
+        "무자",
+        "경신"
+      ],
+      "family": "food",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3750.html",
+        "https://8s8s.com/text/literature/56/18067.172258.html"
+      ],
+      "interpretation": "庚 food generates exposed 壬 wealth; the source discusses rooted wealth.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "food-generate-wealth",
+          "kind": "support",
+          "roles": {
+            "target": "visible:hour",
+            "helper": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": "food-wealth",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3752-01",
+      "pillars": [
+        "을해",
+        "을유",
+        "을묘",
+        "정축"
+      ],
+      "family": "killing",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3752.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan"
+      ],
+      "interpretation": "丁 food controls the monthly 酉 killing; this does not independently establish day capacity.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "food-control-killing",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:hour",
+            "target": "hidden:month:신",
+            "day": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": "killing-food",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zhou-killing",
+      "pillars": [
+        "무술",
+        "갑자",
+        "정미",
+        "경술"
+      ],
+      "family": "killing",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3752.html"
+      ],
+      "interpretation": "甲 restrains 戊 food; 庚 wealth intervenes, while the source also notes generation of insufficient killing.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "resource-obstruct-food",
+          "kind": "damage",
+          "roles": {
+            "obstacle": "visible:month",
+            "food": "visible:year",
+            "target": "hidden:month:계"
+          },
+          "expected": "present",
+          "ruleId": "killing-resource-blocks-food",
+          "gap": null
+        },
+        {
+          "id": "wealth-remove-resource",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "food": "visible:year",
+            "target": "hidden:month:계"
+          },
+          "expected": "present",
+          "ruleId": "killing-wealth-removes-resource",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3754-01",
+      "pillars": [
+        "임오",
+        "기유",
+        "무오",
+        "경신"
+      ],
+      "family": "hurting-officer",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3754.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan"
+      ],
+      "interpretation": "Monthly 酉 hurting output generates 壬 wealth; the text adds capacity and rooting conditions.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "hurting-generate-wealth",
+          "kind": "support",
+          "roles": {
+            "target": "hidden:month:신",
+            "helper": "visible:year"
+          },
+          "expected": "present",
+          "ruleId": "hurting-wealth",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3754-04",
+      "pillars": [
+        "임신",
+        "병오",
+        "갑오",
+        "임신"
+      ],
+      "family": "hurting-officer",
+      "source": [
+        "https://www.donglishuzhai.net/chapter/3754.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan"
+      ],
+      "interpretation": "The author uses both 壬 resources in the 午 hurting pattern; day weakness and season also matter.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "hurting-resource-year",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:year",
+            "target": "hidden:month:정"
+          },
+          "expected": "present",
+          "ruleId": "hurting-resource",
+          "gap": null
+        },
+        {
+          "id": "hurting-resource-hour",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:hour",
+            "target": "hidden:month:정"
+          },
+          "expected": "present",
+          "ruleId": "hurting-resource",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3754-11",
+      "pillars": [
+        "무신",
+        "갑자",
+        "경오",
+        "정축"
+      ],
+      "family": "hurting-officer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan"
+      ],
+      "interpretation": "The author treats winter metal-water hurting with exposed 丁 officer as an exception, supported by 戊 and 甲.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "winter-officer-exception",
+          "kind": "exception",
+          "roles": {
+            "target": "hidden:month:계",
+            "officer": "visible:hour"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "metal-water-exception"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3756-03",
+      "pillars": [
+        "갑오",
+        "계유",
+        "경인",
+        "무인"
+      ],
+      "family": "blade",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yang-ren"
+      ],
+      "interpretation": "癸 injures the hidden fire officer; 戊 combines with 癸 to protect that officer.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "blade-hidden-controller-injury",
+          "kind": "damage",
+          "roles": {
+            "obstacle": "visible:month",
+            "controller": "hidden:year:정"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "hidden-controller-access"
+        },
+        {
+          "id": "blade-combine-output",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "controller": "hidden:year:정"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "hidden-controller-combination"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3756-04",
+      "pillars": [
+        "갑인",
+        "경오",
+        "무신",
+        "갑인"
+      ],
+      "family": "blade",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yang-ren"
+      ],
+      "interpretation": "Two exposed 甲 killings are described as excessive; 庚 food reduces their pressure rather than abolishing the controller.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "blade-food-regulate-year",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:month",
+            "controller": "visible:year",
+            "day": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "controller-regulation-not-rescue"
+        },
+        {
+          "id": "blade-food-regulate-hour",
+          "kind": "support",
+          "roles": {
+            "helper": "visible:month",
+            "controller": "visible:hour",
+            "day": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "controller-regulation-not-rescue"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3758-08",
+      "pillars": [
+        "무진",
+        "계해",
+        "임오",
+        "병오"
+      ],
+      "family": "peer",
+      "source": [
+        "https://8s8s.com/text/literature/15/18075.516984.html",
+        "https://www.donglishuzhai.net/chapter/3758.html"
+      ],
+      "interpretation": "癸 combines with 戊 killing while 丙 wealth is retained.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "peer-combine-killing",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:month",
+            "obstacle": "visible:year",
+            "wealth": "visible:hour",
+            "target": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": "peer-combine-killing",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "zp-3758-13",
+      "pillars": [
+        "기유",
+        "을해",
+        "임술",
+        "경자"
+      ],
+      "family": "peer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "https://www.donglishuzhai.net/chapter/3758.html"
+      ],
+      "interpretation": "庚 combines with 乙 hurting to preserve 己 officer.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "peer-combine-hurting",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "controller": "visible:year",
+            "target": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": "peer-combine-hurting",
+          "gap": null
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "pingzhang-peer",
+      "pillars": [
+        "신축",
+        "경인",
+        "갑진",
+        "을해"
+      ],
+      "family": "peer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie"
+      ],
+      "interpretation": "乙 combines with 庚 killing while exposed 辛 officer is retained.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "peer-officer-killing-clear",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "controller": "visible:year",
+            "target": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "peer-officer-killing-clear"
+        }
+      ],
+      "finalOutcome": null
+    },
+    {
+      "caseId": "peer-controls-killing",
+      "pillars": [
+        "신해",
+        "경인",
+        "갑신",
+        "병인"
+      ],
+      "family": "peer",
+      "source": [
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie"
+      ],
+      "interpretation": "丙 food controls 庚 killing while 辛 officer remains.",
+      "reviewStatus": "source-paraphrase",
+      "probes": [
+        {
+          "id": "peer-food-protect-officer",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:month",
+            "controller": "visible:year",
+            "target": "visible:day"
+          },
+          "expected": "present",
+          "ruleId": null,
+          "gap": "peer-officer-killing-clear"
+        }
+      ],
+      "finalOutcome": null
+    }
+  ],
+  "controls": [
+    {
+      "id": "officer-no-visible-injury",
+      "family": "officer",
+      "pillars": [
+        "무진",
+        "신유",
+        "갑자",
+        "계유"
+      ],
+      "probes": [
+        {
+          "id": "no-hurting",
+          "kind": "damage",
+          "roles": {},
+          "expected": "absent",
+          "ruleId": "officer-hurting",
+          "gap": null
+        },
+        {
+          "id": "no-rescue-without-threat",
+          "kind": "rescue",
+          "roles": {},
+          "expected": "absent",
+          "ruleId": "officer-resource-rescue",
+          "gap": null
+        }
+      ]
+    },
+    {
+      "id": "officer-missing-hour",
+      "family": "officer",
+      "pillars": [
+        "정묘",
+        "신유",
+        "갑자",
+        null
+      ],
+      "probes": [
+        {
+          "id": "known-injury",
+          "kind": "damage",
+          "roles": {
+            "obstacle": "visible:year",
+            "target": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": "officer-hurting",
+          "gap": null
+        },
+        {
+          "id": "unknown-helper",
+          "kind": "rescue",
+          "roles": {},
+          "expected": "unresolved",
+          "ruleId": "officer-resource-rescue",
+          "gap": null
+        }
+      ]
+    },
+    {
+      "id": "officer-same-obstacle",
+      "family": "officer",
+      "pillars": [
+        "정묘",
+        "신유",
+        "갑자",
+        "계유"
+      ],
+      "probes": [
+        {
+          "id": "known-helper",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:hour",
+            "obstacle": "visible:year",
+            "target": "visible:month"
+          },
+          "expected": "present",
+          "ruleId": "officer-resource-rescue",
+          "gap": null
+        },
+        {
+          "id": "wrong-helper",
+          "kind": "rescue",
+          "roles": {
+            "helper": "visible:month",
+            "obstacle": "visible:year",
+            "target": "visible:month"
+          },
+          "expected": "absent",
+          "ruleId": "officer-resource-rescue",
+          "gap": null
+        }
+      ]
+    }
+  ]
+}
