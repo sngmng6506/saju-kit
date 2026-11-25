@@ -140,17 +140,21 @@ export function summarizeInterpositionReview(c,review,partial){
  if(!review||review.version!=='interposition-review-v1'||review.targetScope!=='day-master-and-visible-peer-resource'||review.status!==(partial?'partial':'diagnostic')||
   review.completeHour!==!partial||review.selectionAuthority!==false||review.effectConfirmed!==null||
   review.neutralizationConfirmed!==null||!Array.isArray(review.paths)||!review.summary)return {...base,errors:['interposition-review-invalid']};
- const ids=new Set(review.paths.map(p=>p.id));
- if(ids.size!==review.paths.length)errors.push('duplicate-interposition-path');
- const counts={candidatePaths:review.paths.length,excludedTargetPaths:review.summary.excludedTargetPaths,protectionPaths:review.paths.filter(p=>p.kind==='protection').length,
-  mediationPaths:review.paths.filter(p=>p.kind==='mediation').length,
-  structuralScreensMet:review.paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
-  hiddenParticipantPaths:review.paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
-  pressureBlockedPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
-  nonlocalChainPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
- if(Object.entries(counts).some(([k,v])=>review.summary[k]!==v)||!review.summary.excludedReasons||
-  Object.values(review.summary.excludedReasons).reduce((a,b)=>a+b,0)!==review.summary.excludedTargetPaths)errors.push('interposition-summary-mismatch');
- for(const p of review.paths){
+ const paths=review.paths.filter(p=>p&&typeof p==='object'&&Array.isArray(p.blockers));
+ if(paths.length!==review.paths.length)errors.push('interposition-path-shape');
+ const ids=new Set(paths.map(p=>p.id));
+ if(ids.size!==paths.length)errors.push('duplicate-interposition-path');
+ const counts={candidatePaths:paths.length,excludedTargetPaths:review.summary.excludedTargetPaths,protectionPaths:paths.filter(p=>p.kind==='protection').length,
+  mediationPaths:paths.filter(p=>p.kind==='mediation').length,
+  structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
+  hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
+  pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
+  nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
+ const excluded=review.summary.excludedReasons;
+ if(Object.entries(counts).some(([k,v])=>review.summary[k]!==v)||!excluded||typeof excluded!=='object'||
+  !Number.isSafeInteger(review.summary.excludedTargetPaths)||Object.values(excluded).some(n=>!Number.isSafeInteger(n)||n<0)||
+  Object.values(excluded).reduce((a,b)=>a+b,0)!==review.summary.excludedTargetPaths)errors.push('interposition-summary-mismatch');
+ for(const p of paths){
   const participants=[p.participants?.helper,p.participants?.threat,p.participants?.target];
   const visible=participants.every(x=>x?.kind==='visible-stem');
   if(p.participants?.target?.kind!=='visible-stem')errors.push('interposition-target-scope:'+p.id);
