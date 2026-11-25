@@ -1,12 +1,15 @@
+import { createMethodEvidence } from '../method-evidence.js';
 import { SajuError } from '../../core/error.js';
 import { validateNatalPillars } from '../../core/natal.js';
-import { analyzeElementStructure } from '../../core/element-structure.js';
-import { analyzeMultiaxisStrengthV4 } from '../strength-multiaxis-v4/index.js';
+import { evaluateSeasonRobustness } from '../strength/season-robustness.js';
 import { observeBalanceElements, buildBalanceBranch } from './evidence.js';
 
 export const BALANCE_USEFUL_ELEMENT_VERSION='balance-useful-element-v1';
 /** Conditional ordinary-chart 扶抑 candidates, never final 用神/喜忌. */
 export function analyzeBalanceUsefulElement(input){
+ return evaluateBalanceUsefulElement(input,createMethodEvidence());
+}
+export function evaluateBalanceUsefulElement(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('balance-input','억부용신 분석 입력 객체가 필요합니다.');
  const {saju,birthBasis,policy}=input;
  if(policy!==BALANCE_USEFUL_ELEMENT_VERSION)throw new SajuError('balance-policy','억부용신 정책을 명시해야 합니다.');
@@ -19,10 +22,10 @@ export function analyzeBalanceUsefulElement(input){
  if(birthBasis==='provisional-chart')return unavailable('provisional-chart');
  if(!completeHour)return unavailable('missing-hour');
  // Fixed accepted research baseline; never accept caller-supplied strength or authority.
- const base=analyzeMultiaxisStrengthV4({saju,birthBasis,policy:'strength-multiaxis-v4'});
+ const base=evaluateSeasonRobustness({saju,birthBasis,policy:'strength-multiaxis-v4'},provider.standard,provider.neutral);
  const strength={version:base.version,direction:base.direction,status:base.status,
   grounds:[...base.decision.grounds],conflicts:[...base.decision.conflicts]};
- const structure=analyzeElementStructure({saju});
+ const structure=provider.structure(saju);
  const observations=observeBalanceElements(structure);
  const directions=base.direction===null?['strong','weak']:[base.direction];
  return {...meta,status:base.direction===null?'conditional-branches':'directional-hypothesis',

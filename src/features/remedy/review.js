@@ -1,6 +1,5 @@
+import { createMethodEvidence } from '../method-evidence.js';
 import { observePathNode } from '../../core/path-node-evidence.js';
-import { analyzeRootDynamics } from '../../core/root-dynamics.js';
-import { analyzeElementStructure } from '../../core/element-structure.js';
 import { elementRelation } from '../../core/elements.js';
 import { SajuError } from '../../core/error.js';
 export const REMEDY_EVIDENCE_VERSION='remedy-evidence-v1';
@@ -31,12 +30,15 @@ export function observeRemedyEvidence(dynamics,structure){
  });
 }
 export function analyzeRemedyEvidence(input){
+ return evaluateRemedyEvidence(input,createMethodEvidence());
+}
+export function evaluateRemedyEvidence(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('remedy-input','병약 분석 입력 객체가 필요합니다.');
  if(input.policy!==REMEDY_EVIDENCE_VERSION)throw new SajuError('remedy-policy','병약 정책을 명시해야 합니다.');
  if(!['verified-chart','provisional-chart'].includes(input.birthBasis))throw new SajuError('strength-birth-basis','원국 확정 여부를 명시해야 합니다.');
- const structure=analyzeElementStructure({saju:input.saju});
+ const structure=provider.structure(input.saju);
  const meta={version:REMEDY_EVIDENCE_VERSION,assessment:'protection-motif-only',completeHour:structure.completeHour,usefulElement:null,confirmed:false};
  if(input.birthBasis==='provisional-chart')return {...meta,status:'unavailable',reason:'provisional-chart',motifs:[]};
  return {...meta,status:structure.completeHour?'diagnostic':'partial',
-  motifs:observeRemedyEvidence(analyzeRootDynamics({saju:input.saju}),structure)};
+  motifs:observeRemedyEvidence(provider.standard.dynamics(input.saju),structure)};
 }
