@@ -1,8 +1,8 @@
 import { SajuError } from '../../core/error.js';
-import { analyzeNatalContext } from '../../core/natal-context.js';
-import { analyzeElementStructure } from '../../core/element-structure.js';
-import { analyzeInteractionContext } from '../../core/interaction-context.js';
-import { analyzeStemForceEvidence } from '../../core/stem-force.js';
+import { createElementObservation } from '../../core/element-structure.js';
+import { observeInteractionContext } from '../../core/interaction-context.js';
+import { observeRootDynamics } from '../../core/root-dynamics.js';
+import { observeStemForce } from '../../core/stem-force.js';
 import { observeRelativeForce } from '../../core/relative-force.js';
 import { observePatternCandidates } from './candidates.js';
 import { observePatternOutcomes } from './outcomes.js';
@@ -25,10 +25,10 @@ export function analyzePatternPolicy(input,revision){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==version)throw new SajuError('pattern-policy','격국 분석 정책을 명시해야 합니다.');
  if(!['verified-chart','provisional-chart'].includes(input.birthBasis))throw new SajuError('strength-birth-basis','원국 확정 여부를 명시해야 합니다.');
- const context=analyzeNatalContext({saju:input.saju});
+ const observation=createElementObservation(input.saju),context=observation.context();
  const unavailable=input.birthBasis==='provisional-chart';
- const structure=unavailable?null:analyzeElementStructure({saju:input.saju});
- const interaction=unavailable?null:analyzeInteractionContext({saju:input.saju});
+ const structure=unavailable?null:observation.structure();
+ const interaction=unavailable?null:observeInteractionContext(observation.pillars,structure,observation.relations());
  let selection=unavailable?null:observePatternCandidates(context,interaction);
  const storageReview=revision>=4&&!unavailable?observeStorageProjection(structure):null;
  if(storageReview)selection={...selection,candidates:[...selection.candidates,...storageReview.candidates]};
@@ -52,7 +52,7 @@ export function analyzePatternPolicy(input,revision){
   result={...result,mixedUse,preference:refineMixedPreference(result.preference,mixedUse,selection)};
  }
  if(revision>=9){
-  const stemForce=unavailable?null:analyzeStemForceEvidence({saju:input.saju});
+  const stemForce=unavailable?null:observeStemForce(observation.pillars,observeRootDynamics(observation.pillars,structure),interaction);
   result={...result,stemForce,patternForce:unavailable?null:observePatternForce(result,stemForce)};
  }
  if(revision>=10){

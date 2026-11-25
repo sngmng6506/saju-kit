@@ -1,5 +1,5 @@
-import { analyzeInteractionContext } from './interaction-context.js';
-import { analyzeElementStructure } from './element-structure.js';
+import { observeInteractionContext } from './interaction-context.js';
+import { createElementObservation } from './element-structure.js';
 import { elementRelation } from './elements.js';
 
 export const FORMATION_EVIDENCE_VERSION='formation-evidence-v1';
@@ -18,8 +18,8 @@ function kind(f){
 
 /** Observations and a conservative context screen, never transformation authority. */
 export function analyzeFormationEvidence({saju}={}){
- const context=analyzeInteractionContext({saju});
- const structure=analyzeElementStructure({saju});
+ const observation=createElementObservation(saju),structure=observation.structure();
+ const context=observeInteractionContext(observation.pillars,structure,observation.relations());
  const seasonElement=SEASON[structure.month.season],monthPrincipalElement=structure.month.principalElement;
  const day=structure.dayMaster.element;
  const clashed=new Set(context.clashes.flatMap(c=>c.positions));

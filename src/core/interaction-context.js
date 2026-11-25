@@ -1,5 +1,4 @@
-import { analyzeElementStructure } from './element-structure.js';
-import { analyzeNatalRelations } from './natal-relations.js';
+import { createElementObservation } from './element-structure.js';
 import { elementRelation } from './elements.js';
 
 const ORDER=['year','month','day','hour'];
@@ -25,8 +24,11 @@ function locality(positions){
 
 /** Position-aware evidence. No transformation, cancellation or effective force asserted. */
 export function analyzeInteractionContext({saju}={}){
-  const structure=analyzeElementStructure({saju});
-  const relations=analyzeNatalRelations({saju});
+  const observation=createElementObservation(saju);
+  return observeInteractionContext(observation.pillars,observation.structure(),observation.relations());
+}
+
+export function observeInteractionContext(pillars,structure,relations){
   const full=structure.formations.filter(f=>f.occurrences);
   const formations=[];
   for(const f of structure.formations){
@@ -42,7 +44,7 @@ export function analyzeInteractionContext({saju}={}){
       const target=f.associatedElement;
       const profile=structure.profiles.find(p=>p.element===target);
       const cardinal=(f.type==='branch.threeHarmony'||f.type==='branch.threeHarmonyCandidate')?f.members[1]:null;
-      const cardinalPositions=cardinal?positions.filter(p=>saju.pillars[p].branch===cardinal):[];
+      const cardinalPositions=cardinal?positions.filter(p=>pillars[p].branch===cardinal):[];
       const monthRelation=target?elementRelation(month.principalElement,target):null;
       formations.push({id:f.type+':'+positions.join('-'),type:f.type,layer,positions,
         members:f.members.slice(),associatedElement:target,complete:!candidate,

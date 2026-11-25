@@ -10,7 +10,11 @@ const SEASONS={spring:['인','묘','진'],summer:['사','오','미'],autumn:['�
  * commander (司令), favorable element, or strong/weak determination.
  */
 export function analyzeNatalContext({saju}={}) {
-  const pillars=validateNatalPillars(saju);
+  return observeNatalContext(validateNatalPillars(saju));
+}
+
+// Internal projection of already validated pillars.
+export function observeNatalContext(pillars){
   const present=POSITIONS.filter(position=>pillars[position]!==null);
   const visible=present.map(position=>({position,stem:pillars[position].stem,...stemInfo(pillars[position].stem)}));
   const hidden=present.flatMap(position=>getHiddenStems(pillars[position].branch).map(entry=>({

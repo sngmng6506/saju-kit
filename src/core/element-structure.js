@@ -1,8 +1,8 @@
 import { validateNatalPillars } from './natal.js';
 import { stemInfo, elementRelation } from './elements.js';
 import { getHiddenStems, HIDDEN_STEMS_VERSION } from './hidden-stems.js';
-import { analyzeNatalContext } from './natal-context.js';
-import { analyzeNatalRelations } from './natal-relations.js';
+import { observeNatalContext } from './natal-context.js';
+import { observeNatalRelations } from './natal-relations.js';
 
 const ELEMENTS = ['wood','fire','earth','metal','water'];
 const POSITIONS = ['year','month','day','hour'];
@@ -10,9 +10,23 @@ const ROLES = ['principal','middle','residual'];
 
 /** Observed elemental positions and possible interactions, not effective strength. */
 export function analyzeElementStructure({saju}={}) {
+  return createElementObservation(saju).structure();
+}
+
+// Lazy, request-owned observation. No cache beyond the caller's lifetime.
+// Only validated pillars are accepted by the internal projections.
+export function createElementObservation(saju){
   const pillars=validateNatalPillars(saju);
-  const context=analyzeNatalContext({saju});
-  const relations=analyzeNatalRelations({saju});
+  let context,relations,structure;
+  return {
+    pillars,
+    context:()=>context??=observeNatalContext(pillars),
+    relations:()=>relations??=observeNatalRelations(pillars),
+    structure:()=>structure??=observeElementStructure(pillars,context??=observeNatalContext(pillars),relations??=observeNatalRelations(pillars)),
+  };
+}
+
+function observeElementStructure(pillars,context,relations){
   const visible=POSITIONS.flatMap(position=>pillars[position]===null?[]:[{
     position,stem:pillars[position].stem,element:stemInfo(pillars[position].stem).element,
   }]);

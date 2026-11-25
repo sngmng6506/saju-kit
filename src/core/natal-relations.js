@@ -6,7 +6,10 @@ import { branchRelationsV2, analyzeBranchGroupsV2, EXTENDED_RELATIONS_VERSION } 
 const POSITIONS = ['year','month','day','hour'];
 
 function occurrences(saju) {
-  const pillars = validateNatalPillars(saju);
+  return pillarOccurrences(validateNatalPillars(saju));
+}
+
+function pillarOccurrences(pillars){
   return POSITIONS.flatMap((position,index)=>{
     const p = pillars[position];
     return p === null ? [] : [{position,index,stem:p.stem,branch:p.branch}];
@@ -25,7 +28,11 @@ function comparePair(left,right) {
 }
 
 export function analyzeNatalRelations({saju}={}) {
-  const present=occurrences(saju),pairs=[];
+  return observeNatalRelations(validateNatalPillars(saju));
+}
+
+export function observeNatalRelations(pillars){
+  const present=pillarOccurrences(pillars),pairs=[];
   for(let i=0;i<present.length;i++)for(let j=i+1;j<present.length;j++){
     const left=present[i],right=present[j],distance=right.index-left.index;
     pairs.push({...comparePair(left,right),distance,adjacent:distance===1});

@@ -1,6 +1,5 @@
 import { branchIndex, stemIndex, stemInfo, elementRelation } from './elements.js';
-import { analyzeElementStructure } from './element-structure.js';
-import { validateNatalPillars } from './natal.js';
+import { createElementObservation } from './element-structure.js';
 
 const ORDER=['year','month','day','hour'];
 const PHASES=['장생','목욕','관대','건록','제왕','쇠','병','사','묘','절','태','양'];
@@ -75,7 +74,11 @@ function graph(structure){
 
 /** Neutral root and protection evidence. No strength score or effect inference. */
 export function analyzeRootDynamics({saju}={}){
-  const pillars=validateNatalPillars(saju),structure=analyzeElementStructure({saju});
+  const observation=createElementObservation(saju);
+  return observeRootDynamics(observation.pillars,observation.structure());
+}
+
+export function observeRootDynamics(pillars,structure){
   const month=structure.month;
   const seasonElement={spring:'wood',summer:'fire',autumn:'metal',winter:'water'}[month.season];
   const roots=structure.profiles.flatMap(profile=>profile.visible.map(visible=>({

@@ -1,7 +1,8 @@
-import { analyzeRootDynamics,lifeStage } from './root-dynamics.js';
-import { analyzeInteractionContext } from './interaction-context.js';
+import { observeRootDynamics,lifeStage } from './root-dynamics.js';
+import { observeInteractionContext } from './interaction-context.js';
+import { createElementObservation } from './element-structure.js';
 import { elementRelation,stemInfo } from './elements.js';
-import { tenGodForStem,validateNatalPillars } from './natal.js';
+import { tenGodForStem } from './natal.js';
 const ORDER=['year','month','day','hour'];
 const distance=(a,b)=>Math.abs(ORDER.indexOf(a)-ORDER.indexOf(b));
 const slot=n=>n.position+':'+n.layer;
@@ -88,6 +89,6 @@ export function observeStemForce(pillars,dynamics,interaction){
  return {version:STEM_FORCE_VERSION,sources:{...SOURCE},completeHour:complete,occurrences:rows,selectionAuthority:false,effectsConfirmed:false};
 }
 export function analyzeStemForceEvidence({saju}={}){
- const pillars=validateNatalPillars(saju);
- return observeStemForce(pillars,analyzeRootDynamics({saju}),analyzeInteractionContext({saju}));
+ const observation=createElementObservation(saju),structure=observation.structure(),pillars=observation.pillars;
+ return observeStemForce(pillars,observeRootDynamics(pillars,structure),observeInteractionContext(pillars,structure,observation.relations()));
 }

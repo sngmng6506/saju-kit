@@ -1,23 +1,28 @@
-import { analyzeElementStructure } from '../core/element-structure.js';
-import { analyzeNatalContext } from '../core/natal-context.js';
+import { createElementObservation } from '../core/element-structure.js';
+import { observeRootDynamics } from '../core/root-dynamics.js';
 import { createStrengthEvidenceProvider } from './strength/request-evidence.js';
 
 // Private synchronous request scope. Each season mode has its own quantitative
 // cache. The method review can reuse neutral structural evidence without
 // merging doctrine decisions or granting any selection authority.
 export function createMethodEvidence(){
- const structures=new Map(),contexts=new Map();
- const standard=createStrengthEvidenceProvider();
- const neutral=createStrengthEvidenceProvider({seasonMode:'neutral'});
+ const observations=new Map(),roots=new Map();
+ const observation=saju=>{
+  if(!observations.has(saju))observations.set(saju,createElementObservation(saju));
+  return observations.get(saju);
+ };
+ const dynamics=saju=>{
+  if(!roots.has(saju)){
+   const o=observation(saju);
+   roots.set(saju,observeRootDynamics(o.pillars,o.structure()));
+  }
+  return roots.get(saju);
+ };
+ const standard=createStrengthEvidenceProvider(undefined,dynamics);
+ const neutral=createStrengthEvidenceProvider({seasonMode:'neutral'},dynamics);
  return {
   standard,neutral,
-  context(saju){
-   if(!contexts.has(saju))contexts.set(saju,analyzeNatalContext({saju}));
-   return contexts.get(saju);
-  },
-  structure(saju){
-   if(!structures.has(saju))structures.set(saju,analyzeElementStructure({saju}));
-   return structures.get(saju);
-  },
+  context:saju=>observation(saju).context(),
+  structure:saju=>observation(saju).structure(),
  };
 }
