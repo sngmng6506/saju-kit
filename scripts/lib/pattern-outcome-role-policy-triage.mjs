@@ -137,21 +137,23 @@ export function summarizeGroundedSupplyReview(c,review,partial){
 export function summarizeInterpositionReview(c,review,partial){
  const base={id:c.id,partial,effectConfirmed:null,neutralizationConfirmed:null};
  const errors=[];
- if(!review||review.version!=='interposition-review-v1'||review.status!==(partial?'partial':'diagnostic')||
+ if(!review||review.version!=='interposition-review-v1'||review.targetScope!=='day-master-and-visible-peer-resource'||review.status!==(partial?'partial':'diagnostic')||
   review.completeHour!==!partial||review.selectionAuthority!==false||review.effectConfirmed!==null||
   review.neutralizationConfirmed!==null||!Array.isArray(review.paths)||!review.summary)return {...base,errors:['interposition-review-invalid']};
  const ids=new Set(review.paths.map(p=>p.id));
  if(ids.size!==review.paths.length)errors.push('duplicate-interposition-path');
- const counts={candidatePaths:review.paths.length,protectionPaths:review.paths.filter(p=>p.kind==='protection').length,
+ const counts={candidatePaths:review.paths.length,excludedTargetPaths:review.summary.excludedTargetPaths,protectionPaths:review.paths.filter(p=>p.kind==='protection').length,
   mediationPaths:review.paths.filter(p=>p.kind==='mediation').length,
   structuralScreensMet:review.paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
   hiddenParticipantPaths:review.paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
   pressureBlockedPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
   nonlocalChainPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
- if(Object.entries(counts).some(([k,v])=>review.summary[k]!==v))errors.push('interposition-summary-mismatch');
+ if(Object.entries(counts).some(([k,v])=>review.summary[k]!==v)||!review.summary.excludedReasons||
+  Object.values(review.summary.excludedReasons).reduce((a,b)=>a+b,0)!==review.summary.excludedTargetPaths)errors.push('interposition-summary-mismatch');
  for(const p of review.paths){
   const participants=[p.participants?.helper,p.participants?.threat,p.participants?.target];
   const visible=participants.every(x=>x?.kind==='visible-stem');
+  if(p.participants?.target?.kind!=='visible-stem')errors.push('interposition-target-scope:'+p.id);
   if(!['protection','mediation'].includes(p.kind)||!Array.isArray(p.edges)||p.sourceOccurrenceIds.length===0||
    new Set(p.sourceOccurrenceIds).size!==p.sourceOccurrenceIds.length||
    p.effectConfirmed!==null||p.neutralizationConfirmed!==null||p.effectiveProtection!==null||
