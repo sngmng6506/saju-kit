@@ -105,3 +105,5 @@ The pre-V10 assistant extension is an opt-in augmentation of V9; branch-slot mas
 [Integrated outcome evidence](docs/pattern-outcome-integrated-v1.md) composes V5 request-local evidence with omitted storage stages and final projections; integrity is structural, not selection authority.
 
 [Outcome efficacy screens](docs/pattern-outcome-efficacy-v1.md) consume request-local integrated evidence and do not authorize effective force or selection.
+
+[Outcome decision V10](docs/pattern-outcome-decision-v10.md) is an explicit read-only judgment boundary. No runtime authorization switch or final classifier exists in this release.

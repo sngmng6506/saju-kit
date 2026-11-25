@@ -54,3 +54,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - Pre-V10: [integrated outcome evidence](docs/pattern-outcome-integrated-v1.md) completes omitted storage stages and derives all projections from one final witness set. Native gate and independent labels remain pending.
 
 - Pre-V10: [efficacy evidence screens](docs/pattern-outcome-efficacy-v1.md) link existing force, contact and route evidence; no effect authority. Native integration and independent validation pending.
+
+- [Outcome decision V10](docs/pattern-outcome-decision-v10.md) implements per-axis abstention and release-owned closed authority; actual decision algorithms and independent validation remain pending.

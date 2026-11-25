@@ -71,3 +71,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Integrated outcome evidence](pattern-outcome-integrated-v1.md) is opt-in, with final-witness consistency reporting; prior public APIs and consumer pins unchanged.
 
 - [Outcome efficacy screens](pattern-outcome-efficacy-v1.md) opt-in diagnostic API; no effective-force or selection decision.
+
+- [Outcome decision V10](pattern-outcome-decision-v10.md) is opt-in abstention only; seven independent axes, all unauthorized, no consumer migration.
