@@ -10,6 +10,7 @@ import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrateg
 import {observeOutputSupplyContext,assessOutputDemandConditions} from './outcome-output-demand.js';
 import {observeOfficerSupplyContext,assessOfficerDemandConditions} from './outcome-officer-demand.js';
 import {observeResourceSupplyContext,assessResourceDemandConditions} from './outcome-resource-demand.js';
+import {observeRoleDependencies} from './outcome-role-dependencies.js';
 import {observeRoleDemand} from './outcome-role-demand.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
@@ -67,7 +68,8 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const resourceDemandConditions=assessResourceDemandConditions(q,demandReview,resourceSupplyContext,prior.completeHour);
   const outputDemandConditions=assessOutputDemandConditions(q,demandReview,outputSupplyContext,killingStrategies,prior.completeHour);
   const officerDemandConditions=assessOfficerDemandConditions(q,demandReview,officerSupplyContext,groundedSupply,killingStrategies,prior.completeHour);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions}};
+  const dependencyReview=observeRoleDependencies(demandReview,{resource:resourceDemandConditions,output:outputDemandConditions,officer:officerDemandConditions},groundedSupply,prior.completeHour);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview}};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
