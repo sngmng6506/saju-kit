@@ -176,58 +176,67 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
   if(old)old.sourceOccurrenceIds.push(a.id);
   else candidates.set(id,{...p,signature,sourceOccurrenceIds:[a.id]});
  }
- const paths=[],excluded=new Map();
+ // Evaluate each visible-target candidate exactly once, independently
+ // of day-master element or ten-god. Scope is a projection, not a screen.
  const day=actors.get('visible:day');
  if(!day||!day.dayReference)return invalid(base);
- for(const p of candidates.values()){
-  const target=groups.get(p.target)?.[0];
-  const relation=target&&elementRelation(target.element,day.element);
-  const targetEligible=target?.layer==='visible'&&(target.element===day.element||
-   relation.type==='generate'&&relation.direction==='left-to-right');
-  if(!targetEligible){
-   const reason=!target||target.layer!=='visible'?'hidden-or-branch-target':'non-supportive-visible-target';
-   excluded.set(JSON.stringify([p.kind,p.helper,p.threat,p.target]),reason);
+ const visiblePaths=[],hiddenExcluded=new Map(),legacyExcluded=new Map();
+ const supportive=a=>a.element===day.element||(()=>{const r=elementRelation(a.element,day.element);return r.type==='generate'&&r.direction==='left-to-right';})();
+ for(const [id,p] of candidates){
+  const target=groups.get(p.target)[0];
+  if(target.layer!=='visible'){
+   hiddenExcluded.set(id,'hidden-or-branch-target');
+   legacyExcluded.set(id,'hidden-or-branch-target');
    continue;
   }
   const route=classifyPath(p,groups,donors,pressures,complete);
-  paths.push(route);
+  visiblePaths.push(route);
+  if(!supportive(target))legacyExcluded.set(id,'non-supportive-visible-target');
  }
- paths.sort((a,b)=>a.id.localeCompare(b.id));
- const excludedReasons={};for(const reason of excluded.values())excludedReasons[reason]=(excludedReasons[reason]??0)+1;
- // Bind each exact pressure edge, including those without a candidate.
- // Visible non-supportive targets are not evaluated by the legacy screen;
- // record their candidate references as scope gaps, not failed protection.
- const pressureContexts=[];
- for(const a of actors.values()){
-  if(a.layer!=='visible')continue;
-  const relation=elementRelation(a.element,day.element);
-  const inScope=a.element===day.element||relation.type==='generate'&&relation.direction==='left-to-right';
-  const controllers=pressures.get(a.graphNodeId);
-  if(!controllers||new Set(controllers.map(p=>p.controllerNodeId)).size!==controllers.length)return invalid(base);
-  const rows=controllers.map(p=>{
-   const alternatives=[...candidates.values()].filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId)
-    .map(x=>JSON.stringify([x.kind,x.helper,x.threat,x.target])).sort();
-   const evaluated=paths.filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId);
-   if(inScope&&!same(alternatives,evaluated.map(x=>x.id).sort()))return null;
-   if(!inScope&&evaluated.length)return null;
-   return {controllerNodeId:p.controllerNodeId,distance:p.distance,local:p.local,donorState:p.donorState,
-    classification:p.classification,candidatePathIds:alternatives,evaluatedPathIds:evaluated.map(x=>x.id),
-    screenedPathIds:evaluated.filter(x=>x.structuralScreen==='grounded-structure-screen-met').map(x=>x.id),
-    coverage:!inScope?'outside-target-scope':alternatives.length?'candidate-path-observed':'no-candidate-path-observed',
-    neutralizationConfirmed:null,remainingPressureConfirmed:null};
-  });
-  if(rows.some(r=>!r))return invalid(base);
-  // Preserve all competing controllers independently; a candidate for one
-  // controller cannot be used to discharge another controller.
-  pressureContexts.push({targetId:a.id,targetNodeId:a.graphNodeId,targetScope:inScope?'in-scope':'outside-target-scope',
-   controllers:rows,allPressureResolved:null,effective:null});
+ visiblePaths.sort((a,b)=>a.id.localeCompare(b.id));
+ const paths=visiblePaths.filter(p=>supportive(groups.get(p.target)[0]));
+ function projectPressure(evaluatedPaths,allVisible){
+  const contexts=[];
+  for(const a of actors.values()){
+   if(a.layer!=='visible')continue;
+   const inScope=allVisible||supportive(a),controllers=pressures.get(a.graphNodeId);
+   if(!controllers||new Set(controllers.map(p=>p.controllerNodeId)).size!==controllers.length)return null;
+   const rows=controllers.map(p=>{
+    const alternatives=[...candidates.values()].filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId)
+     .map(x=>JSON.stringify([x.kind,x.helper,x.threat,x.target])).sort();
+    const evaluated=evaluatedPaths.filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId);
+    if(inScope&&!same(alternatives,evaluated.map(x=>x.id).sort())||!inScope&&evaluated.length)return null;
+    return {controllerNodeId:p.controllerNodeId,distance:p.distance,local:p.local,donorState:p.donorState,
+     classification:p.classification,candidatePathIds:alternatives,evaluatedPathIds:evaluated.map(x=>x.id),
+     screenedPathIds:evaluated.filter(x=>x.structuralScreen==='grounded-structure-screen-met').map(x=>x.id),
+     coverage:!inScope?'outside-target-scope':alternatives.length?'candidate-path-observed':'no-candidate-path-observed',
+     neutralizationConfirmed:null,remainingPressureConfirmed:null};
+   });
+   if(rows.some(r=>!r))return null;
+   contexts.push({targetId:a.id,targetNodeId:a.graphNodeId,targetScope:inScope?'in-scope':'outside-target-scope',
+    controllers:rows,allPressureResolved:null,effective:null});
+  }
+  return contexts;
  }
- const summary={candidatePaths:paths.length,excludedTargetPaths:excluded.size,excludedReasons,protectionPaths:paths.filter(p=>p.kind==='protection').length,
-  mediationPaths:paths.filter(p=>p.kind==='mediation').length,
-  structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
-  hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
-  pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
-  nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
- return {...base,status:complete?'diagnostic':'partial',targetScope:'day-master-and-visible-peer-resource',paths,pressureContexts,summary,
-  limitations:['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection','exact-controller-binding','outside-target-scope-not-failed-protection']};
+ function summarize(paths,excluded){
+  const excludedReasons={};for(const reason of excluded.values())excludedReasons[reason]=(excludedReasons[reason]??0)+1;
+  return {candidatePaths:paths.length,excludedTargetPaths:excluded.size,excludedReasons,
+   protectionPaths:paths.filter(p=>p.kind==='protection').length,mediationPaths:paths.filter(p=>p.kind==='mediation').length,
+   structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
+   hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
+   pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
+   nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
+ }
+ const pressureContexts=projectPressure(paths,false),allPressureContexts=projectPressure(visiblePaths,true);
+ if(!pressureContexts||!allPressureContexts)return invalid(base);
+ const limitations=['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection','exact-controller-binding','outside-target-scope-not-failed-protection'];
+ const status=complete?'diagnostic':'partial';
+ // The original public fields preserve the v1 scope and classification.
+ // The additive review deliberately does not decide whether a role needs
+ // protection. Hidden targets remain excluded in both views.
+ const roleNeutral={...base,version:'role-neutral-interposition-v1',status,targetScope:'all-visible-stems',
+  paths:visiblePaths,pressureContexts:allPressureContexts,summary:summarize(visiblePaths,hiddenExcluded),
+  roleDemandConfirmed:null,limitations:[...limitations,'role-necessity-owned-by-upper-policy','hidden-targets-not-evaluated']};
+ return {...base,status,targetScope:'day-master-and-visible-peer-resource',paths,pressureContexts,
+  summary:summarize(paths,legacyExcluded),roleNeutral,limitations};
 }
