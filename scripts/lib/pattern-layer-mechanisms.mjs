@@ -120,7 +120,9 @@ export function reviewCoherentProjection(witness,anchorRole,candidate,access,lay
  const alternatives=assignments.flatMap(a=>{
   const edges=bindings.map(e=>visibleEdges.get(key(a[roleById.get(e.from)],a[roleById.get(e.to)],e.kind)));
   if(edges.some(e=>!e))return [];
-  return [{roles:a,edgeIds:edges.map(e=>e.id),allScreensMet:edges.every(e=>e.status==='necessary-screen-met'),effective:null}];
+  const competing=a.wealth&&a.killing?visibleEdges.get(key(a.wealth,a.killing,'generate')):null;
+  return [{roles:a,edgeIds:edges.map(e=>e.id),competingEdgeIds:competing?[competing.id]:[],
+   allScreensMet:edges.every(e=>e.status==='necessary-screen-met'),effective:null}];
  });
  return {originalWitnessId:witness.id,anchorRole,alternatives,observed:alternatives.length?true:layerReview.status==='partial'?null:false,effective:null};
 }
@@ -154,5 +156,5 @@ export function summarizeContrastProjections(reviews){
  return {charts:reviews.length,hiddenWitnesses:rows.length,withCoherentVisibleAlternative:rows.filter(r=>r.observed===true).length,
   withoutObservedAlternative:rows.filter(r=>r.observed===false).length,unresolved:rows.filter(r=>r.observed===null).length,
   alternativeOccurrences:alternatives.length,uniquePerChartAlternativeAssignments:uniquePerChart,
-  allScreensMet:alternatives.filter(a=>a.allScreensMet).length,confirmedEffects:0,selectionAuthority:false};
+  allScreensMet:alternatives.filter(a=>a.allScreensMet).length,withCompetingEdge:alternatives.filter(a=>a.competingEdgeIds.length).length,confirmedEffects:0,selectionAuthority:false};
 }
