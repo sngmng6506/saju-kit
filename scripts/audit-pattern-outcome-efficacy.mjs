@@ -21,11 +21,11 @@ for(const c of [...data.cases,...data.controls]){
    combo.branchFormations.some(p=>p.transformationConfirmed!==null)||
    m.candidates.some(q=>!q.combinationRoles||q.combinationRoles.status==='invalid-evidence'||q.combinationRoles.removalConfirmed!==null);
   for(const p of combo?.pairs??[])combinationCounts[p.contactHypothesis]=(combinationCounts[p.contactHypothesis]??0)+1;
-  const b=m?.branchContext,month=m?.monthChange;
-  const branchInvalid=!b||!month||b.status==='invalid-evidence'||month.status==='invalid-evidence'||b.accessConfirmed!==null||b.transformationConfirmed!==null||month.selectedPattern!==null||month.selectionAuthority!==false||
-   b.hidden.some(h=>h.literalAccessConfirmed!==null||h.independentSupplyConfirmed!==null)||b.formations.some(f=>f.transformationConfirmed!==null)||
+  const branch=m?.branchContext,month=m?.monthChange;
+  const branchInvalid=!branch||!month||branch.status==='invalid-evidence'||month.status==='invalid-evidence'||branch.accessConfirmed!==null||branch.transformationConfirmed!==null||month.selectedPattern!==null||month.selectionAuthority!==false||
+   branch.hidden.some(h=>h.literalAccessConfirmed!==null||h.independentSupplyConfirmed!==null)||branch.formations.some(f=>f.transformationConfirmed!==null)||
    m.candidates.some(q=>!q.branchAccess||q.branchAccess.status==='invalid-evidence'||q.branchAccess.effective!==null);
-  for(const h of b?.hidden??[])branchCounts[h.accessHypothesis]=(branchCounts[h.accessHypothesis]??0)+1;
+  for(const h of branch?.hidden??[])branchCounts[h.accessHypothesis]=(branchCounts[h.accessHypothesis]??0)+1;
   for(const c of month?.sourceClauses??[]){const k=c.id+':'+String(c.matched);monthClauseCounts[k]=(monthClauseCounts[k]??0)+1;}
   rows.push({id,parity,invalid:invalid||mechanismInvalid||combinationInvalid||branchInvalid,efficacyReview});
  }catch(e){rows.push({id,error:{name:e.name,message:e.message,code:e.code??null}});}
