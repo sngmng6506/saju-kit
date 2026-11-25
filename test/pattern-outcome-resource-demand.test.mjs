@@ -73,3 +73,37 @@ test('resource audit rejects false independent supply, changed source status and
  d.contexts.pop();
  assert.ok(audit().errors.some(e=>e.startsWith('resource-objective-coverage:')));
 });
+
+test('delivery screen is separate from necessity and partial observation',()=>{
+ const x=fixture(),edge=x.supply.actions[0];
+ edge.generationScreen='grounded-generation-context-screen-met';
+ const r=run(x);
+ assert.equal(r.contexts[0].deliveryObservation,'structural-delivery-screen-met');
+ assert.equal(r.contexts[0].necessityConfirmed,null);
+ assert.equal(r.contexts[0].excessConfirmed,null);
+ assert.ok(chart(fixture('strong',false)).resources.every(r=>r.deliveryObservation==='partial'));
+});
+test('contested common roots and shared donor identity remain context, not independent supply',()=>{
+ const x=fixture(),a=x.supply.occurrences[1],b=x.supply.occurrences[2];
+ a.directRoot.uncontestedRootIds=['hidden:year:갑'];b.directRoot.uncontestedRootIds=['hidden:day:을'];
+ a.directRoot.contestedRootIds=['hidden:month:을'];b.directRoot.contestedRootIds=['hidden:month:을'];
+ let r=chart(x);assert.ok(r.alternatives.every(p=>p.coverage==='shared-context-root-review'&&p.sharedRootIds.length===0&&p.sharedContextRootIds.length===1));
+ for(const o of [a,b]){
+  const donor={nodeId:'month:branch:water',state:'grounded-observation',groundedRootIds:['hidden:month:계'],contestedRootIds:[],independentSupplyConfirmed:null};
+  const id=JSON.stringify([donor.nodeId,o.id]);o.paths=[{id,recipientId:o.id,upstream:'observed',donor,effectiveSupply:null}];o.groundedPathIds=[id];
+ }
+ r=chart(x);assert.ok(r.alternatives.every(p=>p.sharedDonorNodeIds.includes('month:branch:water')&&p.independentSupplyConfirmed===null));
+ a.paths[0].donor.nodeId='foreign';assert.equal(chart(x).status,'invalid-evidence');
+});
+test('audit rejects omitted alternative and forged shared donor or delivery status',()=>{
+ const x=fixture(),c=chart(x),d=run(x);
+ const m={resourceSupplyContext:c,candidates:[{candidateId:x.review.candidateId,rolePriority:{demandReview:x.demand,resourceDemandConditions:d}}]};
+ const audit=()=>summarizeResourceDemandConditions({id:'fixture'},m,false);
+ assert.deepEqual(audit().errors,[]);
+ c.alternatives[0].sharedDonorNodeIds.push('foreign');
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-alternative-context:')));
+ c.alternatives[0].sharedDonorNodeIds=[];c.alternatives.pop();
+ assert.ok(audit().errors.includes('resource-alternative-coverage'));
+ d.contexts[0].deliveryObservation='structural-delivery-screen-met';
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-objective-binding:')));
+});
