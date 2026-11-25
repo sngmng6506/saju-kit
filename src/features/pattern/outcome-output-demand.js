@@ -69,7 +69,7 @@ const scenarios=Object.freeze({
  'killing-wealth-dual:wealth-relieves-output-obstruction':{clause:'K03',source:K,axis:'restoration',required:['output-required','output-restored','wealth-resource-control-effective','killing-feed-context']},
  'killing-wealth-dual:wealth-supplies-insufficient-killing':{clause:'K03',source:K,day:'strong',axis:'relative-balance',required:['killing-deficiency','output-killing-balance','wealth-killing-supply-effective']}
 });
-export const outputScenarioKey=o=>o.collection+':'+o.objectiveId;
+const outputScenarioKey=o=>o.collection+':'+o.objectiveId;
 export function assessOutputDemandConditions(review,demand,chart,foodPolicy,complete){
  const base={version:'output-demand-conditions-v1',candidateId:review.candidateId,selectionAuthority:false,...abstain};
  const empty=s=>({...base,status:s,contexts:[]});
