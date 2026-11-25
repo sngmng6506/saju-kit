@@ -119,6 +119,6 @@ export function observeGroundedSupply(prior,rootContext){
    generationScreen:structuralGenerationScreen?'grounded-generation-context-screen-met':'unresolved',
    effective:null,selectionAuthority:false});
  }
- return {...base,status:complete?'diagnostic':'partial',occurrences,actions,
+ return {...base,status:complete?'diagnostic':'partial',nodes:[...donors.values()].sort((a,b)=>a.nodeId.localeCompare(b.nodeId)),occurrences,actions,
   limitations:['one-hop-rooted-supply-only','branch-donor-own-constituents-only','no-independent-root-budget','no-target-root-prerequisite-for-generation-observation','pressure-not-cancelled','no-control-or-effect-verdict','legacy-mechanism-unchanged']};
 }
