@@ -28,3 +28,5 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-classical-v2.json](../../test/fixtures/pattern-classical-v2.json)
 
 - [pattern-classical-commentary-v1.json](../../test/fixtures/pattern-classical-commentary-v1.json)
+
+- [pattern-action-reference-v1.json](../../test/fixtures/pattern-action-reference-v1.json)
