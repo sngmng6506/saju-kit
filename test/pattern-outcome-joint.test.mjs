@@ -137,3 +137,35 @@ test('same bound threat option is required and partial evidence never yields aut
  assert.equal(result.status,'partial-allocation-review');assert.equal(result.selectionAuthority,false);
  assert.equal(result.samples[0].anchorAssignments[0].accessConfirmed,null);
 });
+
+test('supported allocation cannot borrow support from a different anchor option',()=>{
+ const a=sample(),s=a.review.rules[0].witnesses[0];
+ const b1={anchorId:'a',targetId:'z',basis:'directed-generation',independentSlots:true,edge:{from:'a',to:'z',kind:'generate'}};
+ const b2={anchorId:'b',targetId:'z',basis:'directed-generation',independentSlots:true,edge:{from:'b',to:'z',kind:'generate'}};
+ s.anchorBindings=[b1,b2];
+ a.mechanism.edges=[b1,b2].map((b,i)=>({...b.edge,id:JSON.stringify([b.edge.from,b.edge.to,b.edge.kind]),status:i?'unresolved':'supported',effective:null}));
+ a.mechanism.routes[0].conditions=[{id:'anchor-alternative-path',state:'supported',evidence:[b1,b2].map((b,i)=>({anchorId:b.anchorId,targetId:b.targetId,basis:b.basis,identityOnly:false,edgeId:a.mechanism.edges[i].id}))}];
+ const x=run(a).search;
+ assert.equal(x.observed.allocationReview.samples.length,2);
+ assert.equal(x.supportedOnly.allocationReview.samples.length,1);
+ assert.equal(x.supportedOnly.allocationReview.samples[0].anchorAssignments[0].anchorId,'a');
+ assert.equal(x.observed.allocationReview.samples.find(p=>p.anchorAssignments[0].anchorId==='b').anchorAssignments[0].hypothesis,'unresolved');
+ assert.equal(x.supportedOnly.allocationReview.unsupportedOptionRejections,1);
+ a.mechanism.routes[0].conditions[0].evidence.pop();
+ assert.equal(run(a).status,'invalid-evidence');
+});
+test('missing projected option evidence cannot qualify for supported allocation',()=>{
+ const a=sample();a.review.rules[0].witnesses[0].anchorBindings=[{anchorId:'a',edge:combine('h','a')}];
+ const r=run(a).search;
+ assert.equal(r.observed.allocationReview.samples.length,1);
+ assert.equal(r.supportedOnly.allocationReview.samples.length,0);
+ assert.equal(r.supportedOnly.allocationReview.unsupportedOptionRejections,1);
+});
+test('empty rescue binding cannot bypass its bound threat anchor and duplicates fail closed',()=>{
+ const a=sample(),d=a.review.rules[1].witnesses[0],s=a.review.rules[0].witnesses[0];
+ d.anchorBindings=[{anchorId:'a',edge:combine('h','a')}];
+ const r=run(a).search.observed.allocationReview;
+ assert.equal(r.status,'no-compatible-allocation');assert.ok(r.bindingRejections>0);
+ s.anchorBindings=[d.anchorBindings[0],d.anchorBindings[0]];
+ assert.equal(run(a).status,'invalid-evidence');
+});

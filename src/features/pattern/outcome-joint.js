@@ -78,12 +78,13 @@ function dominates(a,b){
  const keys=['routeHypotheses','contactObligations','sharedRelationObligations','anchorObligations'];
  return keys.every(k=>subset(a[k],b[k]))&&keys.some(k=>!subset(b[k],a[k]));
 }
-function compareAllocations(choices,entries,compound,complete){
+function compareAllocations(choices,entries,compound,complete,optionEvidence,supportedOnly){
+ const optionStatus=(x,b)=>b?optionEvidence.get(key(x))?.get(bindingKey(b))??'unresolved':null;
  const base={assumption:'one-ordinary-support-one-rescue-per-threat-one-anchor-option-per-bound-route-single-combination-partner',
   selectionAuthority:false,selectedPlan:null,netEffectConfirmed:null,visitLimit:limit,sampleLimit};
  const empty=(status,extra={})=>({...base,status,examined:0,feasibleCount:0,exhaustive:false,samples:[],reviewFrontierIds:[],...extra});
  if(choices.some(c=>!c.length))return empty('missing-route-choice',{exhaustive:true});
- let examined=0,stopReason=null,partnerRejections=0;
+ let examined=0,stopReason=null,partnerRejections=0,bindingRejections=0,unsupportedOptionRejections=0;
  const samples=[];
  const spend=()=>{if(examined>=limit){stopReason='visit-budget';return false;}examined++;return true;};
  const bound=x=>{const {r,w}=entries.get(key(x));return r.kind==='rescue'?entries.get(key({ruleId:r.threatRuleId,witnessId:w.threatWitnessId})):null;};
@@ -131,7 +132,11 @@ function compareAllocations(choices,entries,compound,complete){
   for(const c of compound.rescueCollateral.filter(c=>chosen.has(key(c.rescue))))
    contactObligations.push(JSON.stringify(['collateral',key(c.rescue),c.from,c.to,c.kind]));
   const sharedRelations=[...relationInventory.values()].filter(r=>new Set(r.references.map(x=>key(x.route))).size>1);
-  const routeHypotheses=selected.flatMap((x,i)=>x.hypothesis==='supported'?[]:[JSON.stringify([i===0?'support':key(bound(x).ref),x.hypothesis])]);
+  const routeHypotheses=selected.flatMap((x,i)=>{
+   const scope=i===0?'support':key(bound(x).ref),b=options[i],s=optionStatus(x,b);
+   return [...(x.hypothesis==='supported'?[]:[JSON.stringify([scope,x.hypothesis])]),
+    ...(b&&s!=='supported'?[JSON.stringify([scope,'anchor-option',bindingKey(b),s])]:[])];
+  });
   const anchorObligations=options.flatMap((b,i)=>b?[JSON.stringify([key(selected[i]),bindingKey(b)])]:[]);
   const helperGroups=new Map();
   for(const row of flow.routes)if(row.helperId){if(!helperGroups.has(row.helperId))helperGroups.set(row.helperId,[]);helperGroups.get(row.helperId).push(row.ref);}
@@ -141,7 +146,7 @@ function compareAllocations(choices,entries,compound,complete){
    anchorObligations:unique(anchorObligations)};
   const planId=JSON.stringify(selected.map((x,i)=>[key(x),options[i]?bindingKey(options[i]):null]));
   samples.push({id:planId,support:selected[0],rescues:selected.slice(1),
-   anchorAssignments:options.flatMap((b,i)=>b?[{route:{ruleId:selected[i].ruleId,witnessId:selected[i].witnessId},anchorId:b.anchorId,targetId:b.targetId??null,basis:b.basis??null,edge:b.edge?edgeRef(b.edge):null,accessConfirmed:null}]:[]),
+   anchorAssignments:options.flatMap((b,i)=>b?[{route:{ruleId:selected[i].ruleId,witnessId:selected[i].witnessId},anchorId:b.anchorId,targetId:b.targetId??null,basis:b.basis??null,edge:b.edge?edgeRef(b.edge):null,hypothesis:optionStatus(selected[i],b),accessConfirmed:null}]:[]),
    partnerPairs:[...allocation].filter(([a,b])=>cmp(a,b)<0).sort((a,b)=>cmp(JSON.stringify(a),JSON.stringify(b))),
    contacts,sharedRelations:sharedRelations.map(r=>({...r,independentSupplyConfirmed:null})),sharedHelpers,obligations,netEffectConfirmed:null});
  }
@@ -158,7 +163,8 @@ function compareAllocations(choices,entries,compound,complete){
    for(const b of bindings(x)){
     if(!spend())return;
     // Rescue's alternative must refer to the same bound threat alternative.
-    if(t&&b&&!(t.w.anchorBindings??[]).some(a=>bindingKey(a)===bindingKey(b))){partnerRejections++;continue;}
+    if(t&&((b&&!(t.w.anchorBindings??[]).some(a=>bindingKey(a)===bindingKey(b)))||(!b&&(t.w.anchorBindings??[]).length))){bindingRejections++;continue;}
+    if(supportedOnly&&b&&optionStatus(x,b)!=='supported'){unsupportedOptionRejections++;continue;}
     const variant=addPartners(next,b?.edge?.kind==='combine'?[[b.edge.from,b.edge.to]]:[]);
     if(!variant){partnerRejections++;continue;}
     dfs(i+1,variant,[...selected,x],[...options,b]);
@@ -170,7 +176,7 @@ function compareAllocations(choices,entries,compound,complete){
  const exhaustive=stopReason===null;
  const frontier=samples.filter(a=>!samples.some(b=>a!==b&&dominates(b.obligations,a.obligations))).map(a=>a.id);
  return {...base,status:stopReason?'search-incomplete':!samples.length?'no-compatible-allocation':!complete?'partial-allocation-review':'conditional-allocations-observed',
-  examined,partnerRejections,stopReason,feasibleCount:samples.length,exhaustive,samples,
+  examined,partnerRejections,bindingRejections,unsupportedOptionRejections,stopReason,feasibleCount:samples.length,exhaustive,samples,
   reviewFrontierIds:frontier,frontierScope:exhaustive?'enumerated-structural-space':'observed-sample-only',
   limitations:['not-effect-selection','no-universal-anchor-exclusivity','no-universal-partner-law','obligation-subset-not-weighted-score','anchor-assignment-is-hypothesis']};
 }
@@ -182,13 +188,44 @@ export function observeJointOutcome(review,mechanism,compound,complete){
   mechanism.status==='invalid-evidence'||compound.status==='invalid-evidence'||compound.violations.length)return empty('invalid-evidence');
  const entries=new Map();
  for(const r of review.rules)for(const w of r.witnesses){
-  const k=key(ref(r,w));if(entries.has(k))return empty('invalid-evidence');
+  const k=key(ref(r,w)),bs=(w.anchorBindings??[]).map(bindingKey);
+  if(entries.has(k)||new Set(bs).size!==bs.length)return empty('invalid-evidence');
   entries.set(k,{r,w,ref:ref(r,w)});
  }
- const status=new Map();
+ const status=new Map(),optionEvidence=new Map();
+ const edgeById=new Map((mechanism.edges??[]).map(e=>[e.id,e]));
+ if(edgeById.size!==(mechanism.edges??[]).length)return empty('invalid-evidence');
  for(const row of mechanism.routes){
   const k=key(row);
   if(!entries.has(k)||status.has(k)||!states.has(row.status)||row.effective!==null||row.kind!==entries.get(k).r.kind)return empty('invalid-evidence');
+  const w=entries.get(k).w,bs=w.anchorBindings??[],options=new Map();
+  const conditions=(row.conditions??[]).filter(c=>c.id==='anchor-alternative-path');
+  if(conditions.length>1)return empty('invalid-evidence');
+  // The existing mechanism route exposes its exact option evidence. A route
+  // supported through one alternative does not support every other option.
+  if(conditions.length){
+   const evidence=conditions[0].evidence;
+   if(!Array.isArray(evidence)||evidence.length!==bs.length)return empty('invalid-evidence');
+   const used=new Set();
+   for(const b of bs){
+    const edgeId=b.edge?JSON.stringify([b.edge.from,b.edge.to,b.edge.kind]):null;
+    const matches=evidence.map((a,i)=>({a,i})).filter(({a})=>a.anchorId===b.anchorId&&
+     (a.targetId??null)===(b.targetId??null)&&(a.basis??null)===(b.basis??null)&&a.edgeId===edgeId);
+    if(matches.length!==1||used.has(matches[0].i))return empty('invalid-evidence');
+    const {a,i}=matches[0];used.add(i);
+    let s='unresolved';
+    if(b.edge){
+     const e=edgeById.get(edgeId);
+     if(!e||e.from!==b.edge.from||e.to!==b.edge.to||e.kind!==b.edge.kind||!states.has(e.status)||e.effective!==null)return empty('invalid-evidence');
+     s=e.status;
+    }else if(a.identityOnly===true){
+     if(b.basis!=='target-is-anchor'||b.anchorId!==b.targetId||b.independentSlots!==false||w.roles?.target!==b.targetId)return empty('invalid-evidence');
+     s='supported';
+    }
+    options.set(bindingKey(b),s);
+   }
+  }else if(bs.length&&Array.isArray(row.conditions))return empty('invalid-evidence');
+  optionEvidence.set(k,options);
   status.set(k,row.status);
  }
  if(status.size!==entries.size)return empty('invalid-evidence');
@@ -219,7 +256,7 @@ export function observeJointOutcome(review,mechanism,compound,complete){
   const qualify=x=>!supportedOnly||x.hypothesis==='supported';
   const choices=[sortRefs(supports.filter(qualify)),...threats.map(t=>sortRefs(t.alternatives.filter(qualify)))];
   const allocationChoices=[ordered(choices[0]),...threats.map((t,i)=>({threat:t.threat,choices:ordered(choices[i+1])})).sort((a,b)=>cmp(key(a.threat),key(b.threat))).map(t=>t.choices)];
-  const allocationReview=compareAllocations(allocationChoices,entries,compound,complete);
+  const allocationReview=compareAllocations(allocationChoices,entries,compound,complete,optionEvidence,supportedOnly);
   if(choices.some(c=>!c.length))return {status:'missing-route-choice',examined:0,plan:null,limit,allocationReview};
   let examined=0,truncated=false;
   const dfs=(i,allocation,selected)=>{
