@@ -25,10 +25,16 @@ export function observeGroundedSupply(prior,rootContext){
   if(!order.includes(a.position)||!['visible','hidden'].includes(a.layer)||r.layer!==a.layer||!a.graphNodeId||
    a.graphNodeId!==(a.layer==='visible'?a.position+':stem':a.position+':branch:'+a.element)||
    (a.layer==='hidden'&&(!slots.has(a.id)||slots.get(a.id).element!==a.element)))return empty('invalid-evidence');
-  for(const id of [...rootIds(r,'uncontestedRootIds'),...rootIds(r,'contestedRootIds')]){
-   const slot=slots.get(id);
-   if(!slot||slot.element!==a.element||slot.role==='residual')return empty('invalid-evidence');
+  const literal=index(a.roots,x=>'hidden:'+x.position+':'+x.stem),projected=index(r.roots,x=>x.id);
+  if(!literal||!projected||literal.size!==projected.size||[...literal.keys()].some(id=>!projected.has(id)))return empty('invalid-evidence');
+  const intact=[],contested=[];
+  for(const [id,x] of literal){
+   const slot=slots.get(id),p=projected.get(id);
+   if(!slot||slot.element!==a.element||slot.role!==x.role||p.role!==x.role||p.state!==slot.state)return empty('invalid-evidence');
+   if(x.role!=='residual')(slot.state==='uncontested-substantial-observation'?intact:contested).push(id);
   }
+  if(!hasSame(intact,rootIds(r,'uncontestedRootIds'))||!hasSame(contested,rootIds(r,'contestedRootIds'))||
+   r.rootAxes.anySubstantial!==(intact.length?true:contested.length||!complete?null:false))return empty('invalid-evidence');
   if(!graph.has(a.graphNodeId))graph.set(a.graphNodeId,[]);
   graph.get(a.graphNodeId).push(a);
  }
@@ -50,6 +56,7 @@ export function observeGroundedSupply(prior,rootContext){
   const ids=uniq((a.controlReceived??[]).filter(e=>e.local).map(e=>e.from));
   return ids.map(id=>({nodeId:id,donorState:donors.get(id)?.state??'context-review'}));
  };
+ const pressured=xs=>xs.some(p=>p.donorState!=='no-substantial-root-observed');
  const occurrences=[];
  for(const a of actors.values()){
   const r=roots.get(a.id),directRootIds=rootIds(r,'uncontestedRootIds'),paths=[];
@@ -72,8 +79,8 @@ export function observeGroundedSupply(prior,rootContext){
    if(!complete)concerns.push('missing-hour');
    if(upstream!=='observed')concerns.push('donor-supply-not-established');
    if(a.contacts.length)concerns.push('recipient-contact');
-   if(sourcePressure.some(p=>p.donorState!=='no-substantial-root-observed'))concerns.push('donor-pressure-review');
-   if(recipientPressure.some(p=>p.donorState!=='no-substantial-root-observed'))concerns.push('recipient-pressure-review');
+   if(pressured(sourcePressure))concerns.push('donor-pressure-review');
+   if(pressured(recipientPressure))concerns.push('recipient-pressure-review');
    // No target direct-root prerequisite for structural generation.
    const readiness=concerns.length?'context-review':'grounded-local-path-screen-met';
    paths.push({id:JSON.stringify([id,a.id]),donor,recipientId:a.id,graphEdge:{from:id,to:a.graphNodeId,kind:'generate'},
@@ -101,10 +108,14 @@ export function observeGroundedSupply(prior,rootContext){
   const sourceBasis=!complete?'partial':a.layer!=='visible'?'hidden-access-review':direct?'direct-root-observed':indirect?'grounded-indirect-path-observed':a.groundedPathIds.length?'indirect-path-context-review':'no-screened-source-basis';
   const contextBlockers=(e.blockers??[]).filter(b=>!['source-substantial-root-not-established','target-substantial-root-not-established','relative-evidence-conflict','relative-evidence-unresolved','target-evidence-dominates-control-source'].includes(b));
   const controlComparison=e.kind==='control'?e.relative?.relation??null:null;
-  const structuralGenerationScreen=complete&&e.kind==='generate'&&b.layer==='visible'&&(direct||indirect)&&!contextBlockers.length;
+  const sourcePressure=pressure(source),targetPressure=pressure(target);
+  // Keep all local controller observations, including a recipient under
+  // review. The screen is not an inference of sufficient throughput.
+  const structuralGenerationScreen=complete&&e.kind==='generate'&&b.layer==='visible'&&(direct||indirect)&&
+   !contextBlockers.length&&!pressured(sourcePressure)&&!pressured(targetPressure);
   actions.push({edgeId:e.id,from:e.from,to:e.to,kind:e.kind,sourceBasis,sourceGroundedPathIds:[...a.groundedPathIds],
    sourceScreenedPathIds:[...a.screenedPathIds],targetDirectRootState:b.directRoot.state,targetAccess:b.layer==='visible'?'visible':'hidden-access-review',
-   contextBlockers,relativeProfile:e.relative?.relation??null,controlComparison,
+   contextBlockers,sourcePressure,targetPressure,relativeProfile:e.relative?.relation??null,controlComparison,
    generationScreen:structuralGenerationScreen?'grounded-generation-context-screen-met':'unresolved',
    effective:null,selectionAuthority:false});
  }
