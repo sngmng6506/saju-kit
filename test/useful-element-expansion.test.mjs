@@ -143,6 +143,33 @@ test('partial/provisional/birth mismatch and unsupported timing remain unavailab
  assert.throws(()=>transit({...i,birth:{...birth,calendar:'lunar'}}),{code:'transit-birth-calendar'});
  assert.throws(()=>transit({...i,daeunPolicy:'unknown'}),{code:'transit-daeun-policy'});
  assert.throws(()=>transit({...i,fromYear:1999}),{code:'year-range'});
- assert.throws(()=>transit({...i,toYear:2100}),{code:'daeun-range'});
+ // 2000-02-09: both daeun policies cover 2007–2106. Calendar year
+ // 2100 is supported; the calendar limit is independent of daeun coverage.
+ const lastCalendarYear=transit({...i,fromYear:2100,toYear:2100});
+ assert.equal(lastCalendarYear.status,'diagnostic');
+ assert.equal(lastCalendarYear.years.length,1);
+ assert.equal(lastCalendarYear.years[0].year,2100);
+ assert.equal(lastCalendarYear.years[0].daeun.toYear,2106);
+ assert.throws(()=>transit({...i,fromYear:2101,toYear:2101}),{code:'year-range'});
  assert.throws(()=>analyzeUsefulElementAuthority({...i,policy:'unknown'}),{code:'useful-element-policy'});
+});
+
+test('transit accepts the last daeun band year and rejects the first uncovered year for both policies',()=>{
+ const birth={y:1980,m:2,d:9,hh:12,mm:0};
+ const saju=getSaju(birth);
+ // Both policies give startAge=8, ten inclusive bands, 1987–2086.
+ // The year after the last band is still inside the annual calendar range.
+ for(const daeunPolicy of ['legacy-day-v1','movement-minute-v6']){
+  const input={saju,birth,birthBasis:'verified-chart',gender:'남',daeunPolicy,fromYear:2086,toYear:2086};
+  const result=transit(input);
+  assert.equal(result.status,'diagnostic',daeunPolicy);
+  assert.equal(result.daeun.startAge,8,daeunPolicy);
+  assert.equal(result.daeun.pillars.length,10,daeunPolicy);
+  assert.equal(result.daeun.pillars.at(-1).toYear,2086,daeunPolicy);
+  assert.equal(result.years.length,1,daeunPolicy);
+  assert.equal(result.years[0].year,2086,daeunPolicy);
+  assert.deepEqual(result.years[0].daeun,result.daeun.pillars.at(-1),daeunPolicy);
+  assert.throws(()=>transit({...input,toYear:2087}),{code:'daeun-range'});
+  assert.throws(()=>transit({...input,fromYear:2087,toYear:2087}),{code:'daeun-range'});
+ }
 });
