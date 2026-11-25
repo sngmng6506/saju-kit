@@ -6,6 +6,7 @@ import {projectMechanismClimate,observeMechanismReview} from './outcome-mechanis
 import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
+import {observeConditionalRolePriority} from './outcome-role-priority.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
 import {observeBranchAccessContext,observeMonthChange,observeBranchRouteAccess} from './outcome-branch-context.js';
 export const PATTERN_OUTCOME_EFFICACY_VERSION='pattern-outcome-efficacy-v1';
@@ -38,7 +39,8 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const branchAccess=observeBranchRouteAccess(q,branchContext);
   const roleConditions=observeRoleConditions(q,prior,roleCapacity,m,compound.get(q.candidateId),result.regulationStrength,combinationContext);
   const roleFlow=observeRouteFlow(q,prior,result.access,m,result.regulationStrength);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow};
+  const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};

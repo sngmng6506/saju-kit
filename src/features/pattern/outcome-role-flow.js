@@ -36,7 +36,7 @@ export function observeCapacityComparisons(prior,capacity){
 // new intervention. Generation is both source outflow and recipient supply.
 export function observeRouteFlow(review,prior,access,mechanism,strength){
  const base={candidateId:review.candidateId,selectionAuthority:false,netEffectConfirmed:null};
- const empty=status=>({...base,status,routes:[],mediationContexts:[]});
+ const empty=status=>({...base,status,routes:[],mediationContexts:[],resourceContexts:[]});
  if(review.status==='out-of-scope')return empty('out-of-scope');
  if(mechanism.status==='invalid-evidence')return empty('invalid-evidence');
  const complete=prior.completeHour,actors=new Map(prior.stemForce.occurrences.map(o=>[o.id,o]));

@@ -1,7 +1,9 @@
 import {readFileSync} from 'node:fs';
+import {evaluateRoleContrast,summarizeRoleContrasts} from './lib/pattern-outcome-role-contrast.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 const data=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-flow-source-v1.json',import.meta.url),'utf8'));
-const rows=[],errors=[],seen=new Set();
+const contrasts=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-contrast-v1.json',import.meta.url),'utf8'));
+const rows=[],errors=[],seen=new Set(),contrastRows=[];
 for(const c of data.cases){
  if(seen.has(c.id)){errors.push(c.id+':duplicate');continue;}seen.add(c.id);
  try{
@@ -10,13 +12,18 @@ for(const c of data.cases){
   if(r.decisionReview.status!=='abstained'||!m||m.capacityComparisons.status==='invalid-evidence'||m.capacityComparisons.effectiveForce!==null||
    m.candidates.some(q=>!q.roleFlow||q.roleFlow.status==='invalid-evidence'||q.roleFlow.netEffectConfirmed!==null||q.roleFlow.selectionAuthority!==false||
     q.roleFlow.routes.some(w=>w.netEffectConfirmed!==null)||q.roleFlow.mediationContexts.some(w=>w.mediationConfirmed!==null)))errors.push(c.id+':integrity');
+  const contrast=contrasts.cases.find(x=>x.id===c.id);
+  if(!contrast||!m)errors.push(c.id+':contrast-missing');
+  else contrastRows.push(evaluateRoleContrast(contrast,m.roleCapacity,m.capacityComparisons));
+  if(m?.candidates.some(q=>!q.rolePriority||q.rolePriority.status==='invalid-evidence'||q.rolePriority.preferredInterpretation!==null||q.rolePriority.selectionAuthority!==false||q.rolePriority.contexts.some(x=>x.priorityConfirmed!==null)))errors.push(c.id+':priority-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
    ruleCoverage:c.rules.map(ruleId=>({ruleId,observed:flows.some(f=>f.routes.some(w=>w.ruleId===ruleId))})),
    mediationObserved:c.mediationReview?flows.some(f=>f.mediationContexts.length>0):null,
-   direction:r.regulationStrength?.direction??null,flows,effectAgreement:null});
+   direction:r.regulationStrength?.direction??null,flows,priorities:(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.rolePriority),effectAgreement:null});
  }catch(e){errors.push({id:c.id,error:e.message});}
 }
-console.log(JSON.stringify({version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
-if(errors.length||rows.length!==data.cases.length)process.exitCode=1;
+const contrastSummary=summarizeRoleContrasts(contrasts,contrastRows);
+console.log(JSON.stringify({contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;

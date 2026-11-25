@@ -26,7 +26,7 @@ export function observeRoleCapacity(prior){
   const rows=occurrences.filter(o=>!o.dayReference&&o.tenGod===tenGod),visible=rows.filter(o=>o.layer==='visible'),hidden=rows.filter(o=>o.layer==='hidden');
   return {tenGod,visibleIds:visible.map(o=>o.id),hiddenIds:hidden.map(o=>o.id),visibleObserved:observed(visible,complete),
    exactRootSlots:sorted(rows.flatMap(o=>o.exactRootSlots)),sameElementRootSlots:sorted(rows.flatMap(o=>o.sameElementRootSlots)),
-   sharedRootSlots:sorted(rows.flatMap(o=>[...o.exactRootSlots,...o.sameElementRootSlots]).filter((slot,i,xs)=>xs.indexOf(slot)!==i)),
+   sharedRootSlots:sorted(rows.flatMap(o=>sorted([...o.exactRootSlots,...o.sameElementRootSlots])).filter((slot,i,xs)=>xs.indexOf(slot)!==i)),
    effectiveForce:null,excessConfirmed:null,deficiencyConfirmed:null};
  });
  return {...base,status:complete?'diagnostic':'partial',occurrences,tenGods,limitations:['day-reference-excluded-from-ten-god-aggregation','root-slots-not-additive','hidden-access-unresolved','no-magnitude-from-axis-count']};
@@ -44,7 +44,7 @@ export function observeRoleConditions(review,prior,capacity,mechanism,compound,s
  const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
  if(routeMap.size!==entries.length||mechanism.routes.length!==entries.length||entries.some(({r,w})=>!routeMap.has(key(r.id,w.id))))return empty('invalid-evidence');
  const pairs=new Map(combination.pairs.map(p=>[pairKey(...p.participants),p]));
- const dayCapacity=strength?.direction==='strong'?'strong-hypothesis':strength?.direction==='weak'?'weak-hypothesis':'unresolved';
+ const dayCapacity=complete&&strength?.direction==='strong'?'strong-hypothesis':complete&&strength?.direction==='weak'?'weak-hypothesis':'unresolved';
  const comparison=(a,b,kind)=>{
   const e=raw.get(edgeKey({from:a,to:b,kind}));
   const relation=e?.relative?.relation??null;

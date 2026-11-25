@@ -1,0 +1,91 @@
+{
+  "version": "role-capacity-contrast-v1",
+  "scope": "exposed-source-comparison-proxies-not-empirical-gold",
+  "independentGold": 0,
+  "frozenAgainst": "78d06d0d4e3db791fc6df394f69f059f4d6a80b1",
+  "cases": [
+    {
+      "id": "wang-resource",
+      "probes": [
+        {
+          "id": "resource-vs-wealth-year",
+          "left": "visible:year",
+          "right": "visible:month",
+          "expected": "left-evidence-dominates",
+          "basis": "interpretive-proxy",
+          "locator": "論印綬 汪侍郎",
+          "reading": "Abundant rooted resource; comparing this visible resource with wealth is a proxy, not an explicit pairwise magnitude."
+        },
+        {
+          "id": "resource-vs-wealth-hour",
+          "left": "visible:hour",
+          "right": "visible:month",
+          "expected": "left-evidence-dominates",
+          "basis": "interpretive-proxy",
+          "locator": "論印綬 汪侍郎",
+          "reading": "Second visible resource; same source case, not independent evidence."
+        }
+      ]
+    },
+    {
+      "id": "zhexi-resource",
+      "probes": [
+        {
+          "id": "wealth-vs-resource",
+          "left": "visible:year",
+          "right": "visible:hour",
+          "expected": "left-evidence-dominates",
+          "basis": "explicit-role-contrast",
+          "locator": "論印綬 徐注 浙西某富翁子",
+          "reading": "The commentary describes heavy wealth, light resource and weak day; visible pair is a restricted test of that role contrast."
+        }
+      ]
+    },
+    {
+      "id": "li-resource-output",
+      "probes": [
+        {
+          "id": "resource-vs-output",
+          "left": "visible:month",
+          "right": "visible:year",
+          "expected": "left-evidence-dominates",
+          "basis": "interpretive-proxy",
+          "locator": "論印綬 李狀元",
+          "reading": "Strong day and abundant resource; relative resource/output ordering is an inferred proxy."
+        }
+      ]
+    },
+    {
+      "id": "ma-resource-killing",
+      "probes": [
+        {
+          "id": "day-vs-hidden-resource",
+          "left": "visible:day",
+          "right": "hidden:month:경",
+          "expected": "left-evidence-dominates",
+          "basis": "explicit-role-contrast",
+          "locator": "論印綬 馬參政",
+          "reading": "Source describes heavy day and light resource. Hidden resource is not comparable in the current visible-only policy."
+        }
+      ]
+    },
+    {
+      "id": "he-killing-resource",
+      "probes": []
+    },
+    {
+      "id": "tuo-killing-output",
+      "probes": [
+        {
+          "id": "output-vs-killing",
+          "left": "visible:hour",
+          "right": "visible:year",
+          "expected": "left-evidence-dominates",
+          "basis": "interpretive-proxy",
+          "locator": "論偏官 脫丞相",
+          "reading": "Excessive output is explicit; pairwise output/killing ordering is a proxy."
+        }
+      ]
+    }
+  ]
+}
