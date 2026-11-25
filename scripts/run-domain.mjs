@@ -1,5 +1,5 @@
 import {spawnSync} from 'node:child_process';
-import {TEST_DOMAINS} from './lib/test-domains.mjs';
+import {TEST_DOMAINS} from './lib/domain-manifest.mjs';
 import {root,auditTestLayout} from './lib/project-layout.mjs';
 
 const args=process.argv.slice(2);

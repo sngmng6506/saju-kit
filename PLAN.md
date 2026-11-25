@@ -19,6 +19,7 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 - Pending: native regression (including corrected climate export test), architecture audit, authority, transit and core pinned-baseline verification; repeat earlier verifiers at final gate.
 - Done: all 194 runtime files inventoried; dependency graph clean, 32 unreachable files all compatibility shims. Conservative declaration scan and manual review removed two unused local bindings/imports; research exports retained. Scope-aware exhaustive dead-code proof is not claimed.
 - Done: logical domain organization of canonical docs/results, native test entries and frozen fixtures; targeted path-consumer inspection supports retaining historical paths. Physical relocation deferred, not required for navigation or scoped execution.
+- Passed (user-reported): layout and dead-code audits; native suite 351/352 due to unintended CLI test discovery. Renamed CLI and manifest, with a discovery naming guard; full rerun pending.
 - Pending: final native full regression, all audits and pinned equivalence verifiers.
 
 ## Next after the regression gate

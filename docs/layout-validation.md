@@ -25,3 +25,7 @@ The layout audit checks exact coverage of the test manifest and all canonical do
 ## Pending
 
 The prior authority correction, transit, core and dead-code native reruns have not been reported. Run the complete suite, architecture/dead-code/layout audits and all pinned equivalence verifiers before marking refactoring complete. Physical migration is deferred unless a concrete need justifies a separate path-consumer migration.
+
+## Native discovery follow-up
+
+The user reported 351 passes and one failure (352 tests counted) while both layout and dead-code audits passed. The default Node runner also discovered the CLI `scripts/test-domain.mjs` and its manifest `scripts/lib/test-domains.mjs`; the CLI had no argument and exited 2. Both files are renamed to non-test-like names, without changing public npm commands. A minimal native Node 22.16.0 reproduction confirmed that both old filenames are discovered and neither renamed file is discovered. The layout audit now checks test-like filenames in root, src and scripts, with regression assertions. The expected full suite is 350 tests; the real full rerun is pending.

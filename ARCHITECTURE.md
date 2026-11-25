@@ -62,7 +62,7 @@ Other domains retain their existing version directories for now. Group only afte
 
 ## Documentation ownership
 
-README is the entry point; this file describes current architecture; PLAN describes remaining work; ADRs preserve decisions and rationale. Version contracts and source/validation notes are discoverable through [docs/README.md](docs/README.md). Historical document/result and test/fixture paths are preserved. Domain catalogs in `docs/domains/` index canonical documents and fixtures without duplication; `scripts/lib/test-domains.mjs` assigns each native test entry to one primary domain. See [test workflow](test/README.md) and [layout validation](docs/layout-validation.md). Original plan is archived in [docs/history/initial-plan.md](docs/history/initial-plan.md).
+README is the entry point; this file describes current architecture; PLAN describes remaining work; ADRs preserve decisions and rationale. Version contracts and source/validation notes are discoverable through [docs/README.md](docs/README.md). Historical document/result and test/fixture paths are preserved. Domain catalogs in `docs/domains/` index canonical documents and fixtures without duplication; `scripts/lib/domain-manifest.mjs` assigns each native test entry to one primary domain. See [test workflow](test/README.md) and [layout validation](docs/layout-validation.md). Original plan is archived in [docs/history/initial-plan.md](docs/history/initial-plan.md).
 
 ## Verification
 
