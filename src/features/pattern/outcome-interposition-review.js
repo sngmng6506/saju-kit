@@ -1,7 +1,7 @@
 import {elementRelation} from '../../core/elements.js';
 const ORDER=['year','month','day','hour'];
 const uniq=xs=>[...new Set(xs)].sort();
-const index=(xs,key)=>Array.isArray(xs)&&new Set(xs.map(key)).size===xs.length?new Map(xs.map(x=>[key(x),x])):null;
+const index=(xs,key)=>{if(!Array.isArray(xs))return null;try{const keys=xs.map(key);return new Set(keys).size===xs.length?new Map(xs.map((x,i)=>[keys[i],x])):null;}catch{return null;}};
 const slot=a=>a.position+':'+a.layer;
 const distance=(a,b)=>Math.abs(ORDER.indexOf(a.position)-ORDER.indexOf(b.position));
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -12,8 +12,10 @@ const pressureClass=state=>state==='grounded-observation'?'rooted-controller-obs
 const invalid=base=>({...base,status:'invalid-evidence',paths:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
 function validateNode(nodeId,groups,donors,rootContext,complete){
  const members=groups.get(nodeId),d=donors.get(nodeId);
- if(!members?.length||!d||!Array.isArray(d.occurrenceIds)||!Array.isArray(d.contacts)||
-  !Array.isArray(d.groundedRootIds)||!Array.isArray(d.contestedRootIds))return false;
+ if(!members?.length||!d||!Array.isArray(d.occurrenceIds)||d.occurrenceIds.some(x=>typeof x!=='string')||
+  !Array.isArray(d.contacts)||!Array.isArray(d.groundedRootIds)||!Array.isArray(d.contestedRootIds)||
+  [...d.groundedRootIds,...d.contestedRootIds].some(x=>typeof x!=='string'||!/^hidden:(year|month|day|hour):.+$/.test(x))||
+  members.some(a=>!Array.isArray(a.contacts)))return false;
  const first=members[0],kind=first.layer==='visible'?'visible-stem':'local-branch-constituents';
  if(d.position!==first.position||d.element!==first.element||d.kind!==kind||
   !same(uniq(d.occurrenceIds),uniq(members.map(x=>x.id)))||
@@ -51,7 +53,7 @@ function validateEdge(e,from,to,type,groups,donors){
   e.sourceEvidence.layer!==nodeLayer(a)||e.targetEvidence.layer!==nodeLayer(b)||
   e.sourceEvidence.element!==a.element||e.targetEvidence.element!==b.element||
   !same(e.sourceEvidence.contacts,a.contacts)||!same(e.targetEvidence.contacts,b.contacts))return false;
- const d=distance(a,b),r=elementRelation(a.element,b.element);
+ const d=distance(a,b);let r;try{r=elementRelation(a.element,b.element);}catch{return false;}
  if(d!==e.distance||e.local!==(d<=1)||r.type!==type||r.direction!=='left-to-right')return false;
  const sourceRoots=uniq([...source.groundedRootIds,...source.contestedRootIds]);
  const targetRoots=uniq([...target.groundedRootIds,...target.contestedRootIds]);
@@ -63,7 +65,7 @@ function validateEdge(e,from,to,type,groups,donors){
 function pressureFor(nodeId,groups,donors){
  const members=groups.get(nodeId),first=members[0];
  const rows=first.controlReceived??[];
- if(!Array.isArray(rows)||members.some(m=>!Array.isArray(m.controlReceived)))return null;
+ if(!Array.isArray(rows)||rows.some(e=>!e||typeof e!=='object')||members.some(m=>!Array.isArray(m.controlReceived)||m.controlReceived.some(e=>!e||typeof e!=='object')))return null;
  const signature=e=>JSON.stringify([e.from,e.to,e.distance,e.local,e.sourceEvidence?.id,e.targetEvidence?.id]);
  if(members.some(m=>!same((m.controlReceived??[]).map(signature).sort(),rows.map(signature).sort())))return null;
  const result=[];
