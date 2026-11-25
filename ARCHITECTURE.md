@@ -46,6 +46,10 @@ All v1–v10 public pattern entry points delegate to the request-local pipeline.
 
 The `balance/`, `mediation/` and `remedy/` directories own their respective doctrine evidence and review policies. The private `src/features/method-evidence.js` composes request-local structure and strength observations for the balance priority/route and parallel useful-element review. Standard/neutral scenarios remain distinct; no cross-method authority is inferred. See [method refactor validation](docs/methods-refactor-validation.md).
 
+## Current useful-element authority domain
+
+`src/features/useful-element/` owns parallel review, anchor relations, temporal alternatives, expanded source candidates and five-method comparison. Its authority pipeline composes fixed policy versions without discarded baseline projections. The shared method provider supplies request-local natal context and structure to climate; the v2 anchor namespace, v3 source namespace and v4 pattern evidence remain separate. Historical entry points are compatible. See [authority refactor validation](docs/authority-refactor-validation.md).
+
 Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
 ## Documentation ownership
@@ -61,6 +65,7 @@ npm run verify:pattern-refactor
 npm run verify:strength-refactor
 npm run verify:climate-refactor
 npm run verify:methods-refactor
+npm run verify:authority-refactor
 ```
 
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.

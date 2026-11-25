@@ -12,13 +12,15 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 - Passed (user-confirmed before climate migration): all tests after repairing research-source references and adding progress reporting.
 - Done: consolidate 13 climate implementation modules and shared review kernel; five-policy isolated equivalence passed.
 - Done: consolidate balance, mediation and remedy implementations and share method observations; seven-policy isolated equivalence passed.
-- Pending: native regression, architecture audit, and pattern/strength/climate/methods pinned-baseline verifiers.
+- Passed (user-confirmed before authority migration): native regression and climate/methods pinned-baseline verification.
+- Done: consolidate nine useful-element review/authority modules, skip discarded climate projection and share method context; nine-policy isolated equivalence passed.
+- Pending: new native regression, architecture audit and authority pinned-baseline verification; repeat earlier verifiers at final gate.
 - Pending: inspect remaining domains and document link consumers before additional physical migration. Symbol-level dead code and duplicate semantic logic require separate review; no automatic removal.
 - Pending: decide whether to move historical research/results files after all referencing scripts/docs are audited. Do not create duplicate authoritative specs.
 
 ## Next after the regression gate
 
-1. Review useful-element authority/review and transit dependency boundaries; use small equivalent migrations only when justified.
+1. Review useful-element transit and other transit/movement dependency boundaries; use small equivalent migrations only when justified.
 2. Measure runtime and result size before performance optimization.
 3. Resume pattern 成敗救應 research on the consolidated pattern domain. Separate structural evidence, unresolved effects and authority; preserve special-pattern exclusion and consumer pins.
 4. Independently validate selection/efficacy hypotheses before promoting a policy or connecting new decisions to transit. No automatic final useful/favorable/unfavorable selection.
@@ -32,6 +34,7 @@ npm run verify:pattern-refactor
 npm run verify:strength-refactor
 npm run verify:climate-refactor
 npm run verify:methods-refactor
+npm run verify:authority-refactor
 ```
 
 Use `npm run test:failures` for routine local regression: file-completion progress (approximately every 10%), failures, relevant stderr and the aggregate summary are printed. `npm test` remains available for full output.

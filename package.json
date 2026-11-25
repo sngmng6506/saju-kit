@@ -11,7 +11,8 @@
     "verify:strength-refactor": "node scripts/verify-strength-refactor.mjs",
     "test:failures": "node --test --test-reporter=./scripts/lib/failures-reporter.mjs",
     "verify:climate-refactor": "node scripts/verify-climate-refactor.mjs",
-    "verify:methods-refactor": "node scripts/verify-methods-refactor.mjs"
+    "verify:methods-refactor": "node scripts/verify-methods-refactor.mjs",
+    "verify:authority-refactor": "node scripts/verify-authority-refactor.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
