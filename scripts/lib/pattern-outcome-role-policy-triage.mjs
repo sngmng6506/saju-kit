@@ -287,7 +287,7 @@ export function summarizeRoleDemandReview(c,mechanism,partial){
 }
 
 export function summarizeResourceDemandConditions(c,mechanism,partial){
- const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={resources:0,visibleResources:0,deliveryEdges:0,alternativeRelations:0,sharedRootRelations:0,contexts:0},states={};
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={resources:0,visibleResources:0,deliveryEdges:0,alternativeRelations:0,sharedRootRelations:0,sharedContextRootRelations:0,sharedDonorRelations:0,screenedDeliveries:0,contexts:0},states={};
  const chart=mechanism?.resourceSupplyContext,status=partial?'partial':'diagnostic';
  const noAuthority=x=>x&&x.necessityConfirmed===null&&x.excessConfirmed===null&&x.deficiencyConfirmed===null&&x.preservationConfirmed===null&&x.effective===null;
  if(!noAuthority(chart)||chart.status!==status||chart.completeHour!==!partial||chart.selectionAuthority!==false||!chart.day||
@@ -296,16 +296,28 @@ export function summarizeResourceDemandConditions(c,mechanism,partial){
  if(resources.size!==chart.resources.length)errors.push('resource-duplicate');
  for(const r of resources.values()){
   counts.resources++;if(r.layer==='visible')counts.visibleResources++;if(r.delivery)counts.deliveryEdges++;
+  if(r.deliveryObservation==='structural-delivery-screen-met')counts.screenedDeliveries++;
+  const expectedObservation=partial?'partial':r.layer!=='visible'?'hidden-access-review':r.delivery?.generationScreen==='grounded-generation-context-screen-met'?'structural-delivery-screen-met':r.delivery?'literal-delivery-context-review':'literal-delivery-not-observed';
+  if(r.deliveryObservation!==expectedObservation||!Array.isArray(r.supplyContextRootIds)||!Array.isArray(r.observedSupplyDonorNodeIds)||
+   r.observedSupplyRootIds.some(id=>!r.supplyContextRootIds.includes(id))||r.contestedRootIds.some(id=>!r.supplyContextRootIds.includes(id)))errors.push('resource-delivery-observation:'+r.id);
   if(!noAuthority(r)||r.delivery&&(r.delivery.from!==r.id||r.delivery.to!==chart.day.id||r.delivery.kind!=='generate'||r.delivery.effective!==null))errors.push('resource-delivery:'+r.id);
  }
  for(const a of chart.alternatives){
   counts.alternativeRelations++;if(a.sharedRootIds.length)counts.sharedRootRelations++;
   const r=resources.get(a.resourceId),b=resources.get(a.alternativeId),k=JSON.stringify([a.resourceId,a.alternativeId]);
   const shared=r&&b?r.observedSupplyRootIds.filter(id=>b.observedSupplyRootIds.includes(id)).sort():[];
+  const commonContext=r&&b?r.supplyContextRootIds.filter(id=>b.supplyContextRootIds.includes(id)).sort():[];
+  const commonDonors=r&&b?r.observedSupplyDonorNodeIds.filter(id=>b.observedSupplyDonorNodeIds.includes(id)).sort():[];
+  if(commonContext.length)counts.sharedContextRootRelations++;
+  if(commonDonors.length)counts.sharedDonorRelations++;
+  const coverage=r&&b?(r.layer!=='visible'||b.layer!=='visible'?'hidden-access-review':shared.length?'shared-root-review':commonDonors.length?'shared-donor-review':commonContext.length?'shared-context-root-review':!r.observedSupplyRootIds.length||!b.observedSupplyRootIds.length?'root-basis-unestablished':'distinct-observed-root-ids'):null;
+  if(JSON.stringify(a.sharedContextRootIds?.slice().sort())!==JSON.stringify(commonContext)||JSON.stringify(a.sharedDonorNodeIds?.slice().sort())!==JSON.stringify(commonDonors)||a.coverage!==coverage)errors.push('resource-alternative-context:'+k);
   if(pairs.has(k)||!r||!b||r===b||!b.delivery||JSON.stringify(a.delivery)!==JSON.stringify(b.delivery)||
    JSON.stringify([...a.sharedRootIds].sort())!==JSON.stringify(shared)||a.independentSupplyConfirmed!==null||a.substitutionConfirmed!==null)errors.push('resource-alternative:'+k);
   pairs.add(k);
  }
+ const expectedPairs=[...resources.values()].flatMap(r=>[...resources.values()].filter(b=>r.id!==b.id&&b.delivery).map(b=>JSON.stringify([r.id,b.id])));
+ if(expectedPairs.length!==pairs.size||expectedPairs.some(k=>!pairs.has(k)))errors.push('resource-alternative-coverage');
  const ids=new Set(['required-resource-injury','excess-resource-moderation','drain-resource-supported-strong-day','drain-burdens-weak-day','killing-supplies-light-resource','weak-day-heavy-resource-original-reading','killing-supply-with-both-day-and-resource-heavy','officer-independent-role-review']);
  for(const m of mechanism.candidates??[]){
   const p=m.rolePriority,d=p?.resourceDemandConditions,source=p?.demandReview;
@@ -317,7 +329,8 @@ export function summarizeResourceDemandConditions(c,mechanism,partial){
    counts.contexts++;states[x.contextState]=(states[x.contextState]??0)+1;
    const o=expected.find(o=>o.id===x.objectiveRef);
    if(!noAuthority(x)||!o||seen.has(x.objectiveRef)||x.resourceId!==o.roles.resource||!resources.has(x.resourceId)||
-    x.dayId!==chart.day.id||x.sourceConditionalStatus!==o.conditionalStatus||!x.unprovedConditions.length||
+    x.dayId!==chart.day.id||x.deliveryObservation!==resources.get(x.resourceId)?.deliveryObservation||
+    JSON.stringify(x.delivery)!==JSON.stringify(resources.get(x.resourceId)?.delivery)||x.sourceConditionalStatus!==o.conditionalStatus||!x.unprovedConditions.length||
     x.unprovedConditions.some(p=>p.state!=='unresolved')||partial&&x.dayPremise!=='unresolved')errors.push('resource-objective-binding:'+x.objectiveRef);
    seen.add(x.objectiveRef);
   }
