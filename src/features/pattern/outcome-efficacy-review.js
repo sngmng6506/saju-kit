@@ -7,6 +7,7 @@ import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
 import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies,assessKillingWealth,assessResourceStrategies} from './outcome-role-priority.js';
+import {observeRoleDemand} from './outcome-role-demand.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
 import {observeInterpositionReview} from './outcome-interposition-review.js';
@@ -56,7 +57,8 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const resourceStrategies=assessResourceStrategies(q,prior,roleCapacity,m,result.regulationStrength,rootContext,edge=>evaluateMechanismEdge(context.assess(edge),prior.completeHour));
   const policies={objectiveReview:roleObjectives,killingStrategies,killingWealth,resourceStrategies};
   const interactions=observeRoleInteractions(q,roleCapacity,rootContext,policies,prior.completeHour);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions}};
+  const demandReview=observeRoleDemand(q,roleCapacity,groundedSupply,interpositionReview,policies,prior.completeHour);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview}};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
