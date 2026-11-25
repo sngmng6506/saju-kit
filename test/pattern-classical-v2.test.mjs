@@ -465,3 +465,73 @@ test('native role contrast audit preserves cohort counts and authority boundary'
   for(const p of Object.values(s.byPattern))assert.equal(p.witnesses,p.screenMet+p.requiresReview+p.conditionalExcluded);
  }
 });
+
+import {observeActorAccess,bindCandidateAccess,classifyAccessEdge,reviewPatternAccess,scopedOutcome,summarizeAccess} from '../scripts/lib/pattern-access-review.mjs';
+import {auditPatternAccess} from '../scripts/audit-classical-patterns.mjs';
+const accessActor=(position,layer,stem,element,role=null)=>({id:layer==='visible'?'visible:'+position:'hidden:'+position+':'+stem,position,layer,stem,element,role,dayReference:layer==='visible'&&position==='day'});
+test('hidden projection is exact, independent of same-element roots and day reference',()=>{
+ const actors=[accessActor('year','visible','갑','wood'),accessActor('day','visible','을','wood'),
+ accessActor('month','hidden','갑','wood','principal'),accessActor('hour','hidden','을','wood','middle'),accessActor('year','hidden','병','fire','principal')];
+ const rows=observeActorAccess(actors,true),get=id=>rows.find(x=>x.id===id);
+ assert.deepEqual(get('hidden:month:갑').exactVisibleIds,['visible:year']);
+ assert.deepEqual(get('hidden:hour:을').exactVisibleIds,[]);
+ assert.deepEqual(get('hidden:hour:을').sameElementVisibleIds,['visible:year']);
+ assert.equal(get('hidden:hour:을').dayStemMatch,true);
+ assert.equal(get('hidden:hour:을').exactProjectionObserved,false);
+ assert.equal(observeActorAccess(actors,false).find(x=>x.id==='hidden:hour:을').exactProjectionObserved,null);
+ assert.equal(get('hidden:month:갑').independentHiddenAction,null);
+ assert.equal(get('visible:year').rootMatches.length,2);
+});
+test('month anchor scope preserves monthly source and projected actors without promoting other hidden copies',()=>{
+ const actors=[accessActor('year','visible','갑','wood'),accessActor('day','visible','을','wood'),accessActor('month','hidden','갑','wood','principal'),
+ accessActor('hour','hidden','갑','wood','middle'),accessActor('month','hidden','을','wood','middle'),accessActor('hour','visible','을','wood')];
+ const legacy=['visible:year','hidden:month:갑','hidden:hour:갑'];
+ const base={id:'p',family:'resource',kind:'month-principal',stems:['갑']};
+ const p=bindCandidateAccess(base,actors,legacy,true);
+ assert.deepEqual(p.sourceIds,['hidden:month:갑']);assert.deepEqual(p.visibleActorIds,['visible:year']);
+ assert.deepEqual(p.excludedLegacyIds,['hidden:hour:갑']);
+ const exact=bindCandidateAccess({...base,kind:'month-hidden-projection',positions:['year']},actors,legacy,true);
+ assert.equal(exact.basis,'exact-month-projection');
+ assert.throws(()=>bindCandidateAccess({...base,kind:'month-hidden-projection',positions:['hour']},actors,legacy,true),/unbound exact/);
+ const storageActors=actors.filter(o=>o.id!=='hidden:month:을');
+ const storage=bindCandidateAccess({...base,kind:'month-storage-projection',stems:['을'],positions:['hour'],element:'wood'},storageActors,['visible:hour'],true);
+ assert.deepEqual(storage.sourceIds,[]);assert.deepEqual(storage.contextIds,['hidden:month:갑']);
+ assert.deepEqual(storage.scopedAnchorIds,['visible:hour']);
+ const formation=bindCandidateAccess({...base,kind:'month-formation',stems:['갑','을']},actors,[...legacy,'hidden:month:을','visible:hour'],true);
+ assert.deepEqual(formation.scopedAnchorIds,[]);
+});
+test('access layers distinguish vertical from branch and visible edges without replacing a hidden actor',()=>{
+ const actors=[accessActor('year','visible','갑','wood'),accessActor('month','visible','병','fire'),accessActor('day','visible','무','earth'),
+ accessActor('year','hidden','병','fire','principal'),accessActor('hour','hidden','갑','wood','principal')];
+ const edges=[{id:'a',from:'visible:year',to:'visible:month',kind:'generate'},
+ {id:'b',from:'visible:year',to:'hidden:year:병',kind:'generate'},
+ {id:'c',from:'hidden:hour:갑',to:'hidden:year:병',kind:'generate'},
+ {id:'d',from:'hidden:hour:갑',to:'visible:month',kind:'generate'}];
+ const idx=new Map(actors.map(o=>[o.id,o])),acc=new Map(observeActorAccess(actors,true).map(o=>[o.id,o]));
+ const rows=edges.map(e=>classifyAccessEdge(e,idx,acc,true));
+ assert.deepEqual(rows.map(r=>r.layerKind),['visible-visible','same-pillar-stem-branch','branch-branch','cross-pillar-stem-branch']);
+ assert.deepEqual(rows[2].projectedSourceAlternatives,['visible:year']);
+ assert.deepEqual(rows[2].projectedTargetAlternatives,['visible:month']);
+ assert.ok(rows.every(r=>r.effective===null));
+ assert.equal(classifyAccessEdge(edges[0],idx,acc,false).accessStatus,'partial');
+});
+test('scoped comparison does not mutate original anchors or expand legacy candidate scope',()=>{
+ const actors=[accessActor('year','visible','갑','wood'),accessActor('month','hidden','갑','wood','principal'),accessActor('hour','hidden','갑','wood','middle')];
+ const selection={candidates:[{id:'p',family:'resource',kind:'month-principal',stems:['갑']}]};
+ const result={completeHour:true,selection,routeReview:{occurrences:actors},relativeForce:{completeHour:true,edges:[]}};
+ const outcome={status:'structural-review',candidates:[{candidateId:'p',family:'resource',anchorIds:actors.map(o=>o.id)}]};
+ const before=structuredClone({result,outcome}),r=reviewPatternAccess(result,outcome),scoped=scopedOutcome(outcome,r);
+ assert.deepEqual({result,outcome},before);
+ assert.equal(scoped.candidates[0].anchorIds.length,2);assert.equal(outcome.candidates[0].anchorIds.length,3);
+ assert.equal(summarizeAccess([r]).excludedLegacyAnchors,1);assert.equal(r.selectionAuthority,false);
+ assert.equal(reviewPatternAccess({}, {status:'unavailable'}).status,'unavailable');
+});
+test('native access ablation preserves candidates and cannot increase the scoped role witness count',()=>{
+ const r=auditPatternAccess();
+ assert.equal(r.shen.access.charts,67);assert.equal(r.xu.access.charts,34);
+ for(const cohort of [r.shen,r.xu]){
+  assert.equal(cohort.legacy.candidates,cohort.scoped.candidates);
+  for(const [id,p] of Object.entries(cohort.scoped.byPattern))assert.ok(p.witnesses<=cohort.legacy.byPattern[id].witnesses);
+  assert.equal(cohort.access.confirmedHiddenActions,0);assert.equal(cohort.scoped.finalDecisions,0);
+ }
+});
