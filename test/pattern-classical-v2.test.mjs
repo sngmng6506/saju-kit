@@ -109,3 +109,75 @@ test('native v10 commentary audit preserves source label counts and abstains on 
  assert.equal(r.summary.finalAssistantAccuracy,null);
  assert.ok(r.rows.every(x=>x.selectionAuthority===false));
 });
+
+import {reviewEfficacyEdge,reviewPatternEfficacy,summarizeEfficacyReviews} from '../scripts/lib/pattern-efficacy-review.mjs';
+import {auditPatternEfficacy} from '../scripts/audit-classical-patterns.mjs';
+const forceEdge=(from,to,{kind='control',blockers=[],relation='left-evidence-dominates'}={})=>({
+ id:from+'>'+to,from,to,kind,blockers,relative:{relation},screen:blockers.includes('missing-hour')?'unresolved':blockers.length?'requires-review':'root-and-locality-screen-met',
+ sourceLocalControlNodes:[],possibleLocalProtection:[],effective:null
+});
+const forceRef=(e,kind=e.kind)=>({from:e.from,to:e.to,kind,edgeId:e.id,screen:e.screen});
+test('efficacy screen separates direction, control balance, unknown access and combination',()=>{
+ const a=forceEdge('a','b'),g=new Map([[a.id,a]]);
+ assert.equal(reviewEfficacyEdge(forceRef(a,'controlled-by-anchor'),g,true).status,'necessary-screen-met');
+ assert.equal(reviewEfficacyEdge(forceRef(a),g,false).status,'unresolved');
+ assert.throws(()=>reviewEfficacyEdge({...forceRef(a),from:'c'},g,true),/inconsistent/);
+ assert.throws(()=>reviewEfficacyEdge({...forceRef(a),screen:'unresolved'},g,true),/inconsistent/);
+ assert.equal(reviewEfficacyEdge({from:'a',to:'b',kind:'combine',edgeId:null,screen:'combination-effect-unresolved'},g,true).status,'unresolved');
+ const b=forceEdge('a','b',{relation:'right-evidence-dominates'});g.set(b.id,b);
+ assert.equal(reviewEfficacyEdge(forceRef(b),g,true).status,'review-required');
+ const h=forceEdge('a','b',{blockers:['hidden-participant-access-unresolved','root-clash-exposure']});g.set(h.id,h);
+ const q=reviewEfficacyEdge(forceRef(h),g,true);
+ assert.equal(q.status,'unresolved');assert.ok(q.reviewReasons.includes('root-clash-exposure'));assert.equal(q.effective,null);
+ const m=forceEdge('a','b',{relation:'mixed-evidence'});g.set(m.id,m);
+ assert.ok(reviewEfficacyEdge(forceRef(m),g,true).reviewReasons.includes('control-evidence-incomparable'));
+ const gen=forceEdge('a','b',{kind:'generate',relation:'right-evidence-dominates'});g.set(gen.id,gen);
+ assert.equal(reviewEfficacyEdge(forceRef(gen,'generated-by-anchor'),g,true).status,'necessary-screen-met');
+});
+const efficacyControl=()=>{
+ const a=forceEdge('output','officer'),b=forceEdge('resource','output');
+ const damage=forceRef(a,'controlled-by-anchor'),helper=forceRef(b);
+ const routes=[{id:'damage',kind:'damage',observed:true,links:[damage]},{id:'rescue',kind:'rescue',observed:true,links:[helper]}];
+ const result={completeHour:true,relativeForce:{completeHour:true,edges:[a,b],triads:[]},
+  relativePattern:{routes:[{candidateId:'p',routes}],paths:[{candidateId:'p',paths:[{id:'protect',unresolvedConditions:['resource-effective'],witnesses:[{roles:{helper:'resource',target:'officer',obstacle:'output'},edges:[helper,damage]}]}]}]}};
+ const outcome={status:'structural-review',candidates:[{candidateId:'p',family:'officer',anchorIds:['officer'],routes,threats:[{routeId:'damage',...damage,possibleRescues:[{routeId:'rescue',helper:'resource',obstacle:'output',target:'officer'}]}]}]};
+ return {result,outcome};
+};
+test('multi-edge rescue and named paths retain unresolved doctrinal conditions and never cancel damage',()=>{
+ const {result,outcome}=efficacyControl();
+ const before=structuredClone({result,outcome}),review=reviewPatternEfficacy(result,outcome),c=review.candidates[0];
+ assert.deepEqual({result,outcome},before);
+ assert.equal(c.threats[0].damage.status,'necessary-screen-met');
+ const w=c.threats[0].possibleRescues[0];
+ assert.equal(w.allEdgeScreensMet,true);assert.equal(w.status,'unresolved');assert.equal(w.neutralizesThreat,null);
+ assert.equal(c.threats[0].neutralized,null);
+ assert.equal(c.paths[0].witnesses[0].status,'unresolved');
+ assert.ok(c.paths[0].witnesses[0].unresolved.includes('source-condition:resource-effective'));
+ assert.equal(c.formed,null);assert.equal(c.rescued,null);assert.equal(review.selectionAuthority,false);
+ const s=summarizeEfficacyReviews([review]);
+ assert.equal(s.routeLinks['necessary-screen-met'],2);assert.equal(s.rescueWitnesses.unresolved,1);
+ assert.equal(s.allRescueEdgeScreensMet,1);assert.equal(s.confirmedEffective,0);
+ result.completeHour=false;assert.equal(reviewPatternEfficacy(result,outcome).status,'partial');
+ assert.equal(reviewPatternEfficacy(result,outcome).candidates[0].routes[0].links[0].status,'unresolved');
+ assert.equal(reviewPatternEfficacy({}, {status:'unavailable'}).status,'unavailable');
+});
+test('food-killing-day triad stays bound to its actual killing occurrence and does not resolve day capacity',()=>{
+ const food=forceEdge('food','killing'),pressure=forceEdge('killing','day'),drain=forceEdge('day','food',{kind:'generate'});
+ const triad={id:'t',food:'food',killing:'killing',day:'day',controlEdge:food.id,dayPressureEdge:pressure.id,dayOutputEdge:drain.id,dayRootEvidence:true,concerns:[]};
+ const candidates=['killing','other'].map(id=>({candidateId:id,family:'killing',anchorIds:[id],routes:[],threats:[]}));
+ const result={completeHour:true,relativeForce:{completeHour:true,edges:[food,pressure,drain],triads:[triad]},
+  relativePattern:{routes:candidates.map(c=>({candidateId:c.candidateId,routes:[]})),paths:candidates.map(c=>({candidateId:c.candidateId,paths:[]}))}};
+ const r=reviewPatternEfficacy(result,{status:'structural-review',candidates});
+ assert.equal(r.candidates[0].triads.length,1);assert.equal(r.candidates[1].triads.length,0);
+ assert.ok(r.candidates[0].triads[0].unresolved.includes('source-condition:day-capacity'));
+ assert.equal(r.candidates[0].triads[0].effectiveControl,null);
+});
+test('native efficacy audit reports cohorts separately without final outcome authority',()=>{
+ const r=auditPatternEfficacy();
+ assert.equal(r.shen.summary.charts,67);assert.equal(r.xu.summary.charts,34);assert.equal(r.excludedShen,14);
+ for(const s of [r.shen.summary,r.xu.summary]){
+  assert.equal(s.confirmedEffective,0);assert.equal(s.finalOutcomeAccuracy,null);
+  assert.equal(s.selectionAuthority,false);
+  assert.ok(s.candidates>0);
+ }
+});
