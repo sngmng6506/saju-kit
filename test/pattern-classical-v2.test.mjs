@@ -452,7 +452,10 @@ test('killing alternatives retain direct pressure, wealth-fed killing, combinati
  assert.equal(w.additionalEdges[0].edgeId,'w>k');assert.deepEqual(w.contacts,['contact']);
  assert.equal(w.status,'structure-requires-review');assert.equal(w.effective,null);
  assert.ok(review.candidates[1].patterns.every(p=>p.witnesses.length===0));
- assert.equal(summarizeRoleContrasts([review]).finalDecisions,0);
+ const summary=summarizeRoleContrasts([review]);
+ assert.equal(summary.finalDecisions,0);
+ assert.ok(summary.visibleOnlyWitnesses>0);
+ assert.ok(summary.blockerCounts.some(b=>b.reason==='additional-wealth-killing-edge'&&b.chartCount===1&&b.witnesses===1));
  assert.equal(reviewRoleContrasts({}, {status:'unavailable'},null,null).status,'unavailable');
 });
 test('native role contrast audit preserves cohort counts and authority boundary',()=>{
