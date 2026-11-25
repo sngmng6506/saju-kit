@@ -12,7 +12,8 @@ const pressureClass=state=>state==='grounded-observation'?'rooted-controller-obs
 const invalid=base=>({...base,status:'invalid-evidence',paths:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
 function validateNode(nodeId,groups,donors,rootContext,complete){
  const members=groups.get(nodeId),d=donors.get(nodeId);
- if(!members?.length||!d)return false;
+ if(!members?.length||!d||!Array.isArray(d.occurrenceIds)||!Array.isArray(d.contacts)||
+  !Array.isArray(d.groundedRootIds)||!Array.isArray(d.contestedRootIds))return false;
  const first=members[0],kind=first.layer==='visible'?'visible-stem':'local-branch-constituents';
  if(d.position!==first.position||d.element!==first.element||d.kind!==kind||
   !same(uniq(d.occurrenceIds),uniq(members.map(x=>x.id)))||
@@ -41,7 +42,10 @@ function validateNode(nodeId,groups,donors,rootContext,complete){
 }
 function validateEdge(e,from,to,type,groups,donors){
  const a=groups.get(from)?.[0],b=groups.get(to)?.[0],source=donors.get(from),target=donors.get(to);
- if(!e||!a||!b||!source||!target||e.from!==from||e.to!==to||e.type!==type||
+ if(!e||!a||!b||!source||!target||!Array.isArray(e.sourceEvidence?.contacts)||
+  !Array.isArray(e.targetEvidence?.contacts)||!Array.isArray(e.sourceEvidence?.substantialRootPositions)||
+  !Array.isArray(e.targetEvidence?.substantialRootPositions)||!Array.isArray(e.sourceEvidence?.unexposedSubstantialRootPositions)||
+  !Array.isArray(e.targetEvidence?.unexposedSubstantialRootPositions)||e.from!==from||e.to!==to||e.type!==type||
   e.effectConfirmed!==null||e.sourceEvidence?.id!==from||e.targetEvidence?.id!==to||
   e.sourceEvidence.position!==a.position||e.targetEvidence.position!==b.position||
   e.sourceEvidence.layer!==nodeLayer(a)||e.targetEvidence.layer!==nodeLayer(b)||
@@ -59,6 +63,7 @@ function validateEdge(e,from,to,type,groups,donors){
 function pressureFor(nodeId,groups,donors){
  const members=groups.get(nodeId),first=members[0];
  const rows=first.controlReceived??[];
+ if(!Array.isArray(rows)||members.some(m=>!Array.isArray(m.controlReceived)))return null;
  const signature=e=>JSON.stringify([e.from,e.to,e.distance,e.local,e.sourceEvidence?.id,e.targetEvidence?.id]);
  if(members.some(m=>!same((m.controlReceived??[]).map(signature).sort(),rows.map(signature).sort())))return null;
  const result=[];
@@ -121,7 +126,9 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
  const groups=new Map();
  if(!actors||!rootRows||actors.size!==rootRows.size||[...actors.keys()].some(id=>!rootRows.has(id)))return invalid(base);
  for(const a of actors.values()){
-  if(!a.graphNodeId||!ORDER.includes(a.position)||!['visible','hidden'].includes(a.layer))return invalid(base);
+  if(!a.graphNodeId||!ORDER.includes(a.position)||!['visible','hidden'].includes(a.layer)||
+   a.graphNodeId!==(a.layer==='visible'?a.position+':stem':a.position+':branch:'+a.element)||
+   !Array.isArray(a.protectionAndMediation))return invalid(base);
   if(!groups.has(a.graphNodeId))groups.set(a.graphNodeId,[]);
   groups.get(a.graphNodeId).push(a);
  }
