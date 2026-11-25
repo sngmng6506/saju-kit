@@ -54,11 +54,25 @@ test('exact and same-element root in one slot of one occurrence is not shared su
 test('relative evidence cannot trigger excess review if root or command direction changes',()=>{
  const cmp={relation:'left-evidence-dominates',status:'directional-profile-only',cautions:[]};
  const root={status:'diagnostic',comparisons:[{left:a,right:b,sensitivity:{relation:'left-evidence-dominates'}}]};
- const command={status:'diagnostic',comparisonCoverage:[{left:b,right:a,status:'available-hypotheses-agree',hypotheses:[{id:'s',relation:'right-evidence-dominates'}]}]};
+ const command={status:'diagnostic',variants:[{id:'s'}],comparisonCoverage:[{left:b,right:a,status:'available-hypotheses-agree',expectedCount:1,availableCount:1,hypotheses:[{id:'s',relation:'right-evidence-dominates'}]}]};
  assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'directional-review-eligible');
  assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,null).status,'context-review');
  command.comparisonCoverage[0].status='incomplete-source-coverage';
  assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'unresolved');
  root.comparisons[0].sensitivity.relation='unresolved';
  assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'unresolved');
+});
+
+test('empty duplicate or missing command hypotheses cannot establish agreement',()=>{
+ const cmp={relation:'left-evidence-dominates',status:'directional-profile-only',cautions:[]};
+ const root={status:'diagnostic',comparisons:[{left:a,right:b,sensitivity:{relation:'left-evidence-dominates'}}]};
+ const coverage={left:a,right:b,status:'available-hypotheses-agree',expectedCount:2,availableCount:2,
+  hypotheses:[{id:'s',relation:cmp.relation},{id:'t',relation:cmp.relation}]};
+ const command={status:'diagnostic',variants:[{id:'s'},{id:'t'}],comparisonCoverage:[coverage]};
+ const run=()=>assessRoleComparisonReadiness(cmp,a,b,root,command);
+ assert.equal(run().status,'directional-review-eligible');
+ coverage.hypotheses=[];assert.equal(run().status,'invalid-evidence');
+ coverage.hypotheses=[{id:'s',relation:cmp.relation},{id:'s',relation:cmp.relation}];assert.equal(run().status,'invalid-evidence');
+ coverage.hypotheses[1].id='foreign';assert.equal(run().status,'invalid-evidence');
+ coverage.hypotheses[1].id='t';coverage.availableCount=1;assert.equal(run().status,'invalid-evidence');
 });

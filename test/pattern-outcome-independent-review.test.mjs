@@ -33,3 +33,11 @@ test('selection cannot declare an element with undetermined method and no eviden
  const y=batch('a');y.responses[0].rationale='';assert.ok(validateReview(packet,digest,y).errors.length);
  assert.equal(summarizeIndependentReviews(packet,digest,[batch('a')]).status,'pending');
 });
+
+test('malformed reviewer identifier returns invalid review rather than throwing',()=>{
+ for(const id of [12,{},[],null]){
+  const r=summarizeIndependentReviews(packet,digest,[batch('a'),batch(id)]);
+  assert.equal(r.status,'invalid-review');assert.ok(r.errors.some(e=>e.error==='batch-contract'));
+  assert.equal(r.verifiedIndependentGold,0);
+ }
+});

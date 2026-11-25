@@ -60,7 +60,7 @@ export function validateReview(packet,digest,batch){
 export function summarizeIndependentReviews(packet,digest,batches){
  const base={expectedTasks:packet.tasks.length,verifiedIndependentGold:0,independenceExternallyVerified:false,selectionAuthority:false};
  if(!Array.isArray(batches)||batches.length<2)return {...base,status:'pending',rows:[],errors:[]};
- const ids=batches.map(b=>b?.reviewerId?.trim().toLowerCase());
+ const ids=batches.map(b=>str(b?.reviewerId)?b.reviewerId.trim().toLowerCase():null);
  const validated=batches.map(b=>validateReview(packet,digest,b));
  const errors=validated.flatMap((r,i)=>r.errors.map(e=>({reviewer:i,error:e})));
  if(new Set(ids).size!==ids.length)errors.push({error:'duplicate-reviewer'});

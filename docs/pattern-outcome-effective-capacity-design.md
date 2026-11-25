@@ -1,0 +1,45 @@
+# Effective capacity policy — design checkpoint (not an implementation or release)
+
+Baseline: d6843061494179ec7d5fe56b60da5d89e83d7a93. Scope: ordinary natal patterns, initially resource and killing families. No special-pattern, transformation, transit, or final useful-element authority. Traditional interpretive consistency is the target, not empirical predictive validity.
+
+## A. Integration status and corrections
+
+Native checkout retried; GitHub DNS still fails. No current CI run receipt was returned by the repository Actions query. Prior core replay is 26 chart variants / 10 literal probes, not V10 end-to-end. Correct the recorded changed comparison count from 42 to 48 (48/78). Reject empty/duplicate/foreign commander hypothesis coverage before accepting direction agreement; require exact variant IDs and denominators. Reject malformed reviewer IDs without throwing. No changes to final decision gate. Native whole-suite validation still a prerequisite.
+
+## B. Source conditions, separate text from engineering interpretation
+
+Electronic original and Xu commentary reopened 2026-11-25; Donglishuzhai direct pages returned 502, accessible Luckclub editions were read instead. Not a scan authentication. The following table is a limited source extraction, not new gold or a universal doctrine.
+
+| ID | Source / locator | Text-derived condition | Counter-condition or limitation | Proposed computational obligation |
+| --- | --- | --- | --- | --- |
+| S01 | [論十干得時不旺失時不弱](https://luckclub.cn/bazi/002/008/), text spring/autumn examples and Xu's 旺衰強弱 distinction | Seasonal position and actual support are distinct; rooted out-of-season stems may be strong; in-season stems may be weakened by control/drain. | A favorable season alone is insufficient. | Separate season, literal roots, actual supply and pressure; do not count season as proof of strength. |
+| S02 | same, root grades passage and Xu commentary | Root quality matters more than stem count; residual/storage roots differ from stronger roots. | Yin life-stage root treatment is disputed by Xu; no numerical conversion from analogies. | Preserve literal stem, root type and source-specific grade; no universal life-stage-to-weight map. |
+| R01 | [論印綬](https://luckclub.cn/bazi/002/037/), Li Zhuangyuan and contrasting weak-day case | Strong day with abundant resource permits output drain. | Weak day and shallow resource with much output do not imply same benefit. | Require day burden and resource adequacy premises separately from output ability. |
+| R02 | same, Wang Shilang and Zhexi commentary | Deep resource and strong day may permit wealth moderation. | Light resource, heavy wealth and weak day: resource injury, with peer rescue considered. | Same wealth/resource endpoints, opposing objective hypotheses; do not decide from control edge alone. |
+| R03 | same, Mao/Ma passage | Killing supplies resource when the day/resource combination has a shortfall. | Both day and resource heavy changes the objective; Xu interprets Mao differently from a simple ordinary balancing rule. | Retain scope dispute; hidden resource must not be promoted to visible force. |
+| K01 | [論偏官](https://luckclub.cn/bazi/002/041/), food control and weak-day passages | Food control of killing depends on the controller and day capacity; mediation by resource may be favored with heavy killing and weak day. | Xu distinguishes yin/yang; not a universal weak-day prohibition. | Assess exact controller/target and day drain/pressure separately; scope the polarity clause to Xu. |
+| K02 | same, Tuo Chancellor | Resource can restrain excessive output rather than harm a necessary controller. | If killing strong and output weak, resource can obstruct control. | Assess both demand and control efficacy; dominance is not excess. |
+| K03 | same, He Canzheng and Zhou Chancellor | Placement and mediation matter; wealth may remove an obstruction while simultaneously supplying deficient killing. | Wealth can also injure needed resource or reinforce dangerous killing; commentary differs on the interpretation of other charts. | Preserve both directed effects and independent conditions; never net them by sign addition. |
+
+The existing strength source reviews cover 53 primary and 23 secondary directional labels, not per-occurrence role capacity. Existing ten effect probes, six role contrast probes and six unlabeled prospective charts remain exposed or unlabeled; do not convert these into independent labels. No new evidence-based numerical thresholds.
+
+## C. Proposed ownership and contract
+
+Do not add another parallel diagnostic engine. Reuse `outcome-role-capacity`, `outcome-root-context`, `outcome-command-context`, `outcome-role-flow`, `outcome-mechanism` and `outcome-joint`. Strength-decision owns day-direction hypothesis. Root/command modules own structural evidence. A future versioned policy consumes their immutable projections; pattern-specific rules consume policy output, never recalculate roots or override day strength. The existing decision gate alone owns release authority; an externally reviewed policy and clean exact-HEAD native receipt are necessary but not sufficient for authority. A public policy change needs new version and migration tests.
+
+Proposed internal queries (not new public endpoints):
+
+- `assessOccurrenceCapacity(occurrenceId, evidence)`: retain seasonal, rooted, available supply, unresolved supply, pressure/drain/contact separately; state = supported / opposed / conflicting / unresolved for an explicitly named premise, not a free-floating absolute strength.
+- `assessDirectedCapacity(from,to,kind,evidence)`: compare exact endpoints, baseline and contextual comparisons and source/command coverage; report hypothesis and blockers; preserve distinct source/target roles. Same physical slot excluded; hidden and group access cannot borrow visible strength.
+- `assessRoleDemand(candidateId,ruleId,witnessId,objective,evidence)`: source-clause-specific needs, e.g. required resource preservation or moderation of excessive output; no sum of same ten-god occurrences and no over/under label merely from relative dominance.
+- `assessRouteCapacity(routeRef,anchorOptionId,scenario,evidence)`: AND of necessary conditions; alternative routes evaluated separately; no existential alternative evidence reused in a selected scenario. Shared root and relation identity retained, with exact interference and bound threat. Unresolved supply is not zero; opposed evidence is not confirmed ineffective.
+
+Every row carries policy version, exact identity, clause IDs, premise states with provenance, conflicts, missing evidence, scope and `effectiveForce:null`, `effectConfirmed:null`, `selectionAuthority:false` until validated. An observed structural edge is not a sufficient condition. No feedback from demand to natal force, no iterative self-confirmation, no count of true axes as magnitude, no additive scoring. Unknown hour or source disagreement never silently upgraded. Preserve supported and opposed reasons even if overall state unresolved. Comparison coverage checks must be exact; candidate-local contexts cannot be joined by element alone. Physical root identity stays shared, not a supply budget.
+
+## D/E acceptance criteria (next implementation)
+
+1. Native full regression on clean pinned HEAD, fix real failures without changing frozen expected data to fit results.
+2. Implement one small vertical slice R02 and K02 through existing role-priority and mechanism policy, not all families at once. Freeze the source clause and implementation assumptions first. Keep current public V10 output and release gate unchanged.
+3. Test counterexamples: strong day without abundant resource, weak day with independently protected resource, season-supported rootless actor, out-of-season rooted actor, same physical slot, missing hour, missing source variant, duplicated support, competing combination and simultaneous wealth supply/control. Opposing source readings remain separate.
+4. Report exact premise and route coverage, agreements/disagreements/abstentions by explicit source versus proxy and family; no pooled accuracy over unlabelled cases. Use independent review tasks with exact role/objective labels in a new packet version, not existing predicted labels; no claim of independent validation until genuine reviewers and source verification are available. Exposed development examples (Wang, Zhexi, Tuo, Zhou) are not held-out data.
+5. Only after these conditions, design P2 outcome resolution with a versioned decision policy. This checkpoint does not implement effective force or grant authority.

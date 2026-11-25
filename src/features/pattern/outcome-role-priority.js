@@ -34,7 +34,14 @@ export function assessRoleComparisonReadiness(comparison,left,right,rootContext,
  else{
   const rows=find(commandReview.comparisonCoverage);
   if(rows.length!==1)return result(rows.length?'invalid-evidence':'unresolved',['command-pair-coverage'],contextual);
-  const c=rows[0],commandRelations=c.hypotheses.map(h=>({id:h.id,relation:orient(c,h.relation)}));
+  const c=rows[0];
+  const ids=commandReview.variants?.map(v=>v.id);
+  const hs=c.hypotheses;
+  if(!Array.isArray(ids)||!ids.length||new Set(ids).size!==ids.length||!Array.isArray(hs)||
+   hs.length!==ids.length||new Set(hs.map(h=>h.id)).size!==hs.length||hs.some(h=>!ids.includes(h.id))||
+   c.expectedCount!==ids.length||c.availableCount!==hs.filter(h=>h.relation!==null).length)
+   return result('invalid-evidence',['command-hypothesis-coverage'],contextual);
+  const commandRelations=hs.map(h=>({id:h.id,relation:orient(c,h.relation)}));
   contextual.commandRelations=commandRelations;
   if(c.status!=='available-hypotheses-agree'||commandRelations.some(h=>h.relation!==comparison.relation))
    return result('unresolved',['command-context-direction-not-preserved',c.status],contextual);
