@@ -1,6 +1,14 @@
 // Development source replay: evidence coverage is not predictive or efficacy accuracy.
 const STATES=['supported','opposed','conflicting','unresolved'];
 const COLLECTIONS={objective:'objectiveReview.objectives',food:'killingStrategies.food',mediation:'killingStrategies.mediation',dualRoles:'killingWealth.dualRoles',mediationContacts:'killingWealth.mediationContacts',outputDrain:'resourceStrategies.outputDrain',killingSupply:'resourceStrategies.killingSupply',officerContext:'resourceStrategies.officerContext'};
+const MATCH_FIELDS={
+ objective:['objective','role.obstacle','role.target','role.food'],
+ food:['foodId','killingId','dayId'],mediation:['resourceId','killingId','dayId'],
+ dualRoles:['wealthId','resourceId','outputId','killingId','dayId'],
+ mediationContacts:['wealthId','resourceId','killingId','dayId'],
+ outputDrain:['anchorId','outputId','dayId'],
+ killingSupply:['resourceId','officerId','dayId'],officerContext:['resourceId','officerId','dayId']
+};
 const key=(r,w)=>JSON.stringify([r,w]);
 const get=(o,path)=>path.split('.').reduce((v,k)=>v?.[k],o);
 const unique=xs=>[...new Set(xs)].sort();
@@ -18,7 +26,7 @@ export function validateRoleSourcePacket(packet){
   const ids=new Set();
   for(const p of c.probes){
    if(!p.id||ids.has(p.id)||!Object.hasOwn(COLLECTIONS,p.collection)||!p.match||!Object.keys(p.match).length||
-    !Object.values(p.match).every(v=>typeof v==='string')||!['literal-chart-endpoints','interpreted-endpoints'].includes(p.basis)||
+    !Object.entries(p.match).every(([k,v])=>MATCH_FIELDS[p.collection]?.includes(k)&&typeof v==='string'&&v.length>0)||!['literal-chart-endpoints','interpreted-endpoints'].includes(p.basis)||
     !(p.objective===null||typeof p.objective==='string'))errors.push('probe-contract:'+c.id+':'+p.id);
    ids.add(p.id);
   }
@@ -102,14 +110,20 @@ export function summarizeRoleSourceReplay(packet,rows){
  const errors=validateRoleSourcePacket(packet),expected=packet.cases.flatMap(c=>[key(c.id,false),key(c.id,true)]);
  const actual=rows.map(r=>key(r.id,r.partial));
  if(expected.length!==actual.length||new Set(actual).size!==actual.length||expected.some(k=>!actual.includes(k)))errors.push('case-variant-coverage');
- const counts={},directionCounts={},transitions={},blockers={};
+ const counts={},directionCounts={},scopeDirectionCounts={},transitions={},blockers={},premiseCounts={},stateCounts={};
  for(const r of rows){
   for(const e of r.errors??[])errors.push(r.id+':'+(r.partial?'partial:':'full:')+e);
   const c=packet.cases.find(c=>c.id===r.id);
   if(!c||!Array.isArray(r.probes)||r.probes.length!==c.probes.length||new Set(r.probes.map(p=>p.id)).size!==c.probes.length||c.probes.some(p=>!r.probes.some(x=>x.id===p.id)))errors.push(r.id+':probe-coverage');
   if(r.partial)continue;
   directionCounts[r.directionStatus]=(directionCounts[r.directionStatus]??0)+1;
-  for(const p of r.probes??[]){const k=p.basis+':'+p.coverage;counts[k]=(counts[k]??0)+1;}
+  const ds=r.scope+':'+r.directionStatus;scopeDirectionCounts[ds]=(scopeDirectionCounts[ds]??0)+1;
+  for(const p of r.probes??[]){
+   const k=p.basis+':'+p.coverage;counts[k]=(counts[k]??0)+1;
+   // A set of candidate states is one probe outcome, not multiple votes.
+   const sk=p.basis+':'+(p.states.length?p.states.join('+'):'not-observed');stateCounts[sk]=(stateCounts[sk]??0)+1;
+   for(const row of p.rows)for(const premise of row.premises){const pk=premise.id+':'+premise.state;premiseCounts[pk]=(premiseCounts[pk]??0)+1;}
+  }
   for(const [b,n] of Object.entries(r.blockers??{}))blockers[b]=(blockers[b]??0)+n;
   const partial=rows.find(x=>x.id===r.id&&x.partial);
   for(const p of r.probes??[]){
@@ -118,6 +132,6 @@ export function summarizeRoleSourceReplay(packet,rows){
   }
  }
  return {version:packet.version,expectedCases:packet.cases.length,expectedVariants:expected.length,executedVariants:rows.length,
-  expectedFullProbes:packet.cases.reduce((n,c)=>n+c.probes.length,0),coverageCounts:counts,directionCounts,partialCoverageTransitions:transitions,
+  expectedFullProbes:packet.cases.reduce((n,c)=>n+c.probes.length,0),coverageCounts:counts,directionCounts,scopeDirectionCounts,stateCounts,premiseObservationCounts:premiseCounts,partialCoverageTransitions:transitions,
   blockerCounts:blockers,errors,independentGold:0,conditionalAccuracy:null,effectAccuracy:null,rows};
 }
