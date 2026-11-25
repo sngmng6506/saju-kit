@@ -1,5 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
+import {observeRelativeForce} from '../src/core/relative-force.js';
+import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
 import {observeClashAlternatives,observeRootContext} from '../src/features/pattern/outcome-root-context.js';
 const h=(position,stem,role='principal')=>({id:'hidden:'+position+':'+stem,position,stem,element:'wood',layer:'hidden',hiddenRole:role});
 const sample=()=>{
@@ -36,4 +40,19 @@ test('hidden projection is literal, day reference is separate, competing target 
 test('partial and invalid literal root identities fail conservatively',()=>{
  const x=sample();x.prior.completeHour=false;x.formation.completeHour=false;assert.equal(run(x).status,'partial');
  x.prior.stemForce.occurrences[0].roots[0].stem='병';assert.equal(run(x).status,'invalid-evidence');
+});
+
+test('native six source charts and missing-hour variants retain all physical root identities',()=>{
+ const data=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-flow-source-v1.json',import.meta.url),'utf8'));
+ for(const c of data.cases)for(const complete of [true,false]){
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
+  const stemForce=analyzeStemForceEvidence({saju}),relativeForce=observeRelativeForce(stemForce),formation=analyzeFormationEvidence({saju});
+  const r=observeRootContext({completeHour:complete,stemForce,relativeForce},formation);
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);
+  assert.deepEqual(r.slots.map(s=>s.id),stemForce.occurrences.filter(o=>o.layer==='hidden').map(o=>o.id));
+  assert.equal(r.clashes.length,formation.clashes.length);
+  assert.ok(r.occurrences.every(o=>o.rootPreservedConfirmed===null));
+  assert.ok(r.comparisons.every(p=>p.forceComparison===null));
+  if(!complete)assert.ok(r.comparisons.every(p=>p.sensitivity.relation==='unresolved'));
+ }
 });
