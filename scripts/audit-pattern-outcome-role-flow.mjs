@@ -26,6 +26,15 @@ for(const c of data.cases){
    return !s||s.status==='invalid-evidence'||s.selectionAuthority!==false||s.preferredStrategy!==null||s.effectConfirmed!==null||
     [...s.food,...s.mediation,...s.comparisons].some(x=>x.effectConfirmed!==null);
   }))errors.push(c.id+':killing-strategy-integrity');
+  if(m?.candidates.some(q=>{
+   const w=q.rolePriority?.killingWealth;
+   return !w||w.status==='invalid-evidence'||w.selectionAuthority!==false||w.preferredObjective!==null||w.effectConfirmed!==null||
+    [...w.supply,...w.dualRoles,...w.mediationContacts].some(x=>x.effectConfirmed!==null||
+     x.objectives.some(o=>o.effectConfirmed!==null||o.actualDemand!==null))||
+    [...w.dualRoles,...w.mediationContacts].some(x=>x.netEffectConfirmed!==null)||
+    w.dualRoles.some(x=>x.killingDeficiencyConfirmed!==null||x.outputRestored!==null)||
+    w.mediationContacts.some(x=>x.placement.protectionConfirmed!==null);
+  }))errors.push(c.id+':killing-wealth-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
@@ -44,5 +53,12 @@ for(const row of rows)for(const p of row.priorities){
  }
  for(const x of s.comparisons){const k='joint:'+x.simultaneousStatus;strategyCounts[k]=(strategyCounts[k]??0)+1;}
 }
-console.log(JSON.stringify({strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+const wealthObjectiveCounts={};
+for(const row of rows)for(const p of row.priorities){
+ const w=p.killingWealth;if(!w)continue;
+ for(const [kind,items] of [['supply',w.supply],['dual',w.dualRoles],['mediation',w.mediationContacts]])for(const x of items)for(const o of x.objectives){
+  const k=kind+':'+o.id+':'+o.conditionalStatus;wealthObjectiveCounts[k]=(wealthObjectiveCounts[k]??0)+1;
+ }
+}
+console.log(JSON.stringify({wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
