@@ -535,3 +535,72 @@ test('native access ablation preserves candidates and cannot increase the scoped
   assert.equal(cohort.access.confirmedHiddenActions,0);assert.equal(cohort.scoped.finalDecisions,0);
  }
 });
+
+import {reviewLayerMechanisms,reviewCoherentProjection,reviewContrastProjections,summarizeLayerMechanisms,summarizeContrastProjections} from '../scripts/lib/pattern-layer-mechanisms.mjs';
+import {auditLayerMechanisms} from '../scripts/audit-classical-patterns.mjs';
+const layerFixture=()=>{
+ const actors=[accessActor('year','visible','갑','wood'),accessActor('month','visible','병','fire'),accessActor('day','visible','무','earth'),
+ accessActor('hour','visible','임','water'),accessActor('year','hidden','병','fire','principal'),
+ accessActor('month','hidden','갑','wood','middle'),accessActor('day','hidden','임','water','residual'),
+ accessActor('hour','hidden','무','earth','principal')].map(o=>({...o,clashExposed:o.layer==='hidden'?false:null}));
+ const pairs=[['visible:year','visible:month','generate'],['visible:year','hidden:year:병','generate'],
+ ['hidden:month:갑','visible:month','generate'],['hidden:day:임','visible:day','control'],
+ ['hidden:month:갑','hidden:year:병','generate'],['hidden:day:임','hidden:year:병','control'],
+ ['hidden:month:갑','visible:day','control'],['visible:year','visible:day','control'],
+ ['hidden:hour:무','hidden:day:임','control'],['visible:day','visible:hour','control']];
+ const edges=pairs.map(([from,to,kind])=>({...contrastEdge(from,to,kind),blockers:[...(from.startsWith('hidden:')||to.startsWith('hidden:')?['hidden-participant-access-unresolved']:[])],
+ screen:from.startsWith('hidden:')||to.startsWith('hidden:')?'requires-review':'root-and-locality-screen-met'}));
+ const result={completeHour:true,selection:{candidates:[]},routeReview:{occurrences:actors},relativeForce:{completeHour:true,edges}};
+ const access=reviewPatternAccess(result,{status:'structural-review',candidates:[]});
+ const interaction={completeHour:true,formations:[{id:'group',type:'branch.threeHarmony',layer:'branch',positions:['year','month','hour'],complete:true}],
+ disruptions:[{id:'clash',type:'branch.clash',positions:['day','hour']}]};
+ return {result,access,interaction};
+};
+test('layered mechanisms preserve hidden role, branch pair context, direct visible screens and directed projection alternatives',()=>{
+ const {result,access,interaction}=layerFixture(),before=structuredClone({result,access,interaction});
+ const r=reviewLayerMechanisms(result,access,interaction),get=(a,b)=>r.edges.find(e=>e.from===a&&e.to===b);
+ assert.deepEqual({result,access,interaction},before);
+ assert.equal(get('visible:year','visible:month').status,'necessary-screen-met');
+ const v=get('visible:year','hidden:year:병');
+ assert.equal(v.mechanism,'vertical-principal-relation');assert.equal(v.structuralStatus,'principal-vertical-observed');
+ assert.deepEqual(v.branchContext.pairFormationIds,[]);assert.equal(v.effective,null);
+ assert.equal(get('hidden:month:갑','visible:month').mechanism,'vertical-constituent-relation');
+ assert.ok(get('hidden:day:임','visible:day').unresolved.includes('constituent-participation-unadjudicated'));
+ const b=get('hidden:month:갑','hidden:year:병');
+ assert.deepEqual(b.branchContext.pairFormationIds,['group']);assert.equal(b.structuralStatus,'branch-relation-context-observed');
+ assert.deepEqual(b.projectedAlternatives.map(a=>a.edgeId),['visible:year>visible:month']);
+ assert.deepEqual(get('hidden:day:임','hidden:year:병').projectedAlternatives,[]);
+ assert.equal(get('hidden:month:갑','visible:day').structuralStatus,'visible-alternative-observed');
+ assert.ok(get('hidden:hour:무','hidden:day:임').reviewReasons.includes('branch-disruption-contact'));
+ assert.ok(r.edges.every(e=>e.effective===null));
+ const s=summarizeLayerMechanisms([r]);assert.equal(s.edges,10);assert.equal(s.confirmedEffects,0);
+ assert.equal(reviewLayerMechanisms(result,access,{...interaction,completeHour:false}).status,'partial');
+});
+test('coherent visible projection binds one actor per role and enforces visible candidate anchor',()=>{
+ const {result,access,interaction}=layerFixture(),r=reviewLayerMechanisms(result,access,interaction);
+ const witness={id:'w',roles:{resource:'hidden:month:갑',food:'hidden:year:병',day:'visible:day'},
+ edges:[{edgeId:'hidden:month:갑>hidden:year:병',from:'hidden:month:갑',to:'hidden:year:병',kind:'generate'},
+ {edgeId:'hidden:month:갑>visible:day',from:'hidden:month:갑',to:'visible:day',kind:'control'}]};
+ const p=reviewCoherentProjection(witness,'resource',{visibleActorIds:['visible:year']},access,r);
+ assert.equal(p.alternatives.length,1);
+ assert.deepEqual(p.alternatives[0].roles,{resource:'visible:year',food:'visible:month',day:'visible:day'});
+ assert.equal(p.alternatives[0].effective,null);
+ assert.equal(reviewCoherentProjection(witness,'resource',{visibleActorIds:[]},access,r).observed,false);
+ const invalid=structuredClone(witness);invalid.edges[0].kind='control';
+ assert.throws(()=>reviewCoherentProjection(invalid,'resource',{visibleActorIds:['visible:year']},access,r),/unbound witness/);
+ const split={...access,actors:access.actors.map(a=>a.id==='hidden:year:병'?{...a,exactVisibleIds:['visible:year']}:a)};
+ assert.equal(reviewCoherentProjection(witness,'resource',{visibleActorIds:['visible:year']},split,r).alternatives.length,0);
+ const candidate={candidateId:'c',visibleActorIds:['visible:year']};
+ const contrasts={candidates:[{candidateId:'c',patterns:[{id:'p',anchorRole:'resource',witnesses:[witness,{...witness,id:'w2'}]}]}]};
+ const summary=summarizeContrastProjections([reviewContrastProjections(contrasts,{...access,candidates:[candidate]},r)]);
+ assert.equal(summary.alternativeOccurrences,2);assert.equal(summary.uniquePerChartAlternativeAssignments,1);
+});
+test('native layer audit preserves graph counts, direct visible screen equivalence and projection partitions',()=>{
+ const r=auditLayerMechanisms();assert.equal(r.shen.layers.charts,67);assert.equal(r.xu.layers.charts,34);
+ for(const c of [r.shen,r.xu]){
+  assert.equal(c.layers.edges,Object.values(c.layers.byLayer).reduce((n,x)=>n+x.edges,0));
+  assert.deepEqual(c.layers.byLayer['visible-visible'].legacy,c.layers.byLayer['visible-visible'].layered);
+  assert.equal(c.projections.hiddenWitnesses,c.projections.withCoherentVisibleAlternative+c.projections.withoutObservedAlternative+c.projections.unresolved);
+  assert.equal(c.layers.confirmedEffects+c.projections.confirmedEffects,0);
+ }
+});
