@@ -53,3 +53,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v2](pattern-outcome-evidence-v2.md) adds opt-in hidden and group observations; no final outcome, transformation or consumer migration.
 
 - [Pattern outcome evidence v3](pattern-outcome-evidence-v3.md) adds secondary-role evidence and potential support loss; no final decision or pin update.
+
+- [Pattern outcome evidence v4](pattern-outcome-evidence-v4.md) adds opt-in regulation candidates and day-strength hypothesis context; no confirmed excess, efficacy or consumer migration.
