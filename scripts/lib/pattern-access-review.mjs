@@ -18,7 +18,7 @@ export function observeActorAccess(occurrences,completeHour){
   const projected=o.layer==='hidden'?visible.filter(v=>!v.dayReference&&exact(v,o)):[];
   const sameElement=o.layer==='hidden'?visible.filter(v=>!v.dayReference&&v.element===o.element&&!exact(v,o)):[];
   const rootMatches=o.layer==='visible'?hidden.filter(h=>h.element===o.element).map(h=>({id:h.id,position:h.position,role:h.role??h.hiddenRole,match:exact(h,o)?'exact-stem':'same-element',clashExposed:h.clashExposed??null})):[];
-  const kind=o.dayReference?'day-reference':o.layer==='visible'?'visible-actor':projected.length?'hidden-exact-projection-observed':'hidden-unprojected';
+  const kind=o.dayReference?'day-reference':o.layer==='visible'?'visible-actor':projected.length?'hidden-exact-projection-observed':completeHour?'hidden-unprojected':'hidden-projection-unresolved';
   return {id:o.id,position:o.position,layer:o.layer,kind,stem:o.stem,
    role:o.role??o.hiddenRole??null,graphSlot:slot(o),exactVisibleIds:projected.map(v=>v.id),
    sameElementVisibleIds:sameElement.map(v=>v.id),dayStemMatch:o.layer==='hidden'&&visible.some(v=>v.dayReference&&exact(v,o)),
@@ -61,7 +61,7 @@ export function bindCandidateAccess(candidate,occurrences,legacyAnchorIds,comple
  if(scoped.some(id=>!legacy.has(id)))throw Error('scope escaped legacy anchors: '+candidate.id);
  return {candidateId:candidate.id,family:candidate.family,basis,sourceIds,visibleActorIds:actorIds,contextIds,
   scopedAnchorIds:scoped,excludedLegacyIds:legacyAnchorIds.filter(id=>!scoped.includes(id)),
-  visibleActorObserved:actorIds.length?true:completeHour?false:null,commandConfirmed:null,selectionAuthority:false};
+  visibleActorObserved:basis.endsWith('context-only')?null:actorIds.length?true:completeHour?false:null,commandConfirmed:null,selectionAuthority:false};
 }
 export function classifyAccessEdge(edge,byId,accessById,completeHour){
  const a=byId.get(edge.from),b=byId.get(edge.to);
@@ -101,10 +101,10 @@ export function reviewPatternAccess(result,outcome){
 // legacy routes are left unchanged. This is not a destructive filter.
 export function scopedOutcome(outcome,access){
  if(access.status==='unavailable')return outcome;
- return {...outcome,candidates:outcome.candidates.map(c=>{
+ return {status:outcome.status,scope:'anchor-ablation-role-contrasts-only',selectionAuthority:false,candidates:outcome.candidates.map(c=>{
   const a=access.candidates.find(x=>x.candidateId===c.candidateId);
   if(!a)throw Error('missing scoped candidate');
-  return {...c,anchorIds:[...a.scopedAnchorIds]};
+  return {candidateId:c.candidateId,family:c.family,anchorIds:[...a.scopedAnchorIds]};
  })};
 }
 export function summarizeAccess(reviews){
