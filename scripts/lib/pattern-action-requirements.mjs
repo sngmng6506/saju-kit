@@ -8,6 +8,7 @@ const condition=(name,value,category,details={})=>({name,value,category,...detai
 const source={resource:'https://www.donglishuzhai.net/chapter/3748.html',resourceParallel:'https://dao.time.actor/ziping-zhenquan-pingzhu/juan-4',killing:'https://www.mastervt.com/books/zipingzhenquanpingzhu/juan-1/chapter-041',order:'https://donglishuzhai.net/chapter/3733.html'};
 function purposes(a,b,kind){
  if(kind==='control'&&W.includes(a.tenGod)&&I.includes(b.tenGod))return ['wealth-resource-damage','wealth-resource-regulation'];
+ if(kind==='control'&&I.includes(a.tenGod)&&b.tenGod==='상관')return ['resource-hurting-control'];
  if(kind==='control'&&I.includes(a.tenGod)&&b.tenGod==='식신')return [...(a.tenGod==='편인'?['owl-food-damage']:[]),'resource-food-control','resource-regulates-excess-food'];
  if(kind==='control'&&b.tenGod==='편관'&&['식신','상관'].includes(a.tenGod))return [a.tenGod==='식신'?'food-controls-killing':'hurting-controls-killing'];
  if(kind==='generate'&&a.tenGod==='편관'&&I.includes(b.tenGod))return ['killing-resource-transmission'];
@@ -19,6 +20,7 @@ function requiredContext(purpose){
  if(['food-controls-killing','hurting-controls-killing'].includes(purpose))return ['day-capacity','output-killing-balance','output-control-effective'];
  if(purpose==='killing-resource-transmission')return ['resource-transmission-effective','day-support-effective','competing-killing-pressure'];
  if(purpose==='owl-food-damage')return ['food-needed','owl-control-effective','rescue-effect'];
+ if(purpose==='resource-hurting-control')return ['hurting-role-needed','resource-control-effective','competing-protection-or-obstruction'];
  if(purpose==='resource-regulates-excess-food')return ['food-excess','resource-control-effective','residual-food-capacity'];
  return ['net-action-effective'];
 }
@@ -61,6 +63,7 @@ export function reviewActionRequirements(result,layers,interaction){
   const outputRole=['식신','상관'].includes(a.tenGod)?a.tenGod:null;
   const hypotheses=purposes(a,b,e.kind).map(purpose=>({purpose,
    outputScope:outputRole==='식신'?'strict-food':outputRole==='상관'?'hurting-only-not-strict-food':null,
+   ...(purpose==='wealth-resource-regulation'?{sourceVariants:[{source:source.resource,reading:'不要根深',rootRequirement:'deep-root-not-required'},{source:source.resourceParallel,reading:'只要根深',rootRequirement:'deep-root-required'}],sourceVariantResolved:false}:{}),
    conditions:requiredContext(purpose).map(name=>condition(name,null,'required')),
    effective:null,favorable:null}));
   const structuralReview=!complete?'partial-context':direct.length?'exact-pair-contact-review':a.layer==='hidden'?'hidden-source-review':b.layer==='hidden'?'hidden-target-review':'visible-conditional-review';
