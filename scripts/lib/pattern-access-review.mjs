@@ -34,7 +34,7 @@ export function bindCandidateAccess(candidate,occurrences,legacyAnchorIds,comple
  const projected=actors.filter(o=>o.layer==='visible'&&stems.has(o.stem));
  let sourceIds=[],actorIds=[],contextIds=[],basis;
  if(candidate.kind==='month-principal'){
-  if(month.length!==1||!['principal',undefined].includes(month[0].role??month[0].hiddenRole))throw Error('invalid principal source: '+candidate.id);
+  if(month.length!==1||(month[0].role??month[0].hiddenRole)!=='principal')throw Error('invalid principal source: '+candidate.id);
   sourceIds=month.map(o=>o.id);actorIds=projected.map(o=>o.id);basis='month-principal';
  }else if(candidate.kind==='month-hidden-projection'){
   if(month.length!==1)throw Error('invalid projected month source: '+candidate.id);
@@ -67,7 +67,7 @@ export function classifyAccessEdge(edge,byId,accessById,completeHour){
  const a=byId.get(edge.from),b=byId.get(edge.to);
  if(!a||!b||slot(a)===slot(b))throw Error('invalid access edge: '+edge.id);
  const x=accessById.get(a.id),y=accessById.get(b.id);
- const span=distance(a,b);
+ const span=distance(a.position,b.position);
  const layerKind=a.layer==='visible'&&b.layer==='visible'?'visible-visible':
   a.layer==='hidden'&&b.layer==='hidden'?'branch-branch':
   span===0?'same-pillar-stem-branch':'cross-pillar-stem-branch';
