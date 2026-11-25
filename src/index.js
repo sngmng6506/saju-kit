@@ -107,3 +107,5 @@ export { observeRelativeForce, RELATIVE_FORCE_VERSION } from './core/relative-fo
 export { analyzePatternUsefulElementV10, PATTERN_V10_VERSION } from './features/pattern-useful-element-v10/index.js';
 
 export { analyzePatternOutcome, PATTERN_OUTCOME_VERSION } from './features/pattern/outcome-review.js';
+
+export { analyzePatternOutcomeV2, PATTERN_OUTCOME_V2_VERSION } from './features/pattern/outcome-review-v2.js';

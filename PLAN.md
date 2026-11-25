@@ -25,7 +25,7 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 
 1. Capture benchmark results and validate both pinned consumers in isolated worktrees; external acceptance remains pending. No automatic consumer migration.
 2. Use measured runtime and result size before performance optimization.
-3. Implemented initial [pattern 成敗救應 structural review](docs/pattern-outcome-evidence-v1.md); native tests passed (user-reported). Added [source reference v1](docs/pattern-outcome-reference-v1.md) and role-level evaluator; native reference audit pending. Next: quantify gaps, then extend hidden/branch and secondary-role evidence under a new version. No selection authority.
+3. Implemented initial [pattern 成敗救應 structural review](docs/pattern-outcome-evidence-v1.md); native tests passed (user-reported). Added [source reference v1](docs/pattern-outcome-reference-v1.md) and role-level evaluator; native reference audit pending. Added [outcome V2](docs/pattern-outcome-evidence-v2.md) hidden/group access and five rule extensions; native comparison pending. Next: secondary-role protection and conditional regulation, without selection authority.
 4. Independently validate selection/efficacy hypotheses before promoting a policy or connecting new decisions to transit. No automatic final useful/favorable/unfavorable selection.
 
 ## Commands
