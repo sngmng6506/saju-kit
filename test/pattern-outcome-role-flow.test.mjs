@@ -74,3 +74,24 @@ test('native K03 He source chart preserves placement without confirming resource
  assert.ok(row);assert.equal(row.placement.wealthResourceDistance,3);assert.equal(row.placement.protectionConfirmed,null);
  assert.ok(row.objectives.every(o=>o.effectConfirmed===null));
 });
+
+const nativeResource=ps=>{
+ const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))};
+ const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+ assert.equal(r.decisionReview.status,'abstained');
+ const rows=r.efficacyReview.mechanismReview.candidates.map(c=>c.rolePriority.resourceStrategies);
+ assert.ok(rows.every(c=>c.status!=='invalid-evidence'&&c.selectionAuthority===false&&c.effectConfirmed===null));
+ return rows;
+};
+test('native R01 Li source chart keeps the visible resource anchor and literal output',()=>{
+ const rows=nativeResource(['무술','을묘','병오','을해']).flatMap(c=>c.outputDrain);
+ const row=rows.find(r=>r.anchorId==='visible:month'&&r.outputId==='visible:year');
+ assert.ok(row);assert.equal(row.outputTenGod,'식신');
+ assert.ok(row.objectives.every(o=>o.actualDemand===null&&o.excessConfirmed===null&&o.effectConfirmed===null));
+});
+test('native R03 Ma source chart retains hidden resource without promoting access',()=>{
+ const rows=nativeResource(['임인','무신','임진','임인']).flatMap(c=>c.killingSupply);
+ const row=rows.find(r=>r.resourceId==='hidden:month:경'&&r.officerId==='visible:month');
+ assert.ok(row);assert.equal(row.resourceRoot.state,'unresolved');assert.equal(row.officerTenGod,'편관');
+ assert.ok(row.objectives.every(o=>o.actualDemand===null&&o.deficiencyConfirmed===null&&o.effectConfirmed===null));
+});
