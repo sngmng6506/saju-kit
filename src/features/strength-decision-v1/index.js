@@ -1,1 +1,1 @@
-export * from '../strength/decision.js';
+export { STRENGTH_DECISION_VERSION, observeRootCapacity, collectStrengthEvidence, resolveStrengthEvidence, analyzeStrengthDecision } from '../strength/decision.js';

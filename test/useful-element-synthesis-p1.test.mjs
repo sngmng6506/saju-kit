@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createSynthesisNodeIndex,observeSupplementaryMethods,projectSynthesisTiming} from '../src/features/useful-element/synthesis-method-links.js';
 import {buildSynthesis} from '../src/features/useful-element/synthesis.js';
 import {createMethodEvidence} from '../src/features/method-evidence.js';
+import {createStrengthEvidenceProvider} from '../src/features/strength/request-evidence.js';
 import {evaluateIntegratedDecision} from '../src/features/strength/integrated-decision.js';
 import {buildOutcomeV10} from '../src/features/pattern/outcome-review-v10.js';
 import {getSaju,analyzePatternOutcomeV10,analyzeFormationEvidence,analyzeUsefulElementSynthesis,analyzeClimateUsefulElementV5,USEFUL_ELEMENT_SYNTHESIS_VERSION} from '../src/index.js';
@@ -11,24 +12,24 @@ const chart=ps=>({pillars:Object.fromEntries(['year','month','day','hour'].map((
 const v=(p,element,layer='stem')=>({id:p+':'+layer+(layer==='branch'?':'+element:''),position:p,element,layer,dayReference:false,anchorObserved:true,intactSubstantialRoot:true});
 const edge=(a,b,kind)=>({from:a,to:b,kind});
 const sample=()=>{
- const saju=chart(['경자','임오','갑인','기미']);
- const a=v('year','metal'),b=v('month','water'),c=v('day','wood'),hidden=v('hour','earth','branch');
+ const saju=chart(['경자','임오','갑인','무오']);
+ const a=v('year','metal'),b=v('month','water'),c=v('day','wood'),hidden=v('hour','fire','branch');
  c.dayReference=true;
- const access={hidden:[{id:'hidden:hour:기',position:'hour',element:'earth'},{id:'hidden:hour:무',position:'hour',element:'earth'}]};
+ const access={hidden:[{id:'hidden:hour:병',position:'hour',element:'fire'},{id:'hidden:hour:정',position:'hour',element:'fire'}]};
  const q={candidateId:'c',status:'diagnostic',anchors:[{id:'visible:day'}],participants:[{occurrenceId:'visible:month',element:'water'}]};
  const synthesis={status:'diagnostic',balance:{branches:[{assumedDirection:'weak',candidates:[{element:'water'}]}]},climate:{groups:[{id:'baseline:0',elements:['water']}],alternatives:[]},candidates:[q]};
  const damage={id:'d1',edges:[edge('visible:year','visible:day','control')]};
- const rescue={id:'r1',threatWitnessId:'d1',edges:[edge('hidden:hour:기','visible:year','control')]};
+ const rescue={id:'r1',threatWitnessId:'d1',edges:[edge('hidden:hour:병','visible:year','control')]};
  const support={id:'s1',edges:[edge('visible:year','visible:month','generate'),edge('visible:month','visible:day','generate')]};
  const pattern={access,reviews:[{candidateId:'c',rules:[{id:'d',kind:'damage',witnesses:[damage]},{id:'r',kind:'rescue',threatRuleId:'d',witnesses:[rescue]},{id:'s',kind:'support',witnesses:[support]}]}]};
  const mediation={version:'mediation-useful-element-v1',status:'diagnostic',pairs:[{from:'metal',to:'wood',via:'water',mediatorNodes:[b],routes:[{id:'path',nodes:[a,b,c],adjacent:true,oneGap:true,obstructions:[]}]}]};
- const remedy={version:'remedy-evidence-v1',status:'diagnostic',motifs:[{target:c,threat:a,remedyElement:'earth',targetContext:{dayReference:true},remedies:[{remedy:hidden,adjacent:false,obstructions:[]}]}]};
+ const remedy={version:'remedy-evidence-v1',status:'diagnostic',motifs:[{target:c,threat:a,remedyElement:'fire',targetContext:{dayReference:true},remedies:[{remedy:hidden,adjacent:false,obstructions:[]}]}]};
  return {saju,synthesis,pattern,mediation,remedy};
 };
 const run=x=>observeSupplementaryMethods(x.saju,x.synthesis,x.pattern,x.mediation,x.remedy);
 test('aggregate branch nodes keep all literal identities rather than picking one',()=>{
- const x=sample(),n=createSynthesisNodeIndex(x.saju,x.pattern.access).map.get('hour:branch:earth');
- assert.deepEqual(n.occurrenceIds,['hidden:hour:기','hidden:hour:무']);
+ const x=sample(),n=createSynthesisNodeIndex(x.saju,x.pattern.access).map.get('hour:branch:fire');
+ assert.deepEqual(n.occurrenceIds,['hidden:hour:병','hidden:hour:정']);
  const r=run(x).remedy.motifs[0].remedies[0];assert.equal(r.linkBasis,'shared-branch-element-context');assert.equal(r.effective,null);
 });
 test('same-witness mediation and bound rescue links retain exact reference',()=>{
@@ -79,4 +80,15 @@ test('native synthesis forwards exact birth to existing climate term predicate o
   assert.ok(r.climateTiming.alternatives.every(a=>a.conditionResolved===false&&a.selectionAuthority===false));
   assert.equal(r.usefulElement,null);
  }
+});
+
+test('request cache separates chart identity, basis, policy and provider; thrown computations are not cached',()=>{
+ const p=createStrengthEvidenceProvider(),q=createStrengthEvidenceProvider(),saju={},args={saju,birthBasis:'verified-chart',policy:'strength-multiaxis-v3'};
+ let calls=0;const build=()=>({n:++calls});
+ const a=p.integrated(args,build);assert.equal(p.integrated({...args},build),a);
+ for(const changed of [{...args,saju:{}},{...args,birthBasis:'provisional-chart'},{...args,policy:'other'}])assert.notEqual(p.integrated(changed,build),a);
+ assert.notEqual(q.integrated(args,build),a);
+ const fresh={...args,saju:{}};
+ assert.throws(()=>p.integrated(fresh,()=>{throw Error('fixture');}),/fixture/);
+ assert.equal(p.integrated(fresh,build).n,6);
 });

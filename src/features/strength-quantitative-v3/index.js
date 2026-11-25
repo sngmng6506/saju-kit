@@ -1,1 +1,1 @@
-export * from '../strength/quantitative.js';
+export { QUANTITATIVE_STRENGTH_VERSION, analyzeQuantitativeStrength, quantifyExplicitSeasonBasis } from '../strength/quantitative.js';

@@ -13,8 +13,9 @@ for(const c of cases)try{
  if(a.status==='invalid-evidence'||!isDeepStrictEqual(a,b))errors.push({id:c.id,error:'invalid or differential parity'});
 }catch(e){errors.push({id:c.id,error:e.message});}
 if(!errors.length)for(let i=0;i<rounds;i++)for(const c of cases)for(const shared of i%2?[false,true]:[true,false]){
- const start=performance.now();call(c,shared);timings[shared?'shared':'separate'].push(performance.now()-start);
+ try{const start=performance.now();call(c,shared);timings[shared?'shared':'separate'].push(performance.now()-start);}
+ catch(e){errors.push({id:c.id,round:i,shared,error:e.message});}
 }
 const summarize=xs=>{const a=[...xs].sort((a,b)=>a-b);return {samples:a.length,p50Ms:a.length?a[Math.ceil(a.length*.5)-1]:null,p95Ms:a.length?a[Math.ceil(a.length*.95)-1]:null,totalMs:xs.reduce((a,b)=>a+b,0)};};
 console.log(JSON.stringify({scope:'same-process identical current policy shared vs separate provider; not historical speedup',rounds,cases:cases.length,expectedSamples:rounds*cases.length,parityPassed:!errors.length,shared:summarize(timings.shared),separate:summarize(timings.separate),errors},null,2));
-if(errors.length)process.exitCode=1;
+if(errors.length||Object.values(timings).some(xs=>xs.length!==rounds*cases.length))process.exitCode=1;

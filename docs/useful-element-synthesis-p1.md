@@ -9,3 +9,5 @@ Optional birth is passed to existing Climate V5 through the internal synthesis p
 Validation: isolated synthetic test bodies exercise identity, route matching, anchor alternatives and timing. Native tests include shared versus separate output equality, standalone parity and existing frozen term boundary replay. Benchmark runs same current policy with and without sharing, reports p50/p95; no speedup claimed before native execution. Container cannot resolve github.com; native suite and audits remain pending.
 
 Run npm run validate:pattern-outcome and npm run benchmark:synthesis. The source method audit is npm run audit:useful-element-method-links.
+
+Final contract hardening: preserve the existing compatibility shim export names (do not expose internal evaluator functions through old wildcard shims). Distinguish source scope membership from actual route presence in the method audit; an empty climate group membership does not count. The synthetic shared-branch fixture uses two fire stems of 午 and a valid fire-controls-metal remedy. Added a provider key isolation and failed-computation retry test. Benchmark timing errors and missing samples fail the run.
