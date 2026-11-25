@@ -9,7 +9,7 @@ const fixture=(complete=true,tenGod='식신',direction='strong')=>{
  const edge=(from,to,kind)=>({edgeId:from+'>'+to,from,to,kind,sourceBasis:'direct-root-observed',generationScreen:'unresolved',controlComparison:null,effective:null,selectionAuthority:false});
  const capacity={status,selectionAuthority:false,occurrences:actors};
  const supply={status,selectionAuthority:false,effectiveSupply:null,occurrences:actors.map(a=>({id:a.id,layer:a.layer,directRoot:{state:true,uncontestedRootIds:[],contestedRootIds:[],preservationConfirmed:null},paths:[],groundedPathIds:[],effectiveSupply:null})),
-  actions:[edge(d,f,'generate'),edge(f,k,'control'),edge(i,f,'control'),edge(f,w,'generate'),edge(w,k,'generate')]};
+  actions:[edge(d,f,'generate'),edge(f,k,'control'),edge(i,f,'control'),edge(f,w,'generate'),edge(w,k,'generate'),edge(i,d,'generate'),edge(k,d,'control'),edge(w,i,'control')]};
  const interposition={roleNeutral:{status,selectionAuthority:false,targetScope:'all-visible-stems',effectConfirmed:null,neutralizationConfirmed:null,roleDemandConfirmed:null,
   pressureContexts:actors.filter(a=>a.layer==='visible').map(a=>({targetId:a.id,targetScope:'in-scope',controllers:[],effective:null,allPressureResolved:null}))}};
  const review={candidateId:'k',family:'killing',status:'diagnostic'};
