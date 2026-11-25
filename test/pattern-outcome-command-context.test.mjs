@@ -62,3 +62,9 @@ test('native source boundary and divergent commander replays preserve literal sl
   assert.equal(observeBranchPressure(prior,root,formation).status,'diagnostic');
  }
 });
+
+test('all command variants unresolved is unresolved agreement, not directional agreement',()=>{
+ const x=sample();x.command.hypotheses=x.command.hypotheses.slice(0,2);
+ x.root.occurrences.forEach(o=>o.sensitivityAxes={...o.sensitivityAxes,anySubstantial:null});
+ assert.equal(run(x).comparisonCoverage[0].status,'unresolved-agreement');
+});

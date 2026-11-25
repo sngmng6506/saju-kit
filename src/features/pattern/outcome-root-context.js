@@ -1,6 +1,7 @@
 import {compareForceProfiles} from '../../core/relative-force.js';
 const uniq=xs=>[...new Set(xs)].sort();
 const observed=(xs,complete)=>xs.length?true:complete?false:null;
+const distance=(a,b)=>Math.abs(['year','month','day','hour'].indexOf(a)-['year','month','day','hour'].indexOf(b));
 const ROOT_SOURCE='https://luckclub.cn/bazi/002/008/';
 const CLASH_SOURCE='https://changxianyi.com/guji/ziping/wz-20260914/chapter-008/';
 // Only literal six harmony or a complete three-harmony is a candidate for
@@ -83,13 +84,60 @@ export function observeRootContext(prior,formation){
    sensitivityAxes:axes,contexts,rootPreservedConfirmed:null,excessConfirmed:null,deficiencyConfirmed:null});
  }
  const byOccurrence=new Map(occurrences.map(o=>[o.id,o])),comparisons=[];
+ // Propagate root uncertainty into the local supply axes. The original
+ // relative-force graph is an aggregate graph; branch sources may use
+ // only their own physical constituents, never roots in another branch.
+ const byGraph=new Map();
+ for(const o of actors){
+  if(!o.graphNodeId)continue;
+  if(!byGraph.has(o.graphNodeId))byGraph.set(o.graphNodeId,[]);
+  byGraph.get(o.graphNodeId).push(o);
+ }
+ const sourceState=node=>{
+  const members=byGraph.get(node.id)??[];
+  if(!members.length)return 'unknown';
+  if(members.some(m=>m.layer==='visible')){
+   if(members.length!==1)return 'unknown';
+   const a=byOccurrence.get(members[0].id).rootAxes.anySubstantial;
+   return a===false?'absent':a===null||node.contacts.length?'unknown':'observed';
+  }
+  const states=members.map(m=>slotMap.get(m.id));
+  if(states.some(s=>!s))return 'unknown';
+  const substantial=states.filter(s=>s.role!=='residual');
+  if(!substantial.length)return 'absent';
+  if(node.contacts.length)return 'unknown';
+  return substantial.some(s=>s.state==='uncontested-substantial-observation')?'observed':
+   substantial.some(s=>s.state==='clash-exposed'||s.state==='formation-contested')?'unknown':'absent';
+ };
+ for(const o of actors){
+  const row=byOccurrence.get(o.id),p=profiles[o.id];
+  const collect=(nodes,priorIds)=>{
+   const byNode=new Map(nodes.map(n=>[n.id,n]));
+   if(priorIds.some(id=>!byNode.has(id)))return null;
+   const evidence=[...byNode.values()].map(n=>({nodeId:n.id,state:sourceState(n)}));
+   return {observedIds:evidence.filter(x=>x.state==='observed').map(x=>x.nodeId),
+    unresolvedIds:evidence.filter(x=>x.state==='unknown').map(x=>x.nodeId)};
+  };
+  const generation=collect((o.generationReceived??[]).filter(e=>e.local).map(e=>e.sourceEvidence),p.localGenerationNodes);
+  const peer=collect((o.peers??[]).filter(n=>distance(n.position,o.position)<=1),p.localPeerNodes);
+  if(!generation||!peer)return invalid();
+  const axis=x=>x.observedIds.length?true:x.unresolvedIds.length||!complete?null:false;
+  row.localSupply={generation,peer,effectiveSupply:null};
+  row.sensitivityAxes.localRootedGeneration=axis(generation);
+  row.sensitivityAxes.localRootedPeer=axis(peer);
+  if(generation.unresolvedIds.length||peer.unresolvedIds.length)row.contexts.push('local-supply-access-unresolved');
+ }
+ const sensitivityProfile=(p,row)=>({...p,axes:row.sensitivityAxes,
+  rootPositions:uniq(row.roots.filter(r=>row.uncontestedRootIds.includes(r.id)).map(r=>r.position)),
+  localGenerationNodes:row.localSupply.generation.observedIds,localPeerNodes:row.localSupply.peer.observedIds});
  for(let i=0;i<visible.length;i++)for(let j=i+1;j<visible.length;j++){
   const a=visible[i],b=visible[j],p=profiles[a.id],q=profiles[b.id];
   const ap=byOccurrence.get(a.id),bp=byOccurrence.get(b.id);
   const cmp=(x,y)=>compareForceProfiles(x,y,{completeHour:complete,comparable:a.position!==b.position});
-  const sensitivity=cmp({...p,axes:ap.sensitivityAxes},{...q,axes:bp.sensitivityAxes});
+  const sp=sensitivityProfile(p,ap),sq=sensitivityProfile(q,bp);
+  const sensitivity=cmp(sp,sq);
   const localAxes=x=>Object.fromEntries(Object.entries(x).filter(([k])=>!['principalSupport','seasonSupport'].includes(k)));
-  const nonseason=cmp({...p,axes:localAxes(ap.sensitivityAxes)},{...q,axes:localAxes(bp.sensitivityAxes)});
+  const nonseason=cmp({...sp,axes:localAxes(ap.sensitivityAxes)},{...sq,axes:localAxes(bp.sensitivityAxes)});
   const seasonOnly=cmp({...p,axes:{principalSupport:p.axes.principalSupport,seasonSupport:p.axes.seasonSupport}},
    {...q,axes:{principalSupport:q.axes.principalSupport,seasonSupport:q.axes.seasonSupport}});
   const original=cmp(p,q);

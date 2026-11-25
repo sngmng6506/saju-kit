@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readCapacityComparison,observeConditionalRolePriority} from '../src/features/pattern/outcome-role-priority.js';
+import {readCapacityComparison,observeConditionalRolePriority,assessRoleComparisonReadiness} from '../src/features/pattern/outcome-role-priority.js';
 import {evaluateRoleContrast,summarizeRoleContrasts} from '../scripts/lib/pattern-outcome-role-contrast.mjs';
 import {observeRoleCapacity} from '../src/features/pattern/outcome-role-capacity.js';
 const a='visible:year',b='visible:month',day='visible:day';
@@ -49,4 +49,16 @@ test('exact and same-element root in one slot of one occurrence is not shared su
  const p={occurrenceId:a,axes:{},localGenerationNodes:[],localPeerNodes:[],localControlNodes:[],contacts:[]};
  const r=observeRoleCapacity({completeHour:true,stemForce:{occurrences:[o]},relativeForce:{profiles:{[a]:p}}});
  assert.deepEqual(r.tenGods.find(g=>g.tenGod==='정인').sharedRootSlots,[]);
+});
+
+test('relative evidence cannot trigger excess review if root or command direction changes',()=>{
+ const cmp={relation:'left-evidence-dominates',status:'directional-profile-only',cautions:[]};
+ const root={status:'diagnostic',comparisons:[{left:a,right:b,sensitivity:{relation:'left-evidence-dominates'}}]};
+ const command={status:'diagnostic',comparisonCoverage:[{left:b,right:a,status:'available-hypotheses-agree',hypotheses:[{id:'s',relation:'right-evidence-dominates'}]}]};
+ assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'directional-review-eligible');
+ assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,null).status,'context-review');
+ command.comparisonCoverage[0].status='incomplete-source-coverage';
+ assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'unresolved');
+ root.comparisons[0].sensitivity.relation='unresolved';
+ assert.equal(assessRoleComparisonReadiness(cmp,a,b,root,command).status,'unresolved');
 });

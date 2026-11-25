@@ -83,7 +83,11 @@ export function projectMonthCommand(prior,rootContext,formation,command){
    const profile=o=>{
     const axes=Object.fromEntries(Object.entries(roots.get(o.id).sensitivityAxes).filter(([k])=>!['principalSupport','seasonSupport'].includes(k)));
     axes.commandSupport=supported(elementRelation(c.element,o.element));
-    return {...profiles[o.id],axes};
+    const row=roots.get(o.id);
+    return {...profiles[o.id],axes,
+     rootPositions:row.roots?uniq(row.roots.filter(r=>row.uncontestedRootIds.includes(r.id)).map(r=>r.position)):profiles[o.id].rootPositions,
+     localGenerationNodes:row.localSupply?.generation.observedIds??profiles[o.id].localGenerationNodes,
+     localPeerNodes:row.localSupply?.peer.observedIds??profiles[o.id].localPeerNodes};
    };
    const conditional=compareForceProfiles(profile(a),profile(b),{completeHour:true,comparable:true});
    comparisons.push({left:a.id,right:b.id,originalRelation:p.original.relation,rootSensitivityRelation:p.sensitivity.relation,conditional,
@@ -101,7 +105,7 @@ export function projectMonthCommand(prior,rootContext,formation,command){
   const available=hypotheses.filter(h=>h.relation!==null),relations=uniq(available.map(h=>h.relation));
   return {left:p.left,right:p.right,hypotheses,availableCount:available.length,expectedCount:variants.length,
    status:!available.length?'unavailable':relations.length>1?'source-or-mode-sensitive':available.length!==variants.length?'incomplete-source-coverage':
-    variants.some(v=>v.status==='boundary-review')?'boundary-review':'available-hypotheses-agree',
+    variants.some(v=>v.status==='boundary-review')?'boundary-review':relations[0]==='unresolved'?'unresolved-agreement':'available-hypotheses-agree',
    forceComparison:null};
  });
  return {...base,status:variants.some(v=>v.command)?'diagnostic':'unresolved',reason:null,command,variants,comparisonCoverage,
@@ -111,6 +115,6 @@ export function observeMonthCommandReview(input,birth,prior,rootContext,formatio
  // An hour pillar is not an exact timestamp. Preserve the established
  // standalone V10 contract; only internal birth-aware callers forward birth.
  const reason=input.birthBasis==='provisional-chart'?'provisional-chart':!prior.completeHour?'missing-hour':birth?.period!=null?'birth-period':null;
- const command=reason?{status:'unresolved',reason}:analyzeMonthCommand({saju:input.saju,birth});
+ const command=reason||birth==null?{status:'unresolved',reason:reason??'missing-birth-instant'}:analyzeMonthCommand({saju:input.saju,birth});
  return projectMonthCommand(prior,rootContext,formation,command);
 }

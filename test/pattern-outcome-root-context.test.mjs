@@ -56,3 +56,23 @@ test('native six source charts and missing-hour variants retain all physical roo
   if(!complete)assert.ok(r.comparisons.every(p=>p.sensitivity.relation==='unresolved'));
  }
 });
+
+test('formation-contested local generation is not retained as independent support',()=>{
+ const x=sample(),a=x.prior.stemForce.occurrences.find(o=>o.id==='visible:year'),d=x.prior.stemForce.occurrences.find(o=>o.id==='visible:day');
+ a.graphNodeId='year:stem';d.graphNodeId='day:stem';
+ d.generationReceived=[{local:true,sourceEvidence:{id:'year:stem',position:'year',contacts:[]}}];
+ x.prior.relativeForce.profiles[d.id].localGenerationNodes=['year:stem'];
+ x.prior.relativeForce.profiles[d.id].axes.localRootedGeneration=true;
+ assert.equal(run(x).occurrences.find(o=>o.id===d.id).sensitivityAxes.localRootedGeneration,true);
+ x.formation.formations=[{id:'f',layer:'branch',classification:'complete-three',positions:['year','day','hour'],target:'fire',flags:{structurallyComplete:true}}];
+ const r=run(x).occurrences.find(o=>o.id===d.id);
+ assert.equal(r.sensitivityAxes.localRootedGeneration,null);
+ assert.deepEqual(r.localSupply.generation.unresolvedIds,['year:stem']);
+});
+test('branch supply cannot borrow substantial roots from another branch',()=>{
+ const x=sample(),a=x.prior.stemForce.occurrences.find(o=>o.id==='hidden:month:을'),d=x.prior.stemForce.occurrences.find(o=>o.id==='visible:day');
+ a.graphNodeId='month:branch:wood';
+ d.generationReceived=[{local:true,sourceEvidence:{id:a.graphNodeId,position:'month',contacts:[]}}];
+ const r=run(x).occurrences.find(o=>o.id===d.id);
+ assert.equal(r.sensitivityAxes.localRootedGeneration,null);
+});

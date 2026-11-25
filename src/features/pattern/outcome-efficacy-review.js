@@ -44,7 +44,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const branchAccess=observeBranchRouteAccess(q,branchContext);
   const roleConditions=observeRoleConditions(q,prior,roleCapacity,m,compound.get(q.candidateId),result.regulationStrength,combinationContext);
   const roleFlow=observeRouteFlow(q,prior,result.access,m,result.regulationStrength);
-  const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength,rootContext);
+  const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength,rootContext,monthCommandReview);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
