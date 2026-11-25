@@ -17,7 +17,9 @@
     "verify:core-refactor": "node scripts/verify-core-refactor.mjs",
     "audit:dead-code": "node scripts/audit-dead-code.mjs",
     "test:domain": "node scripts/run-domain.mjs",
-    "audit:layout": "node scripts/audit-layout.mjs"
+    "audit:layout": "node scripts/audit-layout.mjs",
+    "benchmark:refactor": "node scripts/benchmark-refactor.mjs",
+    "verify:consumers": "node scripts/verify-consumers.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

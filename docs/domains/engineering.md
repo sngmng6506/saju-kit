@@ -13,6 +13,7 @@ Run the native domain tests: `npm run test:domain -- engineering`. This catalog 
 - [dead-code-inventory.md](../dead-code-inventory.md)
 - [layout-validation.md](../layout-validation.md)
 - [methods-refactor-validation.md](../methods-refactor-validation.md)
+- [refactor-closure.md](../refactor-closure.md)
 - [refactor-validation.md](../refactor-validation.md)
 - [strength-refactor-validation.md](../strength-refactor-validation.md)
 - [transit-refactor-validation.md](../transit-refactor-validation.md)
