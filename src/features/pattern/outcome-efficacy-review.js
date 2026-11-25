@@ -41,6 +41,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const rootContext=observeRootContext(prior,formation);
  const groundedSupply=observeGroundedSupply(prior,rootContext);
  const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
+ const outputSupplyContext=observeOutputSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const resourceSupplyContext=observeResourceSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const branchPressure=observeBranchPressure(prior,rootContext,formation);
  const monthCommandReview=observeMonthCommandReview(input,birth,prior,rootContext,formation);
@@ -61,8 +62,9 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const interactions=observeRoleInteractions(q,roleCapacity,rootContext,policies,prior.completeHour);
   const demandReview=observeRoleDemand(q,roleCapacity,groundedSupply,interpositionReview,policies,prior.completeHour);
   const resourceDemandConditions=assessResourceDemandConditions(q,demandReview,resourceSupplyContext,prior.completeHour);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions}};
+  const outputDemandConditions=assessOutputDemandConditions(q,demandReview,outputSupplyContext,killingStrategies,prior.completeHour);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
