@@ -23,8 +23,10 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 ## Commands
 
 ```sh
-npm test
+npm run test:failures
 npm run audit:architecture
 npm run verify:pattern-refactor
 npm run verify:strength-refactor
 ```
+
+Use `npm run test:failures` for routine local regression: only failures, relevant stderr and the aggregate summary are printed. `npm test` remains available for full output.
