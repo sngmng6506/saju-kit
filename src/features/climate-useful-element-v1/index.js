@@ -1,1 +1,1 @@
-export * from '../climate/baseline.js';
+export { CLIMATE_USEFUL_ELEMENT_VERSION, climateEvidence, analyzeClimateUsefulElement } from '../climate/baseline.js';
