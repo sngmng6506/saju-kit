@@ -76,3 +76,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Conditional synthesis priority review](docs/useful-element-priority-v1.md): source-scoped obligations, exact climate contacts, branch scenarios and source audit; native validation pending.
 
 - [Synthesis P1 evidence sharing, supplementary methods and timing](docs/useful-element-synthesis-p1.md): shared request graph/strength baseline, method-link source controls and native differential benchmark. No final authority.
+
+- [P1 selection readiness](docs/useful-element-synthesis-selection.md) and [independent source review](docs/pattern-outcome-independent-review.md): exact source coverage, 20 review tasks, scenario-specific decision abstention. No verified independent labels; native receipt required before force tuning.
