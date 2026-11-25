@@ -2,14 +2,28 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {getSaju,analyzeClimateUsefulElementV4,analyzeClimateUsefulElementV5,analyzeClimateUsefulElement,analyzeClimateUsefulElementV2} from '../src/index.js';
 import * as oldBaseline from '../src/features/climate-useful-element-v1/index.js';
-import * as baseline from '../src/features/climate/baseline.js';
+import * as implBaseline from '../src/features/climate/baseline.js';
+import * as oldExpanded from '../src/features/climate-useful-element-v2/index.js';
+import * as implExpanded from '../src/features/climate/expanded.js';
 import * as oldReview from '../src/features/climate-useful-element-v3/index.js';
-import * as review from '../src/features/climate/review.js';
+import * as implReview from '../src/features/climate/review.js';
+import * as oldRequirements from '../src/features/climate-useful-element-v5/index.js';
+import * as implRequirements from '../src/features/climate/requirement-review.js';
 
 test('historical climate module paths preserve their exported bindings',()=>{
- for(const [a,b] of [[oldBaseline,baseline],[oldReview,review]]){
-  assert.deepEqual(Object.keys(a),Object.keys(b));
-  for(const key of Object.keys(a))assert.equal(a[key],b[key]);
+ // The historical entry points expose a fixed contract, not every helper
+ // subsequently introduced in an internal implementation module.
+ const contracts=[
+  [oldBaseline,implBaseline,["CLIMATE_USEFUL_ELEMENT_VERSION","analyzeClimateUsefulElement","climateEvidence"],'evaluateClimateBaseline'],
+  [oldExpanded,implExpanded,["CLIMATE_V2_VERSION","analyzeClimateUsefulElementV2"],'evaluateClimateExpanded'],
+  [oldReview,implReview,["CLIMATE_V3_VERSION","analyzeClimateUsefulElementV3","evaluateClimateReview"],'evaluateClimateTemporal'],
+  [oldRequirements,implRequirements,["CLIMATE_V5_VERSION","analyzeClimateUsefulElementV5"],'evaluateClimateRequirements']
+ ];
+ for(const [historical,implementation,names,internal] of contracts){
+  assert.deepEqual(Object.keys(historical).sort(),[...names].sort());
+  for(const key of names)assert.equal(historical[key],implementation[key],key);
+  assert.equal(Object.hasOwn(historical,internal),false,internal);
+  assert.equal(typeof implementation[internal],'function',internal);
  }
 });
 test('climate kernel preserves legacy projections and v5 extends the v4 observation',()=>{
