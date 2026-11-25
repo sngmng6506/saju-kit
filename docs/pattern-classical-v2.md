@@ -109,3 +109,21 @@ npm run audit:dead-code
 ```
 
 Executed four new synthetic test groups in an isolated JavaScript environment with actual research module source and adapted assertions: three-valued truth tables and De Morgan checks, open-world coverage, independent rescue obligations, motif predicate consistency, backlog exclusion, missing-hour and unavailable handling. Exhaustive enumeration of 972 two-threat combinations produced zero conflicting hypotheses and zero final-authority grants. This proves only the tested algebraic contracts, not correctness of classical astrology. Native Node 22.16.0 is available but git ls-remote again failed DNS resolution; native corpus and full regression have not run. The branch must remain separate until native regression and pinned equivalence checks pass. Next: use measured backlog to implement individually sourced contextual predicates with explicit negative contrasts, add independently adjudicated force/efficacy labels and freeze an independent corpus before tuning. Do not activate final selection or transit authority.
+
+
+## Contextual condition review v1
+
+The pattern decision research consumes the existing opt-in strength-decision-v1 output for the same chart, not a new strength classifier. Relevant source/engineering contracts: [separated strength decision](strength-separated-decision.md), [integrated strength v3](strength-multiaxis-v3.md), [resource access](resource-access-v1.md), [output capacity](output-capacity-v1.md), and the classical discussions already cited above. No new textual collation is claimed for this integration.
+
+A complete, conflict-free ordinary-chart strong/weak hypothesis with explicit grounds is required for a conditional day-strong proxy. Weak may also refute the conjunction day-and-resource-strong under that proxy; strong alone cannot establish the conjunction. Partial, unavailable, wrong policy/scope and conflicting or unresolved directions abstain. The proxy is kept in a parallel conditionalPredicate field; the original motif truth, doctrinalValue, effective effect and final authority remain unchanged. Special-chart exclusion is an assumption, not proof of ordinary classification.
+
+The matched scenarios compare support with each burden, conditional resource with nominal wealth and hypothetical residual output, and visible peer with nominal wealth. Comparisons use integer mass within the same scenario row, report all-left/all-right/equal or sensitivity, and never compare independently selected marginal extrema. These are inherited hypothetical units, not effective force. Do not infer excessive/deficient resource, sufficient day capacity or peer victory from these comparisons. Candidate-local edge evidence binds to the upstream anchor occurrences, excludes the day reference from peer pressure, preserves relative evidence and blockers, includes actual food-killing-day triads and flags combination/order review. No duplication of the strength calculation or fixture-dependent inference. Current upstream anchor identity is retained, including its known scope limitations.
+
+```sh
+node scripts/audit-classical-patterns.mjs --context
+node scripts/audit-classical-patterns.mjs --context --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+```
+
+The audit keeps Shen 67 and Xu 34 separate (14 excluded Shen rows). It reports conditional proxy coverage, ordinary-strength direction distribution, and conditional motif changes without claiming doctrine or final outcome accuracy. Two new synthetic test groups passed in isolated JavaScript with actual context and logical algebra sources and adapted assertions; matched scenario sensitivity, conflict/missing hour abstention, candidate/peer isolation, input immutability, positive and negative proxy values and authority boundaries were exercised. Native corpus and complete regression remain pending: Node 22.16.0 is installed, but git ls-remote failed to resolve github.com. No actual corpus coverage numbers were measured. Next run native corpus and use the condition backlog to scope the first genuinely adjudicated context/efficacy predicates; avoid new weights or definitive force thresholds without independent reference evidence.
