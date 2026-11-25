@@ -1,3 +1,4 @@
+import {observeRoleDependencies} from '../../src/features/pattern/outcome-role-dependencies.js';
 // E1 discrepancy diagnosis. A profile comparison is a partial order of
 // evidence, never a physical strength measurement. Preserve legacy states.
 const pair=(p,a,b)=>p.left===a&&p.right===b||p.left===b&&p.right===a;
@@ -522,4 +523,27 @@ export function summarizeOfficerDemandConditions(c,mechanism,partial){
   }
  }
  return {...base,counts,states,errors};
+}
+
+
+// Deterministic provenance replay, not an independent efficacy oracle.
+export function summarizeRoleDependencyReview(c,mechanism,partial){
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={candidates:0,objectives:0,projectedObjectives:0,sharedActions:0,repeatedProjectionActions:0,crossObjectiveActions:0,sharedRoots:0,sharedDonors:0};
+ if(!Array.isArray(mechanism?.candidates)||!mechanism.groundedSupply)return {...base,errors:['role-dependency-context-missing']};
+ const seen=new Set();
+ for(const m of mechanism.candidates){
+  const p=m.rolePriority,d=p?.dependencyReview,source=p?.demandReview;
+  if(!source||!d||d.candidateId!==m.candidateId||seen.has(m.candidateId)||d.selectionAuthority!==false||d.netEffectConfirmed!==null||d.independentSupplyConfirmed!==null){
+   errors.push('role-dependency-contract:'+m.candidateId);continue;
+  }
+  seen.add(m.candidateId);
+  const expected=observeRoleDependencies(source,{resource:p.resourceDemandConditions,output:p.outputDemandConditions,officer:p.officerDemandConditions},mechanism.groundedSupply,!partial);
+  if(expected.status==='invalid-evidence'||JSON.stringify(d)!==JSON.stringify(expected)){errors.push('role-dependency-replay:'+m.candidateId);continue;}
+  if(d.status==='out-of-scope')continue;
+  counts.candidates++;counts.objectives+=d.objectives.length;counts.projectedObjectives+=d.objectives.filter(o=>o.projections.length).length;
+  counts.sharedActions+=d.sharedActions.length;counts.repeatedProjectionActions+=d.sharedActions.filter(a=>a.interpretation==='repeated-projection-of-one-objective').length;
+  counts.crossObjectiveActions+=d.sharedActions.filter(a=>a.interpretation==='shared-across-objectives').length;
+  counts.sharedRoots+=d.sharedRoots.length;counts.sharedDonors+=d.sharedDonors.length;
+ }
+ return {...base,counts,errors};
 }
