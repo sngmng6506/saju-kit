@@ -17,12 +17,13 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 - Done: group seven transit modules; compose annual arrival projections in a single traversal and share legacy/v6 annual context and timeline helpers. Isolated equivalence passed.
 - Done: shared core observation scope and internal projections; 31-entry isolated equivalence passed.
 - Pending: native regression (including corrected climate export test), architecture audit, authority, transit and core pinned-baseline verification; repeat earlier verifiers at final gate.
-- Pending: inspect remaining domains and document link consumers before additional physical migration. Symbol-level dead code and duplicate semantic logic require separate review; no automatic removal.
+- Done: all 194 runtime files inventoried; dependency graph clean, 32 unreachable files all compatibility shims. Conservative declaration scan and manual review removed two unused local bindings/imports; research exports retained. Scope-aware exhaustive dead-code proof is not claimed.
+- Pending: documentation and test reference audit before physical migration.
 - Pending: decide whether to move historical research/results files after all referencing scripts/docs are audited. Do not create duplicate authoritative specs.
 
 ## Next after the regression gate
 
-1. Audit full runtime dependency graph and symbol-level dead code, including research scripts and compatibility paths. Do not remove functions merely because they are not root-reachable. Inspect documentation consumers before relocation.
+1. Audit documentation, test fixtures and script path consumers before relocation. Preserve historical paths or migrate all known consumers explicitly; no automatic deletion.
 2. Measure runtime and result size before performance optimization.
 3. Resume pattern 成敗救應 research on the consolidated pattern domain. Separate structural evidence, unresolved effects and authority; preserve special-pattern exclusion and consumer pins.
 4. Independently validate selection/efficacy hypotheses before promoting a policy or connecting new decisions to transit. No automatic final useful/favorable/unfavorable selection.
@@ -32,6 +33,7 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 ```sh
 npm run test:failures
 npm run audit:architecture
+npm run audit:dead-code
 npm run verify:pattern-refactor
 npm run verify:strength-refactor
 npm run verify:climate-refactor

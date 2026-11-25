@@ -14,7 +14,8 @@
     "verify:methods-refactor": "node scripts/verify-methods-refactor.mjs",
     "verify:authority-refactor": "node scripts/verify-authority-refactor.mjs",
     "verify:transit-refactor": "node scripts/verify-transit-refactor.mjs",
-    "verify:core-refactor": "node scripts/verify-core-refactor.mjs"
+    "verify:core-refactor": "node scripts/verify-core-refactor.mjs",
+    "audit:dead-code": "node scripts/audit-dead-code.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

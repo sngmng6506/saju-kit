@@ -1,14 +1,13 @@
 import { observeRootDynamics,lifeStage } from './root-dynamics.js';
 import { observeInteractionContext } from './interaction-context.js';
 import { createElementObservation } from './element-structure.js';
-import { elementRelation,stemInfo } from './elements.js';
+import { elementRelation } from './elements.js';
 import { tenGodForStem } from './natal.js';
 const ORDER=['year','month','day','hour'];
 const distance=(a,b)=>Math.abs(ORDER.indexOf(a)-ORDER.indexOf(b));
 const slot=n=>n.position+':'+n.layer;
 const unique=xs=>[...new Set(xs)];
 const observed=(xs,complete)=>xs.length?true:complete?false:null;
-const relation=(a,b,type)=>{const r=elementRelation(a,b);return r.type===type&&r.direction==='left-to-right';};
 const SOURCE=Object.freeze({roots:'https://donglishuzhai.net/chapter/3719.html',quality:'https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-ge-ju-gao-di'});
 export const STEM_FORCE_VERSION='stem-force-evidence-v1';
 // One physical occurrence per visible stem / hidden stem; branch slots are

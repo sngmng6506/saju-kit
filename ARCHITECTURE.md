@@ -69,6 +69,7 @@ README is the entry point; this file describes current architecture; PLAN descri
 ```sh
 npm test
 npm run audit:architecture
+npm run audit:dead-code
 npm run verify:pattern-refactor
 npm run verify:strength-refactor
 npm run verify:climate-refactor
@@ -83,3 +84,5 @@ The pattern verifier compares the complete root API export names and ten pattern
 For concise native regression output, use `npm run test:failures` (custom Node reporter; no change to test selection or exit code). Full output remains available via `npm test`.
 
 The concise reporter displays file-completion progress rather than guessing the number of dynamically registered tests. If file lifecycle events are unavailable, it reports completed test events instead. Research ablation scripts use `scripts/lib/strength-research-source.mjs` to target implementation files, not public re-export shims.
+
+The [dead-code inventory](docs/dead-code-inventory.md) distinguishes pure compatibility re-exports, research-only exports and local declaration candidates. `npm run audit:dead-code` is a conservative textual report, not a scope-aware call graph or automatic removal tool.
