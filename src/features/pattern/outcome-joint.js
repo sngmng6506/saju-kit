@@ -20,6 +20,52 @@ function addPartners(existing,pairs){
  }
  return next;
 }
+
+// Canonical identity for undirected combination, directional identity for
+// control/generation. Inherited threat edges are never new interventions.
+const edgeKey=e=>JSON.stringify(e.kind==='combine'?[e.kind,...[e.from,e.to].sort()]:[e.kind,e.from,e.to]);
+const edgeRef=e=>({from:e.from,to:e.to,kind:e.kind});
+const unique=xs=>[...new Set(xs)].sort();
+function mandatoryFlow(selected,entries){
+ const routes=selected.map(x=>{
+  const {r,w}=entries.get(key(x));
+  const bound=r.kind==='rescue'?entries.get(key({ruleId:r.threatRuleId,witnessId:w.threatWitnessId})):null;
+  const inherited=new Set((bound?.w.edges??[]).map(edgeKey));
+  const own=w.edges.filter(e=>!inherited.has(edgeKey(e)));
+  const participants=unique([...Object.values(w.roles??{}),...w.edges.flatMap(e=>[e.from,e.to])]);
+  const anchorOptions=(w.anchorBindings??[]).map(b=>({anchorId:b.anchorId,targetId:b.targetId??null,basis:b.basis??null,
+   edge:b.edge?edgeRef(b.edge):null,selected:null}));
+  return {ref:{ruleId:r.id,witnessId:w.id},kind:r.kind,participants,
+   helperId:w.roles?.helper??null,boundThreat:bound?.ref??null,
+   mandatoryEdges:own.map(edgeRef),inheritedEdges:(bound?.w.edges??[]).map(edgeRef),anchorOptions,
+   netEffectConfirmed:null};
+ });
+ const contacts=[],shared=[],inventory=new Map();
+ for(const route of routes)for(const e of route.mandatoryEdges){
+  const k=edgeKey(e);
+  if(!inventory.has(k))inventory.set(k,{edge:e,routeRefs:[]});
+  const row=inventory.get(k);
+  if(!row.routeRefs.some(r=>key(r)===key(route.ref)))row.routeRefs.push(route.ref);
+ }
+ for(const a of routes)for(const b of routes){
+  if(a===b)continue;
+  // Only an intervention introduced by A may be a new contact on B.
+  for(const e of a.mandatoryEdges.filter(e=>['control','combine'].includes(e.kind))){
+   const targets=(e.kind==='control'?[e.to]:[e.from,e.to]).filter(id=>id!=='visible:day'&&b.participants.includes(id));
+   if(!targets.length)continue;
+   contacts.push({fromRoute:a.ref,toRoute:b.ref,edge:e,affectedIds:unique(targets),
+    affectedHelper:b.helperId!==null&&targets.includes(b.helperId),
+    kind:a.kind==='rescue'&&b.kind==='rescue'?'rescue-to-rescue-contact':'cross-route-contact',effectConfirmed:null});
+  }
+ }
+ for(const row of inventory.values())if(row.routeRefs.length>1)shared.push({...row,independentSupplyConfirmed:null});
+ const pendingAlternatives=routes.filter(r=>r.anchorOptions.length).map(r=>r.ref);
+ return {routes,contacts,sharedRelations:shared,uniqueMandatoryRelations:[...inventory.values()],
+  pendingAlternatives,
+  status:contacts.length?'cross-route-review':pendingAlternatives.length?'anchor-alternative-review':shared.length?'shared-relation-review':'no-mandatory-cross-contact-observed',
+  netEffectConfirmed:null,allThreatsResolved:null,selectionAuthority:false,
+  limitations:['mandatory-new-edges-only','anchor-options-not-allocated','no-force-addition-or-cancellation','contact-not-injury']};
+}
 export function observeJointOutcome(review,mechanism,compound,complete){
  const base={candidateId:review.candidateId,completeHour:complete,selectionAuthority:false,formed:null,broken:null,rescued:null};
  const empty=status=>({...base,status,supports:[],threats:[],search:null,regulation:[],exceptions:[]});
@@ -84,10 +130,11 @@ export function observeJointOutcome(review,mechanism,compound,complete){
   const chosen=new Set(selected.map(key));
   const support=selected[0],rescues=selected.slice(1);
   const interference=compound.rescueInteractions.filter(x=>chosen.has(key(x.rescue))&&key(x.support)===key(support));
+  const flow=mandatoryFlow(selected,entries);
   const collateral=compound.rescueCollateral.filter(x=>chosen.has(key(x.rescue)));
   const shared=compound.rescueAlternatives.filter(x=>chosen.has(key(x.rescue))&&x.sharedParticipantAlternatives.some(a=>chosen.has(key(a))));
   return {status:'conditional-plan-found',examined,limit,plan:{support,rescues,
-   interference,collateral,sharedParticipantRoutes:shared,allocationConfirmed:null,allThreatsResolved:null}};
+   interference,collateral,sharedParticipantRoutes:shared,flow,allocationConfirmed:null,allThreatsResolved:null}};
  }
  return {...base,status:complete?'diagnostic':'partial',supports,threats,regulation,exceptions,
   search:{assumption:'one-ordinary-support-and-one-rescue-per-observed-threat-single-partner-combination',observed:search(false),supportedOnly:search(true)},

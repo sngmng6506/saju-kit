@@ -16,3 +16,7 @@ npm run test:failures
 npm run audit:pattern-outcome-joint
 npm run validate:pattern-outcome
 ```
+
+## P1 exact joint flow review
+
+For the existing deterministic conditional plan, project the union of unique mandatory new relations, separately list inherited bound-threat relations, and preserve unselected anchor alternatives without merging them into simultaneous supply. Cross-route control/combination contacts include rescue-to-rescue and support-to-rescue, not just rescue-to-support. A contact on another route's helper is explicit. Reused directed relations or symmetric combination pairs have one identity and all contributing route references; no independent supply or effect is inferred. Fix the compound topology to exclude inherited threat edges from new rescue interference. The previous first-feasible single-partner plan remains a structural example; no optimization, effective cancellation, priority or selection is inferred. Unknown alternative bindings remain unresolved. No new force thresholds. The joint audit reports observed and supported-only flow review statuses separately; independent gold stays zero.

@@ -39,11 +39,11 @@ function indexReview(review){
  }
  return {damage,support,regulation,exceptions,valid,violations};
 }
-function pairInteractions(left,right){
+function pairInteractions(left,right,excluded=new Set()){
  const common=ids(left.witness).filter(id=>ids(right.witness).includes(id));
  // A day reference alone is ubiquitous, not evidence of compound causation.
  const sharedNonDayIds=common.filter(id=>id!=='visible:day');
- const hits=edges(right.witness).filter(intervention).flatMap(e=>{
+ const hits=edges(right.witness).filter(e=>intervention(e)&&!excluded.has(edgeKey(e))).flatMap(e=>{
   const targets=affected(e).filter(id=>ids(left.witness).includes(id)&&id!=='visible:day');
   return targets.length?[{from:e.from,to:e.to,kind:e.kind,affectedParticipantIds:targets}]:[];
  });
@@ -64,7 +64,8 @@ export function observeCompoundTopology(review,completeHour){
    topology:x.interventionContacts.length?'intervention-touches-support-role':'shared-role-only'}]:[];
  }));
  const rescueInteractions=valid.flatMap(v=>support.flatMap(s=>{
-  const x=pairInteractions(s,v.rescue);
+  const inherited=new Set(edges(v.threat.witness).map(edgeKey));
+  const x=pairInteractions(s,v.rescue,inherited);
   // Mere shared protected target is not collateral interference.
   return x.interventionContacts.length?[{rescue:ref(v.rescue),threat:ref(v.threat),support:ref(s),...x}]:[];
  }));

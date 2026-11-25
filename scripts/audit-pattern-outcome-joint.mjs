@@ -13,10 +13,18 @@ for(const [population,cases] of [['development-source-assertions',source.cases],
    return {...p,hits,status:!hits.length?'uncovered':new Set(hits.map(h=>h.status)).size===1?hits[0].status:'candidate-dependent'};
   });
   const invalid=a.decisionReview.status!=='abstained'||ms.some(m=>m.joint.status==='invalid-evidence'||m.joint.selectionAuthority!==false||m.joint.formed!==null||m.joint.broken!==null||m.joint.rescued!==null);
-  if(invalid)errors.push({id:c.id,error:'invalid-evidence-or-authority'});
+  const invalidFlow=ms.some(m=>['observed','supportedOnly'].some(k=>{
+   const p=m.joint.search?.[k]?.plan;if(!p)return false;
+   const f=p.flow;
+   return !f||f.selectionAuthority!==false||f.netEffectConfirmed!==null||f.allThreatsResolved!==null||
+    f.contacts.some(c=>c.effectConfirmed!==null)||f.sharedRelations.some(x=>x.independentSupplyConfirmed!==null)||
+    f.routes.some(r=>r.netEffectConfirmed!==null||r.anchorOptions.some(a=>a.selected!==null));
+  }));
+  if(invalid||invalidFlow)errors.push({id:c.id,error:'invalid-evidence-or-authority'});
   rows.push({id:c.id,population,probes,candidates:ms.map(m=>({candidateId:m.candidateId,joint:m.joint}))});
  }catch(e){errors.push({id:c.id,error:e.message});}
 }
-const counts={};for(const r of rows)for(const p of r.probes)counts[p.status]=(counts[p.status]??0)+1;
-console.log(JSON.stringify({scope:'source action assertions vs hypotheses; not accuracy',expectedSourceProbes:source.cases.flatMap(c=>c.probes).length,counts,independentGold:0,errors,rows},null,2));
+const counts={},flowCounts={};for(const r of rows){for(const p of r.probes)counts[p.status]=(counts[p.status]??0)+1;
+ for(const c of r.candidates)for(const k of ['observed','supportedOnly']){const f=c.joint.search?.[k]?.plan?.flow;if(f){const id=k+':'+f.status;flowCounts[id]=(flowCounts[id]??0)+1;}}}
+console.log(JSON.stringify({scope:'source action assertions vs hypotheses; not accuracy',expectedSourceProbes:source.cases.flatMap(c=>c.probes).length,counts,flowCounts,independentGold:0,errors,rows},null,2));
 if(errors.length)process.exitCode=1;

@@ -61,3 +61,33 @@ test('native joint hypothesis keeps every threat and final verdict closed',()=>{
   assert.notEqual(m.joint.status,'invalid-evidence');assert.equal(m.joint.rescued,null);assert.equal(m.joint.threats.length,m.threats.length);
  }
 });
+
+test('bound threat pressure is not a new rescue contact in simultaneous plan',()=>{
+ const a=sample(),s=a.review.rules[0].witnesses[0],d=a.review.rules[1].witnesses[0],r=a.review.rules[2].witnesses[0];
+ s.roles={helper:'x',target:'k'};d.edges=[{from:'obstacle',to:'k',kind:'control'}];
+ r.edges.push(...d.edges);r.roles={helper:'h',obstacle:'obstacle',target:'k'};
+ const f=run(a).search.observed.plan.flow;
+ const q=f.routes.find(x=>x.ref.witnessId==='r1');
+ assert.deepEqual(q.inheritedEdges,d.edges);assert.ok(!q.mandatoryEdges.some(e=>e.from==='obstacle'));
+ assert.ok(!f.contacts.some(x=>x.fromRoute.witnessId==='r1'&&x.edge.from==='obstacle'));
+ assert.equal(f.netEffectConfirmed,null);
+});
+test('rescue to rescue helper contact is retained and shared edges are not counted as separate supply',()=>{
+ const a=sample(),r=a.review.rules[2].witnesses;
+ r[0].roles={helper:'h'};r[2].roles={helper:'j'};
+ const pressure={from:'h',to:'j',kind:'control'},supply={from:'x',to:'y',kind:'generate'};
+ r[0].edges.push(pressure,supply);r[2].edges.push(supply);
+ const f=run(a).search.observed.plan.flow;
+ assert.ok(f.contacts.some(x=>x.kind==='rescue-to-rescue-contact'&&x.affectedHelper&&x.toRoute.witnessId==='r3'));
+ assert.equal(f.sharedRelations.length,1);assert.equal(f.sharedRelations[0].routeRefs.length,2);
+ assert.equal(f.sharedRelations[0].independentSupplyConfirmed,null);
+});
+test('unselected anchor alternatives cannot become mandatory simultaneous relations',()=>{
+ const a=sample(),w=a.review.rules[0].witnesses[0];
+ w.anchorBindings=[{anchorId:'a',edge:combine('a','z')},{anchorId:'b',edge:combine('b','z')}];
+ const f=run(a).search.observed.plan.flow;
+ assert.equal(f.pendingAlternatives.length,1);assert.equal(f.routes[0].anchorOptions.length,2);
+ assert.equal(f.status,'anchor-alternative-review');
+ assert.ok(!f.uniqueMandatoryRelations.some(x=>x.edge.to==='z'));
+ assert.ok(f.routes[0].anchorOptions.every(x=>x.selected===null));
+});

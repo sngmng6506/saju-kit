@@ -86,3 +86,13 @@ test('V7 retains all V6 fields except version/scope and adds candidate-scoped co
  assert.equal(analyzePatternOutcomeV7({...args,birthBasis:'provisional-chart',policy:PATTERN_OUTCOME_V7_VERSION}).compoundReview,null);
  assert.throws(()=>analyzePatternOutcomeV7({...args,policy:PATTERN_OUTCOME_V6_VERSION}),{code:'pattern-policy'});
 });
+
+test('inherited damage edges do not become new rescue interference',()=>{
+ const d=rule('d','damage',[w('d',{obstacle:'x',target:'k'},[e('x','k')])]);
+ const s=rule('s','support',[w('s',{helper:'wealth',target:'k'},[e('wealth','k','generate')])]);
+ const r=rule('r','rescue',[w('r',{obstacle:'x',target:'k',helper:'h'},[e('x','k'),e('h','x')],{threatWitnessId:'d'})],{threatRuleId:'d'});
+ const result=observeCompoundTopology(q('officer',[s,d,r]),true);
+ assert.equal(result.supportDamage.length,1);
+ assert.deepEqual(result.rescueInteractions,[]);
+ assert.equal(result.counts.validRescue,1);
+});
