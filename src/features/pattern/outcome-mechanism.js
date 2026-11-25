@@ -36,7 +36,7 @@ export function projectMechanismClimate(climate,complete){
  });
  const byStem=new Map(requirements.map(r=>[r.stem,r]));
  return {...base,status:complete?'diagnostic':'partial',requirements,
-  groups:context.baselineGroups.map(stems=>({stems:[...stems],allExactVisibleAndRootObserved:stems.every(s=>byStem.get(s)?.status==='exact-visible-and-root-observed'),effectiveSupply:null})),
+  groups:context.baselineGroups.map(stems=>({stems:[...stems],allExactVisibleAndRootObserved:stems.every(s=>byStem.get(s)?.status==='exact-visible-and-root-observed')?true:complete?false:null,effectiveSupply:null})),
   alternatives:context.alternatives.map(a=>({when:a.when,stems:[...a.stems],conditionResolved:false}))};
 }
 // Directional evidence: a dominant target is a concern for control only.

@@ -6,7 +6,7 @@ import {needsWinterClimate,projectWinterClimate,reviewWinterOfficer} from './out
 import {observePositionContext} from './outcome-position.js';
 import {extendAssistantRoutes,observeAssistantCombinationInjury,observeBranchAssistantDependencies} from './outcome-assistant-extension.js';
 import {observeCompoundTopology} from './outcome-compound-topology.js';
-import {observeCompoundMotifs} from './outcome-compound-motifs.js';
+import {observeCompoundMotifs,observeKillingWealthDualRole} from './outcome-compound-motifs.js';
 import {observeAssistantNecessity} from './outcome-assistant.js';
 import {observeSourcePurity} from './outcome-purity-source.js';
 import {observeGeneralPurity} from './outcome-purity-general.js';
@@ -35,7 +35,7 @@ export function buildIntegratedOutcome(input,provider,birth){
  const positions=new Map(positionContext.candidateReviews.map(q=>[q.candidateId,q]));
  const occurrenceIds=prior.stemForce.occurrences.map(o=>o.id);
  const rows=reviews.map(q=>{
-  const compound={...observeCompoundTopology(q,complete),motifs:observeCompoundMotifs(q,complete)};
+  const compound={...observeCompoundTopology(q,complete),motifs:[...observeCompoundMotifs(q,complete),...observeKillingWealthDualRole(q,complete)]};
   const assistant=observeAssistantNecessity(q,compound,complete);
   const clarity=observeCandidateClarity(q,compound,assistant,positionContext.visibleOrder,complete);
   const extension={candidateId:q.candidateId,combinationInjury:observeAssistantCombinationInjury(q,compound,input.saju,complete),

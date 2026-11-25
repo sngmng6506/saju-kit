@@ -1,0 +1,100 @@
+{
+  "version": "mechanism-source-desk-review-v1",
+  "scope": "model-assisted-development-source-review-not-independent",
+  "independentGold": 0,
+  "reviewedOn": "2026-11-25",
+  "rows": [
+    {
+      "caseId": "li-officer",
+      "probeId": "combine-killing",
+      "reading": "asserted-removal",
+      "source": "https://www.diancangwang.cn/xuanxuewushu/03cf53eede8a/95ab74278d94.html",
+      "locator": "論正官 / 李參政",
+      "rationale": "The main text names 乙 combining 庚 to retain the officer; not verified transformation.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "mao-wealth",
+      "probeId": "combine-killing",
+      "reading": "disputed-removal",
+      "source": "https://whzj1688.cn/read/zipingzhenquanpingzhu/zhangjie33",
+      "locator": "論財 / 毛狀元 / 徐注",
+      "rationale": "The main text treats the pair as clearing killing to retain wealth. Xu explicitly retains killing and disputes that interpretation.",
+      "parallel": "https://whzj1688.cn/read/zipingzhenquanpingzhu/zhangjie34",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "li-wealth",
+      "probeId": "food-controls-killing",
+      "reading": "interpreted-action",
+      "source": "https://whzj1688.cn/read/zipingzhenquanpingzhu/zhangjie33",
+      "locator": "論財 / 李御史",
+      "rationale": "The text describes controlling killing and generating wealth; the exact visible food-to-killing pair is inferred. Xu also uses food to control killing.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "li-wealth",
+      "probeId": "food-generates-wealth",
+      "reading": "interpreted-action",
+      "source": "https://whzj1688.cn/read/zipingzhenquanpingzhu/zhangjie33",
+      "locator": "論財 / 李御史",
+      "rationale": "Food-to-wealth interpretation, but not the exact hidden 癸 recipient. Xu does not regard wealth itself as the selected use.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "zp-3748-02",
+      "probeId": "resource-controls-output",
+      "reading": "asserted-action",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "論印綬 / 朱尚書",
+      "rationale": "The main text names 戊 restraining 壬. Xu retains this relation while discussing output and excess resource.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "zhou-killing",
+      "probeId": "resource-restrains-output",
+      "reading": "asserted-action",
+      "source": "https://changxianyi.com/guji/ziping/wz-20260914/chapter-040/",
+      "locator": "論偏官 / 周丞相",
+      "rationale": "The passage describes 戊 restrained; a parallel transcription explicitly names 甲. The obstructed output is hurting officer under the literal day-stem convention.",
+      "parallel": "https://www.zhaosir.online/Books/BookChapterDetail.aspx?did=296",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "zhou-killing",
+      "probeId": "wealth-relieves-output-obstruction",
+      "reading": "interpreted-action",
+      "source": "https://changxianyi.com/guji/ziping/wz-20260914/chapter-040/",
+      "locator": "論偏官 / 周丞相",
+      "rationale": "Exposed 庚 wealth relieves the output obstruction; 庚 controlling 甲 is the interpreted exact edge.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "zhou-killing",
+      "probeId": "wealth-feeds-killing",
+      "reading": "interpreted-action",
+      "source": "https://changxianyi.com/guji/ziping/wz-20260914/chapter-040/",
+      "locator": "論偏官 / 周丞相",
+      "rationale": "Supplying insufficient killing is an additional use of wealth. Exact hidden monthly 癸 endpoint inferred; deficiency not independently established.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "zp-3758-13",
+      "probeId": "combine-hurting",
+      "reading": "asserted-removal",
+      "source": "https://www.86027.cn/gudian/yijing/98129.html",
+      "locator": "論建祿月劫 / 王總兵",
+      "rationale": "Names 庚 combining 乙 to remove hurting and retain officer.",
+      "effectAgreement": null
+    },
+    {
+      "caseId": "pingzhang-peer",
+      "probeId": "combine-killing",
+      "reading": "interpreted-removal",
+      "source": "https://www.86027.cn/gudian/yijing/98129.html",
+      "locator": "論建祿月劫 / 一平章",
+      "rationale": "The chart and clearing phrase support the interpreted 乙-庚 pair. The transcription has an apparent OCR error in the final phrase; not exact explicit wording.",
+      "effectAgreement": null
+    }
+  ]
+}
