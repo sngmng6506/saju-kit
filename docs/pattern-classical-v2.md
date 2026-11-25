@@ -70,3 +70,21 @@ npm run audit:layout
 ```
 
 The commentary audit reports candidate inclusion separately from strict matched-threat rescue probes, unmatched paths, and damage-actor probes. A role witness alone cannot satisfy a matched rescue probe. No outcome or assistant accuracy is reported until a real prediction contract exists. Cases without a family label are searched across candidates for the broad structural probes; this is not a family-specific adjudication. Source variants and related cases remain identified, not independent observations. All 34 are development cases. No new runtime policy or final authority is granted. Native v10 execution and full regression remain pending: git ls-remote in the execution environment failed DNS even though Node 22.16.0 is available. The next step is a second-witness transcription review, a separate adjudication pass and independent split before calibrating any final decision rules.
+
+
+## Efficacy review v1 (research-only, after pattern v10)
+
+Text basis: [論用神格局高低](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-ge-ju-gao-di), [論生剋先後分吉凶](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-sheng-ke-xian-hou-fen-ji-xiong), [論用神成敗救應](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-cheng-bai-jiu-ying). The first two electronic chapters were inspected. The text distinguishes appropriateness, available force, relative balance and position; it does not specify a numeric threshold. The screen below is an engineering hypothesis about evidence sufficiency, not a complete classical efficacy rule or empirical claim.
+
+The research module consumes the existing v10 occurrence graph, route bindings and candidate outcome review. No duplicate natal/force calculation, no fixture-dependent inference, no change to public runtime/API or consumer policies. Reverse-oriented legacy links are normalized; explicit edge identity, direction, type and screen must match the upstream graph. Missing or non-comparable access and combinations are unresolved, while clash exposure, rooted local pressure, distance or insufficient root evidence trigger review. For control, target evidence dominance and mixed relative evidence also require review; that dominance rule is not applied to generation. Unknown evidence does not erase known concerns. No weighted sum, numerical force or claim that dominance of evidence equals dominance of force.
+
+States: necessary-screen-met, review-required, unresolved. Passing a screen means only the listed engineering checks passed, never that an action is effective. A multi-edge role witness retains every unresolved source condition. A matched rescue screens the original damage and helper edge separately, but source-order/interference and net rescue effect remain unresolved even when both edge screens pass; the threat is never removed. Food/killing/day triads bind only to the candidate's actual killing anchor and retain day-capacity and balance conditions. There is no positive or negative final efficacy prediction. Counts are candidate-route/witness occurrences, not independent charts; the same physical edge may occur in multiple candidate routes.
+
+```sh
+node scripts/audit-classical-patterns.mjs --efficacy
+node scripts/audit-classical-patterns.mjs --efficacy --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+```
+
+The audit keeps the eligible Shen 67 and Xu commentary 34 separate (14 Shen review-only cases excluded). It reports state counts and matched rescue screens, not final outcome accuracy. Three new synthetic test groups passed using the actual module and adapted assertions in an isolated JavaScript environment, including inconsistent edge direction/screen, relative control and generation contrasts, hidden access, partial/unavailable input, noncancellation, unresolved source conditions and triad anchor isolation. Native Node 22.16.0 is installed, but git ls-remote failed to resolve github.com; native corpus and full regression remain unexecuted. Do not merge before the pinned native regression gate. Future calibration requires independently adjudicated action efficacy and negative controls; neither a source outcome label nor an unlabelled case can serve as a negative edge label.
