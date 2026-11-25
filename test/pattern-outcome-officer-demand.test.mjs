@@ -1,5 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
+import {observeRelativeForce} from '../src/core/relative-force.js';
+import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
+import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
+import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
+import {observeInterpositionReview} from '../src/features/pattern/outcome-interposition-review.js';
+import {observeRoleCapacity} from '../src/features/pattern/outcome-role-capacity.js';
 import {observeOfficerSupplyContext,assessOfficerDemandConditions} from '../src/features/pattern/outcome-officer-demand.js';
 import {summarizeOfficerDemandConditions} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
@@ -97,4 +105,19 @@ test('all 16 existing scenario keys preserve their own role and source status',(
   x.make('resource-officer','officer-independent-role-review',{resource:x.i,officer:x.o})];
  const r=run(x);assert.equal(r.status,'diagnostic');assert.equal(r.contexts.length,4);
  assert.ok(r.contexts.every(c=>c.excessConfirmed===null&&c.deficiencyConfirmed===null));
+});
+
+test('native core replay audits every source chart with and without hour',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let variants=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
+  const stemForce=analyzeStemForceEvidence({saju}),prior={completeHour:complete,stemForce,relativeForce:observeRelativeForce(stemForce)};
+  const root=observeRootContext(prior,analyzeFormationEvidence({saju})),supply=observeGroundedSupply(prior,root);
+  const interposition=observeInterpositionReview(prior,root,supply),capacity=observeRoleCapacity(prior);
+  const officerSupplyContext=observeOfficerSupplyContext(capacity,supply,interposition,{direction:'strong',policy:'controlled-test'},complete);
+  assert.equal(officerSupplyContext.status,complete?'diagnostic':'partial',c.id);
+  assert.deepEqual(summarizeOfficerDemandConditions(c,{officerSupplyContext,roleCapacity:capacity,groundedSupply:supply,candidates:[]},!complete).errors,[],c.id);
+  variants++;
+ }
+ assert.equal(variants,24);
 });
