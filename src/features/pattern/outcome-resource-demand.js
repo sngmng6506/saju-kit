@@ -11,8 +11,8 @@ const scenarios=Object.freeze({
  'drain-resource-supported-strong-day':{clause:'R01',day:'strong',axis:'excess',required:['resource-heavy','output-effective','output-preserved']},
  'drain-burdens-weak-day':{clause:'R01',day:'weak',axis:'deficiency',required:['resource-light','output-heavy','actual-day-burden']},
  'killing-supplies-light-resource':{clause:'R03',day:'strong',axis:'deficiency',required:['resource-light','killing-supply-effective','resource-preserved']},
- 'weak-day-heavy-resource-original-reading':{clause:'R03',day:'weak',axis:'excess',required:['resource-heavy','ordinary-scope-established','killing-supply-useful']},
- 'killing-supply-with-both-day-and-resource-heavy':{clause:'R03',day:'strong',axis:'excess',required:['resource-heavy','output-and-killing-regulation-context','wealth-alternative-reviewed']},
+ 'weak-day-heavy-resource-original-reading':{clause:'R03',day:'weak',axis:'heaviness-context',required:['resource-heavy','ordinary-scope-established','killing-supply-useful']},
+ 'killing-supply-with-both-day-and-resource-heavy':{clause:'R03',day:'strong',axis:'heaviness-context',required:['resource-heavy','output-and-killing-regulation-context','wealth-alternative-reviewed']},
  'officer-independent-role-review':{clause:'R03-context',day:'strong',axis:'independent-officer',required:['officer-purity','officer-independent-demand']}
 });
 const refEdge=e=>({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,sourceBasis:e.sourceBasis,generationScreen:e.generationScreen,controlComparison:e.controlComparison,effective:null});
@@ -46,6 +46,8 @@ export function observeResourceSupplyContext(capacity,supply,interposition,stren
  const resources=[];
  for(const a of actors.values())if(!a.dayReference&&RESOURCE.has(a.tenGod)){
   const o=observations.get(a.id),delivery=actions.get(edgeKey(a.id,d,'generate')),t=contexts.get(a.id);
+  if(!Array.isArray(o.paths)||!Array.isArray(o.groundedPathIds)||new Set(o.groundedPathIds).size!==o.groundedPathIds.length||
+   o.groundedPathIds.some(id=>!o.paths.some(p=>p.id===id&&p.recipientId===a.id&&p.upstream==='observed'&&p.effectiveSupply===null&&Array.isArray(p.donor?.groundedRootIds))))return empty('invalid-evidence');
   const pathRoots=uniq(o.paths.filter(p=>o.groundedPathIds.includes(p.id)).flatMap(p=>p.donor.groundedRootIds));
   const rootIds=uniq([...o.directRoot.uncontestedRootIds,...pathRoots]);
   resources.push({id:a.id,layer:a.layer,tenGod:a.tenGod,directRootState:o.directRoot.state,
@@ -81,6 +83,8 @@ export function assessResourceDemandConditions(review,demand,chart,complete){
  for(const o of demand.objectives){
   const scenario=Object.hasOwn(scenarios,o.objectiveId)?scenarios[o.objectiveId]:null;
   if(!scenario||review.family!=='resource')continue;
+  const expectedCollection={'R01':'resource-output','R02':'objective','R03':'resource-killing','R03-context':'resource-officer'}[scenario.clause];
+  if(o.collection!==expectedCollection)return empty('invalid-evidence');
   const r=resources.get(o.roles.resource);
   if(!r||o.roles.day!==chart.day.id||o.actualDemand!==null||o.effectConfirmed!==null||o.selected!==false||seen.has(o.id))return empty('invalid-evidence');
   seen.add(o.id);
@@ -92,11 +96,11 @@ export function assessResourceDemandConditions(review,demand,chart,complete){
   const officerSupply=o.roles.officer?bound(r.officerSupply,o.roles.officer,r.id):null;
   const outputDrain=o.roles.output?bound(chart.day.outputDrain,chart.day.id,o.roles.output):null;
   const requiredEdge=scenario.clause==='R02'?wealthControl:scenario.clause==='R01'?outputDrain:officerSupply;
-  const relationObserved=!!requiredEdge&&!!delivery;
+  const relationObserved=scenario.clause==='R03-context'?!!officerSupply:!!requiredEdge&&!!delivery;
   const contextState=!complete?'partial':dayPremise==='opposed'?'day-hypothesis-opposed':dayPremise==='unresolved'?'day-hypothesis-unresolved':
    !relationObserved?'required-edge-unobserved':r.layer!=='visible'?'hidden-access-review':'source-context-observed';
   contexts.push({objectiveRef:o.id,objectiveId:o.objectiveId,clause:scenario.clause,source,resourceId:r.id,dayId:chart.day.id,axis:scenario.axis,
-   scope:o.objectiveId==='weak-day-heavy-resource-original-reading'?'disputed-ordinary-scope':'source-conditional',
+   scope:o.objectiveId==='weak-day-heavy-resource-original-reading'?'disputed-ordinary-scope':o.objectiveId==='killing-supply-with-both-day-and-resource-heavy'?'competing-interpretation':'source-conditional',
    dayPremise,contextState,sourceConditionalStatus:o.conditionalStatus,delivery,wealthControl,officerSupply,outputDrain,
    alternativeIds:chart.alternatives.filter(a=>a.resourceId===r.id).map(a=>a.alternativeId),
    requirementRefs:o.obligations.filter(q=>q.role==='resource').map(q=>q.id),
