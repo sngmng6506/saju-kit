@@ -9,6 +9,13 @@ const fields={
  output:['drain','control','resourcePressure','resourceDelivery','killingPressure','wealthControl','wealthKillingFeed'],
  officer:['pressure','wealthSupply','resourceSupply','resourceDelivery','outputControl','drain','resourceControl','wealthResourceControl']
 };
+// Bind field meaning as well as edge identity. An otherwise valid edge
+// between two participants must not substitute for another required edge.
+const meanings={
+ resource:{delivery:['resource','day','generate'],wealthControl:['wealth','resource','control'],officerSupply:['officer','resource','generate'],outputDrain:['day','output','generate']},
+ output:{drain:['day','output','generate'],control:['output','killing','control'],resourcePressure:['resource','output','control'],resourceDelivery:['resource','day','generate'],killingPressure:['killing','day','control'],wealthControl:['wealth','resource','control'],wealthKillingFeed:['wealth','killing','generate']},
+ officer:{pressure:['officer','day','control'],wealthSupply:['wealth','officer','generate'],resourceSupply:['officer','resource','generate'],resourceDelivery:['resource','day','generate'],outputControl:['output','officer','control'],drain:['day','output','generate'],resourceControl:['resource','output','control'],wealthResourceControl:['wealth','resource','control']}
+};
 const primary={resource:'resourceId',output:'outputId',officer:'officerId'};
 const edgeFields=['edgeId','from','to','kind','sourceBasis','generationScreen','controlComparison','effective'];
 const sameEdge=(a,b)=>edgeFields.every(k=>a[k]===b[k]);
@@ -41,6 +48,9 @@ export function observeRoleDependencies(demand,projections,supply,complete){
     const e=(kind==='officer'?c.relations:c)?.[field];
     if(e===null)continue;
     if(!e||!actions.has(e.edgeId)||!sameEdge(e,actions.get(e.edgeId))||!row.boundActorIds.includes(e.from)||!row.boundActorIds.includes(e.to))return empty('invalid-evidence');
+    const [fromRole,toRole,relation]=meanings[kind][field];
+    const roleId=role=>role==='officer'?(o.roles.officer??o.roles.killing):o.roles[role];
+    if(e.from!==roleId(fromRole)||e.to!==roleId(toRole)||e.kind!==relation)return empty('invalid-evidence');
     refs.push({field,edgeId:e.edgeId});addUse(actionUses,e.edgeId,{objectiveRef:o.id,projection:kind,field});
    }
    row.projections.push({kind,contextState:c.contextState,edgeRefs:refs});
