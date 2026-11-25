@@ -238,6 +238,7 @@ test('source motif truth does not imply effective force, and excluded clauses do
  assert.equal(r.selectedPattern,null);assert.equal(r.selectionAuthority,false);
  const s=summarizeOutcomeDecisions([r]);assert.equal(s.abstained,1);assert.equal(s.finalDecisions,0);
  assert.equal(s.motifCounts.rescue.literalMatched,1);
+ assert.deepEqual(s.conditionBacklog,[{condition:'force',occurrences:1,chartCount:1,families:['officer'],motifs:['s']}]);
  result.completeHour=false;assert.equal(reviewOutcomeDecision(result,outcome,efficacy).status,'partial');
  assert.equal(reviewOutcomeDecision({}, {status:'unavailable'}, {}).status,'unavailable');
  result.outcomes[0].motifs[0].predicate=true;
@@ -251,4 +252,17 @@ test('native outcome decision audit preserves separate cohorts and reports abste
   assert.equal(s.finalOutcomeAccuracy,null);assert.equal(s.selectionAuthority,false);
   for(const x of Object.values(s.motifCounts))assert.equal(x.total,x.literalMatched+x.excluded+x.unresolved);
  }
+});
+
+test('exhaustive two-threat logic never grants final authority across 972 combinations',()=>{
+ const vs=[true,false,null];let n=0;
+ for(const support of vs)for(const a of vs)for(const b of vs)for(const ra of vs)for(const rb of vs)
+ for(const complete of [true,false])for(const rescueComplete of [true,false]){
+  const x=evaluateOutcomeLogic({support,threatInventoryComplete:complete,threats:[
+   {id:'a',damage:a,rescues:[ra],rescueInventoryComplete:rescueComplete},
+   {id:'b',damage:b,rescues:[rb],rescueInventoryComplete:rescueComplete}]});
+  n++;assert.notEqual(x.status,'conflicting-premises');assert.equal(x.selectionAuthority,false);
+  assert.equal(x.formed,null);assert.equal(x.broken,null);assert.equal(x.rescued,null);
+ }
+ assert.equal(n,972);
 });
