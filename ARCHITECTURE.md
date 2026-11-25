@@ -1,37 +1,51 @@
 # Architecture
 
-The dependency-free ESM engine uses a functional core. `src/data` contains pinned calendar data; `src/core` owns calendar, elemental/hidden-stem correspondences, and structural observations. `src/features` owns opt-in, versioned policies (day compatibility, movement v6, strength hybrid v1). Consumers import the root API and pin a commit; localization, persistence and presentation stay outside the library.
+Current implementation, not a future directory sketch. See [documentation index](docs/README.md), [consumer contract](docs/consumer-contract.md), [active plan](PLAN.md) and [ADR-0013](docs/adr/0013-domain-first-refactor.md).
 
-Strength v1 reuses natal context and relations: evidence -> quantitative cross-check and qualitative rules -> review gate. No circular dependencies, network, new package, or consumer update. See [strength contract](docs/strength-hybrid-v1.md), [ADR-0001](docs/adr/0001-strength-hybrid.md), [consumer contract](docs/consumer-contract.md).
+## Boundaries
 
-Core element-structure exposes neutral elemental profiles, generating/controlling paths and positional relation observations. Experimental strength-ordinary-v2 consumes these plus frozen v1 quantitative scenarios, but not its review gate. See [ADR-0002](docs/adr/0002-ordinary-strength.md) and [contract](docs/strength-ordinary-v2.md).
+- `src/index.js`: stable ESM public facade. Consumers pin Git commits. No internal dependency on this facade.
+- `src/data/`: pinned calendar data. No policy or consumer logic.
+- `src/core/`: calendar, elemental correspondences, natal structures, neutral root/formation and occurrence-specific force observations. Core must not depend on features.
+- `src/features/`: versioned research policies and their composition. Features may depend on explicit earlier policies and neutral core evidence; dependencies must be acyclic. Consumer-specific localization, persistence, UI and commercial decisions stay outside.
+- `test/`: automated tests and reference fixtures. `scripts/`: repeatable audits and research evaluation. Neither is a runtime dependency.
 
-Core interaction-context adds occurrence-aware formation/clash context. The separate interaction-sensitivity-v1 feature uses frozen strength policies to run isolated hypothetical perturbations without changing baseline classifications. [ADR-0003](docs/adr/0003-interaction-sensitivity.md), [contract](docs/interaction-sensitivity-v1.md).
+No runtime package dependencies. Policy identifiers, output fields, errors and frozen baselines are retained. Special chart inference, effective force, final useful-element selection and empirical prediction are not implied by structural observations.
 
-Core root-dynamics exposes versioned life stages, positional literal roots, season/principal context and occurrence-aware protective/mediating paths. It depends only on core modules; no classifier consumes it yet. [ADR-0004](docs/adr/0004-root-dynamics.md), [contract](docs/root-dynamics-v1.md).
+## Current pattern domain
 
-The experimental structural strength v3 feature consumes root-dynamics and existing elemental category mapping, returns qualitative hypotheses only, and leaves earlier classifiers unchanged. [ADR-0005](docs/adr/0005-structural-strength.md), [contract](docs/strength-structural-v3.md).
+```
+src/features/pattern/
+  pipeline.js
+  candidate-source.js   # reference definitions and family mapping
+  candidates.js         # monthly candidate observations
+  outcomes.js           # source condition observations
+  routes.js             # occurrence and directed route evidence
+  quality.js            # route quality and order evidence
+  storage-and-roles.js  # storage projection and named-role witnesses
+  preference.js        # v5 family hypothesis
+  officer-preservation.js
+  composition.js       # preservation and explicit secondary family
+  mixed-use-source.js
+  mixed-use.js         # mixed-month relationships
+  force-bindings.js
+  relative-bindings.js
+```
 
-The experimental quantitative v3 feature consumes element structure and the existing internal hour-pillar calculation, returns a separate root/season-aware sensitivity index, and does not integrate structural v3 into a final classifier. [ADR-0006](docs/adr/0006-quantitative-strength.md), [contract](docs/strength-quantitative-v3.md).
+All v1–v10 public pattern entry points delegate to the request-local pipeline. They do not call each other. It constructs only the fields requested by each original revision and preserves version-specific behavior. Earlier discarded outcome/route/quality calculations are skipped for v4+. Core calls inside root/force evidence still perform their original independent work; no cross-request cache. The 13 old leaf paths re-export their implementations solely for existing internal test/script compatibility. Do not add new implementation code there.
 
-Multi-axis strength v1 consumes root dynamics and frozen quantitative-v3 scenario contributions; root capacity, environment and interaction evidence remain separate. [ADR-0007](docs/adr/0007-multiaxis-strength.md), [contract](docs/strength-multiaxis-v1.md).
+Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
-Core support-network consumes root-dynamics and exposes category-specific directed interaction evidence, without a classifier dependency. [Contract](docs/support-network-v1.md).
+## Documentation ownership
 
-Multiaxis v2 composes frozen v1 and support-network; numeric axes are unchanged, decision policy separately versioned. [ADR-0008](docs/adr/0008-pressure-sensitive-strength.md).
+README is the entry point; this file describes current architecture; PLAN describes remaining work; ADRs preserve decisions and rationale. Version contracts and source/validation notes are discoverable through [docs/README.md](docs/README.md). Existing document paths are intentionally preserved in this phase. Original plan is archived in [docs/history/initial-plan.md](docs/history/initial-plan.md).
 
-Resource-access v1 composes support-network and quantitative-v3; no classifier dependency or effective-force inference. [ADR-0009](docs/adr/0009-resource-access.md).
+## Verification
 
-Route-budget v1 composes support-network and quantitative-v3, with source-budget conservation and no effective-force inference. [ADR-0010](docs/adr/0010-route-budget.md).
+```sh
+npm test
+npm run audit:architecture
+npm run verify:pattern-refactor
+```
 
-Output-capacity v1 composes route-budget and frozen quantitative evidence; incoming target caps are hypothetical and do not mutate source masses. [ADR-0011](docs/adr/0011-output-capacity.md).
-
-Integrated multiaxis v3 composes v2 and output-capacity, matching scenario profiles without overriding baseline conflicts. [ADR-0012](docs/adr/0012-integrated-strength.md).
-
-The opt-in pattern v7 composes v6 and a source-scoped composition review. Original-pattern preservation and explicit secondary-pattern hypotheses are separate; generic projected pairs remain neutral. No final selection authority or consumer promotion. [Contract](docs/pattern-useful-element-v7.md).
-
-Pattern v8 adds a separate mixed-month source review of projected stems and complete month groups. It keeps structural relations, source-scoped affinity motifs and research preference separate; no effective-force or final selection authority. [Contract](docs/pattern-useful-element-v8.md).
-
-Core stem-force evidence v1 reuses root-dynamics and interaction-context and evaluates occurrence-specific support, control, and paths for all targets. Pattern v9 binds route participants to these observations, without feeding force classifications into preference. [Contract](docs/pattern-useful-element-v9.md).
-
-Relative force evidence v1 consumes stem-force evidence, using a Boolean evidence partial order and separate action screens. Pattern v10 binds these to observed roles; no magnitude or efficacy determination. [Contract](docs/pattern-useful-element-v10.md).
+The last command compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.

@@ -1,6 +1,6 @@
 # ADR-0013: domain-first organization and frozen policy compatibility
 
-Status: accepted for incremental refactoring, verification pending.
+Status: pattern migration implemented; isolated output equivalence and source import audit passed; native regression pending.
 
 ## Context
 At dde2df3feb8433ebdfb924c0eefac957357a19cc, 390 tracked files, 45 feature directories, 103 test/fixture files. Pattern v10 invokes v9 through v1; v1/v2/v3/v4/v6/v7/v8 each request the same element structure and interaction context. V4 also replaces route/outcome/quality results produced earlier. PLAN.md still contains a historic API and directory sketch, not a reliable current contract.
@@ -15,3 +15,5 @@ Run npm test, npm run audit:architecture, npm run verify:pattern-refactor. The l
 
 ## Consequences
 Smaller responsibility units and fewer repeated calculations; legacy shims temporarily increase file count. Native verification must pass before further migrations or new interpretation work. Future domain migration is incremental, with separate commits and no external consumer changes.
+
+See [executed validation](../refactor-validation.md). Other domain migrations are gated on native verification.

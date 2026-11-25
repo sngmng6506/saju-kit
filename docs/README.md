@@ -2,6 +2,12 @@
 
 Current architecture: [ARCHITECTURE](../ARCHITECTURE.md). Consumer entry points: [consumer contract](consumer-contract.md). Decisions: [ADR](adr/). The links below preserve versioned research records; the largest version number does not imply a released policy.
 
+## Current navigation
+
+- [Active plan](../PLAN.md) and [refactor validation](refactor-validation.md)
+- [Historical initial plan](history/initial-plan.md)
+- [Latest pattern evidence contract (v10)](pattern-useful-element-v10.md), [strength multiaxis v4](strength-multiaxis-v4.md), [climate v5](climate-v5.md), [five-method authority/transit v4](useful-element-five-method-v4.md). All are experimental, not final authority.
+
 ## Pattern / 格局
 
 ### Methods, contracts and research notes
