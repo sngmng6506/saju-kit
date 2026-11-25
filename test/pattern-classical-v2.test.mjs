@@ -266,3 +266,66 @@ test('exhaustive two-threat logic never grants final authority across 972 combin
  }
  assert.equal(n,972);
 });
+
+import {compareScenarioRows,observeStrengthContext,reviewPatternContext,summarizePatternContexts} from '../scripts/lib/pattern-context-review.mjs';
+import {auditPatternContexts} from '../scripts/audit-classical-patterns.mjs';
+const contextStrength=(direction='strong')=>({version:'strength-decision-v1',scope:'ordinary-chart-assumption',completeHour:true,status:'hypothesis',direction,
+ decision:{direction,conflicts:[],grounds:['control']},axes:{rootCapacity:{min:40,max:50}},seasonRobustness:{passed:true},
+ observations:{interaction:{rows:[{support:10,conditionalResource:6,peerStem:4,burden:{wealth:7,officer:8,output:2}},
+ {support:20,conditionalResource:15,peerStem:5,burden:{wealth:12,officer:25,output:3}}]}}});
+test('context uses paired scenario comparisons and never treats mixed evidence as a measured force',()=>{
+ const c=observeStrengthContext(contextStrength(),true);
+ assert.equal(c.dayStrongHypothesis,true);assert.equal(c.actualDayCapacity,null);
+ assert.equal(c.comparisons.supportVsBurden.wealth.status,'left-dominates-all');
+ assert.equal(c.comparisons.supportVsBurden.officer.status,'scenario-sensitive');
+ assert.equal(c.comparisons.conditionalResourceVsNominalWealth.status,'scenario-sensitive');
+ assert.equal(c.comparisons.visiblePeerVsNominalWealth.status,'right-dominates-all');
+ assert.equal(compareScenarioRows([{a:4,b:4}],r=>r.a,r=>r.b).status,'equal-all');
+ assert.throws(()=>compareScenarioRows([{a:-1,b:0}],r=>r.a,r=>r.b),/invalid scenario mass/);
+ assert.equal(observeStrengthContext(contextStrength('weak'),true).dayStrongHypothesis,false);
+ const conflict=contextStrength();conflict.decision.conflicts.push('opposing-grounds');
+ assert.equal(observeStrengthContext(conflict,true).dayStrongHypothesis,null);
+ assert.equal(observeStrengthContext(contextStrength(),false).dayStrongHypothesis,null);
+ assert.equal(observeStrengthContext({...contextStrength(),scope:'other'},true).dayStrongHypothesis,null);
+ assert.equal(observeStrengthContext({...contextStrength(),status:'unresolved'},true).dayStrongHypothesis,null);
+});
+const contextControl=()=>{
+ const occurrence=(id,tenGod,dayReference=false)=>({id,tenGod,dayReference});
+ const edge=(from,to)=>({id:from+'>'+to,from,to,kind:'control',relative:{relation:'mixed-evidence'},screen:'requires-review',blockers:['nonadjacent']});
+ const result={completeHour:true,routeReview:{occurrences:[occurrence('day','비견',true),occurrence('peer','겁재'),occurrence('wealth','정재'),occurrence('other','편재')]},
+ relativeForce:{edges:[edge('day','wealth'),edge('peer','wealth'),edge('peer','other')]}};
+ const outcome={status:'structural-review',candidates:[{candidateId:'p',family:'wealth',anchorIds:['wealth']}]};
+ const efficacy={status:'research-review',candidates:[{candidateId:'p',family:'wealth',routes:[],triads:[]}]};
+ const motif=(id,name)=>({id,kind:'support',source:'control',predicate:null,effective:null,clauses:[{id:'present:0',kind:'present',value:true},{id:name,kind:'contextual',value:null}]});
+ const decision={status:'research-review',candidates:[{candidateId:'p',family:'wealth',motifs:[motif('a','day-strong'),motif('b','day-and-resource-strong'),motif('c','resource-light'),motif('d','unimplemented')]}]};
+ return {result,outcome,efficacy,decision};
+};
+test('only the explicit ordinary-strength proxy resolves conditionally; day and other anchors are excluded from peer pressure',()=>{
+ const {result,outcome,efficacy,decision}=contextControl(),strength=contextStrength(),before=structuredClone({result,outcome,efficacy,decision,strength});
+ const r=reviewPatternContext(result,outcome,efficacy,decision,strength),c=r.candidates[0];
+ assert.deepEqual({result,outcome,efficacy,decision,strength},before);
+ assert.deepEqual(c.evidence.peerWealth.map(p=>p.id),['peer>wealth']);
+ assert.deepEqual(c.motifs.map(m=>m.conditionalPredicate),[true,null,null,null]);
+ assert.ok(c.motifs.every(m=>m.baselinePredicate===null&&m.effective===null));
+ assert.ok(c.motifs.every(m=>m.clauses[1].context.doctrinalValue===null));
+ const weak=reviewPatternContext(result,outcome,efficacy,decision,contextStrength('weak'));
+ assert.deepEqual(weak.candidates[0].motifs.map(m=>m.conditionalPredicate),[false,false,null,null]);
+ assert.equal(weak.candidates[0].formed,null);assert.equal(weak.selectionAuthority,false);
+ const s=summarizePatternContexts([r,weak]);
+ assert.equal(s.conditionalMotifMatched,1);assert.equal(s.conditionalMotifExcluded,2);
+ assert.equal(s.doctrinalConditionsResolved,0);assert.equal(s.finalDecisions,0);
+ result.completeHour=false;
+ assert.ok(reviewPatternContext(result,outcome,efficacy,decision,strength).candidates[0].motifs.every(m=>m.conditionalPredicate===null));
+ assert.equal(reviewPatternContext({}, {status:'unavailable'}, {}, {}, strength).status,'unavailable');
+});
+test('native context audit pins strength policy and separates the two development cohorts',()=>{
+ const r=auditPatternContexts();
+ assert.equal(r.strengthPolicy,'strength-decision-v1');
+ assert.equal(r.shen.summary.charts,67);assert.equal(r.xu.summary.charts,34);assert.equal(r.excludedShen,14);
+ for(const s of [r.shen.summary,r.xu.summary]){
+  assert.equal(s.ordinaryStrength.strong+s.ordinaryStrength.weak+s.ordinaryStrength.unresolved,s.charts);
+  assert.equal(s.doctrinalConditionsResolved,0);assert.equal(s.finalDecisions,0);
+  assert.equal(s.selectionAuthority,false);
+  assert.ok(s.candidates>0);
+ }
+});
