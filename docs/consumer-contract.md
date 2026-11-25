@@ -51,3 +51,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v1](pattern-outcome-evidence-v1.md) is an explicit experimental structural subclause review; no final 성패, 相神 or consumer migration.
 
 - [Pattern outcome evidence v2](pattern-outcome-evidence-v2.md) adds opt-in hidden and group observations; no final outcome, transformation or consumer migration.
+
+- [Pattern outcome evidence v3](pattern-outcome-evidence-v3.md) adds secondary-role evidence and potential support loss; no final decision or pin update.

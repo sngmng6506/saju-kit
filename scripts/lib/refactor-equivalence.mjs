@@ -17,7 +17,7 @@ export async function verifyRefactor({baseline,policies,neutralPolicies=[],extra
   const old=await import(pathToFileURL(resolve(checkout,'src/index.js')).href),now=await import(pathToFileURL(resolve(root,'src/index.js')).href);
   // Historical refactor baselines predate this explicitly additive research API.
   // Do not waive removed or unrelated newly added exports.
-  const additions=['analyzePatternOutcome','PATTERN_OUTCOME_VERSION','analyzePatternOutcomeV2','PATTERN_OUTCOME_V2_VERSION'].filter(key=>!Object.hasOwn(old,key));
+  const additions=['analyzePatternOutcome','PATTERN_OUTCOME_VERSION','analyzePatternOutcomeV2','PATTERN_OUTCOME_V2_VERSION','analyzePatternOutcomeV3','PATTERN_OUTCOME_V3_VERSION'].filter(key=>!Object.hasOwn(old,key));
   for(const key of additions)assert.ok(Object.hasOwn(now,key),'approved additive export '+key);
   assert.deepEqual(Object.keys(now).filter(key=>!additions.includes(key)).sort(),Object.keys(old).sort(),'public exports (excluding approved outcome additions)');
   const corpus=JSON.parse(readFileSync(resolve(checkout,'test/fixtures/pattern-classical-v2.json'),'utf8')).cases;

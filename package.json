@@ -22,7 +22,8 @@
     "verify:consumers": "node scripts/verify-consumers.mjs",
     "audit:pattern-outcome": "node scripts/audit-pattern-outcome.mjs",
     "audit:pattern-outcome-reference": "node scripts/audit-pattern-outcome-reference.mjs",
-    "audit:pattern-outcome-v2": "node scripts/audit-pattern-outcome-v2.mjs"
+    "audit:pattern-outcome-v2": "node scripts/audit-pattern-outcome-v2.mjs",
+    "audit:pattern-outcome-v3": "node scripts/audit-pattern-outcome-v3.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
