@@ -18,10 +18,34 @@ import {reviewRoleContrasts,summarizeRoleContrasts,ROLE_CONTRAST_VERSION} from '
 import {reviewPatternAccess,scopedOutcome,summarizeAccess,ACCESS_REVIEW_VERSION} from './lib/pattern-access-review.mjs';
 import {analyzeInteractionContext} from '../src/core/interaction-context.js';
 import {reviewLayerMechanisms,summarizeLayerMechanisms,reviewContrastProjections,summarizeContrastProjections,LAYER_REVIEW_VERSION} from './lib/pattern-layer-mechanisms.mjs';
+import {inspectActionReferences,evaluateActionReference,summarizeActionReferences,ACTION_REFERENCE_VERSION} from './lib/pattern-action-reference.mjs';
 import {runCommentaryReview} from './lib/classical-commentary-evaluation.mjs';
 import {evaluateClassicalCase,summarizeClassical} from './lib/classical-pattern-evaluation.mjs';
 const data=JSON.parse(await readFile(new URL('../test/fixtures/pattern-classical-v2.json',import.meta.url),'utf8'));
 const commentary=JSON.parse(await readFile(new URL('../test/fixtures/pattern-classical-commentary-v1.json',import.meta.url),'utf8'));
+const actionReferences=JSON.parse(await readFile(new URL('../test/fixtures/pattern-action-reference-v1.json',import.meta.url),'utf8'));
+export function auditActionReferences({includeRows=false}={}){
+ const inventory=inspectActionReferences(actionReferences,data,commentary);
+ if(inventory.errors.length)throw Error('invalid action reference corpus: '+JSON.stringify(inventory.errors));
+ const cache=new Map();
+ const rows=actionReferences.cases.map(ref=>{
+  const corpus=ref.author==='沈孝瞻'?data:commentary;
+  const c=corpus.cases.find(c=>c.id===ref.chartId);
+  if(!cache.has(c.id)){
+   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,pillar(c.pillars[i])]))};
+   const result=analyzePatternUsefulElementV10({saju,birthBasis:'verified-chart',policy:PATTERN_V10_VERSION});
+   const outcome=reviewPatternOutcome(result),access=reviewPatternAccess(result,outcome);
+   const layers=reviewLayerMechanisms(result,access,analyzeInteractionContext({saju}));
+   const interference=reviewPatternInterference(result,outcome);
+   cache.set(c.id,{result,layers,interference});
+  }
+  const {result,layers,interference}=cache.get(c.id);
+  return evaluateActionReference(ref,result,layers,interference);
+ });
+ return {policy:ACTION_REFERENCE_VERSION,basePolicy:PATTERN_V10_VERSION,inventory,summary:summarizeActionReferences(rows),
+  shen:summarizeActionReferences(rows.filter(r=>r.author==='沈孝瞻')),xu:summarizeActionReferences(rows.filter(r=>r.author==='徐樂吾')),
+  independentValidation:false,...(includeRows?{rows,partialTemplates:actionReferences.partialTemplates}:{})};
+}
 export function auditClassicalCommentary(){
  return runCommentaryReview(commentary,data,saju=>analyzePatternUsefulElementV10({saju,birthBasis:'verified-chart',policy:PATTERN_V10_VERSION}),reviewPatternOutcome);
 }
@@ -148,4 +172,4 @@ export function auditPatternProgression(){
   return {policy,summary,newReference,developmentKnown};
  });
 }
-if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)console.log(JSON.stringify(process.argv.includes('--layers')?auditLayerMechanisms({includeRows:process.argv.includes('--rows')}):process.argv.includes('--access')?auditPatternAccess({includeRows:process.argv.includes('--rows')}):process.argv.includes('--role-contrasts')?auditRoleContrasts({includeRows:process.argv.includes('--rows')}):process.argv.includes('--interference')?auditPatternInterference({includeRows:process.argv.includes('--rows')}):process.argv.includes('--context')?auditPatternContexts({includeRows:process.argv.includes('--rows')}):process.argv.includes('--decisions')?auditOutcomeDecisions({includeRows:process.argv.includes('--rows')}):process.argv.includes('--efficacy')?auditPatternEfficacy({includeRows:process.argv.includes('--rows')}):process.argv.includes('--commentary')?auditClassicalCommentary():process.argv.includes('--outcomes')?auditPatternOutcomes({includeRows:process.argv.includes('--rows')}):process.argv.includes('--progression')?auditPatternProgression():process.argv.includes('--mixed-compare')?{baseline:auditClassicalPatterns(PATTERN_V7_VERSION),experimental:auditClassicalPatterns(PATTERN_V8_VERSION)}:process.argv.includes('--composition-compare')?{baseline:auditClassicalPatterns(PATTERN_V6_VERSION),experimental:auditClassicalPatterns(PATTERN_V7_VERSION)}:process.argv.includes('--preference-compare')?{baseline:auditClassicalPatterns(PATTERN_V5_VERSION),experimental:auditClassicalPatterns(PATTERN_V6_VERSION)}:process.argv.includes('--preference')?auditClassicalPatterns(PATTERN_V5_VERSION):process.argv.includes('--compare')?{baseline:auditClassicalPatterns(),experimental:auditClassicalPatterns(PATTERN_V4_VERSION)}:auditClassicalPatterns(),null,2));
+if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)console.log(JSON.stringify(process.argv.includes('--action-references')?auditActionReferences({includeRows:process.argv.includes('--rows')}):process.argv.includes('--layers')?auditLayerMechanisms({includeRows:process.argv.includes('--rows')}):process.argv.includes('--access')?auditPatternAccess({includeRows:process.argv.includes('--rows')}):process.argv.includes('--role-contrasts')?auditRoleContrasts({includeRows:process.argv.includes('--rows')}):process.argv.includes('--interference')?auditPatternInterference({includeRows:process.argv.includes('--rows')}):process.argv.includes('--context')?auditPatternContexts({includeRows:process.argv.includes('--rows')}):process.argv.includes('--decisions')?auditOutcomeDecisions({includeRows:process.argv.includes('--rows')}):process.argv.includes('--efficacy')?auditPatternEfficacy({includeRows:process.argv.includes('--rows')}):process.argv.includes('--commentary')?auditClassicalCommentary():process.argv.includes('--outcomes')?auditPatternOutcomes({includeRows:process.argv.includes('--rows')}):process.argv.includes('--progression')?auditPatternProgression():process.argv.includes('--mixed-compare')?{baseline:auditClassicalPatterns(PATTERN_V7_VERSION),experimental:auditClassicalPatterns(PATTERN_V8_VERSION)}:process.argv.includes('--composition-compare')?{baseline:auditClassicalPatterns(PATTERN_V6_VERSION),experimental:auditClassicalPatterns(PATTERN_V7_VERSION)}:process.argv.includes('--preference-compare')?{baseline:auditClassicalPatterns(PATTERN_V5_VERSION),experimental:auditClassicalPatterns(PATTERN_V6_VERSION)}:process.argv.includes('--preference')?auditClassicalPatterns(PATTERN_V5_VERSION):process.argv.includes('--compare')?{baseline:auditClassicalPatterns(),experimental:auditClassicalPatterns(PATTERN_V4_VERSION)}:auditClassicalPatterns(),null,2));
