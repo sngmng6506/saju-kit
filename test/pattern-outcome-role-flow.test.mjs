@@ -52,6 +52,7 @@ test('native flow projection is diagnostic and preserves abstention',()=>{
  const ps=['무술','갑자','정미','경술'],saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))};
  const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION}),m=r.efficacyReview.mechanismReview;
  assert.equal(m.capacityComparisons.status,'diagnostic');assert.ok(m.candidates.every(c=>c.roleFlow.status!=='invalid-evidence'));
+ assert.ok(m.candidates.every(c=>c.rolePriority.interactions.status!=='invalid-evidence'&&c.rolePriority.interactions.selectionAuthority===false&&c.rolePriority.interactions.netEffectConfirmed===null));
  assert.equal(r.decisionReview.status,'abstained');
 });
 
@@ -94,4 +95,14 @@ test('native R03 Ma source chart retains hidden resource without promoting acces
  const row=rows.find(r=>r.resourceId==='hidden:month:경'&&r.officerId==='visible:month');
  assert.ok(row);assert.equal(row.resourceRoot.state,'unresolved');assert.equal(row.officerTenGod,'편관');
  assert.ok(row.objectives.every(o=>o.actualDemand===null&&o.deficiencyConfirmed===null&&o.effectConfirmed===null));
+});
+
+test('native D5 Zhou chart keeps the bound dual role in simultaneous context, not a selected plan',()=>{
+ const ps=['무술','갑자','정미','경술'],saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))};
+ const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+ const policies=r.efficacyReview.mechanismReview.candidates.map(c=>c.rolePriority.interactions);
+ assert.ok(policies.every(p=>p.status!=='invalid-evidence'&&p.selectionAuthority===false&&p.selectedObjective===null));
+ const dual=policies.flatMap(p=>p.simultaneousContexts).filter(x=>x.kind==='bound-wealth-rescue-and-supply');
+ assert.ok(dual.length>0);assert.ok(dual.every(x=>x.simultaneousEffectConfirmed===null));
+ assert.equal(r.decisionReview.status,'abstained');
 });
