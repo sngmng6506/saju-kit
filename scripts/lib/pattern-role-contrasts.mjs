@@ -57,7 +57,7 @@ export function reviewRoleContrasts(result,outcome,context,interference){
     // A separate relation is preserved, not subtracted from the primary path.
     const status=allOf(conditions.map(k=>k.proxy))===false?'conditional-excluded':
      edgeReviews.some(e=>e.status!=='necessary-screen-met')||contacts.length||additionalEdges.length?'structure-requires-review':'structure-screen-met';
-    return [{id:JSON.stringify([d.id,roles]),roles,edges:edgeReviews,additionalEdges,conditions,contacts,status,
+    return [{id:JSON.stringify([d.id,roles]),roles,allVisible:Object.values(a).every(o=>o.layer==='visible'),edges:edgeReviews,additionalEdges,conditions,contacts,status,
      conditionalPredicate:allOf(conditions.map(k=>k.proxy)),effective:null,favorable:null}];
    });
    return {id:d.id,source:sources[d.family],witnesses,observed:witnesses.length?true:complete?false:null,effective:null};
@@ -83,8 +83,17 @@ export function reviewRoleContrasts(result,outcome,context,interference){
 }
 export function summarizeRoleContrasts(reviews){
  const cs=reviews.flatMap(r=>r.candidates),ps=cs.flatMap(c=>c.patterns);
+ const blockers=new Map();
+ for(const review of reviews)for(const c of review.candidates)for(const p of c.patterns)for(const w of p.witnesses){
+  const reasons=new Set([...w.edges.flatMap(e=>[...e.unresolved,...e.reviewReasons]),...(w.contacts.length?['combination-contact']:[]),...(w.additionalEdges.length?['additional-wealth-killing-edge']:[])]);
+  for(const reason of reasons){
+   if(!blockers.has(reason))blockers.set(reason,{reason,witnesses:0,charts:new Set()});
+   const b=blockers.get(reason);b.witnesses++;b.charts.add(review);
+  }
+ }
+ const blockerCounts=[...blockers.values()].map(b=>({reason:b.reason,witnesses:b.witnesses,chartCount:b.charts.size})).sort((a,b)=>b.chartCount-a.chartCount||b.witnesses-a.witnesses||a.reason.localeCompare(b.reason));
  return {charts:reviews.length,partial:reviews.filter(r=>r.status==='partial').length,unavailable:reviews.filter(r=>r.status==='unavailable').length,
-  candidates:cs.length,byPattern:Object.fromEntries(definitions.map(d=>{
+  candidates:cs.length,blockerCounts,visibleOnlyWitnesses:ps.flatMap(p=>p.witnesses).filter(w=>w.allVisible).length,byPattern:Object.fromEntries(definitions.map(d=>{
    const p=ps.filter(p=>p.id===d.id),w=p.flatMap(p=>p.witnesses);
    return [d.id,{candidates:p.length,observed:p.filter(p=>p.observed===true).length,witnesses:w.length,
     screenMet:w.filter(x=>x.status==='structure-screen-met').length,requiresReview:w.filter(x=>x.status==='structure-requires-review').length,
