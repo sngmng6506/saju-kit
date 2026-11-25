@@ -16,6 +16,11 @@ for(const c of data.cases){
   if(!contrast||!m)errors.push(c.id+':contrast-missing');
   else contrastRows.push(evaluateRoleContrast(contrast,m.roleCapacity,m.capacityComparisons));
   if(m?.candidates.some(q=>!q.rolePriority||q.rolePriority.status==='invalid-evidence'||q.rolePriority.preferredInterpretation!==null||q.rolePriority.selectionAuthority!==false||q.rolePriority.contexts.some(x=>x.priorityConfirmed!==null)))errors.push(c.id+':priority-integrity');
+  if(m?.candidates.some(q=>{
+   const o=q.rolePriority?.objectiveReview;
+   return !o||o.status==='invalid-evidence'||o.selectionAuthority!==false||o.preferredObjective!==null||
+    o.objectives.some(x=>x.effectConfirmed!==null||x.actualDemand!==null||x.excessConfirmed!==null||x.deficiencyConfirmed!==null);
+  }))errors.push(c.id+':objective-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
@@ -25,5 +30,6 @@ for(const c of data.cases){
  }catch(e){errors.push({id:c.id,error:e.message});}
 }
 const contrastSummary=summarizeRoleContrasts(contrasts,contrastRows);
-console.log(JSON.stringify({contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+const objectiveCounts={};for(const row of rows)for(const p of row.priorities)for(const o of p.objectiveReview?.objectives??[]){const k=o.clause+':'+o.objective+':'+o.conditionalStatus;objectiveCounts[k]=(objectiveCounts[k]??0)+1;}
+console.log(JSON.stringify({objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
