@@ -120,8 +120,12 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
  const complete=prior?.completeHour;
  const base={version:'interposition-review-v1',completeHour:complete,selectionAuthority:false,
   effectConfirmed:null,neutralizationConfirmed:null};
- if(!rootContext||rootContext.status==='invalid-evidence'||rootContext.completeHour!==complete||
-  !groundedSupply||groundedSupply.status==='invalid-evidence'||groundedSupply.completeHour!==complete)return invalid(base);
+ if(typeof complete!=='boolean'||prior.stemForce?.completeHour!==complete||prior.relativeForce?.completeHour!==complete||
+  prior.stemForce?.selectionAuthority!==false||prior.stemForce?.effectsConfirmed!==false||
+  !rootContext||rootContext.status!==(complete?'diagnostic':'partial')||rootContext.completeHour!==complete||
+  rootContext.selectionAuthority!==false||rootContext.rootEffectConfirmed!==null||
+  !groundedSupply||groundedSupply.status!==(complete?'diagnostic':'partial')||groundedSupply.completeHour!==complete||
+  groundedSupply.selectionAuthority!==false||groundedSupply.effectiveSupply!==null)return invalid(base);
  const actors=index(prior.stemForce?.occurrences,a=>a.id),rootRows=index(rootContext.occurrences,a=>a.id);
  const groups=new Map();
  if(!actors||!rootRows||actors.size!==rootRows.size||[...actors.keys()].some(id=>!rootRows.has(id)))return invalid(base);
