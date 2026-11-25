@@ -20,3 +20,7 @@ npm run test:failures
 ```
 
 Fixed 30-probe denominator and same prior hit/control gates. New tests include opposite conditions and partial charts; native execution pending. Prior V2–V5 native results not supplied. Next: compound support/damage/rescue topology and exact residual threats (成中帶忌/因敗得成); do not infer effective outcomes from structural witnesses.
+
+## Root-exposure regression correction
+
+User-reported native suite: 416/417 passed; the only reported failure was the V6 winter exception test expecting an unclashed day root in 戊申 甲子 庚午 丁丑. 午 contains 丁 principal qi but is exposed to 子午 clash. The runtime exclusion was correct; the test now asserts the actual exact root and its clash exposure, plus an empty unclashed-root list. A synthetic contrast 戊申 甲子 庚戌 丁丑 retains 丁 middle qi without six-clash exposure. Other disruptions and actual root efficacy remain unresolved. The historical chart, rule logic and reference labels are unchanged. Corrected native run pending.

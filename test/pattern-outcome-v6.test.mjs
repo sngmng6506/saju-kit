@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {analyzePatternOutcomeV5,analyzePatternOutcomeV6,PATTERN_OUTCOME_V5_VERSION,PATTERN_OUTCOME_V6_VERSION} from '../src/index.js';
+import {analyzeStemForceEvidence,analyzePatternOutcomeV5,analyzePatternOutcomeV6,PATTERN_OUTCOME_V5_VERSION,PATTERN_OUTCOME_V6_VERSION} from '../src/index.js';
 import {mapOutcomeReferenceV6} from '../scripts/lib/pattern-outcome-v6-mapping.mjs';
 import {evaluateOutcomeCase} from '../scripts/lib/pattern-outcome-reference.mjs';
 const chart=ps=>({pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,ps[i]?{stem:ps[i][0],branch:ps[i][1],text:ps[i]}:null]))});
@@ -12,10 +12,26 @@ test('winter metal-water source exception keeps structural conflict and all effi
  const w=exception(r).find(w=>w.roles.target==='hidden:month:계'&&w.roles.officer==='visible:hour');
  assert.ok(w);assert.equal(w.contextScreen,'observed-source-subclauses');assert.equal(w.conditions.noVisibleHurting,true);
  assert.equal(w.conditions.visibleWealth,true);assert.equal(w.conditions.visibleResource,true);
- assert.ok(w.conditions.officerExactUnclashedSubstantialRoots.includes('day'));
+ // 丁 has a principal root in 午, but the month 子 clashes with 午.
+ // Confirm the root is present and exposed rather than treating it as absent.
+ const roots=analyzeStemForceEvidence({saju:chart(['무신','갑자','경오','정축'])}).occurrences.find(o=>o.id==='visible:hour').roots;
+ assert.ok(roots.some(x=>x.position==='day'&&x.stem==='정'&&x.match==='exact-stem'&&x.role==='principal'&&x.clashExposed===true));
+ assert.deepEqual(w.conditions.officerExactUnclashedSubstantialRoots,[]);
  assert.equal(w.exceptionApplied,null);assert.equal(r.winterClimate.policy,'climate-useful-element-v5');
  assert.equal(r.winterClimate.usefulElement,null);assert.equal(r.formed,null);
  assert.ok(r.positionContext.candidateReviews.some(q=>q.witnesses.some(x=>x.witnessId===w.id&&x.edges[0].order===null)));
+});
+test('winter exception retains an unclashed exact middle root without confirming its effectiveness',()=>{
+ // Contrast only the day branch: 戌 contains 丁 as middle qi and is
+ // not in a six-clash pair with 申, 子 or 丑. Other disruptions may exist.
+ const ps=['무신','갑자','경술','정축'];
+ const r=run(ps),w=exception(r).find(w=>w.roles.target==='hidden:month:계'&&w.roles.officer==='visible:hour');
+ assert.ok(w);
+ const roots=analyzeStemForceEvidence({saju:chart(ps)}).occurrences.find(o=>o.id==='visible:hour').roots;
+ assert.ok(roots.some(x=>x.position==='day'&&x.stem==='정'&&x.match==='exact-stem'&&x.role==='middle'&&x.clashExposed===false));
+ assert.deepEqual(w.conditions.officerExactUnclashedSubstantialRoots,['day']);
+ assert.equal(w.conditions.officerEffective,null);
+ assert.equal(w.exceptionApplied,null);
 });
 test('visible hurting and missing auxiliary role oppose the source screen; no automatic exception',()=>{
  const r=run(['계유','갑자','경오','정축']);
