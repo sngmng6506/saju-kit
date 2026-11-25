@@ -33,6 +33,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/pattern-outcome-v4.test.mjs",
     "test/pattern-outcome-v5.test.mjs",
     "test/pattern-outcome-v6.test.mjs",
+    "test/pattern-outcome-v7.test.mjs",
     "test/pattern-outcome-reference.test.mjs",
     "test/pattern-useful-element.test.mjs",
     "test/pattern-v10.test.mjs",
