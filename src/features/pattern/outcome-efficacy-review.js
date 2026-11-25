@@ -6,7 +6,7 @@ import {projectMechanismClimate,observeMechanismReview,evaluateMechanismEdge} fr
 import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
-import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies,assessKillingWealth} from './outcome-role-priority.js';
+import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies,assessKillingWealth,assessResourceStrategies} from './outcome-role-priority.js';
 import {observeRootContext} from './outcome-root-context.js';
 import {observeBranchPressure,observeMonthCommandReview} from './outcome-command-context.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
@@ -48,7 +48,8 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const roleObjectives=assessRoleObjectives(q,prior,roleCapacity,capacityComparisons,m,result.regulationStrength,rootContext,monthCommandReview);
   const killingStrategies=assessKillingStrategies(q,prior,roleCapacity,roleFlow,m,result.regulationStrength,edge=>evaluateMechanismEdge(context.assess(edge),prior.completeHour));
   const killingWealth=assessKillingWealth(q,prior,roleCapacity,m,compound.get(q.candidateId),killingStrategies,result.regulationStrength,capacityComparisons,rootContext,monthCommandReview);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,objectiveReview:roleObjectives,killingStrategies,killingWealth}};
+  const resourceStrategies=assessResourceStrategies(q,prior,roleCapacity,m,result.regulationStrength,rootContext,edge=>evaluateMechanismEdge(context.assess(edge),prior.completeHour));
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,objectiveReview:roleObjectives,killingStrategies,killingWealth,resourceStrategies}};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
