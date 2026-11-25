@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {summarizePressureDependencies} from '../scripts/lib/pattern-outcome-screen-bottlenecks.mjs';
 import {tracePressureDependencies,observePressureDependencyReview} from '../src/features/pattern/outcome-pressure-dependency.js';
 import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
 import {observeRelativeForce} from '../src/core/relative-force.js';
@@ -36,6 +37,7 @@ test('source packet preserves existing screens, counts exact stable evidence and
  let n=0,pressureOnly=0,stable=0,total=0;
  for(const c of packet.cases)for(const complete of [true,false]){
   const x=build(c.pillars,complete),r=run(x);assert.equal(r.status,complete?'diagnostic':'partial',c.id);n++;
+  assert.deepEqual(summarizePressureDependencies(c,r,x.supply,x.interposition,!complete).errors,[],c.id);
   assert.ok(r.pressures.every(p=>p.neutralizationConfirmed===null&&p.effective===null));
   assert.ok(r.paths.every(p=>p.effectConfirmed===null&&p.neutralizationConfirmed===null));
   assert.ok(r.generation.every(g=>g.originalScreen===x.supply.actions.find(e=>e.edgeId===g.edgeId).generationScreen&&g.effective===null));
@@ -55,6 +57,8 @@ test('foreign controller or altered path screen fails closed',()=>{
  p.structuralScreen='grounded-structure-screen-met';assert.equal(run(x).status,'invalid-evidence');
  const y=build(['무술','갑자','정미','경술']),c=y.interposition.roleNeutral.pressureContexts.find(c=>c.controllers.length);
  c.controllers[0].controllerNodeId='foreign';assert.equal(run(y).status,'invalid-evidence');
+ const z=build(['무술','갑자','정미','경술']),e=z.supply.actions.find(e=>e.kind==='generate'&&e.from.startsWith('visible:')&&e.to.startsWith('visible:')&&e.sourcePressure.length);
+ assert.ok(e);e.sourcePressure.pop();assert.equal(run(z).status,'invalid-evidence');
 });
 test('native V10 exposes pressure dependencies without decision authority',()=>{
  const {saju}=build(['무술','갑자','정미','경술']);
