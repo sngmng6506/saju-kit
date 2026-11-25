@@ -71,15 +71,24 @@ export function summarizeActionReferences(rows){
    passing:xs.filter(r=>r.screenDisposition==='all-probes-have-passing-alternative').length,
    withheld:xs.filter(r=>r.screenDisposition==='screen-withholds').length,missing:xs.filter(r=>r.screenDisposition==='structure-missing').length}];
  }));
- const reasons=new Map();
+ const reasons=new Map(),unavoidable=new Map();
  // Count a blocker at most once per source reference, not once per alternative.
  for(const r of eligible.filter(r=>r.state==='supported'&&r.screenDisposition==='screen-withholds')){
   const keys=unique(r.probes.flatMap(p=>p.alternatives.filter(a=>a.observed).flatMap(a=>a.legacyReasons)));
   for(const k of keys)reasons.set(k,(reasons.get(k)??0)+1);
+  // A reason on just one alternative cannot explain existential failure.
+  // Count a shared reason only when every observed alternative of a failed
+  // required probe carries it; union across required probes.
+  const shared=unique(r.probes.filter(p=>p.observed&&!p.anyScreenMet).flatMap(p=>{
+   const observed=p.alternatives.filter(a=>a.observed);
+   return observed[0].legacyReasons.filter(k=>observed.every(a=>a.legacyReasons.includes(k)));
+  }));
+  for(const k of shared)unavoidable.set(k,(unavoidable.get(k)??0)+1);
  }
  return {references:rows.length,uniqueCharts:new Set(rows.map(r=>r.chartId)).size,comparable:eligible.length,
   structuralCoverage:rows.filter(r=>r.allObserved).length,groups,excluded:rows.filter(r=>r.split==='excluded-source-review').length,
   beforeRescue:rows.filter(r=>r.phase==='before-rescue-explanation').length,routeInterpretations:rows.filter(r=>r.scope==='route-interpretation').length,
   supportedWithheldLegacyReasons:[...reasons].map(([reason,count])=>({reason,count})).sort((a,b)=>b.count-a.count||a.reason.localeCompare(b.reason)),
+  supportedWithheldSharedLegacyReasons:[...unavoidable].map(([reason,count])=>({reason,count})).sort((a,b)=>b.count-a.count||a.reason.localeCompare(b.reason)),
   empiricalAccuracy:null,finalEfficacyAccuracy:null,selectionAuthority:false};
 }
