@@ -82,3 +82,19 @@ test('native V10 composes officer contexts without selecting a pattern',()=>{
   for(const c of m.candidates){const d=c.rolePriority.officerDemandConditions;assert.ok(['diagnostic','partial','out-of-scope'].includes(d.status));assert.equal(d.effective,null);}
  }
 });
+
+test('all 16 existing scenario keys preserve their own role and source status',()=>{
+ const x=fixture(),roles={wealth:x.w,resource:x.i,output:x.f};
+ x.demand.objectives.push(
+  ...['required-food-control-obstruction','excess-food-moderation'].map(id=>x.make('objective',id,roles)),
+  ...['wealth-supplies-needed-killing','wealth-reinforces-dangerous-killing'].map(id=>x.make('killing-wealth-supply',id,roles)),
+  ...['wealth-relieves-output-obstruction','wealth-supplies-insufficient-killing','wealth-reinforces-dangerous-killing'].map(id=>x.make('killing-wealth-dual',id,roles)),
+  ...['wealth-threatens-needed-resource','wealth-supplies-killing-through-resource','wealth-supplies-needed-killing'].map(id=>x.make('killing-wealth-mediation',id,roles)));
+ const k=run(x);assert.equal(k.status,'diagnostic');assert.equal(k.contexts.length,12);
+ assert.ok(k.contexts.every(c=>c.officerId===x.k&&c.sourceConditionalStatus==='unresolved'&&c.effective===null));
+ x.review.family='resource';x.demand.objectives=[
+  ...['killing-supplies-light-resource','weak-day-heavy-resource-original-reading','killing-supply-with-both-day-and-resource-heavy'].map(id=>x.make('resource-killing',id,{resource:x.i,officer:x.k})),
+  x.make('resource-officer','officer-independent-role-review',{resource:x.i,officer:x.o})];
+ const r=run(x);assert.equal(r.status,'diagnostic');assert.equal(r.contexts.length,4);
+ assert.ok(r.contexts.every(c=>c.excessConfirmed===null&&c.deficiencyConfirmed===null));
+});
