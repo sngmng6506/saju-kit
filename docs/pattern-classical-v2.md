@@ -237,3 +237,29 @@ npm run audit:dead-code
 ```
 
 Native checkout was reattempted: Node v22.16.0 available, git ls-remote failed DNS resolution for github.com. Full native v10 audit, role projections across every candidate, and full regression remain unexecuted. No main merge, runtime/public API change or final efficacy authority. Next prioritize a source-adjudicated set of positive and negative vertical/branch/visible route cases with exact participant annotations; examine the 22 passing visible screens and the 11 deduplicated principal-only alternatives to identify false positives/negatives of the necessary screens. Avoid adding more unvalidated diagnostic models or treating fewer blockers as better classical accuracy.
+
+
+## Source action reference v1
+
+Frozen overlay [pattern-action-reference-v1.json](../test/fixtures/pattern-action-reference-v1.json) binds 12 source interpretations to 11 existing charts without changing any existing chart eligibility. Sources checked in this pass: Dongli [論印](https://www.donglishuzhai.net/chapter/3748.html), [論食神](https://www.donglishuzhai.net/chapter/3750.html), [論偏官](https://donglishuzhai.net/chapter/3752.html), [論生尅先後](https://donglishuzhai.net/chapter/3733.html), the [alternate 偏官 transcription](https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan/), [Xu commentary](https://ncc.com.tw/fate/paleo/bg/bg_033.htm), [alternate Xu transcription](https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3) and [Xu order commentary](https://sanqing.com.tw/en/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%AE%AE%E8%A9%95%E6%B3%A8/). Electronic witnesses may share textual ancestry. These are one-pass annotations, not independently adjudicated or empirical truth; no held-out cases are claimed.
+
+Occurrence bindings are annotator mappings from source-described roles (not claims that the text names each exact occurrence). An existential target set preserves source ambiguity when stems repeat. Each probe requires an actual directed relation and, when annotated, actual pair contact. Source labels distinguish supported action, limited action and explicitly blocked action. Limited is not equivalent to zero effect. Route interpretation is distinct from an isolated edge effect. A pre-rescue explanation is not a label for the complete natal configuration. The previously excluded Tuotuo example remains excluded although two electronic texts display 甲辰. Three partial textual contrast templates are not completed into invented charts. The Zhou example uses 戊 for 丁 day: the exact ten-god is 傷官 rather than 食神, although the author uses food/output terminology broadly. This calls for source-scoped output roles, not global conversion of all 傷官 into 食神.
+
+Executed with 18 actual source modules in isolated V8 (core, access, layer, efficacy and reference review) at 9409e32; the adapter uses actual stem-force occurrences, derives hidden clash flags from the core structure, and uses actual interaction formation IDs for pairs. No v10 candidate pipeline or strength inference used. All 12 references bound to their graph (including excluded and phase-only examples); 0 errors. The directly comparable source references are only eight, with the following observed result:
+
+| Author | Supported | Limited | Blocked | Screen passing | Screen withheld |
+|---|---:|---:|---:|---:|---:|
+| Shen | 3 | 0 | 0 | 0 | 3 |
+| Xu | 2 | 3 | 0 | 0 | 5 |
+
+Of the other four references, two are route interpretations, one is a pre-rescue explanation and one is an excluded source variant. All are evaluated for structural binding only outside the comparable denominator. The current necessary screen withholds all supported and all limited examples, hence does not distinguish them on this development overlay. This is not a measured false-negative rate or empirical accuracy: the screen does not predict efficacy, and there are no comparable blocked references. No new native runtime policy is proposed. In particular, nonadjacency appears in at least one alternative of each of the five supported comparable examples, but the Wang example also has an adjacent alternative. Later 5ef14bb adds shared blocker counts (intersection per failed existential probe) to avoid misreading union counts as unavoidable. The initial actual run predates that summary-only addition; its comparison counts are unchanged. The five supported examples also expose root, contact, local control and relative-evidence concerns. Do not relax all concerns together; next test explicitly source-scoped mechanisms with stronger positive and negative adjudication.
+
+Two synthetic test groups and the source inventory/invalid provenance controls passed using the final actual reference module in isolated JS. Native audit added, with corpus identity and scope assertions; native checkout remains blocked (Node 22.16.0, git ls-remote could not resolve github.com). No runtime/API changes or main merge.
+
+```sh
+node scripts/audit-classical-patterns.mjs --action-references
+node scripts/audit-classical-patterns.mjs --action-references --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run audit:layout
+npm run test:failures
+```
