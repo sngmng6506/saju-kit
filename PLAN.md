@@ -68,3 +68,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Mechanism source v2](docs/pattern-outcome-mechanism-source-v2.md): expanded development source probes, explicit removal disputes and condition-level gap analysis; native diagnostic receipt required before tuning.
 
 - [Combination context](docs/pattern-outcome-combination-context.md): contact/role restriction/target supply separate, internal formation reuse, native validation pending.
+
+- [Branch access and month change](docs/pattern-outcome-branch-context.md): literal slot access, aggregate context and six source clauses; native validation pending.

@@ -101,7 +101,7 @@ export function observeOutcomeDecision(result){
  const candidates=reviews.map(q=>{
   const c=candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global);
   const joint=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||c.status!=='abstained'?null:mechanism.get(q.candidateId)?.joint??null;
-  return {...c,jointHypothesis:joint,combinationRoles:joint?mechanism.get(q.candidateId)?.combinationRoles??null:null};
+  return {...c,jointHypothesis:joint,combinationRoles:joint?mechanism.get(q.candidateId)?.combinationRoles??null:null,branchAccess:joint?mechanism.get(q.candidateId)?.branchAccess??null:null};
  });
  const pref=result.preference,h=pref?.hypothesis;
  const hypothesis=h&&pref.status==='hypothesis'?{family:h.family,candidateIds:[...h.candidateIds],anchorStems:[...h.anchorStems],grounds:[...h.grounds],confirmed:false}:null;
@@ -111,7 +111,7 @@ export function observeOutcomeDecision(result){
  const generalized=globalInvalid?null:result.purityReview?.generalized??null;
  return {release,status:global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch'].includes(s))||candidates.some(q=>q.status==='invalid-evidence')?'invalid-evidence':!result.access?'unavailable':'abstained',
   completeHour:result.completeHour,selectionAuthority:false,confirmed:false,globalBlockers:unique(global),
-  pattern:axis(release,'pattern',[...global,...(usableHypothesis?['family-hypothesis-not-selection']:['no-usable-family-hypothesis']),...(pref?.reason?['preference:'+pref.reason]:[])],{hypothesis:usableHypothesis?hypothesis:null,candidateIds}),
+  pattern:axis(release,'pattern',[...global,...(usableHypothesis?['family-hypothesis-not-selection']:['no-usable-family-hypothesis']),...(pref?.reason?['preference:'+pref.reason]:[])],{hypothesis:usableHypothesis?hypothesis:null,candidateIds,monthChange:globalInvalid?null:result.efficacyReview?.mechanismReview?.monthChange??null}),
   purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(globalInvalid||purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses})),generalized}),
   candidates,limitations:['no-final-decision-authority','no-empirical-life-outcome-validation','ordinary-pattern-scope-only','no-score-or-forced-selection']};
 }
