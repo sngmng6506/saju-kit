@@ -9,7 +9,7 @@ const rootPositions=ids=>uniq(ids.map(id=>id.split(':')[1]));
 const nodeLayer=a=>a.layer==='visible'?'stem':'branch';
 const pressureClass=state=>state==='grounded-observation'?'rooted-controller-observed':
  state==='no-substantial-root-observed'?'no-substantial-controller-observed':'controller-access-unresolved';
-const invalid=base=>({...base,status:'invalid-evidence',paths:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
+const invalid=base=>({...base,status:'invalid-evidence',paths:[],pressureContexts:[],summary:{candidatePaths:0,protectionPaths:0,mediationPaths:0,structuralScreensMet:0}});
 function validateNode(nodeId,groups,donors,rootContext,complete){
  const members=groups.get(nodeId),d=donors.get(nodeId);
  if(!members?.length||!d||!Array.isArray(d.occurrenceIds)||d.occurrenceIds.some(x=>typeof x!=='string')||
@@ -194,12 +194,40 @@ export function observeInterpositionReview(prior,rootContext,groundedSupply){
  }
  paths.sort((a,b)=>a.id.localeCompare(b.id));
  const excludedReasons={};for(const reason of excluded.values())excludedReasons[reason]=(excludedReasons[reason]??0)+1;
+ // Bind each exact pressure edge, including those without a candidate.
+ // Visible non-supportive targets are not evaluated by the legacy screen;
+ // record their candidate references as scope gaps, not failed protection.
+ const pressureContexts=[];
+ for(const a of actors.values()){
+  if(a.layer!=='visible')continue;
+  const relation=elementRelation(a.element,day.element);
+  const inScope=a.element===day.element||relation.type==='generate'&&relation.direction==='left-to-right';
+  const controllers=pressures.get(a.graphNodeId);
+  if(!controllers||new Set(controllers.map(p=>p.controllerNodeId)).size!==controllers.length)return invalid(base);
+  const rows=controllers.map(p=>{
+   const alternatives=[...candidates.values()].filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId)
+    .map(x=>JSON.stringify([x.kind,x.helper,x.threat,x.target])).sort();
+   const evaluated=paths.filter(x=>x.target===a.graphNodeId&&x.threat===p.controllerNodeId);
+   if(inScope&&!same(alternatives,evaluated.map(x=>x.id).sort()))return null;
+   if(!inScope&&evaluated.length)return null;
+   return {controllerNodeId:p.controllerNodeId,distance:p.distance,local:p.local,donorState:p.donorState,
+    classification:p.classification,candidatePathIds:alternatives,evaluatedPathIds:evaluated.map(x=>x.id),
+    screenedPathIds:evaluated.filter(x=>x.structuralScreen==='grounded-structure-screen-met').map(x=>x.id),
+    coverage:!inScope?'outside-target-scope':alternatives.length?'candidate-path-observed':'no-candidate-path-observed',
+    neutralizationConfirmed:null,remainingPressureConfirmed:null};
+  });
+  if(rows.some(r=>!r))return invalid(base);
+  // Preserve all competing controllers independently; a candidate for one
+  // controller cannot be used to discharge another controller.
+  pressureContexts.push({targetId:a.id,targetNodeId:a.graphNodeId,targetScope:inScope?'in-scope':'outside-target-scope',
+   controllers:rows,allPressureResolved:null,effective:null});
+ }
  const summary={candidatePaths:paths.length,excludedTargetPaths:excluded.size,excludedReasons,protectionPaths:paths.filter(p=>p.kind==='protection').length,
   mediationPaths:paths.filter(p=>p.kind==='mediation').length,
   structuralScreensMet:paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
   hiddenParticipantPaths:paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
   pressureBlockedPaths:paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
   nonlocalChainPaths:paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
- return {...base,status:complete?'diagnostic':'partial',targetScope:'day-master-and-visible-peer-resource',paths,summary,
-  limitations:['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection']};
+ return {...base,status:complete?'diagnostic':'partial',targetScope:'day-master-and-visible-peer-resource',paths,pressureContexts,summary,
+  limitations:['candidate-paths-are-not-effective-protection-or-mediation','control-is-not-removed-by-a-path','all-shared-node-paths-are-deduplicated','helper-root-and-threat-root-are-separate','target-root-not-required-for-structural-path-observation','helper-pressure-is-a-review-blocker','threat-and-target-additional-pressure-retained','mediation-direct-control-edge-may-be-nonlocal','no-strength-score-or-role-selection','exact-controller-binding','outside-target-scope-not-failed-protection']};
 }
