@@ -88,3 +88,24 @@ npm run test:failures
 ```
 
 The audit keeps the eligible Shen 67 and Xu commentary 34 separate (14 Shen review-only cases excluded). It reports state counts and matched rescue screens, not final outcome accuracy. Three new synthetic test groups passed using the actual module and adapted assertions in an isolated JavaScript environment, including inconsistent edge direction/screen, relative control and generation contrasts, hidden access, partial/unavailable input, noncancellation, unresolved source conditions and triad anchor isolation. Native Node 22.16.0 is installed, but git ls-remote failed to resolve github.com; native corpus and full regression remain unexecuted. Do not merge before the pinned native regression gate. Future calibration requires independently adjudicated action efficacy and negative controls; neither a source outcome label nor an unlabelled case can serve as a negative edge label.
+
+
+## Outcome decision v1 (research-only)
+
+Text cross-check: [論用神成敗救應, Shen electronic text](https://www.tianyashuku.com/yijing/9643/814110.html), [parallel reading](https://changxianyi.com/guji/ziping/wz-20260914/chapter-010/), [論用神因成得敗因敗得成](https://www.donglishuzhai.net/chapter/3726.html). The search-visible passages distinguish formation, damage, formation with damage, and rescue; full fetches of the first and third links failed (403/502). No independent full-edition collation is claimed. The existing eight-family motif source table remains unchanged, and is explicitly nonexhaustive.
+
+The decision module is a pure three-valued algebra (true/false/null), plus a projection over existing v10, outcome and efficacy research evidence. It evaluates conjunctions, alternatives and negation without conflating unknown with false. A refuted motif is excluded only as that particular alternative. A satisfied literal motif is not confirmed effectiveness. An open inventory of alternatives may not be closed merely because all known alternatives are false. Damage and rescue are evaluated per directed threat occurrence; a rescued threat cannot cancel another independent threat. Conditional hypotheses: cleanFormation, formationWithDamage, damageWithoutSupport, formationAfterRescue. These are conditional compositions of supplied premises, not confirmed whole-pattern judgements, and damageWithoutSupport is not automatically 破格. The pure algebra supports explicit exhaustive hypothetical inventories for testing; the actual projection never marks the inventory exhaustive, never injects source labels and never promotes necessary screens to true effects. Therefore current corpus final decision coverage is expected to be zero, not measured accuracy. No runtime policy or public API change.
+
+The new audit separates Shen (67 eligible; 14 excluded) and Xu (34). It reports literal motif matches, refutations, unresolved motifs, abstentions and a contextual condition backlog ranked by distinct charts then occurrence count; refuted motifs are excluded from that backlog. The backlog measures implementation coverage, not source importance or empirical accuracy.
+
+```sh
+node scripts/audit-classical-patterns.mjs --decisions
+node scripts/audit-classical-patterns.mjs --decisions --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:layout
+npm run audit:architecture
+npm run audit:dead-code
+```
+
+Executed four new synthetic test groups in an isolated JavaScript environment with actual research module source and adapted assertions: three-valued truth tables and De Morgan checks, open-world coverage, independent rescue obligations, motif predicate consistency, backlog exclusion, missing-hour and unavailable handling. Exhaustive enumeration of 972 two-threat combinations produced zero conflicting hypotheses and zero final-authority grants. This proves only the tested algebraic contracts, not correctness of classical astrology. Native Node 22.16.0 is available but git ls-remote again failed DNS resolution; native corpus and full regression have not run. The branch must remain separate until native regression and pinned equivalence checks pass. Next: use measured backlog to implement individually sourced contextual predicates with explicit negative contrasts, add independently adjudicated force/efficacy labels and freeze an independent corpus before tuning. Do not activate final selection or transit authority.
