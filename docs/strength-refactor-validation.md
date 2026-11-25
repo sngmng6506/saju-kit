@@ -14,3 +14,6 @@ Request evidence is lazy and local to one synchronous evaluation. The same chart
 
 ## Gates
 The user's prior 331-test native regression, architecture audit and pattern equivalence passed before the strength migration. New native tests and verifiers are pending; the current container cannot resolve github.com for a full checkout. No additional external dependency was introduced. Run npm test, npm run audit:architecture, npm run verify:pattern-refactor and npm run verify:strength-refactor. The latter compares all 12 policies and extra command cases using the actual pinned checkout. Whole-repo static scan and symbol-level dead-code review after this migration remain pending.
+
+## Native follow-up
+The user reported 324 passing and 9 failing tests after the strength migration. All nine failures arose at research source-patch guards (or root-profile source inspection) before variant evaluation. The eight affected/reviewed scripts now share explicit implementation paths; 12 exact target strings were checked against current source. Frozen datasets and runtime policies remain unchanged. Re-execution of the full native suite is still required to verify the historical variant results. The concise reporter now shows file progress; its native Node 22 synthetic pass/fail/import-error checks preserved exit codes.

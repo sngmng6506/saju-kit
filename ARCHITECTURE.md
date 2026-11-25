@@ -56,3 +56,5 @@ npm run verify:strength-refactor
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.
 
 For concise native regression output, use `npm run test:failures` (custom Node reporter; no change to test selection or exit code). Full output remains available via `npm test`.
+
+The concise reporter displays file-completion progress rather than guessing the number of dynamically registered tests. If file lifecycle events are unavailable, it reports completed test events instead. Research ablation scripts use `scripts/lib/strength-research-source.mjs` to target implementation files, not public re-export shims.

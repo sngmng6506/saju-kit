@@ -29,4 +29,4 @@ npm run verify:pattern-refactor
 npm run verify:strength-refactor
 ```
 
-Use `npm run test:failures` for routine local regression: only failures, relevant stderr and the aggregate summary are printed. `npm test` remains available for full output.
+Use `npm run test:failures` for routine local regression: file-completion progress (approximately every 10%), failures, relevant stderr and the aggregate summary are printed. `npm test` remains available for full output.
