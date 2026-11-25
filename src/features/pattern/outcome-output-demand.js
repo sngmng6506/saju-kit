@@ -9,7 +9,7 @@ const edgeRef=e=>({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,sourceBasis:e
 // control killing and generate wealth simultaneously; no net sign or sum.
 export function observeOutputSupplyContext(capacity,supply,interposition,strength,complete){
  const base={version:'output-supply-context-v1',completeHour:complete,selectionAuthority:false,...abstain};
- const empty=()=>({...base,status:'invalid-evidence',day:null,outputs:[],wealthFeeds:[]});
+ const empty=()=>({...base,status:'invalid-evidence',day:null,outputs:[],wealthFeeds:[],wealthResourceControls:[]});
  const neutral=interposition?.roleNeutral;
  if(typeof complete!=='boolean'||[capacity,supply,neutral].some(x=>!x||x.status!==status(complete)||x.selectionAuthority!==false)||
   supply.effectiveSupply!==null||neutral.targetScope!=='all-visible-stems'||neutral.effectConfirmed!==null||
@@ -51,8 +51,11 @@ export function observeOutputSupplyContext(capacity,supply,interposition,strengt
    controllers:(p?.controllers??[]).map(c=>({nodeId:c.controllerNodeId,classification:c.classification,candidatePathIds:[...c.candidatePathIds],screenedPathIds:[...c.screenedPathIds],neutralizationConfirmed:null})),
    pressureCoverage:a.layer==='visible'?'visible-context':'hidden-access-unresolved',...abstain});
  }
+ const wealthResourceControls=[...edges.values()].filter(e=>e.kind==='control'&&WEALTH.has(actors.get(e.from).tenGod)&&RESOURCE.has(actors.get(e.to).tenGod)).map(edgeRef);
+ const wealthOfficerSupply=[...edges.values()].filter(e=>e.kind==='generate'&&WEALTH.has(actors.get(e.from).tenGod)&&OFFICER.has(actors.get(e.to).tenGod)).map(edgeRef);
+ const dayResourceSupply=matching(day.id,'generate','in',RESOURCE),dayOfficerPressure=matching(day.id,'control','in',OFFICER);
  return {...base,status:status(complete),day:{id:day.id,direction:complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null,
-  actualBurdenConfirmed:null},outputs,wealthFeeds,limitations:['literal-edge-not-effective-flow','food-and-hurting-officer-distinct','wealth-feed-not-universal-benefit','no-force-sum-or-demand']};
+  actualBurdenConfirmed:null,resourceSupply:dayResourceSupply,officerPressure:dayOfficerPressure},outputs,wealthFeeds,wealthResourceControls,wealthOfficerSupply,limitations:['literal-edge-not-effective-flow','food-and-hurting-officer-distinct','wealth-feed-not-universal-benefit','no-force-sum-or-demand']};
 }
 // Existing D1-D4 source contexts only. Food-family and hurting-officer-
 // family policies are not invented by this projection.
@@ -86,6 +89,12 @@ export function assessOutputDemandConditions(review,demand,chart,foodPolicy,comp
   seen.add(o.id);
   const control=a.officerControl.find(e=>e.to===o.roles.killing&&e.targetTenGod==='편관')??null;
   const resourcePressure=a.resourcePressure.find(e=>e.from===o.roles.resource)??null;
+  const resourceDelivery=chart.day.resourceSupply.find(e=>e.from===o.roles.resource)??null;
+  const killingPressure=chart.day.officerPressure.find(e=>e.from===o.roles.killing)??null;
+  const wealthControl=chart.wealthResourceControls.find(e=>e.from===o.roles.wealth&&e.to===o.roles.resource)??null;
+  // K03 requires the exact wealth->killing supply relation, not a
+  // newly inferred output->wealth->killing route. Keep these separate.
+  const wealthKillingFeed=chart.wealthOfficerSupply.find(e=>e.from===o.roles.wealth&&e.to===o.roles.killing)??null;
   const dayDirection=chart.day.direction;
   let dayPremise={expected:p.day??null,state:'not-required',direction:dayDirection,source:'not-declared'};
   if(p.day==='food-policy'){
@@ -94,12 +103,13 @@ export function assessOutputDemandConditions(review,demand,chart,foodPolicy,comp
     !complete&&q.state!=='unresolved')return empty('invalid-evidence');
    dayPremise={expected:'food-control-source-premise',state:q.state,direction:dayDirection,source:'K01-existing-polarity-policy',detail:q.evidence??null};
   }else if(p.day)dayPremise={expected:p.day,state:!complete||dayDirection===null?'unresolved':dayDirection===p.day?'supported':'opposed',direction:dayDirection,source:'existing-day-hypothesis'};
-  const relationObserved=p.clause==='R01'?!!a.drain:p.clause==='K01'?!!a.drain&&!!control:p.clause==='K02'||p.axis==='restoration'?!!control&&!!resourcePressure:!!control;
+  const relationObserved=p.clause==='R01'?!!a.drain&&!!resourceDelivery:p.clause==='K01'?!!a.drain&&!!control&&!!killingPressure:
+   p.clause==='K02'?!!control&&!!resourcePressure:p.axis==='restoration'?!!control&&!!resourcePressure&&!!wealthControl&&!!wealthKillingFeed:!!control&&!!wealthKillingFeed;
   const contextState=!complete?'partial':dayPremise.state==='opposed'?'day-hypothesis-opposed':dayPremise.state==='unresolved'?'day-hypothesis-unresolved':
    !relationObserved?'required-edge-unobserved':a.layer!=='visible'?'hidden-access-review':'source-context-observed';
   contexts.push({objectiveRef:o.id,objectiveId:o.objectiveId,clause:p.clause,source:p.source,axis:p.axis,outputId:a.id,outputTenGod:a.tenGod,
    dayId:chart.day.id,killingId:o.roles.killing??null,resourceId:o.roles.resource??null,wealthId:o.roles.wealth??null,
-   drain:a.drain,drainObservation:a.drainObservation,control,resourcePressure,
+   drain:a.drain,drainObservation:a.drainObservation,control,resourcePressure,resourceDelivery,killingPressure,wealthControl,wealthKillingFeed,
    wealthFeedIds:chart.wealthFeeds.filter(x=>x.outputId===a.id&&(!o.roles.killing||x.officerId===o.roles.killing)&&(!o.roles.wealth||x.wealthId===o.roles.wealth)).map(x=>x.id),
    dayPremise,contextState,sourceConditionalStatus:o.conditionalStatus,unprovedConditions:p.required.map(id=>({id,state:'unresolved'})),...abstain});
  }
