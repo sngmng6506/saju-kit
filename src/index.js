@@ -105,3 +105,5 @@ export { analyzePatternUsefulElementV9, PATTERN_V9_VERSION } from './features/pa
 
 export { observeRelativeForce, RELATIVE_FORCE_VERSION } from './core/relative-force.js';
 export { analyzePatternUsefulElementV10, PATTERN_V10_VERSION } from './features/pattern-useful-element-v10/index.js';
+
+export { analyzePatternOutcome, PATTERN_OUTCOME_VERSION } from './features/pattern/outcome-review.js';

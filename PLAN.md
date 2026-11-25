@@ -25,7 +25,7 @@ The [initial plan](docs/history/initial-plan.md) is retained for history, not th
 
 1. Capture benchmark results and validate both pinned consumers in isolated worktrees; external acceptance remains pending. No automatic consumer migration.
 2. Use measured runtime and result size before performance optimization.
-3. Resume pattern 成敗救應 research on the consolidated pattern domain. Separate structural evidence, unresolved effects and authority; preserve special-pattern exclusion and consumer pins.
+3. Implemented initial [pattern 成敗救應 structural review](docs/pattern-outcome-evidence-v1.md); native and corpus audits pending. Next: independently annotated outcome witnesses, omitted source clauses and negative controls; no selection authority.
 4. Independently validate selection/efficacy hypotheses before promoting a policy or connecting new decisions to transit. No automatic final useful/favorable/unfavorable selection.
 
 ## Commands

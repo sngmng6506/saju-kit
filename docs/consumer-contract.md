@@ -47,3 +47,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Stem force evidence / pattern v9](pattern-useful-element-v9.md) exposes per-occurrence structural evidence, not numeric strength or effective force. Prior preference and consumer policies remain unchanged.
 
 - [Pattern v10](pattern-useful-element-v10.md) is opt-in relative evidence; evidence dominance is not force dominance, and passing the screen is not an effective action or final selection. No consumer migration.
+
+- [Pattern outcome evidence v1](pattern-outcome-evidence-v1.md) is an explicit experimental structural subclause review; no final 성패, 相神 or consumer migration.

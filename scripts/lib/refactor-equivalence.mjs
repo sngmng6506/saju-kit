@@ -15,7 +15,11 @@ export async function verifyRefactor({baseline,policies,neutralPolicies=[],extra
  try{
   git('worktree','add','--detach',checkout,baseline);added=true;
   const old=await import(pathToFileURL(resolve(checkout,'src/index.js')).href),now=await import(pathToFileURL(resolve(root,'src/index.js')).href);
-  assert.deepEqual(Object.keys(now).sort(),Object.keys(old).sort(),'public exports');
+  // Historical refactor baselines predate this explicitly additive research API.
+  // Do not waive removed or unrelated newly added exports.
+  const additions=['analyzePatternOutcome','PATTERN_OUTCOME_VERSION'].filter(key=>!Object.hasOwn(old,key));
+  for(const key of additions)assert.ok(Object.hasOwn(now,key),'approved additive export '+key);
+  assert.deepEqual(Object.keys(now).filter(key=>!additions.includes(key)).sort(),Object.keys(old).sort(),'public exports (excluding approved outcome additions)');
   const corpus=JSON.parse(readFileSync(resolve(checkout,'test/fixtures/pattern-classical-v2.json'),'utf8')).cases;
   const cases=corpus.map(c=>({id:c.id,saju:chart(c.pillars)}));
   const stems='갑을병정무기경신임계',branches='자축인묘진사오미신유술해',p=i=>stems[i%10]+branches[i%12];

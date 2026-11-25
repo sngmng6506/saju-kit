@@ -34,6 +34,8 @@ src/features/pattern/
 
 All v1–v10 public pattern entry points delegate to the request-local pipeline. They do not call each other. It constructs only the fields requested by each original revision and preserves version-specific behavior. Earlier discarded outcome/route/quality calculations are skipped for v4+. Root/force evidence reuses the same request-local validated core observations; no cross-request cache. The 13 old leaf paths re-export their implementations solely for existing internal test/script compatibility. Do not add new implementation code there.
 
+The additive [outcome evidence review](docs/pattern-outcome-evidence-v1.md) consumes V10 evidence through separate rule, graph and review modules. It does not change V1–V10 outputs or claim efficacy; rescue extends rather than erases a damage witness.
+
 ## Current strength domain
 
 `src/features/strength/` contains hybrid evidence/quantitative, ordinary, structural, quantitative, multiaxis, network/integrated decisions, season robustness, separated decision, command sensitivity, resource access, route budget and output capacity. Historical paths retain explicit re-exports (or unchanged export-star shims). The internal request-evidence provider reuses quantitative observations, root dynamics and support-network projections for the same request. Standard/neutral season modes and distinct hour completions remain separate. Shared scenario-mass owns contribution aggregation. See [strength refactor validation](docs/strength-refactor-validation.md).
