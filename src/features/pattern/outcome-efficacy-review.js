@@ -9,6 +9,7 @@ import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.j
 import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies,assessKillingWealth,assessResourceStrategies} from './outcome-role-priority.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
+import {observeInterpositionReview} from './outcome-interposition-review.js';
 import {observeRootContext} from './outcome-root-context.js';
 import {observeBranchPressure,observeMonthCommandReview} from './outcome-command-context.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
@@ -37,6 +38,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const roleCapacity=observeRoleCapacity(prior);
  const rootContext=observeRootContext(prior,formation);
  const groundedSupply=observeGroundedSupply(prior,rootContext);
+ const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
  const branchPressure=observeBranchPressure(prior,rootContext,formation);
  const monthCommandReview=observeMonthCommandReview(input,birth,prior,rootContext,formation);
  const capacityComparisons=observeCapacityComparisons(prior,roleCapacity);
@@ -56,6 +58,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const interactions=observeRoleInteractions(q,roleCapacity,rootContext,policies,prior.completeHour);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
