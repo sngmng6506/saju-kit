@@ -1,5 +1,7 @@
 # saju-kit 계획
 
+> Historical initial plan. The sketches below are not the current API or file layout. For the current architecture see [ARCHITECTURE.md](ARCHITECTURE.md); for the active refactor see [ADR-0013](docs/adr/0013-domain-first-refactor.md). New interpretation work pauses until the refactoring verification gate is passed.
+
 사주 기능을 다른 프로젝트(영끌각 등)에서 불러 쓰기 위한 독립 모듈. 만세력 계산(core)을 바닥에 두고 그 위에 기능(택일, 이사운, 이후 연애운·총운)을 모듈로 얹는다.
 
 > 레포 이름 `saju-kit`은 임시. 바꿔도 이 문서 내용은 그대로 유효.
