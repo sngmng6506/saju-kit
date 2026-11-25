@@ -16,7 +16,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  if(input.policy!==PATTERN_OUTCOME_EFFICACY_VERSION)throw new SajuError('pattern-policy','성패구응 분석 정책을 명시해야 합니다.');
  const {prior,result,climateResult,formation}=buildIntegratedOutcome({...input,policy:PATTERN_OUTCOME_INTEGRATED_VERSION},provider,birth);
  const base={...result,version:PATTERN_OUTCOME_EFFICACY_VERSION,scope:'ordinary-pattern-efficacy-evidence-screens'};
- if(!result.access)return {result:{...base,efficacyReview:null},climateResult:null};
+ if(!result.access)return {prior,result:{...base,efficacyReview:null},climateResult:null};
  const context=createEffectContext(prior,result.access);
  const integrity=new Map(result.integrity.candidates.map(q=>[q.candidateId,q]));
  const compound=new Map(result.compoundReview.map(q=>[q.candidateId,q]));
@@ -34,6 +34,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const branchAccess=observeBranchRouteAccess(q,branchContext);
   return {...m,status:[joint,combinationRoles,branchAccess].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess};
  });
- return {climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
