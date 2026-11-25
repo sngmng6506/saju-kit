@@ -13,6 +13,7 @@ Run the native domain tests: `npm run test:domain -- useful-element`. This catal
 - [climate-v4.md](../climate-v4.md)
 - [climate-v5.md](../climate-v5.md)
 - [useful-element-expansion.md](../useful-element-expansion.md)
+- [useful-element-priority-v1.md](../useful-element-priority-v1.md)
 - [useful-element-synthesis-v1.md](../useful-element-synthesis-v1.md)
 - [useful-element-five-method-v4.md](../useful-element-five-method-v4.md)
 - [useful-element-review.md](../useful-element-review.md)
@@ -37,3 +38,5 @@ Run the native domain tests: `npm run test:domain -- useful-element`. This catal
 
 - [balance-useful-element-text-v1.json](../../test/fixtures/balance-useful-element-text-v1.json)
 - [useful-element-method-controls-v1.json](../../test/fixtures/useful-element-method-controls-v1.json)
+
+- [useful-element-priority-source-v1.json](../../test/fixtures/useful-element-priority-source-v1.json)

@@ -2,6 +2,7 @@ import {SajuError} from '../../core/error.js';
 import {analyzeBalanceUsefulElement,BALANCE_USEFUL_ELEMENT_VERSION} from '../balance/candidates.js';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../pattern/outcome-review-v10.js';
 import {composeOutcomeSynthesis} from './outcome-synthesis.js';
+import {observeSynthesisPriority} from './synthesis-priority.js';
 export const USEFUL_ELEMENT_SYNTHESIS_VERSION='useful-element-synthesis-v1';
 // Public fixed-policy orchestration. No supplied evidence or approval accepted.
 export function analyzeUsefulElementSynthesis(input){
@@ -10,5 +11,7 @@ export function analyzeUsefulElementSynthesis(input){
  const args={saju:input.saju,birthBasis:input.birthBasis};
  const pattern=analyzePatternOutcomeV10({...args,policy:PATTERN_OUTCOME_V10_VERSION});
  const balance=analyzeBalanceUsefulElement({...args,policy:BALANCE_USEFUL_ELEMENT_VERSION});
- return composeOutcomeSynthesis(input.saju,balance,pattern);
+ const result=composeOutcomeSynthesis(input.saju,balance,pattern);
+ const priorityReview=observeSynthesisPriority(input.saju,result,pattern);
+ return {...result,status:priorityReview.status==='invalid-evidence'?'invalid-evidence':result.status,priorityReview};
 }

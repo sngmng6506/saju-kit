@@ -72,3 +72,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Branch access and month change](docs/pattern-outcome-branch-context.md): literal slot access, aggregate context and six source clauses; native validation pending.
 
 - [Useful-element synthesis v1](docs/useful-element-synthesis-v1.md): typed cross-method composition without authority; native validation pending.
+
+- [Conditional synthesis priority review](docs/useful-element-priority-v1.md): source-scoped obligations, exact climate contacts, branch scenarios and source audit; native validation pending.

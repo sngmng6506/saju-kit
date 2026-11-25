@@ -1,0 +1,53 @@
+{
+  "version": "useful-element-priority-source-v1",
+  "scope": "commentary-case-source-scope-not-independent-gold",
+  "frozenAgainst": "ee201527ed76beaf2817d56ea0f930a72607d0d8",
+  "source": "https://taoly.app/library/bazi/zi-ping-zhen-quan/016/",
+  "cases": [
+    {
+      "id": "winter-wood-resource",
+      "pillars": [
+        "경인",
+        "무자",
+        "갑인",
+        "병인"
+      ],
+      "expectedClause": "winter-wood-resource-warming",
+      "commentaryReading": "Fire both drains wood and provides warmth; the commentary does not select the visible wealth or officer."
+    },
+    {
+      "id": "winter-metal-rootless-fire",
+      "pillars": [
+        "갑신",
+        "병자",
+        "경진",
+        "갑신"
+      ],
+      "expectedClause": "winter-metal-hurting-warming",
+      "commentaryReading": "Fire has a climate role even though the commentary uses output and does not regard wealth or officer as effective."
+    },
+    {
+      "id": "winter-metal-weak",
+      "pillars": [
+        "정사",
+        "임자",
+        "신사",
+        "정유"
+      ],
+      "expectedClause": "winter-metal-hurting-warming",
+      "commentaryReading": "Rooted fire supplies warmth; the commentary nevertheless calls for metal to support the heavily drained day master."
+    },
+    {
+      "id": "summer-wood-resource",
+      "pillars": [
+        "경진",
+        "임오",
+        "갑진",
+        "정묘"
+      ],
+      "expectedClause": "summer-wood-hurting-moisture",
+      "commentaryReading": "Water moistens and metal generates resource even though the commentary does not describe day master as weak."
+    }
+  ],
+  "independentGold": 0
+}
