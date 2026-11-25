@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -28,8 +29,8 @@ export async function evaluateStrongPaths(){
    const base=join(dir,id);
    await cp(join(root,'src'),join(base,'src'),{recursive:true});
    await writeFile(join(base,'package.json'),JSON.stringify({type:'module'}));
-   if(!nominal)await patch(base,'src/features/strength-multiaxis-v2/index.js',"grounds.push('local-resource-and-robust-support');");
-   if(!bounded)await patch(base,'src/features/strength-multiaxis-v3/index.js',"grounds.push('bounded-route-support');");
+   if(!nominal)await patch(base,STRENGTH_SOURCE.network,"grounds.push('local-resource-and-robust-support');");
+   if(!bounded)await patch(base,STRENGTH_SOURCE.integrated,"grounds.push('bounded-route-support');");
    engines.push((await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v3/index.js')).href)).analyzeMultiaxisStrengthV3);
   }
   engines.push(analyzeMultiaxisStrengthV4);

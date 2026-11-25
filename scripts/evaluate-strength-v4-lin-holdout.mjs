@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -13,7 +14,7 @@ export async function evaluateV4LinHoldout(){
  try{
   await cp(join(root,'src'),join(dir,'src'),{recursive:true});
   await writeFile(join(dir,'package.json'),JSON.stringify({type:'module'}));
-  const p=join(dir,'src/features/strength-multiaxis-v2/index.js');
+  const p=join(dir,STRENGTH_SOURCE.network);
   const source=await readFile(p,'utf8'),needle="if(weak&&unchallenged.length)conflicts.push('local-resource-versus-weak');";
   if(source.split(needle).length!==2)throw Error('weak veto patch target changed');
   await writeFile(p,source.replace(needle,''));

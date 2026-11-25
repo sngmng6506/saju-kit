@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -36,7 +37,7 @@ export async function evaluateRootPosition(){
    const base=join(dir,variant.id);
    await cp(join(root,'src'),join(base,'src'),{recursive:true});
    await writeFile(join(base,'package.json'),JSON.stringify({type:'module'}));
-   const p=join(base,'src/features/strength-multiaxis-v1/index.js');
+   const p=join(base,STRENGTH_SOURCE.multiaxis);
    await writeFile(p,patchRootPosition(await readFile(p,'utf8'),variant));
    engines.push([(await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v3/index.js')).href)).analyzeMultiaxisStrengthV3,(await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v4/index.js')).href)).analyzeMultiaxisStrengthV4]);
   }

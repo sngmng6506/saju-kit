@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -37,7 +38,7 @@ export async function evaluateClashFormation(){
    const base=join(dir,id);
    await cp(join(root,'src'),join(base,'src'),{recursive:true});
    await writeFile(join(base,'package.json'),JSON.stringify({type:'module'}));
-   for(const [enabled,path,patch] of [[day,'src/features/strength-multiaxis-v1/index.js',patchDayRoot],[visible,'src/features/strength-quantitative-v3/index.js',patchVisibleRoot]]){
+   for(const [enabled,path,patch] of [[day,STRENGTH_SOURCE.multiaxis,patchDayRoot],[visible,STRENGTH_SOURCE.quantitative,patchVisibleRoot]]){
     if(enabled){const p=join(base,path);await writeFile(p,patch(await readFile(p,'utf8')));}
    }
    engines.push((await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v4/index.js')).href)).analyzeMultiaxisStrengthV4);

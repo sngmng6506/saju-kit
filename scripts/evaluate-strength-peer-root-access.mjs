@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {chartFromReference} from './strength-reference.mjs';
@@ -46,7 +47,7 @@ export function summarizeCandidates(rows){
 export async function evaluatePeerRootAccess(){
  const read=async n=>JSON.parse(await readFile(new URL('../docs/'+n+'.json',import.meta.url),'utf8'));
  const [corpus,ab]=await Promise.all([read('strength-separated-decision-results'),read('strength-abstention-results')]);
- const src=await readFile(new URL('../src/features/strength-quantitative-v3/index.js',import.meta.url),'utf8');
+ const src=await readFile(new URL('../'+STRENGTH_SOURCE.quantitative,import.meta.url),'utf8');
  const floors=Object.fromEntries([...src.matchAll(/(mild|pronounced):\{none:(\d+),residual:/g)].map(m=>[m[1],+m[2]]));
  if(floors.mild!==80||floors.pronounced!==55)throw Error('root floor profile changed; review diagnostic');
  const rows=corpus.rows.map(c=>{

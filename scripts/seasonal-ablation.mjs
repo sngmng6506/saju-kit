@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp, mkdtemp, readFile, writeFile, rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -17,7 +18,7 @@ export async function evaluateSeasonalAblation(){
  try{
   await cp(join(root,'src'),join(dir,'src'),{recursive:true});
   await writeFile(join(dir,'package.json'),JSON.stringify({type:'module'}));
-  const path=join(dir,'src/features/strength-quantitative-v3/index.js');
+  const path=join(dir,STRENGTH_SOURCE.quantitative);
   const source=await readFile(path,'utf8');
   if(source.split(needle).length!==2)throw Error('seasonal patch target changed');
   await writeFile(path,source.replace(needle,'100'));

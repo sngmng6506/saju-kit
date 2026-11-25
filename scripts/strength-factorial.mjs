@@ -1,3 +1,4 @@
+import {STRENGTH_SOURCE} from './lib/strength-research-source.mjs';
 import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -24,8 +25,8 @@ export async function evaluateStrengthFactorial(fixtureNames=names){
    if(v.id!=='A'){
     await cp(join(root,'src'),join(base,'src'),{recursive:true});
     await writeFile(join(base,'package.json'),JSON.stringify({type:'module'}));
-    if(v.neutral)await patch(base,'src/features/strength-quantitative-v3/index.js','season[classifyElement(basis.element,element)]','100');
-    if(v.remove)await patch(base,'src/features/strength-multiaxis-v2/index.js',"if(weak&&unchallenged.length)conflicts.push('local-resource-versus-weak');",'');
+    if(v.neutral)await patch(base,STRENGTH_SOURCE.quantitative,'season[classifyElement(basis.element,element)]','100');
+    if(v.remove)await patch(base,STRENGTH_SOURCE.network,"if(weak&&unchallenged.length)conflicts.push('local-resource-versus-weak');",'');
    }
    engines.push((await import(pathToFileURL(join(base,'src/features/strength-multiaxis-v3/index.js')).href)).analyzeMultiaxisStrengthV3);
   }
