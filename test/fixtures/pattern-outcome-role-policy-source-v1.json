@@ -1,0 +1,346 @@
+{
+  "version": "role-policy-source-replay-v1",
+  "scope": "exposed-development-and-source-scope-probes",
+  "independentGold": 0,
+  "baseline": "026e5c8c858f021c696c87ae0458435053d05593",
+  "sourceEdition": "Luckclub electronic original and Xu commentary, checked 2026-11-25; not authenticated scans",
+  "cases": [
+    {
+      "id": "wang-resource",
+      "pillars": [
+        "신유",
+        "병신",
+        "임신",
+        "신해"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "汪侍郎",
+      "reading": "Original: strong day and abundant rooted resource permit wealth moderation; Xu notes combination of 丙 and 辛.",
+      "direction": "strong",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "moderation",
+          "collection": "objective",
+          "match": {
+            "objective": "excess-resource-moderation",
+            "role.obstacle": "visible:month"
+          },
+          "objective": "excess-resource-moderation",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "zhexi-resource",
+      "pillars": [
+        "경신",
+        "무인",
+        "병신",
+        "을미"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "徐注 浙西某富翁子",
+      "reading": "Xu: weak day needs resource; wealth injury, remote combination and clashes coexist.",
+      "direction": "weak",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "injury",
+          "collection": "objective",
+          "match": {
+            "objective": "required-resource-injury",
+            "role.obstacle": "visible:year"
+          },
+          "objective": "required-resource-injury",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "li-resource-output",
+      "pillars": [
+        "무술",
+        "을묘",
+        "병오",
+        "을해"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "李狀元",
+      "reading": "Original: abundant resource and strong day with output drain; Xu's output stem wording differs from the chart.",
+      "direction": "strong",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "drain",
+          "collection": "outputDrain",
+          "match": {
+            "anchorId": "visible:month",
+            "outputId": "visible:year"
+          },
+          "objective": "drain-resource-supported-strong-day",
+          "basis": "literal-chart-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "ma-resource-killing",
+      "pillars": [
+        "임인",
+        "무신",
+        "임진",
+        "임인"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "馬參政",
+      "reading": "Original: strong day/light resource; Xu emphasizes supply to resource and output drain.",
+      "direction": "strong",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "supply",
+          "collection": "killingSupply",
+          "match": {
+            "resourceId": "hidden:month:경",
+            "officerId": "visible:month"
+          },
+          "objective": "killing-supplies-light-resource",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "mao-resource-killing",
+      "pillars": [
+        "기사",
+        "계유",
+        "계미",
+        "경신"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "茅狀元",
+      "reading": "Original: weak day/heavy resource; Xu discusses a reversed exceptional configuration, not a universal ordinary rule.",
+      "direction": "weak",
+      "scope": "disputed-special-scope",
+      "probes": [
+        {
+          "id": "scope",
+          "collection": "killingSupply",
+          "match": {
+            "officerId": "visible:year"
+          },
+          "objective": "weak-day-heavy-resource-original-reading",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "zhang-resource-officer",
+      "pillars": [
+        "병인",
+        "무술",
+        "신유",
+        "무자"
+      ],
+      "family": "resource",
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "張參政",
+      "reading": "Original uses pure officer; Xu disputes that explanation and emphasizes output and climate.",
+      "direction": "strong",
+      "scope": "disputed-interpretation",
+      "probes": [
+        {
+          "id": "officer",
+          "collection": "officerContext",
+          "match": {
+            "officerId": "visible:year"
+          },
+          "objective": "officer-independent-role-review",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "he-killing-resource",
+      "pillars": [
+        "병인",
+        "무술",
+        "임술",
+        "신축"
+      ],
+      "family": "killing",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "何參政",
+      "reading": "Original mediation, Xu describes wealth-to-killing-to-resource-to-day and placement.",
+      "direction": "not-stated",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "mediation",
+          "collection": "mediation",
+          "match": {
+            "killingId": "visible:month",
+            "resourceId": "visible:hour"
+          },
+          "objective": null,
+          "basis": "literal-chart-endpoints"
+        },
+        {
+          "id": "wealth-placement",
+          "collection": "mediationContacts",
+          "match": {
+            "wealthId": "visible:year",
+            "resourceId": "visible:hour",
+            "killingId": "visible:month"
+          },
+          "objective": "wealth-supplies-killing-through-resource",
+          "basis": "literal-chart-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "tuo-killing-output",
+      "pillars": [
+        "임진",
+        "갑진",
+        "병술",
+        "무술"
+      ],
+      "family": "killing",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "脫丞相",
+      "reading": "Original and Xu emphasize moderation of excessive food by resource, not automatic obstruction.",
+      "direction": "not-stated",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "moderation",
+          "collection": "objective",
+          "match": {
+            "objective": "excess-food-moderation",
+            "role.obstacle": "visible:month",
+            "role.food": "visible:hour"
+          },
+          "objective": "excess-food-moderation",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "zhou-killing",
+      "pillars": [
+        "무술",
+        "갑자",
+        "정미",
+        "경술"
+      ],
+      "family": "killing",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "周丞相",
+      "reading": "Wealth relieves output obstruction and nourishes insufficient killing; output is literally hurting officer.",
+      "direction": "strong",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "rescue",
+          "collection": "dualRoles",
+          "match": {
+            "wealthId": "visible:hour",
+            "resourceId": "visible:month",
+            "outputId": "visible:year",
+            "killingId": "hidden:month:계"
+          },
+          "objective": "wealth-relieves-output-obstruction",
+          "basis": "interpreted-endpoints"
+        },
+        {
+          "id": "supply",
+          "collection": "dualRoles",
+          "match": {
+            "wealthId": "visible:hour",
+            "resourceId": "visible:month",
+            "outputId": "visible:year",
+            "killingId": "hidden:month:계"
+          },
+          "objective": "wealth-supplies-insufficient-killing",
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "pillars": [
+        "을해",
+        "을유",
+        "을묘",
+        "정축"
+      ],
+      "family": "killing",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "乙亥乙酉乙卯丁丑",
+      "reading": "Original requires healthy day and strong food/killing; Xu distinguishes yin and yang.",
+      "direction": "not-stated",
+      "scope": "ordinary-review",
+      "probes": [
+        {
+          "id": "food",
+          "collection": "food",
+          "match": {
+            "foodId": "visible:hour",
+            "killingId": "hidden:month:신"
+          },
+          "objective": null,
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    },
+    {
+      "id": "chang-killing-resource",
+      "pillars": [
+        "신묘",
+        "신묘",
+        "계유",
+        "기미"
+      ],
+      "family": "food",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "常國公",
+      "reading": "Xu cross-references food chapter and describes switching from food control to resource mediation. Food-month candidate is outside current killing-family policy.",
+      "direction": "weak",
+      "scope": "cross-family-scope-gap",
+      "probes": []
+    },
+    {
+      "id": "cheng-killing",
+      "pillars": [
+        "임오",
+        "계묘",
+        "기사",
+        "신미"
+      ],
+      "family": "killing",
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "程潛",
+      "reading": "Xu treats food control as usable, Lin disputes it and prefers mediation; no consensus outcome label.",
+      "direction": "not-stated",
+      "scope": "disputed-interpretation",
+      "probes": [
+        {
+          "id": "food",
+          "collection": "food",
+          "match": {
+            "foodId": "visible:hour",
+            "killingId": "hidden:month:을"
+          },
+          "objective": null,
+          "basis": "interpreted-endpoints"
+        }
+      ]
+    }
+  ]
+}
