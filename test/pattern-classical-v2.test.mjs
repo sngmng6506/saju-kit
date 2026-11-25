@@ -604,3 +604,53 @@ test('native layer audit preserves graph counts, direct visible screen equivalen
   assert.equal(c.layers.confirmedEffects+c.projections.confirmedEffects,0);
  }
 });
+
+import {inspectActionReferences,evaluateActionReference,summarizeActionReferences} from '../scripts/lib/pattern-action-reference.mjs';
+import {auditActionReferences} from '../scripts/audit-classical-patterns.mjs';
+const actionControl=()=>{
+ const reference={id:'a',chartId:'c',author:'沈孝瞻',mechanism:'control',state:'supported',phase:'natal-reading',scope:'edge-effect',split:'development-reference',edges:[{from:'a',to:['b','c'],kind:'control',quantifier:'any'}]};
+ const result={completeHour:true,routeReview:{occurrences:['a','b','c'].map(id=>({id}))}};
+ const edge=(to,status,reasons)=>({id:'a>'+to,from:'a',to,kind:'control',layerKind:'visible-visible',status,legacyStatus:status,unresolved:[],reviewReasons:reasons,legacyUnresolved:[],legacyReviewReasons:reasons});
+ return {reference,result,layers:{status:'research-review',edges:[edge('b','review-required',['root','nonadjacent']),edge('c','review-required',['root'])]}};
+};
+test('action reference existential alternatives preserve common and incidental reasons separately',()=>{
+ const {reference,result,layers}=actionControl(),before=structuredClone({reference,result,layers});
+ const row=evaluateActionReference(reference,result,layers,null),summary=summarizeActionReferences([row]);
+ assert.deepEqual({reference,result,layers},before);
+ assert.equal(row.allObserved,true);assert.equal(row.screenDisposition,'screen-withholds');
+ assert.equal(row.predictedEffect,null);
+ assert.deepEqual(summary.supportedWithheldSharedLegacyReasons,[{reason:'root',count:1}]);
+ assert.equal(summary.supportedWithheldLegacyReasons.length,2);
+ assert.equal(summary.groups.supported.withheld,1);assert.equal(summary.finalEfficacyAccuracy,null);
+ layers.edges[1].status='necessary-screen-met';
+ assert.equal(evaluateActionReference(reference,result,layers,null).screenDisposition,'all-probes-have-passing-alternative');
+});
+test('source phase, limitation and combination are not binary effect labels',()=>{
+ const {reference,result,layers}=actionControl();
+ const limited=evaluateActionReference({...reference,state:'limited',combination:{participants:['b','c']}},result,layers,{pairs:[{participants:['c','b']}]});
+ assert.equal(limited.combinationObserved,true);assert.equal(limited.state,'limited');assert.equal(limited.predictedEffect,null);
+ const missing=evaluateActionReference({...reference,combination:{participants:['b','c']}},result,layers,{pairs:[]});
+ assert.equal(missing.screenDisposition,'structure-missing');
+ const before=evaluateActionReference({...reference,state:'blocked',phase:'before-rescue-explanation'},result,layers,null);
+ const route=evaluateActionReference({...reference,scope:'route-interpretation'},result,layers,null);
+ const excluded=evaluateActionReference({...reference,split:'excluded-source-review'},result,layers,null);
+ assert.ok([before,route,excluded].every(x=>x.comparable===false));
+ const s=summarizeActionReferences([limited,before,route,excluded]);
+ assert.equal(s.comparable,1);assert.equal(s.groups.blocked.references,0);assert.equal(s.groups.limited.references,1);
+ assert.throws(()=>evaluateActionReference({...reference,edges:[{from:'missing',to:['b'],kind:'control'}]},result,layers,null),/unbound reference occurrence/);
+});
+test('action references retain corpus identity and separate incomplete templates',async()=>{
+ const read=async file=>JSON.parse(await readFile(new URL('./fixtures/'+file,import.meta.url),'utf8'));
+ const [a,s,x]=await Promise.all(['pattern-action-reference-v1.json','pattern-classical-v2.json','pattern-classical-commentary-v1.json'].map(read));
+ assert.deepEqual(inspectActionReferences(a,s,x),{references:12,uniqueCharts:11,excluded:1,partialTemplates:3,errors:[]});
+ const bad=structuredClone(a);bad.cases[0].rawPillars='incorrect';bad.cases[0].independentlyAdjudicated=true;
+ assert.ok(inspectActionReferences(bad,s,x).errors.some(e=>e.reason==='transcription-mismatch'));
+ assert.ok(inspectActionReferences(bad,s,x).errors.some(e=>e.reason==='provenance'));
+});
+test('native action reference audit preserves annotation scope and does not claim accuracy',()=>{
+ const r=auditActionReferences();
+ assert.equal(r.inventory.errors.length,0);assert.equal(r.summary.references,12);assert.equal(r.summary.comparable,8);
+ assert.equal(r.summary.groups.supported.references,5);assert.equal(r.summary.groups.limited.references,3);
+ assert.equal(r.summary.groups.blocked.references,0);assert.equal(r.summary.finalEfficacyAccuracy,null);
+ assert.equal(r.summary.selectionAuthority,false);
+});
