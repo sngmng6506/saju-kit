@@ -29,6 +29,6 @@ test('audit distinguishes proposal evaluation from final authority',()=>{
  const a=auditClassicalPatterns('pattern-useful-element-v5'),b=auditClassicalPatterns(PATTERN_V6_VERSION);
  assert.deepEqual(a.summary.preference,{labelled:13,proposed:9,correct:8,wrong:1,abstained:4,coverage:9/13,selectiveAccuracy:8/9});
  assert.equal(b.summary.coverage,0);assert.equal(b.summary.selectionLabelled,13);
- assert.equal(b.summary.preference.proposed+b.summary.preference.abstained,13);
+ assert.deepEqual(b.summary.preference,{labelled:13,proposed:9,correct:9,wrong:0,abstained:4,coverage:9/13,selectiveAccuracy:1});
  assert.equal(b.summary.candidateHits,a.summary.candidateHits);
 });
