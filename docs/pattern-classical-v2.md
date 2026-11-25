@@ -145,3 +145,31 @@ npm run test:failures
 ```
 
 Separate Shen 67 and Xu 34 development cohorts, with 14 Shen exclusions. Pair counts are chart-level contacts; preservation and separation counts are candidate-specific witnesses and can repeat across candidates. Four synthetic test groups passed in isolated JavaScript against the actual new module with adapted assertions: adjacent/remote competition, day participation, partial charts, protected hidden anchor, reverse generation direction, positional mediation, input immutability, and explicit motif evidence mapping. Node 22.16.0 is installed, but git ls-remote failed DNS resolution for github.com in the execution environment. Native corpus execution and full regression remain unexecuted. No runtime or public API changes, no confirmed efficacy, no final outcome authority. Next measure native diagnostics, review contradictory candidate anchor bindings, and adjudicate wealth-resource and owl-food interactions with source-specific positive and negative references before proposing effectiveness rules.
+
+
+## Role contrast research v1
+
+Source basis: [論印綬](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou), [論用神成敗救應](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-cheng-bai-jiu-ying), [論偏官](https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan), [alternate 偏官 edition](https://donglishuzhai.net/chapter/3752.html). Search-visible passages support context-dependent wealth control of resource, owl/food abandonment or protection, and regulating excessive food versus disabling the killing controller. The Dongli full-page requests returned HTTP 502; no complete edition collation or validation of actual efficacy is claimed.
+
+Ten explicitly source-inspired role hypotheses reuse the core directed occurrence graph and existing efficacy screen. Distinct physical slots are required within a witness. Contrast links share actual roles/occurrences: same wealth/resource/day; same owl/food for protection or food abandonment (the owl is also the transmission resource); same killing/day for competing food control and resource transmission; same food/killing/resource for obstruction, regulation and protection. Resource light/excess, effective control, residual food capacity, abandonment permission and choice of transmission remain unresolved. A conflict-free ordinary weak hypothesis may conditionally exclude a day-strong route, without establishing its opposite. Wealth feeding the same killing is retained as an additional directed edge even if wealth controls the resource. Contacts and competing paths never cancel one another. Scope inherits the upstream legacy candidate anchors; this is not final month-anchor adjudication. No final favorable/unfavorable or pattern selection.
+
+Executed isolated V8 runs of 19 actual repository modules (core graph, base candidate generator, decision algebra, efficacy review and new role module) with both textual cohorts. Adapter uses existing legacy anchor mapping (all non-day occurrences of a candidate stem) and stem-contact IDs; excludes storage projection, full v10 orchestration, and strength proxy. These are structural diagnostics, not the native CLI results:
+
+| Cohort | charts | base candidates | role witnesses | exact-role contrast links | all screens met | errors |
+|---|---:|---:|---:|---:|---:|---:|
+| Shen eligible | 67 | 136 | 682 | 454 | 0 | 0 |
+| Xu | 34 | 72 | 603 | 479 | 0 | 0 |
+
+Xu: 26/603 witnesses entirely visible, 577 include hidden-access blocker; nonadjacency 469, target substantial root not established 472, local rooted source control 419, unresolved relative control evidence 528. Counts overlap and count candidate/witness occurrences, not independent charts. This is a diagnosis of the stringent inherited screen and broad occurrence enumeration, not a failure rate of classical doctrine. It motivates explicit hidden-stem accessibility and route-specific sufficient-condition controls rather than loosening all gates or adding weights. Summary now reports visible-only witnesses and blockers by both unique input charts and witness counts. Three synthetic test groups passed against actual final research modules with adapted assertions.
+
+```sh
+node scripts/audit-classical-patterns.mjs --role-contrasts
+node scripts/audit-classical-patterns.mjs --role-contrasts --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:architecture
+npm run audit:layout
+npm run audit:dead-code
+```
+
+Native full checkout remains blocked by GitHub DNS failure (Node 22.16.0 available). Native test suite, v10+strength integrated CLI and policy equivalence remain unexecuted. No public runtime changes. Before merging or adding a definitive selection model, run the native suite and inspect structural blocker distribution, compare independently adjudicated positive/negative role witnesses and resolve the candidate-anchor/access distinction.
