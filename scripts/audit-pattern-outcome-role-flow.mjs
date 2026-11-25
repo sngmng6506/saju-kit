@@ -60,5 +60,23 @@ for(const row of rows)for(const p of row.priorities){
   const k=kind+':'+o.id+':'+o.conditionalStatus;wealthObjectiveCounts[k]=(wealthObjectiveCounts[k]??0)+1;
  }
 }
-console.log(JSON.stringify({wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+// Zhou was not in the six-case role contrast fixture. Replay it separately
+// rather than modify the frozen comparison denominator or call it new gold.
+const mechanismSource=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-mechanism-source-v2.json',import.meta.url),'utf8'));
+const killingSourceRows=[];
+for(const id of ['zhou-killing','he-killing-resource']){
+ try{
+  const c=id==='zhou-killing'?mechanismSource.cases.find(c=>c.id===id):data.cases.find(c=>c.id===id);
+  if(!c)throw Error('missing source case');
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
+  const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  const policies=r.efficacyReview.mechanismReview.candidates.map(c=>c.rolePriority.killingWealth);
+  const matched=id==='zhou-killing'?policies.flatMap(p=>p.dualRoles).filter(x=>x.wealthId==='visible:hour'&&x.resourceId==='visible:month'&&x.outputId==='visible:year'&&x.killingId==='hidden:month:계'):
+   policies.flatMap(p=>p.mediationContacts).filter(x=>x.wealthId==='visible:year'&&x.resourceId==='visible:hour'&&x.killingId==='visible:month');
+  if(!matched.length||r.decisionReview.status!=='abstained'||policies.some(p=>p.status==='invalid-evidence'||p.selectionAuthority!==false)||
+   matched.some(x=>x.effectConfirmed!==null||x.objectives.some(o=>o.effectConfirmed!==null||o.actualDemand!==null)))errors.push(id+':K03-source-integrity');
+  killingSourceRows.push({id,source:c.source,matched,structuralCoverage:matched.length>0,effectAgreement:null,independentGold:false});
+ }catch(e){errors.push({id,error:e.message});}
+}
+console.log(JSON.stringify({killingSourceRows,wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
