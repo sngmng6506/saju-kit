@@ -91,3 +91,49 @@ test('unselected anchor alternatives cannot become mandatory simultaneous relati
  assert.ok(!f.uniqueMandatoryRelations.some(x=>x.edge.to==='z'));
  assert.ok(f.routes[0].anchorOptions.every(x=>x.selected===null));
 });
+
+test('explicit anchor combination conflict is rejected without changing legacy structural plan',()=>{
+ const a=sample(),s=a.review.rules[0].witnesses[0];
+ s.anchorBindings=[{anchorId:'b',edge:combine('h','b')}];
+ const r=run(a).search.observed;
+ assert.equal(r.status,'conditional-plan-found');
+ assert.equal(r.allocationReview.status,'no-compatible-allocation');
+ assert.equal(r.allocationReview.exhaustive,true);assert.equal(r.allocationReview.selectedPlan,null);
+});
+test('enumerates feasible alternatives separately and never assigns both anchor options',()=>{
+ const a=sample(),s=a.review.rules[0].witnesses[0];
+ s.anchorBindings=[{anchorId:'a',edge:combine('h','a')},{anchorId:'z',edge:combine('x','z')}];
+ const r=run(a).search.observed.allocationReview;
+ assert.equal(r.feasibleCount,2);assert.equal(r.exhaustive,true);
+ assert.ok(r.samples.every(p=>p.anchorAssignments.length===1&&p.netEffectConfirmed===null));
+ assert.equal(r.reviewFrontierIds.length,2);assert.equal(r.selectedPlan,null);
+});
+test('strictly fewer obligations may be a review frontier but not a chosen outcome',()=>{
+ const a=sample(),w=a.review.rules[2].witnesses;
+ w[1].edges=[combine('q','b')];w[1].roles={helper:'q'};w[0].roles={helper:'h'};
+ w[2].roles={helper:'h'}; // shared helper only in second plan
+ const r=run(a).search.observed.allocationReview;
+ assert.equal(r.feasibleCount,2);assert.equal(r.reviewFrontierIds.length,1);
+ const p=r.samples.find(p=>p.id===r.reviewFrontierIds[0]);
+ assert.equal(p.rescues[1].witnessId,'r2');assert.equal(r.selectedPlan,null);
+});
+test('sample truncation is not exhaustive and deterministic under reordered inputs',()=>{
+ const a=sample();a.review.rules[0].witnesses=Array.from({length:40},(_,i)=>w('s'+String(i).padStart(2,'0')));
+ a.mechanism.routes=a.review.rules.flatMap(r=>r.witnesses.map(w=>({...ref(r.id,w.id),kind:r.kind,status:'supported',effective:null})));
+ const r=run(a).search.observed.allocationReview;
+ assert.equal(r.status,'search-incomplete');assert.equal(r.stopReason,'sample-budget');assert.equal(r.exhaustive,false);
+ assert.equal(r.samples.length,32);assert.equal(r.frontierScope,'observed-sample-only');
+ a.review.rules.reverse();a.mechanism.routes.reverse();a.compound.threatCoverage.reverse();
+ const s=run(a).search.observed.allocationReview;
+ assert.deepEqual(s.samples.map(p=>p.id),r.samples.map(p=>p.id));
+});
+test('same bound threat option is required and partial evidence never yields authority',()=>{
+ const a=sample(),d=a.review.rules[1].witnesses[0],r=a.review.rules[2].witnesses[0];
+ d.anchorBindings=[{anchorId:'a',edge:combine('h','a')}];
+ r.anchorBindings=[{anchorId:'z',edge:combine('x','z')}];
+ assert.equal(run(a).search.observed.allocationReview.status,'no-compatible-allocation');
+ r.anchorBindings=[...d.anchorBindings];
+ const result=run(a,false).search.observed.allocationReview;
+ assert.equal(result.status,'partial-allocation-review');assert.equal(result.selectionAuthority,false);
+ assert.equal(result.samples[0].anchorAssignments[0].accessConfirmed,null);
+});

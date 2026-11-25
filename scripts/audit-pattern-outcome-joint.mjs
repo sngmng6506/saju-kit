@@ -20,11 +20,16 @@ for(const [population,cases] of [['development-source-assertions',source.cases],
     f.contacts.some(c=>c.effectConfirmed!==null)||f.sharedRelations.some(x=>x.independentSupplyConfirmed!==null)||
     f.routes.some(r=>r.netEffectConfirmed!==null||r.anchorOptions.some(a=>a.selected!==null));
   }));
-  if(invalid||invalidFlow)errors.push({id:c.id,error:'invalid-evidence-or-authority'});
+  const invalidAllocations=ms.some(m=>['observed','supportedOnly'].some(k=>{
+   const a=m.joint.search?.[k]?.allocationReview;if(!m.joint.search)return false;
+   return !a||a.selectionAuthority!==false||a.selectedPlan!==null||a.netEffectConfirmed!==null||a.samples.length!==a.feasibleCount||a.samples.length>a.sampleLimit||a.examined>a.visitLimit||new Set(a.samples.map(p=>p.id)).size!==a.samples.length||a.reviewFrontierIds.some(id=>!a.samples.some(p=>p.id===id))||a.samples.some(p=>p.netEffectConfirmed!==null||p.anchorAssignments.some(b=>b.accessConfirmed!==null));
+  }));
+  if(invalid||invalidFlow||invalidAllocations)errors.push({id:c.id,error:'invalid-evidence-or-authority'});
   rows.push({id:c.id,population,probes,candidates:ms.map(m=>({candidateId:m.candidateId,joint:m.joint}))});
  }catch(e){errors.push({id:c.id,error:e.message});}
 }
-const counts={},flowCounts={};for(const r of rows){for(const p of r.probes)counts[p.status]=(counts[p.status]??0)+1;
- for(const c of r.candidates)for(const k of ['observed','supportedOnly']){const f=c.joint.search?.[k]?.plan?.flow;if(f){const id=k+':'+f.status;flowCounts[id]=(flowCounts[id]??0)+1;}}}
-console.log(JSON.stringify({scope:'source action assertions vs hypotheses; not accuracy',expectedSourceProbes:source.cases.flatMap(c=>c.probes).length,counts,flowCounts,independentGold:0,errors,rows},null,2));
+const counts={},flowCounts={},allocationCounts={};for(const r of rows){for(const p of r.probes)counts[p.status]=(counts[p.status]??0)+1;
+ for(const c of r.candidates)for(const k of ['observed','supportedOnly']){const f=c.joint.search?.[k]?.plan?.flow;if(f){const id=k+':'+f.status;flowCounts[id]=(flowCounts[id]??0)+1;}
+ const a=c.joint.search?.[k]?.allocationReview;if(a){const id=k+':'+a.status;allocationCounts[id]=(allocationCounts[id]??0)+1;}}}
+console.log(JSON.stringify({scope:'source action assertions vs hypotheses; not accuracy',expectedSourceProbes:source.cases.flatMap(c=>c.probes).length,counts,flowCounts,allocationCounts,independentGold:0,errors,rows},null,2));
 if(errors.length)process.exitCode=1;
