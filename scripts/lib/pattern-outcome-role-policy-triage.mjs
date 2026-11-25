@@ -45,8 +45,10 @@ export function diagnoseDirectedPremise(p,context,partial=false){
  }
  if(find('relative-generation-context')?.state==='unresolved')reasons.push('generation-comparison-context-unresolved');
  if(command?.status==='unresolved')reasons.push('command-not-assessed');
+ const supply=(context?.groundedSupply?.actions??[]).filter(a=>a.from===from&&a.to===to&&a.kind===kind);
  const cc=(command?.comparisonCoverage??[]).filter(x=>pair(x,from,to)),cmd=cc.length===1?cc[0]:null;
  return {from,to,kind,edgeId:e.edgeId??null,premiseState:p.state,conditionStates:cs,conditionBlockers:flags(cs),reasons:unique(reasons),
+  groundedSupplyAction:supply.length===1?supply[0]:null,
   source:a,target:b,comparison:{original,sensitivity,nonseason,seasonOnly,coverage:ps.length===1?'exact-pair':ps.length?'duplicate-pair':'not-projected'},
   command:{status:command?.status??null,reason:command?.reason??null,pairStatus:cmd?.status??null,hypotheses:(cmd?.hypotheses??[]).map(h=>({id:h.id,relation:orient(h.relation,cmd.left!==from)}))},
   effectConfirmed:null};
@@ -96,4 +98,38 @@ export function summarizeRoleTriage(packet,rows){
  }
  return {version:'role-source-triage-v1',issues,reasonCounts,gapRows,scopeRows,effectConfirmed:null,
   limitations:['reason-counts-are-repeated-premise-observations','no-profile-axis-voting','no-physical-causality-or-effect','explicit-hour-endpoint-not-proof-of-all-dependencies']};
+}
+
+// Audit projection of the chart-level review; all counts are observations,
+// not independent donor quantities or estimates of effect.
+export function summarizeGroundedSupplyReview(c,review,partial){
+ const errors=[],base={id:c.id,partial,effectConfirmed:null};
+ if(!review||review.status!==(partial?'partial':'diagnostic')||review.completeHour!==!partial||review.selectionAuthority!==false||review.effectiveSupply!==null||
+  !Array.isArray(review.occurrences)||!Array.isArray(review.actions))return {...base,errors:['grounded-supply-review-invalid']};
+ const actors=new Map(review.occurrences.map(a=>[a.id,a]));
+ if(actors.size!==review.occurrences.length||new Set(review.actions.map(a=>a.edgeId)).size!==review.actions.length)errors.push('duplicate-supply-identity');
+ const counts={visibleGroundedPaths:0,visibleScreenedPaths:0,visibleIndirectWithoutDirectRoot:0,screenedGenerationActions:0},reasons={};
+ for(const a of actors.values()){
+  const ids=new Set(a.paths.map(p=>p.id));
+  if(ids.size!==a.paths.length||a.effectiveSupply!==null||a.directRoot.preservationConfirmed!==null||
+   [...a.groundedPathIds,...a.screenedPathIds].some(id=>!ids.has(id))||
+   a.screenedPathIds.some(id=>!a.groundedPathIds.includes(id))||
+   (partial||a.layer!=='visible')&&a.screenedPathIds.length)errors.push('supply-path-integrity:'+a.id);
+  if(a.layer==='visible'){
+   counts.visibleGroundedPaths+=a.groundedPathIds.length;
+   counts.visibleScreenedPaths+=a.screenedPathIds.length;
+   if(a.directRoot.state!==true&&a.groundedPathIds.length)counts.visibleIndirectWithoutDirectRoot++;
+   for(const p of a.paths)if(p.upstream==='observed')for(const reason of p.concerns)reasons[reason]=(reasons[reason]??0)+1;
+  }
+  if(a.paths.some(p=>p.recipientId!==a.id||p.effectiveSupply!==null||p.donor.independentSupplyConfirmed!==null||
+   p.donor.kind==='local-branch-constituents'&&p.donor.groundedRootIds.some(id=>!id.startsWith('hidden:'+p.donor.position+':'))))errors.push('supply-path-grounding:'+a.id);
+ }
+ for(const a of review.actions){
+  const screen=a.generationScreen==='grounded-generation-context-screen-met';
+  if(screen)counts.screenedGenerationActions++;
+  if(!actors.has(a.from)||!actors.has(a.to)||a.effective!==null||a.selectionAuthority!==false||
+   screen&&(partial||a.kind!=='generate'||a.targetAccess!=='visible'||a.contextBlockers.length||
+    !['direct-root-observed','grounded-indirect-path-observed'].includes(a.sourceBasis)))errors.push('supply-action-integrity:'+a.edgeId);
+ }
+ return {...base,counts,reasons,errors};
 }
