@@ -175,7 +175,11 @@ export function summarizeInterpositionReview(c,review,partial){
   if(screen&&(partial||!visible||!p.chainLocal||p.blockers.length||
    p.participants.helper.state!=='grounded-observation'||p.participants.threat.state!=='grounded-observation'||
    p.pressure.helperRootedControllerObserved||p.pressure.helperControllerUnresolved))errors.push('interposition-screen-leak:'+p.id);
-  if(p.kind==='mediation'&&p.directThreatControlLocal===false&&p.blockers.some(b=>b==='nonlocal-generation-chain'))errors.push('mediation-direct-edge-confused-with-chain:'+p.id);
+  if(p.kind==='mediation'&&Array.isArray(p.edges)&&p.edges.length===3){
+   const local=p.edges.slice(0,2).every(e=>e.local===true);
+   if(p.chainLocal!==local||p.directThreatControlLocal!==p.edges[2].local||
+    p.blockers.includes('nonlocal-generation-chain')!==!local)errors.push('mediation-chain-locality-mismatch:'+p.id);
+  }
  }
  const pressureCounts={visibleTargets:0,inScopeControllers:0,outsideScopeControllers:0,inScopeWithCandidates:0,inScopeWithoutCandidates:0,outsideScopeWithCandidates:0,screenedControllers:0};
  const contexts=review.pressureContexts;
