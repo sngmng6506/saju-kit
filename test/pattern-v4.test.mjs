@@ -37,5 +37,9 @@ test('v4 preserves original candidates and no authority on the 81-reference audi
  const a=auditClassicalPatterns(),b=auditClassicalPatterns(PATTERN_V4_VERSION);
  assert.equal(a.summary.total,81);assert.equal(b.summary.total,81);
  for(const [i,r] of a.rows.entries()){assert.equal(r.id,b.rows[i].id);assert.ok(r.candidateFamilies.every(f=>b.rows[i].candidateFamilies.includes(f)));}
- assert.equal(b.summary.candidateHits,67);assert.equal(b.summary.coverage,0);assert.equal(b.summary.selectiveAccuracy,null);
+ assert.equal(a.summary.candidateHits,66);assert.equal(b.summary.candidateHits,67);
+ assert.equal(a.summary.competingCandidateCases,25);assert.equal(b.summary.competingCandidateCases,29);
+ assert.equal(a.summary.sourceActorHits,9);assert.equal(b.summary.sourceActorHits,23);
+ assert.equal(a.summary.sourceActorObservations,23);assert.equal(b.summary.sourceActorObservations,23);
+ assert.equal(b.summary.coverage,0);assert.equal(b.summary.selectiveAccuracy,null);
 });
