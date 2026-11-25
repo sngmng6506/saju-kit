@@ -133,3 +133,35 @@ export function summarizeGroundedSupplyReview(c,review,partial){
  }
  return {...base,counts,reasons,errors};
 }
+
+export function summarizeInterpositionReview(c,review,partial){
+ const base={id:c.id,partial,effectConfirmed:null,neutralizationConfirmed:null};
+ const errors=[];
+ if(!review||review.version!=='interposition-review-v1'||review.status!==(partial?'partial':'diagnostic')||
+  review.completeHour!==!partial||review.selectionAuthority!==false||review.effectConfirmed!==null||
+  review.neutralizationConfirmed!==null||!Array.isArray(review.paths)||!review.summary)return {...base,errors:['interposition-review-invalid']};
+ const ids=new Set(review.paths.map(p=>p.id));
+ if(ids.size!==review.paths.length)errors.push('duplicate-interposition-path');
+ const counts={candidatePaths:review.paths.length,protectionPaths:review.paths.filter(p=>p.kind==='protection').length,
+  mediationPaths:review.paths.filter(p=>p.kind==='mediation').length,
+  structuralScreensMet:review.paths.filter(p=>p.structuralScreen==='grounded-structure-screen-met').length,
+  hiddenParticipantPaths:review.paths.filter(p=>p.blockers.includes('hidden-participant-access')).length,
+  pressureBlockedPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('control'))).length,
+  nonlocalChainPaths:review.paths.filter(p=>p.blockers.some(b=>b.includes('nonlocal'))).length};
+ if(Object.entries(counts).some(([k,v])=>review.summary[k]!==v))errors.push('interposition-summary-mismatch');
+ for(const p of review.paths){
+  const participants=[p.participants?.helper,p.participants?.threat,p.participants?.target];
+  const visible=participants.every(x=>x?.kind==='visible-stem');
+  if(!['protection','mediation'].includes(p.kind)||!Array.isArray(p.edges)||p.sourceOccurrenceIds.length===0||
+   new Set(p.sourceOccurrenceIds).size!==p.sourceOccurrenceIds.length||
+   p.effectConfirmed!==null||p.neutralizationConfirmed!==null||p.effectiveProtection!==null||
+   p.effectiveMediation!==null||p.selectionAuthority!==false||p.targetRootRequiredForPathObservation!==false||
+   !Array.isArray(p.blockers)||p.blockers.length!==new Set(p.blockers).size)errors.push('interposition-path-contract:'+p.id);
+  const screen=p.structuralScreen==='grounded-structure-screen-met';
+  if(screen&&(partial||!visible||!p.chainLocal||p.blockers.length||
+   p.participants.helper.state!=='grounded-observation'||p.participants.threat.state!=='grounded-observation'||
+   p.pressure.helperRootedControllerObserved||p.pressure.helperControllerUnresolved))errors.push('interposition-screen-leak:'+p.id);
+  if(p.kind==='mediation'&&p.directThreatControlLocal===false&&p.blockers.some(b=>b==='nonlocal-generation-chain'))errors.push('mediation-direct-edge-confused-with-chain:'+p.id);
+ }
+ return {...base,counts,errors};
+}
