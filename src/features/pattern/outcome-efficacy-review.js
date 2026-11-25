@@ -4,6 +4,7 @@ import {createEffectContext,observeWitnessEfficacy} from './outcome-efficacy.js'
 import {evaluateClimateRequirements,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
 import {projectMechanismClimate,observeMechanismReview} from './outcome-mechanism.js';
 import {observeJointOutcome} from './outcome-joint.js';
+import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
 import {observeBranchAccessContext,observeMonthChange,observeBranchRouteAccess} from './outcome-branch-context.js';
 export const PATTERN_OUTCOME_EFFICACY_VERSION='pattern-outcome-efficacy-v1';
@@ -27,13 +28,15 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const combinationContext=observeCombinationContext(prior,formation);
  const branchContext=observeBranchAccessContext(prior,result.access,formation);
  const monthChange=observeMonthChange(prior,branchContext,input.saju.pillars.month.branch);
+ const roleCapacity=observeRoleCapacity(prior);
  const mechanisms=result.reviews.map((q,i)=>{
   const m=observeMechanismReview(q,candidates[i],clarity.get(q.candidateId),climate,prior.completeHour);
   const joint=observeJointOutcome(q,m,compound.get(q.candidateId),prior.completeHour);
   const combinationRoles=observeCombinationRoles(q,combinationContext,prior);
   const branchAccess=observeBranchRouteAccess(q,branchContext);
-  return {...m,status:[joint,combinationRoles,branchAccess].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess};
+  const roleConditions=observeRoleConditions(q,prior,roleCapacity,m,compound.get(q.candidateId),result.regulationStrength,combinationContext);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }

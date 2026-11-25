@@ -2,7 +2,7 @@ import {readFileSync} from 'node:fs';
 import {isDeepStrictEqual} from 'node:util';
 import {analyzePatternOutcomeIntegrated,analyzePatternOutcomeEfficacy,PATTERN_OUTCOME_INTEGRATED_VERSION,PATTERN_OUTCOME_EFFICACY_VERSION} from '../src/index.js';
 const data=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-reference-v1.json',import.meta.url),'utf8'));
-const rows=[],counts={},mechanismCounts={},combinationCounts={},branchCounts={},monthClauseCounts={};
+const rows=[],counts={},mechanismCounts={},combinationCounts={},branchCounts={},monthClauseCounts={},roleConditionCounts={};
 for(const c of [...data.cases,...data.controls]){
  const id=c.caseId??c.id,saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,c.pillars[i]?{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}:null]))};
  try{
@@ -27,8 +27,16 @@ for(const c of [...data.cases,...data.controls]){
    m.candidates.some(q=>!q.branchAccess||q.branchAccess.status==='invalid-evidence'||q.branchAccess.effective!==null);
   for(const h of branch?.hidden??[])branchCounts[h.accessHypothesis]=(branchCounts[h.accessHypothesis]??0)+1;
   for(const c of month?.sourceClauses??[]){const k=c.id+':'+String(c.matched);monthClauseCounts[k]=(monthClauseCounts[k]??0)+1;}
-  rows.push({id,parity,invalid:invalid||mechanismInvalid||combinationInvalid||branchInvalid,efficacyReview});
+  const role=m?.roleCapacity;
+  const roleInvalid=!role||role.status==='invalid-evidence'||role.effectiveForce!==null||role.selectionAuthority!==false||
+   role.tenGods.length!==10||role.tenGods.some(g=>g.excessConfirmed!==null||g.deficiencyConfirmed!==null)||
+   m.candidates.some(c=>!c.roleConditions||c.roleConditions.status==='invalid-evidence'||c.roleConditions.effective!==null||
+    c.roleConditions.routes.some(w=>w.netEffectConfirmed!==null||w.effective!==null||w.interventions.some(i=>i.effectConfirmed!==null)));
+  for(const c of m?.candidates??[])for(const w of c.roleConditions?.routes??[])for(const h of w.interpretations){
+   const k=h.id+':'+h.evidence;roleConditionCounts[k]=(roleConditionCounts[k]??0)+1;
+  }
+  rows.push({id,parity,invalid:invalid||mechanismInvalid||combinationInvalid||branchInvalid||roleInvalid,efficacyReview});
  }catch(e){rows.push({id,error:{name:e.name,message:e.message,code:e.code??null}});}
 }
-console.log(JSON.stringify({policy:PATTERN_OUTCOME_EFFICACY_VERSION,scope:'screen counts not efficacy accuracy',expectedCases:data.cases.length+data.controls.length,counts,mechanismCounts,combinationCounts,branchCounts,monthClauseCounts,rows},null,2));
+console.log(JSON.stringify({policy:PATTERN_OUTCOME_EFFICACY_VERSION,scope:'screen counts not efficacy accuracy',expectedCases:data.cases.length+data.controls.length,counts,mechanismCounts,combinationCounts,branchCounts,monthClauseCounts,roleConditionCounts,rows},null,2));
 if(rows.some(r=>r.error||!r.parity||r.invalid))process.exitCode=1;
