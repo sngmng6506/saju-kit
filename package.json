@@ -43,6 +43,7 @@
     "audit:useful-element-priority": "node scripts/audit-useful-element-priority.mjs",
     "audit:useful-element-method-links": "node scripts/audit-useful-element-method-links.mjs",
     "benchmark:synthesis": "node scripts/benchmark-synthesis.mjs",
+    "audit:pattern-outcome-role-policy-source": "node scripts/audit-pattern-outcome-role-policy-source.mjs",
     "audit:pattern-outcome-role-flow": "node scripts/audit-pattern-outcome-role-flow.mjs",
     "audit:pattern-outcome-root-context": "node scripts/audit-pattern-outcome-root-context.mjs",
     "audit:pattern-outcome-command-replay": "node scripts/audit-pattern-outcome-command-replay.mjs"
