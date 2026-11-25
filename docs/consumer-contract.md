@@ -63,3 +63,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v7](pattern-outcome-evidence-v7.md) adds candidate-scoped compound diagnostics, without confirmed 成敗 or consumer migration.
 
 - [Pattern outcome evidence v8](pattern-outcome-evidence-v8.md) adds observed-route assistant dependency, not confirmed assistant selection.
+
+- [Pattern outcome evidence v9](pattern-outcome-evidence-v9.md) adds source-scoped purity and candidate clarity evidence, without final selection or consumer migration.

@@ -97,3 +97,5 @@ Outcome V6 adds [position and winter exception evidence](docs/pattern-outcome-ev
 Outcome V7 adds [compound topology and source conjunctions](docs/pattern-outcome-evidence-v7.md) as a separate projection of unchanged V6 reviews; no witness cancellation or authority.
 
 Outcome V8 adds [assistant role dependency](docs/pattern-outcome-evidence-v8.md) as a read-only mask of V7 evidence; no new natal chart or selection authority.
+
+Outcome V9 separates [source purity and candidate clarity](docs/pattern-outcome-evidence-v9.md) from the inherited graph; no effective purity or clearing verdict.
