@@ -15,8 +15,8 @@ function branchContext(interaction,positions){
   .map(f=>({id:f.id,type:f.type,positions:[...f.positions],complete:f.complete,sharedPositions:f.positions.filter(p=>positions.includes(p))}));
  const disruptions=interaction.disruptions.filter(d=>d.positions.some(p=>positions.includes(p)))
   .map(d=>({id:d.id,type:d.type,positions:[...d.positions],sharedPositions:d.positions.filter(p=>positions.includes(p))}));
- return {formations,disruptions,pairFormationIds:formations.filter(f=>positions.every(p=>f.positions.includes(p))).map(f=>f.id),
-  pairDisruptionIds:disruptions.filter(d=>positions.every(p=>d.positions.includes(p))).map(d=>d.id)};
+ return {formations,disruptions,pairFormationIds:formations.filter(f=>positions.length===2&&positions.every(p=>f.positions.includes(p))).map(f=>f.id),
+  pairDisruptionIds:disruptions.filter(d=>positions.length===2&&positions.every(p=>d.positions.includes(p))).map(d=>d.id)};
 }
 // Mechanism-specific evidence requirements. The structural classification
 // never serves as an effectiveness verdict or as a replacement force screen.
@@ -100,6 +100,7 @@ export function reviewCoherentProjection(witness,anchorRole,candidate,access,lay
  const visibleEdges=new Map(layerReview.edges.filter(e=>e.layerKind==='visible-visible').map(e=>[key(e.from,e.to,e.kind),e]));
  const entries=Object.entries(witness.roles);
  if(!entries.some(([r])=>r===anchorRole))throw Error('missing anchor role');
+ if(!witness.edges.length)throw Error('empty witness projection');
  const original=new Set(entries.map(([,id])=>id));
  if(original.size!==entries.length)throw Error('duplicate witness actor');
  const anchorIds=new Set(candidate.visibleActorIds);
