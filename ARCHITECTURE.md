@@ -31,3 +31,5 @@ Integrated multiaxis v3 composes v2 and output-capacity, matching scenario profi
 The opt-in pattern v7 composes v6 and a source-scoped composition review. Original-pattern preservation and explicit secondary-pattern hypotheses are separate; generic projected pairs remain neutral. No final selection authority or consumer promotion. [Contract](docs/pattern-useful-element-v7.md).
 
 Pattern v8 adds a separate mixed-month source review of projected stems and complete month groups. It keeps structural relations, source-scoped affinity motifs and research preference separate; no effective-force or final selection authority. [Contract](docs/pattern-useful-element-v8.md).
+
+Core stem-force evidence v1 reuses root-dynamics and interaction-context and evaluates occurrence-specific support, control, and paths for all targets. Pattern v9 binds route participants to these observations, without feeding force classifications into preference. [Contract](docs/pattern-useful-element-v9.md).

@@ -99,3 +99,6 @@ export { analyzePatternUsefulElementV6, PATTERN_V6_VERSION } from './features/pa
 export { analyzePatternUsefulElementV7, PATTERN_V7_VERSION } from './features/pattern-useful-element-v7/index.js';
 
 export { analyzePatternUsefulElementV8, PATTERN_V8_VERSION } from './features/pattern-useful-element-v8/index.js';
+
+export { analyzeStemForceEvidence, STEM_FORCE_VERSION } from './core/stem-force.js';
+export { analyzePatternUsefulElementV9, PATTERN_V9_VERSION } from './features/pattern-useful-element-v9/index.js';
