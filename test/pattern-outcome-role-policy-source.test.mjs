@@ -61,3 +61,62 @@ test('all 24 chart variants pass literal core role validation, preserving scope 
  assert.ok(zhou.probes.some(p=>p.endpoints.some(e=>e.field==='outputId'&&e.tenGod==='상관')));
  assert.ok(rows.some(r=>r.partial&&r.probes.some(p=>p.endpoints.some(e=>e.status==='omitted-hour'))));
 });
+
+
+// Source-triage checks use actual core and mechanism evidence, not a
+// fabricated explanation of a source label or a changed decision policy.
+import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
+import {observeRelativeForce} from '../src/core/relative-force.js';
+import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
+import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
+import {createEffectContext} from '../src/features/pattern/outcome-efficacy.js';
+import {evaluateMechanismEdge} from '../src/features/pattern/outcome-mechanism.js';
+import {diagnoseSourcePremise,summarizeRoleTriage} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
+function sourceEdge(id,from,to){
+ const chart=packet.cases.find(c=>c.id===id);
+ const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:chart.pillars[i][0],branch:chart.pillars[i][1],text:chart.pillars[i]}]))};
+ const stemForce=analyzeStemForceEvidence({saju}),relativeForce=observeRelativeForce(stemForce);
+ const prior={stemForce,relativeForce,completeHour:true};
+ const rootContext=observeRootContext(prior,analyzeFormationEvidence({saju}));
+ const raw=relativeForce.edges.find(e=>e.from===from&&e.to===to);
+ const edge=createEffectContext(prior,{groups:[],edges:[]}).assess({from,to,kind:raw.kind,edgeId:raw.id});
+ const assessed=evaluateMechanismEdge(edge,true);
+ const p={id:'control',state:assessed.status,evidence:{...assessed,edgeId:raw.id}};
+ return diagnoseSourcePremise(p,{rootContext,roleCapacity:{occurrences:stemForce.occurrences},monthCommandReview:{status:'unresolved',reason:'missing-birth-instant'}});
+}
+test('Tuo conflict is contextual root uncertainty, not proof of failed control',()=>{
+ const p=sourceEdge('tuo-killing-output','visible:month','visible:hour'),e=p.diagnostic.edge;
+ assert.equal(p.state,'conflicting');
+ assert.equal(e.comparison.original.relation,'mixed-evidence');assert.equal(e.comparison.sensitivity.relation,'unresolved');
+ assert.ok(e.reasons.includes('contested-root-context'));assert.ok(e.reasons.includes('mixed-profile-with-contextual-root-uncertainty'));
+ assert.equal(e.effectConfirmed,null);assert.equal(e.target.rootState,null);
+});
+test('Zhou resource/output conflict survives root sensitivity but seasonal and local evidence differ',()=>{
+ const p=sourceEdge('zhou-killing','visible:month','visible:year'),e=p.diagnostic.edge;
+ assert.equal(p.state,'conflicting');assert.equal(e.comparison.sensitivity.relation,'mixed-evidence');
+ assert.equal(e.comparison.nonseason.relation,'right-evidence-dominates');assert.equal(e.comparison.seasonOnly.relation,'left-evidence-dominates');
+ assert.ok(e.reasons.includes('season-versus-nonseason-profile-disagreement'));assert.equal(e.effectConfirmed,null);
+});
+test('Zhou wealth/resource opposition retains direction after reversing comparison orientation',()=>{
+ const p=sourceEdge('zhou-killing','visible:hour','visible:month'),e=p.diagnostic.edge;
+ assert.equal(p.state,'opposed');assert.equal(e.comparison.original.relation,'right-evidence-dominates');
+ assert.equal(e.comparison.sensitivity.relation,'right-evidence-dominates');
+ assert.ok(e.reasons.includes('source-direct-root-not-established'));
+ assert.ok(e.reasons.includes('source-indirect-supply-observed-not-certified'));
+ assert.ok(e.reasons.includes('source-pressure-unresolved'));
+ assert.ok(e.reasons.includes('target-profile-dominance-preserved'));
+ assert.ok(e.reasons.includes('command-not-assessed'));assert.equal(e.effectConfirmed,null);
+});
+test('triage distinguishes explicit hour endpoint loss from indirect dependency',()=>{
+ const fixture={cases:[{id:'c',scope:'ordinary-review',probes:[{id:'explicit',match:{a:'visible:hour'}},{id:'indirect',match:{a:'visible:month'}}]}]};
+ const rows=[{id:'c',partial:false,probes:['explicit','indirect'].map(id=>({id,coverage:'observed',rows:[]}))},
+  {id:'c',partial:true,probes:['explicit','indirect'].map(id=>({id,coverage:'route-or-objective-gap',rows:[]}))}];
+ const t=summarizeRoleTriage(fixture,rows);
+ assert.deepEqual(t.gapRows.map(x=>x.classification),['explicit-hour-endpoint-removed','indirect-dependency-review']);
+ assert.ok(t.gapRows.every(x=>x.causalLossConfirmed===null));
+});
+test('demand gap remains distinct from directional edge and never becomes a supported role',()=>{
+ const p=diagnoseSourcePremise({id:'resource-abundance',state:'unresolved',evidence:null},{},false);
+ assert.equal(p.state,'unresolved');assert.equal(p.diagnostic.kind,'classical-condition');
+ assert.deepEqual(p.diagnostic.reasons,['role-demand-or-context-not-established']);
+});
