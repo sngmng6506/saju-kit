@@ -30,6 +30,8 @@ export function summarizeScreenBottlenecks(c,supply,interposition,partial){
  const actors=new Map(supply.occurrences.map(a=>[a.id,a]));
  if(actors.size!==supply.occurrences.length||new Set(supply.actions.map(a=>a.edgeId)).size!==supply.actions.length||new Set(neutral.paths.map(p=>p.id)).size!==neutral.paths.length)return {...base,errors:['screen-identity-duplicate']};
  const generation=[],paths=[];
+ const contexts=new Map((neutral.pressureContexts??[]).map(t=>[t.targetId,t]));
+ if(contexts.size!==supply.occurrences.filter(a=>a.layer==='visible').length)return {...base,errors:['screen-pressure-context-coverage']};
  for(const e of supply.actions){
   if(e.kind!=='generate')continue;
   const a=actors.get(e.from),b=actors.get(e.to);
@@ -44,9 +46,20 @@ export function summarizeScreenBottlenecks(c,supply,interposition,partial){
   if(pressured(e.targetPressure))reasons.push('target-pressure:'+pressureKind(e.targetPressure));
   const distinct=sorted(reasons),groups=sorted(distinct.map(groupEdge)),screened=!distinct.length;
   if(e.generationScreen!==(screened?'grounded-generation-context-screen-met':'unresolved'))errors.push('generation-screen-mismatch:'+e.edgeId);
+  const pressureRefs=(actor,ps)=>{
+   if(actor.layer!=='visible')return [];
+   const ctx=contexts.get(actor.id);
+   if(!ctx||!Array.isArray(ctx.controllers)){errors.push('generation-pressure-context:'+actor.id);return [];}
+   return ps.filter(p=>p.donorState!=='no-substantial-root-observed').map(p=>{
+    const q=ctx.controllers.find(q=>q.controllerNodeId===p.nodeId);
+    if(!q||q.local!==true||q.donorState!==p.donorState||q.neutralizationConfirmed!==null){errors.push('generation-pressure-binding:'+actor.id+':'+p.nodeId);return {nodeId:p.nodeId,coverage:'invalid-evidence'};}
+    return {nodeId:p.nodeId,classification:q.classification,candidatePathIds:[...q.candidatePathIds],screenedPathIds:[...q.screenedPathIds],neutralizationConfirmed:null};
+   });
+  };
   generation.push({id:e.edgeId,from:e.from,to:e.to,visible:a.layer==='visible'&&b.layer==='visible',reasons:distinct,groups,screened,
    sourcePressureNodes:e.sourcePressure.filter(p=>p.donorState!=='no-substantial-root-observed').map(p=>p.nodeId),
-   targetPressureNodes:e.targetPressure.filter(p=>p.donorState!=='no-substantial-root-observed').map(p=>p.nodeId),effectConfirmed:null});
+   targetPressureNodes:e.targetPressure.filter(p=>p.donorState!=='no-substantial-root-observed').map(p=>p.nodeId),
+   sourcePressureRefs:pressureRefs(a,e.sourcePressure),targetPressureRefs:pressureRefs(b,e.targetPressure),effectConfirmed:null});
  }
  for(const p of neutral.paths){
   const participants=[p.participants?.helper,p.participants?.threat,p.participants?.target];
