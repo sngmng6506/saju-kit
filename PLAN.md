@@ -56,3 +56,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - Pre-V10: [efficacy evidence screens](docs/pattern-outcome-efficacy-v1.md) link existing force, contact and route evidence; no effect authority. Native integration and independent validation pending.
 
 - [Outcome decision V10](docs/pattern-outcome-decision-v10.md) implements per-axis abstention and release-owned closed authority; actual decision algorithms and independent validation remain pending.
+
+- [Post-V10 hardening](docs/pattern-outcome-hardening.md): corrected global decision and identity validation, stronger regression gate, one-command native audit and benchmark. Await actual receipts before new decision rules.

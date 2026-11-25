@@ -48,6 +48,24 @@ test('storage uncertainty, uncovered threats and assistant injury are traceable'
  assert.ok(d.formation.blockers.includes('storage-access-and-family-unresolved'));assert.ok(d.rescue.blockers.includes('uncovered-threats'));
  assert.ok(d.assistant.blockers.includes('assistant-combination-injury-unresolved'));assert.ok(d.clarity.blockers.includes('assistant-injury-unresolved'));
 });
+test('global integrity failure with locally valid candidate suppresses hypothesis and witness projections',()=>{
+ const a=sample();a.integrity.status='invalid-evidence';
+ a.purityReview.motifs=[{id:'m',orientation:'aligned',observed:true,witnesses:[]}];
+ const r=observeOutcomeDecision(a);
+ assert.equal(r.status,'invalid-evidence');assert.equal(r.pattern.evidence.hypothesis,null);
+ assert.deepEqual(r.purity.evidence.motifs,[]);assert.deepEqual(r.candidates[0].structural.support,[]);
+ assert.ok(!r.candidates[0].decisions.formation.blockers.includes('no-covered-support-witness'));
+});
+test('duplicate or malformed derived collection fails closed instead of throwing',()=>{
+ for(const bad of [{},[null],[{...sample().assistantReview[0]},{...sample().assistantReview[0]}]]){
+  const a=sample();a.assistantReview=bad;
+  const r=observeOutcomeDecision(a);assert.equal(r.status,'invalid-evidence');assert.equal(r.pattern.evidence.hypothesis,null);
+ }
+});
+test('partial chart cannot expose a usable family hypothesis even if upstream supplies one',()=>{
+ const a=sample();a.completeHour=false;const r=observeOutcomeDecision(a);
+ assert.equal(r.pattern.evidence.hypothesis,null);assert.ok(r.pattern.blockers.includes('missing-hour'));
+});
 test('native V10 keeps inherited evidence and ignores supplied approval',()=>{
  const ps=['정묘','신유','갑자','임신'],saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))},args={saju,birthBasis:'verified-chart'};
  const a=analyzePatternOutcomeEfficacy({...args,policy:PATTERN_OUTCOME_EFFICACY_VERSION});

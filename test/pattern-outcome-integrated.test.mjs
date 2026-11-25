@@ -25,6 +25,13 @@ test('storage provenance must remain on every rule',()=>{
  const q=sample();q.storageProjection={};assert.ok(check(q).violations.some(v=>v.kind==='missing-storage-conditions'));
  q.rules[0].unresolvedConditions=['storage-anchor-access','storage-family-validity'];assert.equal(check(q).status,'consistent');
 });
+test('position duplicates, wrong candidate and edge authority are rejected',()=>{
+ const q=sample(),p={witnesses:[{ruleId:'s',witnessId:'w'},{ruleId:'s',witnessId:'w'}]};
+ assert.ok(check(q,p).violations.some(v=>v.kind==='position-witness-mismatch'));
+ assert.ok(check(q,{candidateId:'other',witnesses:[p.witnesses[0]]}).violations.some(v=>v.kind==='position-witness-mismatch'));
+ q.rules[0].witnesses[0].edges=[{from:'visible:year',to:'visible:month',kind:'generate',effective:true}];
+ assert.ok(check(q).violations.some(v=>v.kind==='edge-authority'));
+});
 test('storage resource now receives secondary and regulation stages, not synthetic roots',()=>{
  const r=run(['임자','무진','갑인','병인']),q=storage(r,'임');
  assert.ok(q?.storageProjection);assert.ok(q.rules.some(r=>r.id==='resource-secondary-officer-damage'));

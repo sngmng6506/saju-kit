@@ -1,3 +1,4 @@
+import {getHiddenStems} from '../../src/core/hidden-stems.js';
 const fields=['formation','breakage','rescue','assistant','purity','clarity'];
 const binary=new Set(['yes','no','undetermined']);
 const classes=new Set(['pure','mixed','undetermined']);
@@ -25,8 +26,10 @@ export function adjudicateChart(row){
  if(!valid||new Set(rs.map(r=>r.reviewerId.trim())).size!==rs.length)return {status:'invalid-review',label:null};
  const labels=rs.map(r=>normalize(r.label));
  // Exact occurrence labels, no free-form stem-only labels.
- const validActor=id=>{const [layer,p,s]=id.split(':');const i=pos.indexOf(p);return i>=0&&row.pillars[i]&&
-  (layer==='visible'&&s===undefined&&p!=='day'||layer==='hidden'&&stems.has(s)&&id.split(':').length===3||layer==='group'&&false);};
+ const validActor=id=>{const parts=id.split(':'),[layer,p,s]=parts,i=pos.indexOf(p),pillar=row.pillars[i];
+  if(i<0||typeof pillar!=='string'||pillar.length!==2||!stems.has(pillar[0])||!branches.has(pillar[1]))return false;
+  return layer==='visible'&&parts.length===2&&p!=='day'||layer==='hidden'&&parts.length===3&&getHiddenStems(pillar[1]).some(h=>h.stem===s);
+ };
  if(labels.some(l=>Array.isArray(l.assistant)&&l.assistant.some(id=>!validActor(id))))return {status:'invalid-review',label:null};
  if(!labels.every(l=>cmp(l,labels[0])))return {status:'disagreement',label:null};
  return {status:'agreement-pending-external-independence-check',label:labels[0]};

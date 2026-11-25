@@ -24,6 +24,14 @@ test('missing rationale, engine-aware reviewer or stem-only assistant fail valid
  assert.equal(adjudicateChart(row([reviewer('a'),{...reviewer('b'),independentOfEngineOutputs:false}])).status,'invalid-review');
  assert.equal(adjudicateChart(row([reviewer('a',{...label,assistant:['갑']}),reviewer('b',{...label,assistant:['갑']})])).status,'invalid-review');
 });
+test('assistant hidden occurrence must actually exist in the specified branch',()=>{
+ const labels=id=>({...label,assistant:[id]});
+ const check=id=>adjudicateChart(row([reviewer('a',labels(id)),reviewer('b',labels(id))])).status;
+ assert.equal(check('hidden:year:계'),'agreement-pending-external-independence-check');
+ assert.equal(check('hidden:year:병'),'invalid-review');
+ assert.equal(check('visible:year:'),'invalid-review');
+ assert.equal(check('visible:day'),'invalid-review');
+});
 test('runtime failures retain the fixed historical denominator and fail the integration gate',()=>{
  const s=summarizeIntegration([{id:'h',kind:'historical',error:{message:'boom'}},{id:'c',kind:'control',probes:[{status:'matched'}]}],{historicalCases:1,historicalProbes:2,controlCases:1,controlProbes:1});
  assert.equal(s.historical.total,2);assert.equal(s.historical.recall,0);assert.equal(s.errors.length,1);assert.equal(s.gatePassed,false);

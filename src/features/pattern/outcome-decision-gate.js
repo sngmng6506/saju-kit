@@ -29,23 +29,26 @@ function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
  const valid=derived.every(v=>v&&v.candidateId===q.candidateId&&v.selectionAuthority===false)&&i?.status==='consistent'&&
   [e,c,a,l].every(v=>v.status!=='invalid-evidence');
  if(!valid)b.push('invalid-or-missing-candidate-evidence');
- const rows=!excluded&&valid?e.witnesses:[];
+ const usable=!excluded&&valid&&!global.some(s=>s==='integrated-evidence-invalid'||s==='candidate-coverage-mismatch'||s==='chart-evidence-unavailable');
+ const rows=usable?e.witnesses:[];
  const ruleBy=new Map(q.rules.map(r=>[r.id,r]));
  const classified=rows.map(w=>({...ref(w),status:w.status,flags:[...w.flags],
   conditions:[...w.unresolvedConditions],edgeBlockers:unique([...w.edges,...w.anchorAlternatives.flatMap(a=>a.edge?[a.edge]:[])].flatMap(e=>e.blockers??[]))}));
  const support=rows.filter(w=>w.kind==='support'&&ruleBy.get(w.ruleId)?.impact!=='conditional-regulation-not-confirmed-support');
  const damage=rows.filter(w=>w.kind==='damage'),rescue=rows.filter(w=>w.kind==='rescue');
- const refs=ws=>ws.map(w=>classified.find(v=>key(v.ruleId,v.witnessId)===key(w.ruleId,w.witnessId)));
+ const classifiedByKey=new Map(classified.map(v=>[key(v.ruleId,v.witnessId),v]));
+ const refs=ws=>ws.map(w=>classifiedByKey.get(key(w.ruleId,w.witnessId)));
  const unresolved=ws=>ws.some(w=>w.status!=='edge-screens-met'||w.unresolvedConditions.length>0)?['witness-effect-or-rule-conditions-unresolved']:[];
- const threats=!excluded&&valid?e.threats:[];
- const assistants=!excluded&&valid?a.candidates.map(v=>({occurrenceId:v.occurrenceId,classification:v.classification,dependencyKeys:[...v.observedRouteDependencyKeys]})):[];
- const branchDependencies=!excluded&&valid?x.branchDependencies:[];
- const combinationInjury=!excluded&&valid?x.combinationInjury:[];
- const conflicts=!excluded&&valid?l.blockers:null;
+ const threats=usable?e.threats:[];
+ const assistants=usable?a.candidates.map(v=>({occurrenceId:v.occurrenceId,classification:v.classification,dependencyKeys:[...v.observedRouteDependencyKeys]})):[];
+ const branchDependencies=usable?x.branchDependencies:[];
+ const combinationInjury=usable?x.combinationInjury:[];
+ const conflicts=usable?l.blockers:null;
  const structural={support:refs(support),damage:refs(damage),rescue:refs(rescue),
   regulation:refs(rows.filter(w=>w.kind==='support'&&ruleBy.get(w.ruleId)?.impact==='conditional-regulation-not-confirmed-support')),
   exception:refs(rows.filter(w=>w.kind==='exception'))};
- const no=(ws,code)=>ws.length?[]:[code];
+ // Missing/invalid scope is not a valid negative observation.
+ const no=(ws,code)=>!usable||ws.length?[]:[code];
  const decisions={
   formation:axis(release,'formation',[...b,...no(support,'no-covered-support-witness'),...unresolved(support),...(damage.length?['adverse-witnesses-unresolved']:[])],{support:structural.support,adversity:structural.damage}),
   breakage:axis(release,'breakage',[...b,...no(damage,'no-covered-damage-witness'),...unresolved(damage),...(rescue.length?['conditional-rescue-routes-unresolved']:[])],{damage:structural.damage,threats}),
@@ -54,7 +57,7 @@ function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
   assistant:axis(release,'assistant',[...b,...no(assistants,'no-covered-assistant-participant'),...(assistants.length?['observed-dependency-not-classical-necessity']:[]),
    ...(combinationInjury.length?['assistant-combination-injury-unresolved']:[])],{participants:assistants,branchDependencies,combinationInjury}),
   clarity:axis(release,'clarity',[...b,'role-coherence-not-effective-clarity',...(conflicts?.uncoveredThreats.length?['uncovered-threats']:[]),
-   ...(conflicts?.assistantInjury.length||combinationInjury.length?['assistant-injury-unresolved']:[])],{conflicts,dualRoleIds:!excluded&&valid?[...l.dualRoleIds]:[]})
+   ...(conflicts?.assistantInjury.length||combinationInjury.length?['assistant-injury-unresolved']:[])],{conflicts,dualRoleIds:usable?[...l.dualRoleIds]:[]})
  };
  return {...base,status:!valid?'invalid-evidence':excluded?'out-of-scope':'abstained',structural,decisions};
 }
@@ -64,20 +67,21 @@ export function observeOutcomeDecision(result){
  if(!result.access)global.push('chart-evidence-unavailable');
  if(!result.completeHour)global.push('missing-hour');
  if(result.access&&(result.integrity?.status!=='consistent'||!result.efficacyReview||result.efficacyReview.status==='invalid-evidence'))global.push('integrated-evidence-invalid');
- const lookup=xs=>new Map((xs??[]).map(x=>[x.candidateId,x]));
+ const lookup=xs=>new Map((Array.isArray(xs)?xs:[]).filter(x=>x&&typeof x.candidateId==='string').map(x=>[x.candidateId,x]));
  const collections=[result.efficacyReview?.candidates,result.compoundReview,result.assistantReview,result.clarityReview,result.extensionReview,result.integrity?.candidates];
  const reviews=result.reviews??[],candidateIds=reviews.map(q=>q.candidateId);
  if(result.access&&(new Set(candidateIds).size!==candidateIds.length||collections.some(xs=>!Array.isArray(xs)||xs.length!==reviews.length||
-  new Set(xs.map(x=>x.candidateId)).size!==xs.length||xs.some(x=>!candidateIds.includes(x.candidateId)))))global.push('candidate-coverage-mismatch');
+  xs.some(x=>!x||typeof x.candidateId!=='string')||new Set(xs.map(x=>x.candidateId)).size!==xs.length||xs.some(x=>!candidateIds.includes(x.candidateId)))))global.push('candidate-coverage-mismatch');
  const maps=collections.map(lookup);
  const candidates=reviews.map(q=>candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global));
  const pref=result.preference,h=pref?.hypothesis;
  const hypothesis=h&&pref.status==='hypothesis'?{family:h.family,candidateIds:[...h.candidateIds],anchorStems:[...h.anchorStems],grounds:[...h.grounds],confirmed:false}:null;
- const usableHypothesis=hypothesis&&hypothesis.candidateIds.length&&hypothesis.candidateIds.every(id=>candidates.some(q=>q.candidateId===id&&q.status==='abstained'&&q.family===hypothesis.family));
- const purity=result.purityReview?.motifs??[];
+ const globalInvalid=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','chart-evidence-unavailable'].includes(s))||candidates.some(q=>q.status==='invalid-evidence');
+ const usableHypothesis=!globalInvalid&&result.completeHour&&hypothesis&&hypothesis.candidateIds.length&&hypothesis.candidateIds.every(id=>candidates.some(q=>q.candidateId===id&&q.status==='abstained'&&q.family===hypothesis.family));
+ const purity=globalInvalid?[]:result.purityReview?.motifs??[];
  return {release,status:global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch'].includes(s))||candidates.some(q=>q.status==='invalid-evidence')?'invalid-evidence':!result.access?'unavailable':'abstained',
   completeHour:result.completeHour,selectionAuthority:false,confirmed:false,globalBlockers:unique(global),
   pattern:axis(release,'pattern',[...global,...(usableHypothesis?['family-hypothesis-not-selection']:['no-usable-family-hypothesis']),...(pref?.reason?['preference:'+pref.reason]:[])],{hypothesis:usableHypothesis?hypothesis:null,candidateIds}),
-  purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses}))}),
+  purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(globalInvalid||purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses}))}),
   candidates,limitations:['no-final-decision-authority','no-empirical-life-outcome-validation','ordinary-pattern-scope-only','no-score-or-forced-selection']};
 }
