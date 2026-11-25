@@ -1,3 +1,4 @@
+import {tracePressureDependencies} from '../../src/features/pattern/outcome-pressure-dependency.js';
 // Diagnostic accounting only. No gate is relaxed and no effect is inferred
 // from hypothetical removal of a blocker category.
 const sorted=xs=>[...new Set(xs)].sort();
@@ -83,4 +84,42 @@ export function summarizeScreenBottlenecks(c,supply,interposition,partial){
  return {...base,generation:{all:summarize(generation),visible:summarize(visibleGeneration),hidden:summarize(generation.filter(r=>!r.visible)),visibleRows:visibleGeneration},
   interposition:{all:summarize(paths),visible:summarize(visiblePaths),hidden:summarize(paths.filter(r=>!r.visible)),visibleRows:visiblePaths},
   interpretation:'soleGroupCounts counts rows with exactly one recorded blocker category; categories may be causally dependent, and counts are not an effect estimate or permission to bypass a category',errors};
+}
+
+
+export function summarizePressureDependencies(c,review,supply,interposition,partial){
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={pressures:0,paths:0,visibleGenerations:0,seededPaths:0,conditionalPaths:0,unseededCycles:0},states={},contrasts={};
+ if(!review||review.status!==(partial?'partial':'diagnostic')||review.completeHour!==!partial||review.selectionAuthority!==false||review.neutralizationConfirmed!==null||review.effective!==null||
+  !Array.isArray(review.pressures)||!Array.isArray(review.paths)||!Array.isArray(review.generation)||!Array.isArray(review.unseededCycles)||!supply||!interposition?.roleNeutral)return {...base,errors:['pressure-dependency-invalid']};
+ const closure=tracePressureDependencies(review.pressures.map(p=>p.id),review.paths);
+ if(!closure)return {...base,errors:['pressure-dependency-graph-invalid']};
+ const ranks=new Map(closure.pressureRanks.map(p=>[p.id,p.rank])),pathRanks=new Map(closure.pathRanks.map(p=>[p.id,p.rank])),ids=new Set(review.pressures.map(p=>p.id));
+ const candidates=new Map(interposition.roleNeutral.paths.map(p=>[p.id,p])),contexts=interposition.roleNeutral.pressureContexts;
+ const actions=supply.actions.filter(e=>e.kind==='generate'&&e.from.startsWith('visible:')&&e.to.startsWith('visible:'));
+ const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+ if(!eq(review.unseededCycles,closure.unseededCycles)||review.paths.length!==candidates.size||new Set(review.paths.map(p=>p.id)).size!==review.paths.length||
+  review.generation.length!==actions.length||new Set(review.generation.map(g=>g.edgeId)).size!==review.generation.length)errors.push('pressure-dependency-coverage');
+ for(const p of review.pressures){
+  counts.pressures++;bump(contrasts,p.contrast);
+  if(p.structuralDependencyRank!==(ranks.get(p.id)??null)||p.effective!==null||p.neutralizationConfirmed!==null||p.id!==JSON.stringify([p.controllerNodeId,p.targetNodeId]))errors.push('pressure-dependency-rank:'+p.id);
+ }
+ for(const t of contexts)for(const q of t.controllers){
+  const p=review.pressures.find(p=>p.id===JSON.stringify([q.controllerNodeId,t.targetNodeId]));
+  if(!p||p.targetAccess!=='visible'||p.donorState!==q.donorState||!eq(p.candidatePathIds,q.candidatePathIds)||!eq(p.screenedPathIds,q.screenedPathIds))errors.push('pressure-dependency-owner:'+t.targetId);
+ }
+ for(const p of review.paths){
+  counts.paths++;if(p.structuralDependencyRank===0)counts.seededPaths++;if(p.structuralDependencyRank>0)counts.conditionalPaths++;
+  const q=candidates.get(p.id);
+  const deps=q?.pressure.helper.filter(r=>r.donorState!=='no-substantial-root-observed').map(r=>JSON.stringify([r.controllerNodeId,q.helper])).sort();
+  const blockers=q?.blockers.filter(b=>!['helper-under-rooted-control','helper-control-context-unresolved'].includes(b)).sort();
+  if(!q||!eq(p.dependencies,deps)||!eq(p.otherBlockers,blockers)||p.targetPressureId!==JSON.stringify([q.threat,q.target])||
+   p.structuralDependencyRank!==(pathRanks.get(p.id)??null)||p.effectConfirmed!==null||p.neutralizationConfirmed!==null)errors.push('pressure-dependency-path:'+p.id);
+ }
+ for(const g of review.generation){
+  counts.visibleGenerations++;bump(states,g.state);
+  const e=actions.find(e=>e.edgeId===g.edgeId),deps=[...new Set([...g.sourcePressureIds,...g.targetPressureIds])].sort();
+  if(!e||g.originalScreen!==e.generationScreen||g.effective!==null||deps.some(id=>!ids.has(id))||!eq(g.unresolvedPressureIds,deps.filter(id=>!ranks.has(id))))errors.push('pressure-dependency-generation:'+g.edgeId);
+ }
+ counts.unseededCycles=review.unseededCycles.length;
+ return {...base,counts,states,contrasts,errors};
 }
