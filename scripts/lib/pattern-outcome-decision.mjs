@@ -100,7 +100,18 @@ export function reviewOutcomeDecision(result,outcome,efficacy){
 }
 export function summarizeOutcomeDecisions(reviews){
  const cs=reviews.flatMap(r=>r.candidates),motifs=cs.flatMap(c=>c.motifs);
- return {charts:reviews.length,unavailable:reviews.filter(r=>r.status==='unavailable').length,partial:reviews.filter(r=>r.status==='partial').length,
+ const backlog=new Map();
+ for(const review of reviews)for(const c of review.candidates)for(const m of c.motifs){
+  if(m.predicate===false)continue; // A refuted alternative does not block this chart.
+  for(const clause of m.clauses.filter(x=>x.value===null&&x.kind==='contextual')){
+   const key=clause.id;
+   if(!backlog.has(key))backlog.set(key,{condition:key,occurrences:0,charts:new Set(),families:new Set(),motifs:new Set()});
+   const b=backlog.get(key);b.occurrences++;b.charts.add(review);b.families.add(c.family);b.motifs.add(m.id);
+  }
+ }
+ const conditionBacklog=[...backlog.values()].map(b=>({condition:b.condition,occurrences:b.occurrences,chartCount:b.charts.size,families:unique([...b.families]),motifs:unique([...b.motifs])}))
+  .sort((a,b)=>b.chartCount-a.chartCount||b.occurrences-a.occurrences||a.condition.localeCompare(b.condition));
+ return {conditionBacklog,charts:reviews.length,unavailable:reviews.filter(r=>r.status==='unavailable').length,partial:reviews.filter(r=>r.status==='partial').length,
   candidates:cs.length,motifCounts:Object.fromEntries(kinds.map(k=>[k,{
    total:motifs.filter(m=>m.kind===k).length,
    literalMatched:motifs.filter(m=>m.kind===k&&m.predicate===true).length,
