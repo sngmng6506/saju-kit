@@ -58,3 +58,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Outcome decision V10](docs/pattern-outcome-decision-v10.md) implements per-axis abstention and release-owned closed authority; actual decision algorithms and independent validation remain pending.
 
 - [Post-V10 hardening](docs/pattern-outcome-hardening.md): corrected global decision and identity validation, stronger regression gate, one-command native audit and benchmark. Await actual receipts before new decision rules.
+
+- [P1 role evidence and prospective queue](docs/pattern-outcome-p1.md): generalized purity pair clauses, route injury contacts, six new source candidates. Native validation and independent review pending.

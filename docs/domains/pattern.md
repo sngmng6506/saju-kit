@@ -6,6 +6,7 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 
 ## Contracts, methods and research notes
 
+- [pattern-outcome-p1.md](../pattern-outcome-p1.md)
 - [pattern-outcome-hardening.md](../pattern-outcome-hardening.md)
 - [pattern-outcome-decision-v10.md](../pattern-outcome-decision-v10.md)
 - [pattern-outcome-efficacy-v1.md](../pattern-outcome-efficacy-v1.md)
@@ -46,3 +47,5 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-outcome-reference-v1.json](../../test/fixtures/pattern-outcome-reference-v1.json)
 - [pattern-classical-v1.json](../../test/fixtures/pattern-classical-v1.json)
 - [pattern-classical-v2.json](../../test/fixtures/pattern-classical-v2.json)
+
+- [pattern-outcome-prospective-v1.json](../../test/fixtures/pattern-outcome-prospective-v1.json)

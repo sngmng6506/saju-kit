@@ -66,6 +66,7 @@ function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
  const branchDependencies=usable?x.branchDependencies:[];
  const combinationInjury=usable?x.combinationInjury:[];
  const conflicts=usable?l.blockers:null;
+ const routeInjury=usable?l.routeInjury??null:null;
  const structural={support:refs(support),damage:refs(damage),rescue:refs(rescue),
   regulation:refs(rows.filter(w=>w.kind==='support'&&ruleBy.get(w.ruleId)?.impact==='conditional-regulation-not-confirmed-support')),
   exception:refs(rows.filter(w=>w.kind==='exception'))};
@@ -77,9 +78,9 @@ function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
   rescue:axis(release,'rescue',[...b,...no(damage,'no-covered-threat'),...no(rescue,'no-covered-rescue-witness'),...unresolved(rescue),
    ...(threats.some(t=>t.coverage==='no-covered-route')?['uncovered-threats']:[]),...(threats.some(t=>t.coverage==='route-unknown')?['threat-route-unknown']:[])],{rescue:structural.rescue,threats}),
   assistant:axis(release,'assistant',[...b,...no(assistants,'no-covered-assistant-participant'),...(assistants.length?['observed-dependency-not-classical-necessity']:[]),
-   ...(combinationInjury.length?['assistant-combination-injury-unresolved']:[])],{participants:assistants,branchDependencies,combinationInjury}),
+   ...(combinationInjury.length?['assistant-combination-injury-unresolved']:[]),...(routeInjury?.contacts.length?['assistant-route-contact-unresolved']:[])],{participants:assistants,branchDependencies,combinationInjury,routeInjury}),
   clarity:axis(release,'clarity',[...b,'role-coherence-not-effective-clarity',...(conflicts?.uncoveredThreats.length?['uncovered-threats']:[]),
-   ...(conflicts?.assistantInjury.length||combinationInjury.length?['assistant-injury-unresolved']:[])],{conflicts,dualRoleIds:usable?[...l.dualRoleIds]:[]})
+   ...(conflicts?.assistantInjury.length||combinationInjury.length?['assistant-injury-unresolved']:[])],{conflicts,routeInjury,dualRoleIds:usable?[...l.dualRoleIds]:[]})
  };
  return {...base,status:!valid?'invalid-evidence':excluded?'out-of-scope':'abstained',structural,decisions};
 }
@@ -102,9 +103,10 @@ export function observeOutcomeDecision(result){
  const globalInvalid=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||candidates.some(q=>q.status==='invalid-evidence');
  const usableHypothesis=!globalInvalid&&result.completeHour&&hypothesis&&hypothesis.candidateIds.length&&hypothesis.candidateIds.every(id=>candidates.some(q=>q.candidateId===id&&q.status==='abstained'&&q.family===hypothesis.family));
  const purity=globalInvalid?[]:result.purityReview?.motifs??[];
+ const generalized=globalInvalid?null:result.purityReview?.generalized??null;
  return {release,status:global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch'].includes(s))||candidates.some(q=>q.status==='invalid-evidence')?'invalid-evidence':!result.access?'unavailable':'abstained',
   completeHour:result.completeHour,selectionAuthority:false,confirmed:false,globalBlockers:unique(global),
   pattern:axis(release,'pattern',[...global,...(usableHypothesis?['family-hypothesis-not-selection']:['no-usable-family-hypothesis']),...(pref?.reason?['preference:'+pref.reason]:[])],{hypothesis:usableHypothesis?hypothesis:null,candidateIds}),
-  purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(globalInvalid||purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses}))}),
+  purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(globalInvalid||purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses})),generalized}),
   candidates,limitations:['no-final-decision-authority','no-empirical-life-outcome-validation','ordinary-pattern-scope-only','no-score-or-forced-selection']};
 }

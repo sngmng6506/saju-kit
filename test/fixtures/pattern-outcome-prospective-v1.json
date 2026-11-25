@@ -1,0 +1,121 @@
+{
+  "version": "pattern-outcome-prospective-v1",
+  "frozenAgainst": "4adb5f1295093aab4c62967bbc452d65981457f5",
+  "scope": "new-source-candidate-queue-not-independent-gold",
+  "cases": [
+    {
+      "id": "dtc-clear-01",
+      "pillars": [
+        "계유",
+        "갑자",
+        "병인",
+        "을미"
+      ],
+      "chapter": "clear-qi",
+      "source": "https://luckclub.cn/zhongyi/027/023/",
+      "sourceReading": "The commentary emphasizes rooted resource and the monthly officer, with a coherent supply path.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "dtc-clear-02",
+      "pillars": [
+        "갑자",
+        "병인",
+        "기해",
+        "신미"
+      ],
+      "chapter": "clear-qi",
+      "source": "https://luckclub.cn/zhongyi/027/023/",
+      "sourceReading": "The commentary describes resource supported by officer, with wealth concealed and contributing to supply.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "dtc-clear-03",
+      "pillars": [
+        "계미",
+        "갑자",
+        "병인",
+        "정유"
+      ],
+      "chapter": "clear-qi",
+      "source": "https://luckclub.cn/zhongyi/027/023/",
+      "sourceReading": "The commentary contrasts the first example with officer exposed to injury and wealth exposed to peer competition.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "dtc-turbid-01",
+      "pillars": [
+        "을해",
+        "경진",
+        "무술",
+        "정사"
+      ],
+      "chapter": "turbid-qi",
+      "source": "https://www.gushici.net/books/42/16284.html",
+      "sourceReading": "Officer is entangled by combination; output is also checked by fire, and the proposed wealth route has problems.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "dtc-turbid-02",
+      "pillars": [
+        "계해",
+        "기미",
+        "병오",
+        "기축"
+      ],
+      "chapter": "turbid-qi",
+      "source": "https://www.gushici.net/books/42/16284.html",
+      "sourceReading": "Repeated output drains the day master; the commentary describes adverse role dominance and later relief.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "dtc-turbid-03",
+      "pillars": [
+        "정묘",
+        "정미",
+        "경오",
+        "기묘"
+      ],
+      "chapter": "turbid-qi",
+      "source": "https://www.gushici.net/books/42/16284.html",
+      "sourceReading": "Apparent generation chain is described as ineffective due to hot dry conditions; apparent coherence does not imply actual supply.",
+      "split": "prospective-source-candidate",
+      "eligible": true,
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    }
+  ]
+}

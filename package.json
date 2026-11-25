@@ -35,7 +35,8 @@
     "audit:pattern-outcome-efficacy": "node scripts/audit-pattern-outcome-efficacy.mjs",
     "audit:pattern-outcome-v10": "node scripts/audit-pattern-outcome-v10.mjs",
     "validate:pattern-outcome": "node scripts/validate-pattern-outcome.mjs",
-    "benchmark:outcome": "node scripts/benchmark-outcome.mjs"
+    "benchmark:outcome": "node scripts/benchmark-outcome.mjs",
+    "audit:pattern-outcome-prospective": "node scripts/audit-pattern-outcome-prospective.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

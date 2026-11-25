@@ -8,6 +8,8 @@ import {observeCompoundTopology} from './outcome-compound-topology.js';
 import {observeCompoundMotifs} from './outcome-compound-motifs.js';
 import {observeAssistantNecessity} from './outcome-assistant.js';
 import {observeSourcePurity} from './outcome-purity-source.js';
+import {observeGeneralPurity} from './outcome-purity-general.js';
+import {observeRouteInjury} from './outcome-route-injury.js';
 import {observeCandidateClarity} from './outcome-clarity.js';
 import {inspectIntegratedEvidence} from './outcome-integrity.js';
 export const PATTERN_OUTCOME_INTEGRATED_VERSION='pattern-outcome-integrated-v1';
@@ -37,10 +39,11 @@ export function buildIntegratedOutcome(input){
   const extension={candidateId:q.candidateId,combinationInjury:observeAssistantCombinationInjury(q,compound,input.saju,complete),
    branchDependencies:observeBranchAssistantDependencies(q,result.access,complete),selectionAuthority:false};
   const integrity=inspectIntegratedEvidence(q,compound,assistant,clarity,positions.get(q.candidateId),result.access,occurrenceIds);
-  return {compound,assistant,clarity,extension,integrity:{candidateId:q.candidateId,...integrity}};
+  const routeInjury=observeRouteInjury(prior,result.access,q,compound,assistant,integrity);
+  return {compound,assistant,clarity:{...clarity,routeInjury},extension,integrity:{candidateId:q.candidateId,...integrity}};
  });
  const integrityRows=rows.map(r=>r.integrity);
  return {prior,result:{...base,reviews,winterClimate,positionContext,compoundReview:rows.map(r=>r.compound),assistantReview:rows.map(r=>r.assistant),
-  purityReview:observeSourcePurity(input.saju,reviews,complete),clarityReview:rows.map(r=>r.clarity),extensionReview:rows.map(r=>r.extension),
+  purityReview:{...observeSourcePurity(input.saju,reviews,complete),generalized:observeGeneralPurity(prior,reviews,integrityRows)},clarityReview:rows.map(r=>r.clarity),extensionReview:rows.map(r=>r.extension),
   integrity:{status:integrityRows.some(r=>r.violations.length)?'invalid-evidence':'consistent',candidates:integrityRows,selectionAuthority:false}}};
 }
