@@ -18,9 +18,9 @@ function summarize(rows){
 const groupPath=r=>r==='missing-hour'?'missing-hour':r==='hidden-participant-access'?'hidden-access':r==='participant-contact'?'contact':
  r.startsWith('nonlocal-')?'locality':r.startsWith('helper-root-')?'helper-root':r.startsWith('threat-root-')?'threat-root':
  ['helper-under-rooted-control','helper-control-context-unresolved'].includes(r)?'helper-pressure':'unknown';
-const groupEdge=r=>r==='missing-hour'?'missing-hour':r.startsWith('hidden-')?'hidden-access':r==='source-basis-unestablished'?'source-basis':
- r.startsWith('source-pressure:')?'source-pressure':r.startsWith('target-pressure:')?'target-pressure':
- r.includes('nonadjacent')||r.includes('nonlocal')?'locality':r.includes('contact')?'contact':r.includes('root-clash')?'contested-root':'other-context';
+const groupEdge=r=>['missing-hour','context:missing-hour'].includes(r)?'missing-hour':r.startsWith('hidden-')?'hidden-access':r==='source-basis-unestablished'?'source-basis':
+ r.startsWith('source-pressure:')||r==='context:source-local-rooted-control'?'source-pressure':r.startsWith('target-pressure:')?'target-pressure':
+ r.includes('nonadjacent')||r.includes('nonlocal')?'locality':r.includes('contact')||r==='context:participant-combination-or-group'?'contact':r.includes('root-clash')?'contested-root':'other-context';
 export function summarizeScreenBottlenecks(c,supply,interposition,partial){
  const base={id:c.id,partial,effectConfirmed:null,policyChanged:false},errors=[];
  const neutral=interposition?.roleNeutral,status=partial?'partial':'diagnostic';
@@ -69,5 +69,5 @@ export function summarizeScreenBottlenecks(c,supply,interposition,partial){
  const visibleGeneration=generation.filter(r=>r.visible),visiblePaths=paths.filter(r=>r.visible);
  return {...base,generation:{all:summarize(generation),visible:summarize(visibleGeneration),hidden:summarize(generation.filter(r=>!r.visible)),visibleRows:visibleGeneration},
   interposition:{all:summarize(paths),visible:summarize(visiblePaths),hidden:summarize(paths.filter(r=>!r.visible)),visibleRows:visiblePaths},
-  interpretation:'soleGroupCounts counts rows with exactly one recorded blocker category; it is not an effect estimate or permission to bypass that category',errors};
+  interpretation:'soleGroupCounts counts rows with exactly one recorded blocker category; categories may be causally dependent, and counts are not an effect estimate or permission to bypass a category',errors};
 }
