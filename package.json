@@ -31,7 +31,8 @@
     "audit:pattern-outcome-v8": "node scripts/audit-pattern-outcome-v8.mjs",
     "audit:pattern-outcome-v9": "node scripts/audit-pattern-outcome-v9.mjs",
     "audit:pattern-outcome-adjudication": "node scripts/audit-pattern-outcome-adjudication.mjs",
-    "audit:pattern-outcome-integrated": "node scripts/audit-pattern-outcome-integrated.mjs"
+    "audit:pattern-outcome-integrated": "node scripts/audit-pattern-outcome-integrated.mjs",
+    "audit:pattern-outcome-efficacy": "node scripts/audit-pattern-outcome-efficacy.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

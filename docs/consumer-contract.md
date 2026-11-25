@@ -69,3 +69,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Assistant route extension](pattern-outcome-assistant-extension-v1.md) is a separate opt-in research API; no consumer pin or authority changes.
 
 - [Integrated outcome evidence](pattern-outcome-integrated-v1.md) is opt-in, with final-witness consistency reporting; prior public APIs and consumer pins unchanged.
+
+- [Outcome efficacy screens](pattern-outcome-efficacy-v1.md) opt-in diagnostic API; no effective-force or selection decision.

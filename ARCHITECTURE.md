@@ -103,3 +103,5 @@ Outcome V9 separates [source purity and candidate clarity](docs/pattern-outcome-
 The pre-V10 assistant extension is an opt-in augmentation of V9; branch-slot masking does not alter the natal chart, and original V9 projections are preserved.
 
 [Integrated outcome evidence](docs/pattern-outcome-integrated-v1.md) composes V5 request-local evidence with omitted storage stages and final projections; integrity is structural, not selection authority.
+
+[Outcome efficacy screens](docs/pattern-outcome-efficacy-v1.md) consume request-local integrated evidence and do not authorize effective force or selection.

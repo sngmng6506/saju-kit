@@ -52,3 +52,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - Pre-V10: [assistant route extension](docs/pattern-outcome-assistant-extension-v1.md) adds missing combination rescue, group support and branch-slot dependency evidence; native validation pending. No decision authority.
 
 - Pre-V10: [integrated outcome evidence](docs/pattern-outcome-integrated-v1.md) completes omitted storage stages and derives all projections from one final witness set. Native gate and independent labels remain pending.
+
+- Pre-V10: [efficacy evidence screens](docs/pattern-outcome-efficacy-v1.md) link existing force, contact and route evidence; no effect authority. Native integration and independent validation pending.
