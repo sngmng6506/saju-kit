@@ -17,6 +17,7 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-outcome-efficacy-v1.md](../pattern-outcome-efficacy-v1.md)
 - [pattern-outcome-integrated-v1.md](../pattern-outcome-integrated-v1.md)
 - [pattern-outcome-assistant-extension-v1.md](../pattern-outcome-assistant-extension-v1.md)
+- [pattern-outcome-command-context.md](../pattern-outcome-command-context.md)
 - [pattern-outcome-root-context.md](../pattern-outcome-root-context.md)
 - [pattern-outcome-role-priority.md](../pattern-outcome-role-priority.md)
 - [pattern-outcome-role-flow.md](../pattern-outcome-role-flow.md)

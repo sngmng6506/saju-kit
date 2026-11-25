@@ -30,7 +30,8 @@ export function buildSynthesis(input,{shared=true}={}){
  const remedy=usable?evaluateRemedyEvidence({...args,policy:REMEDY_EVIDENCE_VERSION},next()):null;
  const supplementaryMethods=observeSupplementaryMethods(input.saju,{...result,status},pattern,mediation,remedy);
  const climateTiming=projectSynthesisTiming(usable?climateResult:null);
- const composed={...result,status,priorityReview,supplementaryMethods,climateTiming};
+ const monthCommandReview=usable?pattern.efficacyReview.mechanismReview.monthCommandReview:null;
+ const composed={...result,status,priorityReview,supplementaryMethods,climateTiming,monthCommandReview};
  const selectionReview=observeSynthesisSelection(composed);
  return {...composed,status:selectionReview.status==='invalid-evidence'?'invalid-evidence':status,selectionReview};
 }
