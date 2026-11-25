@@ -5,6 +5,7 @@ import {observeRelativeForce} from '../src/core/relative-force.js';
 import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
 import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
 import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
+import {summarizeGroundedSupplyReview} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 const chart=(ps,complete=true)=>({pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))});
 const build=(ps,complete=true)=>{
@@ -59,4 +60,20 @@ test('native V10 composes the new review without authorizing efficacy or selecti
  const s=r.efficacyReview.mechanismReview.groundedSupply;
  assert.equal(s.status,'diagnostic');assert.equal(s.selectionAuthority,false);assert.equal(s.effectiveSupply,null);
  assert.equal(r.decisionReview.status,'abstained');assert.equal(r.efficacyReview.status,'diagnostic');
+});
+
+test('synthetic receiving stem without substantial roots can pass the structural generation screen',()=>{
+ // Synthetic independent pillars, not a claimed calendrically verified birth.
+ const {result}=build(['을묘','을묘','정묘','을묘']);
+ assert.equal(result.status,'diagnostic');
+ const a=result.actions.find(e=>e.from==='visible:month'&&e.to==='visible:day'&&e.kind==='generate');
+ assert.equal(a.targetDirectRootState,false);assert.equal(a.sourceBasis,'direct-root-observed');
+ assert.equal(a.generationScreen,'grounded-generation-context-screen-met');assert.equal(a.effective,null);
+});
+test('audit reports supply paths without treating them as independent quantities',()=>{
+ const {result}=build(zhou),r=summarizeGroundedSupplyReview({id:'zhou'},result,false);
+ assert.equal(r.errors.length,0);assert.equal(r.counts.visibleIndirectWithoutDirectRoot,1);
+ assert.equal(r.effectConfirmed,null);
+ const bad=structuredClone(result);bad.occurrences.find(a=>a.id==='visible:hour').effectiveSupply=true;
+ assert.ok(summarizeGroundedSupplyReview({id:'zhou'},bad,false).errors.length);
 });
