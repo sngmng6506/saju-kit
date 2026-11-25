@@ -33,6 +33,36 @@ export function validateRoleSourcePacket(packet){
  }
  return errors;
 }
+// Uses the caller's actual natal core, never source labels as computed roles.
+export function inspectLiteralSourceChart(c,natal,{partial=false}={}){
+ const errors=[],actors=new Map(),probes=[];
+ if(natal?.metadata?.completeHour!==!partial)errors.push('literal-hour-coverage');
+ for(const [pos,p] of Object.entries(natal?.pillars??{})){
+  if(!p)continue;
+  actors.set('visible:'+pos,p.stem.tenGod);
+  for(const h of p.branch.hiddenStems)actors.set('hidden:'+pos+':'+h.stem,h.tenGod);
+ }
+ const monthPrincipal=natal?.pillars?.month?.branch?.hiddenStems?.find(h=>h.role==='principal')?.tenGod??null;
+ if(!monthPrincipal)errors.push('literal-month-principal-missing');
+ const groups={resource:['정인','편인'],killing:['편관'],wealth:['정재','편재'],output:['식신','상관'],food:['식신'],officer:['정관','편관']};
+ for(const p of c.probes){
+  const endpoints=[];
+  for(const [field,id] of Object.entries(p.match)){
+   if(!id.startsWith('visible:')&&!id.startsWith('hidden:'))continue;
+   const tenGod=actors.get(id)??null;
+   const omitted=partial&&id.split(':')[1]==='hour';
+   const expected=field==='anchorId'||field==='resourceId'?groups.resource:
+    field==='killingId'?groups.killing:field==='wealthId'?groups.wealth:
+    field==='foodId'?groups.food:field==='outputId'||field==='role.food'?groups.output:
+    field==='officerId'?p.collection==='officerContext'?['정관']:groups.killing:
+    field==='role.obstacle'?p.match.objective==='excess-food-moderation'?groups.resource:groups.wealth:null;
+   if((!omitted&&tenGod===null)||(omitted&&tenGod!==null)||(tenGod!==null&&expected&&!expected.includes(tenGod)))errors.push(p.id+':literal-endpoint:'+field);
+   endpoints.push({field,id,tenGod,status:omitted?'omitted-hour':'literal-role-observed'});
+  }
+  probes.push({id:p.id,endpoints});
+ }
+ return {id:c.id,partial,monthPrincipal,sourceFamily:c.family,probes,errors,effectAgreement:null};
+}
 function summarizePremises(ps){
  if(!Array.isArray(ps))return [];
  return ps.map(p=>({id:p.id,state:p.state}));
