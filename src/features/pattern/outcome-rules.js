@@ -41,7 +41,11 @@ export function outcomeRules(family){
  killing:[
   s('killing-food',{helper:['식신'],target:'anchor',day:'day'},[['helper','target','control'],['target','day','control'],['day','helper','generate']],['day-capacity','food-killing-balance']),
   d('killing-wealth',{obstacle:W,target:'anchor'},[['obstacle','target','generate']],['killing-uncontrolled']),
-  d('killing-resource-blocks-food',{obstacle:I,food:['식신'],target:'anchor'},[['obstacle','food','control'],['food','target','control']],['resource-protects-killing','food-control-blocked']),
+  // 論偏官: 周丞相 戊戌 甲子 丁未 庚戌. 戊 is 傷官 for 丁,
+  // yet the source describes 印 restraining this output and 財 preserving it.
+  // This is a conditional obstruction/rescue path, not 食神制煞 support.
+  // https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan
+  d('killing-resource-blocks-food',{obstacle:I,food:E,target:'anchor'},[['obstacle','food','control'],['food','target','control']],['resource-protects-killing','food-control-blocked']),
   r('killing-wealth-removes-resource','killing-resource-blocks-food',{helper:W},[['helper','obstacle','control']],['wealth-effective','food-control-preserved','wealth-does-not-worsen-killing'])
  ],
  'hurting-officer':[

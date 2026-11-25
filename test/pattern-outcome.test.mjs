@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {analyzePatternOutcome,PATTERN_OUTCOME_VERSION,analyzePatternUsefulElementV10,PATTERN_V10_VERSION} from '../src/index.js';
 import {outcomeRules} from '../src/features/pattern/outcome-rules.js';
+import {tenGodForStem} from '../src/core/natal.js';
 const chart=ps=>({pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,ps[i]?{stem:ps[i][0],branch:ps[i][1],text:ps[i]}:null]))});
 const run=(ps,birthBasis='verified-chart')=>analyzePatternOutcome({saju:chart(ps),birthBasis,policy:PATTERN_OUTCOME_VERSION});
 const review=(result,family)=>result.reviews.find(r=>r.family===family&&r.anchorIds.length);
@@ -57,4 +58,30 @@ test('legacy policy remains deterministic and new evidence never grants authorit
   assert.equal(new Set(Object.values(w.roles)).size,Object.keys(w.roles).length);
   for(const e of w.edges)if(e.edgeId)assert.ok(before.relativeForce.edges.some(x=>x.id===e.edgeId&&x.kind===e.kind));
  }
+});
+
+test('killing obstruction and wealth rescue admit both output polarities without broadening food support',()=>{
+ for(const [ps,expectedGod] of [
+  [['무술','갑자','정미','경술'],'상관'],
+  [['기미','갑자','정미','경술'],'식신']
+ ]){
+  assert.equal(tenGodForStem('정',ps[0][0]),expectedGod);
+  const q=review(run(ps),'killing');
+  const d=rule(q,'killing-resource-blocks-food').witnesses.find(w=>w.roles.obstacle==='visible:month'&&w.roles.food==='visible:year'&&w.roles.target==='hidden:month:계');
+  assert.ok(d,expectedGod);
+  const r=rule(q,'killing-wealth-removes-resource').witnesses.find(w=>w.threatWitnessId===d.id&&w.roles.helper==='visible:hour');
+  assert.ok(r);assert.deepEqual(d.edges.map(e=>[e.from,e.to,e.kind]),[['visible:month','visible:year','control'],['visible:year','hidden:month:계','control']]);
+  assert.deepEqual(r.edges.map(e=>[e.from,e.to,e.kind]),[['visible:hour','visible:month','control']]);
+  assert.equal(rule(q,'killing-food').witnesses.some(w=>w.roles.helper==='visible:year'),expectedGod==='식신');
+  assert.ok(rule(q,'killing-wealth').witnesses.some(w=>w.roles.obstacle==='visible:hour'&&w.roles.target==='hidden:month:계'));
+  assert.equal(r.effective,null);assert.equal(q.formed,null);assert.equal(q.broken,null);assert.equal(q.rescued,null);
+ }
+});
+test('output obstruction does not invent a missing helper or a non-output role',()=>{
+ const q=review(run(['무술','갑자','정미','병술']),'killing');
+ assert.ok(rule(q,'killing-resource-blocks-food').observed);
+ assert.equal(rule(q,'killing-wealth-removes-resource').observed,false);
+ const other=review(run(['병술','갑자','정미','경술']),'killing');
+ assert.equal(rule(other,'killing-resource-blocks-food').observed,false);
+ assert.equal(rule(other,'killing-wealth-removes-resource').observed,false);
 });
