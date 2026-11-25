@@ -2,11 +2,11 @@ import {SajuError} from '../../core/error.js';
 import {buildIntegratedOutcome,PATTERN_OUTCOME_INTEGRATED_VERSION} from './outcome-integrated.js';
 import {createEffectContext,observeWitnessEfficacy} from './outcome-efficacy.js';
 import {evaluateClimateRequirements,CLIMATE_V5_VERSION} from '../climate/requirement-review.js';
-import {projectMechanismClimate,observeMechanismReview} from './outcome-mechanism.js';
+import {projectMechanismClimate,observeMechanismReview,evaluateMechanismEdge} from './outcome-mechanism.js';
 import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
-import {observeConditionalRolePriority,assessRoleObjectives} from './outcome-role-priority.js';
+import {observeConditionalRolePriority,assessRoleObjectives,assessKillingStrategies} from './outcome-role-priority.js';
 import {observeRootContext} from './outcome-root-context.js';
 import {observeBranchPressure,observeMonthCommandReview} from './outcome-command-context.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
@@ -46,7 +46,8 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const roleFlow=observeRouteFlow(q,prior,result.access,m,result.regulationStrength);
   const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength,rootContext,monthCommandReview);
   const roleObjectives=assessRoleObjectives(q,prior,roleCapacity,capacityComparisons,m,result.regulationStrength,rootContext,monthCommandReview);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,objectiveReview:roleObjectives}};
+  const killingStrategies=assessKillingStrategies(q,prior,roleCapacity,roleFlow,m,result.regulationStrength,edge=>evaluateMechanismEdge(context.assess(edge),prior.completeHour));
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,objectiveReview:roleObjectives,killingStrategies}};
  });
  return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
   candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};

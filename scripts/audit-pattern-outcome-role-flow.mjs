@@ -21,6 +21,11 @@ for(const c of data.cases){
    return !o||o.status==='invalid-evidence'||o.selectionAuthority!==false||o.preferredObjective!==null||
     o.objectives.some(x=>x.effectConfirmed!==null||x.actualDemand!==null||x.excessConfirmed!==null||x.deficiencyConfirmed!==null);
   }))errors.push(c.id+':objective-integrity');
+  if(m?.candidates.some(q=>{
+   const s=q.rolePriority?.killingStrategies;
+   return !s||s.status==='invalid-evidence'||s.selectionAuthority!==false||s.preferredStrategy!==null||s.effectConfirmed!==null||
+    [...s.food,...s.mediation,...s.comparisons].some(x=>x.effectConfirmed!==null);
+  }))errors.push(c.id+':killing-strategy-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
@@ -31,5 +36,13 @@ for(const c of data.cases){
 }
 const contrastSummary=summarizeRoleContrasts(contrasts,contrastRows);
 const objectiveCounts={};for(const row of rows)for(const p of row.priorities)for(const o of p.objectiveReview?.objectives??[]){const k=o.clause+':'+o.objective+':'+o.conditionalStatus;objectiveCounts[k]=(objectiveCounts[k]??0)+1;}
-console.log(JSON.stringify({objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+const strategyCounts={};
+for(const row of rows)for(const p of row.priorities){
+ const s=p.killingStrategies;if(!s)continue;
+ for(const [kind,items] of [['food',s.food],['mediation',s.mediation]])for(const x of items){
+  const k=kind+':'+x.conditionalStatus;strategyCounts[k]=(strategyCounts[k]??0)+1;
+ }
+ for(const x of s.comparisons){const k='joint:'+x.simultaneousStatus;strategyCounts[k]=(strategyCounts[k]??0)+1;}
+}
+console.log(JSON.stringify({strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
