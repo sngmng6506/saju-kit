@@ -46,9 +46,16 @@ export function diagnoseDirectedPremise(p,context,partial=false){
  if(find('relative-generation-context')?.state==='unresolved')reasons.push('generation-comparison-context-unresolved');
  if(command?.status==='unresolved')reasons.push('command-not-assessed');
  const supply=(context?.groundedSupply?.actions??[]).filter(a=>a.from===from&&a.to===to&&a.kind===kind);
+ const targetContext=(context?.interpositionReview?.pressureContexts??[]).find(x=>x.targetId===to);
+ const sourceContext=(context?.interpositionReview?.pressureContexts??[]).find(x=>x.targetId===from);
+ const sourceNode=(context?.groundedSupply?.nodes??[]).find(n=>n.occurrenceIds.includes(from))?.nodeId;
  const cc=(command?.comparisonCoverage??[]).filter(x=>pair(x,from,to)),cmd=cc.length===1?cc[0]:null;
  return {from,to,kind,edgeId:e.edgeId??null,premiseState:p.state,conditionStates:cs,conditionBlockers:flags(cs),reasons:unique(reasons),
   groundedSupplyAction:supply.length===1?supply[0]:null,
+  interpositionContext:{sourceScope:sourceContext?.targetScope??null,targetScope:targetContext?.targetScope??null,
+   sourceControllers:sourceContext?.controllers??[],targetControllers:targetContext?.controllers??[],
+   exactControl:kind==='control'?targetContext?.controllers.find(c=>c.controllerNodeId===sourceNode)??null:null,
+   neutralizationConfirmed:null},
   source:a,target:b,comparison:{original,sensitivity,nonseason,seasonOnly,coverage:ps.length===1?'exact-pair':ps.length?'duplicate-pair':'not-projected'},
   command:{status:command?.status??null,reason:command?.reason??null,pairStatus:cmd?.status??null,hypotheses:(cmd?.hypotheses??[]).map(h=>({id:h.id,relation:orient(h.relation,cmd.left!==from)}))},
   effectConfirmed:null};
@@ -170,5 +177,36 @@ export function summarizeInterpositionReview(c,review,partial){
    p.pressure.helperRootedControllerObserved||p.pressure.helperControllerUnresolved))errors.push('interposition-screen-leak:'+p.id);
   if(p.kind==='mediation'&&p.directThreatControlLocal===false&&p.blockers.some(b=>b==='nonlocal-generation-chain'))errors.push('mediation-direct-edge-confused-with-chain:'+p.id);
  }
- return {...base,counts,errors};
+ const pressureCounts={visibleTargets:0,inScopeControllers:0,outsideScopeControllers:0,inScopeWithCandidates:0,inScopeWithoutCandidates:0,outsideScopeWithCandidates:0,screenedControllers:0};
+ const contexts=review.pressureContexts;
+ if(!Array.isArray(contexts))errors.push('pressure-context-missing');
+ else{
+  const targetIds=new Set(),bound=new Set();
+  for(const t of contexts){
+   pressureCounts.visibleTargets++;
+   if(targetIds.has(t.targetId)||!/^visible:(year|month|day|hour)$/.test(t.targetId)||t.targetNodeId!==t.targetId.slice(8)+':stem'||
+    !['in-scope','outside-target-scope'].includes(t.targetScope)||!Array.isArray(t.controllers)||t.effective!==null||t.allPressureResolved!==null){errors.push('pressure-target-contract');continue;}
+   targetIds.add(t.targetId);
+   const controllerIds=new Set();
+   for(const c of t.controllers){
+    const outside=t.targetScope==='outside-target-scope';
+    if(controllerIds.has(c.controllerNodeId)||!Array.isArray(c.candidatePathIds)||!Array.isArray(c.evaluatedPathIds)||!Array.isArray(c.screenedPathIds)||
+     c.neutralizationConfirmed!==null||c.remainingPressureConfirmed!==null){errors.push('pressure-controller-contract:'+t.targetId);continue;}
+    controllerIds.add(c.controllerNodeId);
+    if(outside){pressureCounts.outsideScopeControllers++;if(c.candidatePathIds.length)pressureCounts.outsideScopeWithCandidates++;}
+    else{pressureCounts.inScopeControllers++;if(c.candidatePathIds.length)pressureCounts.inScopeWithCandidates++;else pressureCounts.inScopeWithoutCandidates++;}
+    if(c.screenedPathIds.length)pressureCounts.screenedControllers++;
+    const expected=paths.filter(p=>p.target===t.targetNodeId&&p.threat===c.controllerNodeId),equal=(a,b)=>JSON.stringify([...a].sort())===JSON.stringify([...b].sort());
+    if(c.coverage!==(outside?'outside-target-scope':c.candidatePathIds.length?'candidate-path-observed':'no-candidate-path-observed')||
+     new Set(c.candidatePathIds).size!==c.candidatePathIds.length||
+     !equal(c.evaluatedPathIds,expected.map(p=>p.id))||!equal(c.screenedPathIds,expected.filter(p=>p.structuralScreen==='grounded-structure-screen-met').map(p=>p.id))||
+     (!outside&&!equal(c.candidatePathIds,c.evaluatedPathIds))||(outside&&c.evaluatedPathIds.length)||partial&&c.screenedPathIds.length)
+      errors.push('pressure-path-binding:'+t.targetId+':'+c.controllerNodeId);
+    for(const id of c.evaluatedPathIds)bound.add(id);
+   }
+  }
+  if(targetIds.size!==(partial?3:4)||!targetIds.has('visible:day')||bound.size!==paths.length||paths.some(p=>!bound.has(p.id)))errors.push('pressure-context-coverage');
+ }
+ return {...base,counts,pressureCounts,errors};
 }
+
