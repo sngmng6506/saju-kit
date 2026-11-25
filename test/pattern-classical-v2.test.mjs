@@ -329,3 +329,65 @@ test('native context audit pins strength policy and separates the two developmen
   assert.ok(s.candidates>0);
  }
 });
+
+import {observeStemInterference,reviewCandidateInterference,reviewPatternInterference,summarizeInterference} from '../scripts/lib/pattern-stem-interference.mjs';
+import {auditPatternInterference} from '../scripts/audit-classical-patterns.mjs';
+const intStem=(position,stem,tenGod,contacts=[],layer='visible')=>({id:layer==='visible'?'visible:'+position:'hidden:'+position+':'+stem,position,stem,tenGod,contacts,layer,dayReference:position==='day'&&layer==='visible'});
+const intEdge=(from,to,kind)=>({id:from+'>'+to,from,to,kind});
+test('adjacent and distant competitors remain distinct; self-combination is never removal',()=>{
+ const a='stem.combine:year-month',b='stem.combine:month-day';
+ const stems=[intStem('year','경','편관',[a]),intStem('month','을','겁재',[a,b]),intStem('day','경','비견',[b]),intStem('hour','정','정관')];
+ const obs=observeStemInterference({occurrences:stems},{edges:[]},true);
+ assert.equal(obs.pairs.length,2);assert.equal(obs.competition.length,1);
+ assert.ok(obs.pairs.every(p=>p.status==='competing-adjacent-contact'&&p.exclusivePairObserved===false));
+ assert.equal(obs.pairs.find(p=>p.id===b).dayContactKind,'day-participates');
+ assert.ok(obs.pairs.every(p=>p.removedParticipants.length===0&&p.effective===null));
+ const c='stem.combine:year-hour';
+ const distant=[intStem('year','경','편관',[a,c]),intStem('month','을','겁재',[a]),intStem('day','갑','비견'),intStem('hour','을','겁재',[c])];
+ const q=observeStemInterference({occurrences:distant},{edges:[]},true);
+ assert.equal(q.pairs.find(p=>p.id===a).status,'adjacent-no-adjacent-competitor');
+ assert.equal(q.pairs.find(p=>p.id===a).exclusivePairObserved,false);
+ assert.deepEqual(q.pairs.find(p=>p.id===a).remoteCompetitorIds,[c]);
+ assert.equal(q.pairs.find(p=>p.id===c).status,'separated-contact');
+ assert.ok(observeStemInterference({occurrences:distant},{edges:[]},false).pairs.every(p=>p.status==='partial'&&p.exclusivePairObserved===null));
+ assert.throws(()=>observeStemInterference({occurrences:[intStem('year','경','편관',[a])]},{edges:[]},false),/unpaired/);
+});
+test('preservation binds the actual protected occurrence, including hidden anchors, without cancellation',()=>{
+ const a='stem.combine:year-month';
+ const stems=[intStem('year','경','편관',[a]),intStem('month','을','겁재',[a]),intStem('day','갑','비견'),intStem('hour','신','정관'),intStem('month','신','정관',[],'hidden')];
+ const obs=observeStemInterference({occurrences:stems},{edges:[]},true);
+ const c=reviewCandidateInterference({candidateId:'p',family:'officer',anchorIds:['hidden:month:신']},obs,stems);
+ assert.equal(c.witnesses.length,1);assert.equal(c.witnesses[0].ruleId,'combine-killing-preserve-officer');
+ assert.equal(c.witnesses[0].target,'hidden:month:신');assert.ok(c.witnesses[0].concerns.includes('hidden-target-access'));
+ assert.equal(c.witnesses[0].preserved,null);assert.equal(c.rescued,null);
+ assert.equal(reviewCandidateInterference({candidateId:'q',family:'officer',anchorIds:[]},obs,stems).witnesses.length,0);
+ const wc=[...stems,intStem('year','무','편재',[],'hidden')];
+ const wObs=observeStemInterference({occurrences:wc},{edges:[intEdge('hidden:year:무','visible:year','generate')]},true);
+ const w=reviewCandidateInterference({candidateId:'w',family:'wealth',anchorIds:['hidden:year:무']},wObs,wc);
+ assert.equal(w.witnesses.length,1);assert.equal(w.witnesses[0].relation,'reverse-generate');
+ assert.equal(w.witnesses[0].threatEdgeId,'hidden:year:무>visible:year');
+ const wrong=observeStemInterference({occurrences:wc},{edges:[intEdge('visible:year','hidden:year:무','generate')]},true);
+ assert.equal(reviewCandidateInterference({candidateId:'w',family:'wealth',anchorIds:['hidden:year:무']},wrong,wc).witnesses.length,0);
+});
+test('ordered interference retains both directed mediator edges and actual positional separation',()=>{
+ const stems=[intStem('year','무','편재'),intStem('month','경','편관'),intStem('day','임','비견'),intStem('hour','갑','식신')];
+ const edges=[intEdge('visible:year','visible:day','control'),intEdge('visible:year','visible:month','generate'),intEdge('visible:month','visible:day','generate')];
+ const obs=observeStemInterference({occurrences:stems},{edges},true),d=obs.directed.find(e=>e.kind==='control');
+ assert.deepEqual(d.between,['visible:month']);assert.deepEqual(d.interference[0].mediatedGeneration,['visible:year>visible:month','visible:month>visible:day']);
+ assert.equal(d.effective,null);
+ const v=[intStem('year','무','편재'),intStem('month','병','식신'),intStem('day','갑','비견'),intStem('hour','임','편인')];
+ const result={completeHour:true,stemForce:{completeHour:true,occurrences:v},relativeForce:{completeHour:true,edges:[intEdge('visible:year','visible:hour','control')]},routeReview:{occurrences:v}};
+ const outcome={status:'structural-review',candidates:[{candidateId:'p',family:'resource',anchorIds:['visible:hour']}]};
+ const before=structuredClone({result,outcome});
+ const review=reviewPatternInterference(result,outcome),s=review.candidates[0].separation[0];
+ assert.deepEqual({result,outcome},before);assert.equal(s.dayBetween,true);assert.equal(s.scope,'anchor-related');assert.equal(s.noninterferenceConfirmed,null);
+ assert.equal(summarizeInterference([review]).separationWitnesses,1);assert.equal(review.selectionAuthority,false);
+ assert.equal(reviewPatternInterference({}, {status:'unavailable'}).status,'unavailable');
+});
+test('native interference audit retains cohort scope and does not remove or preserve any actor conclusively',()=>{
+ const r=auditPatternInterference();
+ assert.equal(r.shen.summary.charts,67);assert.equal(r.xu.summary.charts,34);assert.equal(r.excludedShen,14);
+ for(const s of [r.shen.summary,r.xu.summary]){
+  assert.equal(s.pairs,s.adjacent+s.separated);assert.equal(s.confirmedRemoval,0);assert.equal(s.confirmedPreservation,0);assert.equal(s.selectionAuthority,false);
+ }
+});
