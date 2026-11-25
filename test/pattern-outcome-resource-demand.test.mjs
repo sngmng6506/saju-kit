@@ -6,6 +6,7 @@ import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
 import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
 import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
 import {observeResourceBalanceContext,assessResourceDemand} from '../src/features/pattern/outcome-resource-demand.js';
+import {summarizeResourceDemandReview} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 const chart=(ps,complete=true)=>({pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))});
 const build=(ps,complete=true,direction='strong')=>{
@@ -74,4 +75,16 @@ test('native V10 composes resource context and conditions without decision autho
   for(const c of m.candidates){const d=c.rolePriority.resourceDemand;
    assert.ok(['diagnostic','partial','out-of-scope'].includes(d.status));assert.equal(d.actualDemand,null);}
  }
+});
+
+test('resource audit checks exact resource delivery and alternative provenance',()=>{
+ const x=build(synthetic),d=demand(x.context,'resource-output','drain-resource-supported-strong-day');
+ const mechanism={resourceBalanceContext:x.context,groundedSupply:x.supply,roleCapacity:{occurrences:x.prior.stemForce.occurrences},
+  candidates:[{candidateId:d.candidateId,rolePriority:{demandReview:d,resourceDemand:assessResourceDemand(d,x.context,true)}}]};
+ const audit=()=>summarizeResourceDemandReview({id:'synthetic'},mechanism,false);
+ assert.deepEqual(audit().errors,[]);assert.equal(audit().counts.conditions,1);
+ const c=mechanism.candidates[0].rolePriority.resourceDemand.conditions[0];
+ c.resourceId='visible:year';assert.ok(audit().errors.some(e=>e.startsWith('resource-condition-binding:')));
+ c.resourceId='visible:month';x.context.alternatives[0].sharedRootIds.push('foreign');
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-alternative-provenance:')));
 });
