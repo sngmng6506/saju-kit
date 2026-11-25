@@ -39,3 +39,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Output capacity v1](output-capacity-v1.md) provides hypothetical accepted control and residual output, not final strength.
 
 - [Multiaxis v3](strength-multiaxis-v3.md) is experimental and does not replace earlier policies.
+
+- [Pattern v7](pattern-useful-element-v7.md) is an explicit experimental composition policy. A preference or secondary family is not a final pattern, useful god, or favorable element; no automatic consumer migration.
