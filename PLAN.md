@@ -66,3 +66,5 @@ Use `npm run test:failures` for routine local regression: file-completion progre
 - [Conditional joint outcome](docs/pattern-outcome-joint.md): bounded exact-threat allocation search and source-action diagnostic audit; no authority, native run pending.
 
 - [Mechanism source v2](docs/pattern-outcome-mechanism-source-v2.md): expanded development source probes, explicit removal disputes and condition-level gap analysis; native diagnostic receipt required before tuning.
+
+- [Combination context](docs/pattern-outcome-combination-context.md): contact/role restriction/target supply separate, internal formation reuse, native validation pending.

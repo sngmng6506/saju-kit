@@ -19,7 +19,8 @@ export function buildOutcomeV2(input){
   selectedPattern:null,formed:null,broken:null,rescued:null,assistantGod:null,patternUsefulGod:null,usefulElement:null,
   selectionAuthority:false,confirmed:false};
  if(!prior.selection)return {prior,result:{...base,status:'unavailable',reason:prior.reason,reviews:[],access:null}};
- const access=observeOutcomeAccess(prior,analyzeFormationEvidence({saju:input.saju}));
+ const formation=analyzeFormationEvidence({saju:input.saju});
+ const access=observeOutcomeAccess(prior,formation);
  const reviews=prior.selection.candidates.map(c=>reviewExtendedOutcome(prior,access,reviewOutcomeGraph(prior,c,outcomeRules(c.family))));
- return {prior,result:{...base,status:prior.completeHour?'diagnostic':'partial',preference:prior.preference,reviews,access}};
+ return {prior,formation,result:{...base,status:prior.completeHour?'diagnostic':'partial',preference:prior.preference,reviews,access}};
 }

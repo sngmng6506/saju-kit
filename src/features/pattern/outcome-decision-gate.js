@@ -101,7 +101,7 @@ export function observeOutcomeDecision(result){
  const candidates=reviews.map(q=>{
   const c=candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global);
   const joint=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||c.status!=='abstained'?null:mechanism.get(q.candidateId)?.joint??null;
-  return {...c,jointHypothesis:joint};
+  return {...c,jointHypothesis:joint,combinationRoles:joint?mechanism.get(q.candidateId)?.combinationRoles??null:null};
  });
  const pref=result.preference,h=pref?.hypothesis;
  const hypothesis=h&&pref.status==='hypothesis'?{family:h.family,candidateIds:[...h.candidateIds],anchorStems:[...h.anchorStems],grounds:[...h.grounds],confirmed:false}:null;

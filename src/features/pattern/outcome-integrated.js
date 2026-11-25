@@ -21,7 +21,7 @@ export function analyzePatternOutcomeIntegrated(input){
 export function buildIntegratedOutcome(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('pattern-input','격국 분석 입력 객체가 필요합니다.');
  if(input.policy!==PATTERN_OUTCOME_INTEGRATED_VERSION)throw new SajuError('pattern-policy','성패구응 분석 정책을 명시해야 합니다.');
- const {prior,result}=buildOutcomeV5({...input,policy:PATTERN_OUTCOME_V5_VERSION});
+ const {prior,result,formation}=buildOutcomeV5({...input,policy:PATTERN_OUTCOME_V5_VERSION});
  const base={...result,version:PATTERN_OUTCOME_INTEGRATED_VERSION,scope:'ordinary-pattern-integrated-structural-evidence'};
  if(!result.access)return {prior,result:{...base,positionContext:null,winterClimate:null,compoundReview:null,assistantReview:null,purityReview:null,clarityReview:null,extensionReview:null,integrity:null}};
  const month=input.saju.pillars.month.branch,complete=prior.completeHour;
@@ -45,7 +45,7 @@ export function buildIntegratedOutcome(input){
   return {compound,assistant,clarity:{...clarity,routeInjury},extension,integrity:{candidateId:q.candidateId,...integrity}};
  });
  const integrityRows=rows.map(r=>r.integrity);
- return {prior,climateResult,result:{...base,reviews,winterClimate,positionContext,compoundReview:rows.map(r=>r.compound),assistantReview:rows.map(r=>r.assistant),
+ return {prior,formation,climateResult,result:{...base,reviews,winterClimate,positionContext,compoundReview:rows.map(r=>r.compound),assistantReview:rows.map(r=>r.assistant),
   purityReview:{...observeSourcePurity(input.saju,reviews,complete),generalized:observeGeneralPurity(prior,reviews,integrityRows)},clarityReview:rows.map(r=>r.clarity),extensionReview:rows.map(r=>r.extension),
   integrity:{status:integrityRows.some(r=>r.violations.length)?'invalid-evidence':'consistent',candidates:integrityRows,selectionAuthority:false}}};
 }
