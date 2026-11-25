@@ -154,12 +154,13 @@ export function summarizeInterpositionReview(c,review,partial){
   const participants=[p.participants?.helper,p.participants?.threat,p.participants?.target];
   const visible=participants.every(x=>x?.kind==='visible-stem');
   if(p.participants?.target?.kind!=='visible-stem')errors.push('interposition-target-scope:'+p.id);
-  if(!['protection','mediation'].includes(p.kind)||!Array.isArray(p.edges)||p.sourceOccurrenceIds.length===0||
-   new Set(p.sourceOccurrenceIds).size!==p.sourceOccurrenceIds.length||
+  if(!['protection','mediation'].includes(p.kind)||!Array.isArray(p.edges)||!Array.isArray(p.sourceOccurrenceIds)||p.sourceOccurrenceIds.length===0||
+   !Array.isArray(p.blockers)||new Set(p.sourceOccurrenceIds).size!==p.sourceOccurrenceIds.length||
    p.effectConfirmed!==null||p.neutralizationConfirmed!==null||p.effectiveProtection!==null||
    p.effectiveMediation!==null||p.selectionAuthority!==false||p.targetRootRequiredForPathObservation!==false||
-   !Array.isArray(p.blockers)||p.blockers.length!==new Set(p.blockers).size)errors.push('interposition-path-contract:'+p.id);
+   p.blockers.length!==new Set(p.blockers).size||!p.pressure||!Array.isArray(p.pressure.helper)||!Array.isArray(p.pressure.threat)||!Array.isArray(p.pressure.target))errors.push('interposition-path-contract:'+p.id);
   const screen=p.structuralScreen==='grounded-structure-screen-met';
+  if(p.structuralScreen!==(p.blockers.length?'context-review':'grounded-structure-screen-met'))errors.push('interposition-screen-state:'+p.id);
   if(screen&&(partial||!visible||!p.chainLocal||p.blockers.length||
    p.participants.helper.state!=='grounded-observation'||p.participants.threat.state!=='grounded-observation'||
    p.pressure.helperRootedControllerObserved||p.pressure.helperControllerUnresolved))errors.push('interposition-screen-leak:'+p.id);
