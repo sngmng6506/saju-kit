@@ -94,3 +94,42 @@ test('formation-contested roots remain clash-unexposed but do not become grounde
  assert.ok(evidence.unexposedSubstantialRootPositions.includes(slot.position));
  assert.equal(review.status,'diagnostic');
 });
+
+test('each evaluated path binds to exactly one original visible-target controller',()=>{
+ for(const complete of [true,false])for(const chart of [xu08,mediationChart]){
+  const {prior,review}=build(chart,complete);
+  assert.equal(review.status,complete?'diagnostic':'partial');
+  assert.equal(review.pressureContexts.length,complete?4:3);
+  const refs=[];
+  for(const t of review.pressureContexts){
+   const actor=prior.stemForce.occurrences.find(a=>a.id===t.targetId);
+   assert.deepEqual(t.controllers.map(c=>c.controllerNodeId).sort(),actor.controlReceived.map(e=>e.from).sort());
+   for(const c of t.controllers){
+    assert.equal(c.neutralizationConfirmed,null);assert.equal(c.remainingPressureConfirmed,null);
+    for(const id of c.evaluatedPathIds){
+     const p=review.paths.find(p=>p.id===id);
+     assert.equal(p.target,t.targetNodeId);assert.equal(p.threat,c.controllerNodeId);refs.push(id);
+    }
+   }
+  }
+  assert.deepEqual(refs.sort(),review.paths.map(p=>p.id).sort());
+  assert.equal(summarizeInterpositionReview({id:'chart'},review,!complete).errors.length,0);
+ }
+});
+test('Zhou wealth pressure is an explicit out-of-scope context, not failed protection',()=>{
+ const {review}=build(xu08),t=review.pressureContexts.find(t=>t.targetId==='visible:hour');
+ assert.equal(t.targetScope,'outside-target-scope');
+ assert.ok(t.controllers.some(c=>c.candidatePathIds.length>0));
+ assert.ok(t.controllers.every(c=>c.coverage==='outside-target-scope'&&!c.evaluatedPathIds.length&&!c.screenedPathIds.length&&c.neutralizationConfirmed===null));
+ assert.equal(t.allPressureResolved,null);
+});
+test('audit rejects cross-controller path reuse and missing pressure contexts',()=>{
+ const {review}=build(xu08);
+ const bad=structuredClone(review),t=bad.pressureContexts.find(t=>t.controllers.filter(c=>c.evaluatedPathIds.length).length>=2);
+ assert.ok(t);
+ const [a,b]=t.controllers.filter(c=>c.evaluatedPathIds.length);
+ a.evaluatedPathIds.push(b.evaluatedPathIds[0]);
+ assert.ok(summarizeInterpositionReview({id:'bad'},bad,false).errors.some(e=>e.startsWith('pressure-path-binding:')));
+ const missing=structuredClone(review);missing.pressureContexts.pop();
+ assert.ok(summarizeInterpositionReview({id:'bad'},missing,false).errors.includes('pressure-context-coverage'));
+});
