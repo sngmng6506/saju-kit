@@ -41,6 +41,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const rootContext=observeRootContext(prior,formation);
  const groundedSupply=observeGroundedSupply(prior,rootContext);
  const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
+ const officerSupplyContext=observeOfficerSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const outputSupplyContext=observeOutputSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const resourceSupplyContext=observeResourceSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const branchPressure=observeBranchPressure(prior,rootContext,formation);
@@ -63,8 +64,9 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const demandReview=observeRoleDemand(q,roleCapacity,groundedSupply,interpositionReview,policies,prior.completeHour);
   const resourceDemandConditions=assessResourceDemandConditions(q,demandReview,resourceSupplyContext,prior.completeHour);
   const outputDemandConditions=assessOutputDemandConditions(q,demandReview,outputSupplyContext,killingStrategies,prior.completeHour);
-  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions}};
+  const officerDemandConditions=assessOfficerDemandConditions(q,demandReview,officerSupplyContext,groundedSupply,killingStrategies,prior.completeHour);
+  return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,interpositionReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
