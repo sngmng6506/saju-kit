@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {validateRoleSourcePacket,evaluateRoleSourceCase,summarizeRoleSourceReplay} from '../scripts/lib/pattern-outcome-role-policy-source.mjs';
+import {analyzeNatalStructure} from '../src/core/natal.js';
+import {validateRoleSourcePacket,evaluateRoleSourceCase,summarizeRoleSourceReplay,inspectLiteralSourceChart} from '../scripts/lib/pattern-outcome-role-policy-source.mjs';
 const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
 const c=packet.cases.find(c=>c.id==='li-resource-output');
 function sample(){
@@ -45,4 +46,18 @@ test('summary requires both variants and exact probe denominators',()=>{
  const r=summarizeRoleSourceReplay(p,[a,b]);assert.deepEqual(r.errors,[]);assert.equal(r.expectedVariants,2);assert.equal(r.effectAccuracy,null);
  assert.ok(summarizeRoleSourceReplay(p,[a,a]).errors.includes('case-variant-coverage'));
  b.probes=[];assert.ok(summarizeRoleSourceReplay(p,[a,b]).errors.includes(c.id+':probe-coverage'));
+});
+
+test('all 24 chart variants pass literal core role validation, preserving scope distinction',()=>{
+ const rows=[];
+ for(const c of packet.cases)for(const partial of [false,true]){
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,partial&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
+  rows.push(inspectLiteralSourceChart(c,analyzeNatalStructure({saju}),{partial}));
+ }
+ assert.equal(rows.length,24);assert.ok(rows.every(r=>r.errors.length===0));
+ const tuo=rows.find(r=>r.id==='tuo-killing-output'&&!r.partial);
+ assert.equal(tuo.monthPrincipal,'식신');assert.equal(tuo.sourceFamily,'killing');
+ const zhou=rows.find(r=>r.id==='zhou-killing'&&!r.partial);
+ assert.ok(zhou.probes.some(p=>p.endpoints.some(e=>e.field==='outputId'&&e.tenGod==='상관')));
+ assert.ok(rows.some(r=>r.partial&&r.probes.some(p=>p.endpoints.some(e=>e.status==='omitted-hour'))));
 });
