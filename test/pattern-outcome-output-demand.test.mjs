@@ -1,5 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
+import {observeRelativeForce} from '../src/core/relative-force.js';
+import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
+import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
+import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
+import {observeInterpositionReview} from '../src/features/pattern/outcome-interposition-review.js';
+import {observeRoleCapacity} from '../src/features/pattern/outcome-role-capacity.js';
 import {observeOutputSupplyContext,assessOutputDemandConditions} from '../src/features/pattern/outcome-output-demand.js';
 import {summarizeOutputDemandConditions} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
@@ -75,4 +83,20 @@ test('audit rejects changed output edge, omitted feed and reassigned source obje
  const feeds=c.wealthFeeds;c.wealthFeeds=[];assert.ok(audit().errors.includes('output-wealth-feed-coverage'));c.wealthFeeds=feeds;
  const ctx=d.contexts[0];ctx.control={...ctx.control,to:'foreign'};assert.ok(audit().errors.some(e=>e.startsWith('output-objective-binding:')));
  d.contexts=[];assert.ok(audit().errors.some(e=>e.startsWith('output-objective-coverage:')));
+});
+
+test('actual core source packet preserves complete literal output inventory in all 24 variants',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
+ let variants=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
+  const stemForce=analyzeStemForceEvidence({saju}),prior={completeHour:complete,stemForce,relativeForce:observeRelativeForce(stemForce)};
+  const root=observeRootContext(prior,analyzeFormationEvidence({saju})),supply=observeGroundedSupply(prior,root);
+  const interposition=observeInterpositionReview(prior,root,supply),capacity=observeRoleCapacity(prior);
+  const outputSupplyContext=observeOutputSupplyContext(capacity,supply,interposition,{direction:'strong',policy:'controlled-test'},complete);
+  assert.equal(outputSupplyContext.status,complete?'diagnostic':'partial',c.id);
+  const report=summarizeOutputDemandConditions(c,{outputSupplyContext,groundedSupply:supply,roleCapacity:capacity,candidates:[]},!complete);
+  assert.deepEqual(report.errors,[],c.id);variants++;
+ }
+ assert.equal(variants,24);
 });
