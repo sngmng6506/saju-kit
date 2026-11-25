@@ -113,11 +113,36 @@ export function reviewCandidateInterference(candidate,observation,occurrences){
   .map(e=>({edgeId:e.edgeId,wealth:e.from,resource:e.to,between:[...e.between],dayBetween:e.between.some(id=>byId.get(id)?.dayReference),interference:e.interference,scope:anchors.has(e.from)||anchors.has(e.to)?'anchor-related':'officer-chart-context',noninterferenceConfirmed:null}));
  return {candidateId:candidate.candidateId,family:candidate.family,witnesses,separation,formed:null,broken:null,rescued:null,selectionAuthority:false};
 }
+// Bind only explicitly corresponding motif conditions, never fuzzy name matching.
+const conditionRules={
+ 'killing-combined-without-loss-of-officer':['combine-killing-preserve-officer'],
+ 'resource-controls-hurting-effect':['combine-hurting-preserve-officer'],
+ 'wealth-controls-resource-preserves-food':['combine-resource-preserve-food'],
+ 'wealth-resource-noninterference':[],
+ 'resource-wealth-noninterference':[]
+};
+export function reviewInterferenceConditions(motifs,candidate){
+ return motifs.flatMap(m=>m.clauses.filter(k=>k.kind==='contextual'&&Object.hasOwn(conditionRules,k.name)).map(k=>{
+  const ids=conditionRules[k.name];
+  const witnesses=candidate.witnesses.filter(w=>ids.includes(w.ruleId));
+  const separation=ids.length?[]:candidate.separation;
+  // Some witness mechanisms (combine versus control) are alternatives,
+  // not proof of the named condition. This is diagnostic evidence only.
+  return {motifId:m.id,condition:k.name,witnesses:witnesses.map(w=>({ruleId:w.ruleId,combinationId:w.combinationId,helper:w.helper,obstacle:w.obstacle,target:w.target})),
+   separationEdgeIds:unique(separation.map(s=>s.edgeId)),
+   status:m.predicate===false?'literal-motif-excluded':witnesses.length||separation.length?'related-structure-observed':'no-related-structure-observed',
+   doctrinalValue:null,effective:null};
+ }));
+}
 export function reviewPatternInterference(result,outcome){
  if(!result.stemForce||!result.relativeForce||outcome.status==='unavailable')return {version:STEM_INTERFERENCE_VERSION,status:'unavailable',pairs:[],competition:[],directed:[],candidates:[],selectionAuthority:false};
  const obs=observeStemInterference(result.stemForce,result.relativeForce,result.completeHour===true&&result.stemForce.completeHour===true&&result.relativeForce.completeHour===true);
  const {visible,relationEdges,...publicObs}=obs;
- return {...publicObs,candidates:outcome.candidates.map(c=>reviewCandidateInterference(c,obs,result.routeReview.occurrences))};
+ return {...publicObs,candidates:outcome.candidates.map(c=>{
+  const review=reviewCandidateInterference(c,obs,result.routeReview.occurrences);
+  const motifs=result.outcomes?.find(x=>x.candidateId===c.candidateId)?.motifs??[];
+  return {...review,conditions:reviewInterferenceConditions(motifs,review)};
+ })};
 }
 export function summarizeInterference(reviews){
  const pairs=reviews.flatMap(r=>r.pairs),candidates=reviews.flatMap(r=>r.candidates),witnesses=candidates.flatMap(c=>c.witnesses);
@@ -126,5 +151,6 @@ export function summarizeInterference(reviews){
   competitionOccurrences:reviews.reduce((n,r)=>n+r.competition.length,0),candidates:candidates.length,preservationWitnesses:witnesses.length,
   byRule:Object.fromEntries(rules.map(r=>[r.id,witnesses.filter(w=>w.ruleId===r.id).length])),
   separationWitnesses:candidates.reduce((n,c)=>n+c.separation.length,0),
+  conditionReviews:candidates.reduce((n,c)=>n+c.conditions.length,0),conditionsWithRelatedStructure:candidates.reduce((n,c)=>n+c.conditions.filter(k=>k.status==='related-structure-observed').length,0),
   confirmedRemoval:0,confirmedPreservation:0,selectionAuthority:false};
 }
