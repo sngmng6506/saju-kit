@@ -60,8 +60,12 @@ test('native branch assistant routes require complete month group and actual vis
  assert.ok(all(a,'peer-group-output-wealth').some(w=>w.roles.wealth==='visible:year'));
  assert.ok(a.assistantExtension.candidates.some(q=>q.branchDependencies.some(g=>g.alternatives.some(x=>x.supportingNonMonthSlots.includes('branch:day')&&x.supportingNonMonthSlots.includes('branch:hour')))));
  assert.equal(all(run(['병자','기해','계묘',null]),'peer-group-output-wealth').length,0);
- assert.ok(all(run(['계자','임신','경진','무인']),'peer-group-output-projection').some(w=>w.roles.projection==='visible:year'));
- assert.equal(all(run(['갑자','무신','경진','무인']),'peer-group-output-projection').length,0);
+ // Keep the 申子辰 group and every other pillar fixed; only the
+ // year stem changes. 癸子 is not a valid sexagenary pillar.
+ const projected=run(['임자','무신','경진','무인']);
+ const unprojected=run(['갑자','무신','경진','무인']);
+ assert.ok(all(projected,'peer-group-output-projection').some(w=>w.roles.projection==='visible:year'));
+ assert.equal(all(unprojected,'peer-group-output-projection').length,0);
 });
 test('V9 inherited contract preserved and new evidence never confirms assistant',()=>{
  const args={saju:chart(['정묘','신유','갑자','임신']),birthBasis:'verified-chart'};

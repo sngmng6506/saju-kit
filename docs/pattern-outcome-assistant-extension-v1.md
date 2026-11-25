@@ -20,3 +20,7 @@ npm run test:failures
 ```
 
 Next: actual native integration, storage extension parity, independent source/effective-force labels, and V10 abstention gate.
+
+## Native fixture correction
+
+User-reported run at `aef43d4`: 463/464 native tests passed, and all 18 other validation jobs passed. The remaining failure was an invalid 癸子 year pillar in the synthetic metal-water projection control, rejected correctly by the natal validator. Replace it with 壬子 and hold the other pillars identical to the negative control (戊申 庚辰 戊寅). Both corrected inputs pass the actual natal pillar validator; the original fails with `pillar`. No runtime rule or frozen historical label changed. Full native rerun pending.
