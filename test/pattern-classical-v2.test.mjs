@@ -181,3 +181,74 @@ test('native efficacy audit reports cohorts separately without final outcome aut
   assert.ok(s.candidates>0);
  }
 });
+
+import {allOf,anyOf,not,alternatives,evaluateOutcomeLogic,reviewOutcomeDecision,summarizeOutcomeDecisions} from '../scripts/lib/pattern-outcome-decision.mjs';
+import {auditOutcomeDecisions} from '../scripts/audit-classical-patterns.mjs';
+test('outcome algebra obeys three-valued truth tables and open-world coverage',()=>{
+ const values=[true,false,null];
+ const and=[[true,false,null],[false,false,false],[null,false,null]],or=[[true,true,true],[true,false,null],[true,null,null]];
+ for(let i=0;i<3;i++)for(let j=0;j<3;j++){
+  assert.equal(allOf([values[i],values[j]]),and[i][j]);
+  assert.equal(anyOf([values[i],values[j]]),or[i][j]);
+  assert.equal(not(allOf([values[i],values[j]])),anyOf([not(values[i]),not(values[j])]));
+ }
+ assert.deepEqual(values.map(not),[false,true,null]);
+ assert.equal(alternatives([]),null);assert.equal(alternatives([],{exhaustive:true}),false);
+ assert.equal(alternatives([false]),null);assert.equal(alternatives([false],{exhaustive:true}),false);
+ assert.throws(()=>allOf([undefined]),/invalid truth/);
+});
+test('conditional outcome algebra distinguishes clean, damaged, rescued, incomplete and independent threats',()=>{
+ const threat=(id,damage,rescues=[],rescueInventoryComplete=true)=>({id,damage,rescues,rescueInventoryComplete});
+ const run=(support,threats,threatInventoryComplete=true)=>evaluateOutcomeLogic({support,threats,threatInventoryComplete});
+ assert.equal(run(true,[]).hypothesis,'cleanFormation');
+ assert.equal(run(true,[threat('a',true)]).hypothesis,'formationWithDamage');
+ assert.equal(run(false,[threat('a',true)]).hypothesis,'damageWithoutSupport');
+ assert.equal(run(true,[threat('a',true,[true])]).hypothesis,'formationAfterRescue');
+ const mixed=run(true,[threat('a',true,[true]),threat('b',true)]);
+ assert.equal(mixed.hypothesis,'formationWithDamage');assert.equal(mixed.rescuedDamage,true);
+ assert.equal(mixed.threats[0].remainingDamage,false);assert.equal(mixed.threats[1].remainingDamage,true);
+ assert.equal(run(true,[],false).hypothesis,null);
+ assert.equal(run(true,[threat('a',true,[],false)]).hypothesis,null);
+ assert.equal(run(true,[threat('a',true,[true])],false).hypothesis,null);
+ assert.equal(run(null,[threat('a',true)]).hypothesis,null);
+ assert.equal(run(false,[]).hypothesis,null);
+ assert.equal(mixed.formed,null);assert.equal(mixed.broken,null);assert.equal(mixed.rescued,null);
+ assert.throws(()=>run(true,[threat('a',true),threat('a',false)]),/duplicate threat/);
+});
+const decisionControl=()=>{
+ const result={completeHour:true,outcomes:[{candidateId:'p',family:'officer',motifs:[
+  {id:'s',kind:'support',source:'control',predicate:null,clauses:[{kind:'present',matched:true},{kind:'contextual',name:'force',matched:null}]},
+  {id:'d',kind:'damage',source:'control',predicate:false,clauses:[{kind:'present',matched:false},{kind:'contextual',name:'damage',matched:null}]},
+  {id:'r',kind:'rescue',source:'control',predicate:true,clauses:[{kind:'present',matched:true}]}
+ ]}]};
+ const outcome={status:'structural-review',candidates:[{candidateId:'p',family:'officer'}]};
+ const efficacy={status:'research-review',candidates:[{candidateId:'p',family:'officer',routes:[],paths:[],triads:[],threats:[
+  {routeId:'damage',damage:{from:'output',to:'officer',effective:null,status:'necessary-screen-met'},possibleRescues:[{neutralizesThreat:null}]}
+ ]}]};
+ return {result,outcome,efficacy};
+};
+test('source motif truth does not imply effective force, and excluded clauses do not close the source inventory',()=>{
+ const {result,outcome,efficacy}=decisionControl(),before=structuredClone({result,outcome,efficacy});
+ const r=reviewOutcomeDecision(result,outcome,efficacy),c=r.candidates[0];
+ assert.deepEqual({result,outcome,efficacy},before);
+ assert.deepEqual(c.summary.damage.excluded,['d']);assert.equal(c.summary.damage.effective,null);
+ assert.deepEqual(c.summary.rescue.literalMatched,['r']);assert.equal(c.motifs[2].effective,null);
+ assert.equal(c.motifs[1].effective,false);assert.equal(c.logic.status,'abstained');assert.equal(c.formed,null);
+ assert.ok(c.reviewReasons.includes('motif:s:force'));
+ assert.equal(r.selectedPattern,null);assert.equal(r.selectionAuthority,false);
+ const s=summarizeOutcomeDecisions([r]);assert.equal(s.abstained,1);assert.equal(s.finalDecisions,0);
+ assert.equal(s.motifCounts.rescue.literalMatched,1);
+ result.completeHour=false;assert.equal(reviewOutcomeDecision(result,outcome,efficacy).status,'partial');
+ assert.equal(reviewOutcomeDecision({}, {status:'unavailable'}, {}).status,'unavailable');
+ result.outcomes[0].motifs[0].predicate=true;
+ assert.throws(()=>reviewOutcomeDecision(result,outcome,efficacy),/inconsistent motif predicate/);
+});
+test('native outcome decision audit preserves separate cohorts and reports abstention instead of unsupported decisions',()=>{
+ const r=auditOutcomeDecisions();
+ assert.equal(r.shen.summary.charts,67);assert.equal(r.xu.summary.charts,34);assert.equal(r.excludedShen,14);
+ for(const s of [r.shen.summary,r.xu.summary]){
+  assert.ok(s.candidates>0);assert.equal(s.abstained,s.candidates);assert.equal(s.finalDecisions,0);
+  assert.equal(s.finalOutcomeAccuracy,null);assert.equal(s.selectionAuthority,false);
+  for(const x of Object.values(s.motifCounts))assert.equal(x.total,x.literalMatched+x.excluded+x.unresolved);
+ }
+});
