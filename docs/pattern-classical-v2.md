@@ -173,3 +173,34 @@ npm run audit:dead-code
 ```
 
 Native full checkout remains blocked by GitHub DNS failure (Node 22.16.0 available). Native test suite, v10+strength integrated CLI and policy equivalence remain unexecuted. No public runtime changes. Before merging or adding a definitive selection model, run the native suite and inspect structural blocker distribution, compare independently adjudicated positive/negative role witnesses and resolve the candidate-anchor/access distinction.
+
+
+## Actor access and month-anchor ablation v1
+
+Engineering revision of the existing candidate/occurrence contracts, not a new doctrinal rule. Source context is the existing [month-command evidence](../src/core/month-command.js), [candidate source](../src/features/pattern/candidate-source.js), [stem force](../src/core/stem-force.js) and [root dynamics](../src/core/root-dynamics.js). No new classical source collation. A textual four-pillar record does not determine the elapsed time since the solar term; therefore the principal hidden stem is not assumed to be the actual commander (司令).
+
+The access review separates (1) literal month source, (2) exact projected visible actor, (3) same-element root/context, (4) independent hidden action (unresolved). Hidden exact projection excludes the day-reference stem; its exact day match is stored separately. Same-element opposite polarity is not exact projection. Visible root observations retain the actual hidden occurrence and clash exposure. Unknown hour prevents an absence claim. Stem-to-stem, same-pillar stem/branch, cross-pillar stem/branch and branch-to-branch edges are classified separately; these are physical-layer contexts, not effect decisions. Exact visible counterpart IDs are alternatives, not rewritten edges or verified transfers.
+
+Month principal retains its actual month hidden source and matching non-day visible actors; projected month candidates retain the exact month source plus the declared visible positions. Storage hypotheses retain declared projected actors and monthly same-element context, not an invented exact stem. Formation and peer-class candidates retain contextual evidence only; neither is assigned a new active anchor. The scoped anchor set is a subset of the legacy set. Other same-stem hidden occurrences remain in the graph, not direct month anchors. The original public outputs and all original candidate inventories are unchanged. The parallel scoped projection exposes only candidate IDs/family/anchors for role-contrast ablation and must not be used as a complete outcome object. No new weights or force thresholds.
+
+Executed 18 actual repository modules (core graph, candidate generator, storage projection and access review) in isolated JavaScript from d8b392d. Adapter reproduced the legacy same-stem anchor mapping and derived hidden clash flags from the actual structure. All 101 eligible textual charts completed; this is not a complete v10 native evaluation. Later 8a3328d narrows the ablation projection and distinguishes missing-hour projection from absence; complete-chart access counts unchanged by those changes.
+
+| Cohort | charts | candidates | legacy candidate-anchor links | scoped links | excluded links | errors |
+|---|---:|---:|---:|---:|---:|---:|
+| Shen | 67 | 141 | 327 | 204 | 123 | 0 |
+| Xu | 34 | 74 | 178 | 120 | 58 | 0 |
+| Total | 101 | 215 | 505 | 324 | 181 | 0 |
+
+These are candidate-occurrence links, not independent actors or proven erroneous historical labels. Formation-only context can also account for removed links. Access classification found 300 exact-projected and 775 unprojected hidden occurrences across the two cohorts, and 494 visible-visible, 858 vertical, 2599 cross-pillar mixed-layer and 3453 branch-branch potential edges. All remain structurally observed, with no confirmed hidden action. Four synthetic test groups passed on the final module; an initial distance binding defect (position object instead of position string) was detected and fixed before the corpus run. Full V10+role contrast comparison attempts exceeded the connector call limit; no scoped role-witness count or accuracy is claimed.
+
+```sh
+node scripts/audit-classical-patterns.mjs --access
+node scripts/audit-classical-patterns.mjs --access --rows
+node --test test/pattern-classical-v2.test.mjs
+npm run test:failures
+npm run audit:architecture
+npm run audit:layout
+npm run audit:dead-code
+```
+
+The native CLI compares legacy and scoped role-contrast witnesses on identical full v10 graphs, without the strength proxy to isolate anchor scope. Native regression still pending. Next: actually run this comparison, then evaluate layer-specific mechanisms and independently adjudicated positive/negative references. Do not simply remove the inherited hidden-access blocker or treat exact projection as effective hidden action. No main merge or final decision authority.
