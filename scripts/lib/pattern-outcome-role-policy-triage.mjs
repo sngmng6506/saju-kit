@@ -245,3 +245,43 @@ export function summarizeInterpositionReview(c,review,partial){
  }
  return {...legacy,roleNeutral:{counts:all.counts??null,pressureCounts:all.pressureCounts??null,effectConfirmed:null},errors};
 }
+
+export function summarizeRoleDemandReview(c,mechanism,partial){
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],counts={candidates:0,objectives:0,obligations:0,unboundRoles:0,hiddenRoles:0,unmappedRequirements:0},axes={};
+ if(!Array.isArray(mechanism?.candidates))return {...base,errors:['demand-candidates-missing']};
+ const candidateIds=new Set();
+ for(const m of mechanism.candidates){
+  const p=m.rolePriority,d=p?.demandReview;
+  if(candidateIds.has(m.candidateId)||!d||d.candidateId!==m.candidateId||d.version!=='role-demand-review-v1'||d.selectionAuthority!==false||
+   d.actualDemand!==null||d.excessConfirmed!==null||d.deficiencyConfirmed!==null||d.effectConfirmed!==null||!Array.isArray(d.objectives)||!Array.isArray(d.unmappedRequirements)){errors.push('demand-contract:'+m.candidateId);continue;}
+  candidateIds.add(m.candidateId);
+  if(d.status==='out-of-scope'){if(d.objectives.length||d.unmappedRequirements.length)errors.push('demand-scope-leak:'+m.candidateId);continue;}
+  counts.candidates++;
+  if(d.status!==(partial?'partial':'diagnostic')){errors.push('demand-status:'+m.candidateId);continue;}
+  const expected=(p.objectiveReview?.objectives?.length??0)+(p.killingStrategies?.food?.length??0)+(p.killingStrategies?.mediation?.length??0)+
+   [...(p.killingWealth?.supply??[]),...(p.killingWealth?.dualRoles??[]),...(p.killingWealth?.mediationContacts??[]),
+    ...(p.resourceStrategies?.outputDrain??[]),...(p.resourceStrategies?.killingSupply??[]),...(p.resourceStrategies?.officerContext??[])].reduce((n,x)=>n+x.objectives.length,0);
+  if(d.objectives.length!==expected)errors.push('demand-objective-coverage:'+m.candidateId);
+  const actorRows=d.actorEvidence??[],actors=new Map(actorRows.map(a=>[a.id,a])),ids=new Set();
+  if(actors.size!==actorRows.length||actorRows.some(a=>a.effectiveForce!==null))errors.push('demand-actor-integrity:'+m.candidateId);
+  for(const o of d.objectives){
+   counts.objectives++;
+   if(ids.has(o.id)||o.selected!==false||o.actualDemand!==null||o.effectConfirmed!==null||!Array.isArray(o.obligations)){errors.push('demand-objective-contract:'+o.id);continue;}
+   ids.add(o.id);
+   const seen=new Set();
+   for(const q of o.obligations){
+    counts.obligations++;axes[q.axis]=(axes[q.axis]??0)+1;
+    const a=actors.get(q.actorId);
+    if(q.actorId===null)counts.unboundRoles++;
+    if(a?.layer==='hidden')counts.hiddenRoles++;
+    if(seen.has(q.id)||q.actorId!==(o.roles[q.role]??null)||q.actorId!==null&&!a||
+     q.evidenceStatus!==(q.actorId===null?'unbound-role-review':a?.layer==='hidden'?'hidden-access-review':'structural-context-only')||
+     q.actualDemand!==null||q.excessConfirmed!==null||q.deficiencyConfirmed!==null||q.preservationConfirmed!==null)errors.push('demand-obligation-contract:'+o.id+':'+q.id);
+    seen.add(q.id);
+   }
+  }
+  counts.unmappedRequirements+=d.unmappedRequirements.length;
+  if(d.unmappedRequirements.some(x=>!ids.has(x.objectiveRef)||typeof x.label!=='string'))errors.push('demand-unmapped-reference:'+m.candidateId);
+ }
+ return {...base,counts,axes,errors};
+}
