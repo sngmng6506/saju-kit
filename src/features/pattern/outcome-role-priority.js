@@ -229,7 +229,7 @@ export function assessRoleObjectives(review,prior,capacity,comparisons,mechanism
 // K01: compare exact food-control and resource-mediation strategies.
 // The latter is a contextual path, not a synthetic support witness.
 export function assessKillingStrategies(review,prior,capacity,flow,mechanism,strength,assessEdge){
- const base={version:'killing-strategy-policy-v1',candidateId:review.candidateId,clause:'K01',
+ const base={version:'killing-strategy-policy-v2',candidateId:review.candidateId,clause:'K01',
   source:'https://luckclub.cn/bazi/002/041/',selectionAuthority:false,preferredStrategy:null,effectConfirmed:null};
  const empty=status=>({...base,status,food:[],mediation:[],comparisons:[]});
  if(review.status==='out-of-scope'||review.family!=='killing')return empty('out-of-scope');
@@ -238,6 +238,12 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
  const raw=new Map(prior.relativeForce.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
  const registry=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
  const day=capacity.occurrences.filter(o=>o.dayReference);
+ const originalActors=new Map(prior.stemForce.occurrences.map(o=>[o.id,o]));
+ const visible=capacity.occurrences.filter(o=>o.layer==='visible');
+ if(originalActors.size!==prior.stemForce.occurrences.length||originalActors.size!==actors.size||
+  new Set(visible.map(o=>o.position)).size!==visible.length||
+  visible.some(o=>o.id!=='visible:'+o.position)||
+  capacity.occurrences.some(o=>{const a=originalActors.get(o.id);return !a||['position','layer','tenGod','dayReference'].some(k=>a[k]!==o[k]);}))return empty('invalid-evidence');
  if(day.length!==1||actors.size!==capacity.occurrences.length||raw.size!==prior.relativeForce.edges.length||
   registry.size!==mechanism.edges.length||typeof assessEdge!=='function')return empty('invalid-evidence');
  const dayId=day[0].id,dayStem=prior.stemForce.occurrences.find(o=>o.id===dayId&&o.dayReference)?.stem;
@@ -279,7 +285,7 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
   if(d!==dayId||!distinct([f,k,d])||actors.get(f).tenGod!=='식신'||actors.get(k).tenGod!=='편관'||
    !review.anchorIds.includes(k))return empty('invalid-evidence');
   const required=[[f,k,'control'],[k,d,'control'],[d,f,'generate']];
-  if(required.some(([a,b,c])=>!w.edges.some(e=>e.from===a&&e.to===b&&e.kind===c)))return empty('invalid-evidence');
+  if(required.some(([a,b,c])=>!w.edges.some(e=>e.from===a&&e.to===b&&e.kind===c&&e.edgeId===raw.get(edgeKey(a,b,c))?.id)))return empty('invalid-evidence');
   const [control,pressure,drain]=required.map(args=>edge(...args));
   const route=routeRows.get(key(r.id,w.id));
   if(!validStates.includes(route.status)||route.effective!==null)return empty('invalid-evidence');
@@ -306,11 +312,11 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
    const harm=edge(a.id,i,'control',false),feed=edge(a.id,k,'generate',false);
    return harm||feed?[{wealthId:a.id,resourceControl:harm,killingSupply:feed,netEffectConfirmed:null}]:[];
   });
-  const exposure=premise('resource-preservation',wealthContacts.some(x=>x.resourceControl)?'unresolved':'supported',
-   {wealthContacts,scope:'visible-directed-contacts-only',actualPreservation:null});
+  const exposure=premise('resource-preservation','unresolved',
+   {wealthContacts,scope:'visible-directed-contacts-only',visibleControlObserved:wealthContacts.some(x=>x.resourceControl)?true:complete?false:null,actualPreservation:null});
   const pathPremises=[...ps,exposure];
   mediation.push({id:m.id,killingId:k,resourceId:i,dayId:d,premises:pathPremises,pressure,
-   conditionalStatus:combinePremises(pathPremises),weakDayPremises:[motive,...pathPremises],
+   transferConditionalStatus:combinePremises(ps),conditionalStatus:combinePremises(pathPremises),weakDayPremises:[motive,...pathPremises],
    weakDayConditionalStatus:combinePremises([motive,...pathPremises]),
    unresolvedRequirements:['resource-actual-throughput','killing-pressure-actually-relieved','resource-preserved-under-all-contacts'],effectConfirmed:null});
  }
@@ -322,11 +328,119 @@ export function assessKillingStrategies(review,prior,capacity,flow,mechanism,str
   comparisons.push({foodRoute:f.route,mediationContextId:m.id,killingId:f.killingId,dayId:f.dayId,
    foodStatus:f.conditionalStatus,mediationStatus:m.conditionalStatus,weakDayMediationStatus:m.weakDayConditionalStatus,
    crossContact:obstruction,sharedRelations:[{from:f.killingId,to:f.dayId,kind:'control'}],
-   simultaneousStatus:obstruction?'interference-review':combinePremises(ps),
+   interferenceStatus:!complete?'partial':obstruction?'contact-'+obstruction.status:'contact-not-observed',
+   simultaneousStatus:!complete?'unresolved':obstruction&&obstruction.status!=='opposed'?'interference-review':combinePremises(ps),
    preferenceHypothesis:dir==='weak'&&polarity==='yang'?'review-mediation-first':null,
    unresolvedRequirements:['no-proof-of-net-pressure-reduction','shared-killing-pressure-not-additive','resource-food-contact-not-confirmed-injury'],
    preferredStrategy:null,effectConfirmed:null});
  }
  return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',food,mediation,comparisons,
   limitations:['source-conditional-strategy-not-final-choice','no-synthetic-support-witness','no-cross-anchor-comparison','no-effective-pressure-cancellation']};
+}
+
+
+// K03 consumes the existing compound motif, not a second witness generator.
+// Capacity, role demand and outcome remain distinct; no polarity-based sign netting.
+export function assessKillingWealth(review,prior,capacity,mechanism,compound,strategies,strength,comparisons,rootContext,commandReview){
+ const base={version:'killing-wealth-policy-v1',candidateId:review.candidateId,clause:'K03',
+  source:'https://luckclub.cn/bazi/002/041/',selectionAuthority:false,preferredObjective:null,effectConfirmed:null};
+ const empty=status=>({...base,status,supply:[],dualRoles:[],mediationContacts:[]});
+ if(review.status==='out-of-scope'||review.family!=='killing')return empty('out-of-scope');
+ if([capacity,mechanism,strategies,comparisons,rootContext,commandReview].some(x=>!x||x.status==='invalid-evidence')||
+  !compound||compound.violations?.length||strategies.candidateId!==review.candidateId)return empty('invalid-evidence');
+ const complete=prior.completeHour,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
+ const actors=new Map(capacity.occurrences.map(o=>[o.id,o])),day=capacity.occurrences.filter(o=>o.dayReference);
+ const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w})));
+ const lookup=new Map(entries.map(x=>[key(x.r.id,x.w.id),x]));
+ const edges=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
+ const routes=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
+ const refKey=r=>key(r.ruleId,r.witnessId);
+ const distinct=ids=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
+ if(day.length!==1||actors.size!==capacity.occurrences.length||lookup.size!==entries.length||edges.size!==mechanism.edges.length||
+  routes.size!==entries.length||mechanism.routes.length!==entries.length||entries.some(x=>!routes.has(key(x.r.id,x.w.id))))return empty('invalid-evidence');
+ const dayId=day[0].id,wealth=id=>actors.get(id)?.layer==='visible'&&['정재','편재'].includes(actors.get(id)?.tenGod);
+ const killing=id=>actors.get(id)?.tenGod==='편관'&&review.anchorIds.includes(id);
+ const resource=id=>actors.get(id)?.layer==='visible'&&['정인','편인'].includes(actors.get(id)?.tenGod);
+ const output=id=>actors.get(id)?.layer==='visible'&&['식신','상관'].includes(actors.get(id)?.tenGod);
+ const has=(w,a,b,k)=>w.edges.some(e=>e.from===a&&e.to===b&&e.kind===k);
+ let invalid=false;
+ const directed=(from,to,kind,label)=>{
+  const e=edges.get(edgeKey(from,to,kind));
+  if(!e||e.effective!==null||!validStates.includes(e.status)){invalid=true;return premise(label,'unresolved',{from,to,kind});}
+  return premise(label,complete?e.status:'unresolved',{from,to,kind,conditions:e.conditions,edgeId:e.id??null});
+ };
+ const dayPremise=want=>premise('day-capacity-hypothesis',dir===null?'unresolved':dir===want?'supported':'opposed',{direction:dir,expected:want,policy:strength?.policy??null});
+ const unknown=(id,evidence=null)=>premise(id,'unresolved',evidence);
+ const objective=(id,premises)=>({id,premises,conditionalStatus:combinePremises(premises),actualDemand:null,effectConfirmed:null});
+ const supply=[],dualRoles=[],mediationContacts=[];
+ const supplyMap=new Map();
+ for(const {r,w} of entries.filter(x=>x.r.id==='killing-wealth')){
+  const {obstacle:a,target:k}=w.roles;
+  if(r.kind!=='damage'||!wealth(a)||!killing(k)||!distinct([a,k,dayId])||!has(w,a,k,'generate'))return empty('invalid-evidence');
+  const generation=directed(a,k,'generate','wealth-supplies-killing');
+  const row={route:ref(r,w),wealthId:a,killingId:k,dayId,generation,
+   objectives:[objective('wealth-supplies-needed-killing',[dayPremise('strong'),generation,unknown('killing-deficiency')]),
+    objective('wealth-reinforces-dangerous-killing',[generation,unknown('killing-pressure-exceeds-day-capacity',{direction:dir})])],
+   effectConfirmed:null};
+  supply.push(row);supplyMap.set(key(r.id,w.id),row);
+ }
+ const motifs=(compound.motifs??[]).filter(m=>m.id==='killing-wealth-rescue-with-killing-supply');
+ if(motifs.length!==1)return empty('invalid-evidence');
+ const seen=new Set();
+ for(const m of motifs[0].witnesses){
+  const a=lookup.get(refKey(m.left)),t=lookup.get(refKey(m.boundThreat)),b=lookup.get(refKey(m.right));
+  const id=JSON.stringify([m.left.ruleId,m.left.witnessId,m.right.ruleId,m.right.witnessId,m.boundThreat.ruleId,m.boundThreat.witnessId]);
+  if(seen.has(id)||!a||!t||!b||a.r.id!=='killing-wealth-removes-resource'||a.r.kind!=='rescue'||
+   t.r.id!=='killing-resource-blocks-food'||t.r.kind!=='damage'||b.r.id!=='killing-wealth'||
+   a.r.threatRuleId!==t.r.id||a.w.threatWitnessId!==t.w.id)return empty('invalid-evidence');
+  seen.add(id);
+  const {helper:w,obstacle:i,food:f,target:k}=a.w.roles;
+  const feed=supplyMap.get(refKey(m.right));
+  if(!feed||feed.wealthId!==w||feed.killingId!==k||!wealth(w)||!resource(i)||!output(f)||!killing(k)||
+   !distinct([w,i,f,k,dayId])||t.w.roles.obstacle!==i||t.w.roles.food!==f||t.w.roles.target!==k||
+   !has(t.w,i,f,'control')||!has(t.w,f,k,'control')||!has(a.w,w,i,'control'))return empty('invalid-evidence');
+  const expected={resourceObstructsOutput:[i,f,'control'],outputControlsKilling:[f,k,'control'],
+   wealthControlsResource:[w,i,'control'],wealthGeneratesKilling:[w,k,'generate']};
+  if(Object.keys(m.paths??{}).length!==4||Object.entries(expected).some(([name,[from,to,kind]])=>{
+   const p=m.paths?.[name];return !p||p.from!==from||p.to!==to||p.kind!==kind;
+  }))return empty('invalid-evidence');
+  const obstacle=directed(i,f,'control','resource-controls-output'),controller=directed(f,k,'control','output-controls-killing');
+  const rescue=directed(w,i,'control','wealth-controls-resource');
+  const cmp=readCapacityComparison(comparisons,f,k),ready=assessRoleComparisonReadiness(cmp,f,k,rootContext,commandReview);
+  if(ready.status==='invalid-evidence')return empty('invalid-evidence');
+  const contrast=complete&&ready.status==='directional-review-eligible'?(cmp.relation==='left-evidence-dominates'?'supported':'opposed'):'unresolved';
+  dualRoles.push({id,rescue:m.left,supply:m.right,boundThreat:m.boundThreat,wealthId:w,resourceId:i,outputId:f,outputTenGod:actors.get(f).tenGod,killingId:k,dayId,
+   objectives:[objective('wealth-relieves-output-obstruction',[obstacle,rescue,controller,unknown('output-required'),unknown('output-restoration')]),
+    objective('wealth-supplies-insufficient-killing',[dayPremise('strong'),feed.generation,premise('output-killing-relative-contrast',contrast,{comparison:cmp,readiness:ready}),unknown('killing-deficiency')]),
+    objective('wealth-reinforces-dangerous-killing',[feed.generation,unknown('killing-pressure-exceeds-day-capacity',{direction:dir})])],
+   killingDeficiencyConfirmed:null,outputRestored:null,netEffectConfirmed:null,effectConfirmed:null});
+ }
+ // He/Liu: placement and resource injury are separate from wealth supply.
+ // Reuse the already assessed mediation contacts; never infer no injury from
+ // distance alone, and never create a new support or rescue witness.
+ const order=['year','month','day','hour'];
+ for(const m of strategies.mediation){
+  const p=m.premises.find(p=>p.id==='resource-preservation');
+  if(!p||p.state!=='unresolved'||!resource(m.resourceId)||!killing(m.killingId)||m.dayId!==dayId)return empty('invalid-evidence');
+  for(const c of p.evidence.wealthContacts){
+   const w=c.wealthId,i=m.resourceId,k=m.killingId;
+   if(!wealth(w)||!distinct([w,i,k,dayId]))return empty('invalid-evidence');
+   const read=(e,to,kind,label)=>{
+    if(!e)return unknown(label,{observed:false});
+    if(e.from!==w||e.to!==to||e.kind!==kind||e.effective!==null||!validStates.includes(e.status)){invalid=true;return unknown(label);}
+    return premise(label,complete?e.status:'unresolved',e);
+   };
+   const harm=read(c.resourceControl,i,'control','wealth-controls-resource');
+   const feed=read(c.killingSupply,k,'generate','wealth-supplies-killing');
+   const distance=Math.abs(order.indexOf(actors.get(w).position)-order.indexOf(actors.get(i).position));
+   mediationContacts.push({mediationContextId:m.id,wealthId:w,resourceId:i,killingId:k,dayId,
+    placement:{wealthResourceDistance:distance,adjacent:distance===1,protectionConfirmed:null},
+    objectives:[objective('wealth-threatens-needed-resource',[harm,unknown('resource-required')]),
+     objective('wealth-supplies-killing-through-resource',[feed,...m.premises.filter(p=>p.id!=='resource-preservation'),unknown('resource-preserved')]),
+     objective('wealth-supplies-needed-killing',[dayPremise('strong'),feed,unknown('killing-deficiency')])],
+    netEffectConfirmed:null,effectConfirmed:null});
+  }
+ }
+ return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',supply,dualRoles,mediationContacts,
+  limitations:['exact-bound-compound-motif-only','placement-not-protection','relative-contrast-not-deficiency','no-summed-or-confirmed-effects']};
 }
