@@ -21,7 +21,11 @@ export async function verifyRefactor({baseline,policies,neutralPolicies=[],extra
   const stems='갑을병정무기경신임계',branches='자축인묘진사오미신유술해',p=i=>stems[i%10]+branches[i%12];
   for(let d=0;d<10;d++)for(let m=0;m<12;m++)for(const partial of [false,true])cases.push({id:'synthetic:'+d+':'+m+':'+partial,saju:chart([p((m+3)%60),p(m),p(d),partial?null:p((d+m+9)%60)])});
   function compare(name,input,label,context,requireSuccess=false){
-   const before=JSON.stringify(input),expected=capture(old[name],input,context),actual=capture(now[name],input,context);
+   const resolveExport=module=>name.split('.').reduce((value,key)=>value?.[key],module);
+   const oldFn=resolveExport(old),newFn=resolveExport(now);
+   assert.equal(typeof oldFn,'function',name+' baseline export');
+   assert.equal(typeof newFn,'function',name+' current export');
+   const before=JSON.stringify(input),expected=capture(oldFn,input,context),actual=capture(newFn,input,context);
    if(requireSuccess)assert.ok(!expected.error,'baseline unexpected error '+name+' '+label);
    assert.deepEqual(actual,expected,name+' '+label);assert.equal(JSON.stringify(input),before);checks++;
   }

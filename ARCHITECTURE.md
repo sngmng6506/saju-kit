@@ -50,6 +50,10 @@ The `balance/`, `mediation/` and `remedy/` directories own their respective doct
 
 `src/features/useful-element/` owns parallel review, anchor relations, temporal alternatives, expanded source candidates and five-method comparison. Its authority pipeline composes fixed policy versions without discarded baseline projections. The shared method provider supplies request-local natal context and structure to climate; the v2 anchor namespace, v3 source namespace and v4 pattern evidence remain separate. Historical entry points are compatible. See [authority refactor validation](docs/authority-refactor-validation.md).
 
+## Current transit and annual movement domains
+
+`src/features/transit/` owns fixed-policy transit orchestration, annual evidence, exact arrivals, source and pattern projections. The legacy and movement-v6 annual APIs use shared core year-context and year-timeline-kernel helpers for identical validation and traversal while retaining their separate signal, explanation and display policies. Daeun calendar policy implementations and consumer contracts remain unchanged. See [transit refactor validation](docs/transit-refactor-validation.md).
+
 Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
 ## Documentation ownership
@@ -66,6 +70,7 @@ npm run verify:strength-refactor
 npm run verify:climate-refactor
 npm run verify:methods-refactor
 npm run verify:authority-refactor
+npm run verify:transit-refactor
 ```
 
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.

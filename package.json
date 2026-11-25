@@ -12,7 +12,8 @@
     "test:failures": "node --test --test-reporter=./scripts/lib/failures-reporter.mjs",
     "verify:climate-refactor": "node scripts/verify-climate-refactor.mjs",
     "verify:methods-refactor": "node scripts/verify-methods-refactor.mjs",
-    "verify:authority-refactor": "node scripts/verify-authority-refactor.mjs"
+    "verify:authority-refactor": "node scripts/verify-authority-refactor.mjs",
+    "verify:transit-refactor": "node scripts/verify-transit-refactor.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
