@@ -35,6 +35,12 @@ for(const c of data.cases){
     w.dualRoles.some(x=>x.killingDeficiencyConfirmed!==null||x.outputRestored!==null)||
     w.mediationContacts.some(x=>x.placement.protectionConfirmed!==null);
   }))errors.push(c.id+':killing-wealth-integrity');
+  if(m?.candidates.some(q=>{
+   const p=q.rolePriority?.resourceStrategies;
+   return !p||p.status==='invalid-evidence'||p.selectionAuthority!==false||p.preferredObjective!==null||p.effectConfirmed!==null||
+    [...p.outputDrain,...p.killingSupply,...p.officerContext].some(x=>x.effectConfirmed!==null||x.netEffectConfirmed!==null||
+     x.objectives.some(o=>o.selectionAuthority!==false||o.actualDemand!==null||o.excessConfirmed!==null||o.deficiencyConfirmed!==null||o.effectConfirmed!==null));
+  }))errors.push(c.id+':resource-strategy-integrity');
   const active=r.reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId);
   const flows=(m?.candidates??[]).filter(q=>active.includes(q.candidateId)).map(q=>q.roleFlow);
   rows.push({id:c.id,reading:c.reading,source:c.source,locator:c.locator,activeCandidates:active,
@@ -78,5 +84,20 @@ for(const id of ['zhou-killing','he-killing-resource']){
   killingSourceRows.push({id,source:c.source,matched,structuralCoverage:matched.length>0,effectAgreement:null,independentGold:false});
  }catch(e){errors.push({id,error:e.message});}
 }
-console.log(JSON.stringify({killingSourceRows,wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
+const resourceObjectiveCounts={},resourceSourceRows=[];
+for(const row of rows)for(const p of row.priorities){
+ const v=p.resourceStrategies;if(!v)continue;
+ for(const [kind,items] of [['drain',v.outputDrain],['killing',v.killingSupply],['officer',v.officerContext]])for(const x of items)for(const o of x.objectives){
+  const k=kind+':'+o.id+':'+o.conditionalStatus;resourceObjectiveCounts[k]=(resourceObjectiveCounts[k]??0)+1;
+ }
+}
+for(const id of ['li-resource-output','ma-resource-killing']){
+ const row=rows.find(r=>r.id===id);
+ const policies=(row?.priorities??[]).map(p=>p.resourceStrategies);
+ const matched=id==='li-resource-output'?policies.flatMap(p=>p.outputDrain).filter(x=>x.anchorId==='visible:month'&&x.outputId==='visible:year'):
+  policies.flatMap(p=>p.killingSupply).filter(x=>x.resourceId==='hidden:month:경'&&x.officerId==='visible:month');
+ if(!matched.length)errors.push(id+':resource-source-coverage');
+ resourceSourceRows.push({id,matched,structuralCoverage:matched.length>0,effectAgreement:null,independentGold:false});
+}
+console.log(JSON.stringify({resourceSourceRows,resourceObjectiveCounts,killingSourceRows,wealthObjectiveCounts,strategyCounts,objectiveCounts,contrastSummary,contrastRows,version:data.version,scope:data.scope,independentGold:0,expectedCases:data.cases.length,executedCases:rows.length,errors,rows},null,2));
 if(errors.length||contrastSummary.errors.length||rows.length!==data.cases.length)process.exitCode=1;
