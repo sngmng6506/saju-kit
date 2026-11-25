@@ -99,3 +99,5 @@ Outcome V7 adds [compound topology and source conjunctions](docs/pattern-outcome
 Outcome V8 adds [assistant role dependency](docs/pattern-outcome-evidence-v8.md) as a read-only mask of V7 evidence; no new natal chart or selection authority.
 
 Outcome V9 separates [source purity and candidate clarity](docs/pattern-outcome-evidence-v9.md) from the inherited graph; no effective purity or clearing verdict.
+
+The pre-V10 assistant extension is an opt-in augmentation of V9; branch-slot masking does not alter the natal chart, and original V9 projections are preserved.

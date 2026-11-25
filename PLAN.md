@@ -48,3 +48,5 @@ npm run verify:consumers -- rent ../rent-or-buy-kr
 ```
 
 Use `npm run test:failures` for routine local regression: file-completion progress (approximately every 10%), failures, relevant stderr and the aggregate summary are printed. `npm test` remains available for full output.
+
+- Pre-V10: [assistant route extension](docs/pattern-outcome-assistant-extension-v1.md) adds missing combination rescue, group support and branch-slot dependency evidence; native validation pending. No decision authority.
