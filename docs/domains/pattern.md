@@ -17,6 +17,7 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-outcome-efficacy-v1.md](../pattern-outcome-efficacy-v1.md)
 - [pattern-outcome-integrated-v1.md](../pattern-outcome-integrated-v1.md)
 - [pattern-outcome-assistant-extension-v1.md](../pattern-outcome-assistant-extension-v1.md)
+- [pattern-outcome-role-flow.md](../pattern-outcome-role-flow.md)
 - [pattern-outcome-role-capacity.md](../pattern-outcome-role-capacity.md)
 - [pattern-outcome-desk-review.md](../pattern-outcome-desk-review.md)
 - [pattern-outcome-independent-review.md](../pattern-outcome-independent-review.md)
@@ -63,3 +64,5 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-outcome-mechanism-source-v2.json](../../test/fixtures/pattern-outcome-mechanism-source-v2.json)
 
 - [pattern-outcome-mechanism-desk-review-v1.json](../../test/fixtures/pattern-outcome-mechanism-desk-review-v1.json)
+
+- [pattern-outcome-role-flow-source-v1.json](../../test/fixtures/pattern-outcome-role-flow-source-v1.json)

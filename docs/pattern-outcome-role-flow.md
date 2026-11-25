@@ -1,0 +1,9 @@
+# Role flow and comparative capacity (P1)
+
+Classical sources: [論偏官](https://luckclub.cn/bazi/002/041/), [論偏官取運](https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan-quyun/), [論印綬](https://luckclub.cn/bazi/002/037/). The source contrasts resource regulation with needed-resource injury, and killing control with killing-resource mediation. These are historical interpretive claims, not empirically validated mechanisms.
+
+Reuses the existing Boolean partial order for each pair of visible occurrences, including the day reference. Shared roots and local support, clash and combination contacts, and rooted control remain review cautions. No magnitude inferred from number of axes, stems or roots; hidden/group participants not promoted to comparable visible actors. No total role strength.
+
+Route flow projects generation as source outflow and recipient supply, control as directed pressure, combination as a contact. Mandatory edges and each anchor alternative are separate. Rescue incorporates only the bound damage's mandatory relations and labels them inherited; no effect cancellation. Additional killing-resource-day mediation context requires actual directed graph edges from the killing anchor via a visible resource to the day, plus killing-to-day control. No new support witness or claim of successful mediation. Resource interpretations are review premises only. All decision fields null. Additive efficacy diagnostics, no new public API.
+
+Six source cases transcribed from the chapters above, including exposed controls (not a blind holdout). The audit reports active family, rule coverage, mediation context and strength direction, with null effect agreement. Missing rule coverage is a reported gap, not a forced match. No independently verified gold. Six synthetic tests executed and one native test pending. No claim of calibrated excess/deficiency or native full regression.

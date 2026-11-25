@@ -47,6 +47,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/pattern-outcome-independent-review.test.mjs",
     "test/pattern-outcome-desk-review.test.mjs",
     "test/pattern-outcome-role-capacity.test.mjs",
+    "test/pattern-outcome-role-flow.test.mjs",
     "test/pattern-outcome-combination-context.test.mjs",
     "test/pattern-outcome-branch-context.test.mjs",
     "test/pattern-outcome-efficacy.test.mjs",

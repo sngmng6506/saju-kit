@@ -42,7 +42,8 @@
     "audit:useful-element-synthesis": "node scripts/audit-useful-element-synthesis.mjs",
     "audit:useful-element-priority": "node scripts/audit-useful-element-priority.mjs",
     "audit:useful-element-method-links": "node scripts/audit-useful-element-method-links.mjs",
-    "benchmark:synthesis": "node scripts/benchmark-synthesis.mjs"
+    "benchmark:synthesis": "node scripts/benchmark-synthesis.mjs",
+    "audit:pattern-outcome-role-flow": "node scripts/audit-pattern-outcome-role-flow.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"

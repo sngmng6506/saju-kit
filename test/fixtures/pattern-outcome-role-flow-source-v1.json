@@ -1,0 +1,105 @@
+{
+  "version": "role-flow-source-v1",
+  "scope": "exposed-development-source-contrasts",
+  "independentGold": 0,
+  "cases": [
+    {
+      "id": "wang-resource",
+      "pillars": [
+        "신유",
+        "병신",
+        "임신",
+        "신해"
+      ],
+      "family": "resource",
+      "rules": [
+        "resource-wealth",
+        "resource-wealth-regulation"
+      ],
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "汪侍郎",
+      "reading": "Source treats rooted abundant resource and strong day as allowing wealth regulation; commentary notes 丙辛 combination."
+    },
+    {
+      "id": "zhexi-resource",
+      "pillars": [
+        "경신",
+        "무인",
+        "병신",
+        "을미"
+      ],
+      "family": "resource",
+      "rules": [
+        "resource-wealth",
+        "resource-wealth-regulation"
+      ],
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "徐注 / 浙西某富翁子",
+      "reading": "Commentary treats wealth harming needed resource in weak day; remote combination and clash require review."
+    },
+    {
+      "id": "li-resource-output",
+      "pillars": [
+        "무술",
+        "을묘",
+        "병오",
+        "을해"
+      ],
+      "family": "resource",
+      "rules": [
+        "resource-output-regulation"
+      ],
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "李狀元",
+      "reading": "Source treats output as draining an abundant resource-supported day; commentary wording of 戊/己 inconsistent."
+    },
+    {
+      "id": "ma-resource-killing",
+      "pillars": [
+        "임인",
+        "무신",
+        "임진",
+        "임인"
+      ],
+      "family": "resource",
+      "rules": [
+        "resource-killing"
+      ],
+      "source": "https://luckclub.cn/bazi/002/037/",
+      "locator": "馬參政",
+      "reading": "Source describes strong day and light resource; killing generates resource."
+    },
+    {
+      "id": "he-killing-resource",
+      "pillars": [
+        "병인",
+        "무술",
+        "임술",
+        "신축"
+      ],
+      "family": "killing",
+      "rules": [],
+      "mediationReview": true,
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "何參政",
+      "reading": "Commentary describes wealth generating killing, killing generating resource, resource generating day, and separation of wealth from resource."
+    },
+    {
+      "id": "tuo-killing-output",
+      "pillars": [
+        "임진",
+        "갑진",
+        "병술",
+        "무술"
+      ],
+      "family": "killing",
+      "rules": [
+        "killing-food",
+        "killing-resource-blocks-food"
+      ],
+      "source": "https://luckclub.cn/bazi/002/041/",
+      "locator": "脫丞相",
+      "reading": "Source treats resource restraining excessive output; ordinary obstruction is retained as an alternative."
+    }
+  ]
+}
