@@ -444,3 +444,107 @@ export function assessKillingWealth(review,prior,capacity,mechanism,compound,str
  return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',supply,dualRoles,mediationContacts,
   limitations:['exact-bound-compound-motif-only','placement-not-protection','relative-contrast-not-deficiency','no-summed-or-confirmed-effects']};
 }
+
+
+// R01/R03: the resource family has several different objectives. A
+// strong-day hypothesis and observed roots do not establish excess.
+export function assessResourceStrategies(review,prior,capacity,mechanism,strength,rootContext,assessEdge){
+ const base={version:'resource-strategy-policy-v1',candidateId:review.candidateId,
+  source:'https://luckclub.cn/bazi/002/037/',selectionAuthority:false,preferredObjective:null,effectConfirmed:null};
+ const empty=status=>({...base,status,outputDrain:[],killingSupply:[],officerContext:[]});
+ if(review.status==='out-of-scope'||review.family!=='resource')return empty('out-of-scope');
+ if([capacity,mechanism,rootContext].some(x=>!x||x.status==='invalid-evidence')||typeof assessEdge!=='function')return empty('invalid-evidence');
+ const complete=prior.completeHour,dir=complete&&['strong','weak'].includes(strength?.direction)?strength.direction:null;
+ const actors=new Map(capacity.occurrences.map(o=>[o.id,o])),original=new Map(prior.stemForce.occurrences.map(o=>[o.id,o]));
+ const roots=new Map(rootContext.occurrences.map(o=>[o.id,o])),raw=new Map(prior.relativeForce.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
+ const registry=new Map(mechanism.edges.map(e=>[edgeKey(e.from,e.to,e.kind),e]));
+ const entries=review.rules.flatMap(r=>r.witnesses.map(w=>({r,w}))),refs=entries.map(x=>key(x.r.id,x.w.id));
+ const routes=new Map(mechanism.routes.map(r=>[key(r.ruleId,r.witnessId),r]));
+ const day=capacity.occurrences.filter(o=>o.dayReference),visible=capacity.occurrences.filter(o=>o.layer==='visible');
+ if(day.length!==1||day[0].id!=='visible:day'||actors.size!==capacity.occurrences.length||
+  original.size!==prior.stemForce.occurrences.length||original.size!==actors.size||roots.size!==rootContext.occurrences.length||roots.size!==actors.size||
+  capacity.occurrences.some(o=>{const a=original.get(o.id);return !a||!roots.has(o.id)||['position','layer','tenGod','dayReference'].some(k=>a[k]!==o[k]);})||
+  visible.some(o=>o.id!=='visible:'+o.position)||new Set(visible.map(o=>o.position)).size!==visible.length||
+  raw.size!==prior.relativeForce.edges.length||registry.size!==mechanism.edges.length||
+  new Set(refs).size!==refs.length||routes.size!==refs.length||mechanism.routes.length!==refs.length||
+  refs.some(k=>!routes.has(k)))return empty('invalid-evidence');
+ const d=day[0].id,resource=id=>review.anchorIds.includes(id)&&['정인','편인'].includes(actors.get(id)?.tenGod);
+ const distinct=ids=>ids.every(id=>actors.has(id))&&new Set(ids.map(id=>{const a=actors.get(id);return a.position+':'+a.layer;})).size===ids.length;
+ let invalid=false;
+ const unknown=(id,evidence=null)=>premise(id,'unresolved',evidence);
+ const dayPremise=want=>premise('day-capacity-hypothesis',dir===null?'unresolved':dir===want?'supported':'opposed',{occurrenceId:d,direction:dir,expected:want,policy:strength?.policy??null});
+ const rootPremise=id=>{
+  const a=actors.get(id),r=roots.get(id);
+  return premise('resource-root-observation',complete&&a.layer==='visible'&&r.rootAxes.anySubstantial===true?'supported':'unresolved',
+   {occurrenceId:id,layer:a.layer,rootState:r.rootAxes.anySubstantial,uncontestedRootIds:[...r.uncontestedRootIds],contestedRootIds:[...r.contestedRootIds]});
+ };
+ const edge=(from,to,kind,required=true)=>{
+  const k=edgeKey(from,to,kind),r=raw.get(k);
+  if(!r){if(required)invalid=true;return null;}
+  const e=assessEdge({from,to,kind,edgeId:r.id}),old=registry.get(k);
+  if(!e||e.from!==from||e.to!==to||e.kind!==kind||e.effective!==null||!validStates.includes(e.status)||
+   old&&(old.status!==e.status||old.effective!==null||JSON.stringify(old.conditions)!==JSON.stringify(e.conditions))){invalid=true;return null;}
+  return {from,to,kind,edgeId:r.id,status:complete?e.status:'unresolved',conditions:e.conditions,effective:null};
+ };
+ const ep=(id,e)=>premise(id,e?.status??'unresolved',e);
+ const bound=(e,a,b,k)=>e&&e.from===a&&e.to===b&&e.kind===k&&e.edgeId===raw.get(edgeKey(a,b,k))?.id;
+ const routeValid=(r,w)=>{const row=routes.get(key(r.id,w.id));return row&&validStates.includes(row.status)&&row.effective===null;};
+ const objective=(clause,id,premises,scope='ordinary')=>({clause,id,scope,premises,conditionalStatus:combinePremises(premises),
+  actualDemand:null,excessConfirmed:null,deficiencyConfirmed:null,effectConfirmed:null,selectionAuthority:false});
+ const outputDrain=[],killingSupply=[],officerContext=[];
+ for(const {r,w} of entries.filter(x=>x.r.id==='resource-output-regulation')){
+  const {helper:o,target}=w.roles;
+  if(r.kind!=='support'||target!==d||actors.get(o)?.layer!=='visible'||!['식신','상관'].includes(actors.get(o)?.tenGod)||
+   !distinct([o,d])||!routeValid(r,w)||w.edges.length!==1||!bound(w.edges[0],d,o,'generate')||
+   !Array.isArray(w.anchorBindings)||!w.anchorBindings.length)return empty('invalid-evidence');
+  const bindingIds=w.anchorBindings.map(b=>b.anchorId);
+  // Alternatives cannot inherit the readiness of another anchor.
+  if(new Set(bindingIds).size!==bindingIds.length)return empty('invalid-evidence');
+  const drain=edge(d,o,'generate');
+  const contacts=visible.filter(a=>['정인','편인'].includes(a.tenGod)&&a.id!==o).flatMap(a=>{
+   const control=edge(a.id,o,'control',false);
+   return control?[{resourceId:a.id,control,obstructionConfirmed:null}]:[];
+  });
+  for(const b of w.anchorBindings){
+   const i=b.anchorId;
+   if(!resource(i)||!distinct([i,d,o])||!bound(b.edge,i,d,'generate')||b.effective!==null)return empty('invalid-evidence');
+   const support=edge(i,d,'generate');
+   const ps=[rootPremise(i),ep('resource-supplies-day',support),ep('day-drains-to-output',drain)];
+   outputDrain.push({route:ref(r,w),anchorId:i,outputId:o,outputTenGod:actors.get(o).tenGod,dayId:d,
+    pathPremises:ps,pathConditionalStatus:combinePremises(ps),contacts,
+    objectives:[
+     objective('R01','drain-resource-supported-strong-day',[dayPremise('strong'),...ps,unknown('resource-abundance'),unknown('output-preserved',{contacts})]),
+     objective('R01','drain-burdens-weak-day',[dayPremise('weak'),ep('day-drains-to-output',drain),unknown('resource-insufficient'),unknown('output-excess')])],
+    netEffectConfirmed:null,effectConfirmed:null});
+  }
+ }
+ for(const {r,w} of entries.filter(x=>['resource-killing','resource-officer'].includes(x.r.id))){
+  const {helper:h,target:i}=w.roles,isKilling=r.id==='resource-killing';
+  if(r.kind!=='support'||!resource(i)||!distinct([h,i,d])||actors.get(h)?.layer!=='visible'||
+   actors.get(h)?.tenGod!==(isKilling?'편관':'정관')||!routeValid(r,w)||w.edges.length!==1||!bound(w.edges[0],h,i,'generate'))return empty('invalid-evidence');
+  const supply=edge(h,i,'generate'),delivery=edge(i,d,'generate'),pressure=edge(h,d,'control');
+  const wealthContacts=visible.filter(a=>['정재','편재'].includes(a.tenGod)).flatMap(a=>{
+   const harm=edge(a.id,i,'control',false),feed=edge(a.id,h,'generate',false);
+   return harm||feed?[{wealthId:a.id,resourceControl:harm,officerSupply:feed,netEffectConfirmed:null}]:[];
+  });
+  const ps=[ep('officer-supplies-resource',supply),ep('resource-supplies-day',delivery)];
+  const common={route:ref(r,w),resourceId:i,officerId:h,officerTenGod:actors.get(h).tenGod,dayId:d,pathPremises:ps,
+   pathConditionalStatus:combinePremises(ps),dayPressure:pressure,resourceRoot:rootPremise(i),wealthContacts,
+   netEffectConfirmed:null,effectConfirmed:null};
+  if(!isKilling){
+   // 正官 may be used independently of generation in the original text;
+   // this is not the 七殺 shortage rule and purity remains unresolved.
+   officerContext.push({...common,objectives:[objective('R03-context','officer-independent-role-review',
+    [dayPremise('strong'),unknown('officer-purity'),unknown('officer-independent-demand')],'officer-distinct')]});
+   continue;
+  }
+  killingSupply.push({...common,objectives:[
+   objective('R03','killing-supplies-light-resource',[dayPremise('strong'),...ps,unknown('resource-deficiency'),unknown('resource-preserved',{wealthContacts})]),
+   objective('R03','weak-day-heavy-resource-original-reading',[dayPremise('weak'),...ps,unknown('resource-abundance'),unknown('ordinary-scope-not-established')],'original-scope-review'),
+   objective('R03','killing-supply-with-both-day-and-resource-heavy',[dayPremise('strong'),ep('officer-supplies-resource',supply),unknown('resource-abundance'),unknown('wealth-alternative-and-pressure',{wealthContacts,pressure})])],
+   commentary:{mao:'Xu treats the weak-day/heavy-resource example as exceptional; no ordinary positive rule is inferred.',
+    ma:'Xu emphasizes resource supply despite rooted day and output drain; preservation matters.',scopeResolved:null}});
+ }
+ return invalid?empty('invalid-evidence'):{...base,status:complete?'diagnostic':'partial',outputDrain,killingSupply,officerContext,
+  limitations:['no-role-count-or-force-weights','exact-anchor-alternatives-only','root-not-abundance','original-and-commentary-scope-distinct','no-special-pattern-or-selection-authority']};
+}
