@@ -11,6 +11,8 @@ const jobs=[
  ...['architecture','layout','dead-code','pattern-outcome','pattern-outcome-reference','pattern-outcome-v2','pattern-outcome-v3','pattern-outcome-v4','pattern-outcome-v5','pattern-outcome-v6','pattern-outcome-v7','pattern-outcome-v8','pattern-outcome-v9','pattern-outcome-adjudication','pattern-outcome-prospective','pattern-outcome-integrated','pattern-outcome-efficacy','pattern-outcome-joint','pattern-outcome-mechanism-source','pattern-outcome-v10'].map(n=>[n,['scripts/audit-'+n+'.mjs']]),
  ['useful-element-synthesis',['scripts/audit-useful-element-synthesis.mjs']],
  ['useful-element-priority',['scripts/audit-useful-element-priority.mjs']],
+ ['useful-element-method-links',['scripts/audit-useful-element-method-links.mjs']],
+ ['benchmark-synthesis',['scripts/benchmark-synthesis.mjs','3']],
  ['benchmark',['scripts/benchmark-outcome.mjs','3']]
 ];
 const runGit=args=>spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true}).stdout?.trim()??null;

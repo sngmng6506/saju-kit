@@ -4,16 +4,30 @@ import {buildOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../pattern/outcome-re
 import {composeOutcomeSynthesis} from './outcome-synthesis.js';
 import {observeSynthesisPriority} from './synthesis-priority.js';
 import {createMethodEvidence} from '../method-evidence.js';
+import {evaluateMediationUsefulElement,MEDIATION_USEFUL_ELEMENT_VERSION} from '../mediation/review.js';
+import {evaluateRemedyEvidence,REMEDY_EVIDENCE_VERSION} from '../remedy/review.js';
+import {observeSupplementaryMethods,projectSynthesisTiming} from './synthesis-method-links.js';
 export const USEFUL_ELEMENT_SYNTHESIS_VERSION='useful-element-synthesis-v1';
 // Public fixed-policy orchestration. No supplied evidence or approval accepted.
 export function analyzeUsefulElementSynthesis(input){
+ return buildSynthesis(input);
+}
+// Internal differential benchmark: separate providers compute identical policies.
+export function buildSynthesis(input,{shared=true}={}){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('useful-element-input','용신 종합 분석 입력 객체가 필요합니다.');
  if(input.policy!==USEFUL_ELEMENT_SYNTHESIS_VERSION)throw new SajuError('useful-element-policy','용신 종합 분석 정책을 명시해야 합니다.');
  const args={saju:input.saju,birthBasis:input.birthBasis};
  const provider=createMethodEvidence();
- const {result:pattern}=buildOutcomeV10({...args,policy:PATTERN_OUTCOME_V10_VERSION},provider);
- const balance=evaluateBalanceUsefulElement({...args,policy:BALANCE_USEFUL_ELEMENT_VERSION},provider);
+ const next=()=>shared?provider:createMethodEvidence();
+ const {result:pattern,climateResult}=buildOutcomeV10({...args,policy:PATTERN_OUTCOME_V10_VERSION},next(),input.birth);
+ const balance=evaluateBalanceUsefulElement({...args,policy:BALANCE_USEFUL_ELEMENT_VERSION},next());
  const result=composeOutcomeSynthesis(input.saju,balance,pattern);
  const priorityReview=observeSynthesisPriority(input.saju,result,pattern);
- return {...result,status:priorityReview.status==='invalid-evidence'?'invalid-evidence':result.status,priorityReview};
+ const status=priorityReview.status==='invalid-evidence'?'invalid-evidence':result.status;
+ const usable=['diagnostic','partial'].includes(status);
+ const mediation=usable?evaluateMediationUsefulElement({...args,policy:MEDIATION_USEFUL_ELEMENT_VERSION},next()):null;
+ const remedy=usable?evaluateRemedyEvidence({...args,policy:REMEDY_EVIDENCE_VERSION},next()):null;
+ const supplementaryMethods=observeSupplementaryMethods(input.saju,{...result,status},pattern,mediation,remedy);
+ const climateTiming=projectSynthesisTiming(usable?climateResult:null);
+ return {...result,status,priorityReview,supplementaryMethods,climateTiming};
 }

@@ -121,6 +121,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/useful-element-five-method-v4.test.mjs",
     "test/useful-element-synthesis.test.mjs",
     "test/useful-element-priority.test.mjs",
+    "test/useful-element-synthesis-p1.test.mjs",
     "test/useful-element-review.test.mjs",
     "test/useful-element-source-transit-v3.test.mjs"
   ],

@@ -40,7 +40,9 @@
     "audit:pattern-outcome-joint": "node scripts/audit-pattern-outcome-joint.mjs",
     "audit:pattern-outcome-mechanism-source": "node scripts/audit-pattern-outcome-mechanism-source.mjs",
     "audit:useful-element-synthesis": "node scripts/audit-useful-element-synthesis.mjs",
-    "audit:useful-element-priority": "node scripts/audit-useful-element-priority.mjs"
+    "audit:useful-element-priority": "node scripts/audit-useful-element-priority.mjs",
+    "audit:useful-element-method-links": "node scripts/audit-useful-element-method-links.mjs",
+    "benchmark:synthesis": "node scripts/benchmark-synthesis.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
