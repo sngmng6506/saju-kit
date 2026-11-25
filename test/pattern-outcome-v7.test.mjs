@@ -24,6 +24,19 @@ test('a mismatched rescue reference never enters the coverage ledger',()=>{
  assert.equal(a.status,'invalid-evidence');assert.equal(a.violations[0].kind,'invalid-rescue-reference');assert.equal(a.counts.validRescue,0);
  assert.equal(a.allObservedThreatsHaveRoute,null);
 });
+test('rescue preserves exact anchor alternatives, relation and distinct helper',()=>{
+ const binding=(id)=>({anchorId:id,targetId:'officer',basis:'directed-generation',independentSlots:true,edge:e(id,'officer','generate'),effective:null});
+ const bindings=[binding('wealth1'),binding('wealth2')];
+ const d=rule('d','damage',[w('d1',{target:'officer',obstacle:'output'},[e('output','officer')],{anchorBindings:bindings})]);
+ const run=(bs,helper='resource')=>observeCompoundTopology(q('wealth',[d,rule('r','rescue',[w('r1',{target:'officer',obstacle:'output',helper},[e(helper,'output')],{anchorBindings:bs,threatWitnessId:'d1'})],{threatRuleId:'d'})]),true);
+ assert.equal(run([...bindings].reverse()).counts.validRescue,1);
+ for(const bad of [[],[bindings[0]], [bindings[0],binding('other')], [bindings[0],{...bindings[1],edge:e('officer','wealth2','generate')}]]){
+  const a=run(bad);assert.equal(a.status,'invalid-evidence');assert.equal(a.counts.validRescue,0);
+ }
+ assert.equal(run(bindings,'output').counts.validRescue,0);
+ // Helper may be an anchor alternative; it must not alias a mandatory threat role.
+ assert.equal(run(bindings,'wealth1').counts.validRescue,1);
+});
 test('duplicate witness references are flagged rather than promoted',()=>{
  const a=observeCompoundTopology(q('officer',[damage,damage,rescue]),true);
  assert.equal(a.status,'invalid-evidence');assert.ok(a.violations.some(v=>v.kind==='duplicate-witness'));

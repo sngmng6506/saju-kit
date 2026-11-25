@@ -20,6 +20,28 @@ const ref=w=>({ruleId:w.ruleId,witnessId:w.witnessId});
 const key=(r,w)=>JSON.stringify([r,w]);
 const axis=(release,name,blockers,evidence)=>({status:'abstained',value:null,authorized:false,
  blockers:unique([...release.axes[name].blockers,...blockers]),evidence});
+// Validate the projection by exact rule/witness identity and kind. Even a
+// passing upstream status cannot substitute for complete evidence coverage.
+function witnessCoverage(q,e){
+ if(!Array.isArray(q.rules)||!Array.isArray(e?.witnesses))return false;
+ const expected=new Map();
+ for(const r of q.rules){
+  if(!Array.isArray(r.witnesses))return false;
+  for(const w of r.witnesses){
+   const k=key(r.id,w.id);
+   if(expected.has(k))return false;
+   expected.set(k,r.kind);
+  }
+ }
+ const seen=new Set();
+ for(const w of e.witnesses){
+  if(!w||typeof w.ruleId!=='string'||typeof w.witnessId!=='string')return false;
+  const k=key(w.ruleId,w.witnessId);
+  if(seen.has(k)||expected.get(k)!==w.kind||w.effective!==null)return false;
+  seen.add(k);
+ }
+ return seen.size===expected.size;
+}
 function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
  const base={candidateId:q.candidateId,family:q.family,anchorIds:[...q.anchorIds],selectionAuthority:false};
  const b=[...global,...(!complete?['missing-hour']:[]),...(q.storageProjection?['storage-access-and-family-unresolved']:[])];
@@ -27,9 +49,9 @@ function candidateDecision(q,e,c,a,l,x,i,complete,release,global){
  if(excluded)b.push('candidate-out-of-scope');
  const derived=[e,c,a,l,x,i];
  const valid=derived.every(v=>v&&v.candidateId===q.candidateId&&v.selectionAuthority===false)&&i?.status==='consistent'&&
-  [e,c,a,l].every(v=>v.status!=='invalid-evidence');
+  [e,c,a,l].every(v=>v.status!=='invalid-evidence')&&witnessCoverage(q,e);
  if(!valid)b.push('invalid-or-missing-candidate-evidence');
- const usable=!excluded&&valid&&!global.some(s=>s==='integrated-evidence-invalid'||s==='candidate-coverage-mismatch'||s==='chart-evidence-unavailable');
+ const usable=!excluded&&valid&&!global.some(s=>s==='integrated-evidence-invalid'||s==='candidate-coverage-mismatch'||s==='witness-coverage-mismatch'||s==='chart-evidence-unavailable');
  const rows=usable?e.witnesses:[];
  const ruleBy=new Map(q.rules.map(r=>[r.id,r]));
  const classified=rows.map(w=>({...ref(w),status:w.status,flags:[...w.flags],
@@ -73,13 +95,14 @@ export function observeOutcomeDecision(result){
  if(result.access&&(new Set(candidateIds).size!==candidateIds.length||collections.some(xs=>!Array.isArray(xs)||xs.length!==reviews.length||
   xs.some(x=>!x||typeof x.candidateId!=='string')||new Set(xs.map(x=>x.candidateId)).size!==xs.length||xs.some(x=>!candidateIds.includes(x.candidateId)))))global.push('candidate-coverage-mismatch');
  const maps=collections.map(lookup);
+ if(result.access&&reviews.some(q=>!witnessCoverage(q,maps[0].get(q.candidateId))))global.push('witness-coverage-mismatch');
  const candidates=reviews.map(q=>candidateDecision(q,...maps.map(m=>m.get(q.candidateId)),result.completeHour,release,global));
  const pref=result.preference,h=pref?.hypothesis;
  const hypothesis=h&&pref.status==='hypothesis'?{family:h.family,candidateIds:[...h.candidateIds],anchorStems:[...h.anchorStems],grounds:[...h.grounds],confirmed:false}:null;
- const globalInvalid=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','chart-evidence-unavailable'].includes(s))||candidates.some(q=>q.status==='invalid-evidence');
+ const globalInvalid=global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch','chart-evidence-unavailable'].includes(s))||candidates.some(q=>q.status==='invalid-evidence');
  const usableHypothesis=!globalInvalid&&result.completeHour&&hypothesis&&hypothesis.candidateIds.length&&hypothesis.candidateIds.every(id=>candidates.some(q=>q.candidateId===id&&q.status==='abstained'&&q.family===hypothesis.family));
  const purity=globalInvalid?[]:result.purityReview?.motifs??[];
- return {release,status:global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch'].includes(s))||candidates.some(q=>q.status==='invalid-evidence')?'invalid-evidence':!result.access?'unavailable':'abstained',
+ return {release,status:global.some(s=>['integrated-evidence-invalid','candidate-coverage-mismatch','witness-coverage-mismatch'].includes(s))||candidates.some(q=>q.status==='invalid-evidence')?'invalid-evidence':!result.access?'unavailable':'abstained',
   completeHour:result.completeHour,selectionAuthority:false,confirmed:false,globalBlockers:unique(global),
   pattern:axis(release,'pattern',[...global,...(usableHypothesis?['family-hypothesis-not-selection']:['no-usable-family-hypothesis']),...(pref?.reason?['preference:'+pref.reason]:[])],{hypothesis:usableHypothesis?hypothesis:null,candidateIds}),
   purity:axis(release,'purity',[...global,'source-subclauses-not-final-purity',...(globalInvalid||purity.some(m=>m.observed===true)?[]:['no-covered-source-purity-motif'])],{motifs:purity.map(m=>({id:m.id,orientation:m.orientation,observed:m.observed,witnesses:m.witnesses}))}),

@@ -15,6 +15,16 @@ export function inspectIntegratedEvidence(review,compound,assistant,clarity,posi
    if(witnesses.has(k))fail('duplicate-witness',{ruleId:rule.id,witnessId:w.id});
    witnesses.add(k);
    if(w.effective!==null)fail('witness-authority',{ruleId:rule.id,witnessId:w.id});
+   const bindingIds=new Set();
+   for(const b of w.anchorBindings??[]){
+    const detail={ruleId:rule.id,witnessId:w.id,anchorId:b.anchorId};
+    if(!review.anchorIds.includes(b.anchorId))fail('binding-outside-candidate-anchor',detail);
+    const k=JSON.stringify([b.anchorId,b.targetId??null,b.basis??null,b.edge?.from??null,b.edge?.to??null,b.edge?.kind??null]);
+    if(bindingIds.has(k))fail('duplicate-anchor-binding',detail);
+    bindingIds.add(k);
+    if(b.effective!==null)fail('anchor-binding-authority',detail);
+    if(b.edge&&![b.edge.from,b.edge.to].includes(b.anchorId))fail('binding-edge-anchor-mismatch',detail);
+   }
    for(const e of [...w.edges,...(w.anchorBindings??[]).flatMap(b=>b.edge?[b.edge]:[])])if(e.effective!==null)fail('edge-authority',{ruleId:rule.id,witnessId:w.id,from:e.from,to:e.to});
    for(const id of [...Object.values(w.roles),...w.edges.flatMap(e=>[e.from,e.to]),...(w.anchorBindings??[]).flatMap(b=>[b.anchorId,b.targetId,...(b.edge?[b.edge.from,b.edge.to]:[])].filter(Boolean))])
     if(!ids.has(id))fail('unknown-participant',{ruleId:rule.id,witnessId:w.id,id});

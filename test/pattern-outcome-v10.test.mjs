@@ -2,9 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {observeOutcomeDecision,outcomeDecisionRelease} from '../src/features/pattern/outcome-decision-gate.js';
 import {analyzePatternOutcomeV10,analyzePatternOutcomeEfficacy,PATTERN_OUTCOME_V10_VERSION,PATTERN_OUTCOME_EFFICACY_VERSION} from '../src/index.js';
-const w=(ruleId,witnessId,kind)=>({ruleId,witnessId,kind,status:'edge-screens-met',flags:[],unresolvedConditions:['effective-condition'],edges:[],anchorAlternatives:[]});
+const w=(ruleId,witnessId,kind)=>({ruleId,witnessId,kind,status:'edge-screens-met',effective:null,flags:[],unresolvedConditions:['effective-condition'],edges:[],anchorAlternatives:[]});
 const sample=()=>{
  const q={candidateId:'c',family:'officer',anchorIds:['visible:year'],status:'support-and-damage-observed',rules:[{id:'s',kind:'support'},{id:'d',kind:'damage'},{id:'r',kind:'rescue'},{id:'reg',kind:'support',impact:'conditional-regulation-not-confirmed-support'}]};
+ for(const r of q.rules)r.witnesses=[{id:({s:'s1',d:'d1',r:'r1',reg:'g1'})[r.id]}];
  const common={candidateId:'c',status:'diagnostic',selectionAuthority:false};
  const threats=[{threat:{ruleId:'d',witnessId:'d1'},coverage:'structural-route-observed',alternatives:[{ruleId:'r',witnessId:'r1',status:'edge-screens-met'}],resolutionConfirmed:null}];
  return {access:{},completeHour:true,reviews:[q],integrity:{status:'consistent',candidates:[{...common,status:'consistent'}]},
@@ -27,7 +28,7 @@ test('passing screens do not grant a verdict; ordinary support separate from reg
  assert.equal(c.decisions.rescue.evidence.threats[0].resolutionConfirmed,null);
 });
 test('no witnesses cannot be interpreted as negative, and missing hour propagates',()=>{
- const a=sample();a.completeHour=false;a.efficacyReview.candidates[0].witnesses=[];a.efficacyReview.candidates[0].threats=[];
+ const a=sample();a.completeHour=false;a.efficacyReview.candidates[0].witnesses=[];a.efficacyReview.candidates[0].threats=[];for(const r of a.reviews[0].rules)r.witnesses=[];
  const r=observeOutcomeDecision(a),d=r.candidates[0].decisions;
  assert.ok(d.breakage.blockers.includes('no-covered-damage-witness'));assert.equal(d.breakage.value,null);
  assert.ok(d.formation.blockers.includes('missing-hour'));assert.ok(r.pattern.blockers.includes('missing-hour'));
@@ -39,7 +40,7 @@ test('candidate mismatch and invalid evidence fail closed',()=>{
 });
 test('unavailable and out of scope are distinguished from negative',()=>{
  const a=observeOutcomeDecision({access:null,completeHour:true,reviews:[]});assert.equal(a.status,'unavailable');assert.equal(a.pattern.value,null);
- const b=sample();b.reviews[0].status='out-of-scope';const r=observeOutcomeDecision(b);
+ const b=sample();b.reviews[0].status='out-of-scope';b.reviews[0].rules=[];b.efficacyReview.candidates[0].witnesses=[];const r=observeOutcomeDecision(b);
  assert.equal(r.candidates[0].status,'out-of-scope');assert.equal(r.candidates[0].decisions.formation.value,null);
 });
 test('storage uncertainty, uncovered threats and assistant injury are traceable',()=>{
@@ -65,6 +66,13 @@ test('duplicate or malformed derived collection fails closed instead of throwing
 test('partial chart cannot expose a usable family hypothesis even if upstream supplies one',()=>{
  const a=sample();a.completeHour=false;const r=observeOutcomeDecision(a);
  assert.equal(r.pattern.evidence.hypothesis,null);assert.ok(r.pattern.blockers.includes('missing-hour'));
+});
+test('witness projection omissions, duplicates, wrong kind and authority fail closed',()=>{
+ for(const alter of [xs=>xs.pop(),xs=>xs.push({...xs[0]}),xs=>xs[0].kind='damage',xs=>xs[0].effective=true,xs=>xs[0].witnessId='unknown']){
+  const a=sample();alter(a.efficacyReview.candidates[0].witnesses);const r=observeOutcomeDecision(a);
+  assert.equal(r.status,'invalid-evidence');assert.ok(r.globalBlockers.includes('witness-coverage-mismatch'));
+  assert.equal(r.pattern.evidence.hypothesis,null);assert.deepEqual(r.candidates[0].structural.support,[]);
+ }
 });
 test('native V10 keeps inherited evidence and ignores supplied approval',()=>{
  const ps=['정묘','신유','갑자','임신'],saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))},args={saju,birthBasis:'verified-chart'};

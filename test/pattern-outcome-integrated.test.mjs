@@ -32,6 +32,15 @@ test('position duplicates, wrong candidate and edge authority are rejected',()=>
  q.rules[0].witnesses[0].edges=[{from:'visible:year',to:'visible:month',kind:'generate',effective:true}];
  assert.ok(check(q).violations.some(v=>v.kind==='edge-authority'));
 });
+test('anchor bindings must belong to candidate and carry their exact unresolved relation',()=>{
+ const q=sample(),w=q.rules[0].witnesses[0];
+ const b={anchorId:'visible:year',targetId:'visible:month',edge:{from:'visible:year',to:'visible:month',kind:'generate',effective:null},effective:null};
+ w.anchorBindings=[b];assert.equal(check(q).status,'consistent');
+ w.anchorBindings=[b,b];assert.ok(check(q).violations.some(v=>v.kind==='duplicate-anchor-binding'));
+ w.anchorBindings=[{...b,anchorId:'visible:month',effective:true}];
+ const a=check(q).violations;assert.ok(a.some(v=>v.kind==='binding-outside-candidate-anchor'));assert.ok(a.some(v=>v.kind==='anchor-binding-authority'));
+ w.anchorBindings=[{...b,edge:{...b.edge,from:'visible:month'}}];assert.ok(check(q).violations.some(v=>v.kind==='binding-edge-anchor-mismatch'));
+});
 test('storage resource now receives secondary and regulation stages, not synthetic roots',()=>{
  const r=run(['임자','무진','갑인','병인']),q=storage(r,'임');
  assert.ok(q?.storageProjection);assert.ok(q.rules.some(r=>r.id==='resource-secondary-officer-damage'));

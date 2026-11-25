@@ -9,6 +9,12 @@ const roleMatch=(a,b)=>Object.entries(a.roles).every(([k,v])=>b.roles[k]===v);
 const observed=(n,complete)=>n>0?true:complete?false:null;
 const edgeKey=e=>e.kind==='combine'?JSON.stringify(['combine',...[e.from,e.to].sort()]):JSON.stringify([e.kind,e.from,e.to]);
 const edges=w=>[...w.edges,...(w.anchorBindings??[]).flatMap(b=>b.edge?[b.edge]:[])];
+// A rescue must retain the entire original anchor scope. Order is not
+// identity; neither a different anchor nor a changed relation can substitute.
+const bindingKey=b=>JSON.stringify([b.anchorId,b.targetId??null,b.basis??null,b.independentSlots??null,b.edge?edgeKey(b.edge):null]);
+const bindingKeys=w=>(w.anchorBindings??[]).map(bindingKey).sort();
+const sameBindings=(a,b)=>JSON.stringify(bindingKeys(a))===JSON.stringify(bindingKeys(b));
+const distinctHelper=(a,b)=>typeof b.roles.helper==='string'&&b.roles.helper.length>0&&!Object.values(a.roles).includes(b.roles.helper);
 const intervention=e=>e.kind==='control'||e.kind==='combine';
 const affected=e=>e.kind==='combine'?[e.from,e.to]:[e.to];
 function indexReview(review){
@@ -25,7 +31,7 @@ function indexReview(review){
  const exceptions=rows.filter(x=>x.rule.kind==='exception'),valid=[];
  for(const x of rescue){
   const t=byKey.get(key(x.rule.threatRuleId,x.witness.threatWitnessId));
-  if(!t||t.rule.kind!=='damage'||!roleMatch(t.witness,x.witness)){
+  if(!t||t.rule.kind!=='damage'||!roleMatch(t.witness,x.witness)||!sameBindings(t.witness,x.witness)||!distinctHelper(t.witness,x.witness)){
    violations.push({kind:'invalid-rescue-reference',...ref(x),threatRuleId:x.rule.threatRuleId,threatWitnessId:x.witness.threatWitnessId});
    continue;
   }
