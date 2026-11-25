@@ -9,7 +9,7 @@ const fixture=(complete=true)=>{
  const status=complete?'diagnostic':'partial',day='visible:day',resource='visible:month',output='visible:year',candidateId='r';
  const mkActor=(id,roots=[],contested=[])=>({id,layer:'visible',directRoot:{uncontestedRootIds:roots,contestedRootIds:contested,preservationConfirmed:null},paths:[],groundedPathIds:[],effectiveSupply:null});
  const a=mkActor(resource,['hidden:month:을']),b=mkActor(output,[],['hidden:month:을']),d=mkActor(day);
- const donor={nodeId:'month:stem',groundedRootIds:['hidden:month:을'],contestedRootIds:[],independentSupplyConfirmed:null};
+ const donor={nodeId:'day:branch:water',groundedRootIds:['hidden:month:을'],contestedRootIds:[],independentSupplyConfirmed:null};
  for(const actor of [a,d]){
   const id=JSON.stringify([donor.nodeId,actor.id]);actor.paths=[{id,recipientId:actor.id,upstream:'observed',donor,effectiveSupply:null}];actor.groundedPathIds=[id];
  }
@@ -45,6 +45,7 @@ test('shared contested roots and donor IDs are not additive quantities',()=>{
 });
 test('foreign edge, duplicate projection and promoted effect fail closed',()=>{
  let x=fixture();x.projections.output.contexts[0].drain={...x.drain,to:'visible:month'};assert.equal(run(x).status,'invalid-evidence');
+ x=fixture();x.projections.output.contexts[0].drain=x.delivery;assert.equal(run(x).status,'invalid-evidence');
  x=fixture();x.projections.output.contexts.push(x.projections.output.contexts[0]);assert.equal(run(x).status,'invalid-evidence');
  x=fixture();x.projections.resource.contexts[0].effective=true;assert.equal(run(x).status,'invalid-evidence');
  x=fixture();x.projections.resource.contexts[0].sourceConditionalStatus='supported';assert.equal(run(x).status,'invalid-evidence');
