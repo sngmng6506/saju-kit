@@ -79,3 +79,18 @@ test('native V10 composes interposition review without changing decision authori
  assert.equal(e.status,'diagnostic');assert.equal(e.selectionAuthority,false);assert.equal(e.effectConfirmed,null);
  assert.equal(r.decisionReview.status,'abstained');assert.equal(r.selectionAuthority,false);
 });
+
+test('formation-contested roots remain clash-unexposed but do not become grounded access',()=>{
+ const {prior,root,supply,review}=build(['무술','을묘','병오','을해']);
+ const slot=root.slots.find(s=>s.state==='formation-contested'&&s.role!=='residual');
+ assert.ok(slot);assert.deepEqual(slot.clashIds,[]);
+ const nodeId=slot.position+':branch:'+slot.element,donor=supply.nodes.find(n=>n.nodeId===nodeId);
+ assert.ok(donor.contestedRootIds.includes(slot.id));assert.equal(donor.state,'context-review');
+ const route=review.paths.find(p=>[p.helper,p.threat,p.target].includes(nodeId));assert.ok(route);
+ const raw=prior.stemForce.occurrences.flatMap(a=>a.protectionAndMediation).find(p=>
+  p.kind===route.kind&&p.helper===route.helper&&p.threat===route.threat&&p.target===route.target);
+ const edge=raw.edges.find(e=>e.from===nodeId||e.to===nodeId);
+ const evidence=edge.from===nodeId?edge.sourceEvidence:edge.targetEvidence;
+ assert.ok(evidence.unexposedSubstantialRootPositions.includes(slot.position));
+ assert.equal(review.status,'diagnostic');
+});
