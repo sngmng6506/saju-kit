@@ -57,7 +57,7 @@ export function observeStemInterference(force,relative,completeHour){
   return {edgeId:e.id,from:e.from,to:e.to,kind:e.kind,span:span(a,b),between:mid.map(o=>o.id),interference,
    fromContacts:pairs.filter(p=>p.participants.includes(a.id)).map(p=>p.id),toContacts:pairs.filter(p=>p.participants.includes(b.id)).map(p=>p.id),effective:null};
  });
- return {version:STEM_INTERFERENCE_VERSION,sources:{...source},status:completeHour?'structural-review':'partial',pairs,competition,directed,visible,selectionAuthority:false};
+ return {version:STEM_INTERFERENCE_VERSION,sources:{...source},status:completeHour?'structural-review':'partial',pairs,competition,directed,visible,relationEdges:relative.edges.map(e=>({id:e.id,from:e.from,to:e.to,kind:e.kind})),selectionAuthority:false};
 }
 // Role definitions are source-scoped archetypes, not sufficient rules.
 // The protected occurrence must belong to this candidate where specified.
@@ -73,7 +73,7 @@ export function reviewCandidateInterference(candidate,observation,occurrences){
  const actors=visible.filter(o=>!o.dayReference);
  const anchors=new Set(candidate.anchorIds);
  const directed=observation.directed;
- const relation=(a,b,kind)=>directed.find(e=>e.from===a&&e.to===b&&e.kind===kind)?.edgeId??null;
+ const relation=(a,b,kind)=>observation.relationEdges.find(e=>e.from===a&&e.to===b&&e.kind===kind)?.id??null;
  const witnesses=[];
  for(const rule of rules.filter(r=>r.family===candidate.family)){
   for(const helper of actors.filter(o=>rule.helper.includes(o.tenGod)))for(const obstacle of actors.filter(o=>rule.obstacle.includes(o.tenGod))){
@@ -93,9 +93,9 @@ export function reviewCandidateInterference(candidate,observation,occurrences){
     // Visible relations are already guaranteed by the role definitions;
     // a hidden endpoint keeps its physical access unresolved.
     const threatEdgeId=rule.relation==='control'?relation(obstacle.id,target.id,'control'):rule.relation==='reverse-generate'?relation(target.id,obstacle.id,'generate'):null;
-    if(['control','reverse-generate'].includes(rule.relation)&&target.layer==='visible'&&!threatEdgeId)continue;
+    if(['control','reverse-generate'].includes(rule.relation)&&!threatEdgeId)continue;
     if(rule.anchor==='controller-target'){
-     controlTargets=controlTargets.filter(id=>byId.get(id).layer!=='visible'||target.layer!=='visible'||relation(target.id,id,'control'));
+     controlTargets=controlTargets.filter(id=>relation(target.id,id,'control'));
      if(!controlTargets.length)continue;
     }
     const targetContacts=observation.pairs.filter(p=>p.participants.includes(target.id)).map(p=>p.id);
@@ -110,13 +110,13 @@ export function reviewCandidateInterference(candidate,observation,occurrences){
  // Resource/wealth positional separation is evidence, not universal noninterference.
  const separation=directed.filter(e=>e.kind==='control'&&W.includes(byId.get(e.from)?.tenGod)&&I.includes(byId.get(e.to)?.tenGod))
   .filter(e=>anchors.has(e.from)||anchors.has(e.to)||candidate.family==='officer')
-  .map(e=>({edgeId:e.edgeId,wealth:e.from,resource:e.to,between:[...e.between],dayBetween:e.between.some(id=>byId.get(id)?.dayReference),interference:e.interference,noninterferenceConfirmed:null}));
+  .map(e=>({edgeId:e.edgeId,wealth:e.from,resource:e.to,between:[...e.between],dayBetween:e.between.some(id=>byId.get(id)?.dayReference),interference:e.interference,scope:anchors.has(e.from)||anchors.has(e.to)?'anchor-related':'officer-chart-context',noninterferenceConfirmed:null}));
  return {candidateId:candidate.candidateId,family:candidate.family,witnesses,separation,formed:null,broken:null,rescued:null,selectionAuthority:false};
 }
 export function reviewPatternInterference(result,outcome){
  if(!result.stemForce||!result.relativeForce||outcome.status==='unavailable')return {version:STEM_INTERFERENCE_VERSION,status:'unavailable',pairs:[],competition:[],directed:[],candidates:[],selectionAuthority:false};
  const obs=observeStemInterference(result.stemForce,result.relativeForce,result.completeHour===true&&result.stemForce.completeHour===true&&result.relativeForce.completeHour===true);
- const {visible,...publicObs}=obs;
+ const {visible,relationEdges,...publicObs}=obs;
  return {...publicObs,candidates:outcome.candidates.map(c=>reviewCandidateInterference(c,obs,result.routeReview.occurrences))};
 }
 export function summarizeInterference(reviews){
