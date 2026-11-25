@@ -674,6 +674,8 @@ test('action requirements keep weak roots and distance as observations, not fail
  assert.equal(row.context.find(c=>c.name==='source-substantial-root').category,'supporting');
  assert.equal(row.context.find(c=>c.name==='source-substantial-root').value,false);
  assert.ok(row.hypotheses[1].conditions.some(c=>c.name==='source-root-criterion-disputed'&&c.value===null));
+ assert.deepEqual(row.hypotheses[1].sourceVariants.map(x=>x.rootRequirement),['deep-root-not-required','deep-root-required']);
+ assert.equal(row.hypotheses[1].sourceVariantResolved,false);
  assert.ok(row.hypotheses.every(h=>h.effective===null&&h.favorable===null));
  assert.equal(row.structuralReview,'visible-conditional-review');
  assert.deepEqual(interaction,before.interaction);assert.deepEqual(layers,before.layers);
@@ -694,6 +696,10 @@ test('exact pair contact differs from contact with another actor; food and hurti
  assert.ok(rows.rows.some(x=>x.from==='visible:year'&&!x.strictFood&&x.broaderOutput));
  assert.ok(rows.broadOutputCount>rows.strictFoodCount);
  assert.equal(direct.effective,null);
+ result.routeReview.occurrences.find(o=>o.id==='visible:year').tenGod='정인';
+ result.routeReview.occurrences.find(o=>o.id==='visible:day').tenGod='상관';
+ const resource=reviewActionRequirements(result,layers,interaction).edges.find(e=>e.id===id);
+ assert.deepEqual(resource.hypotheses.map(h=>h.purpose),['resource-hurting-control']);
  const partial=reviewActionRequirements({...result,completeHour:false},layers,interaction);
  assert.ok(partial.edges.every(e=>e.structuralReview==='partial-context'));
 });
