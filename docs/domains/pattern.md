@@ -1,0 +1,28 @@
+# Pattern / 격국
+
+Month-pattern, route, composition and occurrence-specific evidence.
+
+Run the native domain tests: `npm run test:domain -- pattern`. This catalog is navigation only; linked files remain authoritative and retain their existing paths.
+
+## Contracts, methods and research notes
+
+- [pattern-classical-v2.md](../pattern-classical-v2.md)
+- [pattern-useful-element-v1.md](../pattern-useful-element-v1.md)
+- [pattern-useful-element-v10.md](../pattern-useful-element-v10.md)
+- [pattern-useful-element-v2.md](../pattern-useful-element-v2.md)
+- [pattern-useful-element-v3.md](../pattern-useful-element-v3.md)
+- [pattern-useful-element-v4.md](../pattern-useful-element-v4.md)
+- [pattern-useful-element-v5.md](../pattern-useful-element-v5.md)
+- [pattern-useful-element-v6.md](../pattern-useful-element-v6.md)
+- [pattern-useful-element-v7.md](../pattern-useful-element-v7.md)
+- [pattern-useful-element-v8.md](../pattern-useful-element-v8.md)
+- [pattern-useful-element-v9.md](../pattern-useful-element-v9.md)
+
+## Frozen research results
+
+- [pattern-classical-v1-results.json](../pattern-classical-v1-results.json)
+
+## Frozen input fixtures
+
+- [pattern-classical-v1.json](../../test/fixtures/pattern-classical-v1.json)
+- [pattern-classical-v2.json](../../test/fixtures/pattern-classical-v2.json)

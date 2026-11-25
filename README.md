@@ -1,6 +1,6 @@
 # saju-kit
 
-[Current architecture](ARCHITECTURE.md) · [Documentation index](docs/README.md) · [Current refactoring decision](docs/adr/0013-domain-first-refactor.md)
+[Current architecture](ARCHITECTURE.md) · [Documentation index](docs/README.md) · [Test workflow](test/README.md) · [Current refactoring decision](docs/adr/0013-domain-first-refactor.md)
 
 Dependency-free ESM library for Korean Four Pillars calendar calculations and descriptive traditional signals. Product scoring, localized content, social maps and payment belong to consumers.
 

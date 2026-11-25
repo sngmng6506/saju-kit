@@ -1,140 +1,19 @@
 # Documentation index
 
-Current architecture: [ARCHITECTURE](../ARCHITECTURE.md). Consumer entry points: [consumer contract](consumer-contract.md). Decisions: [ADR](adr/). The links below preserve versioned research records; the largest version number does not imply a released policy.
+[Current architecture](../ARCHITECTURE.md) · [Active plan](../PLAN.md) · [Consumer contract](consumer-contract.md) · [Test workflow](../test/README.md).
 
-## Current navigation
+Canonical documents, research results and fixtures retain their existing paths. Domain catalogs link to them without duplicating specifications. A larger policy version does not imply production readiness or final selection authority.
 
-- [Active plan](../PLAN.md), [pattern refactor validation](refactor-validation.md), [strength refactor validation](strength-refactor-validation.md), [climate refactor validation](climate-refactor-validation.md), [method refactor validation](methods-refactor-validation.md), [authority refactor validation](authority-refactor-validation.md), [transit refactor validation](transit-refactor-validation.md), [core refactor validation](core-refactor-validation.md), [dead-code inventory](dead-code-inventory.md)
-- [Historical initial plan](history/initial-plan.md)
-- [Latest pattern evidence contract (v10)](pattern-useful-element-v10.md), [strength multiaxis v4](strength-multiaxis-v4.md), [climate v5](climate-v5.md), [five-method authority/transit v4](useful-element-five-method-v4.md). All are experimental, not final authority.
+## Domain catalogs
 
-## Pattern / 格局
+- [Calendar / 역법](domains/calendar.md) — Calendar conversion and solar-term reference data.
+- [Core / 원국과 구조 관측](domains/core.md) — Neutral natal relationships, elemental structure, formation, roots and support observations.
+- [Movement / 대운·세운·이동수](domains/movement.md) — Legacy and movement-v6 calendar and presentation contracts.
+- [Pattern / 격국](domains/pattern.md) — Month-pattern, route, composition and occurrence-specific evidence.
+- [Strength / 강약](domains/strength.md) — Ordinary strength hypotheses, reference corpora and research experiments.
+- [Useful element / 용신·운세](domains/useful-element.md) — Balance, climate, mediation, remedy, authority and conditional transit evidence.
+- [Engineering / 설계·검증](domains/engineering.md) — Consumer contract, architecture decisions, historical plans and refactor verification.
 
-### Methods, contracts and research notes
+## Verification
 
-- [pattern-classical-v2.md](pattern-classical-v2.md)
-- [pattern-useful-element-v1.md](pattern-useful-element-v1.md)
-- [pattern-useful-element-v10.md](pattern-useful-element-v10.md)
-- [pattern-useful-element-v2.md](pattern-useful-element-v2.md)
-- [pattern-useful-element-v3.md](pattern-useful-element-v3.md)
-- [pattern-useful-element-v4.md](pattern-useful-element-v4.md)
-- [pattern-useful-element-v5.md](pattern-useful-element-v5.md)
-- [pattern-useful-element-v6.md](pattern-useful-element-v6.md)
-- [pattern-useful-element-v7.md](pattern-useful-element-v7.md)
-- [pattern-useful-element-v8.md](pattern-useful-element-v8.md)
-- [pattern-useful-element-v9.md](pattern-useful-element-v9.md)
-### Machine-readable results
-
-- [pattern-classical-v1-results.json](pattern-classical-v1-results.json)
-
-## Strength / 強弱
-
-### Methods, contracts and research notes
-
-- [lin-reference.md](lin-reference.md)
-- [ordinary-ran-yuan-reference-v1.md](ordinary-ran-yuan-reference-v1.md)
-- [ordinary-reference-v1.md](ordinary-reference-v1.md)
-- [ordinary-wei-reference-v1.md](ordinary-wei-reference-v1.md)
-- [seasonal-ablation.md](seasonal-ablation.md)
-- [strength-ablation.md](strength-ablation.md)
-- [strength-abstention-diagnosis.md](strength-abstention-diagnosis.md)
-- [strength-audited-results.md](strength-audited-results.md)
-- [strength-clash-formation.md](strength-clash-formation.md)
-- [strength-command-sensitivity.md](strength-command-sensitivity.md)
-- [strength-factorial.md](strength-factorial.md)
-- [strength-holdout.md](strength-holdout.md)
-- [strength-hybrid-v1.md](strength-hybrid-v1.md)
-- [strength-multiaxis-v1.md](strength-multiaxis-v1.md)
-- [strength-multiaxis-v2.md](strength-multiaxis-v2.md)
-- [strength-multiaxis-v3.md](strength-multiaxis-v3.md)
-- [strength-multiaxis-v4.md](strength-multiaxis-v4.md)
-- [strength-multihop.md](strength-multihop.md)
-- [strength-ordinary-v2.md](strength-ordinary-v2.md)
-- [strength-peer-root-access.md](strength-peer-root-access.md)
-- [strength-pressure-controls.md](strength-pressure-controls.md)
-- [strength-provenance-audit.md](strength-provenance-audit.md)
-- [strength-quantitative-v3.md](strength-quantitative-v3.md)
-- [strength-reference-v1.md](strength-reference-v1.md)
-- [strength-research-integration.md](strength-research-integration.md)
-- [strength-resource-route-sensitivity.md](strength-resource-route-sensitivity.md)
-- [strength-root-position.md](strength-root-position.md)
-- [strength-separated-decision.md](strength-separated-decision.md)
-- [strength-source-review-01.md](strength-source-review-01.md)
-- [strength-source-review-02.md](strength-source-review-02.md)
-- [strength-source-review-03.md](strength-source-review-03.md)
-- [strength-source-review-04.md](strength-source-review-04.md)
-- [strength-source-review-05.md](strength-source-review-05.md)
-- [strength-source-review-06.md](strength-source-review-06.md)
-- [strength-structural-v3.md](strength-structural-v3.md)
-- [strength-v4-lin-holdout.md](strength-v4-lin-holdout.md)
-- [strength-weak-path-diagnosis.md](strength-weak-path-diagnosis.md)
-- [strength-yuan-prospective.md](strength-yuan-prospective.md)
-- [strength-zhang-diagnosis.md](strength-zhang-diagnosis.md)
-- [strength-zhang-holdout.md](strength-zhang-holdout.md)
-- [strength-zou-holdout.md](strength-zou-holdout.md)
-### Machine-readable results
-
-- [strength-abstention-results.json](strength-abstention-results.json)
-- [strength-audited-results.json](strength-audited-results.json)
-- [strength-clash-formation-results.json](strength-clash-formation-results.json)
-- [strength-command-sensitivity-results.json](strength-command-sensitivity-results.json)
-- [strength-multihop-results.json](strength-multihop-results.json)
-- [strength-peer-root-access-results.json](strength-peer-root-access-results.json)
-- [strength-pressure-controls-results.json](strength-pressure-controls-results.json)
-- [strength-resource-route-sensitivity-results.json](strength-resource-route-sensitivity-results.json)
-- [strength-root-position-results.json](strength-root-position-results.json)
-- [strength-separated-decision-results.json](strength-separated-decision-results.json)
-- [strength-v4-lin-holdout-results.json](strength-v4-lin-holdout-results.json)
-- [strength-weak-path-results.json](strength-weak-path-results.json)
-- [strength-yuan-prospective-results.json](strength-yuan-prospective-results.json)
-- [strength-zhang-holdout-results.json](strength-zhang-holdout-results.json)
-- [strength-zou-holdout-results.json](strength-zou-holdout-results.json)
-
-## Useful element / 用神
-
-### Methods, contracts and research notes
-
-- [balance-priority.md](balance-priority.md)
-- [balance-route-review.md](balance-route-review.md)
-- [balance-useful-element.md](balance-useful-element.md)
-- [climate-v3-authority-transit.md](climate-v3-authority-transit.md)
-- [climate-v4.md](climate-v4.md)
-- [climate-v5.md](climate-v5.md)
-- [useful-element-expansion.md](useful-element-expansion.md)
-- [useful-element-five-method-v4.md](useful-element-five-method-v4.md)
-- [useful-element-review.md](useful-element-review.md)
-- [useful-element-source-transit-v3.md](useful-element-source-transit-v3.md)
-### Machine-readable results
-
-- [balance-priority-results.json](balance-priority-results.json)
-- [balance-route-review-results.json](balance-route-review-results.json)
-- [balance-useful-element-results.json](balance-useful-element-results.json)
-- [climate-remedy-results.json](climate-remedy-results.json)
-- [climate-v3-conditional-arrivals-results.json](climate-v3-conditional-arrivals-results.json)
-- [climate-v3-results.json](climate-v3-results.json)
-- [climate-v3-term-results.json](climate-v3-term-results.json)
-- [mediation-useful-element-results.json](mediation-useful-element-results.json)
-- [useful-element-authority-results.json](useful-element-authority-results.json)
-- [useful-element-expansion-results.json](useful-element-expansion-results.json)
-- [useful-element-review-results.json](useful-element-review-results.json)
-- [useful-element-transit-calendar-results.json](useful-element-transit-calendar-results.json)
-
-## Structural evidence / calendar / movement
-
-### Methods, contracts and research notes
-
-- [consumer-contract.md](consumer-contract.md)
-- [extended-natal.md](extended-natal.md)
-- [formation-evidence.md](formation-evidence.md)
-- [interaction-sensitivity-v1.md](interaction-sensitivity-v1.md)
-- [month-command.md](month-command.md)
-- [movement-v6.md](movement-v6.md)
-- [output-capacity-v1.md](output-capacity-v1.md)
-- [resource-access-v1.md](resource-access-v1.md)
-- [root-dynamics-v1.md](root-dynamics-v1.md)
-- [route-budget-v1.md](route-budget-v1.md)
-- [support-network-v1.md](support-network-v1.md)
-### Machine-readable results
-
-- [formation-evidence-results.json](formation-evidence-results.json)
-- [month-command-results.json](month-command-results.json)
+Run `npm run audit:layout` to verify that every canonical document, frozen result, fixture and native test entry is catalogued exactly once. The complete suite remains `npm run test:failures`. See the [engineering catalog](domains/engineering.md) for pinned-baseline verification and architecture decisions.
