@@ -23,24 +23,34 @@ export function validateMechanismSource(data,development){
 }
 export function evaluateMechanismSourceCase(c,result){
  const m=result?.efficacyReview?.mechanismReview;
- const ids=new Set((result?.reviews??[]).filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId));
- const relevant=(m?.candidates??[]).filter(q=>ids.has(q.candidateId));
+ const reviews=result?.reviews??[],mechanisms=m?.candidates??[];
+ const allIds=reviews.map(q=>q.candidateId),mechanismIds=mechanisms.map(q=>q.candidateId);
+ const ids=new Set(reviews.filter(q=>q.family===c.family&&q.status!=='out-of-scope').map(q=>q.candidateId));
+ const relevant=mechanisms.filter(q=>ids.has(q.candidateId));
  const invalid=!m||result.decisionReview?.status!=='abstained'||m.selectionAuthority!==false||
-  relevant.some(q=>q.status==='invalid-evidence'||q.selectionAuthority!==false||q.edges.some(e=>e.effective!==null||!STATES.has(e.status)));
+  result.efficacyReview?.status==='invalid-evidence'||new Set(allIds).size!==allIds.length||
+  new Set(mechanismIds).size!==mechanismIds.length||allIds.length!==mechanismIds.length||
+  allIds.some(id=>!mechanismIds.includes(id))||mechanisms.some(q=>q.status==='invalid-evidence'||q.selectionAuthority!==false)||
+  relevant.some(q=>!Array.isArray(q.edges)||new Set(q.edges.map(e=>JSON.stringify([e.from,e.to,e.kind]))).size!==q.edges.length||
+   q.edges.some(e=>e.effective!==null||!STATES.has(e.status)||!Array.isArray(e.conditions)||e.conditions.some(c=>!STATES.has(c.state))));
  return c.probes.map(p=>{
   const expected=key(p.from,p.to,p.kind),hits=relevant.flatMap(q=>q.edges.filter(e=>key(e.from,e.to,e.kind)===expected).map(e=>({
    candidateId:q.candidateId,edgeId:e.id,status:e.status,conditions:e.conditions.map(c=>({id:c.id,state:c.state})),effective:e.effective
   })));
+  const coveredIds=new Set(hits.map(h=>h.candidateId));
+  const candidateCoverage=[...ids].map(candidateId=>({candidateId,observed:invalid?null:coveredIds.has(candidateId)}));
   const kinds=new Set(hits.map(h=>h.status));
-  const status=invalid?'invalid-evidence':!ids.size?'candidate-unavailable':!hits.length?'uncovered':kinds.size===1?hits[0].status:'candidate-dependent';
+  const status=invalid?'invalid-evidence':!ids.size?'candidate-unavailable':!hits.length?'uncovered':
+   coveredIds.size!==ids.size?'partial-candidate-coverage':kinds.size===1?hits[0].status:'candidate-dependent';
   const blockers=[...new Set(hits.flatMap(h=>h.conditions.filter(c=>c.state!=='supported').map(c=>c.id+':'+c.state)))].sort();
-  return {...p,status,hits,blockers,relationObserved:invalid?null:hits.length>0,sourceDispute:p.claim==='removal-disputed',effectAgreement:null};
+  return {...p,status,hits,blockers,candidateCoverage,relationObserved:invalid?null:hits.length>0,sourceDispute:p.claim==='removal-disputed',effectAgreement:null};
  });
 }
 export function summarizeMechanismSource(data,rows){
  const all=rows.flatMap(r=>r.probes??[]),expected=data.cases.flatMap(c=>c.probes.map(p=>JSON.stringify([c.id,p.id])));
  const actual=rows.flatMap(r=>(r.probes??[]).map(p=>JSON.stringify([r.id,p.id])));
- const coverageOk=expected.length===actual.length&&new Set(actual).size===actual.length&&expected.every(k=>actual.includes(k));
+ const caseIds=data.cases.map(c=>c.id),rowIds=rows.map(r=>r.id);
+ const coverageOk=caseIds.length===rowIds.length&&new Set(rowIds).size===rowIds.length&&caseIds.every(id=>rowIds.includes(id))&&expected.length===actual.length&&new Set(actual).size===actual.length&&expected.every(k=>actual.includes(k));
  const counts={},blockerCounts={},byClaim={},byEndpointBasis={};
  for(const p of all){
   counts[p.status]=(counts[p.status]??0)+1;

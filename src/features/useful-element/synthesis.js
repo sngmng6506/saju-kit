@@ -3,6 +3,7 @@ import {evaluateBalanceUsefulElement,BALANCE_USEFUL_ELEMENT_VERSION} from '../ba
 import {buildOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../pattern/outcome-review-v10.js';
 import {composeOutcomeSynthesis} from './outcome-synthesis.js';
 import {observeSynthesisPriority} from './synthesis-priority.js';
+import {observeSynthesisSelection} from './synthesis-selection.js';
 import {createMethodEvidence} from '../method-evidence.js';
 import {evaluateMediationUsefulElement,MEDIATION_USEFUL_ELEMENT_VERSION} from '../mediation/review.js';
 import {evaluateRemedyEvidence,REMEDY_EVIDENCE_VERSION} from '../remedy/review.js';
@@ -29,5 +30,7 @@ export function buildSynthesis(input,{shared=true}={}){
  const remedy=usable?evaluateRemedyEvidence({...args,policy:REMEDY_EVIDENCE_VERSION},next()):null;
  const supplementaryMethods=observeSupplementaryMethods(input.saju,{...result,status},pattern,mediation,remedy);
  const climateTiming=projectSynthesisTiming(usable?climateResult:null);
- return {...result,status,priorityReview,supplementaryMethods,climateTiming};
+ const composed={...result,status,priorityReview,supplementaryMethods,climateTiming};
+ const selectionReview=observeSynthesisSelection(composed);
+ return {...composed,status:selectionReview.status==='invalid-evidence'?'invalid-evidence':status,selectionReview};
 }

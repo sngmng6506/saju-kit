@@ -12,7 +12,7 @@ test('directed action cannot be matched in reverse; candidate absence distinguis
  const x={...c,probes:[{...c.probes[0],kind:'control',claim:'action-asserted'}]},r=result();
  r.efficacyReview.mechanismReview.candidates[0].edges=[{...edge,kind:'control'}];
  assert.equal(evaluateMechanismSourceCase(x,r)[0].status,'uncovered');
- r.reviews=[];assert.equal(evaluateMechanismSourceCase(x,r)[0].status,'candidate-unavailable');
+ r.reviews=[];r.efficacyReview.mechanismReview.candidates=[];assert.equal(evaluateMechanismSourceCase(x,r)[0].status,'candidate-unavailable');
 });
 test('different candidate hypotheses retained rather than voting',()=>{
  const r=result();r.reviews.push({candidateId:'c2',family:'wealth',status:'diagnostic'});
@@ -33,4 +33,18 @@ test('source fixture distinguishes disputed removal and rejects invalid claim or
  assert.deepEqual(validateMechanismSource({cases:[c]},dev),[]);
  assert.equal(validateMechanismSource({cases:[{...c,probes:[{...c.probes[0],commentaryDispute:null}]}]},dev).length,1);
  assert.equal(validateMechanismSource({cases:[{...c,probes:[{...c.probes[0],from:'unknown'}]}]},dev).length,1);
+});
+
+test('partially covered family is not reported as uniformly supported',()=>{
+ const r=result();r.reviews.push({candidateId:'c2',family:'wealth',status:'diagnostic'});
+ r.efficacyReview.mechanismReview.candidates.push({candidateId:'c2',selectionAuthority:false,status:'diagnostic',edges:[]});
+ const p=evaluateMechanismSourceCase(c,r)[0];assert.equal(p.status,'partial-candidate-coverage');
+ assert.deepEqual(p.candidateCoverage,[{candidateId:'c1',observed:true},{candidateId:'c2',observed:false}]);
+});
+test('missing candidate projection, duplicate projection and extra empty report cannot pass',()=>{
+ const r=result();r.efficacyReview.mechanismReview.candidates=[];
+ assert.equal(evaluateMechanismSourceCase(c,r)[0].status,'invalid-evidence');
+ const y=result();y.efficacyReview.mechanismReview.candidates.push(y.efficacyReview.mechanismReview.candidates[0]);
+ assert.equal(evaluateMechanismSourceCase(c,y)[0].status,'invalid-evidence');
+ assert.equal(summarizeMechanismSource({cases:[c]},[{id:'c',probes:evaluateMechanismSourceCase(c,result())},{id:'extra',probes:[]}]).gatePassed,false);
 });
