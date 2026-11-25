@@ -133,3 +133,26 @@ export function summarizeLayerMechanisms(reviews){
    return [k,{edges:xs.length,legacy:count(xs,'legacyStatus'),layered:count(xs,'status'),withVisibleAlternative:xs.filter(e=>e.projectedAlternatives.length).length}];
   })),confirmedEffects:0,selectionAuthority:false};
 }
+
+export function reviewContrastProjections(contrasts,access,layerReview){
+ if(layerReview.status==='unavailable')return {status:'unavailable',rows:[],selectionAuthority:false};
+ const rows=contrasts.candidates.flatMap(c=>{
+  const a=access.candidates.find(x=>x.candidateId===c.candidateId);
+  if(!a)throw Error('missing projection candidate');
+  return c.patterns.flatMap(p=>p.witnesses.filter(w=>!w.allVisible).map(w=>({
+   candidateId:c.candidateId,patternId:p.id,...reviewCoherentProjection(w,p.anchorRole,a,access,layerReview)
+  })));
+ });
+ return {status:layerReview.status,rows,selectionAuthority:false};
+}
+export function summarizeContrastProjections(reviews){
+ const rows=reviews.flatMap(r=>r.rows);
+ const alternatives=rows.flatMap(r=>r.alternatives);
+ // Same visible route may be referenced by several original hidden witnesses.
+ // Report deduplicated candidate/pattern/assignment counts within each chart.
+ const uniquePerChart=reviews.reduce((n,r)=>n+new Set(r.rows.flatMap(w=>w.alternatives.map(a=>JSON.stringify([w.candidateId,w.patternId,a.roles])))).size,0);
+ return {charts:reviews.length,hiddenWitnesses:rows.length,withCoherentVisibleAlternative:rows.filter(r=>r.observed===true).length,
+  withoutObservedAlternative:rows.filter(r=>r.observed===false).length,unresolved:rows.filter(r=>r.observed===null).length,
+  alternativeOccurrences:alternatives.length,uniquePerChartAlternativeAssignments:uniquePerChart,
+  allScreensMet:alternatives.filter(a=>a.allScreensMet).length,confirmedEffects:0,selectionAuthority:false};
+}
