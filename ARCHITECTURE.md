@@ -32,7 +32,7 @@ src/features/pattern/
   relative-bindings.js
 ```
 
-All v1–v10 public pattern entry points delegate to the request-local pipeline. They do not call each other. It constructs only the fields requested by each original revision and preserves version-specific behavior. Earlier discarded outcome/route/quality calculations are skipped for v4+. Core calls inside root/force evidence still perform their original independent work; no cross-request cache. The 13 old leaf paths re-export their implementations solely for existing internal test/script compatibility. Do not add new implementation code there.
+All v1–v10 public pattern entry points delegate to the request-local pipeline. They do not call each other. It constructs only the fields requested by each original revision and preserves version-specific behavior. Earlier discarded outcome/route/quality calculations are skipped for v4+. Root/force evidence reuses the same request-local validated core observations; no cross-request cache. The 13 old leaf paths re-export their implementations solely for existing internal test/script compatibility. Do not add new implementation code there.
 
 ## Current strength domain
 
@@ -54,6 +54,10 @@ The `balance/`, `mediation/` and `remedy/` directories own their respective doct
 
 `src/features/transit/` owns fixed-policy transit orchestration, annual evidence, exact arrivals, source and pattern projections. The legacy and movement-v6 annual APIs use shared core year-context and year-timeline-kernel helpers for identical validation and traversal while retaining their separate signal, explanation and display policies. Daeun calendar policy implementations and consumer contracts remain unchanged. See [transit refactor validation](docs/transit-refactor-validation.md).
 
+## Shared core observation scope
+
+`createElementObservation` validates the chart once and lazily constructs natal context, natal relations and elemental structure. Internal interaction/root projections consume those observations, and formation, stem-force and pattern analyses reuse them. Method review also shares the structural root graph between its two season modes; quantitative policies retain independent caches. Public analyzers still validate their own inputs and no global state is introduced. See [core refactor validation](docs/core-refactor-validation.md).
+
 Other domains retain their existing version directories for now. Group only after establishing equivalence baselines; do not delete research policies or infer a release from the largest version.
 
 ## Documentation ownership
@@ -71,6 +75,7 @@ npm run verify:climate-refactor
 npm run verify:methods-refactor
 npm run verify:authority-refactor
 npm run verify:transit-refactor
+npm run verify:core-refactor
 ```
 
 The pattern verifier compares the complete root API export names and ten pattern policies against a pinned pre-refactor checkout. Static audit is a conventional ESM import scan, not a complete symbol-level dead-code proof. See [refactor validation](docs/refactor-validation.md) for executed checks and outstanding native regression gate.

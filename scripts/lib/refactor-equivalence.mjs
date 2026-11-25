@@ -37,7 +37,7 @@ export async function verifyRefactor({baseline,policies,neutralPolicies=[],extra
    if(neutralPolicies.includes(policy))for(const c of cases.filter(x=>x.saju.pillars.hour!==null).slice(0,24))
     compare(name,{saju:c.saju,birthBasis:'verified-chart',policy},c.id+' neutral',{seasonMode:'neutral'},true);
   }
-  if(extra)await extra({old,now,compare});
+  if(extra)await extra({old,now,compare,cases});
   return {baseline,checks,charts:cases.length,policies:policies.length,publicExports:Object.keys(now).length};
  }finally{if(added)git('worktree','remove','--force',checkout);rmSync(tmp,{recursive:true,force:true});}
 }
