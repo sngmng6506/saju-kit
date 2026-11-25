@@ -1,0 +1,1820 @@
+{
+  "version": "pattern-outcome-adjudication-v1",
+  "frozenAgainst": "e9067f6841c226c6f5413b1002e27de15fa2751e",
+  "scope": "annotation-queue-and-partial-source-clauses-not-independent-holdout",
+  "sourceClauses": [
+    {
+      "id": "assistant-officer-combine-hurting",
+      "day": "갑",
+      "month": "유",
+      "visible": [
+        "정",
+        "임"
+      ],
+      "branchMembers": [],
+      "sourceReading": "officer-protection-by-combination",
+      "assistantStems": [
+        "임"
+      ],
+      "assistantBranches": [],
+      "injuredAssistantStems": [],
+      "explicitOrder": null,
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-wealth-combine-killing",
+      "day": "무",
+      "month": "자",
+      "visible": [
+        "갑",
+        "기"
+      ],
+      "branchMembers": [],
+      "sourceReading": "wealth-protection-by-combination",
+      "assistantStems": [
+        "기"
+      ],
+      "assistantBranches": [],
+      "injuredAssistantStems": [],
+      "explicitOrder": null,
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-killing-remove-resource",
+      "day": "을",
+      "month": "유",
+      "visible": [
+        "정",
+        "계",
+        "무"
+      ],
+      "branchMembers": [],
+      "sourceReading": "food-control-restored-by-combination",
+      "assistantStems": [
+        "무"
+      ],
+      "assistantBranches": [],
+      "injuredAssistantStems": [],
+      "explicitOrder": {
+        "year": "정",
+        "month": "계",
+        "hour": "무"
+      },
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-wealth-branch-assembly",
+      "day": "계",
+      "month": "해",
+      "visible": [
+        "병"
+      ],
+      "branchMembers": [
+        "묘",
+        "미"
+      ],
+      "sourceReading": "peer-to-wealth-through-wood-assembly",
+      "assistantStems": [],
+      "assistantBranches": [
+        "묘",
+        "미"
+      ],
+      "injuredAssistantStems": [],
+      "explicitOrder": null,
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-output-branch-assembly",
+      "day": "경",
+      "month": "신",
+      "visible": [],
+      "branchMembers": [
+        "자",
+        "진"
+      ],
+      "sourceReading": "metal-water-assembly-output",
+      "assistantStems": [],
+      "assistantBranches": [
+        "자",
+        "진"
+      ],
+      "injuredAssistantStems": [],
+      "explicitOrder": null,
+      "qualifications": [
+        "parallel edition reads 癸 where base reads water; no exact visible stem label"
+      ],
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-officer-injury",
+      "day": "갑",
+      "month": "유",
+      "visible": [
+        "정",
+        "계",
+        "무"
+      ],
+      "branchMembers": [],
+      "sourceReading": "resource-assistant-combined-away",
+      "assistantStems": [
+        "계"
+      ],
+      "assistantBranches": [],
+      "injuredAssistantStems": [
+        "계"
+      ],
+      "explicitOrder": null,
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    },
+    {
+      "id": "assistant-wealth-injury",
+      "day": "정",
+      "month": "유",
+      "visible": [
+        "계",
+        "기",
+        "갑"
+      ],
+      "branchMembers": [],
+      "sourceReading": "food-assistant-combined-away",
+      "assistantStems": [
+        "기"
+      ],
+      "assistantBranches": [],
+      "injuredAssistantStems": [
+        "기"
+      ],
+      "explicitOrder": null,
+      "kind": "partial-text-clause",
+      "source": [
+        "https://donglishuzhai.net/chapter/3728.html",
+        "https://www.chenshupaipan.com/books/5/3884.html",
+        "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-xiang-shen-jin-yao"
+      ],
+      "labelScope": "explicit-source-claim-not-full-chart",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      },
+      "finalOutcome": null
+    }
+  ],
+  "chartQueue": [
+    {
+      "id": "zp-3744-01",
+      "pillars": [
+        "갑신",
+        "임신",
+        "을사",
+        "무인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3744,
+        "url": "https://donglishuzhai.net/chapter/3744.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan",
+        "rawPillars": "甲申壬申乙己戊寅",
+        "transcription": "corrected",
+        "note": "乙巳 correction from chapter"
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "officer",
+      "sourceMotif": "財印隔位",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3744-03",
+      "pillars": [
+        "을묘",
+        "정해",
+        "정미",
+        "경술"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3744,
+        "url": "https://donglishuzhai.net/chapter/3744.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan",
+        "rawPillars": "乙卯丁亥丁未庚戌",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化官為印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3744-06",
+      "pillars": [
+        "정축",
+        "임인",
+        "기사",
+        "병인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3744,
+        "url": "https://donglishuzhai.net/chapter/3744.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-zheng-guan",
+        "rawPillars": "丁丑壬寅己巳丙寅",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "officer",
+      "sourceMotif": "佩印合財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-01",
+      "pillars": [
+        "임신",
+        "임자",
+        "무오",
+        "을묘"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "壬申壬子戊午乙卯",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "財生官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-02",
+      "pillars": [
+        "임인",
+        "임인",
+        "경진",
+        "신사"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "壬寅壬寅庚辰辛巳",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "財用食生",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-03",
+      "pillars": [
+        "을미",
+        "갑신",
+        "병신",
+        "경인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "乙未甲申丙申庚寅",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "佩印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-04",
+      "pillars": [
+        "을미",
+        "기묘",
+        "경인",
+        "신사"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "乙未己卯庚寅辛巳",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "財印相生",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-05",
+      "pillars": [
+        "경술",
+        "무자",
+        "무자",
+        "병진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "庚戌戊子戊子丙辰",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "食印隔位",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-09",
+      "pillars": [
+        "을축",
+        "정해",
+        "기해",
+        "을해"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "乙丑丁亥己亥乙亥",
+        "transcription": "variant",
+        "note": "Parallel chapter omits one pillar."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "財用煞印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-10",
+      "pillars": [
+        "병인",
+        "계사",
+        "계미",
+        "임술"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "丙寅癸巳癸未壬戌",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "透財藏官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-11",
+      "pillars": [
+        "병진",
+        "계사",
+        "임술",
+        "임인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "丙辰癸巳壬戌壬寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "棄煞就財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3746-12",
+      "pillars": [
+        "병진",
+        "병신",
+        "병오",
+        "임진"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3746,
+        "url": "https://donglishuzhai.net/chapter/3746.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai",
+        "rawPillars": "丙辰丙申丙午壬辰",
+        "transcription": "variant",
+        "note": "Appendix says 印; chapter says 煞."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "棄財就煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-03",
+      "pillars": [
+        "을해",
+        "기묘",
+        "정유",
+        "임인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "乙亥己卯丁酉壬寅",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "印制食護官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-05",
+      "pillars": [
+        "기사",
+        "계유",
+        "계미",
+        "경신"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "己巳癸酉癸未庚申",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "身輕印重",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-06",
+      "pillars": [
+        "임인",
+        "무신",
+        "임진",
+        "임인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "壬寅戊申壬辰壬寅",
+        "transcription": "corrected",
+        "note": "Appendix emends 午 to 申; chapter agrees."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "身重印輕",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-07",
+      "pillars": [
+        "을축",
+        "신사",
+        "기사",
+        "경오"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "乙丑辛巳己巳庚午",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "煞兼食傷",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-08",
+      "pillars": [
+        "신유",
+        "병신",
+        "임신",
+        "신해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "辛酉丙申壬申辛亥",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "印多用財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-09",
+      "pillars": [
+        "경인",
+        "을유",
+        "계해",
+        "병진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "庚寅乙酉癸亥丙辰",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "合食不生財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-10",
+      "pillars": [
+        "기미",
+        "갑술",
+        "신미",
+        "계사"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "己未甲戌辛未癸巳",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "合財存食",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-11",
+      "pillars": [
+        "신해",
+        "경자",
+        "갑진",
+        "을해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "辛亥庚子甲辰乙亥",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "合煞留官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-12",
+      "pillars": [
+        "경술",
+        "무자",
+        "갑술",
+        "을해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "庚戌戊子甲戌乙亥",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "劫財存煞印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-13",
+      "pillars": [
+        "임자",
+        "계묘",
+        "병자",
+        "기해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "壬子癸卯丙子己亥",
+        "transcription": "corrected",
+        "note": "Appendix emends 亥 to 卯; chapter agrees."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "resource",
+      "sourceMotif": "官煞有制",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3748-14",
+      "pillars": [
+        "병오",
+        "경인",
+        "병오",
+        "계사"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3748,
+        "url": "https://donglishuzhai.net/chapter/3748.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou",
+        "rawPillars": "丙午庚寅丙午癸巳",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化印為劫",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-01",
+      "pillars": [
+        "정미",
+        "계묘",
+        "계해",
+        "계축"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "丁未癸卯癸亥癸丑",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "食旺財透",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-03",
+      "pillars": [
+        "정해",
+        "계묘",
+        "계묘",
+        "갑인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "丁亥癸卯癸卯甲寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "藏食露傷",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-04",
+      "pillars": [
+        "갑오",
+        "정묘",
+        "계축",
+        "병진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "甲午丁卯癸丑丙辰",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "偏正疊出",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-05",
+      "pillars": [
+        "기미",
+        "기사",
+        "갑인",
+        "병인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "己未己巳甲寅丙寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "夏木火土",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-06",
+      "pillars": [
+        "신묘",
+        "신묘",
+        "계유",
+        "기미"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "辛卯辛卯癸酉己未",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "就煞印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "hu-food",
+      "pillars": [
+        "무술",
+        "임술",
+        "병자",
+        "무술"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "戊戌壬戌丙子戊戌",
+        "transcription": "legacy",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "兼偏官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-08",
+      "pillars": [
+        "정해",
+        "임자",
+        "신사",
+        "정유"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "丁亥壬子辛巳丁酉",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "金水食神用煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-09",
+      "pillars": [
+        "병오",
+        "계사",
+        "갑자",
+        "병인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "丙午癸巳甲子丙寅",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "食神用印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3750-10",
+      "pillars": [
+        "계유",
+        "신유",
+        "기묘",
+        "을해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3750,
+        "url": "https://donglishuzhai.net/chapter/3750.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shi-shen",
+        "rawPillars": "癸酉辛酉己卯乙亥",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "food",
+      "sourceMotif": "財不黨煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-02",
+      "pillars": [
+        "임진",
+        "갑진",
+        "병술",
+        "무술"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "壬辰甲辰丙戌戊戌",
+        "transcription": "variant",
+        "note": "Search extract 甲戌; opened chapter and appendix 甲辰."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "食重印制",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-03",
+      "pillars": [
+        "병인",
+        "무술",
+        "임술",
+        "신축"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "丙寅戊戌壬戌辛丑",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "killing",
+      "sourceMotif": "煞印同根",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-05",
+      "pillars": [
+        "갑신",
+        "을해",
+        "병술",
+        "경인"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "甲申乙亥丙戌庚寅",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "煞化印用財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-06",
+      "pillars": [
+        "계묘",
+        "정사",
+        "경인",
+        "경진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "癸卯丁巳庚寅庚辰",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "killing",
+      "sourceMotif": "去官留煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-07",
+      "pillars": [
+        "병자",
+        "갑오",
+        "신해",
+        "신묘"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "丙子甲午辛亥辛卯",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "killing",
+      "sourceMotif": "去煞留官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3752-08",
+      "pillars": [
+        "무진",
+        "갑인",
+        "무인",
+        "무오"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3752,
+        "url": "https://donglishuzhai.net/chapter/3752.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan",
+        "rawPillars": "戊辰甲寅戊寅戊午",
+        "transcription": "variant",
+        "note": "Chapter 印; appendix 刃."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "刃或印當煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-02",
+      "pillars": [
+        "갑자",
+        "을해",
+        "신미",
+        "무자"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "甲子乙亥辛未戊子",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化傷為財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-03",
+      "pillars": [
+        "기묘",
+        "정축",
+        "병인",
+        "경인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "己卯丁丑丙寅庚寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "hurting-officer",
+      "sourceMotif": "財傷同根",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-05",
+      "pillars": [
+        "정유",
+        "기유",
+        "무자",
+        "임자"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "丁酉己酉戊子壬子",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "hurting-officer",
+      "sourceMotif": "財印隔位",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-06",
+      "pillars": [
+        "임술",
+        "기유",
+        "무오",
+        "정사"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "壬戌己酉戊午丁巳",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "hurting-officer",
+      "sourceMotif": "印重帶財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "cai-hurting",
+      "pillars": [
+        "기미",
+        "병자",
+        "경자",
+        "병자"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "己未丙子庚子丙子",
+        "transcription": "legacy",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "hurting-officer",
+      "sourceMotif": "煞生印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-08",
+      "pillars": [
+        "임인",
+        "정미",
+        "병인",
+        "임진"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "壬寅丁未丙寅壬辰",
+        "transcription": "variant",
+        "note": "Chapter gives three pillars."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "煞印傷制",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-09",
+      "pillars": [
+        "병신",
+        "기해",
+        "신미",
+        "기해"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "丙申己亥辛未己亥",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "冬金用官化傷",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3754-10",
+      "pillars": [
+        "갑자",
+        "임신",
+        "기해",
+        "신미"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3754,
+        "url": "https://donglishuzhai.net/chapter/3754.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-shang-guan",
+        "rawPillars": "甲子壬申己亥辛未",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化傷為財生官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "blade-officer",
+      "pillars": [
+        "기유",
+        "병자",
+        "임인",
+        "병오"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3756,
+        "url": "https://donglishuzhai.net/chapter/3756.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yang-ren",
+        "rawPillars": "己酉丙子壬寅丙午",
+        "transcription": "legacy",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "blade",
+      "sourceMotif": "財官",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3756-02",
+      "pillars": [
+        "신축",
+        "갑오",
+        "병신",
+        "임진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3756,
+        "url": "https://donglishuzhai.net/chapter/3756.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yang-ren",
+        "rawPillars": "辛丑甲午丙申壬辰",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "blade",
+      "sourceMotif": "煞根財印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3756-05",
+      "pillars": [
+        "병술",
+        "정유",
+        "경신",
+        "임오"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3756,
+        "url": "https://donglishuzhai.net/chapter/3756.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yang-ren",
+        "rawPillars": "丙戌丁酉庚申壬午",
+        "transcription": "appendix-only",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "blade",
+      "sourceMotif": "煞純",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-01",
+      "pillars": [
+        "경술",
+        "무자",
+        "계유",
+        "계해"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "庚戌戊子癸酉癸亥",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "用官印護",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-02",
+      "pillars": [
+        "정유",
+        "병오",
+        "정사",
+        "임인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "丁酉丙午丁巳壬寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "用官財助",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-03",
+      "pillars": [
+        "경오",
+        "무자",
+        "계묘",
+        "정사"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "庚午戊子癸卯丁巳",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "官隔財印",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zhang-peer",
+      "pillars": [
+        "갑자",
+        "병자",
+        "계축",
+        "병진"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "甲子丙子癸丑丙辰",
+        "transcription": "variant",
+        "note": "Parallel chapter 壬辰."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "食傷化生",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-05",
+      "pillars": [
+        "기미",
+        "기사",
+        "정미",
+        "신축"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "己未己巳丁未辛丑",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化劫為財",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-06",
+      "pillars": [
+        "경자",
+        "갑신",
+        "경자",
+        "갑신"
+      ],
+      "eligible": false,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "庚子甲申庚子甲申",
+        "transcription": "transformation",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": null,
+      "sourceMotif": "化劫為食",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-07",
+      "pillars": [
+        "정사",
+        "임자",
+        "계묘",
+        "기미"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "丁巳壬子癸卯己未",
+        "transcription": "checked",
+        "note": ""
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "合財制煞",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-09",
+      "pillars": [
+        "갑자",
+        "병인",
+        "갑자",
+        "병인"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "甲子丙寅甲子丙寅",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "木火通明",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "zp-3758-10",
+      "pillars": [
+        "계묘",
+        "경신",
+        "경자",
+        "경진"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "chapter": 3758,
+        "url": "https://donglishuzhai.net/chapter/3758.html",
+        "appendixUrl": "https://www.dk-saju.com/classics/자평진전/자평진전-48-부집-명례",
+        "parallelUrl": "https://www.kaucim.ai/bazi/ziping-zhenquan/lun-jian-lu-yue-jie",
+        "rawPillars": "癸卯庚申庚子庚辰",
+        "transcription": "checked",
+        "note": null
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "peer",
+      "sourceMotif": "金水相涵",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    },
+    {
+      "id": "mixed-wealth-officer",
+      "pillars": [
+        "임신",
+        "계축",
+        "기축",
+        "갑술"
+      ],
+      "eligible": true,
+      "source": {
+        "book": "子平真詮",
+        "url": "https://donglishuzhai.net/chapter/3743.html",
+        "transcription": "legacy",
+        "rawPillars": null,
+        "note": "Source explicitly interprets mixed-qi wealth generating officer, not external killing pattern."
+      },
+      "split": "previously-exposed-classical-corpus",
+      "sourceFamily": "wealth",
+      "sourceMotif": "Source explicitly interprets mixed-qi wealth generating officer, not external killing pattern.",
+      "adjudication": {
+        "reviews": [],
+        "status": "pending"
+      }
+    }
+  ]
+}

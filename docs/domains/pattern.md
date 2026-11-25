@@ -6,6 +6,8 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 
 ## Contracts, methods and research notes
 
+- [pattern-outcome-adjudication-v1.md](../pattern-outcome-adjudication-v1.md)
+
 - [pattern-outcome-reference-v1.md](../pattern-outcome-reference-v1.md)
 - [pattern-outcome-evidence-v9.md](../pattern-outcome-evidence-v9.md)
 - [pattern-outcome-evidence-v8.md](../pattern-outcome-evidence-v8.md)
@@ -33,6 +35,8 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-classical-v1-results.json](../pattern-classical-v1-results.json)
 
 ## Frozen input fixtures
+
+- [pattern-outcome-adjudication-v1.json](../../test/fixtures/pattern-outcome-adjudication-v1.json)
 
 - [pattern-outcome-reference-v1.json](../../test/fixtures/pattern-outcome-reference-v1.json)
 - [pattern-classical-v1.json](../../test/fixtures/pattern-classical-v1.json)
