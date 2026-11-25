@@ -1,3 +1,4 @@
+import {diagnoseSourcePremise,summarizeRoleTriage} from './pattern-outcome-role-policy-triage.mjs';
 // Development source replay: evidence coverage is not predictive or efficacy accuracy.
 const STATES=['supported','opposed','conflicting','unresolved'];
 const COLLECTIONS={objective:'objectiveReview.objectives',food:'killingStrategies.food',mediation:'killingStrategies.mediation',dualRoles:'killingWealth.dualRoles',mediationContacts:'killingWealth.mediationContacts',outputDrain:'resourceStrategies.outputDrain',killingSupply:'resourceStrategies.killingSupply',officerContext:'resourceStrategies.officerContext'};
@@ -63,11 +64,11 @@ export function inspectLiteralSourceChart(c,natal,{partial=false}={}){
  }
  return {id:c.id,partial,monthPrincipal,sourceFamily:c.family,probes,errors,effectAgreement:null};
 }
-function summarizePremises(ps){
+function summarizePremises(ps,context,partial){
  if(!Array.isArray(ps))return [];
- return ps.map(p=>({id:p.id,state:p.state}));
+ return ps.map(p=>diagnoseSourcePremise(p,context,partial));
 }
-function inspectCandidate(q,m,probe){
+function inspectCandidate(q,m,probe,context,partial){
  const path=COLLECTIONS[probe.collection],rows=get(m.rolePriority,path);
  if(!Array.isArray(rows))return {error:'collection-unavailable',rows:[]};
  const witnesses=new Map(q.rules.flatMap(r=>r.witnesses.map(w=>[key(r.id,w.id),w])));
@@ -82,7 +83,7 @@ function inspectCandidate(q,m,probe){
   if(!selected.length)continue;
   for(const o of selected){
    const status=o.conditionalStatus;
-   const ps=summarizePremises(o.premises);
+   const ps=summarizePremises(o.premises,context,partial);
    projected.push({candidateId:q.candidateId,route:x.route??null,anchorId:x.anchorId??null,
     participants:Object.fromEntries(Object.entries(x).filter(([k,v])=>k.endsWith('Id')&&typeof v==='string')),
     status,premises:ps,unresolvedRequirements:o.unresolvedRequirements??x.unresolvedRequirements??[],
@@ -117,7 +118,7 @@ export function evaluateRoleSourceCase(c,result,{partial=false}={}){
   for(const q of active){
    const v=map.get(q.candidateId);
    if(!v){errors.push('missing-candidate:'+q.candidateId);continue;}
-   const r=inspectCandidate(q,v,p);
+   const r=inspectCandidate(q,v,p,m,partial);
    if(r.error)errors.push(p.id+':'+r.error);
    rows.push(...r.rows);
   }
@@ -163,5 +164,5 @@ export function summarizeRoleSourceReplay(packet,rows){
  }
  return {version:packet.version,expectedCases:packet.cases.length,expectedVariants:expected.length,executedVariants:rows.length,
   expectedFullProbes:packet.cases.reduce((n,c)=>n+c.probes.length,0),coverageCounts:counts,directionCounts,scopeDirectionCounts,stateCounts,premiseObservationCounts:premiseCounts,partialCoverageTransitions:transitions,
-  blockerCounts:blockers,errors,independentGold:0,conditionalAccuracy:null,effectAccuracy:null,rows};
+  blockerCounts:blockers,triage:summarizeRoleTriage(packet,rows),errors,independentGold:0,conditionalAccuracy:null,effectAccuracy:null,rows};
 }
