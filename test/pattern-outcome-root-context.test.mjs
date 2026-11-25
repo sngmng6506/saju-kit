@@ -4,6 +4,8 @@ import {readFileSync} from 'node:fs';
 import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
 import {observeRelativeForce} from '../src/core/relative-force.js';
 import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
+import {observeCombinationContext} from '../src/features/pattern/outcome-combination-context.js';
+import {observeLiteralSourceRelation} from '../scripts/lib/pattern-outcome-source-trace.mjs';
 import {observeClashAlternatives,observeRootContext} from '../src/features/pattern/outcome-root-context.js';
 const h=(position,stem,role='principal')=>({id:'hidden:'+position+':'+stem,position,stem,element:'wood',layer:'hidden',hiddenRole:role});
 const sample=()=>{
@@ -42,9 +44,11 @@ test('partial and invalid literal root identities fail conservatively',()=>{
  x.prior.stemForce.occurrences[0].roots[0].stem='병';assert.equal(run(x).status,'invalid-evidence');
 });
 
-test('native six source charts and missing-hour variants retain all physical root identities',()=>{
- const data=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-flow-source-v1.json',import.meta.url),'utf8'));
- for(const c of data.cases)for(const complete of [true,false]){
+test('native thirteen source charts and missing-hour variants retain physical roots and literal actions',()=>{
+ const read=n=>JSON.parse(readFileSync(new URL('./fixtures/'+n,import.meta.url),'utf8'));
+ const data=[...read('pattern-outcome-role-flow-source-v1.json').cases,...read('pattern-outcome-mechanism-source-v2.json').cases];
+ assert.equal(data.length,13);let probes=0;
+ for(const c of data)for(const complete of [true,false]){
   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!complete&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
   const stemForce=analyzeStemForceEvidence({saju}),relativeForce=observeRelativeForce(stemForce),formation=analyzeFormationEvidence({saju});
   const r=observeRootContext({completeHour:complete,stemForce,relativeForce},formation);
@@ -54,7 +58,17 @@ test('native six source charts and missing-hour variants retain all physical roo
   assert.ok(r.occurrences.every(o=>o.rootPreservedConfirmed===null));
   assert.ok(r.comparisons.every(p=>p.forceComparison===null));
   if(!complete)assert.ok(r.comparisons.every(p=>p.sensitivity.relation==='unresolved'));
+  const combination=observeCombinationContext({completeHour:complete,stemForce,relativeForce},formation);
+  assert.equal(combination.status,complete?'diagnostic':'partial',c.id);
+  assert.equal(combination.removalConfirmed,null);
+  if(complete)for(const p of c.probes??[]){
+   probes++;assert.equal(observeLiteralSourceRelation(c,p).status,'literal-relation-observed',c.id+':'+p.id);
+   const hits=p.kind==='combine'?combination.pairs.filter(x=>x.participants.length===2&&x.participants.includes(p.from)&&x.participants.includes(p.to)):
+    relativeForce.edges.filter(e=>e.from===p.from&&e.to===p.to&&e.kind===p.kind);
+   assert.equal(hits.length,1,c.id+':'+p.id);
+  }
  }
+ assert.equal(probes,10);
 });
 
 test('formation-contested local generation is not retained as independent support',()=>{
