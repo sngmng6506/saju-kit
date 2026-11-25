@@ -101,3 +101,5 @@ Outcome V8 adds [assistant role dependency](docs/pattern-outcome-evidence-v8.md)
 Outcome V9 separates [source purity and candidate clarity](docs/pattern-outcome-evidence-v9.md) from the inherited graph; no effective purity or clearing verdict.
 
 The pre-V10 assistant extension is an opt-in augmentation of V9; branch-slot masking does not alter the natal chart, and original V9 projections are preserved.
+
+[Integrated outcome evidence](docs/pattern-outcome-integrated-v1.md) composes V5 request-local evidence with omitted storage stages and final projections; integrity is structural, not selection authority.

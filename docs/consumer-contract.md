@@ -67,3 +67,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v9](pattern-outcome-evidence-v9.md) adds source-scoped purity and candidate clarity evidence, without final selection or consumer migration.
 
 - [Assistant route extension](pattern-outcome-assistant-extension-v1.md) is a separate opt-in research API; no consumer pin or authority changes.
+
+- [Integrated outcome evidence](pattern-outcome-integrated-v1.md) is opt-in, with final-witness consistency reporting; prior public APIs and consumer pins unchanged.

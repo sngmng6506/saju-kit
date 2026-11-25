@@ -125,3 +125,5 @@ export { analyzePatternOutcomeV8, PATTERN_OUTCOME_V8_VERSION } from './features/
 export { analyzePatternOutcomeV9, PATTERN_OUTCOME_V9_VERSION } from './features/pattern/outcome-review-v9.js';
 
 export { analyzePatternOutcomeAssistantExtension, PATTERN_OUTCOME_ASSISTANT_EXTENSION_VERSION } from './features/pattern/outcome-assistant-extension-review.js';
+
+export { analyzePatternOutcomeIntegrated, PATTERN_OUTCOME_INTEGRATED_VERSION } from './features/pattern/outcome-integrated.js';
