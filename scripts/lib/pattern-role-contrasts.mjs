@@ -4,7 +4,6 @@ export const ROLE_CONTRAST_VERSION='pattern-role-contrast-v1';
 const sources={resource:'https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yin-shou',food:'https://www.kaucim.ai/bazi/ziping-zhenquan/lun-yong-shen-cheng-bai-jiu-ying',killing:'https://www.kaucim.ai/bazi/ziping-zhenquan/lun-pian-guan'};
 const W=['정재','편재'],I=['정인','편인'],F=['식신'],K=['편관'],OWL=['편인'];
 const slot=o=>o.position+':'+o.layer;
-const unique=xs=>[...new Set(xs)].sort();
 // Paths share actual actors, not only ten-god names. A chart-level
 // strength hypothesis is an optional proxy, not proof of effective action.
 const definitions=[
@@ -52,18 +51,27 @@ export function reviewRoleContrasts(result,outcome,context,interference){
     const conditions=observeConditions(d.conditions,dayStrong);
     const participants=new Set(Object.values(roles));
     const contacts=(interference?.pairs??[]).filter(p=>p.participants.some(id=>participants.has(id))).map(p=>p.id);
+    const additionalEdges=[];
+    // Wealth can feed the very killing whose food controller it protects.
+    if(a.wealth&&a.killing){const e=lookup(a.wealth.id,a.killing.id,'generate');if(e)additionalEdges.push(assess(e));}
+    // A separate relation is preserved, not subtracted from the primary path.
     const status=allOf(conditions.map(k=>k.proxy))===false?'conditional-excluded':
-     edgeReviews.some(e=>e.status!=='necessary-screen-met')||contacts.length?'structure-requires-review':'structure-screen-met';
-    return [{id:JSON.stringify([d.id,roles]),roles,edges:edgeReviews,conditions,contacts,status,
+     edgeReviews.some(e=>e.status!=='necessary-screen-met')||contacts.length||additionalEdges.length?'structure-requires-review':'structure-screen-met';
+    return [{id:JSON.stringify([d.id,roles]),roles,edges:edgeReviews,additionalEdges,conditions,contacts,status,
      conditionalPredicate:allOf(conditions.map(k=>k.proxy)),effective:null,favorable:null}];
    });
    return {id:d.id,source:sources[d.family],witnesses,observed:witnesses.length?true:complete?false:null,effective:null};
   });
   const rows=id=>patterns.find(p=>p.id===id)?.witnesses??[];
-  const contrast=(left,right,keys)=>rows(left).flatMap(a=>rows(right).filter(b=>keys.every(k=>a.roles[k]===b.roles[k])).map(b=>({
-   left:a.id,right:b.id,sharedRoles:Object.fromEntries(keys.map(k=>[k,a.roles[k]])),resolution:null})));
+  const contrast=(left,right,keys)=>rows(left).flatMap(a=>rows(right).filter(b=>keys.every(k=>{
+   const [l,r]=Array.isArray(k)?k:[k,k];return a.roles[l]===b.roles[r];
+  })).map(b=>({left:a.id,right:b.id,sharedRoles:Object.fromEntries(keys.map(k=>{
+   const [l,r]=Array.isArray(k)?k:[k,k];return [l===r?l:l+'='+r,a.roles[l]];
+  })),resolution:null})));
   const contrasts=[
    ...contrast('wealth-resource-damage','wealth-resource-regulation',['wealth','resource','day']),
+   ...contrast('owl-food-damage','food-to-killing-resource',['food',['owl','resource']]),
+   ...contrast('owl-food-damage','owl-food-protected-by-wealth',['owl','food']),
    ...contrast('food-controls-killing','killing-resource-transmission',['killing','day']),
    ...contrast('food-controls-killing','resource-blocks-food-controller',['food','killing']),
    ...contrast('resource-blocks-food-controller','resource-regulates-excess-food',['resource','food','killing']),
