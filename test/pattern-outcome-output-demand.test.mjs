@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {observeOutputSupplyContext,assessOutputDemandConditions} from '../src/features/pattern/outcome-output-demand.js';
+import {summarizeOutputDemandConditions} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 const fixture=(complete=true,tenGod='식신',direction='strong')=>{
  const status=complete?'diagnostic':'partial',d='visible:day',f='visible:month',i='visible:year',k='hidden:month:경',w='hidden:day:기';
@@ -64,4 +65,14 @@ test('native V10 projects output inventory and conditions without decision autho
   assert.equal(m.outputSupplyContext.status,complete?'diagnostic':'partial');
   for(const c of m.candidates){const d=c.rolePriority.outputDemandConditions;assert.ok(['diagnostic','partial','out-of-scope'].includes(d.status));assert.equal(d.effective,null);}
  }
+});
+
+test('audit rejects changed output edge, omitted feed and reassigned source objective',()=>{
+ const x=fixture(),c=chart(x),d=run(x),m={outputSupplyContext:c,roleCapacity:x.capacity,groundedSupply:x.supply,candidates:[{candidateId:x.review.candidateId,rolePriority:{demandReview:x.demand,killingStrategies:x.foodPolicy,outputDemandConditions:d}}]};
+ const audit=()=>summarizeOutputDemandConditions({id:'fixture'},m,false);
+ assert.deepEqual(audit().errors,[]);
+ assert.equal(d.contexts[0].contextState,'hidden-access-review');
+ const feeds=c.wealthFeeds;c.wealthFeeds=[];assert.ok(audit().errors.includes('output-wealth-feed-coverage'));c.wealthFeeds=feeds;
+ const ctx=d.contexts[0];ctx.control={...ctx.control,to:'foreign'};assert.ok(audit().errors.some(e=>e.startsWith('output-objective-binding:')));
+ d.contexts=[];assert.ok(audit().errors.some(e=>e.startsWith('output-objective-coverage:')));
 });
