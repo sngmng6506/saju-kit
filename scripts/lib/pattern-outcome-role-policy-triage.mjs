@@ -285,3 +285,72 @@ export function summarizeRoleDemandReview(c,mechanism,partial){
  }
  return {...base,counts,axes,errors};
 }
+
+
+export function summarizeResourceDemandReview(c,mechanism,partial){
+ const base={id:c.id,partial,effectConfirmed:null},errors=[],context=mechanism?.resourceBalanceContext;
+ const counts={resources:0,visibleResources:0,hiddenResources:0,screenedDeliveries:0,sharedAlternatives:0,conditions:0,alignedDay:0,opposedDay:0,unresolvedDay:0};
+ if(!context||context.status!==(partial?'partial':'diagnostic')||context.completeHour!==!partial||context.version!=='resource-balance-context-v1'||
+  context.selectionAuthority!==false||context.actualDemand!==null||context.excessConfirmed!==null||context.deficiencyConfirmed!==null||context.effectConfirmed!==null||
+  !Array.isArray(context.resources)||!Array.isArray(context.alternatives)||context.day?.id!=='visible:day'||context.day.actualBurdenConfirmed!==null||
+  partial&&context.day.direction!==null||!Array.isArray(mechanism.candidates))return {...base,errors:['resource-context-contract']};
+ const source=mechanism.groundedSupply,capacity=mechanism.roleCapacity;
+ const expected=(capacity?.occurrences??[]).filter(a=>!a.dayReference&&['정인','편인'].includes(a.tenGod));
+ const resources=new Map(context.resources.map(a=>[a.id,a])),actorRows=new Map((source?.occurrences??[]).map(a=>[a.id,a]));
+ if(resources.size!==context.resources.length||resources.size!==expected.length||expected.some(a=>!resources.has(a.id)))errors.push('resource-occurrence-coverage');
+ for(const a of resources.values()){
+  counts.resources++;
+  if(a.layer==='visible')counts.visibleResources++;else counts.hiddenResources++;
+  const screened=a.deliveryObservation==='structural-delivery-screen-met';
+  if(screened)counts.screenedDeliveries++;
+  const r=actorRows.get(a.id),expectedActor=expected.find(x=>x.id===a.id);
+  const delivery=(source?.actions??[]).find(e=>e.from===a.id&&e.to==='visible:day'&&e.kind==='generate');
+  if(!r||!expectedActor||a.layer!==expectedActor.layer||a.tenGod!==expectedActor.tenGod||a.rootState!==r.directRoot.state||
+   a.effectiveSupply!==null||a.preservationConfirmed!==null||
+   (a.delivery?.edgeId??null)!==(delivery?.edgeId??null)||a.delivery&&a.delivery.effective!==null||
+   screened!==(!partial&&a.layer==='visible'&&delivery?.generationScreen==='grounded-generation-context-screen-met')||
+   partial&&a.deliveryObservation!=='partial'||!partial&&a.layer==='hidden'&&a.deliveryObservation!=='hidden-access-review')errors.push('resource-delivery-contract:'+a.id);
+ }
+ const keys=new Set();
+ for(const p of context.alternatives){
+  const k=JSON.stringify([p.from,p.to]),a=resources.get(p.from),b=resources.get(p.to);
+  if(keys.has(k)||p.from===p.to||!a||!b||p.alternativeSupplyConfirmed!==null){errors.push('resource-alternative-contract:'+k);continue;}
+  keys.add(k);
+  const same=(a,b)=>JSON.stringify([...a].sort())===JSON.stringify([...b].sort());
+  const roots=a.supportRootIds.filter(id=>b.supportRootIds.includes(id)),donors=a.upstreamNodeIds.filter(id=>b.upstreamNodeIds.includes(id));
+  const shared=a.graphNodeId===b.graphNodeId||roots.length>0||donors.length>0;
+  if(shared)counts.sharedAlternatives++;
+  if(!same(roots,p.sharedRootIds)||!same(donors,p.sharedDonorNodeIds)||p.sharedGraphNode!==(a.graphNodeId===b.graphNodeId)||
+   p.observation!==(shared?'shared-evidence-observed':'independence-not-established'))errors.push('resource-alternative-provenance:'+k);
+ }
+ if(keys.size!==resources.size*(resources.size-1))errors.push('resource-alternative-coverage');
+ for(const m of mechanism.candidates){
+  const d=m.rolePriority?.demandReview,r=m.rolePriority?.resourceDemand;
+  if(!d||!r||r.candidateId!==m.candidateId||r.status!==d.status||r.selectionAuthority!==false||
+   r.actualDemand!==null||r.excessConfirmed!==null||r.deficiencyConfirmed!==null||r.effectConfirmed!==null||!Array.isArray(r.conditions)){
+   errors.push('resource-demand-contract:'+m.candidateId);continue;}
+  // Coverage for all R01/R02/R03 source objectives. K02 shares the
+  // 'objective' collection but has food-specific rather than R02 labels.
+  const expected=d.objectives.filter(o=>['resource-output','resource-killing','resource-officer'].includes(o.collection)||
+   o.collection==='objective'&&['required-resource-injury','excess-resource-moderation'].includes(o.objectiveId));
+  const byId=new Map(expected.map(o=>[o.id,o])),seen=new Set();
+  if(r.conditions.length!==expected.length)errors.push('resource-condition-coverage:'+m.candidateId);
+  for(const x of r.conditions){
+   counts.conditions++;
+   const o=byId.get(x.objectiveRef),a=resources.get(x.resourceId);
+   if(!o||!a||seen.has(x.objectiveRef)||o.roles.resource!==x.resourceId||o.conditionalStatus!==x.conditionalStatus||
+    x.sourceBasis!==a.sourceBasis||x.deliveryObservation!==a.deliveryObservation||x.deliveryEdgeId!==(a.delivery?.edgeId??null)||
+    x.actualDemand!==null||x.excessConfirmed!==null||x.deficiencyConfirmed!==null||x.preservationConfirmed!==null||x.effectConfirmed!==null||
+    x.dayPremise?.observed!==context.day.direction||
+    x.dayPremise?.state!==(partial||context.day.direction===null?'unresolved':context.day.direction===x.dayPremise.expected?'aligned-direction':'opposed-direction'))errors.push('resource-condition-binding:'+x.objectiveRef);
+   seen.add(x.objectiveRef);
+   if(x.dayPremise?.state==='aligned-direction')counts.alignedDay++;else if(x.dayPremise?.state==='opposed-direction')counts.opposedDay++;else counts.unresolvedDay++;
+   const alternatives=context.alternatives.filter(p=>p.from===x.resourceId),expectedIds=alternatives.map(p=>p.to).sort();
+   if(!Array.isArray(x.alternativeSources)||JSON.stringify(x.alternativeSources.map(p=>p.to).sort())!==JSON.stringify(expectedIds)||
+    x.alternativeSources.some(p=>{const a=alternatives.find(a=>a.to===p.to),b=resources.get(p.to);return !a||!b||
+     p.alternativeSupplyConfirmed!==null||p.deliveryObservation!==b.deliveryObservation||p.sourceBasis!==b.sourceBasis||
+     Object.keys(a).some(k=>JSON.stringify(a[k])!==JSON.stringify(p[k]));}))errors.push('resource-condition-alternative-binding:'+x.objectiveRef);
+  }
+ }
+ return {...base,counts,errors};
+}
