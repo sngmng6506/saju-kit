@@ -102,3 +102,6 @@ export { analyzePatternUsefulElementV8, PATTERN_V8_VERSION } from './features/pa
 
 export { analyzeStemForceEvidence, STEM_FORCE_VERSION } from './core/stem-force.js';
 export { analyzePatternUsefulElementV9, PATTERN_V9_VERSION } from './features/pattern-useful-element-v9/index.js';
+
+export { observeRelativeForce, RELATIVE_FORCE_VERSION } from './core/relative-force.js';
+export { analyzePatternUsefulElementV10, PATTERN_V10_VERSION } from './features/pattern-useful-element-v10/index.js';

@@ -33,3 +33,5 @@ The opt-in pattern v7 composes v6 and a source-scoped composition review. Origin
 Pattern v8 adds a separate mixed-month source review of projected stems and complete month groups. It keeps structural relations, source-scoped affinity motifs and research preference separate; no effective-force or final selection authority. [Contract](docs/pattern-useful-element-v8.md).
 
 Core stem-force evidence v1 reuses root-dynamics and interaction-context and evaluates occurrence-specific support, control, and paths for all targets. Pattern v9 binds route participants to these observations, without feeding force classifications into preference. [Contract](docs/pattern-useful-element-v9.md).
+
+Relative force evidence v1 consumes stem-force evidence, using a Boolean evidence partial order and separate action screens. Pattern v10 binds these to observed roles; no magnitude or efficacy determination. [Contract](docs/pattern-useful-element-v10.md).
