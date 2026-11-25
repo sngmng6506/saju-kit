@@ -13,7 +13,7 @@ export function analyzePatternUsefulElementV4(input){
  const prior=analyzePatternUsefulElementV3({...input,policy:PATTERN_V3_VERSION}),base={...prior,version:PATTERN_V4_VERSION};
  if(prior.status==='unavailable')return {...base,storageReview:null,roleReview:[]};
  const structure=analyzeElementStructure({saju:input.saju}),interaction=analyzeInteractionContext({saju:input.saju});
- const storageReview=observeStorageProjection(prior.selection,structure);
+ const storageReview=observeStorageProjection(structure);
  const selection={...prior.selection,candidates:[...prior.selection.candidates,...storageReview.candidates]};
  const outcomes=observePatternOutcomes(selection,structure,interaction),routeReview=observePatternRoutes(selection,structure,interaction);
  const qualityReview=observeRouteQuality({...prior,selection,routeReview},structure,interaction);

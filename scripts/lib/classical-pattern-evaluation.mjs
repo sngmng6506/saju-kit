@@ -7,7 +7,9 @@ export function evaluateClassicalCase(c,result){
  const selection=sourceSelectedFamily===null?'unlabelled':selected==null?'abstained':selectedFamily===null?'invalid-selection-contract':selectedFamily===sourceSelectedFamily?'correct':'incorrect';
  const occurrences=new Map((result.routeReview?.occurrences??[]).map(x=>[x.id,x]));
  const candidateIds=new Set((result.selection?.candidates??[]).filter(x=>x.family===expected).map(x=>x.id));
- const assistantStems=unique((result.qualityReview?.reviews??[]).filter(q=>candidateIds.has(q.candidateId)).flatMap(q=>q.routes.flatMap(r=>r.assistantIds.map(id=>occurrences.get(id)?.stem))).filter(Boolean));
+ const legacyIds=(result.qualityReview?.reviews??[]).filter(q=>candidateIds.has(q.candidateId)).flatMap(q=>q.routes.flatMap(r=>r.assistantIds));
+ const roleIds=(result.roleReview??[]).filter(q=>candidateIds.has(q.candidateId)).flatMap(q=>q.paths.flatMap(p=>p.helperIds));
+ const assistantStems=unique([...legacyIds,...roleIds].map(id=>occurrences.get(id)?.stem).filter(Boolean));
  const actors=c.annotation.actors.filter(a=>a.role==='support').map(a=>({stem:a.stem,observed:assistantStems.includes(a.stem)}));
  return {id:c.id,split:c.split,sourceStatus:c.source.transcription,eligible:c.eligible,expectedFamily:expected,sourceSelectedFamily,candidateFamilies:candidates,retrieved:expected===null?null:candidates.includes(expected),candidateCount:candidates.length,selection,selectedFamily,actors,assistantAbstained:result.assistantGod==null};
 }

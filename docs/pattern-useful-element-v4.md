@@ -1,0 +1,16 @@
+# Pattern v4: storage projection and role paths
+
+New opt-in analyzePatternUsefulElementV4 / pattern-useful-element-v4. Previous public policies and hidden-stem tables unchanged. V4 extends candidate selection and recomputes outcome, route and quality views with the same observation functions. The integrated authority v4 and transit v4 intentionally still use pattern v3.
+
+Storage hypotheses: Chen-water, Xu-fire, Chou-metal, Wei-wood. A non-day visible stem of that storage element which is not already an exact month hidden projection gets a separately labelled candidate. It does not change literal hidden roots or confirm rooting. All four branches are a conventional generalization of the classical mixed-qi examples; the Wei/Jia source case is explicitly attested. Month clash and missing-hour uncertainty remain observable. See https://donglishuzhai.net/chapter/3729.html and https://www.kaucim.ai/bazi/ziping-zhenquan/lun-cai.
+
+15 source-inspired graph definitions cover peer-output-wealth, protection of officer, output separation from resource, resource/output/excess and combination, killing/resource transmission, blade protection and peer roles. All role nodes occupy distinct physical slots. Edges use directed core element relations or actual visible combinations. Separation requires a visible peer/day between resource and output; this follows the Wu Bangyan example in 論財, not a universal cancellation rule. Some helpers are the pattern anchor itself acting as protector. The role probe metric therefore measures presence in a structural participant set, NOT final assistant-god identification. Relative force and unresolved source conditions remain explicit. No claims of efficacy or selection. No special charts.
+
+Run:
+```sh
+node scripts/audit-classical-patterns.mjs --compare
+node --test test/pattern-v4.test.mjs
+npm test
+```
+
+The frozen 81-reference corpus was not changed. V3 baseline 66/67 candidate family hits, 25/67 competing families, 9/23 source-role probes. Initial v4 structural audit returned 67/67, 29/67 and 23/23 respectively, but the separation rule required a follow-up source correction. Re-run the final version with the comparison CLI; the initial result is not a final post-correction audit. Source examples used in development are not held out. No prediction validation.

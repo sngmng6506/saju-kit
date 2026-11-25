@@ -3,7 +3,7 @@ import { elementRelation } from '../../core/elements.js';
 import { patternFamily } from '../pattern-useful-element-v1/source.js';
 const storage=Object.freeze({진:'water',술:'fire',축:'metal',미:'wood'});
 const sources=Object.freeze({storage:'https://donglishuzhai.net/chapter/3729.html',wealth:'https://www.donglishuzhai.net/chapter/3746.html',resource:'https://www.donglishuzhai.net/chapter/3748.html',killing:'https://www.donglishuzhai.net/chapter/3752.html',blade:'https://www.donglishuzhai.net/chapter/3756.html',peer:'https://www.donglishuzhai.net/chapter/3758.html',assistant:'https://donglishuzhai.net/chapter/3728.html'});
-export function observeStorageProjection(selection,structure){
+export function observeStorageProjection(structure){
  const element=storage[structure.month.branch]??null;
  if(element===null)return {element,projections:[],candidates:[],selectionAuthority:false};
  const profile=structure.profiles.find(p=>p.element===element);
@@ -24,7 +24,7 @@ const W=['정재','편재'],I=['정인','편인'],B=['비견','겁재'],O=['정�
 const defs=[
  {id:'wealth-output-mediates-peer',family:'wealth',source:'wealth',nodes:{peer:B,helper:E,target:'anchor'},edges:[['peer','helper','generate'],['helper','target','generate'],['peer','target','control']],conditions:['wealth-light','peer-strong','output-effective']},
  {id:'wealth-resource-protects-officer',family:'wealth',source:'wealth',nodes:{helper:I,obstacle:E,target:['정관'],wealth:'anchor'},edges:[['helper','obstacle','control'],['obstacle','target','control'],['wealth','target','generate']],conditions:['resource-wealth-noninterference','officer-preserved']},
- {id:'wealth-resource-separated',family:'wealth',source:'wealth',nodes:{helper:I,output:E,target:'anchor'},edges:[['output','target','generate'],['target','helper','control']],conditions:['resource-output-noninterference','wealth-resource-noninterference'],separation:['helper','target','output']},
+ {id:'wealth-resource-separated',family:'wealth',source:'wealth',nodes:{helper:I,output:E,target:'anchor',separator:'peer-or-day'},edges:[['helper','output','control'],['output','target','generate']],conditions:['resource-output-noninterference','wealth-resource-noninterference'],separation:['helper','output','separator']},
  {id:'resource-protects-officer',family:'resource',source:'resource',nodes:{helper:'anchor',obstacle:E,target:['정관']},edges:[['helper','obstacle','control'],['obstacle','target','control'],['target','helper','generate']],conditions:['resource-effective','officer-preserved']},
  {id:'resource-uses-output',family:'resource',source:'resource',nodes:{resource:'anchor',helper:E,day:'day'},edges:[['resource','day','generate'],['day','helper','generate']],conditions:['day-and-resource-strong','output-not-blocked']},
  {id:'resource-excess-wealth',family:'resource',source:'resource',nodes:{helper:W,target:'anchor'},edges:[['helper','target','control']],conditions:['day-and-resource-strong','wealth-root-context']},
@@ -55,7 +55,7 @@ export function observeRolePaths(selection,occurrences,interaction,completeHour)
   const paths=defs.filter(d=>d.family===c.family).map(d=>{
    let assignments=[{}];
    for(const [role,gods] of Object.entries(d.nodes)){
-    const pool=gods==='anchor'?anchor:gods==='day'?occurrences.filter(x=>x.dayReference):actors.filter(a=>gods.includes(a.tenGod));
+    const pool=gods==='anchor'?anchor:gods==='day'?occurrences.filter(x=>x.dayReference):gods==='peer-or-day'?occurrences.filter(x=>x.dayReference||B.includes(x.tenGod)):actors.filter(a=>gods.includes(a.tenGod));
     assignments=assignments.flatMap(prev=>pool.filter(a=>!Object.values(prev).some(b=>slot(a)===slot(b))).map(a=>({...prev,[role]:a})));
    }
    const witnesses=assignments.flatMap(a=>{
@@ -69,7 +69,7 @@ export function observeRolePaths(selection,occurrences,interaction,completeHour)
     return [{roles:Object.fromEntries(Object.entries(a).map(([k,v])=>[k,v.id])),edges,effective:null}];
    });
    return {id:d.id,source:sources[d.source],witnesses,observed:witnesses.length?true:completeHour?false:null,
-    helperIds:[...new Set(witnesses.map(w=>w.roles.helper))],unresolvedConditions:[...d.conditions],conditionResolved:false,effectConfirmed:false};
+    helperIds:[...new Set(witnesses.map(w=>w.roles.helper))],helperRole:d.nodes.helper==='anchor'?'anchor-as-protector':'conditional-role-participant',unresolvedConditions:[...d.conditions],conditionResolved:false,effectConfirmed:false};
   });
   return {candidateId:c.id,paths,selectionAuthority:false};
  });
