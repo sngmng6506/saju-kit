@@ -95,3 +95,5 @@ Outcome V5 adds [storage projection and peer officer clearing](docs/pattern-outc
 Outcome V6 adds [position and winter exception evidence](docs/pattern-outcome-evidence-v6.md). Climate remains a separate diagnostic policy; spatial order does not confirm effects.
 
 Outcome V7 adds [compound topology and source conjunctions](docs/pattern-outcome-evidence-v7.md) as a separate projection of unchanged V6 reviews; no witness cancellation or authority.
+
+Outcome V8 adds [assistant role dependency](docs/pattern-outcome-evidence-v8.md) as a read-only mask of V7 evidence; no new natal chart or selection authority.

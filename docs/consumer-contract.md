@@ -61,3 +61,5 @@ Run `npm test` on the pinned checkout, including existing calendar, natal, year-
 - [Pattern outcome evidence v6](pattern-outcome-evidence-v6.md) adds position and source-scoped winter exception review without final authority or consumer migration.
 
 - [Pattern outcome evidence v7](pattern-outcome-evidence-v7.md) adds candidate-scoped compound diagnostics, without confirmed 成敗 or consumer migration.
+
+- [Pattern outcome evidence v8](pattern-outcome-evidence-v8.md) adds observed-route assistant dependency, not confirmed assistant selection.

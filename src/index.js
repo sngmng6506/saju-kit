@@ -119,3 +119,5 @@ export { analyzePatternOutcomeV5, PATTERN_OUTCOME_V5_VERSION } from './features/
 export { analyzePatternOutcomeV6, PATTERN_OUTCOME_V6_VERSION } from './features/pattern/outcome-review-v6.js';
 
 export { analyzePatternOutcomeV7, PATTERN_OUTCOME_V7_VERSION } from './features/pattern/outcome-review-v7.js';
+
+export { analyzePatternOutcomeV8, PATTERN_OUTCOME_V8_VERSION } from './features/pattern/outcome-review-v8.js';
