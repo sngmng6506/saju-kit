@@ -133,3 +133,12 @@ test('audit rejects cross-controller path reuse and missing pressure contexts',(
  const missing=structuredClone(review);missing.pressureContexts.pop();
  assert.ok(summarizeInterpositionReview({id:'bad'},missing,false).errors.includes('pressure-context-coverage'));
 });
+
+test('nonlocal direct control and nonlocal mediation chain can coexist without an audit error',()=>{
+ const {review}=build(xu08),p=review.paths.find(p=>p.kind==='mediation'&&p.directThreatControlLocal===false&&!p.chainLocal);
+ assert.ok(p);assert.ok(p.blockers.includes('nonlocal-generation-chain'));
+ assert.equal(summarizeInterpositionReview({id:'xu08'},review,false).errors.length,0);
+ const bad=structuredClone(review);
+ bad.paths.find(x=>x.id===p.id).chainLocal=true;
+ assert.ok(summarizeInterpositionReview({id:'bad'},bad,false).errors.includes('mediation-chain-locality-mismatch:'+p.id));
+});
