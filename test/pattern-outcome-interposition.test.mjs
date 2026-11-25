@@ -142,3 +142,39 @@ test('nonlocal direct control and nonlocal mediation chain can coexist without a
  bad.paths.find(x=>x.id===p.id).chainLocal=true;
  assert.ok(summarizeInterpositionReview({id:'bad'},bad,false).errors.includes('mediation-chain-locality-mismatch:'+p.id));
 });
+
+test('role-neutral view evaluates every visible target without changing legacy scope',()=>{
+ for(const complete of [true,false]){
+  const {review,prior}=build(xu08,complete),n=review.roleNeutral;
+  assert.equal(n.targetScope,'all-visible-stems');assert.equal(n.roleDemandConfirmed,null);
+  assert.equal(n.pressureContexts.length,complete?4:3);
+  assert.ok(n.pressureContexts.every(t=>t.targetScope==='in-scope'));
+  assert.ok(n.paths.every(p=>p.participants.target.kind==='visible-stem'&&p.effectConfirmed===null));
+  assert.equal(n.paths.length-review.paths.length,review.summary.excludedReasons['non-supportive-visible-target']??0);
+  for(const p of review.paths)assert.deepEqual(n.paths.find(x=>x.id===p.id),p);
+  for(const t of n.pressureContexts){
+   const a=prior.stemForce.occurrences.find(x=>x.id===t.targetId);
+   assert.deepEqual(t.controllers.map(c=>c.controllerNodeId).sort(),a.controlReceived.map(e=>e.from).sort());
+   for(const c of t.controllers)assert.deepEqual([...c.candidatePathIds].sort(),[...c.evaluatedPathIds].sort());
+  }
+  assert.equal(summarizeInterpositionReview({id:'chart'},review,!complete).errors.length,0);
+ }
+});
+test('Zhou wealth receives role-neutral review without authorizing its necessity or neutralization',()=>{
+ const {review}=build(xu08),n=review.roleNeutral;
+ const t=n.pressureContexts.find(t=>t.targetId==='visible:hour');
+ assert.equal(t.controllers.length,4);
+ assert.equal(t.controllers.flatMap(c=>c.evaluatedPathIds).length,17);
+ assert.ok(t.controllers.every(c=>c.neutralizationConfirmed===null&&c.remainingPressureConfirmed===null));
+ assert.equal(t.allPressureResolved,null);assert.equal(n.roleDemandConfirmed,null);
+});
+test('role-neutral scope and legacy parity cannot be forged',()=>{
+ const {review}=build(xu08);
+ const bad=structuredClone(review);bad.roleNeutral.roleDemandConfirmed=true;
+ assert.ok(summarizeInterpositionReview({id:'bad'},bad,false).errors.includes('role-neutral-demand-authority'));
+ // Detach the two projections to test parity independently.
+ const c=JSON.parse(JSON.stringify(review));c.roleNeutral.paths.find(p=>p.id===c.paths[0].id).participants.helper.groundedRootIds.push('foreign');
+ assert.ok(summarizeInterpositionReview({id:'bad'},c,false).errors.includes('role-neutral-legacy-projection'));
+ const d=structuredClone(review);d.roleNeutral.pressureContexts.find(t=>t.targetId==='visible:hour').targetScope='outside-target-scope';
+ assert.ok(summarizeInterpositionReview({id:'bad'},d,false).errors.some(e=>e.startsWith('role-neutral:')));
+});
