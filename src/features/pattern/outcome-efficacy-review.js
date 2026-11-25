@@ -7,6 +7,7 @@ import {observeJointOutcome} from './outcome-joint.js';
 import {observeRoleCapacity,observeRoleConditions} from './outcome-role-capacity.js';
 import {observeCapacityComparisons,observeRouteFlow} from './outcome-role-flow.js';
 import {observeConditionalRolePriority} from './outcome-role-priority.js';
+import {observeRootContext} from './outcome-root-context.js';
 import {observeCombinationContext,observeCombinationRoles} from './outcome-combination-context.js';
 import {observeBranchAccessContext,observeMonthChange,observeBranchRouteAccess} from './outcome-branch-context.js';
 export const PATTERN_OUTCOME_EFFICACY_VERSION='pattern-outcome-efficacy-v1';
@@ -31,6 +32,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const branchContext=observeBranchAccessContext(prior,result.access,formation);
  const monthChange=observeMonthChange(prior,branchContext,input.saju.pillars.month.branch);
  const roleCapacity=observeRoleCapacity(prior);
+ const rootContext=observeRootContext(prior,formation);
  const capacityComparisons=observeCapacityComparisons(prior,roleCapacity);
  const mechanisms=result.reviews.map((q,i)=>{
   const m=observeMechanismReview(q,candidates[i],clarity.get(q.candidateId),climate,prior.completeHour);
@@ -39,9 +41,9 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const branchAccess=observeBranchRouteAccess(q,branchContext);
   const roleConditions=observeRoleConditions(q,prior,roleCapacity,m,compound.get(q.candidateId),result.regulationStrength,combinationContext);
   const roleFlow=observeRouteFlow(q,prior,result.access,m,result.regulationStrength);
-  const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength);
+  const rolePriority=observeConditionalRolePriority(q,prior,roleCapacity,capacityComparisons,roleFlow,result.regulationStrength,rootContext);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
