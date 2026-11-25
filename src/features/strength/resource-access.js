@@ -1,9 +1,8 @@
-import { analyzeSupportNetwork } from '../../core/support-network.js';
-import { analyzeQuantitativeStrength } from './quantitative.js';
+import { contributionMasses } from './scenario-mass.js';
+import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
 
 export const RESOURCE_ACCESS_VERSION='resource-access-v1';
-const nodeId=c=>c.role===null?c.slot.slice(0,-4)+':stem':c.slot.slice(0,-6)+':branch:'+c.element;
 const range=xs=>({min:Math.min(...xs)/1000000,max:Math.max(...xs)/1000000});
 function assess(network,scenarios){
  const nodes=new Map(network.nodes.map(n=>[n.id,n]));
@@ -15,8 +14,7 @@ function assess(network,scenarios){
   output:[...new Set(r.outputControls.filter(e=>e.local).map(e=>e.to))],
  }));
  const rows=scenarios.map(s=>{
-  const masses=new Map();
-  for(const c of s.contributions){const id=nodeId(c);masses.set(id,(masses.get(id)||0)+c.units);}
+  const masses=contributionMasses(s);
   const mass=id=>masses.get(id)??0;
   const sum=ids=>[...new Set(ids)].reduce((a,id)=>a+mass(id),0);
   const routes=records.map(r=>{
@@ -42,10 +40,13 @@ function assess(network,scenarios){
     rows.some(s=>s.routes.find(x=>x.id===r.id).wealthExceedsResource)?'some':'none'}))};
 }
 export function analyzeResourceAccess(input){
+ return evaluateResourceAccess(input,createStrengthEvidenceProvider());
+}
+function evaluateResourceAccess(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','분석 입력 객체가 필요합니다.');
  if(input.policy!==RESOURCE_ACCESS_VERSION)throw new SajuError('strength-policy','인성 경로 정책을 명시해야 합니다.');
- const q=analyzeQuantitativeStrength({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-quantitative-v3'});
+ const q=provider.quantitative(input.saju,input.birthBasis);
  const meta={version:RESOURCE_ACCESS_VERSION,completeHour:q.completeHour,assessment:'hypothetical-exposure-only',effectsConfirmed:false};
  if(q.status==='provisional'||!q.completeHour)return {...meta,status:q.status,analysis:null};
- return {...meta,status:'diagnostic',analysis:assess(analyzeSupportNetwork({saju:input.saju}),q.quantitative.scenarios)};
+ return {...meta,status:'diagnostic',analysis:assess(provider.network(input.saju),q.quantitative.scenarios)};
 }

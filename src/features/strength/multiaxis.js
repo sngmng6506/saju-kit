@@ -1,8 +1,7 @@
+import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
 import { validateNatalPillars } from '../../core/natal.js';
 import { hourPillar } from '../../core/calendar.js';
-import { analyzeRootDynamics } from '../../core/root-dynamics.js';
-import { analyzeQuantitativeStrength } from './quantitative.js';
 import { classifyElement, isSupport } from './hybrid-evidence.js';
 
 export const MULTIAXIS_STRENGTH_VERSION='strength-multiaxis-v1';
@@ -59,9 +58,9 @@ function directionFor(root,centralBurden,rows){
     grounds:[...(strong?['central-root-capacity']:[]),...(weak?['low-root-capacity-and-dominant-pressure']:[])]};
 }
 
-function complete(saju,context){
-  const dynamics=analyzeRootDynamics({saju}),root=roots(dynamics);
-  const q=analyzeQuantitativeStrength({saju,policy:'strength-quantitative-v3',birthBasis:'verified-chart'},context).quantitative;
+function complete(saju,provider){
+  const dynamics=provider.dynamics(saju),root=roots(dynamics);
+  const q=provider.quantitative(saju,'verified-chart').quantitative;
   const rows=environment(q.scenarios);
   const centralBurden=dynamics.vertical.filter(v=>['month','day'].includes(v.position)&&
     !isSupport(classifyElement(dynamics.dayMaster.element,v.principalElement))).map(v=>v.position);
@@ -80,6 +79,9 @@ function summarize(results){
 
 /** Experimental independent axes and explicit directional hypothesis, not a final classification. */
 export function analyzeMultiaxisStrength(input,context){
+ return evaluateMultiaxis(input,createStrengthEvidenceProvider(context));
+}
+export function evaluateMultiaxis(input,provider){
   if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
   const {saju,policy,birthBasis}=input;
   if(policy!==MULTIAXIS_STRENGTH_VERSION)throw new SajuError('strength-policy','다축 강약 정책을 명시해야 합니다.');
@@ -90,10 +92,10 @@ export function analyzeMultiaxisStrength(input,context){
   if(birthBasis==='provisional-chart')return {...meta,status:'provisional',direction:null,axes:null,detail:null,caveats:['provisional-chart']};
   const caveats=['weights-unvalidated','month-command-unresolved','effective-interaction-unmodeled'];
   if(!completeHour){
-    const results=Array.from({length:12},(_,i)=>complete({pillars:{...pillars,hour:hourPillar(pillars.day.stem,i*2)}},context));
+    const results=Array.from({length:12},(_,i)=>complete({pillars:{...pillars,hour:hourPillar(pillars.day.stem,i*2)}},provider));
     return {...meta,status:'partial',direction:null,axes:summarize(results),detail:null,completionCount:12,caveats:[...caveats,'missing-hour']};
   }
-  const detail=complete(saju,context);
+  const detail=complete(saju,provider);
   return {...meta,status:detail.direction?'hypothesis':'unresolved',direction:detail.direction,
     axes:summarize([detail]),detail,completionCount:1,caveats};
 }

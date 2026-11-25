@@ -1,6 +1,6 @@
+import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
-import { analyzeRootDynamics } from '../../core/root-dynamics.js';
-import { analyzeMultiaxisStrengthV3 } from './integrated-decision.js';
+import { analyzeMultiaxisStrengthV3, evaluateIntegratedDecision } from './integrated-decision.js';
 
 export const STRENGTH_DECISION_VERSION='strength-decision-v1';
 const RESOURCE_GROUNDS=['local-resource-and-robust-support','bounded-route-support'];
@@ -38,10 +38,11 @@ function needsNeutral(standard,structure){
 // Neutral season is a diagnostic stress test, not a second classical doctrine.
 export function collectStrengthEvidence(input){
  const args={saju:input.saju,birthBasis:input.birthBasis,policy:'strength-multiaxis-v3'};
- const standard=analyzeMultiaxisStrengthV3(args);
+ const provider=createStrengthEvidenceProvider();
+ const standard=evaluateIntegratedDecision(args,provider);
  checkGrounds(standard);
  if(!standard.decision)return {standard,structure:null,environment:null,interaction:null,neutral:null};
- const structure=observeRootCapacity(standard.axes,analyzeRootDynamics({saju:input.saju}));
+ const structure=observeRootCapacity(standard.axes,provider.dynamics(input.saju));
  if(structure.centralCandidate!==standard.decision.grounds.includes(CENTRAL_GROUND))
   throw new SajuError('strength-ground-contract','중심 통근 근거가 관찰 결과와 일치하지 않습니다.');
  const environment=standard.baselineDecision.evidence;

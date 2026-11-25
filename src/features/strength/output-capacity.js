@@ -1,10 +1,9 @@
-import { analyzeSupportNetwork } from '../../core/support-network.js';
-import { analyzeQuantitativeStrength } from './quantitative.js';
-import { analyzeRouteBudget } from './route-budget.js';
+import { contributionMasses } from './scenario-mass.js';
+import { createStrengthEvidenceProvider } from './request-evidence.js';
+import { evaluateRouteBudget } from './route-budget.js';
 import { SajuError } from '../../core/error.js';
 
 export const OUTPUT_CAPACITY_VERSION='output-capacity-v1';
-const nodeId=c=>c.role===null?c.slot.slice(0,-4)+':stem':c.slot.slice(0,-6)+':branch:'+c.element;
 const sum=xs=>xs.reduce((a,b)=>a+b,0);
 
 // Cap an incoming group proportionally, using exact integer largest remainders.
@@ -24,8 +23,7 @@ export function capIncoming(edges,capacity){
  return rows.map(({remainder,...e})=>({...e,rejected:e.units-e.accepted}));
 }
 function evaluate(network,scenario,budget){
- const masses=new Map();
- for(const c of scenario.contributions){const id=nodeId(c);masses.set(id,(masses.get(id)||0)+c.units);}
+ const masses=contributionMasses(scenario);
  const mass=id=>masses.get(id)??0;
  // Opposite effects share one conservative incoming cap; no net-force inference.
  const targets=[...new Set(budget.allocations.filter(a=>a.target!=='day:stem').map(a=>a.target))].sort();
@@ -53,14 +51,17 @@ function evaluate(network,scenario,budget){
   rejected:sum(allocations.map(a=>a.rejected))};
 }
 export function analyzeOutputCapacity(input,context){
+ return evaluateOutputCapacity(input,createStrengthEvidenceProvider(context));
+}
+export function evaluateOutputCapacity(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','분석 입력 객체가 필요합니다.');
  if(input.policy!==OUTPUT_CAPACITY_VERSION)throw new SajuError('strength-policy','식상 수용 한도 정책을 명시해야 합니다.');
  const args={saju:input.saju,birthBasis:input.birthBasis};
- const budget=analyzeRouteBudget({...args,policy:'route-budget-v1'},context);
+ const budget=evaluateRouteBudget({...args,policy:'route-budget-v1'},provider);
  const meta={version:OUTPUT_CAPACITY_VERSION,completeHour:budget.completeHour,assessment:'hypothetical-target-cap-only',effectsConfirmed:false};
  if(!budget.analysis)return {...meta,status:budget.status,analysis:null};
- const q=analyzeQuantitativeStrength({...args,policy:'strength-quantitative-v3'},context).quantitative;
- const network=analyzeSupportNetwork({saju:input.saju});
+ const q=provider.quantitative(input.saju,input.birthBasis).quantitative;
+ const network=provider.network(input.saju);
  const rows=budget.analysis.rows.map((b,i)=>evaluate(network,q.scenarios[Math.floor(i/2)],b));
  const keys=['outputTotal','outputLocal','outputControlAccepted','outputResidualHypothesis','conditionalResource','directOfficer','directWealth','rejected'];
  return {...meta,status:'diagnostic',analysis:{rows,ranges:Object.fromEntries(keys.map(k=>[k,{min:Math.min(...rows.map(r=>r[k]))/1000000,max:Math.max(...rows.map(r=>r[k]))/1000000}]))}};

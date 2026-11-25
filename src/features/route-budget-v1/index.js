@@ -1,1 +1,1 @@
-export * from '../strength/route-budget.js';
+export { ROUTE_BUDGET_VERSION, splitBudget, analyzeRouteBudget } from '../strength/route-budget.js';

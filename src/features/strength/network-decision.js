@@ -1,6 +1,6 @@
+import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
-import { analyzeSupportNetwork } from '../../core/support-network.js';
-import { analyzeMultiaxisStrength } from './multiaxis.js';
+import { evaluateMultiaxis } from './multiaxis.js';
 
 export const MULTIAXIS_V2_VERSION='strength-multiaxis-v2';
 const categories=['output','wealth','officer'];
@@ -31,11 +31,14 @@ export function assessNetwork(base,network){
    supportDominates,chains:network.chains.filter(c=>c.local&&c.anchoredSource&&c.anchoredIntermediate)}};
 }
 export function analyzeMultiaxisStrengthV2(input,context){
+ return evaluateNetworkDecision(input,createStrengthEvidenceProvider(context));
+}
+export function evaluateNetworkDecision(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','강약 분석 입력 객체가 필요합니다.');
  if(input.policy!==MULTIAXIS_V2_VERSION)throw new SajuError('strength-policy','다축 v2 정책을 명시해야 합니다.');
- const base=analyzeMultiaxisStrength({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-multiaxis-v1'},context);
+ const base=evaluateMultiaxis({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-multiaxis-v1'},provider);
  const meta={...base,version:MULTIAXIS_V2_VERSION,baselinePolicy:base.version,baselineDirection:base.direction};
  if(!base.completeHour||base.status==='provisional')return {...meta,decision:null};
- const decision=assessNetwork(base,analyzeSupportNetwork({saju:input.saju}));
+ const decision=assessNetwork(base,provider.network(input.saju));
  return {...meta,status:decision.direction?'hypothesis':'unresolved',direction:decision.direction,decision};
 }

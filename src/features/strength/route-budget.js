@@ -1,9 +1,8 @@
-import { analyzeSupportNetwork } from '../../core/support-network.js';
-import { analyzeQuantitativeStrength } from './quantitative.js';
+import { contributionMasses } from './scenario-mass.js';
+import { createStrengthEvidenceProvider } from './request-evidence.js';
 import { SajuError } from '../../core/error.js';
 
 export const ROUTE_BUDGET_VERSION='route-budget-v1';
-const nodeId=c=>c.role===null?c.slot.slice(0,-4)+':stem':c.slot.slice(0,-6)+':branch:'+c.element;
 const range=xs=>({min:Math.min(...xs)/1000000,max:Math.max(...xs)/1000000});
 
 // Equal allocation of integer nominal units, including deterministic remainder.
@@ -12,8 +11,7 @@ export function splitBudget(units,targets){
  return ids.map((id,i)=>({id,units:Math.floor(units/ids.length)+(i<units%ids.length?1:0)}));
 }
 function model(network,scenario,mode){
- const masses=new Map();
- for(const c of scenario.contributions){const id=nodeId(c);masses.set(id,(masses.get(id)||0)+c.units);}
+ const masses=contributionMasses(scenario);
  const mass=id=>masses.get(id)??0;
  const resources=network.resources.filter(r=>r.supply.local&&r.anchored);
  const budgets=[],allocations=[];
@@ -55,12 +53,15 @@ function model(network,scenario,mode){
   officerResource:sum('officer-resource'),directOfficer:sum('officer-day'),directWealth:sum('wealth-day'),outputControl:sum('resource-output')};
 }
 export function analyzeRouteBudget(input,context){
+ return evaluateRouteBudget(input,createStrengthEvidenceProvider(context));
+}
+export function evaluateRouteBudget(input,provider){
  if(!input||typeof input!=='object'||Array.isArray(input))throw new SajuError('strength-input','분석 입력 객체가 필요합니다.');
  if(input.policy!==ROUTE_BUDGET_VERSION)throw new SajuError('strength-policy','경로 배분 정책을 명시해야 합니다.');
- const q=analyzeQuantitativeStrength({saju:input.saju,birthBasis:input.birthBasis,policy:'strength-quantitative-v3'},context);
+ const q=provider.quantitative(input.saju,input.birthBasis);
  const meta={version:ROUTE_BUDGET_VERSION,completeHour:q.completeHour,assessment:'hypothetical-budget-only',effectsConfirmed:false};
  if(q.status==='provisional'||!q.completeHour)return {...meta,status:q.status,analysis:null};
- const network=analyzeSupportNetwork({saju:input.saju});
+ const network=provider.network(input.saju);
  const rows=q.quantitative.scenarios.flatMap(s=>['all-local','anchored-targets'].map(mode=>model(network,s,mode)));
  const keys=['directResource','conditionalResource','officerResource','directOfficer','directWealth','outputControl'];
  return {...meta,status:'diagnostic',analysis:{rows,ranges:Object.fromEntries(keys.map(k=>[k,range(rows.map(r=>r[k]))]))}};

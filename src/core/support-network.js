@@ -12,7 +12,11 @@ function category(day,element){
 
 /** Observed directed relations only. No effective strength or cancellation. */
 export function analyzeSupportNetwork({saju}={}){
- const d=analyzeRootDynamics({saju});
+ return observeSupportNetwork(analyzeRootDynamics({saju}));
+}
+
+// Pure projection shared by request-local strength evidence providers.
+export function observeSupportNetwork(d){
  const nodes=d.nodes.map(n=>({...n,category:category(d.dayMaster.element,n.element),anchored:anchored(n)}));
  const byId=new Map(nodes.map(n=>[n.id,n]));
  const edges=d.edges.map(e=>({...e,fromCategory:byId.get(e.from).category,toCategory:byId.get(e.to).category}));
