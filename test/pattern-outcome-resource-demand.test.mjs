@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {summarizeResourceDemandConditions} from '../scripts/lib/pattern-outcome-role-policy-triage.mjs';
 import {observeResourceSupplyContext,assessResourceDemandConditions} from '../src/features/pattern/outcome-resource-demand.js';
 import {analyzePatternOutcomeV10,PATTERN_OUTCOME_V10_VERSION} from '../src/index.js';
 function fixture(direction='strong',complete=true){
@@ -57,4 +58,18 @@ test('native V10 source chart resource context is composed and has no authority'
   for(const c of m.candidates){const d=c.rolePriority.resourceDemandConditions;assert.ok(['diagnostic','partial','out-of-scope'].includes(d.status));assert.equal(d.excessConfirmed,null);assert.equal(d.selectionAuthority,false);}
   assert.equal(r.decisionReview.status,'abstained');
  }
+});
+
+test('resource audit rejects false independent supply, changed source status and dropped contexts',()=>{
+ const x=fixture(),c=chart(x),d=run(x);
+ const m={resourceSupplyContext:c,candidates:[{candidateId:x.review.candidateId,rolePriority:{demandReview:x.demand,resourceDemandConditions:d}}]};
+ const audit=()=>summarizeResourceDemandConditions({id:'fixture'},m,false);
+ assert.deepEqual(audit().errors,[]);
+ c.alternatives[0].independentSupplyConfirmed=true;
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-alternative:')));
+ c.alternatives[0].independentSupplyConfirmed=null;
+ d.contexts[0].sourceConditionalStatus='supported';
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-objective-binding:')));
+ d.contexts.pop();
+ assert.ok(audit().errors.some(e=>e.startsWith('resource-objective-coverage:')));
 });
