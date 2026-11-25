@@ -1,0 +1,391 @@
+{
+  "version": "pattern-action-reference-v1",
+  "scope": "source-interpretation-not-empirical-ground-truth",
+  "annotationPasses": 1,
+  "cases": [
+    {
+      "id": "shen-resource-regulation",
+      "chartId": "zp-3748-08",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3748.html",
+      "locator": "汪侍郎",
+      "rawPillars": "辛酉丙申壬申辛亥",
+      "claim": "재성 병화가 과다한 인성을 조절한다. 두 신금 중 특정 하나를 지정하지 않는다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:month",
+          "to": [
+            "visible:year",
+            "visible:hour"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://sanqing.com.tw/en/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE%E8%A9%95%E6%B3%A8/",
+      "mechanism": "wealth-resource-regulation",
+      "note": "서락오의 병신합 및 운 조건은 별도 저자 해석; 인격 전체 성패 정답이 아님.",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "shen-food-controls-killing",
+      "chartId": "zp-3752-01",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "locator": "乙亥例",
+      "rawPillars": "乙亥乙酉乙卯丁丑",
+      "claim": "식신 정화로 월령의 칠살을 제어한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "hidden:month:신"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan/",
+      "mechanism": "food-controls-killing",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "shen-killing-resource",
+      "chartId": "zp-3752-03",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "locator": "何參政",
+      "rawPillars": "丙寅戊戌壬戌辛丑",
+      "claim": "칠살과 인성이 월령에 함께 통근하며 살인 관계를 취한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:month",
+          "to": [
+            "visible:hour"
+          ],
+          "kind": "generate",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan/",
+      "mechanism": "killing-resource-transmission",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "shen-zhou-rescue",
+      "chartId": "zhou-killing",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "locator": "周丞相",
+      "rawPillars": "戊戌甲子丁未庚戌",
+      "claim": "경금 재성이 갑목 인성을 제어하여 무토 식상 작용을 보존한다. 재성의 생살도 함께 활용한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "visible:month"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        },
+        {
+          "from": "visible:month",
+          "to": [
+            "visible:year"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        },
+        {
+          "from": "visible:year",
+          "to": [
+            "hidden:month:계"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "mechanism": "wealth-protects-output-controller",
+      "note": "丁일간의 戊는 상관이다. 원문 食 표현을 정식 십신 식신으로 바꾸지 않는다. 전체 경로 해석이며 모든 edge가 동시에 유효하다는 라벨이 아니다.",
+      "scope": "route-interpretation",
+      "parallelUrl": "https://sanqing.com.tw/en/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE%E8%A9%95%E6%B3%A8/"
+    },
+    {
+      "id": "shen-zhou-before-rescue",
+      "chartId": "zhou-killing",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "locator": "周丞相: 구응 전 설명",
+      "rawPillars": "戊戌甲子丁未庚戌",
+      "claim": "갑목의 제어로 무토가 칠살을 제압하기 어렵다는 구응 이전 설명.",
+      "state": "blocked",
+      "edges": [
+        {
+          "from": "visible:year",
+          "to": [
+            "hidden:month:계"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "before-rescue-explanation",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "mechanism": "output-control-killing",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "shen-food-abandonment",
+      "chartId": "zp-3750-06",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3750.html",
+      "locator": "常國公",
+      "rawPillars": "辛卯辛卯癸酉己未",
+      "claim": "식신생재 대신 칠살과 인성을 활용한다. 동일 신금의 어느 위치인지는 원문이 특정하지 않는다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "visible:year",
+            "visible:month"
+          ],
+          "kind": "generate",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "mechanism": "food-to-killing-resource",
+      "scope": "route-interpretation"
+    },
+    {
+      "id": "xu-food-controls-killing",
+      "chartId": "xu-12-03",
+      "author": "徐樂吾",
+      "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+      "locator": "論格局高低 閻錫山",
+      "rawPillars": "癸未辛酉乙酉丁亥",
+      "claim": "정화 식신의 신금 제살을 비교 사례에서 유력하다고 설명한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "visible:month"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3",
+      "mechanism": "food-controls-killing",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "xu-hurting-killing-limited-a",
+      "chartId": "xu-12-04",
+      "author": "徐樂吾",
+      "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+      "locator": "論格局高低 商震",
+      "rawPillars": "戊子辛酉乙未丙子",
+      "claim": "병신합으로 병화 상관의 제살 능력이 제한된다.",
+      "state": "limited",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "visible:month"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3",
+      "mechanism": "hurting-controls-killing",
+      "combination": {
+        "participants": [
+          "visible:month",
+          "visible:hour"
+        ]
+      },
+      "scope": "edge-effect"
+    },
+    {
+      "id": "xu-hurting-killing-limited-b",
+      "chartId": "xu-12-05",
+      "author": "徐樂吾",
+      "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+      "locator": "論格局高低 陸榮廷",
+      "rawPillars": "戊午辛酉乙卯丙戌",
+      "claim": "병신합 때문에 정화 식신제살 사례보다 병화 상관의 제살이 제한된다.",
+      "state": "limited",
+      "edges": [
+        {
+          "from": "visible:hour",
+          "to": [
+            "visible:month"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3",
+      "mechanism": "hurting-controls-killing",
+      "combination": {
+        "participants": [
+          "visible:month",
+          "visible:hour"
+        ]
+      },
+      "scope": "edge-effect"
+    },
+    {
+      "id": "xu-hidden-output-limited",
+      "chartId": "xu-12-06",
+      "author": "徐樂吾",
+      "url": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+      "locator": "論格局高低 許世英",
+      "rawPillars": "癸酉辛酉乙丑辛巳",
+      "claim": "사중 병화의 제살이 무력하다고 설명한다. 신금의 특정 위치는 지정하지 않는다.",
+      "state": "limited",
+      "edges": [
+        {
+          "from": "hidden:hour:병",
+          "to": [
+            "visible:month",
+            "visible:hour"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3",
+      "mechanism": "hidden-output-controls-killing",
+      "note": "작용 약화이지 완전한 작용 부재 또는 격국 실패가 아님.",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "xu-owl-damage",
+      "chartId": "xu-20-01",
+      "author": "徐樂吾",
+      "url": "https://sanqing.com.tw/en/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%A9%AE%E8%A9%95%E6%B3%A8/",
+      "locator": "論生剋先後分吉凶 無財例",
+      "rawPillars": "庚申戊寅壬子甲辰",
+      "claim": "경금 편인이 갑목 식신을 제어하고 원국에 구응할 재성이 없다고 해석한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:year",
+          "to": [
+            "visible:hour"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "development-reference",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://ncc.com.tw/fate/paleo/bg/bg_033.htm",
+      "mechanism": "owl-food-damage",
+      "note": "원문상 구응 부재는 명리적 해석이지 지장간 재성의 문자적 부재 라벨이 아님.",
+      "scope": "edge-effect"
+    },
+    {
+      "id": "shen-excess-food-review",
+      "chartId": "zp-3752-02",
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "locator": "脫脫丞相",
+      "rawPillars": "壬辰甲辰丙戌戊戌",
+      "claim": "갑목 인성이 과다한 무토 식신을 조절한다.",
+      "state": "supported",
+      "edges": [
+        {
+          "from": "visible:month",
+          "to": [
+            "visible:hour"
+          ],
+          "kind": "control",
+          "quantifier": "any"
+        }
+      ],
+      "phase": "natal-reading",
+      "binding": "annotator-role-to-occurrence",
+      "split": "excluded-source-review",
+      "independentlyAdjudicated": false,
+      "parallelUrl": "https://changxianyi.com/guji/ziping/nlc-continuation-text-review-20261005/pianguan/",
+      "mechanism": "resource-regulates-excess-food",
+      "note": "두 전자본에서 甲辰 확인. 기존 제외 정책 유지; 독립 판본 검증 및 재승인 없이 평가 분모에 포함하지 않음.",
+      "scope": "edge-effect"
+    }
+  ],
+  "partialTemplates": [
+    {
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3748.html",
+      "mechanism": "wealth-resource",
+      "positive": "인중·신강에서 재성으로 과다 인성을 조절",
+      "negative": "인경·재중이며 비겁 구응이 없으면 재파인",
+      "completeChart": false
+    },
+    {
+      "author": "沈孝瞻",
+      "url": "https://www.donglishuzhai.net/chapter/3752.html",
+      "mechanism": "resource-food",
+      "positive": "식신 과다를 인성으로 조절",
+      "negative": "살강·식천에서 인성이 식신을 제어하면 파격",
+      "completeChart": false
+    },
+    {
+      "author": "沈孝瞻",
+      "url": "https://donglishuzhai.net/chapter/3733.html",
+      "mechanism": "food-wealth-order",
+      "positive": "기토 묘월에서 재성이 앞서고 식신이 뒤따르는 경우",
+      "negative": "식신이 앞서고 재성이 시간에 위치해 생살하는 경우",
+      "completeChart": false
+    }
+  ]
+}
