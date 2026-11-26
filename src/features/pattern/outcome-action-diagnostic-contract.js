@@ -2,6 +2,7 @@
 // bounded analyses may be unavailable; the outer diagnostic must still
 // report its chart scope and abstain from actual-effect authority.
 const authorityFields=Object.freeze(['effective','effectiveSupply','rootEffectConfirmed','effectConfirmed','neutralizationConfirmed','damageConfirmed','preservationConfirmed','reliefConfirmed','restrictionConfirmed','retentionConfirmed','transformationConfirmed','noninterferenceConfirmed']);
+const unresolvedFields=Object.freeze(['actualStrengthState','actualReplenishmentState','actualMagnitudeComparison','actualPreservationState','actualDepthState','actualAccessState']);
 export function inspectActionDiagnostics(diagnostics,completeHour){
  const expected=completeHour?'diagnostic':'partial';
  const invalid=[];
@@ -17,7 +18,9 @@ export function inspectActionDiagnostics(diagnostics,completeHour){
   if(r.completeHour!==completeHour){
    invalid.push({owner,status:'invalid-evidence',reason:'scope-mismatch'});continue;
   }
-  if(r.selectionAuthority!==false||authorityFields.some(k=>Object.hasOwn(r,k)&&r[k]!==null)){
+  if(r.selectionAuthority!==false||authorityFields.some(k=>Object.hasOwn(r,k)&&r[k]!==null)||
+   unresolvedFields.some(k=>Object.hasOwn(r,k)&&r[k]!=='unresolved')||
+   r.summary&&Object.hasOwn(r.summary,'actualEffectsConfirmed')&&r.summary.actualEffectsConfirmed!==0){
    invalid.push({owner,status:'invalid-evidence',reason:'authority-violation'});continue;
   }
  }
