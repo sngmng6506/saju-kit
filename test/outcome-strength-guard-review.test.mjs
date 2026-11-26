@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {strengthGuardIds} from '../src/features/pattern/outcome-strength-guard-contract.js';
 import {claimReviewTemplate,adjudicateClaims} from '../scripts/lib/pattern-outcome-claim-evaluation.mjs';
-import {buildStrengthGuardPacket,retrospectiveGuardIntake,compileReviewedGuardRestrictions,replayReviewedGuards} from '../scripts/lib/pattern-strength-guard-review.mjs';
+import {buildStrengthGuardPacket,retrospectiveGuardIntake,compileReviewedGuardRestrictions,replayReviewedGuards,surveyGuardSensitivity} from '../scripts/lib/pattern-strength-guard-review.mjs';
 import {compileReplenishmentNetwork} from '../src/features/pattern/outcome-replenishment-network.js';
 import {compareReplenishmentBurden} from '../src/features/pattern/outcome-burden-comparison.js';
 import {synthesizeContextualStrength} from '../src/features/pattern/outcome-strength-synthesis.js';
@@ -69,4 +69,16 @@ test('source silence and reviewer disagreement never restrict a hypothesis',()=>
  assert.equal(r.status,'diagnostic-unverified-review');assert.deepEqual(r.rows[0].restrictions,[]);
  assert.deepEqual(r.rows[0].baseline,r.rows[0].restricted);
  assert.equal(compileReviewedGuardRestrictions({...packet,tasks:packet.tasks.slice(1)},digest,[review('A'),review('B')]).status,'invalid-review');
+});
+
+test('single-guard sensitivity enumerates both signs without consulting source verdicts',()=>{
+ const r=surveyGuardSensitivity(input());
+ assert.equal(r.status,'diagnostic',r.reason);assert.equal(r.rows.length,10);
+ assert.equal(r.baseline.strongPossible,true);assert.equal(r.baseline.weakPossible,true);
+ const c=r.rows.find(x=>x.guard==='control-exceeds-support'&&x.value);
+ assert.equal(c.weakPossible,true);assert.equal(c.strongPossible,false);assert.equal(c.reducesDirectionAmbiguity,true);
+ const n=r.rows.find(x=>x.guard==='control-exceeds-support'&&!x.value);
+ assert.equal(n.weakPossible,false);assert.equal(n.strongPossible,true);
+ assert.equal(r.rows.find(x=>x.guard==='indirect-support-sufficient'&&x.value).status,'incompatible-constraints');
+ assert.equal(r.actualAccuracy,null);assert.equal(r.actualStrengthState,'unresolved');
 });
