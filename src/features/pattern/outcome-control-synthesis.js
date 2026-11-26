@@ -31,8 +31,8 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  if([ag,mg,actors,rr,pairs,pressures,aa,mm,ss,routes].some(x=>!x)||!eq([...aa.keys()],[...ss.keys()])||!eq([...aa.keys()],[...mm.keys()])||
   [...ag].some(([id,j])=>!same(j,mg.get(id))))return empty('inventory-or-proof');
  const visible=[...actors.values()].filter(a=>a.layer==='visible');
- const expected=visible.flatMap(a=>visible.filter(b=>a.id!==b.id&&elementRelation(a.element,b.element).direction==='left-to-right').map(b=>({id:a.id+'>'+b.id,kind:elementRelation(a.element,b.element).type})));
- if(!eq([...aa.keys()],expected.map(a=>a.id))||expected.some(e=>aa.get(e.id).kind!==e.kind))return empty('action-coverage');
+ const expected=visible.flatMap(a=>visible.filter(b=>a.id!==b.id&&elementRelation(a.element,b.element).direction==='left-to-right').map(b=>({id:a.id+'>'+b.id,from:a.id,to:b.id,kind:elementRelation(a.element,b.element).type})));
+ if(!eq([...aa.keys()],expected.map(a=>a.id))||expected.some(e=>{const a=aa.get(e.id);return a.kind!==e.kind||a.from!==e.from||a.to!==e.to;}))return empty('action-coverage');
  const basis=buildSharedForceBasis(prior,root);
  if(basis.status!==status||!same(basis,pressure.sharedForceBasis))return empty('basis-replay');
  const props=[],facts=[],rules=[],rows=[],seen=new Set(),seenRoutes=new Set();
@@ -54,14 +54,14 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
   const diagnostic=diagnoseControlContrast({completeHour:complete,originalLeft:prior.relativeForce.profiles[a.from]?.axes,
    originalRight:prior.relativeForce.profiles[a.to]?.axes,sensitivityLeft:rr.get(a.from)?.sensitivityAxes,sensitivityRight:rr.get(a.to)?.sensitivityAxes,
    pair,reversed:!forward,pressureId:p.id});
-  if(!diagnostic||diagnostic.contrast!==p.contrast)return empty('contrast');
+  if(!diagnostic||diagnostic.contrast!==p.contrast||!same(Object.fromEntries(Object.entries(diagnostic.views).map(([k,v])=>[k,v.relation])),p.comparison))return empty('contrast');
   const shared=compareSharedForceBasis(basis,a.from,a.to);
   if(![status,'unavailable'].includes(shared.status)||!same({...diagnostic,sharedBasis:shared},p.comparisonDiagnostics))return empty('diagnostic-replay');
   const clause=m.clauses?.filter(q=>q.directInjuryPropositionId);
   if(clause?.length!==1)return empty('injury-clause');
   const c=clause[0],subject=key(a.edgeId,c.clauseId);
   if(!readProof(ag,s.structural,'argumentReview','stable-source-profile-dominance',a.edgeId)||
-   s.structural.propositionId!==a.structuralPropositionId||!readProof(ag,s.actualEffect,'argumentReview','actual-action-effective',a.edgeId)||
+   s.structural.propositionId!==a.structuralPropositionId||s.structural.state!==(!complete?'unresolved':p.contrast==='controller-evidence-dominance-stable'?'supported':p.contrast==='target-evidence-dominance-stable'?'opposed':'unresolved')||!readProof(ag,s.actualEffect,'argumentReview','actual-action-effective',a.edgeId)||
    !readProof(mg,s.direct,'modeledConsequenceReview','modeled-direct-injury-tendency',subject)||
    !readProof(mg,s.combined,'modeledConsequenceReview','modeled-target-injury',subject)||
    s.direct.propositionId!==c.directInjuryPropositionId||s.combined.propositionId!==c.propositionId||
@@ -98,21 +98,20 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
   if(!eq(s.interposition.visibleRoutes.map(q=>q.pathId),[...routes.values()].filter(q=>q.controlEdgeId===a.edgeId).map(q=>q.pathId)))return empty('route-coverage');
   const contact=s.constraints?.counterfactual;
   if(!Array.isArray(s.constraints?.pairIds)||!Array.isArray(s.constraints?.exposedRootIds)||
-   !!contact!==!!(s.constraints.pairIds.length||s.constraints.exposedRootIds.length)||contact&&contact.actualRestrictionState!=='unresolved')return empty('contact-scope');
-  const conjunction=(kind,premises)=>{
+   !!contact!==!!(s.constraints.pairIds.length||s.constraints.exposedRootIds.length)||contact&&(contact.actualRestrictionState!=='unresolved'||contact.scope!=='counterfactual-all-exposed-substantial-roots-lost'||contact.proof?.kind!=='hypothetical-direct-root-and-pair-clearance'||contact.proof.subject!==a.edgeId||!signed.includes(contact.proof.state)||!eq(contact.pairIds,s.constraints.pairIds)||!eq(contact.exposedRootIds,s.constraints.exposedRootIds)))return empty('contact-scope');
+  const conjunction=(kind,premises,observations)=>{
    const id=make(kind,'structural-hypothesis');
    rules.push({id:key(id,'for'),policyId:CONTROL_SYNTHESIS_VERSION,conclusion:{propositionId:id,sign:'for'},
-    premises:premises.map(propositionId=>({propositionId,sign:'for'})),refs:[{owner:'control-synthesis-policy',id:CONTROL_SYNTHESIS_VERSION,field:kind}],applicability:'complete-only'});
+    premises:premises.map(propositionId=>({propositionId,sign:'for'})),undercutWhen:observations.map(propositionId=>({propositionId,sign:'against'})),refs:[{owner:'control-synthesis-policy',id:CONTROL_SYNTHESIS_VERSION,field:kind}],applicability:'complete-only'});
    return id;
   };
-  const directContext=conjunction('direct-injury-with-invariant-profile-order',[stable,invariant,direct]);
-  const residualContext=conjunction('residual-injury-with-invariant-profile-order',[directContext,residual]);
-  const actual=make('actual-control-synthesis','effect-hypothesis');
+  const directContext=conjunction('direct-injury-with-invariant-profile-order',[stable,invariant,direct],[stable,invariant,direct]);
+  const residualContext=conjunction('residual-injury-with-invariant-profile-order',[directContext,residual],[residual]);
   rows.push({edgeId:a.edgeId,pressureId:p.id,from:a.from,to:a.to,possiblePropositionId:possible,invariantPropositionId:invariant,
-   directContextPropositionId:directContext,residualContextPropositionId:residualContext,actualPropositionId:actual,
+   directContextPropositionId:directContext,residualContextPropositionId:residualContext,
    sideReports,routeReports,observedCandidateIds:[...s.interposition.observedCandidateIds],
    unassessedCandidateIds:s.interposition.observedCandidateIds.filter(id=>!routeReports.some(q=>q.pathId===id)),
-   contact:contact?{scope:contact.scope,proof:contact.proof,actualRestrictionState:'unresolved'}:null,
+   contact:contact?{scope:contact.scope,proof:{owner:contact.proof.owner,propositionId:contact.proof.propositionId,state:contact.proof.state},actualRestrictionState:'unresolved'}:null,
    originalEffectPropositionId:a.effectPropositionId,actualControlState:'unresolved',actualReliefState:'unresolved',selectionAuthority:false,effective:null});
  }
  const expectedControls=expected.filter(a=>a.kind==='control');
@@ -121,9 +120,9 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  const r=evaluateArguments({scope,propositions:props,evidence:facts,rules});
  if(r.status!==status)return empty('argument-evaluation');
  const js=index(r.judgments,j=>j.id);
- const actions=rows.map(q=>({...q,possibleState:js.get(q.possiblePropositionId).state,invariantState:js.get(q.invariantPropositionId).state,
+ const actions=rows.map(q=>({...q,sideReports:q.sideReports.map(r=>({...r,state:js.get(r.propositionId).state})),routeReports:q.routeReports.map(r=>({...r,state:js.get(r.propositionId).state})),possibleState:js.get(q.possiblePropositionId).state,invariantState:js.get(q.invariantPropositionId).state,
   directContextState:js.get(q.directContextPropositionId).state,residualContextState:js.get(q.residualContextPropositionId).state}));
- if(actions.some(q=>js.get(q.actualPropositionId).state!=='unresolved'||!complete&&(q.possibleState!=='unresolved'||q.invariantState!=='unresolved'||q.directContextState!=='unresolved'||q.residualContextState!=='unresolved')))return empty('authority');
+ if(actions.some(q=>ag.get(q.originalEffectPropositionId)?.state!=='unresolved'||!complete&&(q.possibleState!=='unresolved'||q.invariantState!=='unresolved'||q.directContextState!=='unresolved'||q.residualContextState!=='unresolved')))return empty('authority');
  const summary={controls:actions.length,possible:actions.filter(q=>q.possibleState==='supported').length,invariant:actions.filter(q=>q.invariantState==='supported').length,
   directContext:actions.filter(q=>q.directContextState==='supported').length,residualContext:actions.filter(q=>q.residualContextState==='supported').length,actualControlConfirmed:0};
  return {...base,status,reason:null,actions,summary,propositions:props,evidence:facts,rules,judgments:r.judgments,ruleResults:r.ruleResults,
