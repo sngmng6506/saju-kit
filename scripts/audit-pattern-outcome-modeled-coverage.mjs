@@ -12,7 +12,10 @@ for(const c of [...cases,...controls])for(const completeHour of [true,false]){
   const fail=reason=>errors.push({id:c.id,scope,reason});
   if(r.invalid.length)fail('invalid-contract');
   if(r.actualEffectPromoted)fail('actual-effect-promotion');
-  if(!completeHour&&r.rows.some(q=>q.state!=='unresolved'))fail('partial-promotion');
+  if(!completeHour&&r.rows.some(q=>q.state!=='unresolved'||q.directInjuryState!==null&&q.directInjuryState!=='unresolved'))fail('partial-promotion');
+  if(r.rows.some(q=>q.interpositionCandidates.some(p=>p.actualReliefState!=='unresolved')))fail('relief-promotion');
+  if(r.rows.some(q=>q.kind==='modeled-target-injury'&&q.state==='supported'&&(q.directInjuryState!=='supported'||q.interpositionCandidates.length)))fail('residual-without-direct-and-clear-scope');
+  if(synthetic&&c.kind==='modeled-target-injury'&&exact?.directInjuryState!==(completeHour?'supported':'unresolved'))fail('direct-control-mismatch');
   if(synthetic&&exact?.state!==(completeHour?c.expected:'unresolved'))fail('synthetic-control-mismatch');
   if(c.edgeId&&!exact)fail('missing-source-contrast');
   if(c.label==='explicit-opposition'&&exact?.state==='supported')fail('source-opposition-contradicted');
