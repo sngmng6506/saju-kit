@@ -1,4 +1,5 @@
 import {createSynthesisBuilder} from './outcome-synthesis-builder.js';
+import {replaySynthesisProof,bindSynthesisProof as readProof,preservesSynthesisProofs} from './outcome-synthesis-proof.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {diagnoseControlContrast} from './outcome-pressure-dependency.js';
 import {buildSharedForceBasis,compareSharedForceBasis} from './outcome-shared-force-basis.js';
@@ -10,12 +11,6 @@ const eq=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&new Set
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const signed=['supported','opposed','conflicting','unresolved'];
 const left='left-evidence-dominates';
-const replay=(owner,scope)=>{
- if(!owner||![owner.propositions,owner.evidence,owner.rules,owner.judgments,owner.ruleResults].every(Array.isArray))return null;
- const r=evaluateArguments({scope,propositions:owner.propositions,evidence:owner.evidence,rules:owner.rules});
- if(r.status!==(scope==='complete'?'diagnostic':'partial')||!same(r.judgments,owner.judgments)||!same(r.ruleResults,owner.ruleResults))return null;
- return index(r.judgments,j=>j.id);
-};
 // Composition of model-scoped propositions only. A positive conjunction
 // does not establish actual injury; neither a contrary order nor a route
 // candidate proves control ineffective. Counterfactual contact and route
@@ -26,11 +21,11 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  const empty=reason=>({...base,status:'invalid-evidence',reason,actions:[],propositions:[],evidence:[],rules:[],judgments:[],ruleResults:[],summary:null});
  if(typeof complete!=='boolean'||[root,pressure,argument,modeled,synthesis].some(x=>!x||x.status!==status||x.completeHour!==complete||x.selectionAuthority!==false)||
   root.rootEffectConfirmed!==null||[pressure,argument,modeled,synthesis].some(x=>x.effective!==null))return empty('upstream');
- const ag=replay(argument,scope),mg=replay(modeled,scope),actors=index(prior.stemForce?.occurrences,a=>a.id),rr=index(root.occurrences,a=>a.id),
+ const ag=replaySynthesisProof(argument,scope),mg=replaySynthesisProof(modeled,scope),actors=index(prior.stemForce?.occurrences,a=>a.id),rr=index(root.occurrences,a=>a.id),
   pairs=index(root.comparisons,p=>key(p.left,p.right)),pressures=index(pressure.pressures,p=>p.id),aa=index(argument.actions,a=>a.edgeId),
   mm=index(modeled.actions,a=>a.edgeId),ss=index(synthesis.actions,a=>a.edgeId),routes=index(modeled.interpositionRoutes,r=>r.pathId);
  if([ag,mg,actors,rr,pairs,pressures,aa,mm,ss,routes].some(x=>!x)||!eq([...aa.keys()],[...ss.keys()])||!eq([...aa.keys()],[...mm.keys()])||
-  [...ag].some(([id,j])=>!same(j,mg.get(id))))return empty('inventory-or-proof');
+  !preservesSynthesisProofs(ag,mg))return empty('inventory-or-proof');
  const visible=[...actors.values()].filter(a=>a.layer==='visible');
  const expected=visible.flatMap(a=>visible.filter(b=>a.id!==b.id&&elementRelation(a.element,b.element).direction==='left-to-right').map(b=>({id:a.id+'>'+b.id,from:a.id,to:b.id,kind:elementRelation(a.element,b.element).type})));
  if(!eq([...aa.keys()],expected.map(a=>a.id))||expected.some(e=>{const a=aa.get(e.id);return a.kind!==e.kind||a.from!==e.from||a.to!==e.to;}))return empty('action-coverage');
@@ -38,11 +33,6 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  if(basis.status!==status||!same(basis,pressure.sharedForceBasis))return empty('basis-replay');
  const props=[],facts=[],rules=[],rows=[],seen=new Set(),seenRoutes=new Set();
  const forSubject=createSynthesisBuilder({complete,policyId:CONTROL_SYNTHESIS_VERSION,policyOwner:'control-synthesis-policy',props,facts,rules});
- const readProof=(g,p,owner,kind,subject)=>{
-  const j=g.get(p?.propositionId);
-  return !!j&&p.owner===owner&&p.kind===kind&&p.subject===subject&&p.level===j.level&&j.kind===kind&&j.subject===subject&&p.state===j.state&&
-   same(p.proof,{support:j.support,opposition:j.opposition});
- };
  for(const a of aa.values()){
   if(a.kind!=='control')continue;
   const from=actors.get(a.from),to=actors.get(a.to),m=mm.get(a.edgeId),s=ss.get(a.edgeId),p=pressures.get(key(from.graphNodeId,to.graphNodeId));
@@ -111,7 +101,7 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  const js=index(r.judgments,j=>j.id);
  const actions=rows.map(q=>({...q,sideReports:q.sideReports.map(r=>({...r,state:js.get(r.propositionId).state})),routeReports:q.routeReports.map(r=>({...r,state:js.get(r.propositionId).state})),possibleState:js.get(q.possiblePropositionId).state,invariantState:js.get(q.invariantPropositionId).state,
   directContextState:js.get(q.directContextPropositionId).state,residualContextState:js.get(q.residualContextPropositionId).state}));
- if(actions.some(q=>ag.get(q.originalEffectPropositionId)?.state!=='unresolved'||!complete&&(q.possibleState!=='unresolved'||q.invariantState!=='unresolved'||q.directContextState!=='unresolved'||q.residualContextState!=='unresolved')))return empty('authority');
+ if(actions.some(q=>ag.judgments.get(q.originalEffectPropositionId)?.state!=='unresolved'||!complete&&(q.possibleState!=='unresolved'||q.invariantState!=='unresolved'||q.directContextState!=='unresolved'||q.residualContextState!=='unresolved')))return empty('authority');
  const summary={controls:actions.length,possible:actions.filter(q=>q.possibleState==='supported').length,invariant:actions.filter(q=>q.invariantState==='supported').length,
   directContext:actions.filter(q=>q.directContextState==='supported').length,residualContext:actions.filter(q=>q.residualContextState==='supported').length,actualControlConfirmed:0};
  return {...base,status,reason:null,actions,summary,propositions:props,evidence:facts,rules,judgments:r.judgments,ruleResults:r.ruleResults,
