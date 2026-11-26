@@ -43,9 +43,9 @@ export function evaluateElementContextModel({completeHour,element,axes,evidenceR
  // Impossible input contracts must not manufacture a strength hypothesis.
  if(axes.cleanPrincipalRoot===true&&axes.substantialRoot!==true||
   axes.localGroundedControlCoverage===true&&axes.visible!==true||
-  axes.cleanMonthPrincipalRoot===true&&(axes.cleanPrincipalRoot!==true||axes.substantialRoot!==true)||
-  axes.independentLocalResourceBasis===true&&(axes.visible!==true||axes.noRootedGeneratorBasis!==false)||
-  axes.noRootedBurdenBasis===true&&axes.noRootedControllerBasis!==true)return bad();
+  axes.cleanMonthPrincipalRoot===true&&(axes.cleanPrincipalRoot===false||axes.substantialRoot===false)||
+  axes.independentLocalResourceBasis===true&&(axes.visible===false||axes.noRootedGeneratorBasis===true)||
+  axes.noRootedBurdenBasis===true&&axes.noRootedControllerBasis===false)return bad();
  const observations=axisNames.map(id=>({id,subject:element,kind:'element-context-observation',level:'observation'}));
  const hypotheses=['strong','weak'].map(id=>({id,subject:element,kind:'experimental-element-context-hypothesis',level:'structural-hypothesis'}));
  const evidence=axisNames.filter(k=>axes[k]!==null).map(k=>({id:key(k,axes[k]),...lit(k,axes[k]?'for':'against'),
