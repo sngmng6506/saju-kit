@@ -87,7 +87,7 @@ export function buildSharedForceBasis(prior,root){
    const obs=ids.filter(id=>truth(donorTerms.get(id),read)===true),unknown=ids.filter(id=>truth(donorTerms.get(id),read)===null);
    // RootContext intentionally marks a contacted hidden donor as unknown
    // even if all its substantial slots are contested. DNF preserves that.
-   if(!s||!sameSet(s.observedIds,obs)||!sameSet(s.unresolvedIds,unknown))return empty('supply-parity');
+   if(!s||!sameSet(s.observedIds,obs)||complete&&!sameSet(s.unresolvedIds,unknown))return empty('supply-parity');
    donors[axis]=ids;axes[axis]=ids.flatMap(id=>donorTerms.get(id));
   }
   const value=k=>truth(axes[k],id=>primitives.get(id).value);
