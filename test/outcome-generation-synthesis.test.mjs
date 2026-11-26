@@ -31,6 +31,10 @@ for(const c of [...controls,...routeControls])for(const complete of [true,false]
    assert.equal(a.actualReleaseState,'unresolved');
    for(const id of a.sharedPremiseIds)assert.ok(argument.propositions.some(p=>p.id===id&&p.subject===a.edgeId));
    assert.equal(a.recipientCapacityState,'unresolved');
+   assert.equal(a.recipientCapacityBridge.kind,'recipient-capacity');
+   assert.deepEqual(a.recipientCapacityBridge.subject,[a.edgeId]);
+   assert.equal(a.recipientCapacityBridge.state,'unresolved');
+   assert.equal(a.recipientCapacityBridge.effective,null);
    assert.equal(a.receptionState,'unresolved');
    assert.equal(a.actualSupplyState,'unresolved');
    assert.equal(a.actualReceptionState,'unresolved');
