@@ -18,6 +18,8 @@ const definitions=[
  {id:'control-weakness',target:'weak',requires:[lit('visible'),lit('controller-basis'),lit('control-exceeds-support')],source},
  {id:'drain-weakness',target:'weak',requires:[lit('visible'),lit('output-basis'),lit('drain-exceeds-support')],source:commentary}
 ];
+// Shared policy definitions: return copies so consumers cannot mutate the owner.
+export function contextualStrengthAlternatives(){return definitions.map(d=>({...d,requires:d.requires.map(p=>({...p}))}));}
 // Source-inspired conditional model, not reviewed classical sufficiency.
 // The same signed burden predicates occur in support and contrast rules.
 // Season is intentionally not a necessary premise of these alternatives.
