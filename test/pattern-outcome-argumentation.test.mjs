@@ -605,7 +605,7 @@ function consequenceFixture(target='fire',complete=true){
   rules.push({id:'rule:'+sid,policyId:'synthetic-screen-test',conclusion:{propositionId:sid,sign:'for'},premises:[{propositionId:oid,sign:'for'}],refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
   }
   actions.push({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,structuralPropositionId:sid,effectPropositionId:eid});
-  jointActions.push({...actions.at(-1),actualEffectState:'unresolved',combinationPairIds:[],exposedRootIds:[]});
+  jointActions.push({...actions.at(-1),actualEffectState:'unresolved',combinationPairIds:[],exposedRootIds:[],interpositionPathIds:[]});
   const row=x.supply.actions.find(a=>a.edgeId===e.edgeId);
   row.sourceBasis=complete?'direct-root-observed':'partial';row.contextBlockers=[];row.sourcePressure=[];row.targetPressure=[];
   if(e.kind==='control'){
@@ -614,7 +614,7 @@ function consequenceFixture(target='fire',complete=true){
   }
  }
  const result=evaluateArguments({scope:complete?'complete':'partial',propositions,evidence,rules});
- return {...x,element,argument:{...base,propositions,evidence,rules,actions,judgments:result.judgments,ruleResults:result.ruleResults},joint:{...base,actions:jointActions},pressure:{...base,pressures,paths:[]}};
+ return {...x,element,argument:{...base,propositions,evidence,rules,actions,judgments:result.judgments,ruleResults:result.ruleResults},joint:{...base,actions:jointActions,paths:[]},pressure:{...base,pressures,paths:[]}};
 }
 const consequenceReview=x=>reviewModeledConsequences(x.prior,x.supply,x.argument,x.pressure,x.joint,x.element);
 const consequenceClause=(r,edge)=>r.actions.find(a=>a.edgeId===edge).clauses.find(c=>c.propositionId!==null);
