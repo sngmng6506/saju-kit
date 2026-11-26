@@ -554,6 +554,8 @@ test('element model contrasts require each independent condition and never infer
 test('element review rejects omitted root basis forged predicates and partial-scope promotion',()=>{
  const x=elementModelFixture();x.supply.nodes[0].groundedRootIds=[];x.supply.nodes[0].state='no-substantial-root-observed';
  assert.equal(elementReview(x).status,'invalid-evidence');
+ x.root.occurrences[0].uncontestedRootIds=[];assert.equal(elementReview(x).status,'invalid-evidence');
+ const missing=elementModelFixture();const edge=missing.source.actions.pop();missing.supply.actions=missing.supply.actions.filter(a=>a.edgeId!==edge.edgeId);assert.equal(elementReview(missing).status,'invalid-evidence');
  const y=elementModelFixture();y.source.actions[0].clauses[0].predicateState='supported';assert.equal(elementReview(y).status,'invalid-evidence');
  const z=elementModelFixture();z.prior.stemForce.occurrences[0].seasonal.seasonRelation={type:'same',direction:'left-to-right'};assert.equal(elementReview(z).status,'invalid-evidence');
  const partial=elementReview(elementModelFixture(false));assert.equal(partial.status,'partial',partial.reason);
