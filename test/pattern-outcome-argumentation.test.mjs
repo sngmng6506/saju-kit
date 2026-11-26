@@ -279,3 +279,21 @@ test('native combination policy preserves source packet and exact residual scope
  }
  assert.equal(n,24);
 });
+
+test('classical separated competitor and remote-contact controls do not authorize removal',()=>{
+ const cases=[
+  {pillars:['경오','을유','갑자','을해'],cases:['competing-partner-review','remote-endpoints-review','farther-competitor-review']},
+  {pillars:['정묘','병오','병자','임진'],cases:['remote-endpoints-review']},
+  {pillars:['을유','갑신','정사','경술'],cases:['remote-endpoints-review']}
+ ];
+ for(const c of cases){
+  const x=build(c.pillars),formation=analyzeFormationEvidence({saju:x.saju}),root=observeRootContext(x.prior,formation);
+  const residual=observeCombinationResidualContext(x.prior,formation,observeCombinationContext(x.prior,formation),root,x.supply);
+  const r=reviewCombinationPolicy(x.prior,residual,x.supply,x.review);
+  assert.equal(r.status,'diagnostic');
+  const contexts=new Set(r.pairs.flatMap(p=>p.sourceCases));
+  for(const expected of c.cases)assert.ok(contexts.has(expected),expected);
+  assert.ok(r.pairs.every(p=>p.actualRetentionState==='unresolved'&&p.actualRestrictionState==='unresolved'&&p.actualTransformationState==='unresolved'));
+  assert.ok(r.actions.every(a=>a.actualUndercuts.length===0));
+ }
+});
