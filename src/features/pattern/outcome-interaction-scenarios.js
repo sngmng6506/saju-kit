@@ -7,7 +7,7 @@ const uniq=xs=>[...new Set(xs)].sort();
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const all=(...args)=>({op:'all',args}),any=(...args)=>({op:'any',args}),not=arg=>({op:'not',arg}),variable=id=>({op:'var',id});
 const dnf=terms=>any(...terms.map(t=>all(...t.map(variable))));
-export const INTERACTION_SCENARIO_VERSION='p2-interaction-scenarios-v1';
+export const INTERACTION_SCENARIO_VERSION='p2-interaction-scenarios-v2';
 // Each query is a precisely named property of the shared basis, NOT an
 // assertion of actual generation/control or modeled reception/release.
 export function reviewInteractionScenarios(prior,root,pressure,argument,dependencies){
@@ -46,8 +46,8 @@ export function reviewInteractionScenarios(prior,root,pressure,argument,dependen
   }
   // There is no independently reviewed physical exclusion policy yet.
   // All restrictions here arise solely from one shared primitive assignment.
-  const space=evaluateScenarioSpace({scope:complete?'complete':'partial',variables:basis.primitives.map(p=>({id:p.id,value:p.value})),queries,constraints:[]});
-  if(space.status==='invalid-evidence'||space.admissibleCount===0)return empty('scenario-space');
+  const space=evaluateScenarioSpace({scope:complete?'complete':'partial',variables:basis.primitives.map(p=>({id:p.id,value:p.value})),queries,constraints:[],includeSets:true});
+  if(space.status==='invalid-evidence'||space.sets?.status==='invalid-evidence'||space.admissibleCount===0)return empty('scenario-space');
   if(space.status==='diagnostic'){
    const byId=new Map(space.queries.map(q=>[q.id,q]));
    for(const m of manifest.filter(m=>m.kind==='controller-profile-dominance')){
@@ -59,7 +59,10 @@ export function reviewInteractionScenarios(prior,root,pressure,argument,dependen
   const pairs=space.pairs;
   return {...base,status,reason:null,manifest,space,summary:{queries:manifest.length,analysisStatus:space.status,
    individuallyPossibleButJointImpossible:space.status==='diagnostic'?pairs.filter(p=>p.individuallyPossibleButJointImpossible).length:null,
-   jointlyPossible:space.status==='diagnostic'?pairs.filter(p=>p.counts.both>0).length:null,actualEffectsConfirmed:0},
-   limitations:['shared-basis-properties-not-action-readiness','generation-basis-not-recipient-capacity','model-incompatibility-not-physical-exclusion','no-new-exclusion-policy','no-selection-authority']};
+   jointlyPossible:space.status==='diagnostic'?pairs.filter(p=>p.counts.both>0).length:null,
+   setAnalysisStatus:space.sets?.status??null,wholeConditionState:space.sets?.whole?.state??null,
+   maximalFeasibleSets:space.sets?.summary?.maximalFeasible??null,minimalInfeasibleSets:space.sets?.summary?.minimalInfeasible??null,
+   higherOrderInfeasibleSets:space.sets?.summary?.higherOrderInfeasible??null,actualEffectsConfirmed:0},
+   limitations:['shared-basis-properties-not-action-readiness','generation-basis-not-recipient-capacity','model-incompatibility-not-physical-exclusion','no-new-exclusion-policy','maximal-set-not-preferred-action-set','no-selection-authority']};
  }catch(e){return empty(e instanceof Error?e.message:'invalid-reference');}
 }
