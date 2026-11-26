@@ -23,7 +23,10 @@ export const controls=Object.freeze([
  {id:'release',pillars:['임자','임자','갑자','갑자'],kind:'modeled-source-release',expected:'supported'},
  {id:'injury',pillars:['임자','임자','병자','임자'],kind:'modeled-target-injury',expected:'supported'},
  {id:'release-contested-root',pillars:['임자','임자','갑오','갑자'],kind:'modeled-source-release',expected:'unresolved'},
- {id:'injury-interposition',pillars:['임자','임자','병자','무자'],kind:'modeled-target-injury',expected:'unresolved'}
+ {id:'injury-interposition',pillars:['임자','임자','병자','무자'],kind:'modeled-target-injury',expected:'unresolved'},
+ {id:'resource-backed-release',pillars:['기축','신유','계해','신유'],kind:'modeled-source-release',expected:'supported',expectedModel:'supported'},
+ {id:'resource-basis-removed',pillars:['기유','신유','계해','신유'],kind:'modeled-source-release',expected:'unresolved',expectedModel:'unresolved'},
+ {id:'resource-with-rooted-controller',pillars:['기축','신유','계해','병오'],kind:'modeled-source-release',expected:'unresolved',expectedModel:'unresolved'}
 ].map(c=>Object.freeze({...c,pillars:Object.freeze(c.pillars)})));
 // Test-only composition of production core/review owners. No calendar,
 // strength projection, candidate decisions or V10 wrapper are exercised.
@@ -49,7 +52,9 @@ export function replayModeledCoverage(pillars,completeHour){
   const p=element.elements.find(e=>e.element===JSON.parse(c.modelPropositionId)[1]);
   return {edgeId:a.edgeId,clauseId:c.clauseId,kind:c.kind,state:c.state,modelState,structuralState,blockers,
    element:p?.element??null,axes:p?.axes??null,directInjuryState:c.directInjuryState??null,residualInjuryState:c.residualInjuryState??null,
-   interpositionCandidates:c.interpositionCandidates??[]};
+   interpositionCandidates:c.interpositionCandidates??[],
+   modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
+   resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
  return {invalid,rows,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
