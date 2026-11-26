@@ -165,9 +165,9 @@ test('source conditional requires operation, context and explicit clearance, not
 function interpositionFixture(kind='mediation',complete=true,matched=true){
  const makeActor=(position,element,tenGod,dayReference=false)=>({id:'visible:'+position,graphNodeId:position+':stem',position,layer:'visible',element,tenGod,dayReference});
  const h=makeActor('year',kind==='mediation'?'fire':'metal',kind==='mediation'?'정재':matched?'정인':'편재');
- const s=makeActor('month','wood','상관'),t=makeActor('day','earth','정관',kind==='mediation');
+ const s=makeActor('month','wood','상관'),t=makeActor(kind==='mediation'?'day':'hour','earth','정관',kind==='mediation');
  // In a protection fixture the day reference is a separate fourth actor.
- const extra=makeActor('hour','water',null,kind==='protection');
+ const extra=makeActor(kind==='mediation'?'hour':'day','water',null,kind==='protection');
  const actors=complete?[h,s,t,extra]:[h,s,t];
  const edges=(kind==='mediation'?[[s,h,'generate'],[h,t,'generate'],[s,t,'control']]:[[h,s,'control'],[s,t,'control']]).map(([a,b,kind])=>({edgeId:a.id+'>'+b.id,from:a.id,to:b.id,kind,effective:null,selectionAuthority:false}));
  const control=edges.at(-1),pressureId=JSON.stringify([s.graphNodeId,t.graphNodeId]),pathId=JSON.stringify([kind,h.graphNodeId,s.graphNodeId,t.graphNodeId]);
