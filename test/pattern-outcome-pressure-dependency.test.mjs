@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {buildSharedForceBasis,compareSharedForceBasis} from '../src/features/pattern/outcome-shared-force-basis.js';
 import {evaluateContextualForceComparison} from '../src/features/pattern/outcome-contextual-force.js';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -147,4 +148,46 @@ test('production contextual proofs retain exact pressure scope and partial abste
    if(!complete)assert.ok(c.sides.every(s=>s.challengeState==='unresolved'));
   }
  }
+});
+
+const basisFixture=(left,right,primitives)=>{
+ const names=['exactSubstantial','anySubstantial','ownPillarSubstantial','monthSubstantial','principalSupport','seasonSupport','localRootedGeneration','localRootedPeer'];
+ const profile=(actorId,overrides)=>{const axes=Object.fromEntries(names.map(k=>[k,overrides[k]??[]]));
+ return {actorId,axes,observedAxes:Object.fromEntries(names.map(k=>[k,axes[k].some(t=>t.length===0)?true:axes[k].length?null:false]))};};
+ return {status:'diagnostic',selectionAuthority:false,forceComparison:null,primitives:primitives.map(id=>({id,value:null})),profiles:[profile('left',left),profile('right',right)]};
+};
+test('shared primitive prevents contradictory root or resource completions',()=>{
+ const x=basisFixture({anySubstantial:[['slot']],exactSubstantial:[['slot']],localRootedPeer:[['slot']]},{anySubstantial:[['slot']],exactSubstantial:[['slot']],localRootedPeer:[['slot']]},['slot']);
+ const r=compareSharedForceBasis(x,'left','right');
+ assert.equal(r.status,'diagnostic');assert.equal(r.scenarioCount,2);
+ assert.deepEqual(r.possibleRelations,['same-evidence-profile']);
+ assert.equal(r.excludedRelations.length,3);assert.equal(r.sharedVariables.length,1);assert.equal(r.forceComparison,null);
+});
+test('contact gate depends on donor slot and cannot create supply without basis',()=>{
+ const x=basisFixture({anySubstantial:[['slot']]},{localRootedGeneration:[['slot','gate']]},['slot','gate']);
+ const r=compareSharedForceBasis(x,'left','right');
+ assert.deepEqual(r.possibleRelations,['same-evidence-profile','left-evidence-dominates','mixed-evidence']);
+ assert.deepEqual(r.excludedRelations,['right-evidence-dominates']);
+ assert.equal(r.scenarioCount,4);
+ x.profiles[0].observedAxes.anySubstantial=false;assert.equal(compareSharedForceBasis(x,'left','right').status,'invalid-evidence');
+});
+test('shared basis enumeration budget and partial scope do not publish guessed completions',()=>{
+ const ids=Array.from({length:17},(_,i)=>'p'+i);
+ const x=basisFixture({anySubstantial:ids.map(id=>[id])},{},ids);
+ assert.equal(compareSharedForceBasis(x,'left','right').status,'unavailable');
+ x.status='partial';assert.equal(compareSharedForceBasis(x,'left','right').possibleRelations,null);
+});
+test('production shared basis binds physical roots, node access and old pressure envelope',()=>{
+ for(const complete of [true,false]){
+  const x=build(['무술','갑자','정미','경술'],complete),b=buildSharedForceBasis(x.prior,x.root),r=run(x);
+  assert.equal(b.status,complete?'diagnostic':'partial');assert.equal(r.status,b.status);
+  for(const p of r.pressures.filter(p=>p.comparison)){
+   const q=p.comparisonDiagnostics.sharedBasis;
+   assert.equal(q.forceComparison,null);
+   if(complete){assert.equal(q.status,'diagnostic');assert.ok(q.possibleRelations.every(v=>p.comparisonDiagnostics.views.sensitivity.possibleRelations.includes(v)));}
+   else assert.equal(q.possibleRelations,null);
+  }
+ }
+ const x=build(['무술','갑자','정미','경술']);const a=x.root.occurrences.find(a=>a.layer==='visible'&&a.uncontestedRootIds.length);
+ a.uncontestedRootIds.pop();assert.equal(buildSharedForceBasis(x.prior,x.root).reason,'root-coverage');
 });
