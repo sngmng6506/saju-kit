@@ -1,0 +1,71 @@
+{
+  "version": "modeled-consequence-source-contrast-v1",
+  "scope": "pre-registered source-interpretation contrasts; not independent empirical outcomes or adjudicated exact-edge gold",
+  "sourceEdition": "electronic 任鐵樵 commentary, checked 2026-11-26; unverified printed edition",
+  "cases": [
+    {
+      "id": "wood-release-extreme-context",
+      "pillars": [
+        "갑진",
+        "정묘",
+        "갑자",
+        "무진"
+      ],
+      "section": "衰旺",
+      "source": "https://www.shicihui.com/zh-tw/book/ditiansuichanwei/16287",
+      "edgeId": "visible:day>visible:month",
+      "clauseId": "generation-strong-source-release:wood:fire",
+      "reading": "The author describes wood as excessively prosperous and takes Ding fire as the use. The chart contains branch interactions; this is not an isolated ordinary-strength proof.",
+      "label": "contextual-support",
+      "scope": "extreme-strength-and-formation"
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "pillars": [
+        "신해",
+        "임진",
+        "병신",
+        "기해"
+      ],
+      "section": "衰旺",
+      "source": "https://www.shicihui.com/zh-tw/book/ditiansuichanwei/16287",
+      "edgeId": "visible:month>visible:day",
+      "clauseId": "control-weak-target:water:fire",
+      "reading": "The author describes wealth feeding killing, killing attacking the day, and fire as extremely weak. This is a global context, not an isolated directed-action outcome.",
+      "label": "contextual-support",
+      "scope": "extreme-weakness-and-formation"
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "pillars": [
+        "기사",
+        "계유",
+        "병인",
+        "경인"
+      ],
+      "section": "上下貴乎情協",
+      "source": "https://zh.wikisource.org/zh-hant/滴天髓闡微",
+      "edgeId": "visible:year>visible:month",
+      "clauseId": "control-weak-target:earth:water",
+      "reading": "The author describes Ji earth injuring adjacent Gui water, but describes resource for the officer and relief through the Si-You metal context. Weak target and net injury are not established by this wording.",
+      "label": "mixed-context",
+      "scope": "injury-with-rescue"
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "pillars": [
+        "무자",
+        "경신",
+        "임인",
+        "신축"
+      ],
+      "section": "合局",
+      "source": "https://www.shicihui.com/book/ditiansuichanwei/16323",
+      "edgeId": "visible:year>visible:day",
+      "clauseId": "control-weak-target:earth:water",
+      "reading": "The author says Wu/Chou earth can generate metal but cannot restrain water, with Ren in autumn receiving abundant resource. The negative reading concerns control in this context, not every earth-water pair.",
+      "label": "explicit-opposition",
+      "scope": "remote-control-and-resource-context"
+    }
+  ]
+}
