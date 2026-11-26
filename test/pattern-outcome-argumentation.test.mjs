@@ -588,11 +588,22 @@ function consequenceFixture(target='fire',complete=true){
  for(const n of x.supply.nodes)n.kind=n.occurrenceIds[0].startsWith('visible:')?'visible-stem':'local-branch-constituents';
  for(const e of x.source.actions){
   const sid='screen:'+e.edgeId,eid=e.actualEffectPropositionId,oid='observed:'+e.edgeId;
+  if(e.kind==='generate'){
+   const ids=['source-basis-screen-met','context-blockers-empty','source-pressure-screen-clear','target-pressure-screen-clear'].map(k=>JSON.stringify([e.edgeId,k]));
+   propositions.push({id:sid,subject:e.edgeId,kind:'existing-generation-screen-met',level:'structural-hypothesis'},
+    {id:eid,subject:e.edgeId,kind:'actual-action-effective',level:'effect-hypothesis'},
+    ...ids.map(id=>({id,subject:e.edgeId,kind:JSON.parse(id)[1],level:'observation'})));
+   const refs=[{owner:'synthetic-fixture',id:e.edgeId,field:'screen'}];
+   for(const id of ids)evidence.push({id:'fact:'+id,propositionId:id,sign:'for',refs,applicability:'complete-only'});
+   const rule=(sign,ps)=>({id:JSON.stringify([sid,sign,ps]),policyId:'p1-1-existing-structural-screen-v1',conclusion:{propositionId:sid,sign},premises:ps.map(propositionId=>({propositionId,sign})),refs,applicability:'complete-only'});
+   rules.push(rule('for',ids),...ids.map(id=>rule('against',[id])));
+  }else{
   propositions.push({id:sid,subject:e.edgeId,kind:e.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance',level:'structural-hypothesis'},
    {id:eid,subject:e.edgeId,kind:'actual-action-effective',level:'effect-hypothesis'},
    {id:oid,subject:e.edgeId,kind:'synthetic-screen-premise',level:'observation'});
   evidence.push({id:'fact:'+oid,propositionId:oid,sign:'for',refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
   rules.push({id:'rule:'+sid,policyId:'synthetic-screen-test',conclusion:{propositionId:sid,sign:'for'},premises:[{propositionId:oid,sign:'for'}],refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
+  }
   actions.push({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,structuralPropositionId:sid,effectPropositionId:eid});
   jointActions.push({...actions.at(-1),actualEffectState:'unresolved',combinationPairIds:[],exposedRootIds:[]});
   const row=x.supply.actions.find(a=>a.edgeId===e.edgeId);
@@ -718,4 +729,29 @@ test('resource-backed alternative requires its own independent premises and neve
  assert.equal(run({noRootedControllerBasis:false}).strongState,'unresolved');
  assert.equal(run({noRootedGeneratorBasis:true}).status,'invalid-evidence');
  assert.equal(run({substantialRoot:false}).status,'invalid-evidence');
+});
+
+test('source-side release proof survives only target pressure and rejects mismatched source evidence',()=>{
+ const edge='visible:month>visible:day';
+ const mutate=(x,kind,field,value)=>{
+  const id=JSON.stringify([edge,kind]);
+  x.argument.evidence.find(e=>e.propositionId===id).sign='against';
+  x.supply.actions.find(e=>e.edgeId===edge)[field]=value;
+  const a=evaluateArguments({scope:'complete',propositions:x.argument.propositions,evidence:x.argument.evidence,rules:x.argument.rules});
+  x.argument.judgments=a.judgments;x.argument.ruleResults=a.ruleResults;
+ };
+ const x=consequenceFixture('wood');
+ mutate(x,'target-pressure-screen-clear','targetPressure',[{donorState:'grounded-observation'}]);
+ let r=consequenceReview(x);assert.equal(r.status,'diagnostic',r.reason);
+ let c=consequenceClause(r,edge);
+ assert.equal(c.directReleaseState,'supported');assert.equal(c.jointReleaseScreenState,'unresolved');
+ assert.equal(c.targetPressureScreenState,'opposed');assert.equal(c.actualReceptionState,'unresolved');
+ assert.equal(c.sourceScreen.sourceScreenState,'supported');assert.equal(c.directReleaseProof.opposition.rank,null);
+ mutate(x,'source-pressure-screen-clear','sourcePressure',[{donorState:'grounded-observation'}]);
+ r=consequenceReview(x);assert.equal(r.status,'diagnostic',r.reason);c=consequenceClause(r,edge);
+ assert.equal(c.directReleaseState,'unresolved');assert.equal(c.state,'unresolved');
+ const forged=consequenceFixture('wood');forged.supply.actions.find(e=>e.edgeId===edge).targetPressure=[{donorState:'grounded-observation'}];
+ assert.equal(consequenceReview(forged).reason,'generation-source-screen-proof');
+ const partial=consequenceReview(consequenceFixture('wood',false));assert.equal(partial.status,'partial',partial.reason);
+ assert.ok(partial.actions.flatMap(a=>a.clauses).filter(c=>c.directReleasePropositionId).every(c=>c.directReleaseState==='unresolved'&&c.actualReceptionState==='unresolved'));
 });
