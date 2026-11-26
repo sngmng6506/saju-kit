@@ -2,7 +2,7 @@ import {elementRelation} from '../../core/elements.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {evaluateSourceClauseScenario,sourceEffectClauses} from './outcome-source-effect-policy.js';
 
-export const ELEMENT_CONTEXT_VERSION='p1-4b-element-context-model-v1';
+export const ELEMENT_CONTEXT_VERSION='p1-4d-element-context-model-v2';
 const ELEMENTS=['wood','fire','earth','metal','water'];
 const ORDER=['year','month','day','hour'];
 const SOURCES=Object.freeze({
@@ -10,11 +10,17 @@ const SOURCES=Object.freeze({
  commentary:'https://changxianyi.com/guji/ziping/wz-20260914/chapter-007/',
  season:'https://zh.wikisource.org/zh-hant/滴天髓闡微'
 });
-const axisNames=['visible','seasonSupports','principalSupports','cleanPrincipalRoot','substantialRoot','clearContacts','monthContextClear','noRootedBurdenBasis','noRootedGeneratorBasis','localGroundedControlCoverage'];
+const axisNames=['visible','seasonSupports','principalSupports','cleanPrincipalRoot','substantialRoot','clearContacts','monthContextClear','noRootedBurdenBasis','noRootedGeneratorBasis','localGroundedControlCoverage','cleanMonthPrincipalRoot','independentLocalResourceBasis','noRootedControllerBasis'];
 // These are deliberately narrow, experimental sufficient conditions for
 // MODEL hypotheses. They are not definitions of classical 强/弱, nor
 // necessary conditions for them. No score, weights or axis voting.
 const strong=['visible','seasonSupports','principalSupports','cleanPrincipalRoot','clearContacts','monthContextClear','noRootedBurdenBasis'];
+// Alternative strong context: a clean principal root in the month branch
+// and a physically distinct, locally grounded resource observation.
+// Outgoing burdens may coexist. Incoming rooted control is still withheld.
+// This is a narrow modeled sufficiency rule, not actual force or a universal
+// classical necessary/sufficient condition.
+const strongResource=['visible','seasonSupports','principalSupports','cleanMonthPrincipalRoot','clearContacts','monthContextClear','independentLocalResourceBasis','noRootedControllerBasis'];
 const weak=['visible','clearContacts','monthContextClear','noRootedGeneratorBasis','localGroundedControlCoverage'];
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const lit=(propositionId,sign='for')=>({propositionId,sign});
@@ -36,17 +42,22 @@ export function evaluateElementContextModel({completeHour,element,axes,evidenceR
    !Array.isArray(evidenceRefs[k])||!evidenceRefs[k].length))return bad();
  // Impossible input contracts must not manufacture a strength hypothesis.
  if(axes.cleanPrincipalRoot===true&&axes.substantialRoot!==true||
-  axes.localGroundedControlCoverage===true&&axes.visible!==true)return bad();
+  axes.localGroundedControlCoverage===true&&axes.visible!==true||
+  axes.cleanMonthPrincipalRoot===true&&(axes.cleanPrincipalRoot!==true||axes.substantialRoot!==true)||
+  axes.independentLocalResourceBasis===true&&(axes.visible!==true||axes.noRootedGeneratorBasis!==false)||
+  axes.noRootedBurdenBasis===true&&axes.noRootedControllerBasis!==true)return bad();
  const observations=axisNames.map(id=>({id,subject:element,kind:'element-context-observation',level:'observation'}));
  const hypotheses=['strong','weak'].map(id=>({id,subject:element,kind:'experimental-element-context-hypothesis',level:'structural-hypothesis'}));
  const evidence=axisNames.filter(k=>axes[k]!==null).map(k=>({id:key(k,axes[k]),...lit(k,axes[k]?'for':'against'),
   refs:evidenceRefs[k],applicability:'complete-only'}));
  const strongPremises=strong.map(k=>lit(k));
+ const resourcePremises=strongResource.map(k=>lit(k));
  const weakPremises=[...weak.map(k=>lit(k)),...['seasonSupports','principalSupports','substantialRoot'].map(k=>lit(k,'against'))];
  const rule=(id,target,sign,premises)=>({id,policyId:ELEMENT_CONTEXT_VERSION,conclusion:lit(target,sign),premises,
   refs:[ref('experimental-element-context-policy',ELEMENT_CONTEXT_VERSION,'model-conditions')],applicability:'complete-only'});
  const rules=[rule('strong-model','strong','for',strongPremises),rule('weak-model','weak','for',weakPremises),
-  rule('strong-contrast','weak','against',strongPremises),rule('weak-contrast','strong','against',weakPremises)];
+  rule('strong-contrast','weak','against',strongPremises),rule('weak-contrast','strong','against',weakPremises),
+  rule('strong-resource-model','strong','for',resourcePremises),rule('strong-resource-contrast','weak','against',resourcePremises)];
  const r=evaluateArguments({scope:completeHour?'complete':'partial',propositions:[...observations,...hypotheses],evidence,rules});
  if(!['diagnostic','partial'].includes(r.status))return bad();
  const byId=new Map(r.judgments.map(j=>[j.id,j]));
@@ -130,6 +141,21 @@ export function reviewElementContexts(prior,root,supply,source){
   const generators=allNodes.filter(n=>left(n.element,element,'generate'));
   const burdens=allNodes.filter(n=>left(n.element,element,'control')||left(element,n.element,'generate')||left(element,n.element,'control'));
   const active=n=>n.state==='grounded-observation'||n.state==='context-review';
+  const controllers=allNodes.filter(n=>left(n.element,element,'control'));
+  const near=(a,b)=>Math.abs(ORDER.indexOf(a)-ORDER.indexOf(b))<=1;
+  const monthPrincipal=clean.filter(s=>s.position==='month'&&s.role==='principal');
+  // A resource witness must have its own clean physical root outside the
+  // month branch, near the donor AND recipient. Repeated visible references
+  // to a shared slot are witnesses, not multiple independent roots.
+  const resourceWitnesses=[];
+  for(const a of v)for(const n of generators){
+   if(n.state!=='grounded-observation'||!near(a.position,n.position)||a.graphNodeId===n.nodeId)continue;
+   const rootIds=n.groundedRootIds.filter(id=>{
+    const slot=slots.get(id);
+    return slot&&slot.position!=='month'&&near(slot.position,a.position)&&near(slot.position,n.position);
+   });
+   if(rootIds.length)resourceWitnesses.push({recipientId:a.id,donorNodeId:n.nodeId,rootIds});
+  }
   const groundedControllers=visibleEdges.filter(e=>e.kind==='control'&&v.some(a=>a.id===e.to)&&
    Math.abs(ORDER.indexOf(actors.get(e.from).position)-ORDER.indexOf(actors.get(e.to).position))<=1&&
    nodes.get(actors.get(e.from).graphNodeId)?.state==='grounded-observation');
@@ -138,7 +164,9 @@ export function reviewElementContexts(prior,root,supply,source){
    cleanPrincipalRoot:clean.some(s=>s.role==='principal'),substantialRoot:!!substantial.length,
    clearContacts:!contacts.length&&!contested.length,monthContextClear:monthClear,
    noRootedBurdenBasis:!burdens.some(active),noRootedGeneratorBasis:!generators.some(active),
-   localGroundedControlCoverage:!!v.length&&v.every(a=>groundedControllers.some(e=>e.to===a.id))};
+   localGroundedControlCoverage:!!v.length&&v.every(a=>groundedControllers.some(e=>e.to===a.id)),
+   cleanMonthPrincipalRoot:monthPrincipal.length>0,independentLocalResourceBasis:resourceWitnesses.length>0,
+   noRootedControllerBasis:!controllers.some(active)};
   // Scope is a gate, not missing-hour negative evidence.
   const scopedAxes=Object.fromEntries(axisNames.map(k=>[k,complete?axes[k]:null]));
   const evidenceRefs={
@@ -151,14 +179,20 @@ export function reviewElementContexts(prior,root,supply,source){
    monthContextClear:[ref('rootContext','visible:month','seasonal')],
    noRootedBurdenBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),...burdens.map(n=>ref('groundedSupply',n.nodeId,'state'))],
    noRootedGeneratorBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),...generators.map(n=>ref('groundedSupply',n.nodeId,'state'))],
-   localGroundedControlCoverage:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','actions'),...groundedControllers.map(e=>ref('groundedSupply',e.edgeId,'kind'))]
+   localGroundedControlCoverage:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','actions'),...groundedControllers.map(e=>ref('groundedSupply',e.edgeId,'kind'))],
+   cleanMonthPrincipalRoot:[ref('rootContext',root.version??'root-context-review-v1','slots'),...monthPrincipal.map(s=>ref('rootContext',s.id,'state'))],
+   independentLocalResourceBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),
+    ...[...new Set(resourceWitnesses.map(w=>w.donorNodeId))].map(id=>ref('groundedSupply',id,'groundedRootIds')),
+    ...[...new Set(resourceWitnesses.flatMap(w=>w.rootIds))].map(id=>ref('rootContext',id,'state'))],
+   noRootedControllerBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),...controllers.map(n=>ref('groundedSupply',n.nodeId,'state'))]
   };
   const model=evaluateElementContextModel({completeHour:complete,element,axes:scopedAxes,evidenceRefs});
   if(model.status!==status)return empty('model-evaluation');
   profiles.push({element,visibleIds:v.map(a=>a.id),slotIds:rs.map(s=>s.id),substantialSlotIds:substantial.map(s=>s.id),
    cleanPrincipalSlotIds:clean.filter(s=>s.role==='principal').map(s=>s.id),contestedSlotIds:contested.map(s=>s.id),
    seasonRelation,principalRelation,seasonalStatus:seasonRelation.type==='same'?'season-element':seasonRelation.type==='generate'&&seasonRelation.direction==='left-to-right'?'season-generated':'other-season-context',
-   generatorNodeIds:generators.map(n=>n.nodeId),burdenNodeIds:burdens.map(n=>n.nodeId),localGroundedControllerEdgeIds:groundedControllers.map(e=>e.edgeId),
+   generatorNodeIds:generators.map(n=>n.nodeId),burdenNodeIds:burdens.map(n=>n.nodeId),controllerNodeIds:controllers.map(n=>n.nodeId),
+   monthPrincipalRootIds:monthPrincipal.map(s=>s.id),resourceWitnesses,localGroundedControllerEdgeIds:groundedControllers.map(e=>e.edgeId),
    axes:scopedAxes,model,actualStrengthState:'unresolved',excessState:'unresolved',deficiencyState:'unresolved',resistanceState:'unresolved',effective:null});
  }
  const byElement=new Map(profiles.map(p=>[p.element,p]));
@@ -186,5 +220,5 @@ export function reviewElementContexts(prior,root,supply,source){
   actions.push({edgeId:e.edgeId,originalEffectPropositionId:row.actualEffectPropositionId,clauses,actualEffectState:'unresolved',effective:null});
  }
  return {...base,status,reason:null,seasonElement:season[0],monthPrincipalElement:principal[0],elements:profiles,actions,
-  limitations:['season-not-effective-strength','model-sufficiency-not-classical-necessity','rooted-burden-basis-not-actual-burden','no-overweight-counting','no-excess-deficiency-or-resistance-resolver','no-effect-promotion']};
+  limitations:['season-not-effective-strength','model-sufficiency-not-classical-necessity','rooted-burden-basis-not-actual-burden','independent-resource-observation-not-effective-supply','rooted-controller-basis-not-confirmed-control','no-overweight-counting','no-excess-deficiency-or-resistance-resolver','no-effect-promotion']};
 }
