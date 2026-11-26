@@ -5,6 +5,8 @@ import {evaluateInterpositionScenario,reviewInterpositionPolicy,interpositionSou
 import {evaluateCombinationScenario,reviewCombinationPolicy,combinationSourcePolicies} from '../src/features/pattern/outcome-combination-policy.js';
 import {observeCombinationContext} from '../src/features/pattern/outcome-combination-context.js';
 import {observeCombinationResidualContext} from '../src/features/pattern/outcome-combination-residual.js';
+import {evaluateClashScenario,reviewClashPolicy,clashSourcePolicies} from '../src/features/pattern/outcome-clash-policy.js';
+import {observeClashResidualContext} from '../src/features/pattern/outcome-clash-residual.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -296,4 +298,66 @@ test('classical separated competitor and remote-contact controls do not authoriz
   assert.ok(r.pairs.every(p=>p.actualRetentionState==='unresolved'&&p.actualRestrictionState==='unresolved'&&p.actualTransformationState==='unresolved'));
   assert.ok(r.actions.every(a=>a.actualUndercuts.length===0));
  }
+});
+
+const clashAssumptions={contactState:'supported',contextState:'supported',operationState:'supported',obstructionState:'opposed'};
+test('clash damage preservation and relief are separate source conditionals',()=>{
+ for(const p of clashSourcePolicies()){
+  const go=overrides=>evaluateClashScenario(p.id,{...clashAssumptions,...overrides});
+  assert.equal(go({}).applicability,'supported');assert.equal(go({}).actualEffectState,'unresolved');
+  for(const key of Object.keys(clashAssumptions))assert.equal(go({[key]:'unresolved'}).applicability,'unresolved');
+  assert.equal(go({contextState:'opposed'}).applicability,'opposed');assert.equal(go({operationState:'conflicting'}).applicability,'conflicting');
+  for(const obstructionState of ['supported','conflicting']){
+   const r=go({obstructionState});assert.equal(r.ruleStatus,'undercut');assert.equal(r.applicability,'unresolved');assert.equal(r.actualEffectState,'unresolved');
+  }
+  assert.equal(go({scope:'partial'}).applicability,'unresolved');
+ }
+ assert.equal(evaluateClashScenario('unknown',clashAssumptions).status,'invalid-evidence');
+});
+function clashFixture(complete=true){
+ const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false},absent={damageConfirmed:null,preservationConfirmed:null,reliefConfirmed:null,effective:null};
+ const a={id:'visible:year',layer:'visible',position:'year',element:'water'},b={id:'visible:day',layer:'visible',position:'day',element:'wood'},
+ x={id:'hidden:year:계',layer:'hidden',position:'year',element:'water',hiddenRole:'principal'},
+ y={id:'hidden:month:정',layer:'hidden',position:'month',element:'fire',hiddenRole:'principal'};
+ const edge={edgeId:a.id+'>'+b.id,from:a.id,to:b.id,kind:'generate',effective:null,selectionAuthority:false};
+ const clashId='clash-1',formationId='formation-1';
+ const alternative={formationId,classification:'six-harmony',positions:['year','day'],sharedPosition:'year',oppositePosition:'month',targetElement:'earth',otherClashIds:[],remainingClashIds:[],competingFormationIds:[],reliefConfirmed:null};
+ const clash={clashId,positions:['year','month'],endpoints:[x,y].map(a=>({position:a.position,slotIds:[a.id],damageConfirmed:null})),alternatives:[alternative],...absent};
+ const slots=[x,y].map(a=>({id:a.id,position:a.position,element:a.element,role:a.hiddenRole,substantial:true,clashIds:[clashId],reliefAlternatives:[{clashId,options:[{formationId,side:a===x?'root-side':'opposite-side',rootPositionParticipates:a===x,targetElement:'earth',rootElementDiffersFromTarget:a===x,reliefConfirmed:null}]}],...absent}));
+ const occurrence={id:a.id,element:a.element,exposedSubstantialRootIds:[x.id],exposedResidualRootIds:[],uncontestedRootIds:[],outsideIncidentClashRootIds:[],incoming:[],...absent};
+ const affected={...edge,substantialRootIds:[x.id],residualRootIds:[],...absent};
+ const arg={...edge,effectPropositionId:'effect'};
+ return {prior:{completeHour:complete,stemForce:{occurrences:[a,b,x,y]}},residual:{...base,...absent,clashes:[clash],slots,occurrences:[occurrence],actions:[affected]},supply:{...base,effectiveSupply:null,actions:[edge]},argument:{...base,effective:null,actions:[arg],judgments:[{id:'effect',subject:edge.edgeId,kind:'actual-action-effective',level:'effect-hypothesis',state:'unresolved',support:{rank:null},opposition:{rank:null}}]}};
+}
+const clashReview=x=>reviewClashPolicy(x.prior,x.residual,x.supply,x.argument);
+test('clash policy binds both directions and exact relief sides without restoring roots',()=>{
+ for(const complete of [true,false]){
+  const r=clashReview(clashFixture(complete));assert.equal(r.status,complete?'diagnostic':'partial');
+  assert.equal(r.directions.length,2);assert.equal(r.reliefs.length,1);assert.equal(r.slots.length,2);assert.equal(r.actions.length,1);
+  assert.deepEqual(r.slots.map(s=>s.reliefAlternatives[0].side),['root-side','opposite-side']);
+  assert.ok(r.slots.every(s=>s.actualDamageState==='unresolved'&&s.actualRestorationState==='unresolved'&&s.actualPreservationState==='unresolved'));
+  assert.ok(r.directions.every(d=>d.conditionals.every(c=>c.applicability==='unresolved')));
+  assert.deepEqual(r.actions[0].actualUndercuts,[]);assert.equal(r.actions[0].actualEffectState,'unresolved');
+ }
+});
+test('clash policy fails closed for omitted slots altered relief side or manufactured effect',()=>{
+ const a=clashFixture();a.residual.slots.pop();assert.equal(clashReview(a).status,'invalid-evidence');
+ const b=clashFixture();b.residual.slots[0].reliefAlternatives[0].options[0].side='opposite-side';assert.equal(clashReview(b).status,'invalid-evidence');
+ const c=clashFixture();c.residual.actions[0].substantialRootIds=[];assert.equal(clashReview(c).status,'invalid-evidence');
+ const d=clashFixture();d.argument.judgments[0].support.rank=0;assert.equal(clashReview(d).status,'invalid-evidence');
+ const e=clashFixture();e.residual.clashes[0].alternatives[0].reliefConfirmed=true;assert.equal(clashReview(e).status,'invalid-evidence');
+});
+test('native clash policy preserves 24 packet variants and exact residual scope',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete),formation=analyzeFormationEvidence({saju:x.saju}),root=observeRootContext(x.prior,formation);
+  const residual=observeClashResidualContext(x.prior,formation,root,x.supply);
+  const r=reviewClashPolicy(x.prior,residual,x.supply,x.review);
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);assert.equal(r.directions.length,residual.clashes.length*2,c.id);
+  assert.equal(r.slots.length,residual.slots.length,c.id);assert.equal(r.actions.length,residual.actions.length,c.id);
+  assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'&&!a.actualUndercuts.length));
+  const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  assert.deepEqual(native.efficacyReview.mechanismReview.clashPolicyReview,r,c.id);assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
 });
