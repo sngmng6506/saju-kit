@@ -1,3 +1,4 @@
+import {reviewReplenishment} from './outcome-replenishment-review.js';
 import {reviewControlSynthesis} from './outcome-control-synthesis.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
 import {reviewInterpositionPolicy} from './outcome-interposition-policy.js';
@@ -50,5 +51,6 @@ export function buildActionDiagnostics(prior,formation,combinationContext,streng
  const interactionScenarios=reviewInteractionScenarios(prior,rootContext,pressureDependencyReview,argumentReview,interactionDependencies);
  const interactionProofs=reviewInteractionProofs(prior,jointConstraintReview,modeledConsequenceReview,generationSynthesis,controlSynthesis);
  const conditionalJoint=reviewConditionalJoint(prior,jointConstraintReview);
- return {rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,combinationPolicyReview,clashPolicyReview,interpositionPolicyReview,jointConstraintReview,dayBalanceDirectionReview,elementContextReview,contactConstraintSensitivity,modeledConsequenceReview,actionSynthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint};
+ const replenishmentReview=reviewReplenishment(prior,rootContext,groundedSupply);
+ return {rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,combinationPolicyReview,clashPolicyReview,interpositionPolicyReview,jointConstraintReview,dayBalanceDirectionReview,elementContextReview,contactConstraintSensitivity,modeledConsequenceReview,actionSynthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,replenishmentReview};
 }
