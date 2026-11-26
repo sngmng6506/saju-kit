@@ -125,17 +125,21 @@ export function compareSharedForceBasis(basis,leftId,rightId){
  const sharedVariables=variables.map(id=>({id,axes:uses(id)})).filter(x=>x.axes.length>1);
  const abstract=compareForceCompletionEnvelope(a.observedAxes,b.observedAxes);
  if(variables.length>16)return {...base,status:'unavailable',reason:'scenario-budget',scenarioCount:0,variables,sharedVariables,independentRelations:abstract.possibleRelations};
- const possible=new Set(),witnesses=new Map(),positions=new Map(variables.map((id,i)=>[id,i]));
+ const possible=new Set(),profilePairs=new Set(),witnesses=new Map(),positions=new Map(variables.map((id,i)=>[id,i]));
  const count=2**variables.length;
  for(let mask=0;mask<count;mask++){
   const get=id=>Boolean(mask&(1<<positions.get(id)));
   const evalAxes=x=>Object.fromEntries(AXES.map(k=>[k,truth(x[k],get)]));
-  const r=relation(evalAxes(left),evalAxes(right));
+  const l=evalAxes(left),q=evalAxes(right);
+  profilePairs.add(AXES.reduce((n,k,i)=>n|(l[k]?1<<i:0)|(q[k]?1<<(i+AXES.length):0),0));
+  const r=relation(l,q);
   if(!abstract.possibleRelations.includes(r))return empty('completion-parity');
   possible.add(r);if(!witnesses.has(r))witnesses.set(r,Object.fromEntries(variables.map(id=>[id,get(id)])));
  }
  const possibleRelations=abstract.possibleRelations.filter(r=>possible.has(r));
- return {...base,status:'diagnostic',reason:null,scenarioCount:count,variables,sharedVariables,
+ const independentProfilePairs=2**[a,b].reduce((n,p)=>n+AXES.filter(k=>p.observedAxes[k]===null).length,0);
+ if(profilePairs.size>independentProfilePairs)return empty('profile-count-parity');
+ return {...base,status:'diagnostic',reason:null,scenarioCount:count,independentProfilePairs,sharedProfilePairs:profilePairs.size,variables,sharedVariables,
   independentRelations:abstract.possibleRelations,possibleRelations,invariantRelation:possibleRelations.length===1?possibleRelations[0]:null,
   excludedRelations:abstract.possibleRelations.filter(r=>!possible.has(r)),witnesses:possibleRelations.map(relation=>({relation,assignment:witnesses.get(relation)}))};
 }
