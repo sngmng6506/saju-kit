@@ -13,7 +13,7 @@ export function summarizeArgumentReview(c,m,partial){
  const judgments=new Map(r.judgments.map(j=>[j.id,j]));
  counts.excludedHiddenActions=r.excludedHiddenActionCount;
  for(const a of r.actions){
-  counts.actions++;counts[a.kind]++;
+  counts.actions++;if(a.kind==='generate')counts.generation++;else if(a.kind==='control')counts.control++;else errors.push('argument-review-kind:'+a.edgeId);
   const q=judgments.get(a.structuralPropositionId),effect=judgments.get(a.effectPropositionId);
   if(!q||q.level!=='structural-hypothesis'||q.subject!==a.edgeId||!effect||effect.level!=='effect-hypothesis'||effect.subject!==a.edgeId||
    effect.state!=='unresolved'||effect.support.rank!==null||effect.opposition.rank!==null||effect.effective!==null||a.effective!==null){
