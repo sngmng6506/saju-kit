@@ -143,3 +143,50 @@ test('literal exposure cannot be fabricated by editing group or action inventory
  const rows=b.rows.map(r=>r.targetId==='b'?{...r,groups:r.groups.map(g=>g.kind==='outgoing-control'?{...g,actionIds:['fake']}:g)}:r);
  assert.equal(synthesizeContextualStrength({...f,burden:{...b,rows},policy:'literal-demand'}).reason,'exposure-coverage');
 });
+
+test('indirect support alternative requires a source outside the recipient and retains actual abstention',()=>{
+ const f=fixture(),v2=synthesizeContextualStrength({...f,policy:'literal-demand'}),v3=synthesizeContextualStrength({...f,policy:'indirect-support'});
+ assert.equal(v3.status,'diagnostic',v3.reason);
+ const r=row(v3,'c'),guard=key('strength-guard','c','indirect-support-sufficient');
+ assert.equal(states(row(v2,'c'),'strong').includes('supported'),false);
+ assert.equal(states(r,'strong').includes('supported'),true);
+ assert.equal(v3.judgments.find(j=>j.id===guard).state,'unresolved');
+ assert.equal(v3.judgments.find(j=>j.id===r.strongPropositionId).state,'unresolved');
+ assert.equal(v3.actualStrengthState,'unresolved');assert.equal(v3.selectionAuthority,false);
+ const w=r.analysis.targets.find(t=>t.id===r.strongPropositionId).witnesses.supported;
+ assert.ok(w.includes(guard));assert.ok(w.includes(key('slot-retained','s')));assert.ok(w.includes(key('supply-operation','bc')));
+});
+test('reciprocal peer loop cannot recycle own root as independent incoming support',()=>{
+ const x={completeHour:true,nodes:[node('a',['r']),node('b')],links:[{id:'ab',from:'a',to:'b',kind:'peer'},{id:'ba',from:'b',to:'a',kind:'peer'}],targets:['a','b']};
+ const burden=compareReplenishmentBurden({...x,actions:[],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const q=synthesizeContextualStrength({...x,burden,policy:'indirect-support'});
+ assert.equal(q.status,'diagnostic',q.reason);
+ const a=row(q,'a'),b=row(q,'b');
+ assert.ok(!a.indirectSupport.seedIds.some(s=>s.nodeId==='a'));
+ assert.ok(!a.indirectSupport.linkIds.includes('ab'));
+ assert.equal(states(b,'strong').includes('supported'),true);
+ const guard=key('strength-guard','a','indirect-support-sufficient');
+ assert.ok(!a.analysis.targets.find(t=>t.id===a.strongPropositionId).witnesses.supported.includes(guard));
+ assert.ok(!q.packet.rules.some(r=>r.conclusion.propositionId===a.indirectSupport.propositionId&&r.premises.some(p=>p.propositionId===key('slot-retained','r'))));
+});
+test('shared physical root is marked rather than counted as independent supply capacity',()=>{
+ const x={completeHour:true,nodes:[node('a',['r']),node('b',['r'])],links:[{id:'ba',from:'b',to:'a',kind:'peer'}],targets:['a','b']};
+ const burden=compareReplenishmentBurden({...x,actions:[],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const q=synthesizeContextualStrength({...x,burden,policy:'indirect-support'});
+ assert.equal(q.status,'diagnostic',q.reason);
+ assert.deepEqual(row(q,'a').indirectSupport.seedIds,[{nodeId:'b',slotId:'r',sharedWithRecipient:true}]);
+ assert.equal(q.packet.propositions.filter(p=>p.id===key('slot-retained','r')).length,1);
+ assert.equal(row(q,'a').indirectSupport.actualReplenishmentState,'unresolved');
+});
+test('origin-excluded strength stays unresolved without any seed and in partial scope',()=>{
+ const x={completeHour:true,nodes:[node('a'),node('b')],links:[{id:'ab',from:'a',to:'b',kind:'peer'},{id:'ba',from:'b',to:'a',kind:'peer'}],targets:['a','b']};
+ const burden=compareReplenishmentBurden({...x,actions:[],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const q=synthesizeContextualStrength({...x,burden,policy:'indirect-support'});
+ assert.equal(q.status,'diagnostic');assert.ok(q.rows.every(r=>states(r,'strong').join()==='unresolved'));
+ const p=synthesizeContextualStrength({...fixture(false),policy:'indirect-support'});
+ assert.equal(p.status,'partial');assert.ok(p.rows.every(r=>r.analysis.targets.length===0));
+});
+test('indirect support seed coverage rejects changed donor inventory',()=>{
+ const f=fixture(),q=synthesizeContextualStrength({...f,nodes:f.nodes.map(n=>n.id==='a'?{...n,rootIds:['fake']}:n),policy:'indirect-support'});
+ assert.equal(q.status,'invalid-evidence');
+});
