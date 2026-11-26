@@ -23,7 +23,7 @@ export function auditBurdenSourceConditions({completeHour,nodes,targets,burden}=
  if(typeof completeHour!=='boolean'||!Array.isArray(nodes)||!Array.isArray(targets)||burden?.status!==(completeHour?'diagnostic':'partial')||burden.completeHour!==completeHour||burden.selectionAuthority!==false||burden.effective!==null||burden.actualMagnitudeComparison!=='unresolved')return empty('upstream');
  try{
   const ns=new Map(nodes.map(n=>[n.id,n])),ts=new Set(targets),day=ns.get('day:stem');
-  if(nodes.length>16||targets.length>4||ns.size!==nodes.length||ts.size!==targets.length||!day||day.position!=='day'||!ts.has(day.id)||nodes.some(n=>!elements.includes(n.element)||!positions.includes(n.position))||targets.some(t=>!ns.has(t)||t!==ns.get(t).position+':stem'))return empty('node-inventory');
+  if(nodes.length>16||!same([...targets].sort(),positions.slice(0,completeHour?4:3).map(p=>p+':stem').sort())||!completeHour&&nodes.some(n=>n.position==='hour')||ns.size!==nodes.length||ts.size!==targets.length||!day||day.position!=='day'||!ts.has(day.id)||nodes.some(n=>!elements.includes(n.element)||!positions.includes(n.position))||targets.some(t=>!ns.has(t)||t!==ns.get(t).position+':stem'))return empty('node-inventory');
   const packet=burden.packet,replay=evaluateArguments(packet);
   if(replay.status!==burden.status||!same(replay.judgments,burden.judgments)||!same(replay.ruleResults,burden.ruleResults)||packet.evidence.length)return empty('proof-replay');
   const expected=[];
@@ -40,6 +40,8 @@ export function auditBurdenSourceConditions({completeHour,nodes,targets,burden}=
    if(a.id!==key(a.kind,a.from,a.to)||a.actualOperationState!=='unresolved'||a.propositionId!==key('root-seeded-action',a.id)||p?.level!=='structural-hypothesis'||
     !r||!same(r.conclusion,lit(a.propositionId))||!same(r.premises,[lit(key('replenishment-basis',a.from)),lit(a.operationVariableId)])||props.get(a.operationVariableId)?.level!=='observation')return empty('action-proof-binding');
   }
+  const actionProps=new Set([...actions.values()].map(a=>a.propositionId));
+  if(packet.rules.some(r=>actionProps.has(r.conclusion.propositionId)&&r.id!==key('action-rule',[...actions.values()].find(a=>a.propositionId===r.conclusion.propositionId).id)))return empty('unexpected-action-rule');
   if(!completeHour)return {...base,status:'partial',reason:null,conditions:[],summary:{templates:entries.length,actualEffectsConfirmed:0}};
   const propositions=[...packet.propositions],rules=[...packet.rules],conditions=[];
   const dayIndex=elements.indexOf(day.element);
