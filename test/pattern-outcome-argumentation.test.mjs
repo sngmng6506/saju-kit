@@ -533,6 +533,11 @@ test('element context model resolves bounded strong and weak contrasts without c
  const r=elementReview(elementModelFixture());assert.equal(r.status,'diagnostic',r.reason);
  const water=r.elements.find(e=>e.element==='water'),fire=r.elements.find(e=>e.element==='fire');
  assert.equal(water.model.strongState,'supported');assert.equal(water.model.weakState,'opposed');
+ assert.equal(water.contextualStrength.axes['substantial-root-basis'],true);
+ assert.equal(fire.contextualStrength.axes['controller-basis'],true);
+ assert.ok(r.elements.every(e=>e.contextualStrength.strongState==='unresolved'&&e.contextualStrength.weakState==='unresolved'&&e.contextualStrength.actualStrengthState==='unresolved'));
+ assert.ok(r.elements.every(e=>e.contextualStrength.scenario.status==='diagnostic'));
+
  assert.equal(fire.model.weakState,'supported');assert.equal(fire.model.strongState,'opposed');
  assert.equal(water.cleanPrincipalSlotIds.length,4);
  assert.ok(r.elements.filter(e=>!['water','fire'].includes(e.element)).every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
@@ -565,6 +570,7 @@ test('element review rejects omitted root basis forged predicates and partial-sc
  const z=elementModelFixture();z.prior.stemForce.occurrences[0].seasonal.seasonRelation={type:'same',direction:'left-to-right'};assert.equal(elementReview(z).status,'invalid-evidence');
  const partial=elementReview(elementModelFixture(false));assert.equal(partial.status,'partial',partial.reason);
  assert.ok(partial.elements.every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
+ assert.ok(partial.elements.every(e=>e.contextualStrength.status==='partial'&&e.contextualStrength.scenario.status==='partial'));
 });
 test('native element context review preserves five-element inventory and source authority across packet variants',()=>{
  const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
