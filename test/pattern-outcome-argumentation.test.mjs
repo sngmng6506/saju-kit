@@ -582,6 +582,7 @@ function consequenceFixture(target='fire',complete=true){
  const x=elementModelFixture(complete,target),element=elementReview(x);
  assert.equal(element.status,complete?'diagnostic':'partial',element.reason);
  const base={status:element.status,completeHour:complete,selectionAuthority:false,effective:null};
+ for(const a of x.prior.stemForce.occurrences)a.protectionAndMediation=[];
  const byActor=new Map(x.prior.stemForce.occurrences.map(a=>[a.id,a]));
  const propositions=[],evidence=[],rules=[],actions=[],jointActions=[],pressures=[];
  for(const n of x.supply.nodes)n.kind=n.occurrenceIds[0].startsWith('visible:')?'visible-stem':'local-branch-constituents';
@@ -598,7 +599,7 @@ function consequenceFixture(target='fire',complete=true){
   row.sourceBasis=complete?'direct-root-observed':'partial';row.contextBlockers=[];row.sourcePressure=[];row.targetPressure=[];
   if(e.kind==='control'){
    const from=byActor.get(e.from),to=byActor.get(e.to);
-   pressures.push({id:JSON.stringify([from.graphNodeId,to.graphNodeId]),controllerNodeId:from.graphNodeId,targetNodeId:to.graphNodeId,local:Math.abs(['year','month','day','hour'].indexOf(from.position)-['year','month','day','hour'].indexOf(to.position))===1,candidatePathIds:[],screenedPathIds:[],neutralizationConfirmed:null,effective:null});
+   pressures.push({id:JSON.stringify([from.graphNodeId,to.graphNodeId]),controllerNodeId:from.graphNodeId,targetNodeId:to.graphNodeId,local:Math.abs(['year','month','day','hour'].indexOf(from.position)-['year','month','day','hour'].indexOf(to.position))===1,candidatePathIds:[],screenedPathIds:[],structuralDependencyRank:null,neutralizationConfirmed:null,effective:null});
   }
  }
  const result=evaluateArguments({scope:complete?'complete':'partial',propositions,evidence,rules});
@@ -643,6 +644,10 @@ test('modeled consequence rejects tampered proof and clause authority and abstai
  const y=consequenceFixture();y.argument.judgments[0].state='unresolved';assert.equal(consequenceReview(y).status,'invalid-evidence');
  const z=consequenceFixture();z.element.actions[0].clauses[0].actualPredicateState='supported';assert.equal(consequenceReview(z).status,'invalid-evidence');
  const missing=consequenceFixture();missing.pressure.pressures.find(p=>p.local).candidatePathIds=['foreign'];assert.equal(consequenceReview(missing).reason,'interposition-inventory');
+ const rank=consequenceFixture();rank.pressure.pressures[0].structuralDependencyRank=0;assert.equal(consequenceReview(rank).reason,'interposition-rank-parity');
+ const omitted=consequenceFixture();const to=omitted.prior.stemForce.occurrences.find(a=>a.id==='visible:day');
+ to.protectionAndMediation.push({kind:'protection',helper:'hour:stem',threat:'month:stem',target:'day:stem',effective:null});
+ assert.equal(consequenceReview(omitted).reason,'interposition-inventory');
  const partial=consequenceReview(consequenceFixture('fire',false));assert.equal(partial.status,'partial',partial.reason);
  assert.ok(partial.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
 });
