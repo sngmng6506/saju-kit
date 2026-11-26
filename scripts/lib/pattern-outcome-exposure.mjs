@@ -59,6 +59,28 @@ export function combineExposureRecords(records){
  }
  return {charts:[...charts.values()].sort((a,b)=>cmp(key(a.pillars),key(b.pillars))),urls:[...urls].sort(cmp),unparsed};
 }
+// Keep every frozen exposure even if a fixture is subsequently edited,
+// moved or deleted. Deduplicate only identical reference identities.
+export function mergeExposureInventories(frozen,live){
+ const charts=new Map(),urls=new Set(),unparsed=new Map();
+ for(const inv of [frozen,live]){
+  for(const c of inv.charts){
+   const k=key(c.pillars);
+   if(!charts.has(k))charts.set(k,{pillars:c.pillars,complete:c.complete,sexagenary:c.sexagenary,references:[]});
+   const row=charts.get(k),refs=new Set(row.references.map(key));
+   for(const r of c.references)if(!refs.has(key(r))){refs.add(key(r));row.references.push(r);}
+  }
+  for(const u of inv.urls)urls.add(u);
+  for(const p of inv.unparsed)unparsed.set(key(p),p);
+ }
+ return {charts:[...charts.values()].sort((a,b)=>cmp(key(a.pillars),key(b.pillars))),urls:[...urls].sort(cmp),unparsed:[...unparsed.values()]};
+}
+export function exposureInventoryDrift(frozen,live){
+ const refs=inv=>new Set(inv.charts.flatMap(c=>c.references.map(r=>key([c.pillars,r]))));
+ const a=refs(frozen),b=refs(live);
+ return {removedReferences:[...a].filter(k=>!b.has(k)).length,addedReferences:[...b].filter(k=>!a.has(k)).length,
+  removedUrls:frozen.urls.filter(u=>!live.urls.includes(u)).length,addedUrls:live.urls.filter(u=>!frozen.urls.includes(u)).length};
+}
 // An exact chart or an otherwise identical three-position chart is
 // quarantined. For a partial prior record, compare the three known
 // positions. This is conservative screening, not identity proof.
