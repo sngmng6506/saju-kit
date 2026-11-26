@@ -72,3 +72,28 @@ Run the native domain tests: `npm run test:domain -- pattern`. This catalog is n
 - [pattern-outcome-role-flow-source-v1.json](../../test/fixtures/pattern-outcome-role-flow-source-v1.json)
 
 - [pattern-outcome-role-contrast-v1.json](../../test/fixtures/pattern-outcome-role-contrast-v1.json)
+
+## P1/P2 작용 논증 및 P3-A 네이티브 통합
+
+- [pattern-action-synthesis-replay-v1.json](../pattern-action-synthesis-replay-v1.json)
+- [pattern-contact-constraint-replay-v1.json](../pattern-contact-constraint-replay-v1.json)
+- [pattern-element-alternatives-replay-v1.json](../pattern-element-alternatives-replay-v1.json)
+- [pattern-interposition-operation-replay-v1.json](../pattern-interposition-operation-replay-v1.json)
+- [pattern-modeled-consequence-coverage-v1.json](../pattern-modeled-consequence-coverage-v1.json)
+- [pattern-modeled-direct-residual-replay-v1.json](../pattern-modeled-direct-residual-replay-v1.json)
+- [pattern-outcome-conditional-arguments-design.md](../pattern-outcome-conditional-arguments-design.md)
+- [pattern-outcome-contextual-force-replay-v1.json](../pattern-outcome-contextual-force-replay-v1.json)
+- [pattern-outcome-control-synthesis-replay-v1.json](../pattern-outcome-control-synthesis-replay-v1.json)
+- [pattern-outcome-exposure-snapshot-v1.json](../pattern-outcome-exposure-snapshot-v1.json)
+- [pattern-outcome-generation-synthesis-design.md](../pattern-outcome-generation-synthesis-design.md)
+- [pattern-outcome-interaction-scenarios-design.md](../pattern-outcome-interaction-scenarios-design.md)
+- [pattern-outcome-p1-5c-collection-receipt.md](../pattern-outcome-p1-5c-collection-receipt.md)
+- [pattern-outcome-p1-5d-claim-evaluation.md](../pattern-outcome-p1-5d-claim-evaluation.md)
+- [pattern-outcome-proof-dependencies-design.md](../pattern-outcome-proof-dependencies-design.md)
+- [pattern-outcome-proof-obligations-replay-v1.json](../pattern-outcome-proof-obligations-replay-v1.json)
+- [pattern-outcome-relative-force-sensitivity-replay-v1.json](../pattern-outcome-relative-force-sensitivity-replay-v1.json)
+- [pattern-outcome-shared-force-replay-v1.json](../pattern-outcome-shared-force-replay-v1.json)
+- [pattern-source-release-replay-v1.json](../pattern-source-release-replay-v1.json)
+- [pattern-modeled-consequence-source-contrast-v1.json](../../test/fixtures/pattern-modeled-consequence-source-contrast-v1.json)
+- [pattern-outcome-role-policy-source-v1.json](../../test/fixtures/pattern-outcome-role-policy-source-v1.json)
+- [pattern-outcome-native-action-diagnostics-design.md](../pattern-outcome-native-action-diagnostics-design.md)
