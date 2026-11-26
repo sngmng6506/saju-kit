@@ -1,0 +1,38 @@
+{
+  "version": "p1-relative-contextual-force-replay-v1",
+  "base": "4d31cf8624733b4469ebe1ad8868bc2b13cd8b9a",
+  "scope": "development-only",
+  "execution": "Fetched production module bodies and fixture/test adapters in JS isolate. Native ESM/V10 not executed.",
+  "charts": 16,
+  "variants": 32,
+  "completeActions": 35,
+  "partialActions": 20,
+  "contrasts": {
+    "controller-evidence-dominance-stable": 2,
+    "direction-not-stable": 30,
+    "target-evidence-dominance-stable": 3
+  },
+  "unstableReasons": {
+    "completion-sensitive-direction": 14,
+    "cross-view-stability-condition-unmet": 1,
+    "known-opposing-axes": 15
+  },
+  "contextualCoverage": {
+    "rootCounter": 12,
+    "resourceCounter": 2,
+    "seasonOrderChallenged": 12,
+    "mixedSeasonOrderChallenged": 12
+  },
+  "selectedTestsPassed": 12,
+  "nativePressureTestSkipped": 1,
+  "previous54CoreVariantOutputParity": true,
+  "independentGoldCases": 0,
+  "actualControlConfirmed": 0,
+  "selectionAuthority": false,
+  "errors": [],
+  "limitations": [
+    "counts overlap",
+    "contextual support is not force order",
+    "full per-edge report reproducible by audit command; only observed summary retained here"
+  ]
+}
