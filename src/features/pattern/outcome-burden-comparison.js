@@ -6,7 +6,6 @@ const key=(...xs)=>JSON.stringify(xs);
 const basis=id=>key('replenishment-basis',id);
 const lit=propositionId=>({propositionId,sign:'for'});
 const categories=['incoming-control','outgoing-generation','outgoing-control'];
-const valid=x=>typeof x==='string'&&x.length>0;
 const same=(a,b)=>key(a)===key(b);
 // Extend exactly the replenishment packet. Each physical directed action
 // has one operation variable, including generation already in that packet.
@@ -21,6 +20,8 @@ export function compareReplenishmentBurden({completeHour,nodes,links,targets,act
   a.id!==key(a.kind,a.from,a.to)||a.actualOperationState!=='unresolved')||new Set(actions.map(a=>a.id)).size!==actions.length)return empty('action-inventory');
  if(actions.filter(a=>a.kind==='generate'&&ts.has(a.to)).length!==gen.size||
   actions.some(a=>a.kind==='generate'&&ts.has(a.to)&&!gen.has(key(a.from,a.to))))return empty('generation-coverage');
+ const linkIds=new Set(links.map(l=>l.id));
+ if(actions.some(a=>!(a.kind==='generate'&&gen.has(key(a.from,a.to)))&&linkIds.has(a.id)))return empty('operation-identity-collision');
  const propositions=[...c.packet.propositions],rules=[...c.packet.rules],ids=new Set(propositions.map(p=>p.id));
  const observe=(id,subject)=>{if(!ids.has(id)){ids.add(id);propositions.push({id,subject,kind:'hypothetical-burden-operation',level:'observation'});}return id;};
  const derive=(id,subject,kind)=>{if(ids.has(id))throw Error('duplicate-proposition');ids.add(id);propositions.push({id,subject,kind,level:'structural-hypothesis'});return id;};
