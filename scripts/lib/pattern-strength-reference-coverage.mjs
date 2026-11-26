@@ -58,25 +58,75 @@ export function observeSynthesisCoverage(synthesis){
  };
  return {status:'diagnostic',strongPossible:read(r.strongPropositionId),weakPossible:read(r.weakPropositionId)};
 }
+// Literal demand/exposure and rooted operation are different predicates.
+ // Reuse the existing burden graph; do not fabricate a weak-strength rule.
+export function observeBurdenObligations(burden,synthesis){
+ if(burden?.status!=='diagnostic'||burden.completeHour!==true||burden.selectionAuthority!==false||burden.effective!==null||burden.actualMagnitudeComparison!=='unresolved')throw Error('burden-contract');
+ const coverage=observeSynthesisCoverage(synthesis);
+ const a=burden.analysis,day='day:stem';
+ if(a?.status!=='diagnostic'||a.selectionAuthority!==false||a.actualMagnitudeComparison!=='unresolved'||!Array.isArray(a.rows)||!Array.isArray(a.actionRows))throw Error('burden-analysis-contract');
+ const rows=a.rows.filter(r=>r.targetId===day);
+ const sr=synthesis.rows.find(r=>r.targetId===day);
+ if(rows.length!==1||rows[0].supportPropositionId!==sr.support||!Array.isArray(rows[0].groups)||rows[0].groups.length!==3)throw Error('burden-day-binding');
+ const frontier=a.frontier;
+ if(!['diagnostic','unavailable'].includes(frontier?.status))throw Error('burden-frontier-contract');
+ const frontiers=new Map((frontier.frontiers??[]).map(f=>[f.id,f.terms]));
+ if(frontiers.size!==(frontier.frontiers??[]).length)throw Error('duplicate-frontier');
+ const possible=id=>{
+  if(frontier.status==='unavailable')return null;
+  const terms=frontiers.get(id);
+  if(!Array.isArray(terms))throw Error('missing-frontier:'+id);
+  return terms.length>0;
+ };
+ const groups=['incoming-control','outgoing-generation','outgoing-control'].map((kind,i)=>{
+  const matches=rows[0].groups.filter(g=>g.kind===kind),g=matches[0];
+  if(matches.length!==1||g.propositionId!==[sr.control,sr.drain,sr.expenditure][i]||!Array.isArray(g.actionIds)||new Set(g.actionIds).size!==g.actionIds.length)throw Error('burden-group-binding');
+  const actions=a.actionRows.filter(x=>kind==='incoming-control'?x.kind==='control'&&x.to===day:x.from===day&&x.kind===(kind==='outgoing-generation'?'generate':'control'));
+  if(actions.length!==g.actionIds.length||actions.some(x=>!g.actionIds.includes(x.id)||x.actualOperationState!=='unresolved')||new Set(actions.map(x=>x.id)).size!==actions.length)throw Error('burden-action-binding');
+  const rooted=possible(g.propositionId);
+  if(rooted!==null&&rooted!==actions.some(x=>possible(x.propositionId)))throw Error('burden-frontier-parity');
+  return {kind,literalCandidates:actions.length,rootedBasisPossible:rooted,
+   state:rooted===null?'unevaluated':rooted?'rooted-basis-possible':actions.length?'literal-without-rooted-basis':'no-literal-candidate'};
+ });
+ const directSeeds=synthesis.packet.rules.filter(r=>r.conclusion.propositionId===sr.direct&&r.conclusion.sign==='for').length;
+ const support=possible(sr.support);
+ const control=groups[0],drain=groups[1],expenditure=groups[2];
+ const obligations=[];
+ if(coverage.status==='diagnostic'){
+  if(!coverage.strongPossible)obligations.push(directSeeds?'strong-alternative-not-expressible':'direct-root-required-by-strong-alternative');
+  if(!coverage.weakPossible){
+   if(control.state==='literal-without-rooted-basis')obligations.push('incoming-control-rooted-source-gate');
+   if(drain.state==='literal-without-rooted-basis')obligations.push('outgoing-generation-rooted-source-gate');
+   if(expenditure.literalCandidates)obligations.push('wealth-demand-not-a-weakness-premise');
+   if(!control.literalCandidates&&!drain.literalCandidates)obligations.push('no-local-control-or-drain-candidate');
+  }
+ }
+ return {status:frontier.status,directSeeds,supportBasisPossible:support,groups,obligations,actualMagnitudeComparison:'unresolved'};
+}
 export function summarizeReferenceCoverage(cohort,observations){
  const byId=new Map(observations.map(o=>[o.id,o]));
  if(byId.size!==observations.length||cohort.rows.length!==byId.size||cohort.rows.some(r=>!byId.has(r.id)))throw Error('observation-coverage');
  const rows=cohort.rows.map(r=>{
   const o=byId.get(r.id);
-  if(o.error)return {...r,status:'invalid-evidence',reason:o.error};
+  if(o.error)return {...r,status:'invalid-evidence',reason:o.error,...(o.basis?{basis:o.basis}:{})};
   const b=o.basis,s=o.synthesis;
   if(!b||['seasonSupport','principalSupport','substantialRootObserved','uncontestedRootObserved','localControlObserved','localDrainObserved'].some(k=>typeof b[k]!=='boolean'))throw Error('basis-coverage');
+  if(s!==undefined&&s!==null&&(!['diagnostic','unavailable'].includes(s.status)||s.status==='diagnostic'&&[s.strongPossible,s.weakPossible].some(v=>typeof v!=='boolean')||s.status==='unavailable'&&(s.strongPossible!==null||s.weakPossible!==null)))throw Error('possibility-contract');
+  const directionClass=s?.status==='diagnostic'?(s.strongPossible?(s.weakPossible?'both-directions':'strong-only'):(s.weakPossible?'weak-only':'neither-direction')):'unevaluated';
   const possibility=s?.status==='diagnostic'?(r.reference==='strong'?s.strongPossible:s.weakPossible):null;
   if(s?.status==='diagnostic'&&typeof possibility!=='boolean')throw Error('possibility-contract');
-  return {...r,status:'diagnostic',basis:b,synthesis:s??null,referenceDirectionExpressible:possibility};
+  return {...r,status:'diagnostic',basis:b,synthesis:s??null,referenceDirectionExpressible:possibility,directionClass,obligations:o.obligations??null};
  });
  const primary=rows.filter(r=>r.cohort==='primary'&&r.status==='diagnostic');
+ const distribution=rs=>Object.fromEntries(['both-directions','strong-only','weak-only','neither-direction','unevaluated'].map(k=>[k,rs.filter(r=>r.directionClass===k).length]));
  return {version:'p3-strength-reference-coverage-v1',inventory:cohort.inventory,independentGoldCases:0,selectionAuthority:false,actualAccuracy:null,
-  primary:{evaluated:primary.length,offSeasonStrong:primary.filter(r=>r.reference==='strong'&&!r.basis.seasonSupport).length,
+  directionDistribution:distribution(rows.filter(r=>r.status==='diagnostic')),
+  primary:{evaluated:primary.length,directionDistribution:distribution(primary),offSeasonStrong:primary.filter(r=>r.reference==='strong'&&!r.basis.seasonSupport).length,
    seasonSupportedWeak:primary.filter(r=>r.reference==='weak'&&r.basis.seasonSupport).length,
    strongWithoutSubstantialRoot:primary.filter(r=>r.reference==='strong'&&!r.basis.substantialRootObserved).length,
    weakWithoutLocalControlOrDrain:primary.filter(r=>r.reference==='weak'&&!r.basis.localControlObserved&&!r.basis.localDrainObserved).length,
    expressible:primary.filter(r=>r.referenceDirectionExpressible===true).length,notExpressible:primary.filter(r=>r.referenceDirectionExpressible===false).length,
    unevaluatedPossibility:primary.filter(r=>r.referenceDirectionExpressible===null).length},
+  referenceGaps:rows.filter(r=>r.status==='diagnostic'&&r.referenceDirectionExpressible===false).map(r=>({id:r.id,cohort:r.cohort,reference:r.reference,directionClass:r.directionClass,obligations:r.obligations})),
   invalid:rows.filter(r=>r.status==='invalid-evidence').length,rows,limitations:['retrospective-labels-not-independent','possibility-not-prediction','literal-chart-not-birth-verification','no-effect-authority']};
 }
