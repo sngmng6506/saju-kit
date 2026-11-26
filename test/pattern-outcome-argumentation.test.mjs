@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {evaluateInterpositionScenario,reviewInterpositionPolicy,interpositionSourcePolicies} from '../src/features/pattern/outcome-interposition-policy.js';
+import {evaluateCombinationScenario,reviewCombinationPolicy,combinationSourcePolicies} from '../src/features/pattern/outcome-combination-policy.js';
+import {observeCombinationContext} from '../src/features/pattern/outcome-combination-context.js';
+import {observeCombinationResidualContext} from '../src/features/pattern/outcome-combination-residual.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -210,6 +213,69 @@ test('native interposition review binds packet variants and preserves all prior 
   const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
   assert.deepEqual(native.efficacyReview.mechanismReview.interpositionPolicyReview,r,c.id);
   assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
+});
+
+const comboAssumptions={pairState:'supported',contextState:'supported',operationState:'supported',obstructionState:'opposed',selfState:'opposed'};
+test('combination conditionals remain independent and require explicit clearance',()=>{
+ for(const p of combinationSourcePolicies()){
+  const go=overrides=>evaluateCombinationScenario(p.id,{...comboAssumptions,...overrides});
+  assert.equal(go({}).applicability,'supported');assert.equal(go({}).actualEffectState,'unresolved');
+  for(const key of ['pairState','contextState','operationState','obstructionState']){
+   assert.equal(go({[key]:'unresolved'}).applicability,'unresolved');
+  }
+  assert.equal(go({operationState:'opposed'}).applicability,'opposed');
+  assert.equal(go({operationState:'conflicting'}).applicability,'conflicting');
+  assert.equal(go({obstructionState:'conflicting'}).ruleStatus,'undercut');
+  assert.equal(go({scope:'partial'}).applicability,'unresolved');
+  const self=go({selfState:'supported'});
+  assert.equal(self.applicability,p.id==='external-role-restriction'?'opposed':'supported');
+  assert.equal(self.actualEffectState,'unresolved');
+ }
+ assert.equal(evaluateCombinationScenario('unknown',comboAssumptions).status,'invalid-evidence');
+});
+function comboFixture(self=false,complete=true){
+ const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false},absent={restrictionConfirmed:null,retentionConfirmed:null,transformationConfirmed:null,effective:null};
+ const a={id:'visible:year',layer:'visible',dayReference:false},b={id:self?'visible:day':'visible:month',layer:'visible',dayReference:self},
+ c={id:self?'visible:month':'visible:day',layer:'visible',dayReference:!self},h={id:'hidden:month:갑',layer:'hidden',dayReference:false};
+ const id=JSON.stringify([a.id,b.id].sort()),pair={id,participants:[a.id,b.id],dayReferenceInvolved:self,scope:self?'self-combination-not-external-removal':'external-role-restriction-review',span:1,competitors:[],intervening:[],formationId:'formation',associatedElement:'earth',contactHypothesis:'local-contact-hypothesis',transformationContext:'target-supply-hypothesis',...absent};
+ const edges=[c,h].map(x=>({edgeId:a.id+'>'+x.id,from:a.id,to:x.id,kind:'generate',effective:null,selectionAuthority:false}));
+ const actions=edges.map((e,i)=>({...e,fromPairIds:[id],toPairIds:[],samePairIds:[],access:i?'hidden-endpoint-review':'visible',...absent}));
+ const r={...edges[0],effectPropositionId:'effect'};
+ return {prior:{completeHour:complete,stemForce:{occurrences:[a,b,c,h]}},residual:{...base,...absent,pairs:[pair],participants:[a,b].map(x=>({id:x.id,pairIds:[id],...absent})),actions},supply:{...base,effectiveSupply:null,actions:edges},argument:{...base,effective:null,actions:[r],judgments:[{id:'effect',subject:r.edgeId,level:'effect-hypothesis',kind:'actual-action-effective',state:'unresolved',support:{rank:null},opposition:{rank:null}}]}};
+}
+const comboReview=x=>reviewCombinationPolicy(x.prior,x.residual,x.supply,x.argument);
+test('self-combination blocks only external-removal scope and retains exact action bindings',()=>{
+ for(const self of [false,true]){
+  const r=comboReview(comboFixture(self));
+  assert.equal(r.status,'diagnostic');assert.equal(r.actions.length,1);assert.equal(r.excludedHiddenActionCount,1);
+  const p=r.pairs[0];assert.equal(p.conditionals[0].applicability,self?'opposed':'unresolved');
+  assert.equal(p.conditionals[1].applicability,'unresolved');assert.equal(p.conditionals[2].applicability,'unresolved');
+  assert.equal(p.actualRetentionState,'unresolved');assert.equal(p.actualTransformationState,'unresolved');
+  assert.deepEqual(r.actions[0].actualUndercuts,[]);assert.equal(r.actions[0].actualEffectState,'unresolved');
+ }
+ assert.ok(comboReview(comboFixture(true,false)).pairs[0].conditionals.every(p=>p.applicability==='unresolved'));
+});
+test('combination binding rejects missing affected edge, wrong pair identity and manufactured effect',()=>{
+ const a=comboFixture();a.residual.actions.pop();assert.equal(comboReview(a).status,'invalid-evidence');
+ const b=comboFixture();b.residual.actions[0].fromPairIds=[];assert.equal(comboReview(b).status,'invalid-evidence');
+ const c=comboFixture();c.residual.pairs[0].transformationConfirmed=true;assert.equal(comboReview(c).status,'invalid-evidence');
+ const d=comboFixture();d.argument.judgments[0].state='supported';assert.equal(comboReview(d).status,'invalid-evidence');
+});
+test('native combination policy preserves source packet and exact residual scope',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
+ let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete),formation=analyzeFormationEvidence({saju:x.saju}),root=observeRootContext(x.prior,formation);
+  const combination=observeCombinationContext(x.prior,formation),residual=observeCombinationResidualContext(x.prior,formation,combination,root,x.supply);
+  const r=reviewCombinationPolicy(x.prior,residual,x.supply,x.review);
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);
+  assert.equal(r.pairs.length,residual.pairs.length,c.id);
+  assert.equal(r.actions.length+r.excludedHiddenActionCount,residual.actions.length,c.id);
+  assert.ok(r.pairs.every(p=>p.actualRetentionState==='unresolved'&&p.actualRestrictionState==='unresolved'&&p.actualTransformationState==='unresolved'));
+  const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  assert.deepEqual(native.efficacyReview.mechanismReview.combinationPolicyReview,r,c.id);assert.equal(native.decisionReview.status,'abstained');n++;
  }
  assert.equal(n,24);
 });
