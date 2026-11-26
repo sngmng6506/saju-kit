@@ -22,6 +22,7 @@ const jobs=focused?[nativeJob,...['pattern-outcome-native-p1','pattern-outcome-m
  ['benchmark-synthesis',['scripts/benchmark-synthesis.mjs','3']],
  ['benchmark',['scripts/benchmark-outcome.mjs','3']]
 ];
+jobs.push(['pattern-strength-reference-basis',['scripts/audit-pattern-strength-reference-coverage.mjs','--basis-only']]);
 const runGit=args=>spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true,maxBuffer:16*1024*1024});
 const reportPaths=['summary.json',...jobs.flatMap(([name])=>[name+'.stdout.txt',name+'.stderr.txt'])].map(name=>resolve(out,name));
 const before=inspectValidationState(root,reportPaths,runGit);
