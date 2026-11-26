@@ -1,3 +1,4 @@
+import {describeSemanticBridge} from './outcome-semantic-bridges.js';
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 import {elementRelation} from '../../core/elements.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
@@ -77,6 +78,7 @@ export function reviewGenerationSynthesis(prior,root,supply,argument,modeled,syn
    actualReleaseState:'unresolved',
    sourcePressurePropositionId:sourcePressure,recipientPressurePropositionId:recipientPressure,sourceContextPropositionId:source,
    localContextPropositionId:local,recipientCapacityPropositionId:capacity,receptionPropositionId:reception,
+   recipientCapacityBridge:describeSemanticBridge('recipient-capacity',[a.edgeId]),
    originalEffectPropositionId:a.effectPropositionId,originalStructuralState:structural.state,sourceScreenState:screen.sourceScreenState,
    actualSupplyState:'unresolved',actualReceptionState:'unresolved',actualBenefitState:'unresolved',selectionAuthority:false,effective:null});
  }
