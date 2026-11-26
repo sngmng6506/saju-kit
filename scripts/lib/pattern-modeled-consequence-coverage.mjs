@@ -48,7 +48,8 @@ export function replayModeledCoverage(pillars,completeHour){
    ...c.conditions.filter(q=>q.value!==true).map(q=>q.name)];
   const p=element.elements.find(e=>e.element===JSON.parse(c.modelPropositionId)[1]);
   return {edgeId:a.edgeId,clauseId:c.clauseId,kind:c.kind,state:c.state,modelState,structuralState,blockers,
-   element:p?.element??null,axes:p?.axes??null};
+   element:p?.element??null,axes:p?.axes??null,directInjuryState:c.directInjuryState??null,residualInjuryState:c.residualInjuryState??null,
+   interpositionCandidates:c.interpositionCandidates??[]};
  }));
  return {invalid,rows,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
@@ -62,7 +63,8 @@ export function summarizeModeledCoverage(rows){
   for(const k of new Set(r.blockers))blockers[k]=(blockers[k]??0)+1;
   if(r.blockers.length===1)singleBlockers[r.blockers[0]]=(singleBlockers[r.blockers[0]]??0)+1;
  }
- return {eligible:rows.length,supported:rows.filter(r=>r.state==='supported').length,
+ return {eligible:rows.length,directInjurySupported:rows.filter(r=>r.directInjuryState==='supported').length,
+  directSupportedResidualUnresolved:rows.filter(r=>r.directInjuryState==='supported'&&r.residualInjuryState==='unresolved').length,supported:rows.filter(r=>r.state==='supported').length,
   unresolved:rows.filter(r=>r.state==='unresolved').length,modelSupported:rows.filter(r=>r.modelState==='supported').length,
   structureSupported:rows.filter(r=>r.structuralState==='supported').length,bothSupported:rows.filter(r=>r.modelState==='supported'&&r.structuralState==='supported').length,
   blockers,singleBlockers,families};
