@@ -14,6 +14,7 @@ for(const c of [...cases,...controls])for(const completeHour of [true,false]){
   if(r.actualEffectPromoted)fail('actual-effect-promotion');
   if(!completeHour&&r.rows.some(q=>q.state!=='unresolved'||q.directInjuryState!==null&&q.directInjuryState!=='unresolved'))fail('partial-promotion');
   if(r.rows.some(q=>q.interpositionCandidates.some(p=>p.actualReliefState!=='unresolved')))fail('relief-promotion');
+  if(r.rows.some(q=>q.kind==='modeled-source-release'&&(q.actualReceptionState!=='unresolved'||!completeHour&&q.directReleaseState!=='unresolved'||q.state==='supported'&&q.directReleaseState!=='supported')))fail('release-scope-invariant');
   if(r.rows.some(q=>q.kind==='modeled-target-injury'&&q.state==='supported'&&(q.directInjuryState!=='supported'||q.interpositionCandidates.length)))fail('residual-without-direct-and-clear-scope');
   if(synthetic&&c.kind==='modeled-target-injury'&&exact?.directInjuryState!==(completeHour?'supported':'unresolved'))fail('direct-control-mismatch');
   if(synthetic&&exact?.state!==(completeHour?c.expected:'unresolved'))fail('synthetic-control-mismatch');
