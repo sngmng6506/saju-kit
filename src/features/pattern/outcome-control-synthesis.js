@@ -1,3 +1,4 @@
+import {createSynthesisBuilder} from './outcome-synthesis-builder.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {diagnoseControlContrast} from './outcome-pressure-dependency.js';
 import {buildSharedForceBasis,compareSharedForceBasis} from './outcome-shared-force-basis.js';
@@ -36,6 +37,7 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
  const basis=buildSharedForceBasis(prior,root);
  if(basis.status!==status||!same(basis,pressure.sharedForceBasis))return empty('basis-replay');
  const props=[],facts=[],rules=[],rows=[],seen=new Set(),seenRoutes=new Set();
+ const forSubject=createSynthesisBuilder({complete,policyId:CONTROL_SYNTHESIS_VERSION,policyOwner:'control-synthesis-policy',props,facts,rules});
  const readProof=(g,p,owner,kind,subject)=>{
   const j=g.get(p?.propositionId);
   return !!j&&p.owner===owner&&p.kind===kind&&p.subject===subject&&p.level===j.level&&j.kind===kind&&j.subject===subject&&p.state===j.state&&
@@ -67,14 +69,7 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
    s.direct.propositionId!==c.directInjuryPropositionId||s.combined.propositionId!==c.propositionId||
    !Array.isArray(s.interposition?.visibleRoutes)||!Array.isArray(s.interposition.observedCandidateIds)||
    !eq(s.interposition.observedCandidateIds,p.candidatePathIds)||s.interposition.actualReliefState!=='unresolved')return empty('proof-binding');
-  const make=(kind,level)=>{const id=key(a.edgeId,kind);props.push({id,kind,level,subject:a.edgeId});return id;};
-  const observation=(kind,state,owner,id,field)=>{
-   if(!signed.includes(state))throw Error('state');
-   const prop=make(kind,'observation');
-   if(complete)for(const sign of state==='conflicting'?['for','against']:state==='supported'?['for']:state==='opposed'?['against']:[])
-    facts.push({id:key(prop,sign),propositionId:prop,sign,refs:[{owner,id,field}],applicability:'complete-only'});
-   return prop;
-  };
+  const {observation,conjunction}=forSubject(a.edgeId);
   // A signed report describes the exact existing model property, not
   // the actual action. Invariance is opposed when exhaustive abstract
   // assignments include a different order; budget/partial is unknown.
@@ -99,12 +94,6 @@ export function reviewControlSynthesis(prior,root,pressure,argument,modeled,synt
   const contact=s.constraints?.counterfactual;
   if(!Array.isArray(s.constraints?.pairIds)||!Array.isArray(s.constraints?.exposedRootIds)||
    !!contact!==!!(s.constraints.pairIds.length||s.constraints.exposedRootIds.length)||contact&&(contact.actualRestrictionState!=='unresolved'||contact.scope!=='counterfactual-all-exposed-substantial-roots-lost'||contact.proof?.kind!=='hypothetical-direct-root-and-pair-clearance'||contact.proof.subject!==a.edgeId||!signed.includes(contact.proof.state)||!eq(contact.pairIds,s.constraints.pairIds)||!eq(contact.exposedRootIds,s.constraints.exposedRootIds)))return empty('contact-scope');
-  const conjunction=(kind,premises,observations)=>{
-   const id=make(kind,'structural-hypothesis');
-   rules.push({id:key(id,'for'),policyId:CONTROL_SYNTHESIS_VERSION,conclusion:{propositionId:id,sign:'for'},
-    premises:premises.map(propositionId=>({propositionId,sign:'for'})),undercutWhen:observations.map(propositionId=>({propositionId,sign:'against'})),refs:[{owner:'control-synthesis-policy',id:CONTROL_SYNTHESIS_VERSION,field:kind}],applicability:'complete-only'});
-   return id;
-  };
   const directContext=conjunction('direct-injury-with-invariant-profile-order',[stable,invariant,direct],[stable,invariant,direct]);
   const residualContext=conjunction('residual-injury-with-invariant-profile-order',[directContext,residual],[residual]);
   rows.push({edgeId:a.edgeId,pressureId:p.id,from:a.from,to:a.to,possiblePropositionId:possible,invariantPropositionId:invariant,
