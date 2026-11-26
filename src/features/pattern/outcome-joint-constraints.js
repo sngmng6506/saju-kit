@@ -13,8 +13,8 @@ const sameSet=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&ne
 // rules; its dependencies may be other candidates, but blockers must be
 // independent observations. An unseeded dependency cycle cannot fire.
 // Shared resource IDs do not themselves constitute an incompatibility.
-export function evaluateJointScenario({scope,assumptions,candidates}={}){
- const invalid=()=>({status:'invalid-evidence',selectionAuthority:false,effective:null,judgments:[],ruleResults:[]});
+export function compileJointScenario({scope,assumptions,candidates}={}){
+ const invalid=()=>null;
  const facts=index(assumptions,a=>a.id),nodes=index(candidates,a=>a.id);
  if(!['complete','partial'].includes(scope)||!facts||!nodes||
   [...facts.values()].some(a=>!safe(a.id)||!states.includes(a.state)||nodes.has(a.id))||
@@ -39,7 +39,11 @@ export function evaluateJointScenario({scope,assumptions,candidates}={}){
     refs:[ref('joint-scenario-candidate',c.id,'rebutWhen')],applicability:'complete-only'}));
   }
  }
- return evaluateArguments({scope,propositions,evidence,rules});
+ return {scope,propositions,evidence,rules};
+}
+export function evaluateJointScenario(input){
+ const packet=compileJointScenario(input);
+ return packet?evaluateArguments(packet):{status:'invalid-evidence',selectionAuthority:false,effective:null,judgments:[],ruleResults:[]};
 }
 const unresolved=x=>x==='unresolved';
 export function reviewJointConstraints(prior,supply,argument,source,interposition,combination,clash){
