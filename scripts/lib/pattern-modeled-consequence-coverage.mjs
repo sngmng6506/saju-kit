@@ -58,7 +58,7 @@ export function replayModeledCoverage(pillars,completeHour){
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ return {invalid,rows,interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
