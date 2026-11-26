@@ -1,13 +1,15 @@
 import {evaluateArguments} from './outcome-argumentation.js';
 // Exact minimal positive assumption sets for an observation-only,
-// positive Horn packet. This is not a solver for signed/defeasible rules.
+// positive Horn packet. Fixed positive observation facts contribute the
+// empty assumption set; they are not varied in witness assignments.
+// This is not a solver for signed/defeasible rules.
 const key=(...xs)=>JSON.stringify(xs);
 const subset=(a,b)=>a.every(x=>b.includes(x));
 const canon=xs=>[...new Set(xs)].sort();
 const MAX_WORK=300000,MAX_TERMS=8192;
 export function positiveProofFrontier(packet){
  const empty=(status,reason)=>({status,reason,frontiers:[],selectionAuthority:false,effective:null});
- if(!packet||!['complete','partial'].includes(packet.scope)||![packet.propositions,packet.evidence,packet.rules].every(Array.isArray)||packet.evidence.length)return empty('invalid-evidence','packet');
+ if(!packet||!['complete','partial'].includes(packet.scope)||![packet.propositions,packet.evidence,packet.rules].every(Array.isArray))return empty('invalid-evidence','packet');
  // The signed engine owns identity, provenance, rule and resource
  // validation. The symbolic fragment may narrow that contract, never
  // accept a graph the canonical engine rejects.
@@ -17,8 +19,10 @@ export function positiveProofFrontier(packet){
  const valid=x=>typeof x==='string'&&x.length>0;
  if(props.size!==packet.propositions.length||packet.propositions.some(p=>!valid(p.id)||!['observation','structural-hypothesis'].includes(p.level))||
   packet.rules.some(r=>r.applicability!=='complete-only'||r.conclusion?.sign!=='for'||props.get(r.conclusion.propositionId)?.level!=='structural-hypothesis'||!Array.isArray(r.premises)||!r.premises.length||r.premises.some(p=>p.sign!=='for'||!props.has(p.propositionId))||(r.undercutWhen??[]).length))return empty('invalid-evidence','positive-contract');
+ if(packet.evidence.some(e=>e.sign!=='for'||props.get(e.propositionId)?.level!=='observation'))return empty('invalid-evidence','positive-fact-contract');
  if(packet.scope==='partial')return empty('partial','missing-hour');
- const terms=new Map(packet.propositions.map(p=>[p.id,p.level==='observation'?[[p.id]]:[]]));
+ const fixed=new Set(packet.evidence.map(e=>e.propositionId));
+ const terms=new Map(packet.propositions.map(p=>[p.id,p.level==='observation'?[fixed.has(p.id)?[]:[p.id]]:[]]));
  let work=0,total=packet.propositions.filter(p=>p.level==='observation').length;
  const tick=()=>{if(++work>MAX_WORK)throw Error('work-budget');};
  const insert=(xs,t)=>{
