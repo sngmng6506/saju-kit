@@ -1,3 +1,4 @@
+import {reviewConditionalJoint} from '../../src/features/pattern/outcome-conditional-joint-review.js';
 import {reviewInteractionProofs} from '../../src/features/pattern/outcome-interaction-proof-review.js';
 import {reviewInteractionScenarios} from '../../src/features/pattern/outcome-interaction-scenarios.js';
 import {reviewInteractionDependencies} from '../../src/features/pattern/outcome-interaction-dependencies.js';
@@ -64,8 +65,9 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
  const interactionDependencies=reviewInteractionDependencies(prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis);
  const interactionScenarios=reviewInteractionScenarios(prior,root,pressure,argument,interactionDependencies);
  const interactionProofs=reviewInteractionProofs(prior,joint,modeled,generationSynthesis,controlSynthesis);
+ const conditionalJoint=reviewConditionalJoint(prior,joint);
  const expected=completeHour?'diagnostic':'partial';
- const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs})
+ const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint})
   .filter(([,r])=>r.status!==expected).map(([owner,r])=>({owner,status:r.status,reason:r.reason??null}));
  const judgments=new Map(modeled.judgments.map(j=>[j.id,j.state]));
  const rows=modeled.actions.flatMap(a=>a.clauses.filter(c=>c.propositionId!==null).map(c=>{
@@ -81,7 +83,7 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,contact,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact],controlSynthesisInputs:[prior,root,pressure,argument,modeled,synthesis],generationSynthesisInputs:[prior,root,supply,argument,modeled,synthesis],interactionDependencyInputs:[prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis],interactionScenarioInputs:[prior,root,pressure,argument,interactionDependencies],interactionProofInputs:[prior,joint,modeled,generationSynthesis,controlSynthesis]}:{}),interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ return {invalid,rows,contact,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact],controlSynthesisInputs:[prior,root,pressure,argument,modeled,synthesis],generationSynthesisInputs:[prior,root,supply,argument,modeled,synthesis],interactionDependencyInputs:[prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis],interactionScenarioInputs:[prior,root,pressure,argument,interactionDependencies],interactionProofInputs:[prior,joint,modeled,generationSynthesis,controlSynthesis],conditionalJointInputs:[prior,joint]}:{}),interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
