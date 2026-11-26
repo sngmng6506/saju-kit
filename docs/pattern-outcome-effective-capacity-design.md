@@ -590,3 +590,54 @@ probabilities. Native full-chart and V10 regression remain unverified.
 Next: construct provenance-bound replenishment alternatives from direct
 roots and resource/peer supply witnesses, reuse retention identities, and
 model access requirements without making a circular strength assumption.
+
+## P3-B3c — Root-seeded replenishment network
+
+One shared network is compiled from the existing grounded supply ledger.
+The native adapter replays that ledger and binds exact physical donor
+nodes, their substantial slot IDs, existing local generation paths, and
+local same-element peer contacts. Visible stems can receive and relay
+hypothetical supply; hidden branch constituents can seed their own
+physical roots but cannot receive or relay from an incoming edge in this
+version. Remote contacts are not included. The new relay candidates may
+include one-hop observations that were not screened: they are explicitly
+hypothetical operations, not promotions of the one-hop observation model.
+
+For each root slot, the retention variable ID is identical to the
+root-preservation variable. Each donor-slot access and each directed
+operation has a separate unresolved Boolean hypothesis. The rule
+root-retention AND donor-access establishes a modeled seed; an existing
+seeded basis AND directed operation propagates a modeled basis. The
+existing signed argumentation engine computes the least grounded closure.
+Neither an independent capacity nor a physical flow rate is asserted.
+All original observations and actual effect states are unchanged.
+
+An independent structural explanation enumerates simple directed
+seed-to-target paths and their exact required assumptions. Under the
+monotone positive rules of this network, a target is supported under a
+Boolean assignment iff at least one such path has all required assumptions
+true. Cyclic walks can be shortened, and an unseeded cycle supplies no
+proof. Multiple paths referencing one root remain distinct alternatives,
+not multiple physical resources. Exact path enumeration is bounded to
+24,000 search states and 4,096 alternatives across targets; budget failure
+returns no truncated frontier. Exact common Boolean completion analysis
+has the existing separate scenario work and variable budgets; its
+unavailability does not invalidate an independently complete path list.
+All-on structural reachability is not a reviewed feasible physical outcome.
+
+The native and development composition both expose
+`replenishmentReview`. It is not consumed as effective replenishment
+or a strong/weak verdict. The domain has not yet been unified with the
+contextual-strength burden scenarios, and the root-access and operation
+predicates require independent operational/semantic validation. A finite
+quantity, allocation and combined control/drain comparison are not
+implemented. These are the next gate, not inferred from the number of
+paths or retained roots.
+
+Run `node --test test/outcome-replenishment-network.test.mjs test/outcome-replenishment-review.test.mjs`
+and `npm run validate:pattern-outcome-native-p1`. Seven network tests
+and two adapter fixture tests executed in isolated JavaScript using actual
+modules, including all 128 assignments of the shared-root cyclic fixture.
+Native full-chart replay cases were added and registered but have not yet
+been executed. No independent classical gold cases or actual-effect
+authority are introduced.
