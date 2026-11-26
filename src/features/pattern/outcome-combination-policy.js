@@ -72,13 +72,15 @@ export function reviewCombinationPolicy(prior,residual,supply,argument){
   if(p.span===3)sourceCases.push('remote-endpoints-review');
   if(p.intervening.some(m=>m.controlsParticipantIds?.length))sourceCases.push('intervening-controller-review');
   if(p.competitors.length)sourceCases.push('competing-partner-review');
-  if(p.competitors.some(c=>c.positionRelation==='farther'))sourceCases.push('separated-competitor-countercase-review');
+  if(p.competitors.some(c=>c.positionRelation==='farther'))sourceCases.push('farther-competitor-review');
   if(p.dayReferenceInvolved)sourceCases.push('self-combination-external-removal-exception');
   const conditionals=registry.map(policy=>evaluateCombinationScenario(policy.id,{pairState:complete?'supported':'unresolved',
    contextState:'unresolved',operationState:'unresolved',obstructionState:'unresolved',selfState,scope:complete?'complete':'partial'}));
   if(conditionals.some(x=>x.status!==status))return empty('scenario');
   rows.push({pairId:p.id,participantIds:[...p.participants],formationId:p.formationId,associatedElement:p.associatedElement,
-   contactHypothesis:p.contactHypothesis,sourceCases,competitorPairIds:[...new Set(p.competitors.map(c=>c.pairId))],
+   contactHypothesis:p.contactHypothesis,sourceCases,sourceRefs:[ref('combination-source-policy','external-role-restriction','section'),ref('combination-source-policy','transformation','section'),ref('combination-source-policy','residual-role-retention','section')],
+   pairEvidenceRefs:[ref('combinationResidualContext',p.id,'contactHypothesis'),ref('combinationResidualContext',p.id,'competitors'),ref('combinationResidualContext',p.id,'intervening'),ref('combinationResidualContext',p.id,'transformationContext')],
+   participantEvidenceRefs:p.participants.flatMap(id=>['originalRoots','incoming','retainedEvidence','alternatives'].map(field=>ref('combinationResidualContext',id,field))),competitorPairIds:[...new Set(p.competitors.map(c=>c.pairId))],
    transformationContext:p.transformationContext,conditionals,actualRestrictionState:'unresolved',actualTransformationState:'unresolved',
    actualRetentionState:'unresolved',effective:null});
  }
