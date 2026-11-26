@@ -1,31 +1,8 @@
-import {reviewConditionalJoint} from '../../src/features/pattern/outcome-conditional-joint-review.js';
-import {reviewInteractionProofs} from '../../src/features/pattern/outcome-interaction-proof-review.js';
-import {reviewInteractionScenarios} from '../../src/features/pattern/outcome-interaction-scenarios.js';
-import {reviewInteractionDependencies} from '../../src/features/pattern/outcome-interaction-dependencies.js';
-import {reviewGenerationSynthesis} from '../../src/features/pattern/outcome-generation-synthesis.js';
-import {reviewControlSynthesis} from '../../src/features/pattern/outcome-control-synthesis.js';
+import {buildActionDiagnostics} from '../../src/features/pattern/outcome-action-diagnostics.js';
 import {analyzeStemForceEvidence} from '../../src/core/stem-force.js';
 import {observeRelativeForce} from '../../src/core/relative-force.js';
 import {analyzeFormationEvidence} from '../../src/core/formation-evidence.js';
-import {observeRootContext} from '../../src/features/pattern/outcome-root-context.js';
-import {observeGroundedSupply} from '../../src/features/pattern/outcome-grounded-supply.js';
-import {observeInterpositionReview} from '../../src/features/pattern/outcome-interposition-review.js';
-import {observePressureDependencyReview} from '../../src/features/pattern/outcome-pressure-dependency.js';
-import {observeLocalityContext} from '../../src/features/pattern/outcome-locality-context.js';
-import {observeArgumentReview} from '../../src/features/pattern/outcome-argument-review.js';
-import {reviewSourceEffectPolicy} from '../../src/features/pattern/outcome-source-effect-policy.js';
 import {observeCombinationContext} from '../../src/features/pattern/outcome-combination-context.js';
-import {observeCombinationResidualContext} from '../../src/features/pattern/outcome-combination-residual.js';
-import {observeClashResidualContext} from '../../src/features/pattern/outcome-clash-residual.js';
-import {reviewInterpositionPolicy} from '../../src/features/pattern/outcome-interposition-policy.js';
-import {reviewCombinationPolicy} from '../../src/features/pattern/outcome-combination-policy.js';
-import {reviewClashPolicy} from '../../src/features/pattern/outcome-clash-policy.js';
-import {reviewJointConstraints} from '../../src/features/pattern/outcome-joint-constraints.js';
-import {reviewElementContexts} from '../../src/features/pattern/outcome-element-context.js';
-import {reviewContactConstraintSensitivity} from '../../src/features/pattern/outcome-contact-constraint-sensitivity.js';
-import {synthesizeActionReview} from '../../src/features/pattern/outcome-action-synthesis.js';
-import {reviewDayBalanceDirection} from '../../src/features/pattern/outcome-day-balance-direction.js';
-import {reviewModeledConsequences} from '../../src/features/pattern/outcome-modeled-consequences.js';
 // Synthetic literal-pillar controls, not calendar-verified births or
 // independent classical labels. Each contrast changes one pillar.
 export const controls=Object.freeze([
@@ -49,23 +26,8 @@ export const routeControls=Object.freeze([
 export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=null,includeSynthesisInputs=false}={}){
  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!completeHour&&i===3?null:{stem:pillars[i][0],branch:pillars[i][1],text:pillars[i]}]))};
  const stemForce=analyzeStemForceEvidence({saju}),prior={completeHour,stemForce,relativeForce:observeRelativeForce(stemForce)};
- const formation=analyzeFormationEvidence({saju}),root=observeRootContext(prior,formation),supply=observeGroundedSupply(prior,root);
- const interposition=observeInterpositionReview(prior,root,supply),pressure=observePressureDependencyReview(prior,root,supply,interposition);
- const locality=observeLocalityContext(prior,supply,interposition,pressure),argument=observeArgumentReview(prior,supply,pressure,locality);
- const source=reviewSourceEffectPolicy(prior,argument,supply,strengthHypothesis),combination=observeCombinationContext(prior,formation);
- const combinationResidual=observeCombinationResidualContext(prior,formation,combination,root,supply),clashResidual=observeClashResidualContext(prior,formation,root,supply);
- const ip=reviewInterpositionPolicy(prior,supply,interposition,pressure,argument),cp=reviewCombinationPolicy(prior,combinationResidual,supply,argument),cl=reviewClashPolicy(prior,clashResidual,supply,argument);
- const joint=reviewJointConstraints(prior,supply,argument,source,ip,cp,cl),element=reviewElementContexts(prior,root,supply,source);
- const contact=reviewContactConstraintSensitivity(prior,root,supply,cp,cl,joint);
- const modeled=reviewModeledConsequences(prior,supply,argument,pressure,joint,element);
- const day=reviewDayBalanceDirection(prior,argument,joint,strengthHypothesis);
- const synthesis=synthesizeActionReview(prior,argument,source,element,day,joint,modeled,contact);
- const controlSynthesis=reviewControlSynthesis(prior,root,pressure,argument,modeled,synthesis);
- const generationSynthesis=reviewGenerationSynthesis(prior,root,supply,argument,modeled,synthesis);
- const interactionDependencies=reviewInteractionDependencies(prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis);
- const interactionScenarios=reviewInteractionScenarios(prior,root,pressure,argument,interactionDependencies);
- const interactionProofs=reviewInteractionProofs(prior,joint,modeled,generationSynthesis,controlSynthesis);
- const conditionalJoint=reviewConditionalJoint(prior,joint);
+ const formation=analyzeFormationEvidence({saju}),combination=observeCombinationContext(prior,formation);
+ const {rootContext:root,groundedSupply:supply,clashResidualContext:clashResidual,combinationResidualContext:combinationResidual,interpositionReview:interposition,pressureDependencyReview:pressure,localityContext:locality,argumentReview:argument,sourceEffectReview:source,combinationPolicyReview:cp,clashPolicyReview:cl,interpositionPolicyReview:ip,jointConstraintReview:joint,dayBalanceDirectionReview:day,elementContextReview:element,contactConstraintSensitivity:contact,modeledConsequenceReview:modeled,actionSynthesis:synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint}=buildActionDiagnostics(prior,formation,combination,strengthHypothesis);
  const expected=completeHour?'diagnostic':'partial';
  const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint})
   .filter(([,r])=>r.status!==expected).map(([owner,r])=>({owner,status:r.status,reason:r.reason??null}));
