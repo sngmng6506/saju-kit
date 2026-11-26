@@ -14,14 +14,30 @@ const axisNames=['visible','seasonSupports','principalSupports','cleanPrincipalR
 // These are deliberately narrow, experimental sufficient conditions for
 // MODEL hypotheses. They are not definitions of classical 强/弱, nor
 // necessary conditions for them. No score, weights or axis voting.
-const strong=['visible','seasonSupports','principalSupports','cleanPrincipalRoot','clearContacts','monthContextClear','noRootedBurdenBasis'];
-// Alternative strong context: a clean principal root in the month branch
-// and a physically distinct, locally grounded resource observation.
-// Outgoing burdens may coexist. Incoming rooted control is still withheld.
-// This is a narrow modeled sufficiency rule, not actual force or a universal
-// classical necessary/sufficient condition.
-const strongResource=['visible','seasonSupports','principalSupports','cleanMonthPrincipalRoot','clearContacts','monthContextClear','independentLocalResourceBasis','noRootedControllerBasis'];
-const weak=['visible','clearContacts','monthContextClear','noRootedGeneratorBasis','localGroundedControlCoverage'];
+const freezeTerms=xs=>Object.freeze(xs.map(x=>Object.freeze(x)));
+const required=(xs,value=true)=>xs.map(axis=>({axis,value}));
+const ruleConditions=Object.freeze({
+ strong:freezeTerms(required(['visible','seasonSupports','principalSupports','cleanPrincipalRoot','clearContacts','monthContextClear','noRootedBurdenBasis'])),
+ strongResource:freezeTerms(required(['visible','seasonSupports','principalSupports','cleanMonthPrincipalRoot','clearContacts','monthContextClear','independentLocalResourceBasis','noRootedControllerBasis'])),
+ weak:freezeTerms([...required(['visible','clearContacts','monthContextClear','noRootedGeneratorBasis','localGroundedControlCoverage']),...required(['seasonSupports','principalSupports','substantialRoot'],false)])
+});
+// Logical implications of the observed axes, not claims about effective
+// strength. A null consequent is unknown; only an explicit contradiction
+// is rejected here. Preserve the existing strict clean-root input gate.
+const implications=Object.freeze([
+ ['cleanPrincipalRoot',true,'substantialRoot',true],
+ ['cleanMonthPrincipalRoot',true,'cleanPrincipalRoot',true],
+ ['cleanMonthPrincipalRoot',true,'substantialRoot',true],
+ ['localGroundedControlCoverage',true,'visible',true],
+ ['localGroundedControlCoverage',true,'noRootedControllerBasis',false],
+ ['localGroundedControlCoverage',true,'noRootedBurdenBasis',false],
+ ['independentLocalResourceBasis',true,'visible',true],
+ ['independentLocalResourceBasis',true,'noRootedGeneratorBasis',false],
+ ['noRootedBurdenBasis',true,'noRootedControllerBasis',true]
+].map(Object.freeze));
+export function elementContextModelContract(){
+ return {version:ELEMENT_CONTEXT_VERSION,axes:[...axisNames],ruleConditions,implications};
+}
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const lit=(propositionId,sign='for')=>({propositionId,sign});
 const key=(...x)=>JSON.stringify(x);
@@ -43,16 +59,13 @@ export function evaluateElementContextModel({completeHour,element,axes,evidenceR
  // Impossible input contracts must not manufacture a strength hypothesis.
  if(axes.cleanPrincipalRoot===true&&axes.substantialRoot!==true||
   axes.localGroundedControlCoverage===true&&axes.visible!==true||
-  axes.cleanMonthPrincipalRoot===true&&(axes.cleanPrincipalRoot===false||axes.substantialRoot===false)||
-  axes.independentLocalResourceBasis===true&&(axes.visible===false||axes.noRootedGeneratorBasis===true)||
-  axes.noRootedBurdenBasis===true&&axes.noRootedControllerBasis===false)return bad();
+  implications.some(([a,av,b,bv])=>axes[a]===av&&axes[b]!==null&&axes[b]!==bv))return bad();
  const observations=axisNames.map(id=>({id,subject:element,kind:'element-context-observation',level:'observation'}));
  const hypotheses=['strong','weak'].map(id=>({id,subject:element,kind:'experimental-element-context-hypothesis',level:'structural-hypothesis'}));
  const evidence=axisNames.filter(k=>axes[k]!==null).map(k=>({id:key(k,axes[k]),...lit(k,axes[k]?'for':'against'),
   refs:evidenceRefs[k],applicability:'complete-only'}));
- const strongPremises=strong.map(k=>lit(k));
- const resourcePremises=strongResource.map(k=>lit(k));
- const weakPremises=[...weak.map(k=>lit(k)),...['seasonSupports','principalSupports','substantialRoot'].map(k=>lit(k,'against'))];
+ const toPremises=terms=>terms.map(({axis,value})=>lit(axis,value?'for':'against'));
+ const strongPremises=toPremises(ruleConditions.strong),resourcePremises=toPremises(ruleConditions.strongResource),weakPremises=toPremises(ruleConditions.weak);
  const rule=(id,target,sign,premises)=>({id,policyId:ELEMENT_CONTEXT_VERSION,conclusion:lit(target,sign),premises,
   refs:[ref('experimental-element-context-policy',ELEMENT_CONTEXT_VERSION,'model-conditions')],applicability:'complete-only'});
  const rules=[rule('strong-model','strong','for',strongPremises),rule('weak-model','weak','for',weakPremises),
