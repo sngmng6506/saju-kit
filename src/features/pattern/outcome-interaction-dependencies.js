@@ -26,8 +26,8 @@ export function reviewInteractionDependencies(prior,root,supply,pressure,argumen
   const actors=index(prior.stemForce?.occurrences,a=>a.id),slots=index(root.slots,a=>a.id),donors=index(supply.nodes,a=>a.nodeId),
    obs=index(supply.occurrences,a=>a.id),aa=index(argument.actions,a=>a.edgeId),ja=index(joint.actions,a=>a.edgeId),
    pa=index(pressure.pressures,a=>a.id),paths=index(pressure.paths,a=>a.id),jp=index(joint.paths,a=>a.pathId),
-   ga=index(generation.actions,a=>a.edgeId),ca=index(control.actions,a=>a.edgeId),profiles=index(basis.profiles,a=>a.actorId);
-  if([actors,slots,donors,obs,aa,ja,pa,paths,jp,ga,ca,profiles].some(x=>!x)||!setEq([...aa.keys()],[...ja.keys()])||
+   ga=index(generation.actions,a=>a.edgeId),ca=index(control.actions,a=>a.edgeId),ss=index(synthesis.actions,a=>a.edgeId),profiles=index(basis.profiles,a=>a.actorId);
+  if([actors,slots,donors,obs,aa,ja,pa,paths,jp,ga,ca,ss,profiles].some(x=>!x)||!setEq([...aa.keys()],[...ja.keys()])||!setEq([...aa.keys()],[...ss.keys()])||
    !setEq([...aa.keys()],[...ga.keys(),...ca.keys()])||!setEq([...actors.keys()],[...obs.keys()]))return empty('inventory');
   const closure=tracePressureDependencies([...pa.keys()],[...paths.values()]);
   if(!closure||!same(closure.unseededCycles,pressure.unseededCycles))return empty('pressure-closure');
@@ -53,7 +53,9 @@ export function reviewInteractionDependencies(prior,root,supply,pressure,argumen
    const n=action(a.edgeId),j=ja.get(a.edgeId),g=ga.get(a.edgeId),c=ca.get(a.edgeId);
    if(j.from!==a.from||j.to!==a.to||j.kind!==a.kind||j.effectPropositionId!==a.effectPropositionId||!unresolved(j.actualEffectState)||j.effective!==null||
     (a.kind==='generate')!==!!g||(a.kind==='control')!==!!c||![j.rootIds,j.exposedRootIds,j.combinationPairIds,j.interpositionPathIds].every(Array.isArray))return empty('action-binding');
-   const actual=g??c;
+   const actual=g??c,projected=ss.get(a.edgeId);
+   if(!setEq(j.combinationPairIds,projected.constraints?.pairIds)||!setEq(j.exposedRootIds,projected.constraints?.exposedRootIds)||
+    !setEq(j.interpositionPathIds,projected.interposition?.visibleRoutes?.map(r=>r.pathId)))return empty('constraint-parity');
    if(actual.from!==a.from||actual.to!==a.to||actual.originalEffectPropositionId!==a.effectPropositionId)return empty('synthesis-binding');
    const used=[];
    const remember=(id,role,basis,pathId=null)=>{
@@ -102,15 +104,24 @@ export function reviewInteractionDependencies(prior,root,supply,pressure,argumen
    for(const id of p.dependencies)link(n,press(id),'prerequisite-pressure');
    if(j){
     if(j.pressureId!==p.targetPressureId||!setEq(j.dependencyIds,p.dependencies)||!unresolved(j.actualEffectState)||!Array.isArray(j.requiredLegIds)||ca.get(j.controlEdgeId)?.pressureId!==p.targetPressureId)return empty('route-leg-binding');
+    const helper=[...actors.values()].find(a=>a.graphNodeId===identity[1]&&a.layer==='visible');
+    const target=aa.get(j.controlEdgeId);
+    if(!helper||!target)return empty('visible-route-identity');
+    const legs=identity[0]==='protection'?[helper.id+'>'+target.from]:[target.from+'>'+helper.id,helper.id+'>'+target.to];
+    if(!setEq(legs,j.requiredLegIds))return empty('route-leg-coverage');
     for(const id of j.requiredLegIds)link(n,action(id),'required-leg');
     for(const id of j.combinationPairIds)link(n,node('combination-pair',id),'combination-reference');
    }
   }
   for(const j of jp.values())if(!paths.has(j.pathId)||!ja.get(j.controlEdgeId)?.interpositionPathIds.includes(j.pathId))return empty('joint-route-coverage');
-  for(const g of pressure.generation){
+  const pg=index(pressure.generation,g=>g.edgeId);
+  if(!pg||[...ga.keys()].some(id=>!pg.has(id)))return empty('generation-pressure-coverage');
+  for(const g of pg.values()){
    if(!ga.has(g.edgeId))continue; // hidden generation is not a visible action
-   for(const id of g.sourcePressureIds)link(action(g.edgeId),press(id),'pressure-context','source');
-   for(const id of g.targetPressureIds)link(action(g.edgeId),press(id),'pressure-context','target');
+   const a=aa.get(g.edgeId);
+   if(g.from!==a.from||g.to!==a.to||!Array.isArray(g.sourcePressureIds)||!Array.isArray(g.targetPressureIds))return empty('generation-pressure-binding');
+   for(const id of g.sourcePressureIds){if(pa.get(id)?.targetNodeId!==actors.get(a.from).graphNodeId)return empty('source-pressure-binding');link(action(g.edgeId),press(id),'pressure-context','source');}
+   for(const id of g.targetPressureIds){if(pa.get(id)?.targetNodeId!==actors.get(a.to).graphNodeId)return empty('target-pressure-binding');link(action(g.edgeId),press(id),'pressure-context','target');}
   }
   const graph=finish();
   const shared=Object.fromEntries([
