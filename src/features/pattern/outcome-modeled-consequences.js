@@ -180,6 +180,7 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
    if(a.kind==='generate'){
     conditions.push(C('target-pressure-screen-clear',clearPressure(e.targetPressure),[ref('groundedSupply',a.edgeId,'targetPressure')]));
     sourceScreen=sourceSideScreen(argument,js,e,s,complete);
+    if(!sourceScreen)return empty('generation-source-screen-proof');
     releaseId=key('modeled-direct-release',subject);
     props.push({id:releaseId,subject,kind:'modeled-direct-release-tendency',level:'structural-hypothesis'});
    }else{
@@ -205,12 +206,10 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     // structural route is not proof that actual relief cannot occur.
     rule('modeled-rule',id,[lit(directId),lit(conditions.find(c=>c.name==='no-observed-interposition-candidate').id)]);
    }else{
-    // Legacy full-screen support is sufficient for direct tendency.
-    // Otherwise allow only the original source-side proof, not a
-    // reinterpreted structural opposition or a bare source label.
+    // Only the original source-side proof may support direct tendency.
+    // The full structural screen remains required for the legacy result.
     const directPremises=[lit(mid),...conditions.filter(c=>c.name!=='target-pressure-screen-clear').map(c=>lit(c.id))];
-    rule('direct-release-full-screen',releaseId,[...directPremises,lit(s.id)]);
-    if(sourceScreen)rule('direct-release-source-screen',releaseId,[...directPremises,...sourceScreen.sourcePremiseIds.map(id=>lit(id))]);
+    rule('direct-release-source-screen',releaseId,[...directPremises,...sourceScreen.sourcePremiseIds.map(id=>lit(id))]);
     // Preserve the exact old conjunction for the legacy release result.
     rule('modeled-rule',id,[lit(releaseId),lit(s.id),lit(conditions.find(c=>c.name==='target-pressure-screen-clear').id)]);
    }
