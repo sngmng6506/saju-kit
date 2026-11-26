@@ -162,13 +162,14 @@ test('shared primitive prevents contradictory root or resource completions',()=>
  assert.equal(r.status,'diagnostic');assert.equal(r.scenarioCount,2);
  assert.deepEqual(r.possibleRelations,['same-evidence-profile']);
  assert.equal(r.excludedRelations.length,3);assert.equal(r.sharedVariables.length,1);assert.equal(r.forceComparison,null);
+ assert.equal(r.independentProfilePairs,64);assert.equal(r.sharedProfilePairs,2);
 });
 test('contact gate depends on donor slot and cannot create supply without basis',()=>{
  const x=basisFixture({anySubstantial:[['slot']]},{localRootedGeneration:[['slot','gate']]},['slot','gate']);
  const r=compareSharedForceBasis(x,'left','right');
  assert.deepEqual(r.possibleRelations,['same-evidence-profile','left-evidence-dominates','mixed-evidence']);
  assert.deepEqual(r.excludedRelations,['right-evidence-dominates']);
- assert.equal(r.scenarioCount,4);
+ assert.equal(r.scenarioCount,4);assert.equal(r.independentProfilePairs,4);assert.equal(r.sharedProfilePairs,3);
  x.profiles[0].observedAxes.anySubstantial=false;assert.equal(compareSharedForceBasis(x,'left','right').status,'invalid-evidence');
 });
 test('shared basis enumeration budget and partial scope do not publish guessed completions',()=>{
