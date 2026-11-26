@@ -3,7 +3,7 @@ import {evaluateElementContextModel,ELEMENT_CONTEXT_VERSION} from './outcome-ele
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 import {elementRelation} from '../../core/elements.js';
 
-export const MODELED_CONSEQUENCE_VERSION='p1-4c-modeled-consequence-v1';
+export const MODELED_CONSEQUENCE_VERSION='p1-4d-modeled-consequence-v2';
 const SOURCE='https://www.shidianguji.com/book/SK1610/chapter/1kf5v8oqbug4m';
 // No generic effect authority. Only these two narrow consequences can
 // be derived under the experimental strength model and exact-edge screens.
@@ -24,6 +24,40 @@ const lit=(propositionId,sign='for')=>({propositionId,sign});
 const byClause=new Map(sourceEffectClauses().map(c=>[c.id,c]));
 const clearPressure=xs=>Array.isArray(xs)&&xs.every(x=>x.donorState==='no-substantial-root-observed');
 const cleanPressure=x=>x&&x.neutralizationConfirmed===null&&x.effective===null;
+// Structural availability is an explanation of the existing route model,
+// not evidence for actual relief or evidence against an injury.
+function inspectInterposition(pr,paths,nodes,pressures,complete){
+ if(!Array.isArray(pr.candidatePathIds)||!Array.isArray(pr.screenedPathIds)||
+  new Set(pr.candidatePathIds).size!==pr.candidatePathIds.length||
+  new Set(pr.screenedPathIds).size!==pr.screenedPathIds.length||
+  pr.screenedPathIds.some(id=>!pr.candidatePathIds.includes(id)))return null;
+ const expected=[...paths.values()].filter(p=>p.targetPressureId===pr.id).map(p=>p.id);
+ if(!eq(pr.candidatePathIds,expected))return null;
+ const rows=[];
+ for(const id of pr.candidatePathIds){
+  const p=paths.get(id);let identity;
+  try{identity=JSON.parse(id)}catch{return null;}
+  if(!Array.isArray(identity)||identity.length!==4)return null;
+  const [kind,helper,threat,target]=identity;
+  const h=nodes.get(helper),s=nodes.get(threat),t=nodes.get(target);
+  if(!p||!h||!s||!t||!['protection','mediation'].includes(kind)||
+   threat!==pr.controllerNodeId||target!==pr.targetNodeId||
+   new Set([helper,threat,target]).size!==3||p.effectConfirmed!==null||p.neutralizationConfirmed!==null||
+   !Array.isArray(p.otherBlockers)||!Array.isArray(p.dependencies)||
+   new Set(p.dependencies).size!==p.dependencies.length||p.dependencies.some(d=>!pressures.has(d))||
+   !(p.structuralDependencyRank===null||Number.isInteger(p.structuralDependencyRank)&&p.structuralDependencyRank>=0))return null;
+  const legs=kind==='protection'?[[h,s,'control']]:[[s,h,'generate'],[h,t,'generate']];
+  if(legs.some(([a,b,k])=>{const r=elementRelation(a.element,b.element);return r.type!==k||r.direction!=='left-to-right'}))return null;
+  const screened=pr.screenedPathIds.includes(id);
+  if(screened!==(!p.otherBlockers.length&&!p.dependencies.length)||
+   screened&&p.structuralDependencyRank!==0||p.otherBlockers.length&&p.structuralDependencyRank!==null)return null;
+  rows.push({pathId:id,kind,helperNodeId:helper,dependencyIds:[...p.dependencies],otherBlockers:[...p.otherBlockers],
+   structuralDependencyRank:p.structuralDependencyRank,
+   structuralState:!complete?'partial':p.otherBlockers.length?'screen-blocked':p.structuralDependencyRank===null?'dependency-unresolved':'screen-reachable',
+   actualReliefState:'unresolved'});
+ }
+ return rows;
+}
 // Recompute the experimental model from its signed observation evidence
 // and the fixed model policy. Do not consume a caller's bare state label.
 function replayModel(profile,complete){
@@ -48,8 +82,8 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
   supply.effectiveSupply!==null||[argument,pressure,joint,element].some(x=>x.effective!==null)||element.version!==ELEMENT_CONTEXT_VERSION)return empty('upstream');
  const actors=index(prior.stemForce?.occurrences,a=>a.id),edges=index(supply.actions,e=>e.edgeId),nodes=index(supply.nodes,n=>n.nodeId),
   args=index(argument.actions,a=>a.edgeId),js=index(argument.judgments,j=>j.id),pressures=index(pressure.pressures,p=>p.id),
-  jr=index(joint.actions,a=>a.edgeId),profiles=index(element.elements,p=>p.element),er=index(element.actions,a=>a.edgeId);
- if([actors,edges,nodes,args,js,pressures,jr,profiles,er].some(x=>!x)||!eq([...profiles.keys()],ELEMENTS)||
+  paths=index(pressure.paths,p=>p.id),jr=index(joint.actions,a=>a.edgeId),profiles=index(element.elements,p=>p.element),er=index(element.actions,a=>a.edgeId);
+ if([actors,edges,nodes,args,js,pressures,paths,jr,profiles,er].some(x=>!x)||!eq([...profiles.keys()],ELEMENTS)||
   args.size!==jr.size||args.size!==er.size||!Array.isArray(argument.propositions)||!Array.isArray(argument.evidence)||!Array.isArray(argument.rules))return empty('identity');
  const orig=evaluateArguments({scope:complete?'complete':'partial',propositions:argument.propositions,evidence:argument.evidence,rules:argument.rules});
  if(orig.status!==status||!same(orig.judgments,argument.judgments)||!same(orig.ruleResults,argument.ruleResults))return empty('argument-proof');
@@ -109,22 +143,34 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     C('source-pressure-screen-clear',clearPressure(e.sourcePressure),[ref('groundedSupply',a.edgeId,'sourcePressure')]),
     C('premises-nonconflicting',s.state!=='conflicting'&&modeled!=='conflicting',[ref('argumentReview',s.id,'state'),ref('elementContextReview',p.element,'model')])
    ];
+   let interposition=null,directId=null;
    if(a.kind==='generate'){
     conditions.push(C('target-pressure-screen-clear',clearPressure(e.targetPressure),[ref('groundedSupply',a.edgeId,'targetPressure')]));
    }else{
     const pressureId=key(from.graphNodeId,to.graphNodeId),pr=pressures.get(pressureId);
     if(!cleanPressure(pr)||pr.controllerNodeId!==from.graphNodeId||pr.targetNodeId!==to.graphNodeId||!Array.isArray(pr.candidatePathIds)||
      pr.local!==(Math.abs(ORDER.indexOf(from.position)-ORDER.indexOf(to.position))===1))return empty('pressure-binding');
+    interposition=inspectInterposition(pr,paths,nodes,pressures,complete);
+    if(!interposition)return empty('interposition-inventory');
+    directId=key('modeled-direct-injury',subject);
+    props.push({id:directId,subject,kind:'modeled-direct-injury-tendency',level:'structural-hypothesis'});
     conditions.push(C('no-observed-interposition-candidate',pr.candidatePathIds.length===0,[ref('pressureDependencyReview',pressureId,'candidatePathIds')]));
    }
    // Structural and strength premises remain linked to their original
    // proof DAG, not copied as independently asserted observations.
    const mid=modelId(actor.element,policy.predicate);
-   rules.push({id:key('modeled-rule',subject),policyId:MODELED_CONSEQUENCE_VERSION,conclusion:lit(id),
-    premises:[lit(mid),lit(s.id),...conditions.map(c=>lit(c.id))],
-    refs:[ref('source-clause',def.id,'quote'),ref('experimental-modeled-consequence-policy',MODELED_CONSEQUENCE_VERSION,policy.conclusion)],
+   const premises=[lit(mid),lit(s.id),...conditions.filter(c=>!directId||c.name!=='no-observed-interposition-candidate').map(c=>lit(c.id))];
+   const rule=(name,conclusion,premises)=>rules.push({id:key(name,subject),policyId:MODELED_CONSEQUENCE_VERSION,conclusion:lit(conclusion),premises,
+    refs:[ref('source-clause',def.id,'quote'),ref('experimental-modeled-consequence-policy',MODELED_CONSEQUENCE_VERSION,name)],
     applicability:'complete-only'});
+   if(directId){
+    rule('direct-injury-tendency',directId,premises);
+    // Preserve the legacy residual model gate. A blocked or unreachable
+    // structural route is not proof that actual relief cannot occur.
+    rule('modeled-rule',id,[lit(directId),lit(conditions.find(c=>c.name==='no-observed-interposition-candidate').id)]);
+   }else rule('modeled-rule',id,premises);
    clauses.push({clauseId:def.id,kind:policy.conclusion,propositionId:id,modelPropositionId:mid,structuralPropositionId:s.id,conditions,
+    ...(directId?{directInjuryPropositionId:directId,interpositionCandidates:interposition}:{}),
     actualEffectState:'unresolved',state:null,reason:null});
   }
   rows.push({edgeId:a.edgeId,from:a.from,to:a.to,kind:a.kind,originalEffectPropositionId:effect.id,clauses,actualEffectState:'unresolved',effective:null});
@@ -138,7 +184,14 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
   c.state=j.state;
   c.reason=j.state==='supported'?'modeled-consequence-derived':!complete?'partial':'premises-not-established';
   c.proof={support:j.support,opposition:j.opposition};
+  if(c.directInjuryPropositionId){
+   const direct=result.get(c.directInjuryPropositionId);
+   if(!direct)return empty('direct-injury-identity');
+   c.directInjuryState=direct.state;
+   c.directInjuryProof={support:direct.support,opposition:direct.opposition};
+   c.residualInjuryState=j.state;
+  }
  }
  return {...base,status,reason:null,actions:rows,propositions:props,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults,
-  limitations:['modeled-release-not-beneficial-generation','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
+  limitations:['modeled-release-not-beneficial-generation','direct-tendency-not-residual-injury','candidate-screen-not-relief-or-clearance','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
 }
