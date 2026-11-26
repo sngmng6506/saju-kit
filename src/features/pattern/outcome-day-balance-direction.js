@@ -15,6 +15,7 @@ export function resolveDayDirection(strength,complete){
  if(!complete)return {...base,reason:'partial'};
  if(!strength||strength.policy!=='strength-decision-v1'||strength.confirmed!==false||!Array.isArray(strength.grounds)||!Array.isArray(strength.conflicts))return {...base,reason:'strength-contract'};
  if(strength.status!=='hypothesis'||strength.conflicts.length)return {...base,reason:'strength-unresolved-or-conflicting'};
+ if(strength.grounds.some(g=>![...strongGrounds,weakGround].includes(g))||new Set(strength.grounds).size!==strength.grounds.length)return {...base,reason:'unknown-or-duplicate-ground'};
  const strong=strength.grounds.some(g=>strongGrounds.includes(g)),weak=strength.grounds.includes(weakGround);
  if(strong===weak||strength.direction!==(strong?'strong':'weak'))return {...base,reason:'direction-ground-mismatch'};
  return {...base,direction:strength.direction,state:'supported',reason:null,refs:['direction','grounds','conflicts'].map(f=>ref('regulationStrength','day',f))};
