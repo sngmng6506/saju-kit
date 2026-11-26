@@ -122,6 +122,14 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   const expected=p.kind==='protection'?[p.helperId+'>'+p.controllerId,p.controlEdgeId]:[p.controllerId+'>'+p.helperId,p.helperId+'>'+p.targetId,p.controlEdgeId];
   if(!sameSet(p.legEdgeIds,expected)||expected.some(id=>!actionMap.has(id)))return empty('leg-binding');
   const requiredLegIds=expected.slice(0,-1); // target control is not a prerequisite effect
+  if(p.sourcePolicyId===null){
+   pathRows.push({pathId:p.pathId,controlEdgeId:p.controlEdgeId,requiredLegIds,pressureId:p.pressureId,dependencyIds:[...p.dependencyIds],
+    combinationPairIds:uniq([p.helperId,p.controllerId,p.targetId].flatMap(id=>byActor.get(id)??[])),
+    conditionalRestrictionIds:[],sharedRootIds:uniq(requiredLegIds.flatMap(id=>actionMap.get(id).rootIds)),scenarioPropositionId:null,
+    sourcePolicyId:null,actualEffectState:'unresolved'});
+   continue;
+  }
+  if(!safe(p.sourcePolicyId))return empty('path-policy');
   const id=key('path',p.pathId),gate=clearance(key('path-obstruction',p.pathId));
   const requires=[assumption(key('source-context',p.pathId)),assumption(key('path-operation',p.pathId)),gate.requires,
    ...requiredLegIds.map(e=>lit(key('leg-ready',e)))];
@@ -147,7 +155,7 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   pressureCandidates.get(p.pressureId).push(id);
   pathRows.push({pathId:p.pathId,controlEdgeId:p.controlEdgeId,requiredLegIds,pressureId:p.pressureId,dependencyIds:[...p.dependencyIds],
    combinationPairIds:uniq([p.helperId,p.controllerId,p.targetId].flatMap(id=>byActor.get(id)??[])),conditionalRestrictionIds:uniq(contextualAttacks),
-   sharedRootIds:uniq(requiredLegIds.flatMap(id=>actionMap.get(id).rootIds)),scenarioPropositionId:id,actualEffectState:'unresolved'});
+   sharedRootIds:uniq(requiredLegIds.flatMap(id=>actionMap.get(id).rootIds)),scenarioPropositionId:id,sourcePolicyId:p.sourcePolicyId,actualEffectState:'unresolved'});
  }
  for(const a of actions)if(a.interpositionPathIds.some(id=>paths.get(id)?.controlEdgeId!==a.edgeId))return empty('path-coverage');
  const pressureIds=uniq([...pressureCandidates.keys(),...pathRows.flatMap(p=>p.dependencyIds)]);
