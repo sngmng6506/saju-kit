@@ -1,0 +1,3490 @@
+{
+  "version": "p1-4e-action-synthesis-replay-v1",
+  "execution": "Fetched production core module bodies and audit helper in JS isolate; fixture/URL adapters; no native Node ESM/V10 or actual strength projection. Direction tested with explicit assumed hypothesis only.",
+  "base": "3fe269129feff23cfaa0351e3349c26094dde570",
+  "replays": 54,
+  "existing54ActionRouteContactParity": true,
+  "coverage": {
+    "eligible": 82,
+    "directReleaseSupported": 2,
+    "directReleaseSupportedJointUnresolved": 2,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 2,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 80,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 2,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "contactCoverage": {
+    "exposedOccurrences": 17,
+    "remainingRootBasis": {
+      "supported": 7,
+      "opposed": 7,
+      "conflicting": 0,
+      "unresolved": 3
+    },
+    "affectedActions": 47,
+    "hypotheticalRootAndPairScreen": {
+      "supported": 11,
+      "opposed": 16,
+      "conflicting": 0,
+      "unresolved": 20
+    },
+    "pairCount": 6,
+    "selfScopeCount": 2,
+    "reliefCandidateCount": 0
+  },
+  "routeCoverage": {
+    "eligible": 40,
+    "supported": 0
+  },
+  "synthesisCoverage": {
+    "actions": 82,
+    "directSupported": 2,
+    "combinedSupported": 0,
+    "withSupportedRoute": 0,
+    "withDirectionFit": 0,
+    "actualEffectsConfirmed": 0
+  },
+  "tests": {
+    "passed": 42,
+    "skipped": 12
+  },
+  "details": [
+    {
+      "id": "wang-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"month:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "wang-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhexi-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"year:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhexi-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "li-resource-output",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"hour:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "li-resource-output",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "ma-resource-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "ma-resource-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mao-resource-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mao-resource-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhang-resource-officer",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhang-resource-officer",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "he-killing-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"year:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "he-killing-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "tuo-killing-output",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"month:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"hour:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "tuo-killing-output",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhou-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"hour:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"year:stem\",\"day:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "zhou-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"day:stem\",\"month:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 0,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": []
+    },
+    {
+      "id": "chang-killing-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"mediation\",\"year:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "chang-killing-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "cheng-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"day:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "cheng-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 2,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "direct-tendency-supported",
+          "direct": "supported",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "direct-tendency-supported",
+          "direct": "supported",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"day:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"year:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"hour:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"day:stem\",\"year:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"year:stem\",\"day:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"month:stem\",\"day:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "scope": "complete",
+      "synthetic": false,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "supported",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "scope": "partial",
+      "synthetic": false,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "release",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 4,
+        "directSupported": 1,
+        "combinedSupported": 1,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "joint-screen-supported",
+          "direct": "supported",
+          "combined": "supported",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "release",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "injury",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 2,
+        "combinedSupported": 2,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "joint-screen-supported",
+          "direct": "supported",
+          "combined": "supported",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "joint-screen-supported",
+          "direct": "supported",
+          "combined": "supported",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "injury",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 4,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "opposed",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 1,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "direct-tendency-supported",
+          "direct": "supported",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"hour:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 2,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-backed-release",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 2,
+        "combinedSupported": 2,
+        "withSupportedRoute": 1,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "supported"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "joint-screen-supported",
+          "direct": "supported",
+          "combined": "supported",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "joint-screen-supported",
+          "direct": "supported",
+          "combined": "supported",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-backed-release",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-basis-removed",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"hour:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-basis-removed",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-with-rooted-controller",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 6,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:hour>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"year:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            },
+            {
+              "pathId": "[\"protection\",\"day:stem\",\"hour:stem\",\"month:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"day:stem\",\"hour:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "resource-with-rooted-controller",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mediation-supported",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 1,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "supported"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mediation-supported",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mediation-root-loss",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "supported",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": null,
+          "counterfactual": "supported",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "supported",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "mediation-root-loss",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [
+            {
+              "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": "unresolved",
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "protection-supported",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 1,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "supported"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "protection-supported",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "protection-helper-pressure",
+      "scope": "complete",
+      "synthetic": true,
+      "summary": {
+        "actions": 5,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "supported",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"hour:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "no-consequence-support",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "opposed",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "protection-helper-pressure",
+      "scope": "partial",
+      "synthetic": true,
+      "summary": {
+        "actions": 3,
+        "directSupported": 0,
+        "combinedSupported": 0,
+        "withSupportedRoute": 0,
+        "withDirectionFit": 0,
+        "actualEffectsConfirmed": 0
+      },
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": null,
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [
+            {
+              "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+              "state": "unresolved"
+            }
+          ],
+          "actualEffect": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "disposition": "partial",
+          "direct": "unresolved",
+          "combined": "unresolved",
+          "structural": "unresolved",
+          "objective": "unresolved",
+          "counterfactual": null,
+          "routeStates": [],
+          "actualEffect": "unresolved"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
