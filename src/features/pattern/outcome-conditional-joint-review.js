@@ -17,11 +17,21 @@ export function reviewConditionalJoint(prior,joint){
   const {assumptions,candidates}=joint.scenario;
   const packet=compileJointScenario({scope,assumptions,candidates});
   if(!packet||assumptions.some(a=>a.state!=='unresolved')||joint.scenario.judgments.some(j=>j.state!=='unresolved'))return empty('scenario-authority');
+  const pathsById=new Map(joint.paths.map(p=>[p.pathId,p])),actionsById=new Map((joint.actions??[]).map(a=>[a.edgeId,a]));
+  const candidatesById=new Set(candidates.map(c=>c.id));
+  if(pathsById.size!==joint.paths.length||actionsById.size!==(joint.actions??[]).length)return empty('bridge-inventory');
   const assumptionBridges=assumptions.map(a=>{
    const identity=JSON.parse(a.id);
    if(!Array.isArray(identity))throw Error('assumption-identity');
    const [kind,...subject]=identity,bridge=describeSemanticBridge(kind,subject);
    if(!bridge||!['leg-operation','source-context','path-operation','path-obstruction','pair-restricts-leg','root-loss-blocks-leg','pressure-relief-operation','external-pressure-relief'].includes(kind))throw Error('assumption-bridge');
+   const [ref,edge]=subject;
+   const bound=kind==='leg-operation'?candidatesById.has(key('leg-ready',ref)):
+    ['source-context','path-operation','path-obstruction'].includes(kind)?pathsById.get(ref)?.scenarioPropositionId===key('path',ref):
+    kind==='pair-restricts-leg'?actionsById.get(edge)?.combinationPairIds.includes(ref)&&candidatesById.has(key('leg-ready',edge)):
+    kind==='root-loss-blocks-leg'?actionsById.get(edge)?.exposedRootIds.includes(ref)&&candidatesById.has(key('leg-ready',edge)):
+    candidatesById.has(key('pressure',ref));
+   if(!bound)throw Error('assumption-owner-binding');
    return {id:a.id,...bridge};
   });
   const variables=assumptions.map(a=>({id:a.id,value:null}));
