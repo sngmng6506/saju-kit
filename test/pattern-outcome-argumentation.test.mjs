@@ -90,3 +90,54 @@ test('native V10 exposes argument review without decision authority',()=>{
  assert.notEqual(r.efficacyReview.status,'invalid-evidence');assert.equal(r.decisionReview.status,'abstained');
  assert.equal(r.efficacyReview.mechanismReview.argumentReview.status,'diagnostic');
 });
+
+const gated=(id,conclusion,premises,undercutWhen,applicability='observed')=>({...rule(id,conclusion,premises,applicability),undercutWhen});
+const gateProps=()=>[p('a','observation'),p('u','observation'),p('v','observation'),p('b'),p('c'),p('effect','effect-hypothesis')];
+const gateRules=()=>[gated('ab',lit('b'),[lit('a')],[lit('u')]),rule('bc',lit('c'),[lit('b')]),rule('cb',lit('b'),[lit('c')])];
+test('explicit observation undercut withdraws dependent closure without negating conclusion',()=>{
+ const ps=gateProps(),rs=gateRules(),seed=f('a','a'),attack=f('u','u');
+ assert.equal(read(run(ps,[seed],rs),'c').state,'supported');
+ const r=run(ps,[seed,attack],rs);
+ assert.equal(read(r,'b').state,'unresolved');assert.equal(read(r,'c').state,'unresolved');
+ assert.equal(read(r,'b').opposition.rank,null);
+ assert.deepEqual(r.ruleResults[0].undercuts,[{...lit('u'),witnesses:[{kind:'evidence',id:'u'}]}]);
+ assert.equal(r.ruleResults[0].status,'undercut');assert.equal(r.ruleResults[0].firstRankWitness,false);
+ assert.deepEqual(run(ps,[attack,seed],rs).judgments,r.judgments);
+});
+test('independent proof survives undercut and rebuttal is an independent sign',()=>{
+ const ps=gateProps(),rs=gateRules(),fs=[f('a','a'),f('u','u')];
+ const r=run(ps,fs,[...rs,rule('alternative',lit('b'),[lit('a')])]);
+ assert.equal(read(r,'c').state,'supported');
+ assert.deepEqual(read(r,'b').support.witnesses,[{kind:'rule',id:'alternative'}]);
+ const opposed=run(ps,fs,[...rs,rule('rebuttal',lit('b','against'),[lit('a')])]);
+ assert.equal(read(opposed,'b').state,'opposed');
+ assert.equal(read(opposed,'c').state,'unresolved');
+});
+test('conflicting attack evidence remains visible and cannot establish clearance',()=>{
+ const r=run(gateProps(),[f('a','a'),f('u+','u'),f('u-','u','against')],gateRules());
+ assert.equal(read(r,'u').state,'conflicting');assert.equal(read(r,'b').state,'unresolved');
+ assert.equal(r.ruleResults[0].status,'undercut');
+});
+test('undercuts are explicit signed alternatives, scoped like all evidence',()=>{
+ const ps=gateProps(),rs=[gated('ab',lit('b'),[lit('a')],[lit('u','against'),lit('v')])];
+ const seed=f('a','a');
+ for(const facts of [[seed],[seed,f('u+','u')],[seed,f('v','v','for','complete-only')]]){
+  assert.equal(read(run(ps,facts,rs,'partial'),'b').state,'supported');
+ }
+ for(const fact of [f('u-','u','against'),f('v','v')]){
+  assert.equal(read(run(ps,[seed,fact],rs),'b').state,'unresolved');
+ }
+ const r=run(ps,[seed,f('v','v')],[{...rs[0],applicability:'complete-only'}],'partial');
+ assert.equal(r.ruleResults[0].status,'scope-unresolved');
+ // Absence of an attack is not positive evidence for its opposite.
+ assert.equal(read(run(ps,[seed],rs),'v').state,'unresolved');
+});
+test('undercut contract rejects recursive, duplicate and unknown predicates and preserves effect gate',()=>{
+ const ps=gateProps(),fs=[f('a','a')];
+ for(const bad of [[lit('b')],[lit('effect')],[lit('absent')],[lit('u'),lit('u')],null,{},[lit('u','bad')]]){
+  assert.equal(run(ps,fs,[gated('ab',lit('b'),[lit('a')],bad)]).status,'invalid-evidence');
+ }
+ assert.equal(run(ps,fs,[gated('bad',lit('effect'),[lit('a')],[lit('u')])]).status,'invalid-evidence');
+ const plain=run(ps,fs,[rule('ab',lit('b'),[lit('a')])]);
+ assert.equal(Object.hasOwn(plain.ruleResults[0],'undercuts'),false);
+});
