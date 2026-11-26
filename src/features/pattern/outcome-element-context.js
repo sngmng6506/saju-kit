@@ -20,7 +20,6 @@ const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new 
 const lit=(propositionId,sign='for')=>({propositionId,sign});
 const key=(...x)=>JSON.stringify(x);
 const ref=(owner,id,field)=>({owner,id,field});
-const uniq=xs=>[...new Set(xs)].sort();
 const eq=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&new Set(a).size===a.length&&new Set(b).size===b.length&&a.every(x=>b.includes(x));
 const supports=r=>r.type==='same'||r.type==='generate'&&r.direction==='left-to-right';
 const left=(a,b,k)=>{const r=elementRelation(a,b);return r.type===k&&r.direction==='left-to-right';};
@@ -88,6 +87,12 @@ export function reviewElementContexts(prior,root,supply,source){
    n.independentSupplyConfirmed!==null||!Array.isArray(n.groundedRootIds)||!Array.isArray(n.contestedRootIds)||
    n.groundedRootIds.some(r=>slots.get(r)?.element!==n.element||slots.get(r)?.state!==cleanState)||
    n.contestedRootIds.some(r=>!slots.has(r)||slots.get(r).element!==n.element||slots.get(r).state===cleanState||slots.get(r).role==='residual'))return empty('node-binding');
+  const local=a.layer==='visible'?null:as.map(x=>slots.get(x.id)).filter(s=>s.role!=='residual');
+  const rr=ro.get(a.id);
+  const grounded=local?local.filter(s=>s.state===cleanState).map(s=>s.id):rr.uncontestedRootIds;
+  const contested=local?local.filter(s=>s.state!==cleanState).map(s=>s.id):rr.contestedRootIds;
+  if(!eq(n.groundedRootIds,grounded)||!eq(n.contestedRootIds,contested)||!eq(n.contacts,a.contacts)||
+   as.some(x=>x.element!==a.element||x.position!==a.position||x.layer!==a.layer||!eq(x.contacts,a.contacts)))return empty('node-root-coverage');
   const expectedState=n.groundedRootIds.length&&!a.contacts.length?'grounded-observation':
    n.groundedRootIds.length||n.contestedRootIds.length?'context-review':complete?'no-substantial-root-observed':'partial';
   if(n.state!==expectedState)return empty('node-state');
