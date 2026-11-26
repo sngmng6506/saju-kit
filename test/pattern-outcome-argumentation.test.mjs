@@ -8,7 +8,6 @@ import {observeCombinationResidualContext} from '../src/features/pattern/outcome
 import {evaluateClashScenario,reviewClashPolicy,clashSourcePolicies} from '../src/features/pattern/outcome-clash-policy.js';
 import {observeClashResidualContext} from '../src/features/pattern/outcome-clash-residual.js';
 import {evaluateJointScenario,reviewJointConstraints} from '../src/features/pattern/outcome-joint-constraints.js';
-import {reviewSourceEffectPolicy} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
