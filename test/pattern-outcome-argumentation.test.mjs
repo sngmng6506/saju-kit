@@ -598,11 +598,11 @@ function consequenceFixture(target='fire',complete=true){
   row.sourceBasis=complete?'direct-root-observed':'partial';row.contextBlockers=[];row.sourcePressure=[];row.targetPressure=[];
   if(e.kind==='control'){
    const from=byActor.get(e.from),to=byActor.get(e.to);
-   pressures.push({id:JSON.stringify([from.graphNodeId,to.graphNodeId]),controllerNodeId:from.graphNodeId,targetNodeId:to.graphNodeId,local:Math.abs(['year','month','day','hour'].indexOf(from.position)-['year','month','day','hour'].indexOf(to.position))===1,candidatePathIds:[],neutralizationConfirmed:null,effective:null});
+   pressures.push({id:JSON.stringify([from.graphNodeId,to.graphNodeId]),controllerNodeId:from.graphNodeId,targetNodeId:to.graphNodeId,local:Math.abs(['year','month','day','hour'].indexOf(from.position)-['year','month','day','hour'].indexOf(to.position))===1,candidatePathIds:[],screenedPathIds:[],neutralizationConfirmed:null,effective:null});
   }
  }
  const result=evaluateArguments({scope:complete?'complete':'partial',propositions,evidence,rules});
- return {...x,element,argument:{...base,propositions,evidence,rules,actions,judgments:result.judgments,ruleResults:result.ruleResults},joint:{...base,actions:jointActions},pressure:{...base,pressures}};
+ return {...x,element,argument:{...base,propositions,evidence,rules,actions,judgments:result.judgments,ruleResults:result.ruleResults},joint:{...base,actions:jointActions},pressure:{...base,pressures,paths:[]}};
 }
 const consequenceReview=x=>reviewModeledConsequences(x.prior,x.supply,x.argument,x.pressure,x.joint,x.element);
 const consequenceClause=(r,edge)=>r.actions.find(a=>a.edgeId===edge).clauses.find(c=>c.propositionId!==null);
@@ -622,7 +622,6 @@ test('modeled consequence withdraws on exact-edge interference or failed premise
  const mutations=[
   x=>{x.joint.actions.find(a=>a.edgeId===edge).combinationPairIds=['candidate'];},
   x=>{x.joint.actions.find(a=>a.edgeId===edge).exposedRootIds=['candidate'];},
-  x=>{x.pressure.pressures.find(p=>p.local).candidatePathIds=['possible-protection'];},
   x=>{x.supply.actions.find(a=>a.edgeId===edge).sourcePressure=[{donorState:'context-review'}];},
   x=>{x.supply.actions.find(a=>a.edgeId===edge).contextBlockers=['nonlocal-context'];},
   x=>{x.supply.actions.find(a=>a.edgeId===edge).sourceBasis='no-screened-source-basis';},
@@ -643,6 +642,7 @@ test('modeled consequence rejects tampered proof and clause authority and abstai
  const x=consequenceFixture();x.element.elements.find(p=>p.element==='fire').model.weakState='opposed';assert.equal(consequenceReview(x).status,'invalid-evidence');
  const y=consequenceFixture();y.argument.judgments[0].state='unresolved';assert.equal(consequenceReview(y).status,'invalid-evidence');
  const z=consequenceFixture();z.element.actions[0].clauses[0].actualPredicateState='supported';assert.equal(consequenceReview(z).status,'invalid-evidence');
+ const missing=consequenceFixture();missing.pressure.pressures.find(p=>p.local).candidatePathIds=['foreign'];assert.equal(consequenceReview(missing).reason,'interposition-inventory');
  const partial=consequenceReview(consequenceFixture('fire',false));assert.equal(partial.status,'partial',partial.reason);
  assert.ok(partial.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
 });
@@ -667,10 +667,12 @@ test('production core replay establishes both modeled consequences and withdraws
   assert.equal(r.actualEffectPromoted,false,c.id);
   const q=r.rows.find(a=>a.edgeId==='visible:month>visible:day'&&a.kind===c.kind);
   assert.equal(q?.state,complete?c.expected:'unresolved',c.id);
-  if(!complete)assert.ok(r.rows.every(a=>a.state==='unresolved'));
+  if(!complete)assert.ok(r.rows.every(a=>a.state==='unresolved'&&(a.directInjuryState==null||a.directInjuryState==='unresolved')));
   if(complete&&c.id==='injury-interposition'){
    assert.equal(q.modelState,'supported');assert.equal(q.structuralState,'supported');
    assert.deepEqual(q.blockers,['no-observed-interposition-candidate']);
+   assert.equal(q.directInjuryState,'supported');assert.equal(q.residualInjuryState,'unresolved');
+   assert.ok(q.interpositionCandidates.length>0);assert.ok(q.interpositionCandidates.every(p=>p.actualReliefState==='unresolved'));
   }
  }
 });
