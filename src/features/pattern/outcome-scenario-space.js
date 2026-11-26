@@ -1,3 +1,4 @@
+import {analyzeScenarioSets,MAX_SET_QUERIES,unavailableScenarioSets} from './outcome-scenario-sets.js';
 // Bounded exact Boolean completion of explicitly scoped model assumptions.
 // A completion is not a physical outcome. No probability, preference,
 // implicit exclusivity or allocation is introduced.
@@ -5,10 +6,10 @@ const valid=x=>typeof x==='string'&&x.length>0;
 const unique=xs=>new Set(xs).size===xs.length;
 const key=(...xs)=>JSON.stringify(xs);
 const MAX_UNKNOWN=16,MAX_NODES=12000,MAX_QUERIES=64,MAX_WORK=16000000;
-export function evaluateScenarioSpace({scope,variables,queries,constraints=[]}={}){
+export function evaluateScenarioSpace({scope,variables,queries,constraints=[],includeSets=false}={}){
  const base={selectionAuthority:false,effective:null};
- const empty=(status,reason)=>({...base,status,reason,scenarioCount:0,admissibleCount:null,queries:[],pairs:[]});
- if(!['complete','partial'].includes(scope)||![variables,queries,constraints].every(Array.isArray)||
+ const empty=(status,reason)=>({...base,status,reason,scenarioCount:0,admissibleCount:null,queries:[],pairs:[],...(includeSets===true?{sets:{...unavailableScenarioSets(reason),status}}:{})});
+ if(typeof includeSets!=='boolean'||!['complete','partial'].includes(scope)||![variables,queries,constraints].every(Array.isArray)||
   variables.some(v=>!v||!valid(v.id)||![true,false,null].includes(v.value))||!unique(variables.map(v=>v.id))||
   queries.some(q=>!q||!valid(q.id))||!unique(queries.map(q=>q.id))||
   constraints.some(c=>!c||!valid(c.id)||!Array.isArray(c.refs)||!c.refs.length||c.refs.some(r=>!r||!valid(r.owner)||!valid(r.id)||!valid(r.field)))||
@@ -38,6 +39,7 @@ export function evaluateScenarioSpace({scope,variables,queries,constraints=[]}={
  if(count*(nodes+pairCount)>MAX_WORK)return empty('unavailable','work-budget');
  const pos=new Map(unknown.map((id,i)=>[id,i])),singles=qs.map(()=>({count:0,witness:null})),pairs=[];
  for(let i=0;i<qs.length;i++)for(let j=i+1;j<qs.length;j++)pairs.push({i,j,counts:[0,0,0,0],witnesses:[null,null,null,null]});
+ const collectSets=includeSets&&qs.length<=MAX_SET_QUERIES,patterns=new Map();
  let admitted=0;
  for(let mask=0;mask<count;mask++){
   const read=id=>values.get(id)===null?Boolean(mask&(1<<pos.get(id))):values.get(id);
@@ -45,6 +47,11 @@ export function evaluateScenarioSpace({scope,variables,queries,constraints=[]}={
   admitted++;
   const witness=()=>Object.fromEntries(unknown.map(id=>[id,read(id)]));
   const results=qs.map(f=>f(read));
+  if(collectSets){
+   const truthMask=results.reduce((m,value,i)=>value?m|(1<<i):m,0);
+   const old=patterns.get(truthMask);
+   if(old)old.count++;else patterns.set(truthMask,{mask:truthMask,count:1,witness:witness()});
+  }
   results.forEach((v,i)=>{if(v){singles[i].count++;if(singles[i].witness===null)singles[i].witness=witness();}});
   for(const p of pairs){
    const k=(results[p.i]?2:0)+(results[p.j]?1:0);
@@ -52,8 +59,9 @@ export function evaluateScenarioSpace({scope,variables,queries,constraints=[]}={
   }
  }
  if(!admitted)return {...empty('diagnostic','no-admissible-completion'),scenarioCount:count,admissibleCount:0,variables:unknown};
+ const sets=includeSets?(collectSets?analyzeScenarioSets(queries.map(q=>q.id),[...patterns.values()]):unavailableScenarioSets('set-query-budget')):null;
  const label=n=>n===0?'impossible-in-model':n===admitted?'invariant-in-model':'possible-not-invariant';
- return {...base,status:'diagnostic',reason:null,scenarioCount:count,admissibleCount:admitted,variables:unknown,
+ return {...base,status:'diagnostic',reason:null,scenarioCount:count,admissibleCount:admitted,variables:unknown,...(includeSets?{sets}:{}),
   queries:queries.map((q,i)=>({id:q.id,state:label(singles[i].count),supportCount:singles[i].count,witness:singles[i].witness})),
   pairs:pairs.map(p=>({id:key(queries[p.i].id,queries[p.j].id),leftId:queries[p.i].id,rightId:queries[p.j].id,
    jointState:label(p.counts[3]),individuallyPossible:singles[p.i].count>0&&singles[p.j].count>0,
