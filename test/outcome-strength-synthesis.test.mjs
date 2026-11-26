@@ -1,3 +1,4 @@
+import {compileIndependentSupply} from '../src/features/pattern/outcome-independent-supply.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
@@ -189,4 +190,26 @@ test('origin-excluded strength stays unresolved without any seed and in partial 
 test('indirect support seed coverage rejects changed donor inventory',()=>{
  const f=fixture(),q=synthesizeContextualStrength({...f,nodes:f.nodes.map(n=>n.id==='a'?{...n,rootIds:['fake']}:n),policy:'indirect-support'});
  assert.equal(q.status,'invalid-evidence');
+});
+
+test('origin-excluded closure agrees with independent graph reachability on every assignment',()=>{
+ const nodes=[node('a',['r']),node('b',['s']),node('c',['r'])],links=[{id:'ab',from:'a',to:'b',kind:'peer'},{id:'ba',from:'b',to:'a',kind:'peer'},{id:'bc',from:'b',to:'c',kind:'peer'},{id:'cb',from:'c',to:'b',kind:'peer'}],targets=['a','b','c'];
+ const packet=compileReplenishmentNetwork({completeHour:true,nodes,links,targets}).packet;
+ const compiled=targets.map(targetId=>compileIndependentSupply({packet,nodes,targetId}));
+ assert.ok(compiled.every(c=>c.status==='diagnostic'));
+ const extended={...packet,propositions:[...packet.propositions,...compiled.flatMap(c=>c.propositions)],rules:[...packet.rules,...compiled.flatMap(c=>c.rules)]};
+ const ids=packet.propositions.filter(p=>p.level==='observation').map(p=>p.id);
+ for(let mask=0;mask<2**ids.length;mask++){
+  const truth=new Set(ids.filter((_,i)=>mask&(1<<i)));
+  const evidence=ids.map((id,i)=>({id:'f'+i,propositionId:id,sign:truth.has(id)?'for':'against',refs:[{owner:'fixture',id,field:'value'}],applicability:'complete-only'}));
+  const result=evaluateArguments({...extended,evidence});assert.equal(result.status,'diagnostic');
+  for(const [i,t] of targets.entries()){
+   const reached=new Set(nodes.filter(n=>n.id!==t&&n.rootIds.some(r=>truth.has(key('slot-retained',r))&&truth.has(key('root-access',n.id,r)))).map(n=>n.id));
+   let changed=true;
+   while(changed){changed=false;for(const l of links)if(l.from!==t&&reached.has(l.from)&&truth.has(key('supply-operation',l.id))&&!reached.has(l.to)){reached.add(l.to);changed=true;}}
+   assert.equal(result.judgments.find(j=>j.id===compiled[i].propositionId).state==='supported',reached.has(t));
+  }
+ }
+ const extra={...packet.rules[0],id:'fabricated-supply-rule'};
+ assert.equal(compileIndependentSupply({packet:{...packet,rules:[...packet.rules,extra]},nodes,targetId:'a'}).reason,'unexpected-supply-rule');
 });
