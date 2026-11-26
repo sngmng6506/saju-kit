@@ -1,3 +1,4 @@
+import {evaluateContextualForceComparison} from './outcome-contextual-force.js';
 import {compareForceCompletionEnvelope} from '../../core/relative-force.js';
 // Pressure topology, not a force estimator. A grounded proof of the
 // structural prerequisites never proves neutralization or effective supply.
@@ -36,7 +37,7 @@ export function tracePressureDependencies(pressureIds,paths){
 // Replay the exact signed comparison axes in controller-to-target
 // orientation. The existing stable-dominance policy remains unchanged;
 // the completion envelope cannot serve as a new positive premise.
-export function diagnoseControlContrast({completeHour,originalLeft,originalRight,sensitivityLeft,sensitivityRight,pair,reversed=false}={}){
+export function diagnoseControlContrast({completeHour,originalLeft,originalRight,sensitivityLeft,sensitivityRight,pair,reversed=false,pressureId=null}={}){
  if(typeof completeHour!=='boolean'||typeof reversed!=='boolean'||!pair||pair.forceComparison!==null)return null;
  const seasonal=['principalSupport','seasonSupport'];
  const expected=['exactSubstantial','anySubstantial','ownPillarSubstantial','monthSubstantial',...seasonal,'localRootedGeneration','localRootedPeer'];
@@ -69,7 +70,9 @@ export function diagnoseControlContrast({completeHour,originalLeft,originalRight
   e.invariantRelation===mixed?'known-opposing-axes':e.invariantRelation===equal?'identical-observed-profiles':
   e.relation==='unresolved'?(e.invariantRelation?'invariant-under-abstract-completions':'completion-sensitive-direction'):
   'cross-view-stability-condition-unmet';
- return {views,contrast,reason,controllerDominanceUnmet:unmet,forceComparison:null,
+ const contextual=pressureId===null?null:evaluateContextualForceComparison({completeHour,pressureId,left:sensitivityLeft,right:sensitivityRight});
+ if(contextual&&contextual.status!==(completeHour?'diagnostic':'partial'))return null;
+ return {views,contrast,reason,controllerDominanceUnmet:unmet,forceComparison:null,contextual,
   limitations:['axis-completion-overapproximation-not-physical-scenario','stable-profile-order-not-effective-control','no-premise-promotion']};
 }
 export function observePressureDependencyReview(prior,root,supply,interposition){
@@ -106,7 +109,7 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
     if(comparison.original!==exact.controlComparison)return empty();
     const so=root.occurrences.find(o=>o.id===source.id),ta=root.occurrences.find(o=>o.id===a.id);
     comparisonDiagnostics=diagnoseControlContrast({completeHour:complete,originalLeft:prior.relativeForce.profiles[source.id]?.axes,
-     originalRight:prior.relativeForce.profiles[a.id]?.axes,sensitivityLeft:so?.sensitivityAxes,sensitivityRight:ta?.sensitivityAxes,pair:p,reversed:!forward});
+     originalRight:prior.relativeForce.profiles[a.id]?.axes,sensitivityLeft:so?.sensitivityAxes,sensitivityRight:ta?.sensitivityAxes,pair:p,reversed:!forward,pressureId:key(e.from,target)});
     if(!comparisonDiagnostics)return empty();
    }
    const rel=comparison?.sensitivity;
