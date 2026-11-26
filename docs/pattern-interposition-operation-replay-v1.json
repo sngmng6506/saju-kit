@@ -1,0 +1,634 @@
+{
+  "version": "p1-4d-interposition-operation-replay-v1",
+  "execution": "Fetched production core module bodies and audit helper in JS isolate; fixture/URL adapters; native Node/V10 not run",
+  "base": "9761fb93ed06b992a60fffe298539ed9d5b2135e",
+  "replays": 54,
+  "existing46OutcomeParity": true,
+  "coverage": {
+    "eligible": 82,
+    "directReleaseSupported": 2,
+    "directReleaseSupportedJointUnresolved": 2,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 2,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 80,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 2,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "routeCoverage": {
+    "eligible": 40,
+    "supported": 0
+  },
+  "routeSummary": {
+    "historical:complete:modeled-counterpressure-channel:unresolved": 14,
+    "historical:partial:modeled-counterpressure-channel:unresolved": 4,
+    "historical:complete:modeled-mediation-channel:unresolved": 26,
+    "historical:partial:modeled-mediation-channel:unresolved": 6,
+    "synthetic:complete:modeled-counterpressure-channel:unresolved": 7,
+    "synthetic:complete:modeled-mediation-channel:unresolved": 8,
+    "synthetic:complete:modeled-mediation-channel:supported": 2,
+    "synthetic:partial:modeled-mediation-channel:unresolved": 5,
+    "synthetic:complete:modeled-counterpressure-channel:supported": 1,
+    "synthetic:partial:modeled-counterpressure-channel:unresolved": 2
+  },
+  "controls": [
+    {
+      "id": "mediation-supported",
+      "scope": "complete",
+      "pillars": [
+        "기축",
+        "경신",
+        "임자",
+        "기축"
+      ],
+      "expected": "supported",
+      "route": {
+        "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:year>visible:day",
+        "pressureId": "[\"year:stem\",\"day:stem\"]",
+        "kind": "modeled-mediation-channel",
+        "sourcePolicyId": "tongguan",
+        "propositionId": "[\"modeled-route\",\"[\\\"mediation\\\",\\\"month:stem\\\",\\\"year:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "entry-full-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          },
+          {
+            "edgeId": "visible:month>visible:day",
+            "mode": "exit-source-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+              "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+              "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+            ]
+          }
+        ],
+        "structuralState": "screen-reachable",
+        "dependencyIds": [],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "supported",
+        "proof": {
+          "support": {
+            "rank": 2,
+            "witnesses": [
+              {
+                "kind": "rule",
+                "id": "[\"route-operation-rule\",\"[\\\"mediation\\\",\\\"month:stem\\\",\\\"year:stem\\\",\\\"day:stem\\\"]\"]"
+              }
+            ]
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": []
+      }
+    },
+    {
+      "id": "mediation-supported",
+      "scope": "partial",
+      "pillars": [
+        "기축",
+        "경신",
+        "임자",
+        "기축"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:year>visible:day",
+        "pressureId": "[\"year:stem\",\"day:stem\"]",
+        "kind": "modeled-mediation-channel",
+        "sourcePolicyId": "tongguan",
+        "propositionId": "[\"modeled-route\",\"[\\\"mediation\\\",\\\"month:stem\\\",\\\"year:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "entry-full-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          },
+          {
+            "edgeId": "visible:month>visible:day",
+            "mode": "exit-source-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+              "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+              "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+            ]
+          }
+        ],
+        "structuralState": "partial",
+        "dependencyIds": [],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+          "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+          "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+        ]
+      }
+    },
+    {
+      "id": "mediation-root-loss",
+      "scope": "complete",
+      "pillars": [
+        "기축",
+        "경오",
+        "임자",
+        "기축"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:year>visible:day",
+        "pressureId": "[\"year:stem\",\"day:stem\"]",
+        "kind": "modeled-mediation-channel",
+        "sourcePolicyId": "tongguan",
+        "propositionId": "[\"modeled-route\",\"[\\\"mediation\\\",\\\"month:stem\\\",\\\"year:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "entry-full-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          },
+          {
+            "edgeId": "visible:month>visible:day",
+            "mode": "exit-source-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+              "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+              "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+            ]
+          }
+        ],
+        "structuralState": "screen-blocked",
+        "dependencyIds": [
+          "[\"month:branch:fire\",\"month:stem\"]"
+        ],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+          "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+          "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]"
+        ]
+      }
+    },
+    {
+      "id": "mediation-root-loss",
+      "scope": "partial",
+      "pillars": [
+        "기축",
+        "경오",
+        "임자",
+        "기축"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"mediation\",\"month:stem\",\"year:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:year>visible:day",
+        "pressureId": "[\"year:stem\",\"day:stem\"]",
+        "kind": "modeled-mediation-channel",
+        "sourcePolicyId": "tongguan",
+        "propositionId": "[\"modeled-route\",\"[\\\"mediation\\\",\\\"month:stem\\\",\\\"year:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "entry-full-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          },
+          {
+            "edgeId": "visible:month>visible:day",
+            "mode": "exit-source-generation",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+              "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+              "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+            ]
+          }
+        ],
+        "structuralState": "partial",
+        "dependencyIds": [
+          "[\"month:branch:fire\",\"month:stem\"]"
+        ],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"generation-strong-source-release:earth:metal\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:year>visible:month\",\"existing-generation-screen-met\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:month>visible:day\\\",\\\"generation-strong-source-release:metal:water\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:month>visible:day\",\"source-basis-screen-met\"]",
+          "[\"visible:month>visible:day\",\"context-blockers-empty\"]",
+          "[\"visible:month>visible:day\",\"source-pressure-screen-clear\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"mediation\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-1\"]"
+        ]
+      }
+    },
+    {
+      "id": "protection-supported",
+      "scope": "complete",
+      "pillars": [
+        "을묘",
+        "기묘",
+        "계묘",
+        "기미"
+      ],
+      "expected": "supported",
+      "route": {
+        "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:month>visible:day",
+        "pressureId": "[\"month:stem\",\"day:stem\"]",
+        "kind": "modeled-counterpressure-channel",
+        "sourcePolicyId": null,
+        "propositionId": "[\"modeled-route\",\"[\\\"protection\\\",\\\"year:stem\\\",\\\"month:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "control-profile",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          }
+        ],
+        "structuralState": "screen-reachable",
+        "dependencyIds": [],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "supported",
+        "proof": {
+          "support": {
+            "rank": 2,
+            "witnesses": [
+              {
+                "kind": "rule",
+                "id": "[\"route-operation-rule\",\"[\\\"protection\\\",\\\"year:stem\\\",\\\"month:stem\\\",\\\"day:stem\\\"]\"]"
+              }
+            ]
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": []
+      }
+    },
+    {
+      "id": "protection-supported",
+      "scope": "partial",
+      "pillars": [
+        "을묘",
+        "기묘",
+        "계묘",
+        "기미"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:month>visible:day",
+        "pressureId": "[\"month:stem\",\"day:stem\"]",
+        "kind": "modeled-counterpressure-channel",
+        "sourcePolicyId": null,
+        "propositionId": "[\"modeled-route\",\"[\\\"protection\\\",\\\"year:stem\\\",\\\"month:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "control-profile",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          }
+        ],
+        "structuralState": "partial",
+        "dependencyIds": [],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+        ]
+      }
+    },
+    {
+      "id": "protection-helper-pressure",
+      "scope": "complete",
+      "pillars": [
+        "을묘",
+        "기묘",
+        "계묘",
+        "기축"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:month>visible:day",
+        "pressureId": "[\"month:stem\",\"day:stem\"]",
+        "kind": "modeled-counterpressure-channel",
+        "sourcePolicyId": null,
+        "propositionId": "[\"modeled-route\",\"[\\\"protection\\\",\\\"year:stem\\\",\\\"month:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "control-profile",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          }
+        ],
+        "structuralState": "dependency-unresolved",
+        "dependencyIds": [
+          "[\"hour:branch:metal\",\"year:stem\"]"
+        ],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]"
+        ]
+      }
+    },
+    {
+      "id": "protection-helper-pressure",
+      "scope": "partial",
+      "pillars": [
+        "을묘",
+        "기묘",
+        "계묘",
+        "기축"
+      ],
+      "expected": "unresolved",
+      "route": {
+        "pathId": "[\"protection\",\"year:stem\",\"month:stem\",\"day:stem\"]",
+        "controlEdgeId": "visible:month>visible:day",
+        "pressureId": "[\"month:stem\",\"day:stem\"]",
+        "kind": "modeled-counterpressure-channel",
+        "sourcePolicyId": null,
+        "propositionId": "[\"modeled-route\",\"[\\\"protection\\\",\\\"year:stem\\\",\\\"month:stem\\\",\\\"day:stem\\\"]\"]",
+        "gatePropositionId": "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+        "legProofs": [
+          {
+            "edgeId": "visible:year>visible:month",
+            "mode": "control-profile",
+            "premiseIds": [
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+              "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+              "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+              "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+            ]
+          }
+        ],
+        "structuralState": "partial",
+        "dependencyIds": [],
+        "sourceApplicability": "unresolved",
+        "actualReliefState": "unresolved",
+        "actualReceptionState": "unresolved",
+        "effective": null,
+        "state": "unresolved",
+        "proof": {
+          "support": {
+            "rank": null,
+            "witnesses": []
+          },
+          "opposition": {
+            "rank": null,
+            "witnesses": []
+          }
+        },
+        "missingPremiseIds": [
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"independent-route-screen\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"adjacent-visible-action\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"direct-grounded-source-basis\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-observed-combination-or-clash-reference\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"no-other-observed-context-blocker\"]",
+          "[\"modeled-condition\",\"[\\\"visible:year>visible:month\\\",\\\"control-weak-target:wood:earth\\\"]\",\"source-pressure-screen-clear\"]",
+          "[\"visible:year>visible:month\",\"stable-source-profile-dominance\"]",
+          "[\"modeled-condition\",\"[\\\"interposition-operation\\\",\\\"[\\\\\\\"protection\\\\\\\",\\\\\\\"year:stem\\\\\\\",\\\\\\\"month:stem\\\\\\\",\\\\\\\"day:stem\\\\\\\"]\\\"]\",\"nonconflicting-leg-0\"]"
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
