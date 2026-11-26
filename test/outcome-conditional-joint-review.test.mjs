@@ -1,3 +1,4 @@
+import {semanticBridgeRegistry,describeSemanticBridge} from '../src/features/pattern/outcome-semantic-bridges.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {reviewConditionalJoint} from '../src/features/pattern/outcome-conditional-joint-review.js';
@@ -47,4 +48,30 @@ test('conditional domain refuses altered base proof, path and assumption authori
  assert.equal(reviewConditionalJoint(prior,{...joint,paths:[]}).status,'invalid-evidence');
  assert.equal(reviewConditionalJoint(prior,{...joint,scenario:{...joint.scenario,judgments:[]}}).status,'invalid-evidence');
  assert.equal(reviewConditionalJoint(prior,{...joint,scenario:{...joint.scenario,assumptions:joint.scenario.assumptions.map(a=>({...a,state:'supported'}))}}).status,'invalid-evidence');
+});
+
+test('semantic bridge registry distinguishes scope, evidence and authority',()=>{
+ const registry=semanticBridgeRegistry();
+ assert.equal(registry.length,12);
+ assert.equal(new Set(registry.map(r=>r.kind)).size,12);
+ for(const r of registry){
+  const subject=['pair-edge','root-edge'].includes(r.scope)?['resource','edge']:['subject'];
+  const b=describeSemanticBridge(r.kind,subject);
+  assert.equal(b.state,'unresolved');assert.equal(b.selectionAuthority,false);assert.equal(b.effective,null);
+  assert.ok(b.reviewObligations.length>0);assert.ok(b.nonEquivalentProxies.length>0);
+  assert.equal(b.authority,'review-obligation-only');
+  assert.equal(describeSemanticBridge(r.kind,[]),null);
+ }
+ assert.equal(describeSemanticBridge('unregistered',['x']),null);
+ assert.deepEqual(describeSemanticBridge('external-pressure-relief',['p']).sources,[]);
+});
+test('joint bridge obligations bind actual assumption owners and never grant clearance',()=>{
+ const {prior,joint,seed,block}=fixture(),r=reviewConditionalJoint(prior,joint);
+ assert.equal(r.status,'diagnostic');
+ assert.deepEqual(r.assumptionBridges.map(b=>b.id),[seed,block]);
+ assert.ok(r.assumptionBridges.every(b=>b.state==='unresolved'&&b.effective===null));
+ const extra=key('leg-operation','foreign');
+ const assumptions=[...joint.scenario.assumptions,{id:extra,state:'unresolved'}];
+ const scenario={...joint.scenario,assumptions,...evaluateJointScenario({scope:'complete',assumptions,candidates:joint.scenario.candidates})};
+ assert.equal(reviewConditionalJoint(prior,{...joint,scenario}).reason,'assumption-owner-binding');
 });
