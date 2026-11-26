@@ -316,7 +316,7 @@ test('clash damage preservation and relief are separate source conditionals',()=
 });
 function clashFixture(complete=true){
  const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false},absent={damageConfirmed:null,preservationConfirmed:null,reliefConfirmed:null,effective:null};
- const a={id:'visible:year',layer:'visible',position:'year',element:'water'},b={id:'visible:day',layer:'visible',position:'day',element:'wood'},
+ const a={id:'visible:year',layer:'visible',position:'year',element:'water',roots:[{position:'year',stem:'계'}]},b={id:'visible:day',layer:'visible',position:'day',element:'wood',roots:[]},
  x={id:'hidden:year:계',layer:'hidden',position:'year',element:'water',hiddenRole:'principal'},
  y={id:'hidden:month:정',layer:'hidden',position:'month',element:'fire',hiddenRole:'principal'};
  const edge={edgeId:a.id+'>'+b.id,from:a.id,to:b.id,kind:'generate',effective:null,selectionAuthority:false};
@@ -346,6 +346,7 @@ test('clash policy fails closed for omitted slots altered relief side or manufac
  const c=clashFixture();c.residual.actions[0].substantialRootIds=[];assert.equal(clashReview(c).status,'invalid-evidence');
  const d=clashFixture();d.argument.judgments[0].support.rank=0;assert.equal(clashReview(d).status,'invalid-evidence');
  const e=clashFixture();e.residual.clashes[0].alternatives[0].reliefConfirmed=true;assert.equal(clashReview(e).status,'invalid-evidence');
+ const f=clashFixture();f.residual.occurrences=[];f.residual.actions=[];assert.equal(clashReview(f).status,'invalid-evidence');
 });
 test('native clash policy preserves 24 packet variants and exact residual scope',()=>{
  const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
