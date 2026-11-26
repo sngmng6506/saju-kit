@@ -1076,3 +1076,63 @@ model outputs out of reviewer material. The next gate is real source
 condition adjudication and prospective contrasts, not a new alternative
 that expands expressivity. Even determinate agreement is pending
 external verification, and it cannot promote a runtime decision.
+
+## P3-B7d-2 — Source burden contexts and exact action coverage
+
+The electronic passages in Zi Ping Zhen Quan and its commentary
+(https://ncc.com.tw/fate/paleo/bg/bg_033.htm,
+https://dao.time.actor/ziping-zhenquan-pingzhu/juan-3,
+https://www.donglishuzhai.net/chapter/3748.html,
+https://ncc.com.tw/fate/paleo/bg/bg_034.htm) were desk-reviewed.
+Five structural source contexts are mapped to reusable role templates:
+control-resource mediation, output-resource restraint, wealth-resource
+interference, peer protection of resource, and output-wealth chain.
+They preserve the source's unresolved comparative and pattern-specific
+premises. A prior strong/weak premise cannot independently establish
+the strength guard. Resource damage or rescue is not equivalent to net
+wealth burden. Output-to-wealth may be favorable in its source context.
+No reviewed guard polarity or sufficient strength rule is created.
+
+The research audit checks the actual local, visible-incident action
+inventory against element and position relations and replays the
+canonical burden proof. Each matched distinct-role binding references
+the existing action propositions and operation variables; a conjunction
+is evaluated using the positive proof frontier. Its witness is replayed
+by the canonical argument engine. Literal exposure remains visible when
+the rooted conjunction is not supported. A missing match is not a
+refutation, and an unavailable frontier is not an empty one. These
+templates intentionally use the local graph, not complete classical
+formation, hidden-to-hidden interactions, or effective action semantics.
+Partial scope produces no context judgments. No runtime authority or
+existing strength policy changes.
+
+Source-level run at 6b786ce (39 modules, pinned unchanged upstream
+sources) covered 53 primary charts, with no invalid or unavailable
+results:
+
+| Context | Literal charts | Joint rooted charts | Literal bindings | Joint rooted bindings |
+| --- | ---: | ---: | ---: | ---: |
+| Control-resource mediation | 22 | 17 | 34 | 22 |
+| Output-resource restraint | 20 | 19 | 32 | 31 |
+| Wealth-resource interference | 19 | 15 | 31 | 23 |
+| Peer protects resource | 10 | 7 | 17 | 11 |
+| Output-wealth chain | 26 | 23 | 43 | 34 |
+
+47 charts have at least one local literal context, 42 at least one
+joint rooted context; 157 literal bindings and 121 rooted bindings.
+Counts overlap across templates. XU14 has one literal mediation
+binding without rooted basis, two wealth-resource and one peer
+protection rooted bindings; the latter can coexist as rooted candidates
+but do not establish resource damage or rescue. XU26 has no match in
+the current local visible-incident scope. This demonstrates a scope
+gap, not absence of classical burden. The templates are development
+projections, not claims of exhaustive or uniquely correct translation.
+
+Four isolated tests passed at 2c36c62 after final scope/action-contract
+hardening. The cohort run preceded that hardening. Native Node/V10
+regression and independent source adjudication remain pending.
+Run `node --test test/outcome-strength-source-conditions.test.mjs` and
+`npm run audit:pattern-strength-source-conditions`.
+The next gate is the relation between independently established
+support loss, relief, and effective residual burden; a local pattern
+or an all-on rooted witness alone cannot supply that relation.
