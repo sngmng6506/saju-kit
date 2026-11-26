@@ -1,3 +1,4 @@
+import {describeSemanticBridge} from './outcome-semantic-bridges.js';
 import {elementRelation} from '../../core/elements.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 const SOURCE='https://www.shidianguji.com/book/SK1610/chapter/1mecpy8lhe70z';
@@ -80,6 +81,7 @@ export function reviewSourceEffectPolicy(prior,argument,supply,strength){
     policy:strength?.policy??null,substitutionConfirmed:null}:null;
    const scenario=evaluateSourceClauseScenario(c.id,{relationState:'supported',predicateState:'unresolved',scope:complete?'complete':'partial'});
    return {clauseId:c.id,predicateActorId:actor.id,predicateElement:actor.element,predicate:c.predicate,predicateState:'unresolved',
+    semanticBridge:describeSemanticBridge(c.predicate==='excessive'?'element-excess':c.predicate==='resistant'?'element-resistance':'element-strength',[actor.element]),
     dayHypothesisContext:dayFit,applicability:scenario.applicability,conditionalConsequence:c.consequence,consequenceState:scenario.consequenceState,
     interpretation:c.interpretation,sourceRefs:[ref('source-clause',c.id,'quote')],effectConfirmed:null};
   });
