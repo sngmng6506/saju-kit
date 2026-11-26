@@ -53,7 +53,6 @@ export function evaluateSourceClauseScenario(clauseId,{relationState,predicateSt
   applicabilityProof:{support:j.support,opposition:j.opposition},actualEffectState:effect.state,effectConfirmed:null,selectionAuthority:false};
 }
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
-const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function reviewSourceEffectPolicy(prior,argument,supply,strength){
  const complete=prior?.completeHour,status=complete?'diagnostic':'partial',base={version:POLICY,completeHour:complete,selectionAuthority:false,effectConfirmed:null};
  const empty=reason=>({...base,status:'invalid-evidence',reason,actions:[],clauseCount:clauses.length});
@@ -69,8 +68,8 @@ export function reviewSourceEffectPolicy(prior,argument,supply,strength){
   const a=actors.get(e.from),b=actors.get(e.to),r=rows.get(e.edgeId),s=r&&judgments.get(r.structuralPropositionId),effect=r&&judgments.get(r.effectPropositionId);
   const rel=elementRelation(a.element,b.element);
   if(!r||r.from!==e.from||r.to!==e.to||r.kind!==e.kind||e.edgeId!==e.from+'>'+e.to||e.effective!==null||e.selectionAuthority!==false||r.effective!==null||
-   rel.direction!=='left-to-right'||rel.type!==e.kind||!s||s.subject!==e.edgeId||s.level!=='structural-hypothesis'||!states.includes(s.state)||
-   s.state!==r.expectedStructuralState||!effect||effect.subject!==e.edgeId||effect.level!=='effect-hypothesis'||effect.state!=='unresolved'||
+   rel.direction!=='left-to-right'||rel.type!==e.kind||!s||s.subject!==e.edgeId||s.level!=='structural-hypothesis'||s.kind!==(e.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance')||!states.includes(s.state)||
+   s.state!==r.expectedStructuralState||!effect||effect.subject!==e.edgeId||effect.level!=='effect-hypothesis'||effect.kind!=='actual-action-effective'||effect.state!=='unresolved'||
    effect.support?.rank!==null||effect.opposition?.rank!==null||effect.effective!==null)return empty('edge-binding');
   const applicable=clauses.filter(c=>c.kind===e.kind&&c.fromElement===a.element&&c.toElement===b.element);
   if(applicable.length!==(e.kind==='generate'?3:2))return empty('registry-coverage');
