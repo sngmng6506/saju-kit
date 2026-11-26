@@ -1,5 +1,5 @@
-import {readFileSync,readdirSync} from 'node:fs';
-import {resolve,relative,sep} from 'node:path';
+import {readFileSync,readdirSync,realpathSync} from 'node:fs';
+import {resolve,relative,sep,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {controls,routeControls} from './lib/pattern-modeled-consequence-coverage.mjs';
@@ -26,11 +26,11 @@ const report={version:'p1-5b-exposure-audit-v1',scope:frozen.scope,frozenAgainst
  mergedUniqueCharts:inventory.charts.length,mergedUnparsed:inventory.unparsed,drift,developmentOverlap:frozen.developmentOverlap,
  inventoryDigest:digest(inventory),independentGoldCases:0,selectionAuthority:false};
 if(args.length){
- const path=resolve(args[1]);
- // An intake must not be stored under a fixture tree already visible to
+ const path=realpathSync(resolve(args[1]));
+ // An intake must not be stored inside the repository already visible to
  // engineering. A passed screen is only a queue for blinded review.
- const within=relative(fixtureDir,path);
- if(within===''||within!=='..'&&!within.startsWith('..'+sep)&&!within.includes(':'))throw Error('candidate intake must be outside fixture tree');
+ const within=relative(realpathSync(root),path);
+ if(!isAbsolute(within)&&within!=='..'&&!within.startsWith('..'+sep))throw Error('candidate intake must be outside repository');
  const packet=read(path);
  report.intakeDigest=digest(packet);
  report.intake=screenExposurePacket(packet,inventory);
