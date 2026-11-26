@@ -514,7 +514,7 @@ function elementModelFixture(completeHour=true,targetElement='fire'){
  const visible=positions.map(position=>({id:'visible:'+position,position,layer:'visible',stem:position==='day'?(targetElement==='wood'?'갑':'병'):'임',element:position==='day'?targetElement:'water',contacts:[],graphNodeId:position+':stem'}));
  const hidden=positions.map(position=>({id:'hidden:'+position+':계',position,layer:'hidden',stem:'계',element:'water',hiddenRole:'principal',contacts:[],graphNodeId:position+':branch:water'}));
  const actors=[...visible,...hidden].map(a=>({...a,seasonal:{seasonRelation:elementRelation('water',a.element),principalRelation:elementRelation('water',a.element)}}));
- const slots=hidden.map(a=>({id:a.id,position:a.position,stem:a.stem,element:a.element,role:a.hiddenRole,state:'uncontested-substantial-observation',effectiveRoot:null}));
+ const slots=hidden.map(a=>({id:a.id,position:a.position,stem:a.stem,element:a.element,role:a.hiddenRole,clashIds:[],formationIds:[],competingTargetFormationIds:[],reliefFormationIds:[],state:'uncontested-substantial-observation',effectiveRoot:null}));
  const occurrences=actors.map(a=>({id:a.id,uncontestedRootIds:a.element==='water'?slots.map(s=>s.id):[],contestedRootIds:[],seasonal:{monthBranchContested:false}}));
  const nodes=actors.map(a=>({nodeId:a.graphNodeId,position:a.position,element:a.element,occurrenceIds:[a.id],contacts:[],groundedRootIds:a.layer==='hidden'?[a.id]:a.element==='water'?slots.map(s=>s.id):[],contestedRootIds:[],
   state:a.element==='water'?'grounded-observation':completeHour?'no-substantial-root-observed':'partial',independentSupplyConfirmed:null}));
@@ -526,7 +526,7 @@ function elementModelFixture(completeHour=true,targetElement='fire'){
   ...e,actualEffectPropositionId:'effect:'+e.edgeId,actualEffectState:'unresolved',effectConfirmed:null,
   clauses:sourceEffectClauses().filter(c=>c.kind===e.kind&&c.fromElement==='water'&&c.toElement===targetElement).map(c=>({clauseId:c.id,predicateActorId:c.role==='source'?e.from:e.to,predicateElement:c.role==='source'?'water':targetElement,predicate:c.predicate,predicateState:'unresolved',effectConfirmed:null}))
  }));
- return {prior:{completeHour,stemForce:{occurrences:actors}},root:{...base,rootEffectConfirmed:null,slots,occurrences},supply:{...base,effectiveSupply:null,nodes,actions},source:{...base,effectConfirmed:null,actions:sourceActions}};
+ return {prior:{completeHour,stemForce:{occurrences:actors}},root:{...base,rootEffectConfirmed:null,clashes:[],slots,occurrences},supply:{...base,effectiveSupply:null,nodes,actions},source:{...base,effectConfirmed:null,actions:sourceActions}};
 }
 const elementReview=x=>reviewElementContexts(x.prior,x.root,x.supply,x.source);
 test('element context model resolves bounded strong and weak contrasts without count scores',()=>{
@@ -540,6 +540,9 @@ test('element context model resolves bounded strong and weak contrasts without c
 
  assert.equal(fire.model.weakState,'supported');assert.equal(fire.model.strongState,'opposed');
  assert.equal(water.cleanPrincipalSlotIds.length,4);
+ assert.equal(water.rootPreservation.sharedSlots.length,4);
+ assert.equal(water.rootPreservation.scenario.scenarioCount,16);
+ assert.deepEqual(water.contextualStrength.rootSlotIds,water.rootPreservation.substantialSlotIds);
  assert.ok(r.elements.filter(e=>!['water','fire'].includes(e.element)).every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
  assert.ok(r.elements.every(e=>e.actualStrengthState==='unresolved'&&e.excessState==='unresolved'&&e.deficiencyState==='unresolved'));
  assert.ok(r.actions.every(a=>a.clauses.find(c=>c.predicate==='weak').modeledApplicability==='supported'));
