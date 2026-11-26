@@ -1,3 +1,4 @@
+import {reviewBurden} from '../src/features/pattern/outcome-burden-review.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
@@ -64,5 +65,35 @@ for(const c of [...controls,...routeControls])for(const complete of [true,false]
     assert.ok(t.alternatives.every(a=>new Set(a.nodeIds).size===a.nodeIds.length&&a.nodeIds.at(-1)===t.targetId));
    }
   }
+ });
+}
+
+test('native burden adapter binds incoming and outgoing physical actions',()=>{
+ const {prior,root}=fixture(),actors=prior.stemForce.occurrences;
+ // The synthetic fixture already has two local water-to-wood edges.
+ for(const a of actors){
+  a.outputAndControl=actors.flatMap(b=>{
+   if(a.element!=='water'||b.element!=='wood'||Math.abs(['year','month','day','hour'].indexOf(a.position)-['year','month','day','hour'].indexOf(b.position))>1)return [];
+   return [{from:a.graphNodeId,to:b.graphNodeId,type:'generate',local:true,sourceEvidence:{id:a.graphNodeId},targetEvidence:{id:b.graphNodeId},effectConfirmed:null}];
+  });
+  a.generationReceived=a.generationReceived.map(e=>({...e,effectConfirmed:null}));
+ }
+ const r=reviewReplenishment(prior,root,observeGroundedSupply(prior,root)),q=reviewBurden(prior,r);
+ assert.equal(q.status,'diagnostic',q.reason);
+ assert.equal(q.summary.actions,2);assert.equal(q.summary.targets,2);
+ assert.ok(q.analysis.actionRows.every(a=>a.sharedSupplyLinkId!==null));
+ assert.equal(q.summary.actualEffectsConfirmed,0);
+ actors[0].generationReceived=[];
+ assert.equal(reviewBurden(prior,r).reason,'edge-coverage');
+});
+for(const c of [...controls,...routeControls])for(const complete of [true,false]){
+ test('native burden replay '+c.id+' '+complete,()=>{
+  const r=replayModeledCoverage(c.pillars,complete,{includeSynthesisInputs:true}),q=r.burdenReview;
+  assert.deepEqual(r.invalid,[]);assert.deepEqual(q,reviewBurden(...r.burdenInputs));
+  assert.equal(q.status,complete?'diagnostic':'partial');assert.equal(q.selectionAuthority,false);
+  assert.equal(q.effective,null);assert.equal(q.summary.actualEffectsConfirmed,0);
+  assert.equal(q.actualMagnitudeComparison,'unresolved');
+  assert.ok(q.analysis.rows.every(x=>x.actualStrengthState==='unresolved'));
+  if(!complete)assert.equal(q.analysis.frontier.status,'partial');
  });
 }
