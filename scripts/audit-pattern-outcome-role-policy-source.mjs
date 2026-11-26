@@ -1,3 +1,4 @@
+import {summarizeArgumentReview} from './lib/pattern-outcome-argument-audit.mjs';
 import {summarizeHiddenAccess} from './lib/pattern-outcome-hidden-access-audit.mjs';
 import {summarizeClashResidual} from './lib/pattern-outcome-clash-residual-audit.mjs';
 import {summarizeCombinationResidual} from './lib/pattern-outcome-combination-residual-audit.mjs';
@@ -11,7 +12,7 @@ import {summarizeGroundedSupplyReview,summarizeInterpositionReview,summarizeRole
 const packet=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
 const packetErrors=validateRoleSourcePacket(packet);
 if(packetErrors.length){console.log(JSON.stringify({errors:packetErrors},null,2));process.exit(1);}
-const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[],hiddenAccessRows=[];
+const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[],hiddenAccessRows=[],argumentRows=[];
 for(const c of packet.cases)for(const partial of [false,true]){
  try{
   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,partial&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
@@ -30,6 +31,7 @@ for(const c of packet.cases)for(const partial of [false,true]){
   combinationResidualRows.push(summarizeCombinationResidual(c,r.efficacyReview?.mechanismReview,partial));
   clashResidualRows.push(summarizeClashResidual(c,r.efficacyReview?.mechanismReview,partial));
   hiddenAccessRows.push(summarizeHiddenAccess(c,r.efficacyReview?.mechanismReview,partial));
+  argumentRows.push(summarizeArgumentReview(c,r.efficacyReview?.mechanismReview,partial));
   rows.push(evaluateRoleSourceCase(c,r,{partial}));
  }catch(e){rows.push({id:c.id,partial,probes:[],errors:[e.name+':'+e.message]});}
 }
@@ -90,5 +92,9 @@ report.hiddenAccessRows=hiddenAccessRows;
 report.hiddenAccessCoverage={expected:report.expectedVariants,executed:hiddenAccessRows.length,passed:hiddenAccessRows.filter(r=>!r.errors.length).length};
 if(hiddenAccessRows.length!==report.expectedVariants)report.errors.push('hidden-access-variant-coverage');
 for(const r of hiddenAccessRows)for(const e of r.errors)report.errors.push(r.id+':hidden-access:'+e);
+report.argumentRows=argumentRows;
+report.argumentCoverage={expected:report.expectedVariants,executed:argumentRows.length,passed:argumentRows.filter(r=>!r.errors.length).length};
+if(argumentRows.length!==report.expectedVariants)report.errors.push('argument-variant-coverage');
+for(const r of argumentRows)for(const e of r.errors)report.errors.push(r.id+':argument:'+e);
 console.log(JSON.stringify(report,null,2));
 if(report.errors.length)process.exitCode=1;
