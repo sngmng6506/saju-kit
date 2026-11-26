@@ -446,18 +446,20 @@ test('day direction resolver accepts only scoped and consistent strength hypothe
  }
  assert.equal(resolveDayDirection({...strengthFixture('strong'),grounds:['central-root-capacity','low-root-capacity-and-dominant-pressure']},true).direction,null);
  assert.equal(resolveDayDirection({...strengthFixture('strong'),status:'unresolved'},true).direction,null);
+ assert.equal(resolveDayDirection({...strengthFixture('strong'),grounds:['central-root-capacity','unknown']},true).direction,null);
+ assert.equal(resolveDayDirection({...strengthFixture('strong'),grounds:['central-root-capacity','central-root-capacity']},true).direction,null);
 });
 function directionFixture(complete=true,screenState='supported'){
  const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false,effective:null};
- const day={id:'visible:day',layer:'visible',dayReference:true};
- const year={id:'visible:year',layer:'visible',dayReference:false},month={id:'visible:month',layer:'visible',dayReference:false},hour={id:'visible:hour',layer:'visible',dayReference:false};
- const actions=[[year,day,'generate'],[day,month,'generate'],[hour,day,'control'],[day,hour,'control'],[year,month,'control']].map(([a,b,kind])=>{
+ const day={id:'visible:day',layer:'visible',dayReference:true,element:'earth'};
+ const year={id:'visible:year',layer:'visible',dayReference:false,element:'fire'},month={id:'visible:month',layer:'visible',dayReference:false,element:'metal'},hour={id:'visible:hour',layer:'visible',dayReference:false,element:'wood'};
+ const actions=[[year,day,'generate'],[day,month,'generate'],[hour,day,'control'],[year,month,'control'],[hour,year,'generate'],[month,hour,'control']].filter(([a,b])=>complete||a!==hour&&b!==hour).map(([a,b,kind])=>{
   const edgeId=a.id+'>'+b.id;return {edgeId,from:a.id,to:b.id,kind,effectPropositionId:'effect:'+edgeId,structuralPropositionId:'screen:'+edgeId};
  });
  const judgments=actions.flatMap(a=>[
   {id:a.effectPropositionId,subject:a.edgeId,kind:'actual-action-effective',level:'effect-hypothesis',state:'unresolved',support:{rank:null},opposition:{rank:null}},
   {id:a.structuralPropositionId,subject:a.edgeId,kind:a.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance',level:'structural-hypothesis',state:screenState}]);
- return {prior:{completeHour:complete,stemForce:{occurrences:[day,year,month,hour]}},argument:{...base,actions,judgments},
+ return {prior:{completeHour:complete,stemForce:{occurrences:complete?[day,year,month,hour]:[day,year,month]}},argument:{...base,actions,judgments},
   joint:{...base,actions:actions.map(a=>({edgeId:a.edgeId,from:a.from,to:a.to,kind:a.kind,effectPropositionId:a.effectPropositionId,actualEffectState:'unresolved'}))}};
 }
 const directionReview=(x,s)=>reviewDayBalanceDirection(x.prior,x.argument,x.joint,s);
