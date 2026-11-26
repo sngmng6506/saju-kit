@@ -3,14 +3,14 @@ import {mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {performance} from 'node:perf_hooks';
-import {TEST_DOMAINS} from './lib/domain-manifest.mjs';
+import {TEST_DOMAINS,ACTION_DIAGNOSTIC_TEST_FILES} from './lib/domain-manifest.mjs';
 import {inspectValidationState,validationPassed} from './lib/validation-provenance.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const cli=process.argv.slice(2),focused=cli.includes('--p1-native'),positional=cli.filter(x=>x!=='--p1-native');
 if(positional.length>1||positional.some(x=>x.startsWith('--'))||cli.filter(x=>x==='--p1-native').length>1)throw Error('Usage: validate-pattern-outcome.mjs [--p1-native] [output-directory]');
 const out=resolve(positional[0]??resolve(root,focused?'outcome-validation-p1-native':'outcome-validation'));
 mkdirSync(out,{recursive:true});
-const focusedFiles=['test/pattern-outcome-argumentation.test.mjs','test/pattern-outcome-pressure-dependency.test.mjs','test/pattern-outcome-exposure.test.mjs','test/pattern-outcome-claim-evaluation.test.mjs','test/pattern-outcome-proof-obligations.test.mjs','test/pattern-outcome-source-effect-policy.test.mjs','test/pattern-outcome-v10.test.mjs','test/pattern-outcome-efficacy.test.mjs','test/validation-provenance.test.mjs'];
+const focusedFiles=[...ACTION_DIAGNOSTIC_TEST_FILES,'test/pattern-outcome-argumentation.test.mjs','test/pattern-outcome-pressure-dependency.test.mjs','test/pattern-outcome-exposure.test.mjs','test/pattern-outcome-claim-evaluation.test.mjs','test/pattern-outcome-proof-obligations.test.mjs','test/pattern-outcome-source-effect-policy.test.mjs','test/pattern-outcome-v10.test.mjs','test/pattern-outcome-efficacy.test.mjs','test/validation-provenance.test.mjs'];
 const nativeFiles=focused?focusedFiles:Object.values(TEST_DOMAINS).flat();
 const nativeJob=['native',['--test','--test-reporter=./scripts/lib/failures-reporter.mjs',...nativeFiles]];
 const jobs=focused?[nativeJob,...['pattern-outcome-native-p1','pattern-outcome-modeled-consequences','pattern-outcome-modeled-coverage','pattern-outcome-v10','pattern-outcome-exposure','pattern-outcome-proof-obligations','pattern-outcome-relative-force-sensitivity','pattern-outcome-control-synthesis'].map(n=>[n,['scripts/audit-'+n+'.mjs']])]:[
