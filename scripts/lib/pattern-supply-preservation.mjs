@@ -1,3 +1,4 @@
+import {compileIndependentSupply} from '../../src/features/pattern/outcome-independent-supply.js';
 import {compileReplenishmentNetwork} from '../../src/features/pattern/outcome-replenishment-network.js';
 import {evaluateArguments} from '../../src/features/pattern/outcome-argumentation.js';
 import {queryPositiveProofConstraints} from '../../src/features/pattern/outcome-frontier-constraints.js';
@@ -31,17 +32,24 @@ export function querySupplyCut({completeHour,nodes,links,targets,packet,targetId
    if(r.id.startsWith('["root-seed",'))add(key('cut-direct-rule',r.id),direct,r.premises);
    else if(r.id.startsWith('["supply-link",'))add(key('cut-incoming-rule',r.id),incoming,r.premises.map(p=>lit(project(p.propositionId))));
   }
+  const independent=compileIndependentSupply({packet:cut.packet,nodes,targetId});
+  if(independent.status!=='diagnostic')return empty('invalid-evidence','independent-cut:'+independent.reason);
+  const independentIds=new Set(independent.propositions.map(p=>p.id));
+  const projectIndependent=id=>independentIds.has(id)?key('cut-independent',id):id;
+  propositions.push(...independent.propositions.map(p=>({...p,id:projectIndependent(p.id)})));
+  rules.push(...independent.rules.map(r=>({...r,id:key('cut-independent-rule',r.id),conclusion:lit(projectIndependent(r.conclusion.propositionId)),premises:r.premises.map(p=>lit(projectIndependent(p.propositionId)))})));
+  const external=projectIndependent(independent.propositionId);
   const combined={...packet,propositions,rules},result=evaluateArguments(combined);
   if(result.status!==baseline.status||!same(result.judgments.slice(0,baseline.judgments.length),baseline.judgments)||!same(result.ruleResults.slice(0,baseline.ruleResults.length),baseline.ruleResults))return empty('invalid-evidence','proof-parity');
   if(!Array.isArray(required)||!Array.isArray(excluded)||required.some(id=>!packet.propositions.some(p=>p.id===id&&p.level==='structural-hypothesis'))||excluded.some(id=>!packet.propositions.some(p=>p.id===id&&p.level==='structural-hypothesis')))return empty('invalid-evidence','condition-contract');
   const query=(id,r=[],e=[])=>({id,required:[...new Set([...required,...r])],excluded:[...new Set([...excluded,...e])],fixed:[]});
-  const queries=[query('condition'),query('pre-cut-basis',[original]),query('basis-survives',[original,survival]),query('basis-lost',[original],[survival]),query('incoming-survives',[original,incoming]),query('direct-without-incoming',[original,direct],[incoming]),query('impossible-new-basis',[survival],[original])];
+  const queries=[query('condition'),query('pre-cut-basis',[original]),query('basis-survives',[original,survival]),query('basis-lost',[original],[survival]),query('incoming-survives',[original,incoming]),query('direct-without-incoming',[original,direct],[incoming]),query('independent-origin-survives',[original,external]),query('impossible-independent-without-incoming',[external],[incoming]),query('impossible-new-basis',[survival],[original])];
   const q=queryPositiveProofConstraints(combined,queries);
   if(q.status!=='diagnostic')return empty(q.status,q.reason);
   const by=new Map(q.queries.map(r=>[r.id,r]));
-  if(by.get('impossible-new-basis').feasible||by.get('pre-cut-basis').feasible!==(by.get('basis-survives').feasible||by.get('basis-lost').feasible))return empty('invalid-evidence','cut-monotonicity');
-  return {...empty('diagnostic',null),targetId,removedLinkIds:[...removedLinkIds],queries:q.queries,condition:{required:[...required],excluded:[...excluded]},
-   originalPropositionId:original,survivalPropositionId:survival,directPropositionId:direct,incomingPropositionId:incoming};
+  if(by.get('impossible-new-basis').feasible||by.get('impossible-independent-without-incoming').feasible||by.get('pre-cut-basis').feasible!==(by.get('basis-survives').feasible||by.get('basis-lost').feasible))return empty('invalid-evidence','cut-monotonicity');
+  return {...empty('diagnostic',null),targetId,removedLinkIds:[...removedLinkIds],queries:queries.map((query,i)=>({...query,...q.queries[i]})),condition:{required:[...required],excluded:[...excluded]},
+   originalPropositionId:original,survivalPropositionId:survival,directPropositionId:direct,incomingPropositionId:incoming,independentOriginPropositionId:external};
  }catch(e){return empty('invalid-evidence',String(e?.message??e));}
 }
 // Match only resource-interference pressures with the exact generation
@@ -72,9 +80,9 @@ export function auditSupplyPreservation(input){
    const q=querySupplyCut({completeHour,nodes,links,targets,packet,targetId,removedLinkIds:s.links,required:s.pressures.map(p=>p.pressure),excluded:s.pressures.map(p=>p.fullRelief)});
    if(q.status!=='diagnostic')return empty(q.status,q.reason);
    const feasible=id=>q.queries.find(r=>r.id===id).feasible;
-   rows.push({id:s.id,kind:s.kind,pressureIds:s.pressures.map(p=>p.id),...q,conditionPossible:feasible('condition'),survivalPossible:feasible('basis-survives'),lossPossible:feasible('basis-lost'),incomingAlternativePossible:feasible('incoming-survives'),directWithoutIncomingPossible:feasible('direct-without-incoming'),interruptionAssumed:true});
+   rows.push({id:s.id,kind:s.kind,pressureIds:s.pressures.map(p=>p.id),...q,conditionPossible:feasible('condition'),survivalPossible:feasible('basis-survives'),lossPossible:feasible('basis-lost'),incomingAlternativePossible:feasible('incoming-survives'),independentOriginPossible:feasible('independent-origin-survives'),directWithoutIncomingPossible:feasible('direct-without-incoming'),interruptionAssumed:true});
   }
-  return {...base,status:'diagnostic',reason:null,rows,summary:{exposedLinks:byLink.size,pressures:candidates.length,scenarios:rows.length,conditionPossible:rows.filter(r=>r.conditionPossible).length,survivalPossible:rows.filter(r=>r.survivalPossible).length,lossPossible:rows.filter(r=>r.lossPossible).length,bothPossible:rows.filter(r=>r.survivalPossible&&r.lossPossible).length,incomingAlternativePossible:rows.filter(r=>r.incomingAlternativePossible).length,actualEffectsConfirmed:0},
-   limitations:['complete-link-interruption-stress-test-not-inferred-damage','selected-uncovered-pressures-not-proof-of-loss','remaining-links-not-confirmed-safe','incoming-path-may-reuse-recipient-root','rooted-reachability-not-capacity','local-scope-only','no-strength-authority']};
+  return {...base,status:'diagnostic',reason:null,rows,summary:{exposedLinks:byLink.size,pressures:candidates.length,scenarios:rows.length,conditionPossible:rows.filter(r=>r.conditionPossible).length,survivalPossible:rows.filter(r=>r.survivalPossible).length,lossPossible:rows.filter(r=>r.lossPossible).length,bothPossible:rows.filter(r=>r.survivalPossible&&r.lossPossible).length,incomingAlternativePossible:rows.filter(r=>r.incomingAlternativePossible).length,independentOriginPossible:rows.filter(r=>r.independentOriginPossible).length,actualEffectsConfirmed:0},
+   limitations:['complete-link-interruption-stress-test-not-inferred-damage','selected-uncovered-pressures-not-proof-of-loss','remaining-links-not-confirmed-safe','incoming-path-may-reuse-recipient-root','independent-origin-not-independent-physical-capacity','rooted-reachability-not-capacity','local-scope-only','no-strength-authority']};
  }catch(e){return empty('invalid-evidence',String(e?.message??e));}
 }
