@@ -13,6 +13,7 @@ import {elementRelation} from '../src/core/elements.js';
 import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
 import {reviewModeledConsequences} from '../src/features/pattern/outcome-modeled-consequences.js';
+import {evaluateRootAvailabilityScenario,evaluateContactActionScenario,reviewContactConstraintSensitivity} from '../src/features/pattern/outcome-contact-constraint-sensitivity.js';
 import {controls as coverageControls,routeControls,replayModeledCoverage,summarizeModeledCoverage} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
@@ -780,4 +781,56 @@ test('exact interposition leg proofs support both route families but not actual 
   }
   if(!complete)assert.ok(r.interpositionRoutes.every(p=>p.state==='unresolved'));
  }
+});
+
+test('hypothetical root availability requires a surviving slot or explicit loss of every substantial slot',()=>{
+ const run=(availability,completeHour=true)=>evaluateRootAvailabilityScenario({completeHour,actorId:'visible:year',slotIds:['a','b'],availability});
+ assert.equal(run({a:'opposed',b:'supported'}).state,'supported');
+ assert.equal(run({a:'opposed',b:'opposed'}).state,'opposed');
+ assert.equal(run({a:'opposed',b:'unresolved'}).state,'unresolved');
+ assert.equal(run({a:'opposed',b:'conflicting'}).state,'unresolved');
+ assert.equal(run({a:'conflicting',b:'supported'}).state,'supported');
+ assert.equal(run({a:'opposed',b:'supported'},false).state,'unresolved');
+ assert.equal(run({a:'opposed'}).status,'invalid-evidence');
+ assert.equal(run({a:'opposed',b:'supported'}).actualCapacityState,'unresolved');
+});
+test('root-and-pair counterfactual never equates contact or self exception with clearance',()=>{
+ const run=(availability,pairRestriction,completeHour=true)=>evaluateContactActionScenario({completeHour,edgeId:'visible:year>visible:month',sourceActorId:'visible:year',
+  slotIds:['a','b'],availability,pairIds:['self','external'],pairRestriction});
+ const roots={a:'opposed',b:'supported'};
+ assert.equal(run(roots,{self:'opposed',external:'opposed'}).state,'supported');
+ assert.equal(run(roots,{self:'unresolved',external:'opposed'}).state,'unresolved');
+ assert.equal(run(roots,{self:'opposed',external:'supported'}).state,'opposed');
+ assert.equal(run(roots,{self:'opposed',external:'conflicting'}).state,'unresolved');
+ assert.equal(run({a:'opposed',b:'opposed'},{self:'unresolved',external:'unresolved'}).state,'opposed');
+ assert.equal(run(roots,{self:'opposed',external:'opposed'},false).state,'unresolved');
+ assert.equal(run(roots,{self:'opposed'}).status,'invalid-evidence');
+ assert.equal(run(roots,{self:'opposed',external:'opposed'}).actualEffectState,'unresolved');
+});
+test('production contact sensitivity distinguishes exposed substantial roots, independent survivors and self combination scope',()=>{
+ const replay=(pillars,complete=true)=>{
+  const r=replayModeledCoverage(pillars,complete);assert.deepEqual(r.invalid,[]);assert.equal(r.actualEffectPromoted,false);return r.contact;
+ };
+ let c=replay(['경신','무인','병신','을미']);
+ const hour=c.occurrences.find(o=>o.actorId==='visible:hour'),day=c.occurrences.find(o=>o.actorId==='visible:day');
+ assert.deepEqual(hour.exposedSubstantialRootIds,['hidden:month:갑']);
+ assert.deepEqual(hour.unexposedObservedRootIds,['hidden:hour:을']);
+ assert.equal(hour.lossAllExposedScenario.state,'supported');
+ assert.equal(day.lossAllExposedScenario.state,'opposed');
+ assert.equal(hour.actualRootPreservationState,'unresolved');assert.equal(day.actualRootLossState,'unresolved');
+ assert.ok(c.actions.some(a=>a.lossAllExposedActionScreen.state==='unresolved'&&a.pairIds.length));
+ c=replay(['무자','경신','임인','신축']);
+ const month=c.occurrences.find(o=>o.actorId==='visible:month');
+ assert.equal(month.lossAllExposedScenario.state,'unresolved');
+ assert.ok(month.otherContestedRootIds.length);
+ c=replay(['병인','무술','신유','무자']);
+ const p=c.pairs.find(p=>p.externalRemovalScope==='outside-external-removal-scope');
+ assert.ok(p);assert.equal(p.externalRemovalApplicability,'opposed');
+ assert.equal(p.actualRetentionState,'unresolved');
+ assert.ok(c.actions.filter(a=>a.pairIds.includes(p.pairId)).every(a=>a.pairRestrictionAssumptions[p.pairId]==='unresolved'));
+ c=replay(['기축','경오','임자','기축']);
+ assert.ok(c.reliefs.length);assert.ok(c.reliefs.every(r=>r.actualReliefState==='unresolved'&&r.actualRestorationState==='unresolved'));
+ const partial=replay(['경신','무인','병신','을미'],false);
+ assert.ok(partial.occurrences.every(o=>o.lossAllExposedScenario.state==='unresolved'));
+ assert.ok(partial.actions.every(a=>a.lossAllExposedActionScreen.state==='unresolved'));
 });
