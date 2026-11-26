@@ -1,0 +1,200 @@
+{
+  "version": "p1-4d-source-release-replay-v1",
+  "execution": "Fetched core module bodies and audit helper in JS isolate; fixture/URL adapters; native Node and public V10 not run",
+  "base": "11cfe9aa5c5315b29fc262962eaf1d49e0be1efa",
+  "replays": 46,
+  "legacyParity": true,
+  "coverage": {
+    "eligible": 82,
+    "directReleaseSupported": 2,
+    "directReleaseSupportedJointUnresolved": 2,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 2,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 80,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 2,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "changedHistoricalDirectTendencies": [
+    {
+      "id": "wood-release-extreme-context",
+      "edgeId": "visible:year>visible:month",
+      "clauseId": "generation-strong-source-release:wood:fire",
+      "kind": "modeled-source-release",
+      "state": "unresolved",
+      "modelState": "supported",
+      "structuralState": "opposed",
+      "blockers": [
+        "structural-screen",
+        "target-pressure-screen-clear"
+      ],
+      "element": "wood",
+      "axes": {
+        "visible": true,
+        "seasonSupports": true,
+        "principalSupports": true,
+        "cleanPrincipalRoot": true,
+        "substantialRoot": true,
+        "clearContacts": true,
+        "monthContextClear": true,
+        "noRootedBurdenBasis": false,
+        "noRootedGeneratorBasis": false,
+        "localGroundedControlCoverage": false,
+        "cleanMonthPrincipalRoot": true,
+        "independentLocalResourceBasis": true,
+        "noRootedControllerBasis": true
+      },
+      "directInjuryState": null,
+      "residualInjuryState": null,
+      "interpositionCandidates": [],
+      "directReleaseState": "supported",
+      "jointReleaseScreenState": "unresolved",
+      "sourceScreen": {
+        "sourcePremiseIds": [
+          "[\"visible:year>visible:month\",\"source-basis-screen-met\"]",
+          "[\"visible:year>visible:month\",\"context-blockers-empty\"]",
+          "[\"visible:year>visible:month\",\"source-pressure-screen-clear\"]"
+        ],
+        "targetPremiseId": "[\"visible:year>visible:month\",\"target-pressure-screen-clear\"]",
+        "targetPressureScreenState": "opposed",
+        "sourceScreenState": "supported"
+      },
+      "targetPressureScreenState": "opposed",
+      "actualReceptionState": "unresolved",
+      "modelSupportRuleIds": [
+        "strong-resource-model"
+      ],
+      "resourceWitnesses": [
+        {
+          "recipientId": "visible:year",
+          "donorNodeId": "year:branch:water",
+          "rootIds": [
+            "hidden:year:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "day:branch:water",
+          "rootIds": [
+            "hidden:day:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "hour:branch:water",
+          "rootIds": [
+            "hidden:hour:계"
+          ]
+        }
+      ],
+      "monthPrincipalRootIds": [
+        "hidden:month:을"
+      ]
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "edgeId": "visible:day>visible:month",
+      "clauseId": "generation-strong-source-release:wood:fire",
+      "kind": "modeled-source-release",
+      "state": "unresolved",
+      "modelState": "supported",
+      "structuralState": "opposed",
+      "blockers": [
+        "structural-screen",
+        "target-pressure-screen-clear"
+      ],
+      "element": "wood",
+      "axes": {
+        "visible": true,
+        "seasonSupports": true,
+        "principalSupports": true,
+        "cleanPrincipalRoot": true,
+        "substantialRoot": true,
+        "clearContacts": true,
+        "monthContextClear": true,
+        "noRootedBurdenBasis": false,
+        "noRootedGeneratorBasis": false,
+        "localGroundedControlCoverage": false,
+        "cleanMonthPrincipalRoot": true,
+        "independentLocalResourceBasis": true,
+        "noRootedControllerBasis": true
+      },
+      "directInjuryState": null,
+      "residualInjuryState": null,
+      "interpositionCandidates": [],
+      "directReleaseState": "supported",
+      "jointReleaseScreenState": "unresolved",
+      "sourceScreen": {
+        "sourcePremiseIds": [
+          "[\"visible:day>visible:month\",\"source-basis-screen-met\"]",
+          "[\"visible:day>visible:month\",\"context-blockers-empty\"]",
+          "[\"visible:day>visible:month\",\"source-pressure-screen-clear\"]"
+        ],
+        "targetPremiseId": "[\"visible:day>visible:month\",\"target-pressure-screen-clear\"]",
+        "targetPressureScreenState": "opposed",
+        "sourceScreenState": "supported"
+      },
+      "targetPressureScreenState": "opposed",
+      "actualReceptionState": "unresolved",
+      "modelSupportRuleIds": [
+        "strong-resource-model"
+      ],
+      "resourceWitnesses": [
+        {
+          "recipientId": "visible:year",
+          "donorNodeId": "year:branch:water",
+          "rootIds": [
+            "hidden:year:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "day:branch:water",
+          "rootIds": [
+            "hidden:day:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "hour:branch:water",
+          "rootIds": [
+            "hidden:hour:계"
+          ]
+        }
+      ],
+      "monthPrincipalRootIds": [
+        "hidden:month:을"
+      ]
+    }
+  ],
+  "errors": []
+}
