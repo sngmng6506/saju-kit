@@ -641,3 +641,49 @@ modules, including all 128 assignments of the shared-root cyclic fixture.
 Native full-chart replay cases were added and registered but have not yet
 been executed. No independent classical gold cases or actual-effect
 authority are introduced.
+
+## P3-B3d — Shared support and burden proof comparison
+
+The burden review extends the exact replenishment proof packet without
+changing its existing judgments or rules. The native adapter binds all
+local directed generation/control relations incident on visible stems
+against the original occurrence inventory. A generation operation that
+already occurs in the replenishment network uses that identical
+observation variable. A control operation is also one physical action,
+shared between its incoming-control and outgoing-control views. Outgoing
+generation to hidden recipients is a burden candidate only, not a new
+replenishment relay. Accidental operation ID aliases are rejected.
+
+The modeled action requires a root-seeded source basis and an explicit
+hypothetical operation. Each visible node has separate disjunctive
+incoming-control, outgoing-generation, and outgoing-control burden
+bases. They describe the presence of rooted action candidates under
+assumptions, not actual injury, drain, expenditure, net force, or
+excessive burden. In particular, an outgoing burden implies a source
+basis by definition; this is not evidence of strong or weak force.
+
+For the restricted positive Horn fragment (no recorded facts, negative
+premises, undercuts, or non-complete rules), the new symbolic frontier
+solver computes inclusion-minimal true-observation sets by monotone
+closure with absorption. For two frontiers A and B, A implies B iff
+every term of A contains some term of B. Empty antecedents are reported
+separately rather than as comparative dominance. Counterexamples provide
+the true observation IDs; all other observation variables are false.
+Both/neither and the one-sided witnesses are model assignments, not
+physically validated conditions. This avoids enumerating all Boolean
+assignments but remains exponential in the worst case. Work is bounded
+to 300,000 charged operations and 8,192 stored terms; no incomplete
+frontier is reported. The general signed evaluator remains the owner
+of the proof packet; the symbolic solver is limited to this fragment.
+
+Native composition exposes burdenReview; no existing strength or
+selection policy consumes it. Nine generic tests and three adapter
+fixture tests (including two prior replenishment tests) executed against
+actual JavaScript modules in isolation. The generic tests compare all
+64 assignments of the fixture to the original proof engine and replay
+all four comparison witness types. Native chart replay cases are
+registered but not executed. The next boundary is to establish a
+reviewed semantic comparison of actual replenishment, control, and
+drain without interpreting logical implication as magnitude or
+inventing independent quantitative capacity. No actual-strength
+predicate is resolved here.
