@@ -39,19 +39,20 @@ export const routeControls=Object.freeze([
 ].map(c=>Object.freeze({...c,pillars:Object.freeze(c.pillars),route:Object.freeze(c.route)})));
 // Test-only composition of production core/review owners. No calendar,
 // strength projection, candidate decisions or V10 wrapper are exercised.
-export function replayModeledCoverage(pillars,completeHour){
+// Optional explicit direction hypothesis is a test assumption, not a projection.
+export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=null,includeSynthesisInputs=false}={}){
  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!completeHour&&i===3?null:{stem:pillars[i][0],branch:pillars[i][1],text:pillars[i]}]))};
  const stemForce=analyzeStemForceEvidence({saju}),prior={completeHour,stemForce,relativeForce:observeRelativeForce(stemForce)};
  const formation=analyzeFormationEvidence({saju}),root=observeRootContext(prior,formation),supply=observeGroundedSupply(prior,root);
  const interposition=observeInterpositionReview(prior,root,supply),pressure=observePressureDependencyReview(prior,root,supply,interposition);
  const locality=observeLocalityContext(prior,supply,interposition,pressure),argument=observeArgumentReview(prior,supply,pressure,locality);
- const source=reviewSourceEffectPolicy(prior,argument,supply,null),combination=observeCombinationContext(prior,formation);
+ const source=reviewSourceEffectPolicy(prior,argument,supply,strengthHypothesis),combination=observeCombinationContext(prior,formation);
  const combinationResidual=observeCombinationResidualContext(prior,formation,combination,root,supply),clashResidual=observeClashResidualContext(prior,formation,root,supply);
  const ip=reviewInterpositionPolicy(prior,supply,interposition,pressure,argument),cp=reviewCombinationPolicy(prior,combinationResidual,supply,argument),cl=reviewClashPolicy(prior,clashResidual,supply,argument);
  const joint=reviewJointConstraints(prior,supply,argument,source,ip,cp,cl),element=reviewElementContexts(prior,root,supply,source);
  const contact=reviewContactConstraintSensitivity(prior,root,supply,cp,cl,joint);
  const modeled=reviewModeledConsequences(prior,supply,argument,pressure,joint,element);
- const day=reviewDayBalanceDirection(prior,argument,joint,null);
+ const day=reviewDayBalanceDirection(prior,argument,joint,strengthHypothesis);
  const synthesis=synthesizeActionReview(prior,argument,source,element,day,joint,modeled,contact);
  const expected=completeHour?'diagnostic':'partial';
  const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis})
@@ -70,7 +71,7 @@ export function replayModeledCoverage(pillars,completeHour){
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,contact,synthesis,interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ return {invalid,rows,contact,synthesis,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact]}:{}),interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
