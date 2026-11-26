@@ -28,6 +28,12 @@ export const controls=Object.freeze([
  {id:'resource-basis-removed',pillars:['기유','신유','계해','신유'],kind:'modeled-source-release',expected:'unresolved',expectedModel:'unresolved'},
  {id:'resource-with-rooted-controller',pillars:['기축','신유','계해','병오'],kind:'modeled-source-release',expected:'unresolved',expectedModel:'unresolved'}
 ].map(c=>Object.freeze({...c,pillars:Object.freeze(c.pillars)})));
+export const routeControls=Object.freeze([
+ {id:'mediation-supported',pillars:['기축','경신','임자','기축'],route:['mediation','month:stem','year:stem','day:stem'],expectedRoute:'supported'},
+ {id:'mediation-root-loss',pillars:['기축','경오','임자','기축'],route:['mediation','month:stem','year:stem','day:stem'],expectedRoute:'unresolved'},
+ {id:'protection-supported',pillars:['을묘','기묘','계묘','기미'],route:['protection','year:stem','month:stem','day:stem'],expectedRoute:'supported'},
+ {id:'protection-helper-pressure',pillars:['을묘','기묘','계묘','기축'],route:['protection','year:stem','month:stem','day:stem'],expectedRoute:'unresolved'}
+].map(c=>Object.freeze({...c,pillars:Object.freeze(c.pillars),route:Object.freeze(c.route)})));
 // Test-only composition of production core/review owners. No calendar,
 // strength projection, candidate decisions or V10 wrapper are exercised.
 export function replayModeledCoverage(pillars,completeHour){
