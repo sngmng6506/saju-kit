@@ -28,7 +28,13 @@ for(const c of cases){
   const details=g.targets.map(t=>{
    const m=metadata.get(nodeIndex.get(t.id).propositionId);
    if(!m)throw Error('target metadata');
-   const row={...m,...t};
+   const reachableTerminals=t.reachableTerminals.map(q=>{
+    if(q.kind!=='element-context-observation')return q;
+    const id=JSON.parse(nodeIndex.get(q.id).propositionId);
+    if(id.length!==3||id[0]!=='element-model')throw Error('element-axis-identity');
+    return {...q,kind:'element-context-axis:'+id[2],element:id[1]};
+   });
+   const row={...m,...t,reachableTerminals};
    (families[m.family]??=[]).push(row);return row;
   });
   rows.push({id:c.id,packet:c.packet,targets:details,nodes:g.nodes});
