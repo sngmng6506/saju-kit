@@ -2,7 +2,8 @@ import {readFile} from 'node:fs/promises';
 import {evaluateStrengthFactorial} from './strength-factorial.mjs';
 import {pathToFileURL} from 'node:url';
 
-export const fixtureNames=['ordinary-xu-v1','ordinary-wei-v1','strength-ditiansui-v1','ordinary-ran-yuan-v1','ordinary-xu-holdout-v1','ordinary-lin-scan-v1'];
+import {strengthAuditFixtureNames} from './lib/strength-audit-inventory.mjs';
+export const fixtureNames=strengthAuditFixtureNames;
 const directional=r=>r==='strong'||r==='weak';
 const key=(fixture,id)=>JSON.stringify([fixture,id]);
 export function classifyAuditedRows(fixtures,audit,evaluation){
