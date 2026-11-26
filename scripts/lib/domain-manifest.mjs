@@ -1,6 +1,19 @@
 // Explicit ownership of native test entry files. Existing paths are stable.
 // Add each new test file to exactly one group; cross-domain tests belong
 // to the policy whose contract they primarily exercise.
+export const ACTION_DIAGNOSTIC_TEST_FILES=Object.freeze([
+  "test/outcome-conditional-arguments.test.mjs",
+  "test/outcome-conditional-joint-review.test.mjs",
+  "test/outcome-generation-synthesis.test.mjs",
+  "test/outcome-interaction-dependencies.test.mjs",
+  "test/outcome-interaction-proof-review.test.mjs",
+  "test/outcome-interaction-scenarios.test.mjs",
+  "test/outcome-proof-dependencies.test.mjs",
+  "test/outcome-scenario-sets.test.mjs",
+  "test/outcome-scenario-space.test.mjs",
+  "test/outcome-synthesis-builder.test.js",
+  "test/outcome-synthesis-proof.test.js"
+]);
 export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
   "calendar": [
     "test/calendar.test.mjs"
@@ -26,6 +39,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/year-timeline.test.mjs"
   ],
   "pattern": [
+    ...ACTION_DIAGNOSTIC_TEST_FILES,
     "test/pattern-classical-v2.test.mjs",
     "test/pattern-outcome.test.mjs",
     "test/pattern-outcome-v2.test.mjs",
