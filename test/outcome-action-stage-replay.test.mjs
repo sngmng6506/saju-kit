@@ -20,6 +20,8 @@ test('diagnostic envelope checks every registered result and preserves original 
  assert.deepEqual(inspectActionDiagnostics({x:{...good,completeHour:false}},true),[{owner:'x',status:'invalid-evidence',reason:'scope-mismatch'}]);
  assert.deepEqual(inspectActionDiagnostics({x:{...good,selectionAuthority:true}},true),[{owner:'x',status:'invalid-evidence',reason:'authority-violation'}]);
  assert.deepEqual(inspectActionDiagnostics({x:{...good,effectiveSupply:true}},true),[{owner:'x',status:'invalid-evidence',reason:'authority-violation'}]);
+ assert.deepEqual(inspectActionDiagnostics({x:{...good,actualStrengthState:'supported'}},true),[{owner:'x',status:'invalid-evidence',reason:'authority-violation'}]);
+ assert.deepEqual(inspectActionDiagnostics({x:{...good,summary:{actualEffectsConfirmed:1}}},true),[{owner:'x',status:'invalid-evidence',reason:'authority-violation'}]);
  assert.deepEqual(inspectActionDiagnostics({x:null},true),[{owner:'x',status:'invalid-evidence',reason:'missing-result'}]);
  assert.equal(inspectActionDiagnostics({},true)[0].reason,'inventory');
  assert.deepEqual(inspectActionDiagnostics({x:base(false)},false),[]);
