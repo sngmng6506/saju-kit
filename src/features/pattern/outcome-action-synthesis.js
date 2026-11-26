@@ -1,34 +1,13 @@
-import {evaluateArguments} from './outcome-argumentation.js';
+import {replaySynthesisProof as graph,describeSynthesisProof as describe,preservesSynthesisProofs} from './outcome-synthesis-proof.js';
 import {elementRelation} from '../../core/elements.js';
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 
 export const ACTION_SYNTHESIS_VERSION='p1-4e-action-synthesis-v1';
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const eq=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&new Set(a).size===a.length&&new Set(b).size===b.length&&a.every(x=>b.includes(x));
-const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const key=(...xs)=>JSON.stringify(xs);
 const unresolved=x=>x==='unresolved';
 const definitions=new Map(sourceEffectClauses().map(c=>[c.id,c]));
-const graph=(owner,scope)=>{
- if(!owner||![owner.propositions,owner.evidence,owner.rules,owner.judgments,owner.ruleResults].every(Array.isArray))return null;
- const r=evaluateArguments({scope,propositions:owner.propositions,evidence:owner.evidence,rules:owner.rules});
- if(r.status!==(scope==='complete'?'diagnostic':'partial')||!same(r.judgments,owner.judgments)||!same(r.ruleResults,owner.ruleResults))return null;
- const judgments=index(r.judgments,j=>j.id),results=index(r.ruleResults,x=>x.id);
- if(!judgments||!results||r.judgments.some(j=>j.level==='effect-hypothesis'&&!unresolved(j.state)))return null;
- return {judgments,rules:owner.rules,results};
-};
-// References retain exact owner and proposition identity. Alternatives
-// remain separate conjunctions, including opposition and undercut paths.
-// Missing premises are proof obligations, not negative effect evidence.
-function describe(g,id,owner){
- const j=g?.judgments.get(id);if(!j)return null;
- const alternatives=g.rules.filter(r=>r.conclusion.propositionId===id).map(r=>{
-  const q=g.results.get(r.id);
-  return {ruleId:r.id,sign:r.conclusion.sign,status:q.status,missing:q.missing.map(p=>({propositionId:p.propositionId,sign:p.sign,
-   kind:g.judgments.get(p.propositionId).kind,state:g.judgments.get(p.propositionId).state})),undercuts:q.undercuts??[]};
- });
- return {owner,propositionId:id,kind:j.kind,subject:j.subject,level:j.level,state:j.state,proof:{support:j.support,opposition:j.opposition},alternatives};
-}
 function directionRole(a){
  return a.kind==='generate'&&a.to==='visible:day'?'support':a.kind==='generate'&&a.from==='visible:day'?'release':
   a.kind==='control'&&a.to==='visible:day'?'restraint':null;
@@ -42,7 +21,7 @@ export function synthesizeActionReview(prior,argument,source,element,day,joint,m
  const ag=graph(argument,scope),mg=graph(modeled,scope),dg=graph(day,scope);
  if(!ag||!mg||!dg)return empty('proof-replay');
  // Original structural/effect proofs must survive incorporation unchanged.
- if([...ag.judgments].some(([id,j])=>!same(j,mg.judgments.get(id))))return empty('original-proof-parity');
+ if(!preservesSynthesisProofs(ag,mg))return empty('original-proof-parity');
  const actors=index(prior.stemForce?.occurrences,a=>a.id),aa=index(argument.actions,a=>a.edgeId),ss=index(source.actions,a=>a.edgeId),
   ee=index(element.actions,a=>a.edgeId),jj=index(joint.actions,a=>a.edgeId),mm=index(modeled.actions,a=>a.edgeId),
   dd=index(day.actions,a=>a.edgeId),cc=index(contact.actions,a=>a.edgeId),paths=index(joint.paths,p=>p.pathId),routes=index(modeled.interpositionRoutes,p=>p.pathId);
