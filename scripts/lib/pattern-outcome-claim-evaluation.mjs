@@ -1,3 +1,4 @@
+import {strengthGuardIds,strengthGuardDefinitions} from '../../src/features/pattern/outcome-strength-guard-contract.js';
 // Source claim comparison is not physical-force validation. Never compare
 // actual-operation claims to modeled tendency, route existence or clearance.
 import {normalizeExposurePillars} from './pattern-outcome-exposure.mjs';
@@ -8,9 +9,9 @@ const exact=(x,fields)=>x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x
 const actor=x=>['visible:year','visible:month','visible:day','visible:hour'].includes(x);
 const states=['supported','opposed','conflicting','unresolved'];
 const labels=['yes','no','undetermined','disputed'];
-const kinds=['action-effect','route-relief','pair-restriction','pair-transformation','pair-retention','branch-context','role-context','unspecified'];
+const kinds=['action-effect','route-relief','pair-restriction','pair-transformation','pair-retention','branch-context','role-context','unspecified','strength-guard'];
 const pairKinds=kinds.filter(k=>k.startsWith('pair-'));
-const unsupported=['branch-context','role-context','unspecified'];
+const unsupported=['branch-context','role-context','unspecified','strength-guard'];
 const sourceFields=['work','commentator','edition','chapter','passage','url'];
 const elements=['wood','fire','earth','metal','water'];
 const element=(p)=>elements[Math.floor('갑을병정무기경신임계'.indexOf(p[0])/2)];
@@ -21,6 +22,7 @@ function relation(chart,from,to){
 }
 function validTarget(t,p){
  if(!t||!kinds.includes(t.kind))return false;
+ if(t.kind==='strength-guard')return exact(t,['kind','actor','guard'])&&actor(t.actor)&&strengthGuardIds.includes(t.guard);
  if(t.kind==='action-effect')return exact(t,['kind','from','to','relation'])&&actor(t.from)&&actor(t.to)&&t.from!==t.to&&['generate','control'].includes(t.relation)&&relation(p,t.from,t.to)===t.relation;
  if(t.kind==='route-relief')return exact(t,['kind','route','helper','controller','target'])&&['protection','mediation'].includes(t.route)&&[t.helper,t.controller,t.target].every(actor)&&new Set([t.helper,t.controller,t.target]).size===3&&relation(p,t.controller,t.target)==='control'&&(t.route==='protection'?relation(p,t.helper,t.controller)==='control':relation(p,t.controller,t.helper)==='generate'&&relation(p,t.helper,t.target)==='generate');
  if(pairKinds.includes(t.kind)){
@@ -51,17 +53,18 @@ export function buildClaimPacket(intake,draft){
  return {version:'p1-5d-claim-packet-v1',scope:'prospective-source-claims-not-independent-gold',charts:[...charts.values()],tasks,
   instructions:{chartScope:'ordinary | special-or-formation-dependent | uncertain; cite a rationale separately',
    claim:'Does the named source establish the exact proposition for the natal chart? yes/no/undetermined/disputed. No means explicit denial, never source silence. For unspecified or aggregate claims record unresolved if no exact proposition is established.',
-   independence:'Do not consult collector readings, model output, previous labels or evaluation reports. Review target identity and scope; if incorrect use undetermined and explain. No claim of independent gold.'}};
+   independence:'Do not consult collector readings, model output, previous labels or evaluation reports. Review target identity and scope; if incorrect use undetermined and explain. No claim of independent gold.',
+   ...(tasks.some(t=>t.target.kind==='strength-guard')?{strengthGuards:strengthGuardDefinitions,guardEvidence:'Quote the explicit source condition for the exact actor and natal scope. A final strong/weak verdict, structural proxy, luck-period claim, or source silence does not establish a guard. A determinate label requires explicit-condition evidence; the schema checks declarations, not the truth of the quotation.'}:{})}};
 }
 export function claimReviewTemplate(packet,digest){
  return {version:'p1-5d-claim-review-v1',packetDigest:digest,reviewerId:'',noEngineOutputConsulted:null,noPriorLabelsConsulted:null,priorExposure:'unknown',
   charts:packet.charts.map(c=>({chartId:c.id,scope:null,rationale:''})),
-  responses:packet.tasks.map(t=>({taskId:t.id,label:null,sourceLocator:'',rationale:''}))};
+  responses:packet.tasks.map(t=>({taskId:t.id,label:null,sourceLocator:'',rationale:'',...(t.target.kind==='strength-guard'?{evidenceBasis:null,sourceExcerpt:''}:{})}))};
 }
 export function adjudicateClaims(packet,digest,batches){
  const base={independentGoldCases:0,independenceExternallyVerified:false,selectionAuthority:false,expectedCharts:packet.charts.length,expectedTasks:packet.tasks.length};
  if(!Array.isArray(batches)||batches.length<2)return {...base,status:'pending',rows:[],errors:[]};
- const errors=[],ids=new Set(),chartIds=new Set(packet.charts.map(c=>c.id)),taskIds=new Set(packet.tasks.map(t=>t.id)),valid=[];
+ const errors=[],ids=new Set(),chartIds=new Set(packet.charts.map(c=>c.id)),taskIds=new Set(packet.tasks.map(t=>t.id)),guardTasks=new Set(packet.tasks.filter(t=>t.target.kind==='strength-guard').map(t=>t.id)),valid=[];
  for(const b of batches){
   const id=text(b?.reviewerId)?b.reviewerId.trim().toLowerCase():null;
   if(!exact(b,['version','packetDigest','reviewerId','noEngineOutputConsulted','noPriorLabelsConsulted','priorExposure','charts','responses'])||
@@ -73,7 +76,10 @@ export function adjudicateClaims(packet,digest,batches){
    c.set(x.chartId,x.scope);
   }
   for(const x of b.responses){
-   if(!exact(x,['taskId','label','sourceLocator','rationale'])||!taskIds.has(x.taskId)||r.has(x.taskId)||!labels.includes(x.label)||!text(x.sourceLocator)||!text(x.rationale)){errors.push('claim-review:'+String(x?.taskId));continue;}
+   const guard=guardTasks.has(x?.taskId);
+   if(!exact(x,['taskId','label','sourceLocator','rationale',...(guard?['evidenceBasis','sourceExcerpt']:[])])||!taskIds.has(x.taskId)||r.has(x.taskId)||!labels.includes(x.label)||!text(x.sourceLocator)||!text(x.rationale)){errors.push('claim-review:'+String(x?.taskId));continue;}
+   if(guard&&(!['explicit-condition','verdict-only','structural-proxy','scope-mismatch','source-silent','ambiguous'].includes(x.evidenceBasis)||typeof x.sourceExcerpt!=='string'||
+    ['yes','no'].includes(x.label)&&(x.evidenceBasis!=='explicit-condition'||!text(x.sourceExcerpt)))){errors.push('guard-evidence:'+x.taskId);continue;}
    r.set(x.taskId,x.label);
   }
   if(c.size!==chartIds.size||r.size!==taskIds.size)errors.push('review-coverage:'+id);
