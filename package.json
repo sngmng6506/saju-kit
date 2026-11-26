@@ -54,7 +54,8 @@
     "audit:pattern-outcome-exposure": "node scripts/audit-pattern-outcome-exposure.mjs",
     "review:pattern-outcome-claims": "node scripts/review-pattern-outcome-claims.mjs",
     "audit:pattern-outcome-proof-obligations": "node scripts/audit-pattern-outcome-proof-obligations.mjs",
-    "audit:pattern-outcome-relative-force-sensitivity": "node scripts/audit-pattern-outcome-relative-force-sensitivity.mjs"
+    "audit:pattern-outcome-relative-force-sensitivity": "node scripts/audit-pattern-outcome-relative-force-sensitivity.mjs",
+    "audit:pattern-outcome-control-synthesis": "node scripts/audit-pattern-outcome-control-synthesis.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
