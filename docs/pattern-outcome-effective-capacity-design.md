@@ -921,3 +921,62 @@ Next: investigate independent support sufficiency, particularly
 indirect supply, then define and independently validate directional
 guard predicates. Do not promote this exploratory policy simply because
 it covers the development corpus.
+
+## P3-B7c — Recipient-excluded indirect support
+
+The opt-in `indirect-support` v3 policy extends v2 without changing the
+runtime default or prior policy semantics. The independent-supply
+projection reuses the canonical replenishment rules and exact slot
+retention, actor access and directed operation variables. For each
+recipient, it excludes that recipient's own root seeds and all outgoing
+links from the recipient. A proof must therefore originate elsewhere
+and cannot recycle the recipient's own support through a peer loop.
+Shared physical root IDs are retained and annotated; source independence
+is not independence of physical capacity or proof of available quantity.
+The projection validates the canonical argument packet and rejects
+unregistered supply rules or mismatched seed inventories.
+
+The additional strong alternative requires the origin-excluded incoming
+basis, an explicit indirect-support-sufficient guard and explicit
+negative excessive-control, drain and wealth-demand guards. None of
+these semantic guards is inferred from structural reachability.
+The commentary on 得時不旺失時不弱
+(https://changxianyi.com/guji/ziping/wz-20260914/chapter-007/)
+describes rooted resource/peer support as a reason that an out-of-season
+stem need not be weak. It does not prove that any rooted incoming path
+is sufficient for strength, nor that not weak is equivalent to strong.
+The new alternative is a research hypothesis, not a classical label
+promotion or independently validated sufficient condition.
+
+At revision 5dac69d, the source-level dependency runner executed all
+76 charts with three policies (34 actual modules; 228 policy runs;
+zero invalid or unavailable results):
+
+| Cohort | Policy | Both | Strong only | Weak only | Neither | Reference direction expressible |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Primary (53) | v1 | 40 | 1 | 11 | 1 | 51 |
+| Primary (53) | v2 | 41 | 0 | 12 | 0 | 53 |
+| Primary (53) | v3 | 49 | 0 | 4 | 0 | 53 |
+| All (76) | v1 | 59 | 1 | 15 | 1 | 73 |
+| All (76) | v2 | 60 | 0 | 16 | 0 | 75 |
+| All (76) | v3 | 72 | 0 | 4 | 0 | 76 |
+
+Compared with v2, v3 adds strong possibility in 12 charts: eight primary
+weak references, three secondary weak references, and the secondary
+formation-dependent W12 strong reference. W12 is not an ordinary-strength
+validation case. This is a clear loss of directional specificity, not an
+improvement of accuracy. Do not promote v3. The next gate is independently
+reviewed signed evidence for sufficiency and excess guards, including
+negative contrasts, without using the reference verdict as guard evidence.
+The three-policy audit is available via
+`npm run audit:pattern-strength-reference-coverage -- --compare-supply`.
+The existing comparison mode remains compatible; each alternate's
+failure and change inventory is separate.
+
+After strengthening the projection contract, six new tests and 22
+existing isolated tests passed at 2f6e81e, including all 512 assignments
+of a cyclic three-actor shared-root fixture against independent graph
+reachability. The 228 cohort executions preceded the final contract
+hardening; full native Node/V10 regression and independent source
+adjudication remain unexecuted. No actual strength judgment or
+selection authority was changed.
