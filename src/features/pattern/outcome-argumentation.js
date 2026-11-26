@@ -1,6 +1,8 @@
 // Four-valued, monotone, explicit signed evidence. No negation by failure,
 // no score/vote counting, no default priorities, no cyclic self-support.
 // A rule's conclusion is about its declared proposition, not another one.
+// Optional observation-only undercuts are evaluated before closure. They
+// restrict a rule, not the truth of its conclusion; no recursive defeat.
 export const ARGUMENTATION_VERSION='outcome-argumentation-v1';
 const signs=['for','against'];
 const validText=x=>typeof x==='string'&&x.length>0;
@@ -8,7 +10,6 @@ const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object'&&!Arra
 const literalKey=x=>JSON.stringify([x.propositionId,x.sign]);
 const state=(p,n)=>p?n?'conflicting':'supported':n?'opposed':'unresolved';
 const limit=Object.freeze({propositions:12000,evidence:24000,rules:24000,premises:32});
-const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function evaluateArguments(input){
  const base={version:ARGUMENTATION_VERSION,selectionAuthority:false,effective:null};
  const empty=(status,reason)=>({...base,status,reason,judgments:[],ruleResults:[]});
@@ -24,6 +25,9 @@ export function evaluateArguments(input){
  if(evidence.some(e=>!validText(e.id)||!literal(e)||!refs(e.refs)||props.get(e.propositionId).level==='effect-hypothesis'||
   !['observed','complete-only'].includes(e.applicability)))return empty('invalid-evidence','fact-contract');
  for(const r of rules){
+  const u=r.undercutWhen===undefined?[]:r.undercutWhen;
+  if(!Array.isArray(u)||u.length>limit.premises||u.some(p=>!literal(p)||props.get(p.propositionId).level!=='observation')||
+   new Set(u.map(literalKey)).size!==u.length)return empty('invalid-evidence','undercut-contract');
   if(!validText(r.id)||!validText(r.policyId)||!literal(r.conclusion)||!Array.isArray(r.premises)||!r.premises.length||r.premises.length>limit.premises||
    r.premises.some(p=>!literal(p))||new Set(r.premises.map(literalKey)).size!==r.premises.length||
    !refs(r.refs)||!['observed','complete-only'].includes(r.applicability)||
@@ -38,7 +42,12 @@ export function evaluateArguments(input){
  }
  // Synchronous rounds; only first-rank witnesses form the proof DAG.
  // Later applicable rules remain visible but cannot become circular proofs.
- const eligible=rules.filter(available),waiting=new Map(),unmet=new Map(),byRule=new Map(eligible.map(r=>[r.id,r]));
+ // Snapshot explicit observation evidence before any rule can fire.
+ // A conflicting observation still supplies the declared undercut sign;
+ // its contrary proof is retained, not used as a priority.
+ const attacks=new Map(rules.map(r=>[r.id,(r.undercutWhen??[]).filter(p=>ranks.has(literalKey(p))).map(p=>({
+  ...p,witnesses:[...witnesses.get(literalKey(p))]}))]));
+ const eligible=rules.filter(r=>available(r)&&attacks.get(r.id).length===0),waiting=new Map(),unmet=new Map(),byRule=new Map(eligible.map(r=>[r.id,r]));
  for(const r of eligible){
   const missing=r.premises.map(literalKey).filter(k=>!ranks.has(k));unmet.set(r.id,missing.length);
   for(const k of missing){if(!waiting.has(k))waiting.set(k,[]);waiting.get(k).push(r.id);}
@@ -62,8 +71,10 @@ export function evaluateArguments(input){
  });
  const ruleResults=rules.map(r=>{
   const missing=r.premises.filter(p=>!ranks.has(literalKey(p))),k=literalKey(r.conclusion);
-  return {id:r.id,status:!available(r)?'scope-unresolved':missing.length?'premises-unresolved':'applicable',
-   missing,firstRankWitness:!!witnesses.get(k)?.some(w=>w.kind==='rule'&&w.id===r.id)};
+  const undercuts=attacks.get(r.id);
+  return {id:r.id,status:!available(r)?'scope-unresolved':undercuts.length?'undercut':missing.length?'premises-unresolved':'applicable',
+   missing,firstRankWitness:!!witnesses.get(k)?.some(w=>w.kind==='rule'&&w.id===r.id),
+   ...(r.undercutWhen===undefined?{}:{undercuts})};
  });
  return {...base,status:scope==='complete'?'diagnostic':'partial',reason:null,judgments,ruleResults};
 }
