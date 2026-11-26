@@ -1,3 +1,4 @@
+import {elementRelation} from '../../core/elements.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 const VERSION='p1-4a-day-balance-direction-v1';
 // Xu commentary, 扶抑: 日元強者抑之，日元弱者扶之.
@@ -34,6 +35,9 @@ export function reviewDayBalanceDirection(prior,argument,joint,strength){
  if(typeof complete!=='boolean'||[argument,joint].some(x=>!x||x.status!==status||x.completeHour!==complete||x.selectionAuthority!==false||x.effective!==null))return empty('upstream');
  const actors=index(prior.stemForce?.occurrences,a=>a.id),actions=index(argument.actions,a=>a.edgeId),judgments=index(argument.judgments,j=>j.id),jointRows=index(joint.actions,a=>a.edgeId);
  if(!actors||!actions||!judgments||!jointRows||actions.size!==jointRows.size)return empty('identity');
+ const visible=[...actors.values()].filter(a=>a.layer==='visible');
+ const order=complete?['year','month','day','hour']:['year','month','day'];
+ if(visible.length!==order.length||order.some(p=>!visible.some(a=>a.id==='visible:'+p))||visible.some(a=>!['wood','fire','earth','metal','water'].includes(a.element)))return empty('visible-scope');
  const days=[...actors.values()].filter(a=>a.layer==='visible'&&a.dayReference===true);
  if(days.length!==1||days[0].id!=='visible:day')return empty('day-identity');
  const day=days[0].id,direction=resolveDayDirection(strength,complete);
@@ -49,6 +53,8 @@ export function reviewDayBalanceDirection(prior,argument,joint,strength){
    !s||s.subject!==e.edgeId||s.level!=='structural-hypothesis'||s.kind!==(e.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance')||!['supported','opposed','conflicting','unresolved'].includes(s.state)||
    !q||q.from!==e.from||q.to!==e.to||q.kind!==e.kind||q.effectPropositionId!==j.id||q.actualEffectState!=='unresolved'||
    actors.get(e.from)?.layer!=='visible'||actors.get(e.to)?.layer!=='visible'||!['generate','control'].includes(e.kind))return empty('action-binding');
+  const relationType=elementRelation(actors.get(e.from).element,actors.get(e.to).element);
+  if(e.edgeId!==e.from+'>'+e.to||relationType.type!==e.kind||relationType.direction!=='left-to-right')return empty('literal-relation');
   const r=role(e,day);if(!r)continue;
   const subject=e.edgeId,d=add(key(subject,'direction-fit'),'ordinary-balance-direction-fit',subject,'structural-hypothesis');
   const screen=add(key(subject,'screen'),'existing-structural-screen-supported',subject,'observation');
