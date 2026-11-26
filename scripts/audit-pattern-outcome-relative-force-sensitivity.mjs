@@ -27,7 +27,11 @@ for(const c of cases)for(const completeHour of [true,false]){
    const c=d.contextual;
    if(!c||c.status!==pressure.status||c.forceComparison!==null||c.actualControlState!=='unresolved'||c.selectionAuthority!==false||
     !completeHour&&c.sides.some(q=>q.challengeState!=='unresolved'))throw Error('contextual-contract');
-   actions.push({pressureId:p.id,contrast:p.contrast,reason:d.reason,controllerDominanceUnmet:d.controllerDominanceUnmet,
+   const shared=d.sharedBasis;
+   if(!shared||![(completeHour?'diagnostic':'partial'),'unavailable'].includes(shared.status)||shared.forceComparison!==null||shared.selectionAuthority!==false||
+    shared.actualControlState!=='unresolved'||(!completeHour&&shared.possibleRelations!==null)||
+    (shared.status==='diagnostic'&&(!shared.possibleRelations.length||!shared.possibleRelations.every(v=>d.views.sensitivity.possibleRelations.includes(v)))))throw Error('shared-basis-contract');
+   actions.push({pressureId:p.id,contrast:p.contrast,reason:d.reason,controllerDominanceUnmet:d.controllerDominanceUnmet,sharedBasis:shared,
     contextual:c.sides.map(q=>({side:q.side,rootCounterState:q.rootCounterState,resourceCounterState:q.resourceCounterState,challengeState:q.challengeState})),
     views:Object.fromEntries(Object.entries(d.views).map(([k,v])=>[k,{relation:v.relation,leftOnly:v.leftOnly,rightOnly:v.rightOnly,unknown:v.unknown,possibleRelations:v.possibleRelations,invariantRelation:v.invariantRelation}]))});
   }
@@ -47,5 +51,11 @@ console.log(JSON.stringify({version:'p1-relative-force-sensitivity-audit-v1',sco
  resourceCounter:complete.filter(a=>a.contextual.some(q=>q.resourceCounterState==='supported')).length,
  seasonOrderChallenged:complete.filter(a=>a.contextual.some(q=>q.challengeState==='supported')).length,
  mixedSeasonOrderChallenged:unstable.filter(a=>a.reason==='known-opposing-axes'&&a.contextual.some(q=>q.challengeState==='supported')).length},
+ sharedBasisCoverage:{evaluated:complete.filter(a=>a.sharedBasis.status==='diagnostic').length,budgetExceeded:complete.filter(a=>a.sharedBasis.status==='unavailable').length,
+  sharedUnknown:complete.filter(a=>a.sharedBasis.sharedVariables?.length).length,
+  narrowed:complete.filter(a=>a.sharedBasis.excludedRelations?.length).length,
+  newlyInvariant:complete.filter(a=>a.sharedBasis.invariantRelation!==null&&a.views.sensitivity.invariantRelation===null).length,
+  maxScenarios:Math.max(0,...complete.map(a=>a.sharedBasis.scenarioCount)),
+  totalScenarios:complete.reduce((n,a)=>n+a.sharedBasis.scenarioCount,0)},
  independentGoldCases:0,selectionAuthority:false,errors,rows},null,2));
 if(errors.length||rows.length!==cases.length*2)process.exitCode=1;
