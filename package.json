@@ -55,6 +55,7 @@
     "review:pattern-outcome-claims": "node scripts/review-pattern-outcome-claims.mjs",
     "audit:pattern-outcome-proof-obligations": "node scripts/audit-pattern-outcome-proof-obligations.mjs",
     "audit:pattern-outcome-relative-force-sensitivity": "node scripts/audit-pattern-outcome-relative-force-sensitivity.mjs",
+    "audit:pattern-strength-source-conditions": "node scripts/audit-pattern-strength-source-conditions.mjs",
     "review:pattern-strength-guards": "node scripts/review-pattern-strength-guards.mjs",
     "audit:pattern-strength-reference-coverage": "node scripts/audit-pattern-strength-reference-coverage.mjs",
     "audit:pattern-element-context-coverage": "node scripts/audit-pattern-element-context-coverage.mjs",
