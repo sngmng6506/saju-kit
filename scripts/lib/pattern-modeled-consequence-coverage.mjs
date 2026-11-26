@@ -17,8 +17,13 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
  const expected=completeHour?'diagnostic':'partial';
  const invalid=inspectActionDiagnostics(diagnosticFields,completeHour);
  if(combination.status!==expected)invalid.unshift({owner:'combinationContext',status:combination.status,reason:combination.reason??'unexpected-status'});
+ // Preserve upstream diagnostic failures even if a downstream report
+ // cannot be projected. A projection exception is itself a failure.
+ let rows=[];
+ try{
+  if(!Array.isArray(modeled?.judgments)||!Array.isArray(modeled?.actions))throw Error('modeled-inventory');
  const judgments=new Map((modeled?.judgments??[]).map(j=>[j.id,j.state]));
- const rows=(modeled?.actions??[]).flatMap(a=>a.clauses.filter(c=>c.propositionId!==null).map(c=>{
+ rows=(modeled?.actions??[]).flatMap(a=>a.clauses.filter(c=>c.propositionId!==null).map(c=>{
   const modelState=judgments.get(c.modelPropositionId)??null,structuralState=judgments.get(c.structuralPropositionId)??null;
   const blockers=[...(modelState!=='supported'?['element-model']:[]),...(structuralState!=='supported'?['structural-screen']:[]),
    ...c.conditions.filter(q=>q.value!==true).map(q=>q.name)];
@@ -31,7 +36,10 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,contact,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,replenishmentReview,burdenReview,strengthSynthesis,diagnosticFields,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact],controlSynthesisInputs:[prior,root,pressure,argument,modeled,synthesis],generationSynthesisInputs:[prior,root,supply,argument,modeled,synthesis],interactionDependencyInputs:[prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis],interactionScenarioInputs:[prior,root,pressure,argument,interactionDependencies],interactionProofInputs:[prior,joint,modeled,generationSynthesis,controlSynthesis],conditionalJointInputs:[prior,joint],replenishmentInputs:[prior,root,supply],burdenInputs:[prior,replenishmentReview],strengthSynthesisInput:{completeHour,nodes:replenishmentReview.nodes,targets:replenishmentReview.targets,burden:burdenReview.analysis}}:{}),interpositionRoutes:modeled?.interpositionRoutes??[],actionCount:modeled?.actions?.length??0,actualEffectPromoted:(modeled?.judgments??[]).some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ }catch(e){
+  invalid.push({owner:'modeledConsequenceReview.projection',status:'invalid-evidence',reason:e instanceof Error?e.message:String(e)});
+ }
+ return {invalid,rows,contact,synthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,replenishmentReview,burdenReview,strengthSynthesis,diagnosticFields,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact],controlSynthesisInputs:[prior,root,pressure,argument,modeled,synthesis],generationSynthesisInputs:[prior,root,supply,argument,modeled,synthesis],interactionDependencyInputs:[prior,root,supply,pressure,argument,joint,modeled,synthesis,generationSynthesis,controlSynthesis],interactionScenarioInputs:[prior,root,pressure,argument,interactionDependencies],interactionProofInputs:[prior,joint,modeled,generationSynthesis,controlSynthesis],conditionalJointInputs:[prior,joint],replenishmentInputs:[prior,root,supply],burdenInputs:[prior,replenishmentReview],strengthSynthesisInput:{completeHour,nodes:replenishmentReview.nodes,targets:replenishmentReview.targets,burden:burdenReview.analysis}}:{}),interpositionRoutes:Array.isArray(modeled?.interpositionRoutes)?modeled.interpositionRoutes:[],actionCount:Array.isArray(modeled?.actions)?modeled.actions.length:0,actualEffectPromoted:(Array.isArray(modeled?.judgments)?modeled.judgments:[]).some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
