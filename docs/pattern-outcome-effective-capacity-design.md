@@ -980,3 +980,99 @@ reachability. The 228 cohort executions preceded the final contract
 hardening; full native Node/V10 regression and independent source
 adjudication remain unexecuted. No actual strength judgment or
 selection authority was changed.
+
+## P3-B7d-1 — Signed semantic guard review and sensitivity
+
+The shared guard registry defines five exact natal visible-actor
+predicates: deep usable direct root, excessive incoming control,
+excessive outgoing generation drain, excessive wealth demand, and
+sufficient indirect support. A structural proxy or final strength
+verdict is not equivalent to any predicate. The existing claim-packet
+and review protocol now accepts a strength-guard target with exact
+actor and predicate. Determinate yes/no answers require a declared
+explicit-condition basis, a source excerpt, locator and rationale.
+Verdict-only, proxy, scope mismatch, silence and ambiguous evidence
+cannot receive a determinate label. This validates declared evidence
+types, not the factual truth or independence of reviewers' reading.
+A dishonest or mistaken declaration cannot be detected by schema alone.
+
+The retrospective queue contains 53 charts and 265 day-actor tasks
+without copying the old direction labels or evidence excerpts. It is
+derived from an already exposed development corpus, not a prospective
+independent test. The original six fixture inventories are verified
+before building the queue. The external-intake mode is available for
+new source cases. The existing SHA-256 packet binding, distinct
+reviewer declarations, ordinary natal scope and exact coverage
+requirements are retained. Disagreement, silence, special or uncertain
+scope and missing reviews supply no guard restriction. No independent
+reviewers or completed source labels were fabricated.
+
+The guarded frontier can fix an explicit subset of Boolean guards.
+A research-only scenarioRestrictions argument carries agreed yes/no
+as hypothetical restrictions, not facts. All original proof packets,
+baseline judgments and rule results must be byte-equivalent in the
+baseline and restricted replay. The restricted possibilities must be
+a subset when both analyses finish. No feasible assignment is reported
+as incompatible-constraints, never a weak or strong conclusion.
+Every witness is replayed by the canonical argument evaluator and
+checked against the restrictions. Actual strength remains unresolved.
+The shared literal-chart replay accepts normalized pillars only, not
+source directions or reviewed guard values; the audit and review CLI
+reuse it. Existing v1 default and selection authority are unchanged.
+
+At revision 7473c96, 38 actual source modules were connected in isolated
+JavaScript. 53 baseline charts and 530 single-guard signed restrictions
+(ten per chart) were evaluated. No execution-invalid or budget-unavailable
+results; 39 restrictions were structurally incompatible with the modeled
+necessary conditions. Baseline v3 has 49 both-direction cases. Counts of
+those 49 narrowed to exactly one possible direction by a single sign:
+
+| Guard | Explicit false | Explicit true | Incompatible true (all 53) |
+| --- | ---: | ---: | ---: |
+| deep-root-available | 0 | 0 | 12 |
+| control-exceeds-support | 1 | 42 | 8 |
+| drain-exceeds-support | 2 | 43 | 6 |
+| wealth-demand-exceeds-support | 0 | 41 | 9 |
+| indirect-support-sufficient | 8 | 0 | 4 |
+
+These are conditional sensitivity counts, not source annotations,
+accuracy, causal importance or proof of a classical rule. A positive
+excess guard directly satisfies a weak terminal rule and blocks the
+strong alternatives by construction; its high sensitivity is partly
+tautological. The review priority is to establish the independently
+justified meaning of the predicate, including counterexamples, rather
+than set it to match the final direction. One-sign analysis does not
+establish joint chart-wide feasibility.
+
+Desk recheck of the XU14 and XU26 passages:
+https://luckclub.cn/bazi/002/036/ and https://luckclub.cn/bazi/002/044/
+describe prosperous/abundant wealth and light/weak body with resource
+support, but do not separately establish the exact quantitative or
+comparative wealth-excess guard. Treat this as a limitation of source
+mapping, not a reviewed yes/no label. The discussion of root and peer
+support at https://www.donglishuzhai.net/chapter/3719.html and
+https://luckclub.cn/bazi/002/008/ also does not equate a literal rooted
+path with adequate indirect support. These electronic passages were
+consulted by the same developer/assistant who saw the historical
+labels; they are not independent review batches.
+
+Seven new and 34 existing isolated tests passed (41 total) at
+beacca2c, including the actual retrospective queue, signed agreement,
+replay invariance, incompatible assumptions and label-free sensitivity.
+Native Node/V10 regression is still pending. Source-level execution
+used a temporary unreferenced Git blob for the pinned core dependency
+bundle; no generated source bundle was added to main.
+
+Usage (external review JSON files must be outside the checkout):
+```sh
+npm run review:pattern-strength-guards -- packet retrospective
+npm run review:pattern-strength-guards -- template retrospective
+npm run review:pattern-strength-guards -- sensitivity retrospective
+npm run review:pattern-strength-guards -- summarize retrospective ../review-A.json ../review-B.json
+npm run review:pattern-strength-guards -- replay retrospective ../review-A.json ../review-B.json
+```
+Use separately completed review templates and keep prior labels and
+model outputs out of reviewer material. The next gate is real source
+condition adjudication and prospective contrasts, not a new alternative
+that expands expressivity. Even determinate agreement is pending
+external verification, and it cannot promote a runtime decision.
