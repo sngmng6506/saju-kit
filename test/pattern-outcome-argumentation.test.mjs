@@ -13,6 +13,7 @@ import {elementRelation} from '../src/core/elements.js';
 import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
 import {reviewModeledConsequences} from '../src/features/pattern/outcome-modeled-consequences.js';
+import {controls as coverageControls,replayModeledCoverage,summarizeModeledCoverage} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -657,4 +658,29 @@ test('native modeled consequence review replays 24 packet variants with actual e
   assert.equal(native.decisionReview.status,'abstained');n++;
  }
  assert.equal(n,24);
+});
+
+test('production core replay establishes both modeled consequences and withdraws on one-pillar contrasts',()=>{
+ for(const c of coverageControls)for(const complete of [true,false]){
+  const r=replayModeledCoverage(c.pillars,complete);
+  assert.deepEqual(r.invalid,[],c.id);
+  assert.equal(r.actualEffectPromoted,false,c.id);
+  const q=r.rows.find(a=>a.edgeId==='visible:month>visible:day'&&a.kind===c.kind);
+  assert.equal(q?.state,complete?c.expected:'unresolved',c.id);
+  if(!complete)assert.ok(r.rows.every(a=>a.state==='unresolved'));
+  if(complete&&c.id==='injury-interposition'){
+   assert.equal(q.modelState,'supported');assert.equal(q.structuralState,'supported');
+   assert.deepEqual(q.blockers,['no-observed-interposition-candidate']);
+  }
+ }
+});
+test('coverage counts jointly unsatisfied and single missing premises without interpreting abstention as opposition',()=>{
+ const rows=[
+  {kind:'modeled-source-release',state:'unresolved',modelState:'unresolved',structuralState:'opposed',blockers:['element-model','structural-screen']},
+  {kind:'modeled-target-injury',state:'unresolved',modelState:'supported',structuralState:'supported',blockers:['no-observed-interposition-candidate']},
+  {kind:'modeled-target-injury',state:'supported',modelState:'supported',structuralState:'supported',blockers:[]}
+ ];
+ const r=summarizeModeledCoverage(rows);assert.equal(r.eligible,3);assert.equal(r.supported,1);assert.equal(r.unresolved,2);
+ assert.equal(r.modelSupported,2);assert.equal(r.structureSupported,2);assert.equal(r.bothSupported,2);
+ assert.deepEqual(r.singleBlockers,{'no-observed-interposition-candidate':1});
 });
