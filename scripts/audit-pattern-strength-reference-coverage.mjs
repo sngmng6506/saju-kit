@@ -12,8 +12,8 @@ import {inspectActionDiagnostics} from '../src/features/pattern/outcome-action-d
 import {buildReferenceCoverageCohort,observeReferenceBasis,observeSynthesisCoverage,observeBurdenObligations,summarizeReferenceCoverage} from './lib/pattern-strength-reference-coverage.mjs';
 const read=name=>JSON.parse(readFileSync(new URL('../test/fixtures/'+name+'.json',import.meta.url),'utf8'));
 const args=process.argv.slice(2);
-if(args.length>1||args.some(x=>x!=='--basis-only'))throw Error('Usage: audit-pattern-strength-reference-coverage.mjs [--basis-only]');
-const basisOnly=args.includes('--basis-only');
+if(args.length>1||args.some(x=>!['--basis-only','--compare-demand'].includes(x)))throw Error('Usage: audit-pattern-strength-reference-coverage.mjs [--basis-only | --compare-demand]');
+const basisOnly=args.includes('--basis-only'),compareDemand=args.includes('--compare-demand');
 const audit=read('strength-audit-v1');
 const sourceInventory=verifyStrengthAuditInventory(strengthAuditFixtureNames.map(name=>({name,cases:read(name).cases})),audit);
 const cohort=buildReferenceCoverageCohort(audit,read('pattern-classical-v2'));
@@ -32,11 +32,20 @@ const observations=cohort.rows.map(({id,pillars})=>{
   stage='groundedSupply';const supply=check(stage,observeGroundedSupply(prior,root));
   stage='replenishmentReview';const replenishment=check(stage,reviewReplenishment(prior,root,supply));
   stage='burdenReview';const burden=check(stage,reviewBurden(prior,replenishment));
-  stage='strengthSynthesis';const synthesis=check(stage,synthesizeContextualStrength({completeHour:true,nodes:replenishment.nodes,targets:replenishment.targets,burden:burden.analysis}));
+  stage='strengthSynthesis';const input={completeHour:true,nodes:replenishment.nodes,targets:replenishment.targets,burden:burden.analysis};
+  const synthesis=check(stage,synthesizeContextualStrength(input));
   stage='referenceObligations';
-  return {id,basis,synthesis:observeSynthesisCoverage(synthesis),obligations:observeBurdenObligations(burden,synthesis)};
+  const baseline={id,basis,synthesis:observeSynthesisCoverage(synthesis),obligations:observeBurdenObligations(burden,synthesis)};
+  if(!compareDemand)return baseline;
+  try{
+   const alternate=check('demandSynthesis',synthesizeContextualStrength({...input,policy:'literal-demand'}));
+   return {...baseline,demandSynthesis:observeSynthesisCoverage(alternate)};
+  }catch(e){return {...baseline,demandError:String(e?.message??e)};}
  }catch(e){return {id,error:stage+': '+String(e?.message??e),...(basis?{basis}:{})};}
 });
 const report=summarizeReferenceCoverage(cohort,observations);
-console.log(JSON.stringify({...report,sourceInventory,mode:basisOnly?'basis-only':'conditional-synthesis',passed:report.invalid===0},null,2));
-if(report.invalid)process.exitCode=1;
+const demandReport=compareDemand?summarizeReferenceCoverage(cohort,observations.map(o=>o.error?o:o.demandError?{id:o.id,basis:o.basis,error:o.demandError}:{id:o.id,basis:o.basis,synthesis:o.demandSynthesis})):null;
+const changed=compareDemand?observations.filter(o=>!o.error&&!o.demandError&&JSON.stringify(o.synthesis)!==JSON.stringify(o.demandSynthesis)).map(o=>({id:o.id,baseline:o.synthesis,demand:o.demandSynthesis})):[];
+const passed=report.invalid===0&&(!demandReport||demandReport.invalid===0);
+console.log(JSON.stringify({...report,sourceInventory,mode:compareDemand?'paired-demand-comparison':basisOnly?'basis-only':'conditional-synthesis',...(compareDemand?{demandComparison:{primary:demandReport.primary,directionDistribution:demandReport.directionDistribution,referenceGaps:demandReport.referenceGaps,invalid:demandReport.invalid,invalidRows:demandReport.rows.filter(r=>r.status==='invalid-evidence'),changed,actualAccuracy:null,selectionAuthority:false}}:{}),passed},null,2));
+if(!passed)process.exitCode=1;
