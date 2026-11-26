@@ -91,3 +91,17 @@ test('native V10 source packet binds all 24 variants and preserves abstention',(
  }
  assert.equal(n,24);assert.equal(actions,60);assert.equal(clauses,154);assert.equal(undercuts,37);
 });
+
+test('source predicates retain distinct semantic obligations without proxy promotion',()=>{
+ for(const kind of ['generate','control']){
+  const r=review(make(kind));
+  assert.equal(r.status,'diagnostic');
+  for(const c of r.actions[0].clauses){
+   const b=c.semanticBridge;
+   assert.equal(b.kind,c.predicate==='excessive'?'element-excess':c.predicate==='resistant'?'element-resistance':'element-strength');
+   assert.deepEqual(b.subject,[c.predicateElement]);
+   assert.equal(b.state,'unresolved');assert.equal(c.predicateState,'unresolved');
+   assert.equal(b.selectionAuthority,false);assert.equal(b.effective,null);
+  }
+ }
+});
