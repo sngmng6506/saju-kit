@@ -52,7 +52,8 @@
     "audit:pattern-outcome-modeled-coverage": "node scripts/audit-pattern-outcome-modeled-coverage.mjs",
     "audit:pattern-outcome-native-p1": "node scripts/audit-pattern-outcome-native-p1.mjs",
     "audit:pattern-outcome-exposure": "node scripts/audit-pattern-outcome-exposure.mjs",
-    "review:pattern-outcome-claims": "node scripts/review-pattern-outcome-claims.mjs"
+    "review:pattern-outcome-claims": "node scripts/review-pattern-outcome-claims.mjs",
+    "audit:pattern-outcome-proof-obligations": "node scripts/audit-pattern-outcome-proof-obligations.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
