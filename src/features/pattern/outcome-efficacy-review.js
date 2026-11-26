@@ -15,6 +15,7 @@ import {observeRoleDemand} from './outcome-role-demand.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
 import {observeHiddenAccessContext} from './outcome-hidden-access.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
+import {reviewInterpositionPolicy} from './outcome-interposition-policy.js';
 import {reviewSourceEffectPolicy} from './outcome-source-effect-policy.js';
 import {observeArgumentReview} from './outcome-argument-review.js';
 import {observeLocalityContext} from './outcome-locality-context.js';
@@ -58,6 +59,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const localityContext=observeLocalityContext(prior,groundedSupply,interpositionReview,pressureDependencyReview);
  const argumentReview=observeArgumentReview(prior,groundedSupply,pressureDependencyReview,localityContext);
  const sourceEffectReview=reviewSourceEffectPolicy(prior,argumentReview,groundedSupply,result.regulationStrength);
+ const interpositionPolicyReview=reviewInterpositionPolicy(prior,groundedSupply,interpositionReview,pressureDependencyReview,argumentReview);
  const officerSupplyContext=observeOfficerSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const outputSupplyContext=observeOutputSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
  const resourceSupplyContext=observeResourceSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
@@ -85,6 +87,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const dependencyReview=observeRoleDependencies(demandReview,{resource:resourceDemandConditions,output:outputDemandConditions,officer:officerDemandConditions},groundedSupply,prior.completeHour);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,interpositionPolicyReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,interpositionPolicyReview,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
