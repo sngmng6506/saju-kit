@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {evaluateInterpositionScenario,reviewInterpositionPolicy,interpositionSourcePolicies} from '../src/features/pattern/outcome-interposition-policy.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -57,7 +58,7 @@ const build=(ps,complete=true)=>{
  const root=observeRootContext(prior,analyzeFormationEvidence({saju})),supply=observeGroundedSupply(prior,root),interposition=observeInterpositionReview(prior,root,supply);
  const pressure=observePressureDependencyReview(prior,root,supply,interposition),locality=observeLocalityContext(prior,supply,interposition,pressure);
  const review=observeArgumentReview(prior,supply,pressure,locality);
- return {saju,prior,supply,pressure,locality,review};
+ return {saju,prior,supply,pressure,locality,review,interposition};
 };
 const audit=(x,partial=false)=>summarizeArgumentReview({id:'test'},{argumentReview:x.review,groundedSupply:x.supply,pressureDependencyReview:x.pressure,localityContext:x.locality,roleCapacity:observeRoleCapacity(x.prior)},partial);
 test('positive structural generation does not become an effective action',()=>{
@@ -140,4 +141,75 @@ test('undercut contract rejects recursive, duplicate and unknown predicates and 
  assert.equal(run(ps,fs,[gated('bad',lit('effect'),[lit('a')],[lit('u')])]).status,'invalid-evidence');
  const plain=run(ps,fs,[rule('ab',lit('b'),[lit('a')])]);
  assert.equal(Object.hasOwn(plain.ruleResults[0],'undercuts'),false);
+});
+
+const interpositionAssumptions={routeState:'supported',contextState:'supported',operationState:'supported',obstructionState:'opposed'};
+test('source conditional requires operation, context and explicit clearance, not path existence',()=>{
+ for(const p of interpositionSourcePolicies()){
+  const go=overrides=>evaluateInterpositionScenario(p.id,{...interpositionAssumptions,...overrides});
+  const yes=go({});assert.equal(yes.applicability,'supported');assert.equal(yes.consequenceState,'follows-under-explicit-assumptions');
+  assert.equal(yes.actualEffectState,'unresolved');assert.equal(yes.selectionAuthority,false);
+  for(const key of Object.keys(interpositionAssumptions)){
+   assert.equal(go({[key]:'unresolved'}).applicability,'unresolved');
+  }
+  assert.equal(go({operationState:'opposed'}).applicability,'opposed');
+  assert.equal(go({operationState:'conflicting'}).applicability,'conflicting');
+  for(const obstructionState of ['supported','conflicting']){
+   const x=go({obstructionState});assert.equal(x.ruleStatus,'undercut');assert.equal(x.applicability,'unresolved');
+   assert.equal(x.actualEffectState,'unresolved');assert.equal(x.undercuts[0].propositionId,'obstruction');
+  }
+  assert.equal(go({scope:'partial'}).applicability,'unresolved');
+ }
+ assert.equal(evaluateInterpositionScenario('unknown',interpositionAssumptions).status,'invalid-evidence');
+});
+function interpositionFixture(kind='mediation',complete=true,matched=true){
+ const makeActor=(position,element,tenGod,dayReference=false)=>({id:'visible:'+position,graphNodeId:position+':stem',position,layer:'visible',element,tenGod,dayReference});
+ const h=makeActor('year',kind==='mediation'?'fire':'metal',kind==='mediation'?'정재':matched?'정인':'편재');
+ const s=makeActor('month','wood','상관'),t=makeActor('day','earth','정관',kind==='mediation');
+ // In a protection fixture the day reference is a separate fourth actor.
+ const extra=makeActor('hour','water',null,kind==='protection');
+ const actors=complete?[h,s,t,extra]:[h,s,t];
+ const edges=(kind==='mediation'?[[s,h,'generate'],[h,t,'generate'],[s,t,'control']]:[[h,s,'control'],[s,t,'control']]).map(([a,b,kind])=>({edgeId:a.id+'>'+b.id,from:a.id,to:b.id,kind,effective:null,selectionAuthority:false}));
+ const control=edges.at(-1),pressureId=JSON.stringify([s.graphNodeId,t.graphNodeId]),pathId=JSON.stringify([kind,h.graphNodeId,s.graphNodeId,t.graphNodeId]);
+ const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false};
+ const path={id:pathId,kind,helper:h.graphNodeId,threat:s.graphNodeId,target:t.graphNodeId,edges:edges.map(e=>({from:actors.find(a=>a.id===e.from).graphNodeId,to:actors.find(a=>a.id===e.to).graphNodeId,type:e.kind})),blockers:complete?[]:['missing-hour'],structuralScreen:complete?'grounded-structure-screen-met':'context-review',effectConfirmed:null,neutralizationConfirmed:null};
+ const pressures=edges.filter(e=>e.kind==='control').map(e=>{const a=actors.find(a=>a.id===e.from),b=actors.find(a=>a.id===e.to);return {id:JSON.stringify([a.graphNodeId,b.graphNodeId]),controllerNodeId:a.graphNodeId,targetNodeId:b.graphNodeId,candidatePathIds:e===control?[pathId]:[],effective:null,neutralizationConfirmed:null};});
+ const actions=edges.map(e=>({...e,effectPropositionId:'effect:'+e.edgeId}));
+ const judgments=actions.map(e=>({id:e.effectPropositionId,subject:e.edgeId,kind:'actual-action-effective',level:'effect-hypothesis',state:'unresolved',support:{rank:null},opposition:{rank:null}}));
+ return {prior:{completeHour:complete,stemForce:{occurrences:actors}},supply:{...base,actions:edges,effectiveSupply:null},
+  interposition:{roleNeutral:{...base,paths:[path],targetScope:'all-visible-stems',effectConfirmed:null,neutralizationConfirmed:null}},
+  pressure:{...base,paths:[{id:pathId,targetPressureId:pressureId,dependencies:[],otherBlockers:path.blockers,structuralDependencyRank:complete?0:null,effectConfirmed:null,neutralizationConfirmed:null}],pressures,effective:null,neutralizationConfirmed:null},
+  review:{...base,actions,judgments,effective:null}};
+}
+const policyReview=x=>reviewInterpositionPolicy(x.prior,x.supply,x.interposition,x.pressure,x.review);
+test('production bindings distinguish mediation and role-scoped protection without promotion',()=>{
+ for(const [kind,matched,policy] of [['mediation',true,'tongguan'],['protection',true,'officer-rescue'],['protection',false,null]]){
+  const x=interpositionFixture(kind,true,matched),r=policyReview(x);
+  assert.equal(r.status,'diagnostic');assert.equal(r.paths.length,1);const p=r.paths[0];
+  assert.equal(p.sourcePolicyId,policy);assert.equal(p.routeState,'supported');
+  assert.equal(p.structuralDependencyRank,0);assert.equal(p.sourceApplicability,'unresolved');
+  assert.equal(p.actualEffectState,'unresolved');assert.deepEqual(p.actualUndercuts,[]);
+  assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'&&a.neutralizationConfirmed===null));
+ }
+ const partial=policyReview(interpositionFixture('mediation',false));assert.equal(partial.status,'partial');assert.equal(partial.paths[0].routeState,'unresolved');
+});
+test('interposition rejects fabricated path legs, missing path and promoted effect',()=>{
+ const x=interpositionFixture();x.interposition.roleNeutral.paths[0].edges[0].to='day:stem';assert.equal(policyReview(x).status,'invalid-evidence');
+ const y=interpositionFixture();y.interposition.roleNeutral.paths=[];y.pressure.paths=[];assert.equal(policyReview(y).status,'invalid-evidence');
+ const z=interpositionFixture();z.review.judgments.at(-1).support.rank=0;assert.equal(policyReview(z).status,'invalid-evidence');
+});
+test('native interposition review binds packet variants and preserves all prior abstentions',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
+ let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete),r=policyReview(x);
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);
+  assert.equal(r.paths.length+r.excludedHiddenPathCount,x.interposition.roleNeutral.paths.length,c.id);
+  assert.equal(r.actions.length,x.review.actions.filter(a=>a.kind==='control').length,c.id);
+  assert.ok(r.paths.every(p=>p.actualEffectState==='unresolved'&&p.sourceApplicability==='unresolved'&&!p.actualUndercuts.length));
+  const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  assert.deepEqual(native.efficacyReview.mechanismReview.interpositionPolicyReview,r,c.id);
+  assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
 });
