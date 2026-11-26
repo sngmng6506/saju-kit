@@ -48,7 +48,8 @@
     "audit:pattern-outcome-root-context": "node scripts/audit-pattern-outcome-root-context.mjs",
     "audit:pattern-outcome-command-replay": "node scripts/audit-pattern-outcome-command-replay.mjs",
     "audit:pattern-outcome-modeled-consequences": "node scripts/audit-pattern-outcome-modeled-consequences.mjs",
-    "audit:pattern-outcome-modeled-coverage": "node scripts/audit-pattern-outcome-modeled-coverage.mjs"
+    "audit:pattern-outcome-modeled-coverage": "node scripts/audit-pattern-outcome-modeled-coverage.mjs",
+    "audit:pattern-outcome-native-p1": "node scripts/audit-pattern-outcome-native-p1.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
