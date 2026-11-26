@@ -1,3 +1,4 @@
+import {summarizeHiddenAccess} from './lib/pattern-outcome-hidden-access-audit.mjs';
 import {summarizeClashResidual} from './lib/pattern-outcome-clash-residual-audit.mjs';
 import {summarizeCombinationResidual} from './lib/pattern-outcome-combination-residual-audit.mjs';
 import {summarizeLocalityContext} from './lib/pattern-outcome-locality-audit.mjs';
@@ -10,7 +11,7 @@ import {summarizeGroundedSupplyReview,summarizeInterpositionReview,summarizeRole
 const packet=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
 const packetErrors=validateRoleSourcePacket(packet);
 if(packetErrors.length){console.log(JSON.stringify({errors:packetErrors},null,2));process.exit(1);}
-const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[];
+const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[],hiddenAccessRows=[];
 for(const c of packet.cases)for(const partial of [false,true]){
  try{
   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,partial&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
@@ -28,6 +29,7 @@ for(const c of packet.cases)for(const partial of [false,true]){
   localityRows.push(summarizeLocalityContext(c,r.efficacyReview?.mechanismReview,partial));
   combinationResidualRows.push(summarizeCombinationResidual(c,r.efficacyReview?.mechanismReview,partial));
   clashResidualRows.push(summarizeClashResidual(c,r.efficacyReview?.mechanismReview,partial));
+  hiddenAccessRows.push(summarizeHiddenAccess(c,r.efficacyReview?.mechanismReview,partial));
   rows.push(evaluateRoleSourceCase(c,r,{partial}));
  }catch(e){rows.push({id:c.id,partial,probes:[],errors:[e.name+':'+e.message]});}
 }
@@ -84,5 +86,9 @@ report.clashResidualRows=clashResidualRows;
 report.clashResidualCoverage={expected:report.expectedVariants,executed:clashResidualRows.length,passed:clashResidualRows.filter(r=>!r.errors.length).length};
 if(clashResidualRows.length!==report.expectedVariants)report.errors.push('clash-residual-variant-coverage');
 for(const r of clashResidualRows)for(const e of r.errors)report.errors.push(r.id+':clash-residual:'+e);
+report.hiddenAccessRows=hiddenAccessRows;
+report.hiddenAccessCoverage={expected:report.expectedVariants,executed:hiddenAccessRows.length,passed:hiddenAccessRows.filter(r=>!r.errors.length).length};
+if(hiddenAccessRows.length!==report.expectedVariants)report.errors.push('hidden-access-variant-coverage');
+for(const r of hiddenAccessRows)for(const e of r.errors)report.errors.push(r.id+':hidden-access:'+e);
 console.log(JSON.stringify(report,null,2));
 if(report.errors.length)process.exitCode=1;
