@@ -78,6 +78,14 @@ export function reviewElementContexts(prior,root,supply,source){
    !['principal','middle','residual'].includes(s.role)||!['clash-exposed','formation-contested','residual-context',cleanState].includes(s.state)||
    s.state===cleanState&&s.role==='residual'||s.state==='residual-context'&&s.role!=='residual')return empty('slot-binding');
  }
+ // The upstream occurrence root projection must cover every physical
+ // same-element substantial slot. Do not accept two mutually consistent
+ // but jointly incomplete donor/root rows as proof of clearance.
+ for(const a of visible){
+  const rr=ro.get(a.id),rs=[...slots.values()].filter(s=>s.element===a.element&&s.role!=='residual');
+  if(!eq(rr.uncontestedRootIds,rs.filter(s=>s.state===cleanState).map(s=>s.id))||
+   !eq(rr.contestedRootIds,rs.filter(s=>s.state!==cleanState).map(s=>s.id)))return empty('occurrence-root-coverage');
+ }
  const groups=new Map();
  for(const a of actors.values()){if(!groups.has(a.graphNodeId))groups.set(a.graphNodeId,[]);groups.get(a.graphNodeId).push(a);}
  if(groups.size!==nodes.size)return empty('node-coverage');
@@ -110,13 +118,15 @@ export function reviewElementContexts(prior,root,supply,source){
    e.effective!==null||e.selectionAuthority!==false)return empty('edge-binding');
   if(a.layer==='visible'&&b.layer==='visible')visibleEdges.push(e);
  }
- if(visibleEdges.length!==sourceRows.size)return empty('source-coverage');
+ const expectedVisible=visible.flatMap(a=>visible.filter(b=>a.id!==b.id&&elementRelation(a.element,b.element).direction==='left-to-right').map(b=>a.id+'>'+b.id));
+ if(visibleEdges.length!==sourceRows.size||!eq(visibleEdges.map(e=>e.edgeId),expectedVisible))return empty('source-coverage');
  const allNodes=[...nodes.values()];
  const profiles=[];
  for(const element of ELEMENTS){
   const v=visible.filter(a=>a.element===element),rs=[...slots.values()].filter(s=>s.element===element);
   const substantial=rs.filter(s=>s.role!=='residual'),clean=rs.filter(s=>s.state===cleanState),contested=substantial.filter(s=>s.state!==cleanState);
-  const contacts=v.flatMap(a=>a.contacts);
+  const elementActors=[...actors.values()].filter(a=>a.element===element);
+  const contacts=elementActors.flatMap(a=>a.contacts);
   const generators=allNodes.filter(n=>left(n.element,element,'generate'));
   const burdens=allNodes.filter(n=>left(n.element,element,'control')||left(element,n.element,'generate')||left(element,n.element,'control'));
   const active=n=>n.state==='grounded-observation'||n.state==='context-review';
@@ -132,16 +142,16 @@ export function reviewElementContexts(prior,root,supply,source){
   // Scope is a gate, not missing-hour negative evidence.
   const scopedAxes=Object.fromEntries(axisNames.map(k=>[k,complete?axes[k]:null]));
   const evidenceRefs={
-   visible:[ref('stemForce',element,'visible-inventory')],
-   seasonSupports:[ref('stemForce',element,'seasonRelation')],
-   principalSupports:[ref('stemForce',element,'principalRelation')],
-   cleanPrincipalRoot:[ref('rootContext',element,'slot-inventory'),...clean.filter(s=>s.role==='principal').map(s=>ref('rootContext',s.id,'state'))],
-   substantialRoot:[ref('rootContext',element,'slot-inventory'),...substantial.map(s=>ref('rootContext',s.id,'role'))],
-   clearContacts:[ref('rootContext',element,'contested-slots'),...v.map(a=>ref('stemForce',a.id,'contacts'))],
-   monthContextClear:[ref('rootContext','month','monthBranchContested')],
-   noRootedBurdenBasis:[ref('groundedSupply',element,'burden-node-inventory'),...burdens.map(n=>ref('groundedSupply',n.nodeId,'state'))],
-   noRootedGeneratorBasis:[ref('groundedSupply',element,'generator-node-inventory'),...generators.map(n=>ref('groundedSupply',n.nodeId,'state'))],
-   localGroundedControlCoverage:[ref('groundedSupply',element,'visible-local-control-inventory'),...groundedControllers.map(e=>ref('groundedSupply',e.edgeId,'kind'))]
+   visible:[ref('stemForce',prior.stemForce.version??'stem-force-evidence-v1','occurrences')],
+   seasonSupports:[ref('stemForce',visible[0].id,'seasonal')],
+   principalSupports:[ref('stemForce',visible[0].id,'seasonal')],
+   cleanPrincipalRoot:[ref('rootContext',root.version??'root-context-review-v1','slots'),...clean.filter(s=>s.role==='principal').map(s=>ref('rootContext',s.id,'state'))],
+   substantialRoot:[ref('rootContext',root.version??'root-context-review-v1','slots'),...substantial.map(s=>ref('rootContext',s.id,'role'))],
+   clearContacts:[ref('rootContext',root.version??'root-context-review-v1','slots'),...elementActors.map(a=>ref('stemForce',a.id,'contacts'))],
+   monthContextClear:[ref('rootContext','visible:month','seasonal')],
+   noRootedBurdenBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),...burdens.map(n=>ref('groundedSupply',n.nodeId,'state'))],
+   noRootedGeneratorBasis:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),...generators.map(n=>ref('groundedSupply',n.nodeId,'state'))],
+   localGroundedControlCoverage:[ref('groundedSupply',supply.version??'grounded-supply-review-v1','actions'),...groundedControllers.map(e=>ref('groundedSupply',e.edgeId,'kind'))]
   };
   const model=evaluateElementContextModel({completeHour:complete,element,axes:scopedAxes,evidenceRefs});
   if(model.status!==status)return empty('model-evaluation');
