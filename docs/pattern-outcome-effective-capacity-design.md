@@ -1136,3 +1136,63 @@ Run `node --test test/outcome-strength-source-conditions.test.mjs` and
 The next gate is the relation between independently established
 support loss, relief, and effective residual burden; a local pattern
 or an all-on rooted witness alone cannot supply that relation.
+
+## P3-B7d-3 — Exact pressure and local full-relief alternatives
+
+The research-only residual-pressure compiler extends the canonical
+positive burden proof packet, preserving its original judgments and
+rule results. A pressure requires its exact root-seeded basis and an
+explicit pressure-effective hypothesis. A full-relief route requires
+that pressure, the exact route action bases and an explicit hypothesis
+of complete relief of that particular pressure. Alternatives are
+disjunctive. A local uncovered witness is a Boolean completion with
+pressure supported and no modeled full-relief route supported. It is
+not evidence that relief actually fails, that external relief is
+absent, or that a partially relieved pressure remains excessive.
+Each inactive, uncovered and fully-relieved witness is replayed in
+the original signed proof evaluator. No magnitude or global capacity
+is computed; alternative routes cannot cancel another pressure, and
+multiple partial relief routes are not added as quantities.
+
+The source adapter covers local incoming control, outgoing generation,
+outgoing wealth-demand relations and wealth-resource interference with
+an exact protected resource-to-day supply edge. The first two use
+mediation/restraint templates. Peer protection only attaches to the
+same wealth-to-resource action and the same protected supply edge.
+It does not relieve the direct wealth-demand relation. The rooted
+pressure screen is narrower than the literal exposure policy in v2/v3;
+a missing rooted basis never refutes literal exposure or proves no
+actual burden. Resource interference needs a potential supply basis,
+not an already proven effective supply. The existing source template
+scope and unresolved premises are unchanged.
+
+At e50ef78 the source-level replay connected 40 modules and executed
+all 53 primary charts without invalid or unavailable results:
+
+| Pressure type | Candidates | With local relief candidates | Rooted pressure possible | Local full relief possible |
+| --- | ---: | ---: | ---: | ---: |
+| Incoming control | 90 | 29 | 73 | 20 |
+| Outgoing generation | 106 | 30 | 97 | 29 |
+| Wealth demand | 92 | 0 | 85 | 0 |
+| Resource interference | 31 | 13 | 23 | 8 |
+| Total | 319 | 72 | 278 | 57 |
+
+31 charts have at least one local full-relief possibility. All 278
+possible pressure hypotheses also have a local uncovered witness,
+because effective relief is a separate unreviewed guard. This is
+a property of the current conditional model, not an empirical finding
+of residual burden. XU14 has two distinct resource-interference
+candidates, only one with a local peer protection route; neither
+this route nor its hypothesized success establishes total wealth
+relief. XU26 has four literal pressure candidates but none with
+rooted pressure possibility. Its actual burden remains unresolved.
+
+Five isolated tests passed at e50ef78, including exhaustive replay
+of 128 assignments in the two-pressure/two-route synthetic fixture.
+Native Node ESM/full V10 and independent source review are pending.
+The new tests are registered in the validation manifest.
+Run `node --test test/outcome-residual-pressure.test.mjs` and
+`npm run audit:pattern-residual-pressure`. No production selection
+or strength rules changed. Next investigate joint constraints across
+pressures and remaining supply routes, explicit partial relief and
+nonlocal/hidden scope before comparing actual residual burden.
