@@ -21,7 +21,7 @@ export function compareInventory(actual,listed){
  };
 }
 export function discoverTests(base=root){
- return paths(base,'test').filter(p=>p.endsWith('.test.mjs')).sort();
+ return paths(base,'test').filter(p=>/\.test\.(?:js|mjs|cjs)$/.test(p)).sort();
 }
 export function auditTestLayout(base=root){
  return compareInventory(discoverTests(base),Object.values(TEST_DOMAINS).flat());
