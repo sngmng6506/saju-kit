@@ -8,6 +8,7 @@ import {observeCombinationResidualContext} from '../src/features/pattern/outcome
 import {evaluateClashScenario,reviewClashPolicy,clashSourcePolicies} from '../src/features/pattern/outcome-clash-policy.js';
 import {observeClashResidualContext} from '../src/features/pattern/outcome-clash-residual.js';
 import {evaluateJointScenario,reviewJointConstraints} from '../src/features/pattern/outcome-joint-constraints.js';
+import {resolveDayDirection,reviewDayBalanceDirection} from '../src/features/pattern/outcome-day-balance-direction.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -429,6 +430,70 @@ test('native joint constraint review replays all 24 variants with no effect prom
   assert.deepEqual(r,reviewJointConstraints(x.prior,m.groundedSupply??x.supply,m.argumentReview,m.sourceEffectReview,m.interpositionPolicyReview,m.combinationPolicyReview,m.clashPolicyReview),c.id);
   assert.equal(r.actions.length,m.argumentReview.actions.length,c.id);
   assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'));assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
+});
+
+const strengthFixture=(direction)=>({policy:'strength-decision-v1',status:'hypothesis',confirmed:false,direction,grounds:[direction==='strong'?'central-root-capacity':'low-root-capacity-and-dominant-pressure'],conflicts:[]});
+test('day direction resolver accepts only scoped and consistent strength hypotheses',()=>{
+ for(const direction of ['strong','weak']){
+  const s=strengthFixture(direction);assert.equal(resolveDayDirection(s,true).direction,direction);
+  assert.equal(resolveDayDirection(s,false).direction,null);
+  assert.equal(resolveDayDirection({...s,conflicts:['conflict']},true).direction,null);
+  assert.equal(resolveDayDirection({...s,confirmed:true},true).direction,null);
+  assert.equal(resolveDayDirection({...s,grounds:[]},true).direction,null);
+  assert.equal(resolveDayDirection({...s,direction:direction==='strong'?'weak':'strong'},true).direction,null);
+ }
+ assert.equal(resolveDayDirection({...strengthFixture('strong'),grounds:['central-root-capacity','low-root-capacity-and-dominant-pressure']},true).direction,null);
+ assert.equal(resolveDayDirection({...strengthFixture('strong'),status:'unresolved'},true).direction,null);
+});
+function directionFixture(complete=true,screenState='supported'){
+ const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false,effective:null};
+ const day={id:'visible:day',layer:'visible',dayReference:true};
+ const year={id:'visible:year',layer:'visible',dayReference:false},month={id:'visible:month',layer:'visible',dayReference:false},hour={id:'visible:hour',layer:'visible',dayReference:false};
+ const actions=[[year,day,'generate'],[day,month,'generate'],[hour,day,'control'],[day,hour,'control'],[year,month,'control']].map(([a,b,kind])=>{
+  const edgeId=a.id+'>'+b.id;return {edgeId,from:a.id,to:b.id,kind,effectPropositionId:'effect:'+edgeId,structuralPropositionId:'screen:'+edgeId};
+ });
+ const judgments=actions.flatMap(a=>[
+  {id:a.effectPropositionId,subject:a.edgeId,kind:'actual-action-effective',level:'effect-hypothesis',state:'unresolved',support:{rank:null},opposition:{rank:null}},
+  {id:a.structuralPropositionId,subject:a.edgeId,kind:a.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance',level:'structural-hypothesis',state:screenState}]);
+ return {prior:{completeHour:complete,stemForce:{occurrences:[day,year,month,hour]}},argument:{...base,actions,judgments},
+  joint:{...base,actions:actions.map(a=>({edgeId:a.edgeId,from:a.from,to:a.to,kind:a.kind,effectPropositionId:a.effectPropositionId,actualEffectState:'unresolved'}))}};
+}
+const directionReview=(x,s)=>reviewDayBalanceDirection(x.prior,x.argument,x.joint,s);
+test('strong weak contrast yields signed directional judgments but not actual effects',()=>{
+ for(const direction of ['strong','weak']){
+  const r=directionReview(directionFixture(),strengthFixture(direction));assert.equal(r.status,'diagnostic');assert.equal(r.actions.length,3);
+  for(const a of r.actions){
+   const fit=a.desiredDirection===direction;
+   assert.equal(a.directionFit,fit?'supported':'opposed');assert.equal(a.candidateState,fit?'supported':'unresolved');
+   assert.equal(a.actualEffectState,'unresolved');assert.equal(a.effective,null);
+  }
+  assert.ok(r.actions.every(a=>['support','release','restraint'].includes(a.role)));
+  assert.equal(r.selectionAuthority,false);
+ }
+});
+test('failed or conflicting screens never become effective force rebuttals',()=>{
+ for(const s of ['opposed','conflicting','unresolved']){
+  const r=directionReview(directionFixture(true,s),strengthFixture('strong'));
+  assert.equal(r.actions.find(a=>a.role==='release').directionFit,'supported');
+  assert.ok(r.actions.every(a=>a.candidateState==='unresolved'&&a.actualEffectState==='unresolved'));
+ }
+ const r=directionReview(directionFixture(false),strengthFixture('strong'));
+ assert.equal(r.status,'partial');assert.ok(r.actions.every(a=>a.directionFit==='unresolved'&&a.candidateState==='unresolved'));
+ const x=directionFixture();x.joint.actions[0].effectPropositionId='foreign';assert.equal(directionReview(x,strengthFixture('strong')).status,'invalid-evidence');
+ const y=directionFixture();y.argument.judgments[0].state='supported';assert.equal(directionReview(y,strengthFixture('strong')).status,'invalid-evidence');
+});
+test('native day-balance direction replay preserves original scope and decision authority',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete);
+  const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  const m=native.efficacyReview.mechanismReview,r=m.dayBalanceDirectionReview;
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);
+  assert.deepEqual(r,reviewDayBalanceDirection(x.prior,m.argumentReview,m.jointConstraintReview,native.regulationStrength),c.id);
+  assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'));assert.equal(native.decisionReview.status,'abstained');
+  if(!complete)assert.ok(r.actions.every(a=>a.directionFit==='unresolved'));n++;
  }
  assert.equal(n,24);
 });
