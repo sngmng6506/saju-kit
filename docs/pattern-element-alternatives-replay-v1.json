@@ -1,0 +1,374 @@
+{
+  "version": "p1-4d-element-alternatives-replay-v1",
+  "execution": "Fetched production core modules and audit helper in JS isolate; fixture/URL adapters; native Node/V10 not run",
+  "base": "18b37ccacd6eb7a5dde83b0714ec5f42ce2a209e",
+  "replays": 46,
+  "existing40OutcomeParity": true,
+  "coverageBefore": {
+    "eligible": 82,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 0,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 82,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "coverageAfter": {
+    "eligible": 82,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 2,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 80,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 2,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "changedHistoricalPremises": [
+    {
+      "id": "wood-release-extreme-context",
+      "edgeId": "visible:year>visible:month",
+      "modelState": "supported",
+      "state": "unresolved",
+      "blockers": [
+        "structural-screen",
+        "target-pressure-screen-clear"
+      ],
+      "ruleIds": [
+        "strong-resource-model"
+      ],
+      "resourceWitnesses": [
+        {
+          "recipientId": "visible:year",
+          "donorNodeId": "year:branch:water",
+          "rootIds": [
+            "hidden:year:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "day:branch:water",
+          "rootIds": [
+            "hidden:day:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "hour:branch:water",
+          "rootIds": [
+            "hidden:hour:계"
+          ]
+        }
+      ],
+      "monthPrincipalRootIds": [
+        "hidden:month:을"
+      ]
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "edgeId": "visible:day>visible:month",
+      "modelState": "supported",
+      "state": "unresolved",
+      "blockers": [
+        "structural-screen",
+        "target-pressure-screen-clear"
+      ],
+      "ruleIds": [
+        "strong-resource-model"
+      ],
+      "resourceWitnesses": [
+        {
+          "recipientId": "visible:year",
+          "donorNodeId": "year:branch:water",
+          "rootIds": [
+            "hidden:year:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "day:branch:water",
+          "rootIds": [
+            "hidden:day:계"
+          ]
+        },
+        {
+          "recipientId": "visible:day",
+          "donorNodeId": "hour:branch:water",
+          "rootIds": [
+            "hidden:hour:계"
+          ]
+        }
+      ],
+      "monthPrincipalRootIds": [
+        "hidden:month:을"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "id": "release",
+      "scope": "complete",
+      "modelState": "supported",
+      "state": "supported",
+      "ruleIds": [
+        "strong-model"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "release",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "target-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "injury",
+      "scope": "complete",
+      "modelState": "supported",
+      "state": "supported",
+      "ruleIds": [
+        "weak-model"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "injury",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "no-observed-interposition-candidate"
+      ]
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "complete",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "target-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "complete",
+      "modelState": "supported",
+      "state": "unresolved",
+      "ruleIds": [
+        "weak-model"
+      ],
+      "blockers": [
+        "no-observed-interposition-candidate"
+      ]
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "no-observed-interposition-candidate"
+      ]
+    },
+    {
+      "id": "resource-backed-release",
+      "scope": "complete",
+      "modelState": "supported",
+      "state": "supported",
+      "ruleIds": [
+        "strong-resource-model"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "resource-backed-release",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "target-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "resource-basis-removed",
+      "scope": "complete",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model"
+      ]
+    },
+    {
+      "id": "resource-basis-removed",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "target-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "resource-with-rooted-controller",
+      "scope": "complete",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "target-pressure-screen-clear"
+      ]
+    },
+    {
+      "id": "resource-with-rooted-controller",
+      "scope": "partial",
+      "modelState": "unresolved",
+      "state": "unresolved",
+      "ruleIds": [],
+      "blockers": [
+        "element-model",
+        "structural-screen",
+        "adjacent-visible-action",
+        "direct-grounded-source-basis",
+        "no-observed-combination-or-clash-reference",
+        "no-other-observed-context-blocker",
+        "source-pressure-screen-clear",
+        "premises-nonconflicting",
+        "target-pressure-screen-clear"
+      ]
+    }
+  ],
+  "errors": []
+}
