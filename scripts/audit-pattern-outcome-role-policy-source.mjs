@@ -1,3 +1,4 @@
+import {summarizeSourceEffectPolicy} from './lib/pattern-outcome-source-effect-audit.mjs';
 import {summarizeArgumentReview} from './lib/pattern-outcome-argument-audit.mjs';
 import {summarizeHiddenAccess} from './lib/pattern-outcome-hidden-access-audit.mjs';
 import {summarizeClashResidual} from './lib/pattern-outcome-clash-residual-audit.mjs';
@@ -12,7 +13,7 @@ import {summarizeGroundedSupplyReview,summarizeInterpositionReview,summarizeRole
 const packet=JSON.parse(readFileSync(new URL('../test/fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));
 const packetErrors=validateRoleSourcePacket(packet);
 if(packetErrors.length){console.log(JSON.stringify({errors:packetErrors},null,2));process.exit(1);}
-const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[],hiddenAccessRows=[],argumentRows=[];
+const rows=[],literalRows=[],groundedSupplyRows=[],interpositionRows=[],roleDemandRows=[],resourceDemandRows=[],outputDemandRows=[],officerDemandRows=[],roleDependencyRows=[],screenBottleneckRows=[],pressureDependencyRows=[],localityRows=[],combinationResidualRows=[],clashResidualRows=[],hiddenAccessRows=[],argumentRows=[],sourceEffectRows=[];
 for(const c of packet.cases)for(const partial of [false,true]){
  try{
   const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,partial&&i===3?null:{stem:c.pillars[i][0],branch:c.pillars[i][1],text:c.pillars[i]}]))};
@@ -32,6 +33,7 @@ for(const c of packet.cases)for(const partial of [false,true]){
   clashResidualRows.push(summarizeClashResidual(c,r.efficacyReview?.mechanismReview,partial));
   hiddenAccessRows.push(summarizeHiddenAccess(c,r.efficacyReview?.mechanismReview,partial));
   argumentRows.push(summarizeArgumentReview(c,r.efficacyReview?.mechanismReview,partial));
+  sourceEffectRows.push(summarizeSourceEffectPolicy(c,r.efficacyReview?.mechanismReview,r.regulationStrength,partial));
   rows.push(evaluateRoleSourceCase(c,r,{partial}));
  }catch(e){rows.push({id:c.id,partial,probes:[],errors:[e.name+':'+e.message]});}
 }
@@ -96,5 +98,9 @@ report.argumentRows=argumentRows;
 report.argumentCoverage={expected:report.expectedVariants,executed:argumentRows.length,passed:argumentRows.filter(r=>!r.errors.length).length};
 if(argumentRows.length!==report.expectedVariants)report.errors.push('argument-variant-coverage');
 for(const r of argumentRows)for(const e of r.errors)report.errors.push(r.id+':argument:'+e);
+report.sourceEffectRows=sourceEffectRows;
+report.sourceEffectCoverage={expected:report.expectedVariants,executed:sourceEffectRows.length,passed:sourceEffectRows.filter(r=>!r.errors.length).length};
+if(sourceEffectRows.length!==report.expectedVariants)report.errors.push('source-effect-variant-coverage');
+for(const r of sourceEffectRows)for(const e of r.errors)report.errors.push(r.id+':source-effect:'+e);
 console.log(JSON.stringify(report,null,2));
 if(report.errors.length)process.exitCode=1;
