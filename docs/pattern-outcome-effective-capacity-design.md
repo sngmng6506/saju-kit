@@ -790,3 +790,64 @@ expensive complete synthesis coverage audit is a separate command.
 Next, examine expressivity gaps and both-direction possibilities without
 choosing guard values to fit historical labels. Seek separately reviewed
 passages for the exact semantic guard, not just a directional conclusion.
+
+## P3-B6 — Full retrospective conditional expressivity and missing premises
+
+At the baseline bb3ab7a and updated reporting revision 8d6970c, all
+76 audited literal charts ran through the real core, root, supply,
+replenishment, burden and strength synthesis modules in isolated
+JavaScript. The updated run resolved 33 modules, checked the stage
+envelopes and reported zero invalid or unavailable cases. Source
+dependencies were loaded from the baseline and unchanged later
+modules; a temporary unreferenced Git blob carried the pinned source
+bundle across connector call limits, without adding a file to main.
+This is source-level execution, not native Node ESM or a full V10 run.
+
+| Cohort | Both directions | Strong only | Weak only | Neither | Reference direction expressible |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Primary (53) | 40 | 1 | 11 | 1 | 51 |
+| All (76) | 59 | 1 | 15 | 1 | 73 |
+
+Both directions means strict support of each in possibly different
+admissible hypothetical assignments; it is not simultaneous conflict.
+One-direction possibility is not an invariant actual verdict.
+
+The coverage reader now partitions all evaluated rows by direction,
+retains observed bases when a later stage fails, and traces the exact
+burden group/action/frontier identities. Literal demand/exposure is
+reported independently of modeled root-seeded operation. A missing
+positive frontier is not actual nonoperation. Unavailable evaluation
+is distinct from an empty frontier. No weakness inference is added.
+
+Primary gaps:
+- XU14 (庚戌 戊子 戊子 丙辰): two direct root seeds; rooted supply
+  possible; one literal local incoming control with no rooted basis,
+  zero local drain, three outgoing control candidates with rooted basis.
+  Strong-only possibility. The textual commentary in
+  https://luckclub.cn/bazi/002/036/ (chart and Xu annotation at current
+  lines 67–71) describes prosperous month wealth and light Wu earth;
+  it does not establish an exact excessive outgoing-control operation.
+- XU26 (丁酉 己酉 戊子 壬子): no direct root seed or modeled rooted
+  supply, one outgoing generation and three outgoing control candidates,
+  none with a rooted action basis. Neither direction expressible.
+  https://luckclub.cn/bazi/002/044/ (chart and Xu annotation at current
+  lines 55–59) describes abundant wealth and weak body, and favorable
+  resource support. It does not provide a quantitative drain rule.
+- W12 is a secondary, formation-dependent reference, not an ordinary
+  strength counterexample: no direct root, indirect support possible.
+  Keep this distinct from the two primary gaps.
+
+The electronic passages for XU14/XU26 were rechecked, not independently
+adjudicated. Their wealth context suggests a missing wealth-demand
+predicate, distinct from actual rooted expenditure. Do not relax the
+root requirement for established operation merely to fit these labels;
+do not infer weakness from lack of supply alone. A future experimental
+policy must distinguish literal demand, recipient/source support,
+effective depletion and aggregate capacity, and obtain separate
+source-based counterexamples. The historical labels and current runtime
+strength/pattern/selection policies remain unchanged.
+
+Nine source coverage contract tests passed in isolated JS. Native
+full-repository and V10 validation still require a clean checkout:
+`node --test test/outcome-strength-reference-coverage.test.mjs` and
+`npm run audit:pattern-strength-reference-coverage`.
