@@ -17,6 +17,7 @@ import {observeGroundedSupply} from './outcome-grounded-supply.js';
 import {observeLocalityContext} from './outcome-locality-context.js';
 import {observePressureDependencyReview} from './outcome-pressure-dependency.js';
 import {observeInterpositionReview} from './outcome-interposition-review.js';
+import {observeClashResidualContext} from './outcome-clash-residual.js';
 import {observeRootContext} from './outcome-root-context.js';
 import {observeBranchPressure,observeMonthCommandReview} from './outcome-command-context.js';
 import {observeCombinationResidualContext} from './outcome-combination-residual.js';
@@ -46,6 +47,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const roleCapacity=observeRoleCapacity(prior);
  const rootContext=observeRootContext(prior,formation);
  const groundedSupply=observeGroundedSupply(prior,rootContext);
+ const clashResidualContext=observeClashResidualContext(prior,formation,rootContext,groundedSupply);
  const combinationResidualContext=observeCombinationResidualContext(prior,formation,combinationContext,rootContext,groundedSupply);
  const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
  const pressureDependencyReview=observePressureDependencyReview(prior,rootContext,groundedSupply,interpositionReview);
@@ -77,6 +79,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const dependencyReview=observeRoleDependencies(demandReview,{resource:resourceDemandConditions,output:outputDemandConditions,officer:officerDemandConditions},groundedSupply,prior.completeHour);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
