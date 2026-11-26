@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {reviewControlSynthesis} from '../src/features/pattern/outcome-control-synthesis.js';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {evaluateInterpositionScenario,reviewInterpositionPolicy,interpositionSourcePolicies} from '../src/features/pattern/outcome-interposition-policy.js';
@@ -877,4 +878,41 @@ test('action synthesis rejects tampered proofs and coordinated missing projectio
  x=inputs();x[2].actions[0].clauses[0].applicability='supported';assert.equal(synthesizeActionReview(...x).reason,'source-authority');
  x=replayModeledCoverage(['경신','무인','병신','을미'],true,{includeSynthesisInputs:true}).synthesisInputs;
  x[7].actions.pop();assert.equal(synthesizeActionReview(...x).reason,'contact-coverage');
+});
+
+test('control synthesis supports only model conjunctions and keeps original actual proposition',()=>{
+ const r=replayModeledCoverage(['임자','임자','병자','임자'],true,{includeSynthesisInputs:true}),q=r.controlSynthesis;
+ assert.deepEqual(r.invalid,[]);assert.deepEqual(q,reviewControlSynthesis(...r.controlSynthesisInputs));
+ assert.equal(q.summary.directContext,2);assert.equal(q.summary.residualContext,2);assert.equal(q.summary.actualControlConfirmed,0);
+ assert.ok(q.propositions.every(p=>p.level!=='effect-hypothesis'));
+ for(const a of q.actions){
+  const original=r.synthesis.actions.find(x=>x.edgeId===a.edgeId);
+  assert.equal(a.originalEffectPropositionId,original.actualEffect.propositionId);assert.equal(a.actualControlState,'unresolved');
+  assert.equal(a.actualReliefState,'unresolved');assert.equal(a.selectionAuthority,false);
+ }
+});
+test('route candidate prevents residual inference even with direct context support',()=>{
+ const r=replayModeledCoverage(['임자','임자','병자','무자'],true),q=r.controlSynthesis;
+ assert.deepEqual(r.invalid,[]);assert.equal(q.summary.directContext,1);assert.equal(q.summary.residualContext,0);
+ const a=q.actions.find(a=>a.directContextState==='supported');assert.ok(a.observedCandidateIds.length);assert.equal(a.residualContextState,'unresolved');
+ assert.equal(a.actualControlState,'unresolved');
+ const m=replayModeledCoverage(['기축','경신','임자','기축'],true).controlSynthesis;
+ assert.ok(m.actions.some(a=>a.routeReports.some(q=>q.state==='supported'&&q.actualReliefState==='unresolved')));
+ assert.equal(m.summary.actualControlConfirmed,0);
+});
+test('control synthesis treats partial and excluded order as non-effect evidence',()=>{
+ const partial=replayModeledCoverage(['임자','임자','병자','임자'],false).controlSynthesis;
+ assert.equal(partial.status,'partial');assert.ok(partial.judgments.every(j=>j.state==='unresolved'));
+ const q=replayModeledCoverage(['무자','경신','임인','신축'],true).controlSynthesis;
+ assert.equal(q.status,'diagnostic');assert.ok(q.actions.some(a=>a.possibleState==='opposed'));
+ assert.ok(q.actions.every(a=>a.actualControlState==='unresolved'));
+});
+test('control synthesis rejects altered shared completion, cross-owner proof and route identities',()=>{
+ const inputs=()=>replayModeledCoverage(['기축','경신','임자','기축'],true,{includeSynthesisInputs:true}).controlSynthesisInputs;
+ let x=inputs();x[2].pressures.find(p=>p.comparison).comparisonDiagnostics.sharedBasis.possibleRelations.push('foreign');
+ assert.equal(reviewControlSynthesis(...x).reason,'diagnostic-replay');
+ x=inputs();x[5].actions.find(a=>a.kind==='control').direct.state='supported';
+ assert.equal(reviewControlSynthesis(...x).reason,'proof-binding');
+ x=inputs();x[5].actions.find(a=>a.interposition.visibleRoutes.length).interposition.visibleRoutes.pop();
+ assert.equal(reviewControlSynthesis(...x).reason,'route-coverage');
 });
