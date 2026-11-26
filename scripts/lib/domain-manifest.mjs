@@ -15,6 +15,7 @@ export const ACTION_DIAGNOSTIC_TEST_FILES=Object.freeze([
   "test/outcome-action-stage-replay.test.mjs",
   "test/outcome-strength-reference-coverage.test.mjs",
   "test/outcome-strength-guard-review.test.mjs",
+  "test/outcome-strength-source-conditions.test.mjs",
   "test/outcome-interaction-dependencies.test.mjs",
   "test/outcome-interaction-proof-review.test.mjs",
   "test/outcome-interaction-scenarios.test.mjs",
