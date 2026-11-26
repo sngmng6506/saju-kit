@@ -1,3 +1,4 @@
+import {strengthAuditFixtureNames,verifyStrengthAuditInventory} from '../scripts/lib/strength-audit-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -45,4 +46,13 @@ test('day basis requires a unique natal subject and abstaining root review',()=>
  assert.deepEqual(observeReferenceBasis(prior,root),basis);
  assert.throws(()=>observeReferenceBasis(prior,{...root,rootEffectConfirmed:true}),/day-basis-contract/);
  assert.throws(()=>observeReferenceBasis({...prior,completeHour:false},root),/day-basis-contract/);
+});
+
+test('audit records match all six original fixture populations without silent omission',()=>{
+ const fixtures=strengthAuditFixtureNames.map(name=>({name,cases:read(name).cases}));
+ assert.deepEqual(verifyStrengthAuditInventory(fixtures,audit),{directional:76,fixtures:6});
+ assert.throws(()=>verifyStrengthAuditInventory(fixtures,{...audit,entries:audit.entries.slice(1)}),/missing-audit-record/);
+ const a=audit.entries[0];
+ assert.throws(()=>verifyStrengthAuditInventory(fixtures,{...audit,entries:[{...a,reference:a.reference==='strong'?'weak':'strong'},...audit.entries.slice(1)]}),/stale-audit/);
+ assert.throws(()=>verifyStrengthAuditInventory(fixtures.slice(1),audit),/audit-inventory/);
 });
