@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {summarizePressureDependencies} from '../scripts/lib/pattern-outcome-screen-bottlenecks.mjs';
 import {tracePressureDependencies,observePressureDependencyReview} from '../src/features/pattern/outcome-pressure-dependency.js';
 import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
-import {observeRelativeForce} from '../src/core/relative-force.js';
+import {observeRelativeForce,compareForceCompletionEnvelope,compareForceProfiles} from '../src/core/relative-force.js';
 import {analyzeFormationEvidence} from '../src/core/formation-evidence.js';
 import {observeRootContext} from '../src/features/pattern/outcome-root-context.js';
 import {observeGroundedSupply} from '../src/features/pattern/outcome-grounded-supply.js';
@@ -65,4 +65,51 @@ test('native V10 exposes pressure dependencies without decision authority',()=>{
  const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
  assert.notEqual(r.efficacyReview.status,'invalid-evidence');assert.equal(r.decisionReview.status,'abstained');
  const p=r.efficacyReview.mechanismReview.pressureDependencyReview;assert.equal(p.status,'diagnostic');assert.equal(p.effective,null);
+});
+
+test('completion envelope distinguishes invariant mixed evidence from missing information',()=>{
+ const left={a:true,b:false,c:null},right={a:false,b:true,c:null};
+ const r=compareForceCompletionEnvelope(left,right);
+ assert.equal(r.relation,'unresolved');
+ assert.deepEqual(r.possibleRelations,['mixed-evidence']);
+ assert.equal(r.invariantRelation,'mixed-evidence');
+ assert.deepEqual(r.leftOnly,['a']);assert.deepEqual(r.rightOnly,['b']);assert.deepEqual(r.unknown,['c']);
+ assert.deepEqual(compareForceCompletionEnvelope({a:true,b:null},{a:false,b:true}).possibleRelations,['left-evidence-dominates','mixed-evidence']);
+ assert.deepEqual(compareForceCompletionEnvelope({a:true,b:null},{a:false,b:false}).possibleRelations,['left-evidence-dominates']);
+ assert.deepEqual(compareForceCompletionEnvelope({a:null},{a:null}).possibleRelations,['same-evidence-profile','left-evidence-dominates','right-evidence-dominates']);
+ assert.equal(compareForceCompletionEnvelope(left,right,{completeHour:false}).possibleRelations,null);
+ assert.equal(compareForceCompletionEnvelope({a:true},{b:true}),null);
+});
+test('completion envelope equals brute-force Boolean assignments on small graphs',()=>{
+ const values=[true,false,null],names=['a','b','c'],sets=[];
+ for(const a of values)for(const b of values)for(const c of values)sets.push({a,b,c});
+ const expand=axes=>names.reduce((acc,k)=>acc.flatMap(r=>(axes[k]===null?[false,true]:[axes[k]]).map(v=>({...r,[k]:v}))),[{}]);
+ const profile=axes=>({axes,rootPositions:[],localGenerationNodes:[],localPeerNodes:[]});
+ for(const l of sets)for(const r of sets){
+  const expected=new Set(expand(l).flatMap(a=>expand(r).map(b=>compareForceProfiles(profile(a),profile(b)).relation)));
+  const got=compareForceCompletionEnvelope(l,r);
+  assert.deepEqual([...got.possibleRelations].sort(),[...expected].sort());
+  assert.equal(got.forceComparison,null);
+ }
+});
+test('pressure contrast diagnostic retains direction, unknowns and exact comparison binding',()=>{
+ for(const complete of [true,false]){
+  const x=build(['무술','갑자','정미','경술'],complete),r=run(x);
+  assert.equal(r.status,complete?'diagnostic':'partial');
+  for(const p of r.pressures){
+   if(!p.comparison){assert.equal(p.comparisonDiagnostics,null);continue;}
+   const d=p.comparisonDiagnostics;
+   assert.equal(d.contrast,p.contrast);assert.equal(d.forceComparison,null);
+   for(const k of Object.keys(p.comparison))assert.equal(d.views[k].relation,p.comparison[k]);
+   if(!complete){assert.equal(d.reason,'partial');assert.equal(d.views.sensitivity.possibleRelations,null);}
+  }
+ }
+ // Mutate an exact projected control pair.
+ const y=build(['무술','갑자','정미','경술']),r=run(y),q=r.pressures.find(p=>p.comparison);
+ assert.ok(q);
+ const a=y.prior.stemForce.occurrences.find(a=>a.graphNodeId===q.controllerNodeId).id;
+ const b=y.prior.stemForce.occurrences.find(a=>a.graphNodeId===q.targetNodeId).id;
+ const cmp=y.root.comparisons.find(p=>[p.left,p.right].includes(a)&&[p.left,p.right].includes(b));
+ cmp.sensitivity.leftOnly.push('foreign');
+ assert.equal(run(y).status,'invalid-evidence');
 });
