@@ -31,10 +31,22 @@ for(const c of cases)for(const completeHour of [true,false]){
   // core replay. Do not inject a fixture direction or require a direction.
   const r=replayModeledCoverage(c.pillars,completeHour,{strengthHypothesis:strength,includeSynthesisInputs:true});
   if(r.invalid.length)issues.push({field:'core',reason:'invalid-contract',invalid:r.invalid});
-  const [,argument,source,element,day,joint,modeled,contact]=r.synthesisInputs;
-  for(const [field,expected] of Object.entries({argumentReview:argument,sourceEffectReview:source,elementContextReview:element,
-   dayBalanceDirectionReview:day,jointConstraintReview:joint,modeledConsequenceReview:modeled,contactConstraintSensitivity:contact,actionSynthesis:r.synthesis,controlSynthesis:r.controlSynthesis}))
-   compare(issues,field,m[field],expected);
+  for(const [field,expected] of Object.entries(r.diagnosticFields))compare(issues,field,m[field],expected);
+  // Native/replay now share a composition owner. Parity checks integration
+  // and transport, not independent correctness of the same implementation.
+  const added=['generationSynthesis','interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint'];
+  for(const field of added){
+   const q=m[field];
+   if(!q||q.status!==status||q.completeHour!==completeHour||q.selectionAuthority!==false||q.effective!==null)
+    issues.push({field,reason:'diagnostic-authority-or-scope'});
+  }
+  const gen=m.generationSynthesis;
+  if(gen?.actions?.some(x=>x.actualReleaseState!=='unresolved'||x.actualSupplyState!=='unresolved'||x.actualReceptionState!=='unresolved'||x.actualBenefitState!=='unresolved'||x.receptionState!=='unresolved'))
+   issues.push({field:'generationSynthesis',reason:'generation-effect-promotion'});
+  for(const field of ['interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint'])
+   if(m[field]?.summary?.actualEffectsConfirmed!==0)issues.push({field,reason:'actual-effect-promotion'});
+  if(!completeHour&&(m.interactionScenarios?.space?.status!=='partial'||m.interactionProofs?.summary?.analysisStatus!=='partial'||m.conditionalJoint?.analysis?.status!=='partial'))
+   issues.push({field:'interactionDiagnostics',reason:'partial-scenario-promotion'});
   compare(issues,'dayDirection',m.dayBalanceDirectionReview?.direction,resolveDayDirection(strength,completeHour));
   const d=native.decisionReview,actions=m.actionSynthesis?.actions;
   if(!d||d.status!=='abstained'||d.selectionAuthority!==false||native.selectionAuthority!==false||
@@ -64,7 +76,7 @@ const expectedVariants=cases.length*2;
 const historical=rows.filter(r=>r.population==='development'&&r.scope==='complete'&&r.passed);
 const directionCounts=Object.fromEntries(['strong','weak','unresolved'].map(direction=>[direction,historical.filter(r=>(r.direction?.direction??'unresolved')===direction).length]));
 const passed=errors.length===0&&rows.length===expectedVariants&&expectedVariants>0;
-console.log(JSON.stringify({version:'p1-5a-native-outcome-v1',scope:'native-public-v10-parity-and-strength-projection-not-independent-accuracy',
+console.log(JSON.stringify({version:'p3-native-outcome-v2',scope:'native-public-v10-composition-parity-and-strength-projection-not-independent-accuracy',
  node:process.version,expectedVariants,executedVariants:rows.length,passedVariants:rows.filter(r=>r.passed).length,
  directionCounts,independentGoldCases:0,selectionAuthority:false,passed,errors,rows},null,2));
 if(!passed)process.exitCode=1;
