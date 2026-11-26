@@ -1,3 +1,4 @@
+import {reviewControlSynthesis} from '../../src/features/pattern/outcome-control-synthesis.js';
 import {analyzeStemForceEvidence} from '../../src/core/stem-force.js';
 import {observeRelativeForce} from '../../src/core/relative-force.js';
 import {analyzeFormationEvidence} from '../../src/core/formation-evidence.js';
@@ -54,8 +55,9 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
  const modeled=reviewModeledConsequences(prior,supply,argument,pressure,joint,element);
  const day=reviewDayBalanceDirection(prior,argument,joint,strengthHypothesis);
  const synthesis=synthesizeActionReview(prior,argument,source,element,day,joint,modeled,contact);
+ const controlSynthesis=reviewControlSynthesis(prior,root,pressure,argument,modeled,synthesis);
  const expected=completeHour?'diagnostic':'partial';
- const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis})
+ const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact,day,synthesis,controlSynthesis})
   .filter(([,r])=>r.status!==expected).map(([owner,r])=>({owner,status:r.status,reason:r.reason??null}));
  const judgments=new Map(modeled.judgments.map(j=>[j.id,j.state]));
  const rows=modeled.actions.flatMap(a=>a.clauses.filter(c=>c.propositionId!==null).map(c=>{
@@ -71,7 +73,7 @@ export function replayModeledCoverage(pillars,completeHour,{strengthHypothesis=n
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,contact,synthesis,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact]}:{}),interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ return {invalid,rows,contact,synthesis,controlSynthesis,...(includeSynthesisInputs?{synthesisInputs:[prior,argument,source,element,day,joint,modeled,contact],controlSynthesisInputs:[prior,root,pressure,argument,modeled,synthesis]}:{}),interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
