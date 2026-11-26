@@ -64,6 +64,7 @@ export const TEST_DOMAINS=Object.freeze(Object.fromEntries(Object.entries({
     "test/pattern-outcome-locality-context.test.mjs",
     "test/pattern-outcome-combination-residual.test.mjs",
     "test/pattern-outcome-clash-residual.test.mjs",
+    "test/pattern-outcome-hidden-access.test.mjs",
     "test/pattern-outcome-grounded-supply.test.mjs",
     "test/pattern-outcome-interposition.test.mjs",
     "test/pattern-outcome-root-context.test.mjs",
