@@ -670,6 +670,8 @@ test('native modeled consequence review replays 24 packet variants with actual e
   const m=native.efficacyReview.mechanismReview,r=m.modeledConsequenceReview;
   assert.equal(r.status,complete?'diagnostic':'partial',c.id+':'+r.reason);
   assert.deepEqual(r,reviewModeledConsequences(x.prior,m.groundedSupply,m.argumentReview,m.pressureDependencyReview,m.jointConstraintReview,m.elementContextReview),c.id);
+  assert.deepEqual(m.contactConstraintSensitivity,reviewContactConstraintSensitivity(x.prior,m.rootContext,m.groundedSupply,m.combinationPolicyReview,m.clashPolicyReview,m.jointConstraintReview),c.id);
+  assert.equal(m.contactConstraintSensitivity.status,complete?'diagnostic':'partial',c.id);
   assert.equal(r.actions.length,m.argumentReview.actions.length);assert.ok(r.judgments.filter(j=>j.level==='effect-hypothesis').every(j=>j.state==='unresolved'));
   if(!complete)assert.ok(r.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
   assert.equal(native.decisionReview.status,'abstained');n++;
