@@ -256,7 +256,9 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     // target pressure is the object of review, not already cleared.
     const subproofs=p.kind==='mediation'&&i===1?c.sourceScreen?.sourcePremiseIds:[a.structuralPropositionId];
     if(!Array.isArray(subproofs)||!subproofs.length)return empty('route-leg-proof');
-    const premiseIds=[...selected.map(x=>x.id),...subproofs];
+    const nonconflict=addCondition(subject,'nonconflicting-leg-'+i,complete?subproofs.every(id=>js.has(id)&&js.get(id).state!=='conflicting'):null,
+     subproofs.map(id=>ref('argumentReview',id,'state')));
+    const premiseIds=[...selected.map(x=>x.id),...subproofs,nonconflict.id];
     legProofs.push({edgeId,mode:p.kind==='protection'?'control-profile':i===0?'entry-full-generation':'exit-source-generation',premiseIds});
    }
    const premises=[lit(gate.id),...legProofs.flatMap(x=>x.premiseIds.map(id=>lit(id)))];
