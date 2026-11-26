@@ -1,3 +1,4 @@
+import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 import {elementRelation} from '../../core/elements.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
 import {sourceSideScreen} from './outcome-generation-screen.js';
@@ -5,7 +6,8 @@ import {createSynthesisBuilder} from './outcome-synthesis-builder.js';
 import {replaySynthesisProof,bindSynthesisProof,preservesSynthesisProofs} from './outcome-synthesis-proof.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 
-export const GENERATION_SYNTHESIS_VERSION='p1-generation-synthesis-v1';
+export const GENERATION_SYNTHESIS_VERSION='p1-generation-synthesis-v2';
+const key=(...xs)=>JSON.stringify(xs);
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object')&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const eq=(a,b)=>a.length===b.length&&new Set(a).size===a.length&&new Set(b).size===b.length&&a.every(x=>b.includes(x));
@@ -27,7 +29,9 @@ export function reviewGenerationSynthesis(prior,root,supply,argument,modeled,syn
  const expected=visible.flatMap(a=>visible.filter(b=>a.id!==b.id&&elementRelation(a.element,b.element).direction==='left-to-right')
   .map(b=>({id:a.id+'>'+b.id,from:a.id,to:b.id,kind:elementRelation(a.element,b.element).type})));
  if(!eq([...aa.keys()],expected.map(a=>a.id))||expected.some(e=>{const a=aa.get(e.id);return a.kind!==e.kind||a.from!==e.from||a.to!==e.to;}))return empty('coverage');
- const props=[],facts=[],rules=[],rows=[];
+ // Extend the original proof DAG once. Shared premises are aliases of
+ // existing propositions, never fresh independent evidence assertions.
+ const props=[...modeled.propositions],facts=[...modeled.evidence],rules=[...modeled.rules],rows=[];
  const build=createSynthesisBuilder({complete,policyId:GENERATION_SYNTHESIS_VERSION,policyOwner:'generation-synthesis-policy',props,facts,rules});
  for(const a of aa.values()){
   if(a.kind!=='generate')continue;
@@ -41,10 +45,26 @@ export function reviewGenerationSynthesis(prior,root,supply,argument,modeled,syn
   const structural=ag.judgments.get(a.structuralPropositionId);
   const screen=sourceSideScreen(argument,ag.judgments,e,structural,complete);
   if(!screen)return empty('generation-screen');
+  // Source discharge and target reception are views of this one edge.
+  // The release proof remains the exact experimental consequence proof.
+  const defs=sourceEffectClauses().filter(d=>d.kind==='generate'&&d.fromElement===actors.get(a.from).element&&d.toElement===actors.get(a.to).element);
+  const def=defs.find(d=>d.family==='generation-strong-source-release');
+  if(!def||!Array.isArray(m.clauses)||!eq(m.clauses.map(c=>c.clauseId),defs.map(d=>d.id))||
+   m.originalEffectPropositionId!==a.effectPropositionId||m.effective!==null)return empty('release-inventory');
+  const c=m.clauses.find(c=>c.clauseId===def.id),subject=key(a.edgeId,def.id);
+  if(c.kind!=='modeled-source-release'||c.structuralPropositionId!==a.structuralPropositionId||!same(c.sourceScreen,screen)||
+   c.actualEffectState!=='unresolved'||c.actualReceptionState!=='unresolved'||
+   !bindSynthesisProof(mg,s.direct,'modeledConsequenceReview','modeled-direct-release-tendency',subject)||
+   !bindSynthesisProof(mg,s.combined,'modeledConsequenceReview','modeled-source-release',subject)||
+   s.direct.level!=='structural-hypothesis'||s.combined.level!=='structural-hypothesis'||
+   s.direct.propositionId!==c.directReleasePropositionId||s.combined.propositionId!==c.propositionId||
+   s.direct.state!==c.directReleaseState||s.combined.state!==c.state||c.state!==c.jointReleaseScreenState||
+   c.targetPressureScreenState!==screen.targetPressureScreenState||
+   !same(s.direct.proof,c.directReleaseProof)||!same(s.combined.proof,c.proof)||
+   c.state==='supported'&&c.directReleaseState!=='supported')return empty('release-proof');
   const {observation,conjunction}=build(a.edgeId);
-  const importScreen=(kind,id)=>observation(kind,ag.judgments.get(id).state,'argumentReview',id,'judgment');
-  const [basis,context,sourcePressure]=screen.sourcePremiseIds.map((id,i)=>importScreen(['source-basis-observed','context-screen-clear','source-pressure-screen-clear'][i],id));
-  const recipientPressure=importScreen('recipient-pressure-screen-clear',screen.targetPremiseId);
+  const [basis,context,sourcePressure]=screen.sourcePremiseIds;
+  const recipientPressure=screen.targetPremiseId;
   const source=conjunction('source-context-screen-met',[basis,context,sourcePressure],[basis,context,sourcePressure]);
   const local=conjunction('generation-context-screen-met',[source,recipientPressure],[recipientPressure]);
   // No reviewed recipient-capacity predicate exists yet. Missing evidence
@@ -52,6 +72,9 @@ export function reviewGenerationSynthesis(prior,root,supply,argument,modeled,syn
   const capacity=observation('recipient-capacity-model-supported','unresolved','generation-synthesis-policy',GENERATION_SYNTHESIS_VERSION,'unmodeled');
   const reception=conjunction('modeled-reception-hypothesis',[local,capacity],[capacity]);
   rows.push({edgeId:a.edgeId,from:a.from,to:a.to,sourceBasisPropositionId:basis,contextPropositionId:context,
+   sharedPremiseIds:[basis,context,sourcePressure,recipientPressure],
+   releaseClauseId:def.id,directReleasePropositionId:c.directReleasePropositionId,jointReleasePropositionId:c.propositionId,
+   actualReleaseState:'unresolved',
    sourcePressurePropositionId:sourcePressure,recipientPressurePropositionId:recipientPressure,sourceContextPropositionId:source,
    localContextPropositionId:local,recipientCapacityPropositionId:capacity,receptionPropositionId:reception,
    originalEffectPropositionId:a.effectPropositionId,originalStructuralState:structural.state,sourceScreenState:screen.sourceScreenState,
@@ -59,13 +82,16 @@ export function reviewGenerationSynthesis(prior,root,supply,argument,modeled,syn
  }
  const r=evaluateArguments({scope,propositions:props,evidence:facts,rules});
  if(r.status!==status)return empty('argument-evaluation');
+ if(!same(r.judgments.slice(0,modeled.judgments.length),modeled.judgments)||!same(r.ruleResults.slice(0,modeled.ruleResults.length),modeled.ruleResults))return empty('original-proof-parity');
  const js=new Map(r.judgments.map(j=>[j.id,j.state]));
  const actions=rows.map(q=>({...q,sourceContextState:js.get(q.sourceContextPropositionId),localContextState:js.get(q.localContextPropositionId),
-  recipientCapacityState:js.get(q.recipientCapacityPropositionId),receptionState:js.get(q.receptionPropositionId)}));
+  recipientCapacityState:js.get(q.recipientCapacityPropositionId),receptionState:js.get(q.receptionPropositionId),
+  directReleaseState:js.get(q.directReleasePropositionId),jointReleaseState:js.get(q.jointReleasePropositionId)}));
  if(actions.some(q=>(q.localContextState==='supported')!==(q.originalStructuralState==='supported')||
-  (q.sourceContextState==='supported')!==(q.sourceScreenState==='supported')||q.recipientCapacityState!=='unresolved'||q.receptionState!=='unresolved'))return empty('screen-parity');
+  (q.sourceContextState==='supported')!==(q.sourceScreenState==='supported')||q.recipientCapacityState!=='unresolved'||q.receptionState!=='unresolved'||
+  q.directReleaseState==='supported'&&q.sourceContextState!=='supported'||q.jointReleaseState==='supported'&&q.localContextState!=='supported'))return empty('screen-parity');
  const count=k=>actions.filter(a=>a[k]==='supported').length;
  return {...base,status,reason:null,actions,propositions:props,evidence:facts,rules,judgments:r.judgments,ruleResults:r.ruleResults,
-  summary:{generations:actions.length,sourceContext:count('sourceContextState'),localContext:count('localContextState'),modeledReception:count('receptionState'),actualReceptionConfirmed:0},
-  limitations:['structural-supply-not-throughput','recipient-pressure-screen-not-capacity','recipient-capacity-unmodeled','no-actual-effect-authority','no-selection-authority']};
+  summary:{generations:actions.length,sourceContext:count('sourceContextState'),localContext:count('localContextState'),directRelease:count('directReleaseState'),jointRelease:count('jointReleaseState'),modeledReception:count('receptionState'),actualReleaseConfirmed:0,actualReceptionConfirmed:0},
+  limitations:['structural-supply-not-throughput','recipient-pressure-screen-not-capacity','recipient-capacity-unmodeled','release-not-reception','shared-proof-not-independent-effect','no-actual-effect-authority','no-selection-authority']};
 }
