@@ -53,6 +53,8 @@ export function replayModeledCoverage(pillars,completeHour){
   return {edgeId:a.edgeId,clauseId:c.clauseId,kind:c.kind,state:c.state,modelState,structuralState,blockers,
    element:p?.element??null,axes:p?.axes??null,directInjuryState:c.directInjuryState??null,residualInjuryState:c.residualInjuryState??null,
    interpositionCandidates:c.interpositionCandidates??[],
+   directReleaseState:c.directReleaseState??null,jointReleaseScreenState:c.jointReleaseScreenState??null,
+   sourceScreen:c.sourceScreen??null,targetPressureScreenState:c.targetPressureScreenState??null,actualReceptionState:c.actualReceptionState??null,
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
@@ -68,7 +70,8 @@ export function summarizeModeledCoverage(rows){
   for(const k of new Set(r.blockers))blockers[k]=(blockers[k]??0)+1;
   if(r.blockers.length===1)singleBlockers[r.blockers[0]]=(singleBlockers[r.blockers[0]]??0)+1;
  }
- return {eligible:rows.length,directInjurySupported:rows.filter(r=>r.directInjuryState==='supported').length,
+ return {eligible:rows.length,directReleaseSupported:rows.filter(r=>r.directReleaseState==='supported').length,
+  directReleaseSupportedJointUnresolved:rows.filter(r=>r.directReleaseState==='supported'&&r.jointReleaseScreenState==='unresolved').length,directInjurySupported:rows.filter(r=>r.directInjuryState==='supported').length,
   directSupportedResidualUnresolved:rows.filter(r=>r.directInjuryState==='supported'&&r.residualInjuryState==='unresolved').length,supported:rows.filter(r=>r.state==='supported').length,
   unresolved:rows.filter(r=>r.state==='unresolved').length,modelSupported:rows.filter(r=>r.modelState==='supported').length,
   structureSupported:rows.filter(r=>r.structuralState==='supported').length,bothSupported:rows.filter(r=>r.modelState==='supported'&&r.structuralState==='supported').length,
