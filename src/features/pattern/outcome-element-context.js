@@ -28,6 +28,7 @@ const implications=Object.freeze([
  ['cleanPrincipalRoot',true,'substantialRoot',true],
  ['cleanMonthPrincipalRoot',true,'cleanPrincipalRoot',true],
  ['cleanMonthPrincipalRoot',true,'substantialRoot',true],
+ ['cleanMonthPrincipalRoot',true,'principalSupports',true],
  ['localGroundedControlCoverage',true,'visible',true],
  ['localGroundedControlCoverage',true,'noRootedControllerBasis',false],
  ['localGroundedControlCoverage',true,'noRootedBurdenBasis',false],
