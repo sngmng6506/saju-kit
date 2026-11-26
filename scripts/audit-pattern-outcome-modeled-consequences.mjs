@@ -13,11 +13,14 @@ for(const c of packet.cases)for(const complete of [true,false]){
  if(r?.status!==expectedStatus)fail('review-status:'+String(r?.reason));
  if(!clause)fail('missing-exact-source-clause');
  if(r?.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')||native.decisionReview?.status!=='abstained')fail('actual-effect-or-selection-promotion');
- if(!complete&&clause?.state!=='unresolved')fail('partial-promotion');
+ if(!complete&&(clause?.state!=='unresolved'||clause?.directInjuryState!==undefined&&clause.directInjuryState!=='unresolved'))fail('partial-promotion');
+ if(clause?.interpositionCandidates?.some(p=>p.actualReliefState!=='unresolved'))fail('relief-promotion');
  if(c.label==='explicit-opposition'&&clause?.state==='supported')fail('source-opposition-contradicted');
  rows.push({id:c.id,scope,label:c.label,sourceScope:c.scope,source:c.source,section:c.section,pillars:c.pillars,reading:c.reading,
   edgeId:c.edgeId,clauseId:c.clauseId,modelPredicateState:predicate?.modelPredicateState??null,
   structuralState:r?.judgments.find(j=>j.id===clause?.structuralPropositionId)?.state??null,modeledConsequenceState:clause?.state??null,
+  directInjuryState:clause?.directInjuryState??null,residualInjuryState:clause?.residualInjuryState??null,
+  interpositionCandidates:clause?.interpositionCandidates??[],directInjuryProof:clause?.directInjuryProof??null,
   conditions:clause?.conditions??[],proof:clause?.proof??null,actualEffectState:action?.actualEffectState??null,
   comparison:!complete?'scope-withheld':clause?.state==='supported'?c.label==='explicit-opposition'?'source-contradiction':'model-support-not-exact-edge-gold':'model-abstention-not-a-negative-verdict'});
 }
