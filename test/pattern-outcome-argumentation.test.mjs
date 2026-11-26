@@ -852,7 +852,7 @@ test('action synthesis preserves direct, combined, source, route and counterfact
  assert.equal(x.disposition,'no-consequence-support');
  assert.ok(x.interposition.visibleRoutes.some(p=>p.proof.state==='supported'));
  assert.equal(x.interposition.actualReliefState,'unresolved');assert.equal(x.actualEffect.state,'unresolved');
- const y=replayModeledCoverage(['경신','무인','병신','을미'],true).synthesis;
+ const y=replayModeledCoverage(['임인','무신','임진','임인'],true).synthesis;
  assert.ok(y.actions.some(a=>a.constraints.counterfactual?.proof.state==='supported'&&a.actualEffect.state==='unresolved'));
 });
 test('direction fit and supported direct tendency do not infer benefit',()=>{
