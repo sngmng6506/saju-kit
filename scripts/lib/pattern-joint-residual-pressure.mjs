@@ -30,7 +30,7 @@ export function auditJointResidualPressure(input){
    const g={id,kind,...extra,pressureIds:members.map(r=>r.id),individuallyPossibleIds:viable.map(r=>r.id),individuallyRelievableIds:relievable.map(r=>r.id),tests:[]};
    const add=(name,required,excluded=[],fixed=[])=>{
     const q={id:key(id,name),required:[...new Set(required)],excluded:[...new Set(excluded)],fixed};
-    queries.push(q);g.tests.push({name,queryId:q.id});
+    queries.push(q);g.tests.push({name,queryId:q.id,required:q.required,excluded:q.excluded,fixed:q.fixed});
    };
    add('all-candidates-active',members.map(r=>r.pressure));
    if(viable.length){
@@ -67,6 +67,13 @@ export function auditJointResidualPressure(input){
   const dependencies=[...uses.values()].filter(d=>new Set(d.participants.map(p=>p.pressureId)).size>1).map(d=>({...d,
    lostUnderExplicitRemoval:d.participants.filter(p=>p.requiredInEveryProof).map(p=>({pressureId:p.pressureId,outcome:p.outcome})),
    survivingAlternativeUnderRemoval:d.participants.filter(p=>!p.requiredInEveryProof).map(p=>({pressureId:p.pressureId,outcome:p.outcome})),actualCapacityState:'unresolved'}));
+  for(const d of dependencies){
+   d.requiredAcrossPressureIds=[...new Set(d.lostUnderExplicitRemoval.map(p=>p.pressureId))];
+   const survivors=d.participants.filter(p=>!p.requiredInEveryProof);
+   if(!d.lostUnderExplicitRemoval.length||!survivors.length)continue;
+   const query={id:key('shared-removal',d.variableId),required:[...new Set(survivors.map(p=>p.propositionId))],excluded:[...new Set(d.participants.filter(p=>p.requiredInEveryProof).map(p=>p.propositionId))],fixed:[{id:d.variableId,value:false}]};
+   queries.push(query);d.removalQuery={...query};
+  }
   const q=queryPositiveProofConstraints(proof.packet,queries);
   if(q.status!=='diagnostic')return empty(q.status,q.reason);
   const byId=new Map(q.queries.map(q=>[q.id,q]));
@@ -75,9 +82,15 @@ export function auditJointResidualPressure(input){
    if(!result)return empty('invalid-evidence','query-coverage');
    t.feasible=result.feasible;t.witness=result.witness;
   }
+  for(const d of dependencies)if(d.removalQuery){
+   const result=byId.get(d.removalQuery.id);
+   if(!result?.feasible)return empty('invalid-evidence','removal-witness-parity');
+   d.removalQuery={...d.removalQuery,...result};
+  }
   return {...base,status:'diagnostic',reason:null,groups,dependencies,
    summary:{pressures:rows.length,viable:rows.filter(possible).length,relievable:rows.filter(coverable).length,groups:groups.length,queries:queries.length,
     feasibleQueries:q.queries.filter(q=>q.feasible).length,sharedVariables:dependencies.length,sharedRequiredVariables:dependencies.filter(d=>d.lostUnderExplicitRemoval.length>0).length,
+    jointRemovalWitnesses:dependencies.filter(d=>d.removalQuery?.feasible).length,sharedRequiredAcrossPressures:dependencies.filter(d=>d.requiredAcrossPressureIds.length>1).length,
     sharedProtectedSupplies:groups.filter(g=>g.kind==='shared-protected-supply').length,actualEffectsConfirmed:0},
    limitations:['local-scope-only','Boolean-completion-not-actual-feasibility','shared-variable-not-capacity','no-physical-exclusion-or-allocation','not-partial-relief-quantity','no-strength-authority']};
  }catch(e){return empty('invalid-evidence',String(e?.message??e));}
