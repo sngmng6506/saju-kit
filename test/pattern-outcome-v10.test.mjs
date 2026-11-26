@@ -85,3 +85,27 @@ test('native V10 keeps inherited evidence and ignores supplied approval',()=>{
  assert.equal(analyzePatternOutcomeV10({...args,birthBasis:'provisional-chart',policy:PATTERN_OUTCOME_V10_VERSION}).decisionReview.status,'unavailable');
  assert.throws(()=>analyzePatternOutcomeV10({...args,policy:PATTERN_OUTCOME_EFFICACY_VERSION}),{code:'pattern-policy'});
 });
+
+test('native V10 transports chart action diagnostics without granting selection authority',()=>{
+ const ps=['기축','경신','임자','기축'];
+ for(const completeHour of [true,false]){
+  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((p,i)=>[p,!completeHour&&i===3?null:{stem:ps[i][0],branch:ps[i][1],text:ps[i]}]))};
+  const r=analyzePatternOutcomeV10({saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION}),m=r.efficacyReview.mechanismReview;
+  const status=completeHour?'diagnostic':'partial';
+  assert.equal(r.efficacyReview.status,status);
+  for(const field of ['controlSynthesis','generationSynthesis','interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint']){
+   assert.equal(m[field].status,status,field+': '+m[field].reason);
+   assert.equal(m[field].completeHour,completeHour);
+   assert.equal(m[field].selectionAuthority,false);
+   assert.equal(m[field].effective,null);
+  }
+  assert.equal(r.decisionReview.status,'abstained');
+  assert.ok(Object.values(r.decisionReview.release.axes).every(x=>x.authorized===false));
+  assert.ok(m.generationSynthesis.actions.every(a=>a.actualReleaseState==='unresolved'&&a.actualReceptionState==='unresolved'));
+  if(!completeHour){
+   assert.equal(m.interactionScenarios.space.status,'partial');
+   assert.equal(m.conditionalJoint.analysis.status,'partial');
+   assert.equal(m.interactionProofs.summary.analysisStatus,'partial');
+  }
+ }
+});
