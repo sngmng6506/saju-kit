@@ -24,7 +24,11 @@ for(const c of cases)for(const completeHour of [true,false]){
    if(!p.comparison){if(d!==null)throw Error('hidden-diagnostic');continue;}
    if(!d||d.contrast!==p.contrast||d.forceComparison!==null||Object.keys(p.comparison).some(k=>d.views[k].relation!==p.comparison[k])||
     (!completeHour&&Object.values(d.views).some(v=>v.possibleRelations!==null||v.invariantRelation!==null)))throw Error('diagnostic-contract');
+   const c=d.contextual;
+   if(!c||c.status!==pressure.status||c.forceComparison!==null||c.actualControlState!=='unresolved'||c.selectionAuthority!==false||
+    !completeHour&&c.sides.some(q=>q.challengeState!=='unresolved'))throw Error('contextual-contract');
    actions.push({pressureId:p.id,contrast:p.contrast,reason:d.reason,controllerDominanceUnmet:d.controllerDominanceUnmet,
+    contextual:c.sides.map(q=>({side:q.side,rootCounterState:q.rootCounterState,resourceCounterState:q.resourceCounterState,challengeState:q.challengeState})),
     views:Object.fromEntries(Object.entries(d.views).map(([k,v])=>[k,{relation:v.relation,leftOnly:v.leftOnly,rightOnly:v.rightOnly,unknown:v.unknown,possibleRelations:v.possibleRelations,invariantRelation:v.invariantRelation}]))});
   }
   rows.push({id:c.id,packet:c.packet,completeHour,actions});
@@ -39,5 +43,9 @@ console.log(JSON.stringify({version:'p1-relative-force-sensitivity-audit-v1',sco
  sensitivityRelations:count(complete,a=>a.views.sensitivity.relation),
  invariantRelations:count(complete,a=>a.views.sensitivity.invariantRelation??'not-invariant'),
  unresolvedInvariant:count(complete.filter(a=>a.views.sensitivity.relation==='unresolved'),a=>a.views.sensitivity.invariantRelation??'not-invariant'),
+ contextualCoverage:{rootCounter:complete.filter(a=>a.contextual.some(q=>q.rootCounterState==='supported')).length,
+ resourceCounter:complete.filter(a=>a.contextual.some(q=>q.resourceCounterState==='supported')).length,
+ seasonOrderChallenged:complete.filter(a=>a.contextual.some(q=>q.challengeState==='supported')).length,
+ mixedSeasonOrderChallenged:unstable.filter(a=>a.reason==='known-opposing-axes'&&a.contextual.some(q=>q.challengeState==='supported')).length},
  independentGoldCases:0,selectionAuthority:false,errors,rows},null,2));
 if(errors.length||rows.length!==cases.length*2)process.exitCode=1;
