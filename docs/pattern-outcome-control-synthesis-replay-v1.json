@@ -1,0 +1,53 @@
+{
+  "version": "p1-relative-control-synthesis-replay-v1",
+  "base": "7f2f4b3ccd3fd35e7d756fab2be891b441879735",
+  "scope": "exposed-development-and-synthetic-not-independent-gold",
+  "execution": "Fetched production module bodies with JS import/test/fixture adapters; native Node ESM and V10 not executed",
+  "variants": 54,
+  "expectedVariants": 54,
+  "selectedTestsPassed": 46,
+  "selectedTestsSkipped": 12,
+  "previous54CoreVariantOutputParity": true,
+  "populations": {
+    "development": {
+      "charts": 16,
+      "controls": 35,
+      "possible": 10,
+      "invariant": 2,
+      "directContext": 0,
+      "residualContext": 0,
+      "actualControlConfirmed": 0,
+      "directConjunctionUndercut": 33,
+      "directInjuryModelScreenUnestablishedInRemaining": 2
+    },
+    "synthetic": {
+      "charts": 11,
+      "controls": 24,
+      "possible": 14,
+      "invariant": 12,
+      "directContext": 3,
+      "residualContext": 2,
+      "actualControlConfirmed": 0
+    }
+  },
+  "syntheticContrasts": [
+    {
+      "id": "injury",
+      "directContext": 2,
+      "residualContext": 2
+    },
+    {
+      "id": "injury-interposition",
+      "directContext": 1,
+      "residualContext": 0
+    }
+  ],
+  "independentGoldCases": 0,
+  "selectionAuthority": false,
+  "errors": [],
+  "limitations": [
+    "possible and invariant refer to abstract shared-basis profile order, not real force",
+    "undercuts concern the modeled conjunction only, not actual control",
+    "full per-edge obligations reproducible by registered audit command"
+  ]
+}
