@@ -1,3 +1,4 @@
+import {evaluateContextualStrength} from './outcome-contextual-strength.js';
 import {elementRelation} from '../../core/elements.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {evaluateSourceClauseScenario,sourceEffectClauses} from './outcome-source-effect-policy.js';
@@ -202,7 +203,18 @@ export function reviewElementContexts(prior,root,supply,source){
   };
   const model=evaluateElementContextModel({completeHour:complete,element,axes:scopedAxes,evidenceRefs});
   if(model.status!==status)return empty('model-evaluation');
-  profiles.push({element,visibleIds:v.map(a=>a.id),slotIds:rs.map(s=>s.id),substantialSlotIds:substantial.map(s=>s.id),
+  // Keep the source-inspired alternatives separate from the frozen legacy
+  // model consumed by modeled consequences. No actual bridge is granted.
+  const outputNodes=allNodes.filter(n=>left(element,n.element,'generate')&&active(n));
+  const contextAxes={'visible':axes.visible,'substantial-root-basis':axes.substantialRoot,
+   'controller-basis':!axes.noRootedControllerBasis,'output-basis':outputNodes.length>0};
+  const contextualStrength=evaluateContextualStrength({completeHour:complete,element,
+   axes:Object.fromEntries(Object.entries(contextAxes).map(([k,v])=>[k,complete?v:null])),
+   evidenceRefs:{visible:evidenceRefs.visible,'substantial-root-basis':evidenceRefs.substantialRoot,
+    'controller-basis':evidenceRefs.noRootedControllerBasis,'output-basis':[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),
+     ...outputNodes.map(n=>ref('groundedSupply',n.nodeId,'state'))]}});
+  if(contextualStrength.status!==status)return empty('contextual-strength');
+  profiles.push({element,contextualStrength,visibleIds:v.map(a=>a.id),slotIds:rs.map(s=>s.id),substantialSlotIds:substantial.map(s=>s.id),
    cleanPrincipalSlotIds:clean.filter(s=>s.role==='principal').map(s=>s.id),contestedSlotIds:contested.map(s=>s.id),
    seasonRelation,principalRelation,seasonalStatus:seasonRelation.type==='same'?'season-element':seasonRelation.type==='generate'&&seasonRelation.direction==='left-to-right'?'season-generated':'other-season-context',
    generatorNodeIds:generators.map(n=>n.nodeId),burdenNodeIds:burdens.map(n=>n.nodeId),controllerNodeIds:controllers.map(n=>n.nodeId),
