@@ -53,8 +53,9 @@ export function analyzeProofDependencies(packet,expected=null){
  const upper=evaluateArguments({...packet,evidence:relaxedEvidence,rules:rules.map(({undercutWhen,...q})=>q)});
  if(upper.status!=='diagnostic')return empty(upper.status,'upper-bound-'+upper.reason);
  const potential=new Map(upper.judgments.flatMap(j=>[[key(j.id,'for'),j.support.rank],[key(j.id,'against'),j.opposition.rank]]));
+ const byConclusion=rs=>{const m=new Map();for(const q of rs){const k=literalKey(q.conclusion);if(!m.has(k))m.set(k,[]);m.get(k).push(q);}return m;};
  const describe=(members,rs)=>{
-  const set=new Set(members),relevant=rs.filter(q=>set.has(literalKey(q.conclusion)));
+  const set=new Set(members),relevant=members.flatMap(id=>rs.get(id)??[]);
   const alternatives=relevant.map(q=>({ruleId:q.id,conclusion:q.conclusion,
    internalPremises:q.premises.filter(p=>set.has(literalKey(p))),
    externalPremises:q.premises.filter(p=>!set.has(literalKey(p))),
@@ -66,8 +67,9 @@ export function analyzeProofDependencies(packet,expected=null){
    classification:literalRows.every(p=>p.groundedRank!==null)?'grounded':
     literalRows.every(p=>p.upperBoundRank===null)?'structurally-seedless':'not-fully-grounded'};
  };
- const cycles=components(literalIds,edges(rules)).map(xs=>describe(xs,rules));
- const activeCycles=components(literalIds,edges(active)).map(xs=>describe(xs,active));
+ const fullIndex=byConclusion(rules),activeIndex=byConclusion(active);
+ const cycles=components(literalIds,edges(rules)).map(xs=>describe(xs,fullIndex));
+ const activeCycles=components(literalIds,edges(active)).map(xs=>describe(xs,activeIndex));
  return {...base,status:'diagnostic',reason:null,components:cycles,activeComponents:activeCycles,
   summary:{cycles:cycles.length,activeCycles:activeCycles.length,structurallySeedless:cycles.filter(c=>c.classification==='structurally-seedless').length,
    notFullyGrounded:cycles.filter(c=>c.classification!=='grounded').length,actualEffectsConfirmed:0},
