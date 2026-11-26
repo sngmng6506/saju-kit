@@ -1196,3 +1196,68 @@ Run `node --test test/outcome-residual-pressure.test.mjs` and
 or strength rules changed. Next investigate joint constraints across
 pressures and remaining supply routes, explicit partial relief and
 nonlocal/hidden scope before comparing actual residual burden.
+
+## P3-B7d-4 — Joint residual constraints and shared proof dependencies
+
+The generic positive-constraint solver accepts a canonical positive
+proof packet and queries containing required/excluded structural
+propositions and explicit Boolean observation restrictions. Fixed
+positive facts are preserved. It searches unions of minimal proof
+terms; a forbidden true term can never become false by extending a
+union. Any satisfying assignment contains a term for each required
+proposition, so a union of such terms plus fixed true variables is
+a sufficient witness. Every feasible witness is replayed against the
+canonical signed evaluator. Contradictory requirements yield no
+witness; unavailable is distinct from infeasible. Limits are 256
+queries and 300,000 charged search steps, in addition to the existing
+frontier limits. No truncated result is accepted. This solver is
+restricted to the validated monotone positive fragment, not an
+arbitrary signed-rule or physical feasibility solver.
+
+The research audit preserves the residual compiler and groups exact
+pressures by whole local inventory, kind, and shared protected supply
+edge. It tests joint activity, uncovered pressure and local full
+relief; exact protected-supply groups also test different pressure
+outcomes simultaneously. Empty viable/relievable subsets do not
+produce vacuous claims. Shared root retention, actor access and
+operation variables are indexed from the minimal proof terms. A
+variable in every term is necessary within the model; a variable
+occurring only in some terms can be removed while retaining another
+proof. Where both losses and survivors occur, one explicit false
+restriction and a joint constraint witness reproduce the entire
+partition. Shared proof variables are not independent resource
+units, and no exclusivity or capacity constraint is invented.
+
+Final computational revision f79e5a2: 42 actual modules connected
+using isolated source-level JavaScript, with unchanged pinned upstream
+dependencies. All 53 primary charts were evaluated, 319 pressure rows,
+215 groups, 1,045 joint queries (815 feasible, 230 infeasible),
+zero invalid/unavailable charts. There are 656 chart-variable shared
+dependency records; 179 are necessary for at least one participating
+outcome, 44 are necessary across at least two distinct pressure IDs,
+and 159 mixed loss/survival partitions have joint removal witnesses.
+Seven exact protected supply groups occur in seven charts. The
+initial group-only run showed 52/52 charts with viable pressures can
+activate all viable pressures together and leave them uncovered;
+only 3/52 can hypothesize full relief for all viable pressures.
+These coexistence results are largely consequences of monotonic
+positive premises and independent unreviewed effectiveness guards,
+not evidence of actual simultaneous action or finite resource
+allocation. The 230 infeasible queries likewise express model
+constraints, not verified classical impossibility.
+
+XU14 has two distinct interference pressures on the same supply edge:
+one may be hypothesized fully relieved while the other remains
+uncovered in the same assignment. XU26 retains four literal
+candidates with no rooted pressure proof; no actual burden is
+refuted. No existing strength policy, historical label, or selection
+authority changed. Four new and five prior isolated tests passed at
+f79e5a2, including 81 queries compared with all eight assignments
+of a three-variable fixture, explicit removal replay, fixed facts,
+and partial/rootless cases. Full native Node ESM and V10 regression
+remain unexecuted. Run:
+`node --test test/outcome-joint-residual-pressure.test.mjs test/outcome-residual-pressure.test.mjs`
+and `npm run audit:pattern-joint-residual-pressure`.
+Next prioritize exact route-specific support preservation/partial
+relief semantics and scope limitations; do not read joint logical
+possibility as capacity, magnitude, or a validated strength verdict.
