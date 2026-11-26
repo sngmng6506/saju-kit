@@ -91,3 +91,19 @@ test('antichain budget refuses an incomplete result',()=>{
  const q=positiveProofFrontier({...packet,propositions,rules});
  assert.equal(q.status,'unavailable');assert.deepEqual(q.frontiers,[]);
 });
+
+test('symbolic frontier rejects every graph rejected by canonical proof validation',()=>{
+ const packet=fixture().replenishmentPacket,r=packet.rules[0];
+ for(const invalid of [
+  {...packet,propositions:[...packet.propositions,null]},
+  {...packet,rules:[...packet.rules,r]},
+  {...packet,rules:packet.rules.map((x,i)=>i?x:{...x,refs:[]})},
+  {...packet,rules:packet.rules.map((x,i)=>i?x:{...x,premises:[...x.premises,x.premises[0]]})},
+  {...packet,propositions:packet.propositions.map((x,i)=>i?x:{...x,kind:''})}
+ ]){
+  const canonical=evaluateArguments(invalid),symbolic=positiveProofFrontier(invalid);
+  assert.equal(canonical.status,'invalid-evidence');
+  assert.equal(symbolic.status,canonical.status);assert.equal(symbolic.reason,canonical.reason);
+  assert.deepEqual(symbolic.frontiers,[]);
+ }
+});
