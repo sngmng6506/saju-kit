@@ -12,6 +12,10 @@ for(const c of [...cases,...controls,...routeControls])for(const completeHour of
   const fail=reason=>errors.push({id:c.id,scope,reason});
   if(r.invalid.length)fail('invalid-contract');
   if(r.actualEffectPromoted)fail('actual-effect-promotion');
+  if(r.contact.occurrences.some(o=>o.actualRootLossState!=='unresolved'||o.actualRootPreservationState!=='unresolved'||o.actualCapacityState!=='unresolved'||!completeHour&&o.lossAllExposedScenario.state!=='unresolved')||
+   r.contact.pairs.some(p=>p.actualRestrictionState!=='unresolved'||p.actualRetentionState!=='unresolved'||p.actualTransformationState!=='unresolved')||
+   r.contact.actions.some(a=>a.actualRestrictionState!=='unresolved'||a.actualEffectState!=='unresolved'||!completeHour&&a.lossAllExposedActionScreen.state!=='unresolved'||Object.values(a.pairRestrictionAssumptions).some(s=>s!=='unresolved'))||
+   r.contact.reliefs.some(r=>r.actualReliefState!=='unresolved'||r.actualRestorationState!=='unresolved'))fail('contact-authority-invariant');
   if(!completeHour&&r.rows.some(q=>q.state!=='unresolved'||q.directInjuryState!==null&&q.directInjuryState!=='unresolved'))fail('partial-promotion');
   if(r.rows.some(q=>q.interpositionCandidates.some(p=>p.actualReliefState!=='unresolved')))fail('relief-promotion');
   if(r.rows.some(q=>q.kind==='modeled-source-release'&&(q.actualReceptionState!=='unresolved'||!completeHour&&q.directReleaseState!=='unresolved'||q.state==='supported'&&q.directReleaseState!=='supported')))fail('release-scope-invariant');
@@ -30,9 +34,16 @@ for(const c of [...cases,...controls,...routeControls])for(const completeHour of
 const historical=results.filter(r=>!r.synthetic&&r.scope==='complete');
 const coverage=summarizeModeledCoverage(historical.flatMap(r=>r.rows));
 const chartSupported=historical.filter(r=>r.rows.some(q=>q.state==='supported')).length;
+const exposedOccurrences=historical.flatMap(r=>r.contact.occurrences).filter(o=>o.exposedSubstantialRootIds.length>0);
+const contactActions=historical.flatMap(r=>r.contact.actions),contactPairs=historical.flatMap(r=>r.contact.pairs);
+const countStates=(rows,read)=>Object.fromEntries(['supported','opposed','conflicting','unresolved'].map(state=>[state,rows.filter(r=>read(r)===state).length]));
+const contactCoverage={exposedOccurrences:exposedOccurrences.length,remainingRootBasis:countStates(exposedOccurrences,o=>o.lossAllExposedScenario.state),
+ affectedActions:contactActions.length,hypotheticalRootAndPairScreen:countStates(contactActions,a=>a.lossAllExposedActionScreen.state),
+ pairCount:contactPairs.length,selfScopeCount:contactPairs.filter(p=>p.externalRemovalScope==='outside-external-removal-scope').length,
+ reliefCandidateCount:historical.flatMap(r=>r.contact.reliefs).length};
 // A zero-coverage model is operationally valid but not ready for additional
 // effect authority. Do not tune thresholds merely to pass this gate.
 const readiness=errors.length?'invalid':coverage.supported===0?'blocked-zero-coverage':'coverage-observed-not-validated';
 console.log(JSON.stringify({version:'modeled-coverage-v1',scope:'production-core-replay-not-public-v10-or-empirical-validation',
- cases:cases.length,syntheticControls:controls.length+routeControls.length,replays:results.length,chartSupported,coverage,routeCoverage:{eligible:historical.flatMap(r=>r.interpositionRoutes).length,supported:historical.flatMap(r=>r.interpositionRoutes).filter(q=>q.state==='supported').length},readiness,errors,results},null,2));
+ cases:cases.length,syntheticControls:controls.length+routeControls.length,replays:results.length,chartSupported,coverage,contactCoverage,routeCoverage:{eligible:historical.flatMap(r=>r.interpositionRoutes).length,supported:historical.flatMap(r=>r.interpositionRoutes).filter(q=>q.state==='supported').length},readiness,errors,results},null,2));
 if(errors.length||process.argv.includes('--require-coverage')&&readiness!=='coverage-observed-not-validated')process.exitCode=1;
