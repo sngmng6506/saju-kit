@@ -22,7 +22,7 @@ const truth=(terms,read)=>{
  }
  return unknown?null:false;
 };
-const relation=(a,b)=>compareForceCompletionEnvelope(a,b).relation;
+const relation=(a,b)=>{let mask=0;for(const k of AXES)if(a[k]!==b[k])mask|=a[k]?1:2;return ['same-evidence-profile','left-evidence-dominates','right-evidence-dominates','mixed-evidence'][mask];};
 // Build a chart-wide reference inventory once. Slot variables stand
 // for hypothetical eligibility as an observed basis, NOT actual root
 // preservation or allocation. Contact gates are independent access
