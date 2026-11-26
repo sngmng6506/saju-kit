@@ -4,7 +4,7 @@
 export const ARGUMENTATION_VERSION='outcome-argumentation-v1';
 const signs=['for','against'];
 const validText=x=>typeof x==='string'&&x.length>0;
-const index=(xs,f)=>Array.isArray(xs)&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
+const index=(xs,f)=>Array.isArray(xs)&&xs.every(x=>x&&typeof x==='object'&&!Array.isArray(x))&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
 const literalKey=x=>JSON.stringify([x.propositionId,x.sign]);
 const state=(p,n)=>p?n?'conflicting':'supported':n?'opposed':'unresolved';
 const limit=Object.freeze({propositions:12000,evidence:24000,rules:24000,premises:32});
@@ -18,7 +18,7 @@ export function evaluateArguments(input){
  const props=index(propositions,p=>p.id),facts=index(evidence,e=>e.id),ruleMap=index(rules,r=>r.id);
  if(!props||!facts||!ruleMap||propositions.some(p=>!validText(p.id)||!validText(p.kind)||!['observation','structural-hypothesis','effect-hypothesis'].includes(p.level)||!validText(p.subject)))return empty('invalid-evidence','identity');
  const literal=x=>x&&props.has(x.propositionId)&&signs.includes(x.sign);
- const refs=x=>Array.isArray(x)&&x.length>0&&x.every(r=>r&&validText(r.owner)&&validText(r.id)&&validText(r.field));
+ const refs=x=>Array.isArray(x)&&x.length>0&&x.length<=32&&x.every(r=>r&&validText(r.owner)&&validText(r.id)&&validText(r.field));
  // No direct evidence may assert effective force. Rules cannot promote
  // effect hypotheses in v1 either; later reviewed policy needs a new gate.
  if(evidence.some(e=>!validText(e.id)||!literal(e)||!refs(e.refs)||props.get(e.propositionId).level==='effect-hypothesis'||
