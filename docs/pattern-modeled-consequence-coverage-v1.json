@@ -1,0 +1,2275 @@
+{
+  "version": "modeled-coverage-v1",
+  "scope": "production-core-replay-not-public-v10-or-empirical-validation",
+  "cases": 16,
+  "syntheticControls": 4,
+  "replays": 40,
+  "chartSupported": 0,
+  "coverage": {
+    "eligible": 82,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 0,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 82,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "readiness": "blocked-zero-coverage",
+  "errors": [],
+  "results": [
+    {
+      "id": "wang-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 1,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 4,
+          "direct-grounded-source-basis": 4,
+          "no-observed-combination-or-clash-reference": 5,
+          "no-other-observed-context-blocker": 5,
+          "source-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 3,
+          "adjacent-visible-action": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 1,
+            "bothSupported": 0
+          },
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "wang-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "no-observed-interposition-candidate": 2,
+          "target-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-source-release": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhexi-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 6,
+          "direct-grounded-source-basis": 5,
+          "no-observed-combination-or-clash-reference": 6,
+          "no-other-observed-context-blocker": 6,
+          "source-pressure-screen-clear": 6,
+          "target-pressure-screen-clear": 3,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 3
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhexi-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "li-resource-output",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "target-pressure-screen-clear": 3,
+          "no-observed-interposition-candidate": 2,
+          "adjacent-visible-action": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "li-resource-output",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "ma-resource-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "no-observed-interposition-candidate": 3,
+          "adjacent-visible-action": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "ma-resource-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "mao-resource-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "adjacent-visible-action": 3,
+          "no-other-observed-context-blocker": 3,
+          "no-observed-interposition-candidate": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "mao-resource-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhang-resource-officer",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 5,
+          "no-other-observed-context-blocker": 5,
+          "target-pressure-screen-clear": 3,
+          "adjacent-visible-action": 2,
+          "no-observed-interposition-candidate": 1,
+          "source-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 4,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhang-resource-officer",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "he-killing-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 6,
+          "direct-grounded-source-basis": 4,
+          "no-observed-combination-or-clash-reference": 5,
+          "no-other-observed-context-blocker": 6,
+          "target-pressure-screen-clear": 3,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 3,
+          "source-pressure-screen-clear": 4
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "he-killing-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 1,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "tuo-killing-output",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 6,
+          "direct-grounded-source-basis": 6,
+          "no-observed-combination-or-clash-reference": 6,
+          "no-other-observed-context-blocker": 6,
+          "target-pressure-screen-clear": 1,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 3,
+          "source-pressure-screen-clear": 3
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "tuo-killing-output",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhou-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 1,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 5,
+          "target-pressure-screen-clear": 3,
+          "no-observed-interposition-candidate": 3,
+          "adjacent-visible-action": 3,
+          "no-other-observed-context-blocker": 4,
+          "source-pressure-screen-clear": 4,
+          "direct-grounded-source-basis": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 1,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "zhou-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 2,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 0,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 0,
+        "supported": 0,
+        "unresolved": 0,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {},
+        "singleBlockers": {},
+        "families": {}
+      }
+    },
+    {
+      "id": "chang-killing-resource",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "adjacent-visible-action": 3,
+          "no-observed-combination-or-clash-reference": 4,
+          "no-other-observed-context-blocker": 5,
+          "source-pressure-screen-clear": 3,
+          "no-observed-interposition-candidate": 1,
+          "direct-grounded-source-basis": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 4,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "chang-killing-resource",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "cheng-killing",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "direct-grounded-source-basis": 5,
+          "no-other-observed-context-blocker": 5,
+          "source-pressure-screen-clear": 5,
+          "target-pressure-screen-clear": 3,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "cheng-killing",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-outcome-role-policy-source-v1",
+      "label": null,
+      "expected": null,
+      "exact": null,
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "contextual-support",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:day>visible:month",
+        "clauseId": "generation-strong-source-release:wood:fire",
+        "kind": "modeled-source-release",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "opposed",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "target-pressure-screen-clear"
+        ],
+        "element": "wood",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": true,
+          "cleanPrincipalRoot": true,
+          "substantialRoot": true,
+          "clearContacts": true,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": false,
+          "localGroundedControlCoverage": false
+        }
+      },
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "target-pressure-screen-clear": 3,
+          "adjacent-visible-action": 2,
+          "no-other-observed-context-blocker": 2,
+          "no-observed-interposition-candidate": 2,
+          "direct-grounded-source-basis": 1,
+          "source-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "contextual-support",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:day>visible:month",
+        "clauseId": "generation-strong-source-release:wood:fire",
+        "kind": "modeled-source-release",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "target-pressure-screen-clear"
+        ],
+        "element": "wood",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "contextual-support",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "fire",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": false,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": false,
+          "clearContacts": false,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": false,
+          "localGroundedControlCoverage": true
+        }
+      },
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 6,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 5,
+          "no-other-observed-context-blocker": 6,
+          "source-pressure-screen-clear": 5,
+          "target-pressure-screen-clear": 2,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 3
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "contextual-support",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "fire",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "no-observed-interposition-candidate": 2,
+          "target-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-source-release": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "mixed-context",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:year>visible:month",
+        "clauseId": "control-weak-target:earth:water",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "direct-grounded-source-basis",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": true,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": false,
+          "clearContacts": true,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": false,
+          "localGroundedControlCoverage": false
+        }
+      },
+      "invalid": [],
+      "actionCount": 6,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 6,
+        "supported": 0,
+        "unresolved": 6,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 6,
+          "structural-screen": 6,
+          "adjacent-visible-action": 3,
+          "no-other-observed-context-blocker": 3,
+          "no-observed-interposition-candidate": 3,
+          "direct-grounded-source-basis": 3,
+          "target-pressure-screen-clear": 1,
+          "source-pressure-screen-clear": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "mixed-context",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:year>visible:month",
+        "clauseId": "control-weak-target:earth:water",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 1,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "scope": "complete",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "explicit-opposition",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:year>visible:day",
+        "clauseId": "control-weak-target:earth:water",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": true,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": true,
+          "clearContacts": false,
+          "monthContextClear": false,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": false,
+          "localGroundedControlCoverage": false
+        }
+      },
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 5,
+          "structural-screen": 5,
+          "no-observed-combination-or-clash-reference": 5,
+          "no-other-observed-context-blocker": 5,
+          "target-pressure-screen-clear": 4,
+          "adjacent-visible-action": 2,
+          "no-observed-interposition-candidate": 1,
+          "direct-grounded-source-basis": 2,
+          "source-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 4,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "scope": "partial",
+      "synthetic": false,
+      "packet": "pattern-modeled-consequence-source-contrast-v1",
+      "label": "explicit-opposition",
+      "expected": null,
+      "exact": {
+        "edgeId": "visible:year>visible:day",
+        "clauseId": "control-weak-target:earth:water",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 0,
+        "unresolved": 3,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 3,
+          "no-observed-combination-or-clash-reference": 3,
+          "no-other-observed-context-blocker": 3,
+          "source-pressure-screen-clear": 3,
+          "premises-nonconflicting": 3,
+          "target-pressure-screen-clear": 2,
+          "no-observed-interposition-candidate": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "release",
+      "scope": "complete",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "supported",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "generation-strong-source-release:water:wood",
+        "kind": "modeled-source-release",
+        "state": "supported",
+        "modelState": "supported",
+        "structuralState": "supported",
+        "blockers": [],
+        "element": "water",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": true,
+          "cleanPrincipalRoot": true,
+          "substantialRoot": true,
+          "clearContacts": true,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": true,
+          "noRootedGeneratorBasis": true,
+          "localGroundedControlCoverage": false
+        }
+      },
+      "invalid": [],
+      "actionCount": 4,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 4,
+        "supported": 1,
+        "unresolved": 3,
+        "modelSupported": 4,
+        "structureSupported": 1,
+        "bothSupported": 1,
+        "blockers": {
+          "structural-screen": 3,
+          "adjacent-visible-action": 3,
+          "no-other-observed-context-blocker": 3
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 4,
+            "supported": 1,
+            "modelSupported": 4,
+            "structureSupported": 1,
+            "bothSupported": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "release",
+      "scope": "partial",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "generation-strong-source-release:water:wood",
+        "kind": "modeled-source-release",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "target-pressure-screen-clear"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "injury",
+      "scope": "complete",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "supported",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "supported",
+        "modelState": "supported",
+        "structuralState": "supported",
+        "blockers": [],
+        "element": "fire",
+        "axes": {
+          "visible": true,
+          "seasonSupports": false,
+          "principalSupports": false,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": false,
+          "clearContacts": true,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": true,
+          "localGroundedControlCoverage": true
+        }
+      },
+      "invalid": [],
+      "actionCount": 3,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 3,
+        "supported": 2,
+        "unresolved": 1,
+        "modelSupported": 3,
+        "structureSupported": 3,
+        "bothSupported": 3,
+        "blockers": {
+          "adjacent-visible-action": 1,
+          "no-other-observed-context-blocker": 1
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 3,
+            "supported": 2,
+            "modelSupported": 3,
+            "structureSupported": 3,
+            "bothSupported": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "injury",
+      "scope": "partial",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "fire",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "complete",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "generation-strong-source-release:water:wood",
+        "kind": "modeled-source-release",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "opposed",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": true,
+          "seasonSupports": true,
+          "principalSupports": true,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": true,
+          "clearContacts": false,
+          "monthContextClear": false,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": true,
+          "localGroundedControlCoverage": false
+        }
+      },
+      "invalid": [],
+      "actionCount": 4,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 4,
+        "supported": 0,
+        "unresolved": 4,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 4,
+          "structural-screen": 4,
+          "adjacent-visible-action": 3,
+          "direct-grounded-source-basis": 4,
+          "no-observed-combination-or-clash-reference": 4,
+          "no-other-observed-context-blocker": 4,
+          "source-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 4,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "partial",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "generation-strong-source-release:water:wood",
+        "kind": "modeled-source-release",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "target-pressure-screen-clear"
+        ],
+        "element": "water",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "target-pressure-screen-clear": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-source-release": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "complete",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "supported",
+        "structuralState": "supported",
+        "blockers": [
+          "no-observed-interposition-candidate"
+        ],
+        "element": "fire",
+        "axes": {
+          "visible": true,
+          "seasonSupports": false,
+          "principalSupports": false,
+          "cleanPrincipalRoot": false,
+          "substantialRoot": false,
+          "clearContacts": true,
+          "monthContextClear": true,
+          "noRootedBurdenBasis": false,
+          "noRootedGeneratorBasis": true,
+          "localGroundedControlCoverage": true
+        }
+      },
+      "invalid": [],
+      "actionCount": 5,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 5,
+        "supported": 0,
+        "unresolved": 5,
+        "modelSupported": 2,
+        "structureSupported": 2,
+        "bothSupported": 2,
+        "blockers": {
+          "element-model": 3,
+          "structural-screen": 3,
+          "direct-grounded-source-basis": 3,
+          "no-other-observed-context-blocker": 4,
+          "source-pressure-screen-clear": 1,
+          "adjacent-visible-action": 3,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {
+          "no-observed-interposition-candidate": 1
+        },
+        "families": {
+          "modeled-source-release": {
+            "eligible": 1,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          },
+          "modeled-target-injury": {
+            "eligible": 4,
+            "supported": 0,
+            "modelSupported": 2,
+            "structureSupported": 2,
+            "bothSupported": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "partial",
+      "synthetic": true,
+      "packet": null,
+      "label": null,
+      "expected": "unresolved",
+      "exact": {
+        "edgeId": "visible:month>visible:day",
+        "clauseId": "control-weak-target:water:fire",
+        "kind": "modeled-target-injury",
+        "state": "unresolved",
+        "modelState": "unresolved",
+        "structuralState": "unresolved",
+        "blockers": [
+          "element-model",
+          "structural-screen",
+          "adjacent-visible-action",
+          "direct-grounded-source-basis",
+          "no-observed-combination-or-clash-reference",
+          "no-other-observed-context-blocker",
+          "source-pressure-screen-clear",
+          "premises-nonconflicting",
+          "no-observed-interposition-candidate"
+        ],
+        "element": "fire",
+        "axes": {
+          "visible": null,
+          "seasonSupports": null,
+          "principalSupports": null,
+          "cleanPrincipalRoot": null,
+          "substantialRoot": null,
+          "clearContacts": null,
+          "monthContextClear": null,
+          "noRootedBurdenBasis": null,
+          "noRootedGeneratorBasis": null,
+          "localGroundedControlCoverage": null
+        }
+      },
+      "invalid": [],
+      "actionCount": 2,
+      "actualEffectPromoted": false,
+      "coverage": {
+        "eligible": 2,
+        "supported": 0,
+        "unresolved": 2,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0,
+        "blockers": {
+          "element-model": 2,
+          "structural-screen": 2,
+          "adjacent-visible-action": 2,
+          "direct-grounded-source-basis": 2,
+          "no-observed-combination-or-clash-reference": 2,
+          "no-other-observed-context-blocker": 2,
+          "source-pressure-screen-clear": 2,
+          "premises-nonconflicting": 2,
+          "no-observed-interposition-candidate": 2
+        },
+        "singleBlockers": {},
+        "families": {
+          "modeled-target-injury": {
+            "eligible": 2,
+            "supported": 0,
+            "modelSupported": 0,
+            "structureSupported": 0,
+            "bothSupported": 0
+          }
+        }
+      }
+    }
+  ],
+  "execution": "Fetched production modules in JS isolate; CLI body with fixture reads and URL adapter supplied from exact repository contents; native Node ESM/V10 wrapper not executed",
+  "baseline": "3f7e45090a935d69481290cfea6c8952ed94657d"
+}
