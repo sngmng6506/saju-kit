@@ -33,7 +33,7 @@ for(const c of cases)for(const completeHour of [true,false]){
   if(r.invalid.length)issues.push({field:'core',reason:'invalid-contract',invalid:r.invalid});
   const [,argument,source,element,day,joint,modeled,contact]=r.synthesisInputs;
   for(const [field,expected] of Object.entries({argumentReview:argument,sourceEffectReview:source,elementContextReview:element,
-   dayBalanceDirectionReview:day,jointConstraintReview:joint,modeledConsequenceReview:modeled,contactConstraintSensitivity:contact,actionSynthesis:r.synthesis}))
+   dayBalanceDirectionReview:day,jointConstraintReview:joint,modeledConsequenceReview:modeled,contactConstraintSensitivity:contact,actionSynthesis:r.synthesis,controlSynthesis:r.controlSynthesis}))
    compare(issues,field,m[field],expected);
   compare(issues,'dayDirection',m.dayBalanceDirectionReview?.direction,resolveDayDirection(strength,completeHour));
   const d=native.decisionReview,actions=m.actionSynthesis?.actions;
