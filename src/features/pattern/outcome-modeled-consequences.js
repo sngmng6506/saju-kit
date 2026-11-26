@@ -4,7 +4,7 @@ import {evaluateElementContextModel,ELEMENT_CONTEXT_VERSION} from './outcome-ele
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 import {elementRelation} from '../../core/elements.js';
 
-export const MODELED_CONSEQUENCE_VERSION='p1-4d-modeled-consequence-v3';
+export const MODELED_CONSEQUENCE_VERSION='p1-4d-modeled-consequence-v4';
 const SOURCE='https://www.shidianguji.com/book/SK1610/chapter/1kf5v8oqbug4m';
 // No generic effect authority. Only these two narrow consequences can
 // be derived under the experimental strength model and exact-edge screens.
@@ -105,13 +105,13 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
  const complete=prior?.completeHour,status=complete?'diagnostic':'partial';
  const base={version:MODELED_CONSEQUENCE_VERSION,completeHour:complete,selectionAuthority:false,effective:null,source:SOURCE,
   authority:'experimental-modeled-consequence-only'};
- const empty=reason=>({...base,status:'invalid-evidence',reason,actions:[],propositions:[],evidence:[],rules:[],judgments:[],ruleResults:[]});
+ const empty=reason=>({...base,status:'invalid-evidence',reason,actions:[],interpositionRoutes:[],propositions:[],evidence:[],rules:[],judgments:[],ruleResults:[]});
  if(typeof complete!=='boolean'||[supply,argument,pressure,joint,element].some(x=>!x||x.status!==status||x.completeHour!==complete||x.selectionAuthority!==false)||
   supply.effectiveSupply!==null||[argument,pressure,joint,element].some(x=>x.effective!==null)||element.version!==ELEMENT_CONTEXT_VERSION)return empty('upstream');
  const actors=index(prior.stemForce?.occurrences,a=>a.id),edges=index(supply.actions,e=>e.edgeId),nodes=index(supply.nodes,n=>n.nodeId),
   args=index(argument.actions,a=>a.edgeId),js=index(argument.judgments,j=>j.id),pressures=index(pressure.pressures,p=>p.id),
-  paths=index(pressure.paths,p=>p.id),jr=index(joint.actions,a=>a.edgeId),profiles=index(element.elements,p=>p.element),er=index(element.actions,a=>a.edgeId);
- if([actors,edges,nodes,args,js,pressures,paths,jr,profiles,er].some(x=>!x)||!eq([...profiles.keys()],ELEMENTS)||
+  paths=index(pressure.paths,p=>p.id),jr=index(joint.actions,a=>a.edgeId),jp=index(joint.paths,p=>p.pathId),profiles=index(element.elements,p=>p.element),er=index(element.actions,a=>a.edgeId);
+ if([actors,edges,nodes,args,js,pressures,paths,jr,jp,profiles,er].some(x=>!x)||!eq([...profiles.keys()],ELEMENTS)||
   args.size!==jr.size||args.size!==er.size||!Array.isArray(argument.propositions)||!Array.isArray(argument.evidence)||!Array.isArray(argument.rules))return empty('identity');
  const closure=tracePressureDependencies([...pressures.keys()],[...paths.values()]);
  if(!closure)return empty('interposition-dependencies');
@@ -219,6 +219,55 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
   }
   rows.push({edgeId:a.edgeId,from:a.from,to:a.to,kind:a.kind,originalEffectPropositionId:effect.id,clauses,actualEffectState:'unresolved',effective:null});
  }
+ // Interposition routes reuse the exact action subproofs, not the
+ // strong/weak consequence predicates. Injury is not required for a
+ // counterpressure relation and discharge is not proof of reception.
+ const actionRows=index(rows,a=>a.edgeId),routeRows=[],seenPaths=new Set();
+ for(const owner of rows.filter(a=>a.kind==='control')){
+  const control=owner.clauses.find(c=>c.directInjuryPropositionId),jointAction=jr.get(owner.edgeId);
+  if(!control||!Array.isArray(jointAction.interpositionPathIds))return empty('route-owner');
+  const visibleCandidates=control.interpositionCandidates.filter(p=>nodes.get(p.helperNodeId)?.kind==='visible-stem');
+  if(!eq(visibleCandidates.map(p=>p.pathId),jointAction.interpositionPathIds))return empty('route-coverage');
+  for(const p of visibleCandidates){
+   const j=jp.get(p.pathId),helper=nodes.get(p.helperNodeId)?.occurrenceIds[0];
+   const expectedLegs=p.kind==='protection'?[helper+'>'+owner.from]:[owner.from+'>'+helper,helper+'>'+owner.to];
+   const pressureId=key(actors.get(owner.from).graphNodeId,actors.get(owner.to).graphNodeId);
+   if(!j||seenPaths.has(p.pathId)||j.controlEdgeId!==owner.edgeId||j.pressureId!==pressureId||
+    !eq(j.requiredLegIds,expectedLegs)||!eq(j.dependencyIds,p.dependencyIds)||j.actualEffectState!=='unresolved'||
+    (p.kind==='mediation'?j.sourcePolicyId!=='tongguan':![null,'officer-rescue','food-rescue'].includes(j.sourcePolicyId)))return empty('route-binding');
+   seenPaths.add(p.pathId);
+   const subject=key('interposition-operation',p.pathId),id=key('modeled-route',p.pathId);
+   const kind=p.kind==='protection'?'modeled-counterpressure-channel':'modeled-mediation-channel';
+   props.push({id,subject,kind,level:'structural-hypothesis'});
+   // Rank above zero requires unresolved relief of a helper's pressure.
+   // A reachable topology alone must not seed its own operation.
+   const gate=addCondition(subject,'independent-route-screen',complete?p.structuralDependencyRank===0&&p.otherBlockers.length===0&&p.dependencyIds.length===0:null,
+    [ref('pressureDependencyReview',p.pathId,'structuralDependencyRank'),ref('pressureDependencyReview',p.pathId,'otherBlockers'),ref('pressureDependencyReview',p.pathId,'dependencies')]);
+   const legProofs=[];
+   for(const [i,edgeId] of expectedLegs.entries()){
+    const leg=actionRows.get(edgeId),a=args.get(edgeId),expectedKind=p.kind==='protection'?'control':'generate';
+    const c=leg?.clauses.find(c=>c.propositionId!==null);
+    if(!leg||!a||!c||leg.kind!==expectedKind)return empty('route-leg-binding');
+    const names=['adjacent-visible-action','direct-grounded-source-basis','no-observed-combination-or-clash-reference','no-other-observed-context-blocker','source-pressure-screen-clear'];
+    const selected=names.map(n=>c.conditions.find(q=>q.name===n));
+    if(selected.some(x=>!x))return empty('route-leg-condition');
+    // Mediation entry must pass both sides of its generation screen.
+    // The exit leg must prove its source-side screen only: the original
+    // target pressure is the object of review, not already cleared.
+    const subproofs=p.kind==='mediation'&&i===1?c.sourceScreen?.sourcePremiseIds:[a.structuralPropositionId];
+    if(!Array.isArray(subproofs)||!subproofs.length)return empty('route-leg-proof');
+    const premiseIds=[...selected.map(x=>x.id),...subproofs];
+    legProofs.push({edgeId,mode:p.kind==='protection'?'control-profile':i===0?'entry-full-generation':'exit-source-generation',premiseIds});
+   }
+   const premises=[lit(gate.id),...legProofs.flatMap(x=>x.premiseIds.map(id=>lit(id)))];
+   rules.push({id:key('route-operation-rule',p.pathId),policyId:MODELED_CONSEQUENCE_VERSION,conclusion:lit(id),premises,
+    refs:[ref('jointConstraintReview',p.pathId,'requiredLegIds'),ref('experimental-modeled-route-policy',MODELED_CONSEQUENCE_VERSION,kind)],applicability:'complete-only'});
+   routeRows.push({pathId:p.pathId,controlEdgeId:owner.edgeId,pressureId,kind,sourcePolicyId:j.sourcePolicyId,
+    propositionId:id,gatePropositionId:gate.id,legProofs,structuralState:p.structuralState,dependencyIds:p.dependencyIds,
+    sourceApplicability:'unresolved',actualReliefState:'unresolved',actualReceptionState:'unresolved',effective:null});
+  }
+ }
+ if(seenPaths.size!==jp.size)return empty('route-inventory');
  const r=evaluateArguments({scope:complete?'complete':'partial',propositions:props,evidence,rules});
  if(r.status!==status||r.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved'))return empty('evaluation');
  const result=index(r.judgments,j=>j.id);
@@ -243,6 +292,12 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
    c.jointReleaseScreenState=j.state;
   }
  }
- return {...base,status,reason:null,actions:rows,propositions:props,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults,
-  limitations:['direct-release-not-target-reception','target-pressure-screen-not-reception-capacity','modeled-release-not-beneficial-generation','direct-tendency-not-residual-injury','candidate-screen-not-relief-or-clearance','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
+ for(const route of routeRows){
+  const j=result.get(route.propositionId);
+  if(!j)return empty('route-judgment');
+  route.state=j.state;route.proof={support:j.support,opposition:j.opposition};
+  route.missingPremiseIds=r.ruleResults.find(q=>q.id===key('route-operation-rule',route.pathId))?.missing.map(x=>x.propositionId)??[];
+ }
+ return {...base,status,reason:null,actions:rows,interpositionRoutes:routeRows,propositions:props,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults,
+  limitations:['direct-release-not-target-reception','target-pressure-screen-not-reception-capacity','modeled-release-not-beneficial-generation','direct-tendency-not-residual-injury','modeled-route-not-operation-or-neutralization','dependent-route-not-independent-operation','candidate-screen-not-relief-or-clearance','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
 }
