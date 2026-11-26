@@ -23,7 +23,7 @@ export function auditBurdenSourceConditions({completeHour,nodes,targets,burden}=
  if(typeof completeHour!=='boolean'||!Array.isArray(nodes)||!Array.isArray(targets)||burden?.status!==(completeHour?'diagnostic':'partial')||burden.completeHour!==completeHour||burden.selectionAuthority!==false||burden.effective!==null||burden.actualMagnitudeComparison!=='unresolved')return empty('upstream');
  try{
   const ns=new Map(nodes.map(n=>[n.id,n])),ts=new Set(targets),day=ns.get('day:stem');
-  if(ns.size!==nodes.length||ts.size!==targets.length||!day||!ts.has(day.id)||nodes.some(n=>!elements.includes(n.element)||!positions.includes(n.position))||targets.some(t=>!ns.has(t)))return empty('node-inventory');
+  if(nodes.length>16||targets.length>4||ns.size!==nodes.length||ts.size!==targets.length||!day||day.position!=='day'||!ts.has(day.id)||nodes.some(n=>!elements.includes(n.element)||!positions.includes(n.position))||targets.some(t=>!ns.has(t)||t!==ns.get(t).position+':stem'))return empty('node-inventory');
   const packet=burden.packet,replay=evaluateArguments(packet);
   if(replay.status!==burden.status||!same(replay.judgments,burden.judgments)||!same(replay.ruleResults,burden.ruleResults)||packet.evidence.length)return empty('proof-replay');
   const expected=[];
