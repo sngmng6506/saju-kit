@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {evaluateContextualForceComparison} from '../src/features/pattern/outcome-contextual-force.js';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {summarizePressureDependencies} from '../scripts/lib/pattern-outcome-screen-bottlenecks.mjs';
@@ -112,4 +113,38 @@ test('pressure contrast diagnostic retains direction, unknowns and exact compari
  const cmp=y.root.comparisons.find(p=>[p.left,p.right].includes(a)&&[p.left,p.right].includes(b));
  cmp.sensitivity.leftOnly.push('foreign');
  assert.equal(run(y).status,'invalid-evidence');
+});
+
+test('season disadvantage plus contrary rooted evidence challenges season-only ordering, not effective control',()=>{
+ const baseline={exactSubstantial:false,anySubstantial:false,ownPillarSubstantial:false,monthSubstantial:false,principalSupport:false,seasonSupport:false,localRootedGeneration:false,localRootedPeer:false};
+ const left={...baseline,anySubstantial:true,ownPillarSubstantial:true,localRootedGeneration:true};
+ const right={...baseline,principalSupport:true,seasonSupport:true};
+ const run=(a,b,completeHour=true)=>evaluateContextualForceComparison({completeHour,pressureId:'pair',left:a,right:b});
+ let r=run(left,right);
+ assert.equal(r.status,'diagnostic');assert.equal(r.sides[0].rootCounterState,'supported');assert.equal(r.sides[0].resourceCounterState,'supported');assert.equal(r.sides[0].challengeState,'supported');
+ assert.equal(r.sides[1].challengeState,'unresolved');assert.equal(r.actualControlState,'unresolved');assert.equal(r.forceComparison,null);
+ r=run(right,left);assert.equal(r.sides[1].challengeState,'supported');assert.equal(r.sides[0].challengeState,'unresolved');
+ r=run({...left,anySubstantial:null,ownPillarSubstantial:null},right);assert.equal(r.sides[0].challengeState,'unresolved');
+ r=run({...left,localRootedGeneration:null},right);assert.equal(r.sides[0].resourceCounterState,'unresolved');assert.equal(r.sides[0].rootCounterState,'supported');
+ r=run(left,right,false);assert.ok(r.sides.every(s=>s.challengeState==='unresolved'));
+ assert.equal(run({...left,anySubstantial:false},right).status,'invalid-evidence');
+});
+test('root and resource axes are separate counterarguments, not counted votes',()=>{
+ const axes={exactSubstantial:true,anySubstantial:true,ownPillarSubstantial:true,monthSubstantial:true,principalSupport:false,seasonSupport:false,localRootedGeneration:false,localRootedPeer:true};
+ const other={...axes,principalSupport:true,seasonSupport:true,localRootedPeer:false};
+ const r=evaluateContextualForceComparison({completeHour:true,pressureId:'pair',left:axes,right:other});
+ assert.equal(r.sides[0].challengeState,'unresolved');assert.equal(r.sides[0].resourceCounterState,'unresolved');
+ assert.equal(r.views.supply.relation,'left-evidence-dominates');assert.equal(r.forceComparison,null);
+});
+test('production contextual proofs retain exact pressure scope and partial abstention',()=>{
+ for(const complete of [true,false]){
+  const r=run(build(['무술','갑자','정미','경술'],complete));
+  assert.equal(r.status,complete?'diagnostic':'partial');
+  for(const p of r.pressures.filter(p=>p.comparison)){
+   const c=p.comparisonDiagnostics.contextual;
+   assert.equal(c.status,r.status);assert.equal(c.actualControlState,'unresolved');assert.equal(c.forceComparison,null);
+   assert.ok(c.propositions.every(q=>JSON.parse(q.id)[0]===p.id));
+   if(!complete)assert.ok(c.sides.every(s=>s.challengeState==='unresolved'));
+  }
+ }
 });
