@@ -97,10 +97,11 @@ const invalid=reason=>({status:'invalid-model-output',reason,state:null});
 const prediction=(state,diagnostic)=>states.includes(state)?{status:'mapped',state,diagnostic}:invalid('invalid-state');
 // The current V10 release is abstention-only. Non-unresolved actual fields
 // are a contract violation, not a correct prediction on this release.
+const nativeEnvelope=n=>n?.version==='pattern-outcome-decision-v10'&&n.completeHour===true&&n.efficacyReview?.status==='diagnostic'&&n.decisionReview?.status==='abstained'&&n.selectionAuthority===false&&n.efficacyReview?.mechanismReview?.actionSynthesis?.status==='diagnostic'&&Array.isArray(n.efficacyReview.mechanismReview.actionSynthesis.actions)&&['selectedPattern','formed','broken','rescued','assistantGod','patternUsefulGod','usefulElement'].every(k=>n[k]===null);
 export function readClaimPrediction(target,native){
+ if(!nativeEnvelope(native))return invalid('native-scope-or-authority');
  if(unsupported.includes(target.kind))return missing('unmapped-source-scope');
- const m=native?.efficacyReview?.mechanismReview;
- if(native?.version!=='pattern-outcome-decision-v10'||native.completeHour!==true||native.efficacyReview?.status!=='diagnostic'||native.decisionReview?.status!=='abstained'||native.selectionAuthority!==false||m?.actionSynthesis?.status!=='diagnostic')return invalid('native-scope-or-authority');
+ const m=native.efficacyReview.mechanismReview;
  const a=m.actionSynthesis.actions;
  if(target.kind==='action-effect'){
   const edgeId=target.from+'>'+target.to,p=pick(a,q=>q.edgeId===edgeId);
@@ -119,7 +120,7 @@ export function readClaimPrediction(target,native){
  }
  const id=key(target.participants),p=pick(m.combinationPolicyReview?.pairs,q=>q.pairId===id);
  if(p.error)return invalid(p.error);if(!p.row)return missing('exact-pair-not-projected');
- if(!same([...p.row.participantIds].sort(),target.participants))return invalid('pair-binding');
+ if(!Array.isArray(p.row.participantIds)||!same([...p.row.participantIds].sort(),target.participants))return invalid('pair-binding');
  const state=p.row[{'pair-restriction':'actualRestrictionState','pair-transformation':'actualTransformationState','pair-retention':'actualRetentionState'}[target.kind]];
  if(state!=='unresolved')return invalid('pair-authority');
  return prediction(state,{contactHypothesis:p.row.contactHypothesis??null});
@@ -142,7 +143,7 @@ export function evaluateClaimComparisons(packet,digest,batches,nativeRows){
  const charts=new Map(packet.charts.map(c=>[c.id,c])),models=new Map();
  for(const r of nativeRows){
   const c=charts.get(r?.chartId),n=normalizeExposurePillars(r?.pillars);
-  if(!exact(r,['chartId','pillars','native'])||!c||models.has(r.chartId)||!n||!same(n.pillars,c.pillars))return {...base,status:'invalid-model-output',rows:[]};
+  if(!exact(r,['chartId','pillars','native'])||!c||models.has(r.chartId)||!n||!same(n.pillars,c.pillars)||!nativeEnvelope(r.native))return {...base,status:'invalid-model-output',rows:[]};
   models.set(r.chartId,r.native);
  }
  if(models.size!==charts.size)return {...base,status:'invalid-model-output',rows:[]};
@@ -154,6 +155,8 @@ export function evaluateClaimComparisons(packet,digest,batches,nativeRows){
  const count=xs=>Object.fromEntries(['reference-unresolved','model-scope-gap','invalid-model-output','model-abstention','model-conflict','agreement','disagreement'].map(k=>[k,xs.filter(r=>r.comparison===k).length]));
  const counts=count(rows),determinate=rows.filter(r=>r.referenceLabel!==null).length,resolved=counts.agreement+counts.disagreement;
  return {...base,status:rows.some(r=>r.prediction.status==='invalid-model-output')?'invalid-model-output':'diagnostic-unverified-input',rows,counts,
+  mappingCounts:Object.fromEntries(['mapped','model-scope-gap','invalid-model-output'].map(k=>[k,rows.filter(r=>r.prediction.status===k).length])),
+  byKind:Object.fromEntries([...new Set(rows.map(r=>r.kind))].map(k=>[k,count(rows.filter(r=>r.kind===k))])),
   denominators:{allTasks:rows.length,determinateReferenceTasks:determinate,resolvedComparableTasks:resolved},
   diagnosticCoverage:determinate?resolved/determinate:null,diagnosticAgreement:resolved?counts.agreement/resolved:null};
 }
