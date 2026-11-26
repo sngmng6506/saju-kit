@@ -13,6 +13,7 @@ import {observeResourceSupplyContext,assessResourceDemandConditions} from './out
 import {observeRoleDependencies} from './outcome-role-dependencies.js';
 import {observeRoleDemand} from './outcome-role-demand.js';
 import {observeRoleInteractions} from './outcome-role-interactions.js';
+import {observeHiddenAccessContext} from './outcome-hidden-access.js';
 import {observeGroundedSupply} from './outcome-grounded-supply.js';
 import {observeLocalityContext} from './outcome-locality-context.js';
 import {observePressureDependencyReview} from './outcome-pressure-dependency.js';
@@ -47,6 +48,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const roleCapacity=observeRoleCapacity(prior);
  const rootContext=observeRootContext(prior,formation);
  const groundedSupply=observeGroundedSupply(prior,rootContext);
+ const hiddenAccessContext=observeHiddenAccessContext(prior,branchContext,rootContext,groundedSupply);
  const clashResidualContext=observeClashResidualContext(prior,formation,rootContext,groundedSupply);
  const combinationResidualContext=observeCombinationResidualContext(prior,formation,combinationContext,rootContext,groundedSupply);
  const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
@@ -79,6 +81,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const dependencyReview=observeRoleDependencies(demandReview,{resource:resourceDemandConditions,output:outputDemandConditions,officer:officerDemandConditions},groundedSupply,prior.completeHour);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,rootContext,groundedSupply,hiddenAccessContext,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
