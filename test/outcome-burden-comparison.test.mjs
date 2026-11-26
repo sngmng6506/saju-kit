@@ -70,3 +70,24 @@ test('frontier absorbs redundant conjunctions and comparison handles empty sides
  assert.deepEqual(positiveProofFrontier({...packet,rules:[...packet.rules,extra]}),base);
  assert.deepEqual(comparePositiveFrontiers([],[]).witnesses,{leftOnly:null,rightOnly:null,both:null,neither:[]});
 });
+
+test('accidental operation aliases cannot merge distinct physical relations',()=>{
+ const f=fixture(),id=f.actions[0].id;
+ const q=build(f.nodes,[{...f.links[0],id}],f.targets,f.actions);
+ assert.equal(compareReplenishmentBurden(q).reason,'operation-identity-collision');
+});
+test('antichain budget refuses an incomplete result',()=>{
+ const nodes=Array.from({length:15},(_,i)=>node('n'+i,['r'+i]));
+ const f=build(nodes,[],nodes.map(n=>n.id),[]);
+ const packet=f.replenishmentPacket,propositions=[...packet.propositions],rules=[...packet.rules];
+ // Fifteen independent binary choices create 32,768 incomparable terms.
+ for(let i=0;i<15;i++){
+  const id='choice'+i,obs='alternative'+i;
+  propositions.push({id,kind:'choice',subject:id,level:'structural-hypothesis'},{id:obs,kind:'alternative',subject:obs,level:'observation'});
+  for(const p of [key('replenishment-basis','n'+i),obs])rules.push({id:key(id,p),policyId:'test',conclusion:{propositionId:id,sign:'for'},premises:[{propositionId:p,sign:'for'}],refs:[{owner:'test',id,field:'choice'}],applicability:'complete-only'});
+ }
+ propositions.push({id:'all',kind:'all',subject:'all',level:'structural-hypothesis'});
+ rules.push({id:'all',policyId:'test',conclusion:{propositionId:'all',sign:'for'},premises:Array.from({length:15},(_,i)=>({propositionId:'choice'+i,sign:'for'})),refs:[{owner:'test',id:'all',field:'choices'}],applicability:'complete-only'});
+ const q=positiveProofFrontier({...packet,propositions,rules});
+ assert.equal(q.status,'unavailable');assert.deepEqual(q.frontiers,[]);
+});
