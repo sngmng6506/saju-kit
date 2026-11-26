@@ -27,7 +27,7 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden}
   for(const t of targets){
    const n=ns.get(t),b=bs.get(t),direct=add(key('direct-root-basis',t),t,'hypothetical-direct-root-access-basis','structural-hypothesis');
    if(!Array.isArray(n.rootIds)||new Set(n.rootIds).size!==n.rootIds.length||b.actualMagnitudeComparison!=='unresolved'||b.actualStrengthState!=='unresolved'||b.supportPropositionId!==key('replenishment-basis',t)||props.get(b.supportPropositionId)?.level!=='structural-hypothesis')return empty('basis-binding');
-   const seeds=original.rules.filter(r=>r.conclusion.propositionId===b.supportPropositionId&&r.id===key('root-seed',t,JSON.parse(r.id)[2]));
+   const seeds=original.rules.filter(r=>r.conclusion.propositionId===b.supportPropositionId&&r.id.startsWith('["root-seed",'));
    if(seeds.length!==n.rootIds.length)return empty('seed-coverage');
    for(const slot of n.rootIds){
     const s=seeds.find(r=>r.id===key('root-seed',t,slot));
