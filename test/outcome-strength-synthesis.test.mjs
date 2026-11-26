@@ -87,3 +87,59 @@ for(const c of [...controls,...routeControls])for(const complete of [true,false]
   if(!complete)assert.equal(q.summary.analysisStatus,'partial');
  });
 }
+
+test('literal demand policy does not require a rooted source to express possible weakness',()=>{
+ const x={completeHour:true,nodes:[node('a'),node('b',['r'])],links:[],targets:['a']};
+ const burden=compareReplenishmentBurden({...x,actions:[action('control','a','b'),action('generate','a','b')],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const v1=synthesizeContextualStrength({...x,burden}),v2=synthesizeContextualStrength({...x,burden,policy:'literal-demand'});
+ assert.equal(v1.status,'diagnostic',v1.reason);assert.equal(v2.status,'diagnostic',v2.reason);
+ assert.deepEqual(states(row(v1,'a'),'weak'),['unresolved']);
+ assert.deepEqual(states(row(v2,'a'),'weak'),['supported','unresolved']);
+ assert.deepEqual(v2.judgments.slice(0,burden.judgments.length),burden.judgments);
+ assert.equal(v2.actualStrengthState,'unresolved');assert.equal(v2.selectionAuthority,false);
+ assert.equal(v2.packet.evidence.length,2);
+ assert.ok(v2.packet.evidence.every(f=>f.propositionId.startsWith('["literal-action-observed",')));
+ assert.equal(v2.judgments.find(j=>j.id===row(v2,'a').exposure['outgoing-control']).state,'supported');
+ assert.equal(v2.judgments.find(j=>j.id===row(v2,'a').expenditure).state,'unresolved');
+});
+test('literal demand alternative retains baseline strong possibilities but adds explicit wealth guard',()=>{
+ const x={completeHour:true,nodes:[node('a',['r']),node('b',['s'])],links:[],targets:['a']};
+ const burden=compareReplenishmentBurden({...x,actions:[action('control','a','b')],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const a=synthesizeContextualStrength({...x,burden,policy:'literal-demand'}),r=row(a,'a');
+ assert.equal(a.status,'diagnostic',a.reason);
+ assert.deepEqual(states(r,'strong'),['supported','opposed','unresolved']);
+ assert.deepEqual(states(r,'weak'),['supported','opposed','unresolved']);
+ const guard=key('strength-guard','a','wealth-demand-exceeds-support');
+ assert.ok(r.guardIds.includes(guard));assert.equal(a.judgments.find(j=>j.id===guard).state,'unresolved');
+ assert.ok(r.analysis.targets.find(t=>t.id===r.weakPropositionId).witnesses.supported.includes(guard));
+ assert.equal(a.judgments.find(j=>j.id===r.weakPropositionId).state,'unresolved');
+});
+test('demand policy does not infer weakness from absence of support or absent literal action',()=>{
+ const x={completeHour:true,nodes:[node('a')],links:[],targets:['a']};
+ const burden=compareReplenishmentBurden({...x,actions:[],replenishmentPacket:compileReplenishmentNetwork(x).packet});
+ const q=synthesizeContextualStrength({...x,burden,policy:'literal-demand'});
+ assert.equal(q.status,'diagnostic');assert.deepEqual(states(row(q,'a'),'weak'),['unresolved']);
+ const f=fixture(false),p=synthesizeContextualStrength({...f,policy:'literal-demand'});
+ assert.equal(p.status,'partial');assert.ok(p.judgments.every(j=>j.state==='unresolved'));
+});
+test('literal demand evidence is fixed and exact actor states match exhaustive replay',()=>{
+ const f=fixture(),q=synthesizeContextualStrength({...f,policy:'literal-demand'}),r=row(q,'b');
+ assert.equal(q.status,'diagnostic',q.reason);
+ const fixed=new Set(q.packet.evidence.map(e=>e.propositionId));
+ const ids=q.packet.propositions.filter(p=>p.level==='observation'&&!fixed.has(p.id)&&(!p.id.startsWith('["strength-guard",')||r.guardIds.includes(p.id))).map(p=>p.id);
+ const possible=new Map([r.strongPropositionId,r.weakPropositionId].map(id=>[id,new Set()]));
+ for(let mask=0;mask<2**ids.length;mask++){
+  const truth=new Set(ids.filter((_,i)=>mask&(1<<i)));
+  const evidence=[...q.packet.evidence,...q.packet.propositions.filter(p=>p.level==='observation'&&!fixed.has(p.id)).map((p,i)=>({id:'f'+i,propositionId:p.id,sign:truth.has(p.id)?'for':'against',refs:[{owner:'fixture',id:p.id,field:'value'}],applicability:'complete-only'}))];
+  const j=new Map(evaluateArguments({...q.packet,evidence}).judgments.map(j=>[j.id,j.state]));
+  if(r.requirements.some(x=>truth.has(x.guard)&&j.get(x.basis)!=='supported'))continue;
+  for(const [id,s] of possible)s.add(j.get(id));
+ }
+ for(const t of r.analysis.targets)assert.deepEqual([...possible.get(t.id)].sort(),[...t.possibleStates].sort());
+});
+test('literal exposure cannot be fabricated by editing group or action inventory',()=>{
+ const f=fixture(),b=f.burden;
+ assert.equal(synthesizeContextualStrength({...f,burden:{...b,actionRows:b.actionRows.slice(1)},policy:'literal-demand'}).reason,'action-coverage');
+ const rows=b.rows.map(r=>r.targetId==='b'?{...r,groups:r.groups.map(g=>g.kind==='outgoing-control'?{...g,actionIds:['fake']}:g)}:r);
+ assert.equal(synthesizeContextualStrength({...f,burden:{...b,rows},policy:'literal-demand'}).reason,'exposure-coverage');
+});
