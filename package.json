@@ -46,7 +46,8 @@
     "audit:pattern-outcome-role-policy-source": "node scripts/audit-pattern-outcome-role-policy-source.mjs",
     "audit:pattern-outcome-role-flow": "node scripts/audit-pattern-outcome-role-flow.mjs",
     "audit:pattern-outcome-root-context": "node scripts/audit-pattern-outcome-root-context.mjs",
-    "audit:pattern-outcome-command-replay": "node scripts/audit-pattern-outcome-command-replay.mjs"
+    "audit:pattern-outcome-command-replay": "node scripts/audit-pattern-outcome-command-replay.mjs",
+    "audit:pattern-outcome-modeled-consequences": "node scripts/audit-pattern-outcome-modeled-consequences.mjs"
   },
   "devDependencies": {
     "manseryeok": "2.0.0"
