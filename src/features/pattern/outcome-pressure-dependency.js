@@ -1,3 +1,4 @@
+import {compareForceCompletionEnvelope} from '../../core/relative-force.js';
 // Pressure topology, not a force estimator. A grounded proof of the
 // structural prerequisites never proves neutralization or effective supply.
 const index=(xs,f)=>Array.isArray(xs)&&new Set(xs.map(f)).size===xs.length?new Map(xs.map(x=>[f(x),x])):null;
@@ -32,6 +33,45 @@ export function tracePressureDependencies(pressureIds,paths){
  }
  return {pressureRanks:[...ranks].map(([id,rank])=>({id,rank})),pathRanks:[...pathRanks].map(([id,rank])=>({id,rank})),unseededCycles:components};
 }
+// Replay the exact signed comparison axes in controller-to-target
+// orientation. The existing stable-dominance policy remains unchanged;
+// the completion envelope cannot serve as a new positive premise.
+export function diagnoseControlContrast({completeHour,originalLeft,originalRight,sensitivityLeft,sensitivityRight,pair,reversed=false}={}){
+ if(typeof completeHour!=='boolean'||typeof reversed!=='boolean'||!pair||pair.forceComparison!==null)return null;
+ const seasonal=['principalSupport','seasonSupport'];
+ const expected=['exactSubstantial','anySubstantial','ownPillarSubstantial','monthSubstantial',...seasonal,'localRootedGeneration','localRootedPeer'];
+ const valid=x=>x&&Object.keys(x).length===expected.length&&expected.every(k=>Object.hasOwn(x,k));
+ if(![originalLeft,originalRight,sensitivityLeft,sensitivityRight].every(valid))return null;
+ const select=(x,keys)=>Object.fromEntries(Object.entries(x).filter(([k])=>keys.includes(k)));
+ const nonseason=expected.filter(k=>!seasonal.includes(k));
+ const inputs={original:[originalLeft,originalRight],sensitivity:[sensitivityLeft,sensitivityRight],
+  nonseason:[select(sensitivityLeft,nonseason),select(sensitivityRight,nonseason)],
+  seasonOnly:[select(originalLeft,seasonal),select(originalRight,seasonal)]};
+ const views={};
+ for(const [k,[a,b]] of Object.entries(inputs)){
+  const env=compareForceCompletionEnvelope(a,b,{completeHour}),q=pair[k];
+  if(!env||!q||q.forceComparison!==null||env.relation!==(reversed?flip(q.relation):q.relation)||
+   !same([...env.leftOnly].sort(),[...(reversed?q.rightOnly:q.leftOnly)??[]].sort())||
+   !same([...env.rightOnly].sort(),[...(reversed?q.leftOnly:q.rightOnly)??[]].sort())||
+   !same([...env.unknown].sort(),[...q.unknown??[]].sort())||
+   ![q.leftOnly,q.rightOnly,q.unknown].every(Array.isArray))return null;
+  views[k]=env;
+ }
+ const left='left-evidence-dominates',right='right-evidence-dominates',mixed='mixed-evidence',equal='same-evidence-profile';
+ const r=views.sensitivity.relation;
+ const required=[['sensitivity',left],['original',left],['nonseason',left]];
+ const unmet=completeHour?required.filter(([k,want])=>views[k].relation!==want).map(([view,required])=>({view,required,observed:views[view].relation})): [];
+ if(completeHour&&views.seasonOnly.relation===right)unmet.push({view:'seasonOnly',required:'not-right-evidence-dominates',observed:right});
+ const stable=completeHour&&[left,right].includes(r)&&views.original.relation===r&&views.nonseason.relation===r&&views.seasonOnly.relation!==flip(r);
+ const contrast=!completeHour?'partial':stable?(r===left?'controller-evidence-dominance-stable':'target-evidence-dominance-stable'):'direction-not-stable';
+ const e=views.sensitivity;
+ const reason=!completeHour?'partial':stable?'stable-profile-order':
+  e.invariantRelation===mixed?'known-opposing-axes':e.invariantRelation===equal?'identical-observed-profiles':
+  e.relation==='unresolved'?(e.invariantRelation?'invariant-under-abstract-completions':'completion-sensitive-direction'):
+  'cross-view-stability-condition-unmet';
+ return {views,contrast,reason,controllerDominanceUnmet:unmet,forceComparison:null,
+  limitations:['axis-completion-overapproximation-not-physical-scenario','stable-profile-order-not-effective-control','no-premise-promotion']};
+}
 export function observePressureDependencyReview(prior,root,supply,interposition){
  const complete=prior?.completeHour,status=complete?'diagnostic':'partial';
  const base={version:'pressure-dependency-review-v1',completeHour:complete,selectionAuthority:false,neutralizationConfirmed:null,effective:null};
@@ -56,7 +96,7 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
    if(!n||!source||e.to!==target||e.type!=='control'||e.effectConfirmed!==null)return empty();
    const q=ctx?.controllers.find(p=>p.controllerNodeId===e.from);
    if(visible&&(!q||q.donorState!==n.state||q.local!==e.local||q.neutralizationConfirmed!==null||q.remainingPressureConfirmed!==null||!Array.isArray(q.candidatePathIds)||!Array.isArray(q.screenedPathIds)))return empty();
-   let comparison=null;
+   let comparison=null,comparisonDiagnostics=null;
    if(visible&&source.layer==='visible'){
     const forward=pairs.get(key(source.id,a.id)),reverse=pairs.get(key(a.id,source.id)),p=forward??reverse;
     const exact=actions.get(source.id+'>'+a.id);
@@ -64,12 +104,17 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
     const orient=r=>forward?r:flip(r);
     comparison=Object.fromEntries(['original','sensitivity','nonseason','seasonOnly'].map(k=>[k,orient(p[k].relation)]));
     if(comparison.original!==exact.controlComparison)return empty();
+    const so=root.occurrences.find(o=>o.id===source.id),ta=root.occurrences.find(o=>o.id===a.id);
+    comparisonDiagnostics=diagnoseControlContrast({completeHour:complete,originalLeft:prior.relativeForce.profiles[source.id]?.axes,
+     originalRight:prior.relativeForce.profiles[a.id]?.axes,sensitivityLeft:so?.sensitivityAxes,sensitivityRight:ta?.sensitivityAxes,pair:p,reversed:!forward});
+    if(!comparisonDiagnostics)return empty();
    }
    const rel=comparison?.sensitivity;
    const contrast=!complete?'partial':!comparison?'hidden-comparison-unavailable':
     ['left-evidence-dominates','right-evidence-dominates'].includes(rel)&&comparison.original===rel&&comparison.nonseason===rel&&
      comparison.seasonOnly!==flip(rel)?rel==='left-evidence-dominates'?'controller-evidence-dominance-stable':'target-evidence-dominance-stable':'direction-not-stable';
-   const id=key(e.from,target),row={id,controllerNodeId:e.from,targetNodeId:target,local:e.local,donorState:n.state,comparison,contrast,
+   if(comparisonDiagnostics&&comparisonDiagnostics.contrast!==contrast)return empty();
+   const id=key(e.from,target),row={id,controllerNodeId:e.from,targetNodeId:target,local:e.local,donorState:n.state,comparison,contrast,comparisonDiagnostics,
     candidatePathIds:q?.candidatePathIds??[],screenedPathIds:q?.screenedPathIds??[],targetAccess:visible?'visible':'hidden-target-review',neutralizationConfirmed:null,effective:null};
    pressures.push(row);pressureMap.set(id,row);
   }
