@@ -36,6 +36,35 @@ export function compareForceProfiles(a,b,{completeHour=true,comparable=true}={})
  return {relation,leftOnly,rightOnly,unknown,sharedRootPositions:overlap(a.rootPositions,b.rootPositions),
   sharedGenerationNodes:overlap(a.localGenerationNodes,b.localGenerationNodes),sharedPeerNodes:overlap(a.localPeerNodes,b.localPeerNodes),forceComparison:null};
 }
+// Compare all independent Boolean completions of unresolved axes. This
+// deliberately overapproximates physically compatible completions (axes
+// can share roots or entail each other). A singleton is invariant under
+// this abstraction, not evidence of actual force. Missing-hour scope
+// can introduce new observations and is never promoted.
+export function compareForceCompletionEnvelope(left,right,{completeHour=true}={}){
+ const valid=x=>x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).length>0&&Object.values(x).every(v=>v===true||v===false||v===null);
+ if(typeof completeHour!=='boolean'||!valid(left)||!valid(right)||Object.keys(left).length!==Object.keys(right).length||
+  Object.keys(left).some(k=>!Object.hasOwn(right,k)))return null;
+ const keys=Object.keys(left),leftOnly=[],rightOnly=[],unknown=[],axisRows=[];
+ let masks=new Set([0]);
+ for(const k of keys){
+  const a=left[k],b=right[k];
+  if(a===true&&b===false)leftOnly.push(k);
+  if(a===false&&b===true)rightOnly.push(k);
+  if(a===null||b===null)unknown.push(k);
+  const opts=new Set();
+  for(const x of a===null?[false,true]:[a])for(const y of b===null?[false,true]:[b])opts.add(x===y?0:x?1:2);
+  masks=new Set([...masks].flatMap(m=>[...opts].map(o=>m|o)));
+  axisRows.push({axis:k,left:a,right:b,possibleContributions:[...opts].sort((x,y)=>x-y).map(m=>['equal','left-only','right-only'][m])});
+ }
+ const names=['same-evidence-profile','left-evidence-dominates','right-evidence-dominates','mixed-evidence'];
+ const possibleRelations=completeHour?[...masks].sort((a,b)=>a-b).map(m=>names[m]):null;
+ const relation=completeHour&&!unknown.length?names[[...masks][0]]:'unresolved';
+ return {scope:completeHour?'complete':'partial',relation,leftOnly,rightOnly,unknown,axisRows,possibleRelations,
+  invariantRelation:possibleRelations?.length===1?possibleRelations[0]:null,
+  abstraction:'independent-boolean-completions-overapproximation',forceComparison:null};
+}
+
 export function observeRelativeForce(force){
  const complete=force.completeHour,byId=new Map(force.occurrences.map(o=>[o.id,o]));
  const profiles=Object.fromEntries(force.occurrences.map(o=>[o.id,profile(o,complete)]));
