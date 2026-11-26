@@ -6,12 +6,12 @@ const same=(a,b)=>key(a)===key(b);
 // Joint assumptions are explicit hypothetical predicates, not aliases of
 // root eligibility, profile dominance or physical transfer. A future
 // reviewed bridge must bind those distinct meanings explicitly.
-export function reviewConditionalJoint(prior,joint,proofReview){
+export function reviewConditionalJoint(prior,joint){
  const complete=prior?.completeHour,status=complete?'diagnostic':'partial',scope=complete?'complete':'partial';
  const base={version:VERSION,completeHour:complete,selectionAuthority:false,effective:null};
  const empty=reason=>({...base,status:'invalid-evidence',reason,manifest:[],analysis:null,summary:null});
- if(typeof complete!=='boolean'||[joint,proofReview].some(x=>!x||x.status!==status||x.completeHour!==complete||x.selectionAuthority!==false||x.effective!==null)||
-  !joint.scenario||!proofReview.graphs?.joint)return empty('upstream');
+ if(typeof complete!=='boolean'||[joint].some(x=>!x||x.status!==status||x.completeHour!==complete||x.selectionAuthority!==false||x.effective!==null)||
+  !joint.scenario)return empty('upstream');
  try{
   const {assumptions,candidates}=joint.scenario;
   const packet=compileJointScenario({scope,assumptions,candidates});
