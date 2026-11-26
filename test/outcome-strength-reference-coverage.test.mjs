@@ -2,7 +2,7 @@ import {strengthAuditFixtureNames,verifyStrengthAuditInventory} from '../scripts
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {buildReferenceCoverageCohort,observeReferenceBasis,observeSynthesisCoverage,summarizeReferenceCoverage} from '../scripts/lib/pattern-strength-reference-coverage.mjs';
+import {buildReferenceCoverageCohort,observeReferenceBasis,observeSynthesisCoverage,observeBurdenObligations,summarizeReferenceCoverage} from '../scripts/lib/pattern-strength-reference-coverage.mjs';
 const read=name=>JSON.parse(readFileSync(new URL('./fixtures/'+name+'.json',import.meta.url),'utf8'));
 const audit=read('strength-audit-v1'),patterns=read('pattern-classical-v2');
 const cohort=()=>buildReferenceCoverageCohort(audit,patterns);
@@ -55,4 +55,26 @@ test('audit records match all six original fixture populations without silent om
  const a=audit.entries[0];
  assert.throws(()=>verifyStrengthAuditInventory(fixtures,{...audit,entries:[{...a,reference:a.reference==='strong'?'weak':'strong'},...audit.entries.slice(1)]}),/stale-audit/);
  assert.throws(()=>verifyStrengthAuditInventory(fixtures.slice(1),audit),/audit-inventory/);
+});
+
+test('literal burden candidates and rooted operations are not equivalent',()=>{
+ const row={targetId:'day:stem',actualStrengthState:'unresolved',strongPropositionId:'s',weakPropositionId:'w',direct:'d',support:'r',control:'c',drain:'g',expenditure:'e',analysis:{status:'diagnostic',targets:[{id:'s',possibleStates:['unresolved']},{id:'w',possibleStates:['unresolved']}]}};
+ const s={status:'diagnostic',completeHour:true,selectionAuthority:false,effective:null,actualStrengthState:'unresolved',summary:{actualEffectsConfirmed:0},rows:[row],packet:{rules:[]}};
+ const action={id:'a',from:'day:stem',to:'other',kind:'generate',actualOperationState:'unresolved',propositionId:'a-proof'};
+ const b={status:'diagnostic',completeHour:true,selectionAuthority:false,effective:null,actualMagnitudeComparison:'unresolved',analysis:{status:'diagnostic',selectionAuthority:false,actualMagnitudeComparison:'unresolved',actionRows:[action],rows:[{targetId:'day:stem',supportPropositionId:'r',groups:[{kind:'incoming-control',propositionId:'c',actionIds:[]},{kind:'outgoing-generation',propositionId:'g',actionIds:['a']},{kind:'outgoing-control',propositionId:'e',actionIds:[]}]}],frontier:{status:'diagnostic',frontiers:['r','c','g','e','a-proof'].map(id=>({id,terms:[]}))}}};
+ const result=observeBurdenObligations(b,s);
+ assert.deepEqual(result.obligations,['direct-root-required-by-strong-alternative','outgoing-generation-rooted-source-gate']);
+ assert.equal(result.groups[1].state,'literal-without-rooted-basis');assert.equal(result.supportBasisPossible,false);
+ assert.equal(result.actualMagnitudeComparison,'unresolved');
+ const altered={...b,analysis:{...b.analysis,frontier:{...b.analysis.frontier,frontiers:b.analysis.frontier.frontiers.map(f=>f.id==='g'?{...f,terms:[['fake']]}:f)}}};
+ assert.throws(()=>observeBurdenObligations(altered,s),/burden-frontier-parity/);
+});
+test('direction class partitions evaluated references and leaves unknown distinct',()=>{
+ const c=cohort(),types=[[true,true],[true,false],[false,true],[false,false]],primary=c.rows.filter(r=>r.cohort==='primary');
+ const ids=new Map(primary.slice(0,4).map((r,i)=>[r.id,i]));
+ const obs=c.rows.map(r=>({id:r.id,basis,...(ids.has(r.id)?{synthesis:{status:'diagnostic',strongPossible:types[ids.get(r.id)][0],weakPossible:types[ids.get(r.id)][1]}}:{})}));
+ const q=summarizeReferenceCoverage(c,obs);
+ assert.deepEqual(q.primary.directionDistribution,{'both-directions':1,'strong-only':1,'weak-only':1,'neither-direction':1,unevaluated:49});
+ assert.equal(q.actualAccuracy,null);
+ assert.throws(()=>summarizeReferenceCoverage(c,obs.map((r,i)=>i===0?{...r,synthesis:{status:'diagnostic',strongPossible:true,weakPossible:null}}:r)),/possibility-contract/);
 });
