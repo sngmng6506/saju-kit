@@ -1,3 +1,4 @@
+import {tracePressureDependencies} from './outcome-pressure-dependency.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {evaluateElementContextModel,ELEMENT_CONTEXT_VERSION} from './outcome-element-context.js';
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
@@ -26,13 +27,19 @@ const clearPressure=xs=>Array.isArray(xs)&&xs.every(x=>x.donorState==='no-substa
 const cleanPressure=x=>x&&x.neutralizationConfirmed===null&&x.effective===null;
 // Structural availability is an explanation of the existing route model,
 // not evidence for actual relief or evidence against an injury.
-function inspectInterposition(pr,paths,nodes,pressures,complete){
+function inspectInterposition(pr,paths,nodes,pressures,targetActor,complete){
  if(!Array.isArray(pr.candidatePathIds)||!Array.isArray(pr.screenedPathIds)||
   new Set(pr.candidatePathIds).size!==pr.candidatePathIds.length||
   new Set(pr.screenedPathIds).size!==pr.screenedPathIds.length||
   pr.screenedPathIds.some(id=>!pr.candidatePathIds.includes(id)))return null;
+ // Require the raw topology inventory as well as the derived pressure
+ // inventory, so coordinated omission cannot masquerade as clearance.
+ if(!Array.isArray(targetActor.protectionAndMediation)||
+  targetActor.protectionAndMediation.some(p=>!p||!['protection','mediation'].includes(p.kind)||
+   p.target!==targetActor.graphNodeId||!nodes.has(p.helper)||!nodes.has(p.threat)||p.effective!==null))return null;
+ const raw=targetActor.protectionAndMediation.filter(p=>p.threat===pr.controllerNodeId).map(p=>key(p.kind,p.helper,p.threat,p.target));
  const expected=[...paths.values()].filter(p=>p.targetPressureId===pr.id).map(p=>p.id);
- if(!eq(pr.candidatePathIds,expected))return null;
+ if(!eq(pr.candidatePathIds,expected)||!eq(pr.candidatePathIds,raw))return null;
  const rows=[];
  for(const id of pr.candidatePathIds){
   const p=paths.get(id);let identity;
@@ -85,6 +92,11 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
   paths=index(pressure.paths,p=>p.id),jr=index(joint.actions,a=>a.edgeId),profiles=index(element.elements,p=>p.element),er=index(element.actions,a=>a.edgeId);
  if([actors,edges,nodes,args,js,pressures,paths,jr,profiles,er].some(x=>!x)||!eq([...profiles.keys()],ELEMENTS)||
   args.size!==jr.size||args.size!==er.size||!Array.isArray(argument.propositions)||!Array.isArray(argument.evidence)||!Array.isArray(argument.rules))return empty('identity');
+ const closure=tracePressureDependencies([...pressures.keys()],[...paths.values()]);
+ if(!closure)return empty('interposition-dependencies');
+ const pressureRanks=new Map(closure.pressureRanks.map(p=>[p.id,p.rank])),pathRanks=new Map(closure.pathRanks.map(p=>[p.id,p.rank]));
+ if([...pressures.values()].some(p=>p.structuralDependencyRank!==(pressureRanks.get(p.id)??null))||
+  [...paths.values()].some(p=>p.structuralDependencyRank!==(pathRanks.get(p.id)??null)))return empty('interposition-rank-parity');
  const orig=evaluateArguments({scope:complete?'complete':'partial',propositions:argument.propositions,evidence:argument.evidence,rules:argument.rules});
  if(orig.status!==status||!same(orig.judgments,argument.judgments)||!same(orig.ruleResults,argument.ruleResults))return empty('argument-proof');
  const props=[...argument.propositions],evidence=[...argument.evidence],rules=[...argument.rules],rows=[];
@@ -150,7 +162,7 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     const pressureId=key(from.graphNodeId,to.graphNodeId),pr=pressures.get(pressureId);
     if(!cleanPressure(pr)||pr.controllerNodeId!==from.graphNodeId||pr.targetNodeId!==to.graphNodeId||!Array.isArray(pr.candidatePathIds)||
      pr.local!==(Math.abs(ORDER.indexOf(from.position)-ORDER.indexOf(to.position))===1))return empty('pressure-binding');
-    interposition=inspectInterposition(pr,paths,nodes,pressures,complete);
+    interposition=inspectInterposition(pr,paths,nodes,pressures,to,complete);
     if(!interposition)return empty('interposition-inventory');
     directId=key('modeled-direct-injury',subject);
     props.push({id:directId,subject,kind:'modeled-direct-injury-tendency',level:'structural-hypothesis'});
