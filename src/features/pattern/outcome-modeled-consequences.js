@@ -4,7 +4,7 @@ import {evaluateElementContextModel,ELEMENT_CONTEXT_VERSION} from './outcome-ele
 import {sourceEffectClauses} from './outcome-source-effect-policy.js';
 import {elementRelation} from '../../core/elements.js';
 
-export const MODELED_CONSEQUENCE_VERSION='p1-4d-modeled-consequence-v2';
+export const MODELED_CONSEQUENCE_VERSION='p1-4d-modeled-consequence-v3';
 const SOURCE='https://www.shidianguji.com/book/SK1610/chapter/1kf5v8oqbug4m';
 // No generic effect authority. Only these two narrow consequences can
 // be derived under the experimental strength model and exact-edge screens.
@@ -25,6 +25,27 @@ const lit=(propositionId,sign='for')=>({propositionId,sign});
 const byClause=new Map(sourceEffectClauses().map(c=>[c.id,c]));
 const clearPressure=xs=>Array.isArray(xs)&&xs.every(x=>x.donorState==='no-substantial-root-observed');
 const cleanPressure=x=>x&&x.neutralizationConfirmed===null&&x.effective===null;
+// Reuse the original generation screen's observation identities. A
+// negative full screen may be decomposed only if its exact source-side
+// premises are supported, and its only failed premise is target pressure.
+// Missing proof or a contradictory screen is not permission to bypass it.
+function sourceSideScreen(argument,judgments,edge,structural,complete){
+ const kinds=['source-basis-screen-met','context-blockers-empty','source-pressure-screen-clear','target-pressure-screen-clear'];
+ const ids=kinds.map(k=>key(edge.edgeId,k)),rows=ids.map(id=>judgments.get(id));
+ if(rows.some((j,i)=>!j||j.subject!==edge.edgeId||j.kind!==kinds[i]||j.level!=='observation'))return null;
+ const expected=complete?[
+  ['direct-root-observed','grounded-indirect-path-observed'].includes(edge.sourceBasis),
+  edge.contextBlockers.length===0,clearPressure(edge.sourcePressure),clearPressure(edge.targetPressure)
+ ]:ids.map(()=>null);
+ if(rows.some((j,i)=>j.state!==(expected[i]===null?'unresolved':expected[i]?'supported':'opposed')))return null;
+ const rules=argument.rules.filter(r=>r.conclusion.propositionId===structural.id);
+ const matches=(r,sign,ps)=>r.policyId==='p1-1-existing-structural-screen-v1'&&r.applicability==='complete-only'&&
+  r.conclusion.sign===sign&&!(r.undercutWhen??[]).length&&eq(r.premises.map(p=>key(p.propositionId,p.sign)),ps.map(id=>key(id,sign)));
+ if(rules.length!==5||!rules.some(r=>matches(r,'for',ids))||ids.some(id=>!rules.some(r=>matches(r,'against',[id]))))return null;
+ if(structural.state!==(!complete?'unresolved':expected.every(Boolean)?'supported':'opposed'))return null;
+ return {sourcePremiseIds:ids.slice(0,3),targetPremiseId:ids[3],targetPressureScreenState:rows[3].state,
+  sourceScreenState:!complete?'unresolved':expected.slice(0,3).every(Boolean)?'supported':'opposed'};
+}
 // Structural availability is an explanation of the existing route model,
 // not evidence for actual relief or evidence against an injury.
 function inspectInterposition(pr,paths,nodes,pressures,targetActor,complete){
@@ -155,9 +176,12 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     C('source-pressure-screen-clear',clearPressure(e.sourcePressure),[ref('groundedSupply',a.edgeId,'sourcePressure')]),
     C('premises-nonconflicting',s.state!=='conflicting'&&modeled!=='conflicting',[ref('argumentReview',s.id,'state'),ref('elementContextReview',p.element,'model')])
    ];
-   let interposition=null,directId=null;
+   let interposition=null,directId=null,releaseId=null,sourceScreen=null;
    if(a.kind==='generate'){
     conditions.push(C('target-pressure-screen-clear',clearPressure(e.targetPressure),[ref('groundedSupply',a.edgeId,'targetPressure')]));
+    sourceScreen=sourceSideScreen(argument,js,e,s,complete);
+    releaseId=key('modeled-direct-release',subject);
+    props.push({id:releaseId,subject,kind:'modeled-direct-release-tendency',level:'structural-hypothesis'});
    }else{
     const pressureId=key(from.graphNodeId,to.graphNodeId),pr=pressures.get(pressureId);
     if(!cleanPressure(pr)||pr.controllerNodeId!==from.graphNodeId||pr.targetNodeId!==to.graphNodeId||!Array.isArray(pr.candidatePathIds)||
@@ -180,9 +204,18 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
     // Preserve the legacy residual model gate. A blocked or unreachable
     // structural route is not proof that actual relief cannot occur.
     rule('modeled-rule',id,[lit(directId),lit(conditions.find(c=>c.name==='no-observed-interposition-candidate').id)]);
-   }else rule('modeled-rule',id,premises);
+   }else{
+    // Legacy full-screen support is sufficient for direct tendency.
+    // Otherwise allow only the original source-side proof, not a
+    // reinterpreted structural opposition or a bare source label.
+    const directPremises=[lit(mid),...conditions.filter(c=>c.name!=='target-pressure-screen-clear').map(c=>lit(c.id))];
+    rule('direct-release-full-screen',releaseId,[...directPremises,lit(s.id)]);
+    if(sourceScreen)rule('direct-release-source-screen',releaseId,[...directPremises,...sourceScreen.sourcePremiseIds.map(id=>lit(id))]);
+    // Preserve the exact old conjunction for the legacy release result.
+    rule('modeled-rule',id,[lit(releaseId),lit(s.id),lit(conditions.find(c=>c.name==='target-pressure-screen-clear').id)]);
+   }
    clauses.push({clauseId:def.id,kind:policy.conclusion,propositionId:id,modelPropositionId:mid,structuralPropositionId:s.id,conditions,
-    ...(directId?{directInjuryPropositionId:directId,interpositionCandidates:interposition}:{}),
+    ...(directId?{directInjuryPropositionId:directId,interpositionCandidates:interposition}:{directReleasePropositionId:releaseId,sourceScreen,targetPressureScreenState:complete?(clearPressure(e.targetPressure)?'supported':'opposed'):'unresolved',actualReceptionState:'unresolved'}),
     actualEffectState:'unresolved',state:null,reason:null});
   }
   rows.push({edgeId:a.edgeId,from:a.from,to:a.to,kind:a.kind,originalEffectPropositionId:effect.id,clauses,actualEffectState:'unresolved',effective:null});
@@ -203,7 +236,14 @@ export function reviewModeledConsequences(prior,supply,argument,pressure,joint,e
    c.directInjuryProof={support:direct.support,opposition:direct.opposition};
    c.residualInjuryState=j.state;
   }
+  if(c.directReleasePropositionId){
+   const direct=result.get(c.directReleasePropositionId);
+   if(!direct)return empty('direct-release-identity');
+   c.directReleaseState=direct.state;
+   c.directReleaseProof={support:direct.support,opposition:direct.opposition};
+   c.jointReleaseScreenState=j.state;
+  }
  }
  return {...base,status,reason:null,actions:rows,propositions:props,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults,
-  limitations:['modeled-release-not-beneficial-generation','direct-tendency-not-residual-injury','candidate-screen-not-relief-or-clearance','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
+  limitations:['direct-release-not-target-reception','target-pressure-screen-not-reception-capacity','modeled-release-not-beneficial-generation','direct-tendency-not-residual-injury','candidate-screen-not-relief-or-clearance','modeled-injury-not-net-control-or-benefit','screen-not-confirmed-clearance','no-rule-from-excess-or-resistance','no-actual-effect-authority','no-selection-authority']};
 }
