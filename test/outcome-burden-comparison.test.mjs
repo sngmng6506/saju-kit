@@ -107,3 +107,17 @@ test('symbolic frontier rejects every graph rejected by canonical proof validati
   assert.deepEqual(symbolic.frontiers,[]);
  }
 });
+
+test('fixed positive observations contribute empty assumption terms without hiding other premises',()=>{
+ const packet=fixture().replenishmentPacket;
+ const r=packet.rules.find(r=>r.id===key('root-seed','a','r'));
+ const [first,second]=r.premises;
+ const fact=(p,i)=>({id:'fixed'+i,...p,refs:[{owner:'fixture',id:p.propositionId,field:'fixed'}],applicability:'complete-only'});
+ const fixed=[fact(first,0)],q=positiveProofFrontier({...packet,evidence:fixed});
+ assert.equal(q.status,'diagnostic');
+ assert.deepEqual(q.frontiers.find(f=>f.id===r.conclusion.propositionId).terms,[[second.propositionId]]);
+ const all=positiveProofFrontier({...packet,evidence:[...fixed,fact(second,1)]});
+ assert.deepEqual(all.frontiers.find(f=>f.id===r.conclusion.propositionId).terms,[[]]);
+ assert.equal(positiveProofFrontier({...packet,evidence:[{...fixed[0],sign:'against'}]}).reason,'positive-fact-contract');
+ assert.equal(positiveProofFrontier({...packet,scope:'partial',evidence:fixed}).status,'partial');
+});
