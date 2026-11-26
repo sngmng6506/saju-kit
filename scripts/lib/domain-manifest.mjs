@@ -10,6 +10,7 @@ export const ACTION_DIAGNOSTIC_TEST_FILES=Object.freeze([
   "test/outcome-root-preservation.test.mjs",
   "test/outcome-replenishment-network.test.mjs",
   "test/outcome-replenishment-review.test.mjs",
+  "test/outcome-burden-comparison.test.mjs",
   "test/outcome-interaction-dependencies.test.mjs",
   "test/outcome-interaction-proof-review.test.mjs",
   "test/outcome-interaction-scenarios.test.mjs",
