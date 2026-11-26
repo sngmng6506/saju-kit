@@ -12,6 +12,12 @@ for(const c of [...cases,...controls,...routeControls])for(const completeHour of
   const fail=reason=>errors.push({id:c.id,scope,reason});
   if(r.invalid.length)fail('invalid-contract');
   if(r.actualEffectPromoted)fail('actual-effect-promotion');
+  if(r.synthesis.status!==(completeHour?'diagnostic':'partial')||r.synthesis.actions.length!==r.actionCount||
+   r.synthesis.actions.some(a=>a.actualEffect.state!=='unresolved'||a.actualBenefitState!=='unresolved'||a.actualReceptionState!=='unresolved'||
+    a.selectionAuthority!==false||a.effective!==null||!completeHour&&(a.disposition!=='partial'||a.supportedKinds.length)||
+    a.combined.state==='supported'&&a.direct.state!=='supported'))fail('synthesis-authority-invariant');
+  if(r.rows.some(q=>{const a=r.synthesis.actions.find(a=>a.edgeId===q.edgeId);return !a||a.combined.state!==q.state||
+   a.direct.state!==(q.kind==='modeled-source-release'?q.directReleaseState:q.directInjuryState);}))fail('synthesis-projection-parity');
   if(r.contact.occurrences.some(o=>o.actualRootLossState!=='unresolved'||o.actualRootPreservationState!=='unresolved'||o.actualCapacityState!=='unresolved'||!completeHour&&o.lossAllExposedScenario.state!=='unresolved')||
    r.contact.pairs.some(p=>p.actualRestrictionState!=='unresolved'||p.actualRetentionState!=='unresolved'||p.actualTransformationState!=='unresolved')||
    r.contact.actions.some(a=>a.actualRestrictionState!=='unresolved'||a.actualEffectState!=='unresolved'||!completeHour&&a.lossAllExposedActionScreen.state!=='unresolved'||Object.values(a.pairRestrictionAssumptions).some(s=>s!=='unresolved'))||
@@ -34,6 +40,8 @@ for(const c of [...cases,...controls,...routeControls])for(const completeHour of
 const historical=results.filter(r=>!r.synthetic&&r.scope==='complete');
 const coverage=summarizeModeledCoverage(historical.flatMap(r=>r.rows));
 const chartSupported=historical.filter(r=>r.rows.some(q=>q.state==='supported')).length;
+const synthesisCoverage=Object.fromEntries(['actions','directSupported','combinedSupported','withSupportedRoute','withDirectionFit','actualEffectsConfirmed']
+ .map(k=>[k,historical.reduce((n,r)=>n+r.synthesis.summary[k],0)]));
 const exposedOccurrences=historical.flatMap(r=>r.contact.occurrences).filter(o=>o.exposedSubstantialRootIds.length>0);
 const contactActions=historical.flatMap(r=>r.contact.actions),contactPairs=historical.flatMap(r=>r.contact.pairs);
 const countStates=(rows,read)=>Object.fromEntries(['supported','opposed','conflicting','unresolved'].map(state=>[state,rows.filter(r=>read(r)===state).length]));
@@ -45,5 +53,5 @@ const contactCoverage={exposedOccurrences:exposedOccurrences.length,remainingRoo
 // effect authority. Do not tune thresholds merely to pass this gate.
 const readiness=errors.length?'invalid':coverage.supported===0?'blocked-zero-coverage':'coverage-observed-not-validated';
 console.log(JSON.stringify({version:'modeled-coverage-v1',scope:'production-core-replay-not-public-v10-or-empirical-validation',
- cases:cases.length,syntheticControls:controls.length+routeControls.length,replays:results.length,chartSupported,coverage,contactCoverage,routeCoverage:{eligible:historical.flatMap(r=>r.interpositionRoutes).length,supported:historical.flatMap(r=>r.interpositionRoutes).filter(q=>q.state==='supported').length},readiness,errors,results},null,2));
+ cases:cases.length,syntheticControls:controls.length+routeControls.length,replays:results.length,chartSupported,coverage,contactCoverage,synthesisCoverage,routeCoverage:{eligible:historical.flatMap(r=>r.interpositionRoutes).length,supported:historical.flatMap(r=>r.interpositionRoutes).filter(q=>q.state==='supported').length},readiness,errors,results},null,2));
 if(errors.length||process.argv.includes('--require-coverage')&&readiness!=='coverage-observed-not-validated')process.exitCode=1;
