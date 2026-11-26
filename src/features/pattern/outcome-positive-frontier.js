@@ -1,3 +1,4 @@
+import {evaluateArguments} from './outcome-argumentation.js';
 // Exact minimal positive assumption sets for an observation-only,
 // positive Horn packet. This is not a solver for signed/defeasible rules.
 const key=(...xs)=>JSON.stringify(xs);
@@ -7,6 +8,11 @@ const MAX_WORK=300000,MAX_TERMS=8192;
 export function positiveProofFrontier(packet){
  const empty=(status,reason)=>({status,reason,frontiers:[],selectionAuthority:false,effective:null});
  if(!packet||!['complete','partial'].includes(packet.scope)||![packet.propositions,packet.evidence,packet.rules].every(Array.isArray)||packet.evidence.length)return empty('invalid-evidence','packet');
+ // The signed engine owns identity, provenance, rule and resource
+ // validation. The symbolic fragment may narrow that contract, never
+ // accept a graph the canonical engine rejects.
+ const baseline=evaluateArguments(packet);
+ if(!['diagnostic','partial'].includes(baseline.status))return empty(baseline.status,baseline.reason);
  const props=new Map(packet.propositions.map(p=>[p.id,p]));
  const valid=x=>typeof x==='string'&&x.length>0;
  if(props.size!==packet.propositions.length||packet.propositions.some(p=>!valid(p.id)||!['observation','structural-hypothesis'].includes(p.level))||
