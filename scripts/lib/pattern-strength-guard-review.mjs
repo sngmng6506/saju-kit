@@ -76,3 +76,19 @@ export function replayReviewedGuards(packet,digest,batches,buildInput){
    incompatible:rows.filter(r=>r.status==='incompatible-constraints').length,unavailable:rows.filter(r=>r.status==='unavailable').length,
    reducedAmbiguity:rows.filter(r=>r.baseline?.strongPossible&&r.baseline?.weakPossible&&r.restricted?.status==='diagnostic'&&r.restricted.strongPossible!==r.restricted.weakPossible).length}};
 }
+
+export function surveyGuardSensitivity(input){
+ const base={selectionAuthority:false,actualAccuracy:null,actualStrengthState:'unresolved'};
+ try{
+  const run=restrictions=>synthesizeContextualStrength({...input,policy:'indirect-support',scenarioRestrictions:restrictions});
+  const original=run([]),baseline=readDay(original),rows=[];
+  for(const guard of strengthGuardIds)for(const value of [false,true]){
+   const restricted=run([{targetId:'day:stem',guard,value}]);
+   if(!same(original.packet,restricted.packet)||!same(original.judgments,restricted.judgments)||!same(original.ruleResults,restricted.ruleResults))throw Error('baseline-proof-changed');
+   const r=readDay(restricted);
+   if(baseline.status==='diagnostic'&&r.status==='diagnostic'&&(r.strongStates.some(s=>!baseline.strongStates.includes(s))||r.weakStates.some(s=>!baseline.weakStates.includes(s))))throw Error('restriction-expanded-state-space');
+   rows.push({guard,value,...r,reducesDirectionAmbiguity:baseline.status==='diagnostic'&&baseline.strongPossible&&baseline.weakPossible&&r.status==='diagnostic'&&r.strongPossible!==r.weakPossible});
+  }
+  return {...base,status:'diagnostic',baseline,rows};
+ }catch(e){return {...base,status:'invalid-evidence',reason:String(e?.message??e),rows:[]};}
+}
