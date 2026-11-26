@@ -514,3 +514,23 @@ The source passages distinguish seasonal position from strength; generation from
 - All bridge states are unresolved; none adds a rule, modifies evidence, equates a primitive with an actual operation, or grants selection authority. The conditional Boolean evaluator still evaluates explicit hypothetical assumptions only.
 
 This is a semantic inventory and binding layer, not a validated mapping from chart observations to actual operation. Source coverage is not equivalent to independent review. The next gate is a blinded, passage-specific review of a narrow proposed inference rule, including counterexamples, before adding any executable bridge. Native integration remains unverified: checkout DNS failed and connector dependency replay exceeded its call limit. No frozen reference labels were changed.
+
+## P3-B2 — Element model coverage and source-inspired counterexamples
+
+Rechecked the electronic text [子平真詮 六、論十干得時不旺失時不弱](https://donglishuzhai.net/chapter/3719.html) and the [commentary edition](https://changxianyi.com/guji/ziping/wz-20260914/chapter-007/). The text permits off-season rooted strength and in-season weakness in a sufficiently adverse context. It does not equate our binary root, donor, controller, or burden observations with these conclusions.
+
+The existing model's three sufficient-condition sets and ten observation implications are now owned by elementContextModelContract, consumed by both the argument builder and the coverage audit. Explicitly contradictory axis values are invalid; unknown values are not filled by implication. The prior stricter input requirements for clean principal roots and local grounded control coverage remain. No changes to the original six inference rules, their IDs, authority, or policy version; the accepted input contract is narrowed for logically impossible assignments.
+
+Exact binary coverage (not actual charts or a probability):
+- 8,192 total assignments, 1,008 satisfy the stated axis implications.
+- 7 strict strong-support assignments, 1 strict weak-support assignment, no overlap.
+- Off-season rooted resource context: 6 admitted, zero strong and weak support.
+- In-season rooted control context: 36 admitted, zero strong and weak support.
+- In-season rooted burden context: 108 admitted, one strong and zero weak support.
+- Off-season without substantial root: 96 admitted, zero strong and one weak support.
+
+These are abstract model-coverage counts, not an independently labeled corpus, and not a guarantee that every admitted assignment corresponds to a realizable chart. No new sufficient conditions or numeric thresholds are inferred from the counts. The first two cases are explicit structural expressivity gaps, not labeled false negatives. Existing development labels are untouched.
+
+Run `npm run audit:pattern-element-context-coverage` and
+`node --test test/outcome-element-context-coverage.test.mjs`.
+The four new tests compare the exact scenario counts with direct argument engine execution for all 8,192 assignments, replay witnesses, reject contradictory observations, and verify unresolved scope across elements. Four existing element-model fixture tests also passed in isolated JS execution. Native chart-level and V10 regression remain pending. Next: separate actual control/drain and depth/availability of roots from their proxies, collect passage-specific independently reviewed conditions before introducing a versioned new sufficient-condition rule.
