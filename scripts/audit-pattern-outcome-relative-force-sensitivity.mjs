@@ -56,6 +56,9 @@ console.log(JSON.stringify({version:'p1-relative-force-sensitivity-audit-v1',sco
   narrowed:complete.filter(a=>a.sharedBasis.excludedRelations?.length).length,
   newlyInvariant:complete.filter(a=>a.sharedBasis.invariantRelation!==null&&a.views.sensitivity.invariantRelation===null).length,
   maxScenarios:Math.max(0,...complete.map(a=>a.sharedBasis.scenarioCount)),
-  totalScenarios:complete.reduce((n,a)=>n+a.sharedBasis.scenarioCount,0)},
+  totalScenarios:complete.reduce((n,a)=>n+a.sharedBasis.scenarioCount,0),
+  profilePairsNarrowed:complete.filter(a=>a.sharedBasis.status==='diagnostic'&&a.sharedBasis.sharedProfilePairs<a.sharedBasis.independentProfilePairs).length,
+  independentProfilePairs:complete.filter(a=>a.sharedBasis.status==='diagnostic').reduce((n,a)=>n+a.sharedBasis.independentProfilePairs,0),
+  sharedProfilePairs:complete.filter(a=>a.sharedBasis.status==='diagnostic').reduce((n,a)=>n+a.sharedBasis.sharedProfilePairs,0)},
  independentGoldCases:0,selectionAuthority:false,errors,rows},null,2));
 if(errors.length||rows.length!==cases.length*2)process.exitCode=1;
