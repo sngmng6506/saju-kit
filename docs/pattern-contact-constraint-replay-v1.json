@@ -1,0 +1,1041 @@
+{
+  "version": "p1-4d-contact-constraint-replay-v1",
+  "execution": "Fetched production core module bodies and audit helper in JS isolate; fixture/URL adapters; native Node ESM/V10 not run",
+  "base": "3223c3ea161d7f5c7ab8870d4c8267ad6ea10912",
+  "replays": 54,
+  "existing54ActionAndRouteParity": true,
+  "coverage": {
+    "eligible": 82,
+    "directReleaseSupported": 2,
+    "directReleaseSupportedJointUnresolved": 2,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 2,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 80,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 2,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "routeCoverage": {
+    "eligible": 40,
+    "supported": 0
+  },
+  "contactCoverage": {
+    "exposedOccurrences": 17,
+    "remainingRootBasis": {
+      "supported": 7,
+      "opposed": 7,
+      "conflicting": 0,
+      "unresolved": 3
+    },
+    "affectedActions": 47,
+    "hypotheticalRootAndPairScreen": {
+      "supported": 11,
+      "opposed": 16,
+      "conflicting": 0,
+      "unresolved": 20
+    },
+    "pairCount": 6,
+    "selfScopeCount": 2,
+    "reliefCandidateCount": 0
+  },
+  "historicalDetails": [
+    {
+      "id": "wang-resource",
+      "occurrences": [],
+      "pairs": [
+        {
+          "pairId": "[\"visible:month\",\"visible:year\"]",
+          "participantIds": [
+            "visible:month",
+            "visible:year"
+          ],
+          "contactHypothesis": "local-contact-hypothesis",
+          "externalRemovalApplicability": "unresolved",
+          "externalRemovalScope": "external-removal-review",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        },
+        {
+          "pairId": "[\"visible:hour\",\"visible:month\"]",
+          "participantIds": [
+            "visible:month",
+            "visible:hour"
+          ],
+          "contactHypothesis": "intervening-control-review",
+          "externalRemovalApplicability": "unresolved",
+          "externalRemovalScope": "external-removal-review",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        }
+      ],
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "pairIds": [
+            "[\"visible:month\",\"visible:year\"]",
+            "[\"visible:hour\",\"visible:month\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "pairIds": [
+            "[\"visible:month\",\"visible:year\"]",
+            "[\"visible:hour\",\"visible:month\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "pairIds": [
+            "[\"visible:month\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:month\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "pairIds": [
+            "[\"visible:month\",\"visible:year\"]",
+            "[\"visible:hour\",\"visible:month\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "zhexi-resource",
+      "occurrences": [
+        {
+          "actorId": "visible:hour",
+          "exposedSubstantialRootIds": [
+            "hidden:month:갑"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [
+            "hidden:hour:을"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:day",
+          "exposedSubstantialRootIds": [
+            "hidden:month:병"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        },
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [],
+          "exposedResidualRootIds": [
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:hour:기"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [
+            "hidden:year:경",
+            "hidden:day:경"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        }
+      ],
+      "pairs": [
+        {
+          "pairId": "[\"visible:hour\",\"visible:year\"]",
+          "participantIds": [
+            "visible:hour",
+            "visible:year"
+          ],
+          "contactHypothesis": "intervening-control-review",
+          "externalRemovalApplicability": "unresolved",
+          "externalRemovalScope": "external-removal-review",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        }
+      ],
+      "actions": [
+        {
+          "edgeId": "visible:hour>visible:day",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [
+            "hidden:month:갑",
+            "hidden:month:병"
+          ],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [
+            "hidden:month:갑",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:month",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:병",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [
+            "hidden:month:병",
+            "hidden:year:경",
+            "hidden:day:경"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:month>visible:year",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [
+            "hidden:year:경",
+            "hidden:day:경",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [
+            "hidden:year:경",
+            "hidden:day:경",
+            "hidden:month:갑"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "li-resource-output",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "ma-resource-killing",
+      "occurrences": [
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [],
+          "exposedResidualRootIds": [
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:hour:무"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:day:무"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [
+            "hidden:month:임"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [
+            "hidden:day:계"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:day",
+          "exposedSubstantialRootIds": [
+            "hidden:month:임"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [
+            "hidden:day:계"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:hour",
+          "exposedSubstantialRootIds": [
+            "hidden:month:임"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [
+            "hidden:day:계"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        }
+      ],
+      "pairs": [],
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:year",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:임",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:hour:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:임",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:hour:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:임",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:hour:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "mao-resource-killing",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "zhang-resource-officer",
+      "occurrences": [],
+      "pairs": [
+        {
+          "pairId": "[\"visible:day\",\"visible:year\"]",
+          "participantIds": [
+            "visible:year",
+            "visible:day"
+          ],
+          "contactHypothesis": "remote-contact-review",
+          "externalRemovalApplicability": "opposed",
+          "externalRemovalScope": "outside-external-removal-scope",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        }
+      ],
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "he-killing-resource",
+      "occurrences": [],
+      "pairs": [
+        {
+          "pairId": "[\"visible:hour\",\"visible:year\"]",
+          "participantIds": [
+            "visible:year",
+            "visible:hour"
+          ],
+          "contactHypothesis": "intervening-control-review",
+          "externalRemovalApplicability": "unresolved",
+          "externalRemovalScope": "external-removal-review",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        }
+      ],
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "pairIds": [
+            "[\"visible:hour\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "tuo-killing-output",
+      "occurrences": [
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [],
+          "exposedResidualRootIds": [
+            "hidden:year:을",
+            "hidden:month:을"
+          ],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        },
+        {
+          "actorId": "visible:day",
+          "exposedSubstantialRootIds": [
+            "hidden:day:정",
+            "hidden:hour:정"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        },
+        {
+          "actorId": "visible:hour",
+          "exposedSubstantialRootIds": [
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무",
+            "hidden:hour:무"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        },
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [
+            "hidden:year:계",
+            "hidden:month:계"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        }
+      ],
+      "pairs": [],
+      "actions": [
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:정",
+            "hidden:hour:정",
+            "hidden:year:을",
+            "hidden:month:을"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무",
+            "hidden:hour:무",
+            "hidden:year:을",
+            "hidden:month:을"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:정",
+            "hidden:hour:정",
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무",
+            "hidden:hour:무"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:year:무",
+            "hidden:month:무",
+            "hidden:day:무",
+            "hidden:hour:무",
+            "hidden:year:계",
+            "hidden:month:계"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:year:계",
+            "hidden:month:계",
+            "hidden:year:을",
+            "hidden:month:을"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:year:계",
+            "hidden:month:계",
+            "hidden:day:정",
+            "hidden:hour:정"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "zhou-killing",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "pure-yin-food-killing",
+      "occurrences": [
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [
+            "hidden:day:을"
+          ],
+          "exposedResidualRootIds": [
+            "hidden:day:갑"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:year:갑"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [
+            "hidden:day:을"
+          ],
+          "exposedResidualRootIds": [
+            "hidden:day:갑"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:year:갑"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:day",
+          "exposedSubstantialRootIds": [
+            "hidden:day:을"
+          ],
+          "exposedResidualRootIds": [
+            "hidden:day:갑"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:year:갑"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        }
+      ],
+      "pairs": [],
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:을",
+            "hidden:day:갑"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:month>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:을",
+            "hidden:day:갑"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:day>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:을",
+            "hidden:day:갑"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "chang-killing-resource",
+      "occurrences": [
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [
+            "hidden:day:신"
+          ],
+          "exposedResidualRootIds": [
+            "hidden:day:경"
+          ],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        },
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [
+            "hidden:day:신"
+          ],
+          "exposedResidualRootIds": [
+            "hidden:day:경"
+          ],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "opposed"
+        }
+      ],
+      "pairs": [],
+      "actions": [
+        {
+          "edgeId": "visible:hour>visible:year",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:신",
+            "hidden:day:경"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:hour>visible:month",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:신",
+            "hidden:day:경"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:신",
+            "hidden:day:경"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:day:신",
+            "hidden:day:경"
+          ],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "cheng-killing",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "wood-release-extreme-context",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "fire-injury-extreme-context",
+      "occurrences": [],
+      "pairs": [
+        {
+          "pairId": "[\"visible:day\",\"visible:year\"]",
+          "participantIds": [
+            "visible:day",
+            "visible:year"
+          ],
+          "contactHypothesis": "intervening-control-review",
+          "externalRemovalApplicability": "opposed",
+          "externalRemovalScope": "outside-external-removal-scope",
+          "actualRestrictionState": "unresolved",
+          "actualRetentionState": "unresolved",
+          "actualTransformationState": "unresolved"
+        }
+      ],
+      "actions": [
+        {
+          "edgeId": "visible:day>visible:hour",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:day>visible:year",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "opposed",
+          "screen": "opposed"
+        },
+        {
+          "edgeId": "visible:hour>visible:year",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:year>visible:month",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [
+            "[\"visible:day\",\"visible:year\"]"
+          ],
+          "exposedRootIds": [],
+          "sourceBasis": "supported",
+          "screen": "unresolved"
+        }
+      ],
+      "reliefs": []
+    },
+    {
+      "id": "officer-injury-and-rescue",
+      "occurrences": [],
+      "pairs": [],
+      "actions": [],
+      "reliefs": []
+    },
+    {
+      "id": "earth-cannot-control-water",
+      "occurrences": [
+        {
+          "actorId": "visible:year",
+          "exposedSubstantialRootIds": [],
+          "exposedResidualRootIds": [
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "unexposedObservedRootIds": [
+            "hidden:hour:기"
+          ],
+          "otherContestedRootIds": [],
+          "remainingBasisState": "supported"
+        },
+        {
+          "actorId": "visible:month",
+          "exposedSubstantialRootIds": [
+            "hidden:month:경"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [
+            "hidden:hour:신"
+          ],
+          "remainingBasisState": "unresolved"
+        },
+        {
+          "actorId": "visible:hour",
+          "exposedSubstantialRootIds": [
+            "hidden:month:경"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [
+            "hidden:hour:신"
+          ],
+          "remainingBasisState": "unresolved"
+        },
+        {
+          "actorId": "visible:day",
+          "exposedSubstantialRootIds": [
+            "hidden:month:임"
+          ],
+          "exposedResidualRootIds": [],
+          "unexposedObservedRootIds": [],
+          "otherContestedRootIds": [
+            "hidden:year:계"
+          ],
+          "remainingBasisState": "unresolved"
+        }
+      ],
+      "pairs": [],
+      "actions": [
+        {
+          "edgeId": "visible:year>visible:month",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:경",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:year>visible:hour",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:경",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:year>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:임",
+            "hidden:month:무",
+            "hidden:day:무"
+          ],
+          "sourceBasis": "supported",
+          "screen": "supported"
+        },
+        {
+          "edgeId": "visible:month>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:경",
+            "hidden:month:임"
+          ],
+          "sourceBasis": "unresolved",
+          "screen": "unresolved"
+        },
+        {
+          "edgeId": "visible:hour>visible:day",
+          "pairIds": [],
+          "exposedRootIds": [
+            "hidden:month:경",
+            "hidden:month:임"
+          ],
+          "sourceBasis": "unresolved",
+          "screen": "unresolved"
+        }
+      ],
+      "reliefs": []
+    }
+  ],
+  "errors": []
+}
