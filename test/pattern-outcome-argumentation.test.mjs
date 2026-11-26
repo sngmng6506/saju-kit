@@ -13,6 +13,7 @@ import {elementRelation} from '../src/core/elements.js';
 import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
 import {reviewModeledConsequences} from '../src/features/pattern/outcome-modeled-consequences.js';
+import {synthesizeActionReview} from '../src/features/pattern/outcome-action-synthesis.js';
 import {evaluateRootAvailabilityScenario,evaluateContactActionScenario,reviewContactConstraintSensitivity} from '../src/features/pattern/outcome-contact-constraint-sensitivity.js';
 import {controls as coverageControls,routeControls,replayModeledCoverage,summarizeModeledCoverage} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
@@ -672,6 +673,8 @@ test('native modeled consequence review replays 24 packet variants with actual e
   assert.deepEqual(r,reviewModeledConsequences(x.prior,m.groundedSupply,m.argumentReview,m.pressureDependencyReview,m.jointConstraintReview,m.elementContextReview),c.id);
   assert.deepEqual(m.contactConstraintSensitivity,reviewContactConstraintSensitivity(x.prior,m.rootContext,m.groundedSupply,m.combinationPolicyReview,m.clashPolicyReview,m.jointConstraintReview),c.id);
   assert.equal(m.contactConstraintSensitivity.status,complete?'diagnostic':'partial',c.id);
+  assert.deepEqual(m.actionSynthesis,synthesizeActionReview(x.prior,m.argumentReview,m.sourceEffectReview,m.elementContextReview,m.dayBalanceDirectionReview,m.jointConstraintReview,m.modeledConsequenceReview,m.contactConstraintSensitivity),c.id);
+  assert.equal(m.actionSynthesis.status,complete?'diagnostic':'partial',c.id);
   assert.equal(r.actions.length,m.argumentReview.actions.length);assert.ok(r.judgments.filter(j=>j.level==='effect-hypothesis').every(j=>j.state==='unresolved'));
   if(!complete)assert.ok(r.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
   assert.equal(native.decisionReview.status,'abstained');n++;
@@ -835,4 +838,43 @@ test('production contact sensitivity distinguishes exposed substantial roots, in
  const partial=replay(['경신','무인','병신','을미'],false);
  assert.ok(partial.occurrences.every(o=>o.lossAllExposedScenario.state==='unresolved'));
  assert.ok(partial.actions.every(a=>a.lossAllExposedActionScreen.state==='unresolved'));
+});
+
+test('action synthesis preserves direct, combined, source, route and counterfactual scopes',()=>{
+ const r=replayModeledCoverage(['갑진','정묘','갑자','무진'],true);
+ assert.deepEqual(r.invalid,[]);assert.equal(r.synthesis.summary.directSupported,2);assert.equal(r.synthesis.summary.combinedSupported,0);
+ const a=r.synthesis.actions.find(a=>a.edgeId==='visible:day>visible:month');
+ assert.equal(a.disposition,'direct-tendency-supported');assert.equal(a.direct.state,'supported');assert.equal(a.combined.state,'unresolved');
+ assert.equal(a.structural.state,'opposed');assert.equal(a.actualEffect.state,'unresolved');
+ assert.ok(a.combined.alternatives.some(p=>p.sign==='for'&&p.missing.length));
+ assert.ok(a.clauses.every(c=>c.classicalApplicability==='unresolved'&&c.actualPredicateState==='unresolved'));
+ const x=replayModeledCoverage(['기축','경신','임자','기축'],true).synthesis.actions.find(a=>a.edgeId==='visible:year>visible:day');
+ assert.equal(x.disposition,'no-consequence-support');
+ assert.ok(x.interposition.visibleRoutes.some(p=>p.proof.state==='supported'));
+ assert.equal(x.interposition.actualReliefState,'unresolved');assert.equal(x.actualEffect.state,'unresolved');
+ const y=replayModeledCoverage(['경신','무인','병신','을미'],true).synthesis;
+ assert.ok(y.actions.some(a=>a.constraints.counterfactual?.proof.state==='supported'&&a.actualEffect.state==='unresolved'));
+});
+test('direction fit and supported direct tendency do not infer benefit',()=>{
+ const ps=['갑진','정묘','갑자','무진'];
+ const strong=replayModeledCoverage(ps,true,{strengthHypothesis:strengthFixture('strong')});
+ const weak=replayModeledCoverage(ps,true,{strengthHypothesis:strengthFixture('weak')});
+ const partial=replayModeledCoverage(ps,false,{strengthHypothesis:strengthFixture('strong')});
+ for(const [r,state] of [[strong,'supported'],[weak,'opposed'],[partial,'unresolved']]){
+  assert.deepEqual(r.invalid,[]);
+  const a=r.synthesis.actions.find(a=>a.edgeId==='visible:day>visible:month');
+  assert.equal(a.objective.fit.state,state);assert.equal(a.objective.candidate.state,'unresolved');
+  assert.equal(a.actualBenefitState,'unresolved');assert.equal(a.actualEffect.state,'unresolved');
+ }
+ assert.deepEqual(strong.synthesis.actions.map(a=>a.direct.state),weak.synthesis.actions.map(a=>a.direct.state));
+ assert.ok(partial.synthesis.actions.every(a=>a.disposition==='partial'&&a.supportedKinds.length===0));
+});
+test('action synthesis rejects tampered proofs and coordinated missing projections',()=>{
+ const inputs=()=>replayModeledCoverage(['기축','경신','임자','기축'],true,{includeSynthesisInputs:true}).synthesisInputs;
+ let x=inputs();x[6].interpositionRoutes[0].state='opposed';assert.equal(synthesizeActionReview(...x).reason,'route-binding');
+ x=inputs();x[6].judgments[0].state='conflicting';assert.equal(synthesizeActionReview(...x).reason,'proof-replay');
+ x=inputs();x[6].interpositionRoutes.pop();assert.equal(synthesizeActionReview(...x).reason,'inventory');
+ x=inputs();x[2].actions[0].clauses[0].applicability='supported';assert.equal(synthesizeActionReview(...x).reason,'source-authority');
+ x=replayModeledCoverage(['경신','무인','병신','을미'],true,{includeSynthesisInputs:true}).synthesisInputs;
+ x[7].actions.pop();assert.equal(synthesizeActionReview(...x).reason,'contact-coverage');
 });
