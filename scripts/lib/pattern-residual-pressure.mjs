@@ -63,7 +63,7 @@ export function compileResidualPressure({packet,pressures}={}){
 // Source-specific adapter: exact pressure edge, and for resource loss
 // the exact protected supply edge. Direct wealth demand is not equated
 // with damage to resource. Routes do not cancel unrelated pressures.
-export function auditResidualPressure(input){
+export function auditResidualPressure(input,{includeProof=false}={}){
  const base={version:VERSION,selectionAuthority:false,effective:null,actualStrengthState:'unresolved',actualResidualState:'unresolved',actualMagnitudeComparison:'unresolved'};
  const empty=reason=>({...base,status:'invalid-evidence',reason,rows:[],summary:null});
  const source=auditBurdenSourceConditions(input);
@@ -103,7 +103,7 @@ export function auditResidualPressure(input){
   const q=compileResidualPressure({packet:input.burden.packet,pressures:[...pressures.values()]});
   if(q.status!=='diagnostic')return empty(q.reason);
   const evaluated=q.rows.filter(r=>r.comparison?.status==='diagnostic');
-  return {...base,status:'diagnostic',reason:null,rows:q.rows,summary:{pressures:q.rows.length,withLocalReliefCandidates:q.rows.filter(r=>r.relief.length).length,
+  return {...base,status:'diagnostic',reason:null,rows:q.rows,...(includeProof?{proof:q}:{}),summary:{pressures:q.rows.length,withLocalReliefCandidates:q.rows.filter(r=>r.relief.length).length,
    evaluated:evaluated.length,pressurePossible:evaluated.filter(r=>r.comparison.pressurePossible).length,localFullReliefPossible:evaluated.filter(r=>r.comparison.localFullReliefPossible).length,
    localUncoveredPossible:evaluated.filter(r=>r.comparison.localUncoveredPossible).length,unavailable:q.rows.length-evaluated.length,actualEffectsConfirmed:0},
    limitations:['exact-pressure-not-total-burden','local-full-relief-guard-unreviewed','uncovered-not-actual-residual','no-external-relief-closure','no-capacity-or-allocation','no-strength-authority']};
