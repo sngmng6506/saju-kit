@@ -46,6 +46,37 @@ export function evaluateRootAvailabilityScenario({completeHour,actorId,slotIds,a
   propositions,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults};
 }
 
+// Conjunctive, explicitly hypothetical screen for a single directed edge:
+// source direct-root basis AND absence of every exact pair restriction.
+// This is not operation, whole-action viability, or a role-selection rule.
+// A self-combination's external-removal exception is NOT pair clearance.
+export function evaluateContactActionScenario({completeHour,edgeId,sourceActorId,slotIds,availability,pairIds,pairRestriction}={}){
+ const empty=()=>({status:'invalid-evidence',state:'unresolved',actualEffectState:'unresolved',effective:null,judgments:[],ruleResults:[]});
+ if(typeof edgeId!=='string'||typeof sourceActorId!=='string'||!edgeId.startsWith(sourceActorId+'>')||!edgeId.slice(sourceActorId.length+1)||
+  !Array.isArray(pairIds)||new Set(pairIds).size!==pairIds.length||pairIds.some(id=>typeof id!=='string'||!id)||
+  !pairRestriction||!eq(Object.keys(pairRestriction),pairIds)||pairIds.some(id=>!states.includes(pairRestriction[id])))return empty();
+ const root=evaluateRootAvailabilityScenario({completeHour,actorId:sourceActorId,slotIds,availability});
+ if(!['diagnostic','partial'].includes(root.status))return empty();
+ const id=key('hypothetical-root-and-pair-clearance',edgeId),propositions=[...root.propositions,{id,subject:edgeId,kind:'hypothetical-direct-root-and-pair-clearance',level:'structural-hypothesis'}],
+  evidence=[...root.evidence],rules=[...root.rules];
+ const ps=[];
+ const rule=(name,sign,premises,under)=>({id:key(name,edgeId,...premises.map(p=>p.propositionId)),policyId:CONTACT_CONSTRAINT_VERSION,conclusion:lit(id,sign),premises,
+  ...(under.length?{undercutWhen:under}:{}),refs:[ref('contact-constraint-scenario',edgeId,'pair-restriction-and-root-basis')],applicability:'complete-only'});
+ for(const pairId of pairIds){
+  const p=key('pair-restricts-exact-edge',pairId,edgeId);ps.push(p);
+  propositions.push({id:p,subject:edgeId,kind:'explicit-hypothetical-pair-restriction',level:'observation'});
+  for(const sign of signs(pairRestriction[pairId]))evidence.push({id:key(p,sign),...lit(p,sign),refs:[ref('contact-constraint-scenario',pairId,edgeId)],applicability:'complete-only'});
+  rules.push(rule('pair-restriction-opposes-screen','against',[lit(p)],[lit(p,'against')]));
+ }
+ rules.push(rule('root-and-pair-clearance','for',[lit(root.propositionId),...ps.map(p=>lit(p,'against'))],ps.map(p=>lit(p))));
+ rules.push(rule('no-remaining-direct-root','against',[lit(root.propositionId,'against')],[]));
+ const r=evaluateArguments({scope:completeHour?'complete':'partial',propositions,evidence,rules});
+ if(r.status!==root.status)return empty();
+ const j=r.judgments.find(q=>q.id===id);
+ return {status:r.status,state:j.state,propositionId:id,rootBasisState:root.state,proof:{support:j.support,opposition:j.opposition},
+  actualEffectState:'unresolved',effective:null,propositions,evidence,rules,judgments:r.judgments,ruleResults:r.ruleResults};
+}
+
 // Production sensitivity uses the physical root inventory, not the
 // number of references to it. It does not assume actual damage or
 // preservation. Only the explicitly named hypothetical loss is varied.
@@ -112,7 +143,13 @@ export function reviewContactConstraintSensitivity(prior,root,supply,combination
    c&&(!eq(c.fromPairIds,relevant.filter(p=>p.participantIds.includes(a.from)).map(p=>p.pairId))||!eq(c.toPairIds,relevant.filter(p=>p.participantIds.includes(a.to)).map(p=>p.pairId))||c.originalEffectPropositionId!==a.effectPropositionId)||
    l&&(!eq([...l.substantialRootIds,...l.residualRootIds],exp)||l.originalEffectPropositionId!==a.effectPropositionId))return empty('action-contact-binding');
   if(!relevant.length&&!exp.length)continue;
+  const pairIds=relevant.map(p=>p.pairId);
+  const availability=Object.fromEntries(x.substantialRootIds.map(id=>[id,x.unexposedObservedRootIds.includes(id)?'supported':x.exposedSubstantialRootIds.includes(id)?'opposed':'unresolved']));
+  const pairRestriction=Object.fromEntries(pairIds.map(id=>[id,'unresolved']));
+  const actionScenario=evaluateContactActionScenario({completeHour:complete,edgeId:a.edgeId,sourceActorId:a.from,slotIds:x.substantialRootIds,availability,pairIds,pairRestriction});
+  if(actionScenario.status!==status)return empty('action-scenario');
   actionRows.push({edgeId:a.edgeId,originalEffectPropositionId:a.effectPropositionId,
+   pairRestrictionAssumptions:pairRestriction,lossAllExposedActionScreen:actionScenario,
    pairIds:relevant.map(p=>p.pairId),exposedRootIds:exp,
    sourceLossAllExposedBasisState:x.lossAllExposedScenario.state,targetLossAllExposedBasisState:y.lossAllExposedScenario.state,
    sourceSurvivingRootIds:[...x.unexposedObservedRootIds],targetSurvivingRootIds:[...y.unexposedObservedRootIds],
@@ -130,5 +167,5 @@ export function reviewContactConstraintSensitivity(prior,root,supply,combination
    relatedSlots:related,actualReliefState:'unresolved',actualRestorationState:'unresolved'});
  }
  return {...base,status,reason:null,actions:actionRows,occurrences:occRows,pairs:pairRows,reliefs:reliefRows,
-  limitations:['counterfactual-not-observed-loss','surviving-root-basis-not-retained-operation','self-exception-not-retention','relief-contact-not-restoration','no-actual-effect-or-selection-authority']};
+  limitations:['counterfactual-not-observed-loss','surviving-root-basis-not-retained-operation','self-exception-not-pair-clearance','hypothetical-root-and-pair-clearance-not-operation','self-exception-not-retention','relief-contact-not-restoration','no-actual-effect-or-selection-authority']};
 }
