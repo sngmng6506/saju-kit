@@ -114,7 +114,7 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
  }
  const actionMap=index(actions,a=>a.edgeId);
  if(sources.size!==args.size||[combActions,clashActions,ipActions].some(m=>[...m.keys()].some(id=>!actionMap.has(id))))return empty('action-coverage');
- const pressureCandidates=new Map();
+ const pressureCandidates=new Map(),legCandidates=new Set();
  for(const p of paths.values()){
   const target=actionMap.get(p.controlEdgeId);
   if(!target||target.kind!=='control'||!target.interpositionPathIds.includes(p.pathId)||!unresolved(p.actualEffectState)||
@@ -124,7 +124,7 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   const requiredLegIds=expected.slice(0,-1); // target control is not a prerequisite effect
   const id=key('path',p.pathId),gate=clearance(key('path-obstruction',p.pathId));
   const requires=[assumption(key('source-context',p.pathId)),assumption(key('path-operation',p.pathId)),gate.requires,
-   ...requiredLegIds.map(e=>assumption(key('leg-operation',e)))];
+   ...requiredLegIds.map(e=>lit(key('leg-ready',e)))];
   // A pressure with no in-scope alternative is not cleared by absence.
   if(new Set(p.dependencyIds).size!==p.dependencyIds.length)return empty('dependency-identity');
   for(const dep of p.dependencyIds)requires.push(lit(key('pressure',dep)));
@@ -132,15 +132,17 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   // A pair or exposed root is not itself a blocker. Only an independently
   // established restriction of this exact leg may undercut the conditional.
   const contextualAttacks=requiredLegIds.flatMap(edgeId=>{
-   const leg=actionMap.get(edgeId);
-   return [...leg.combinationPairIds.map(pairId=>key('pair-restricts-leg',pairId,edgeId)),
-    ...leg.exposedRootIds.map(rootId=>key('root-loss-blocks-leg',rootId,edgeId))];
+   const leg=actionMap.get(edgeId),legId=key('leg-ready',edgeId);
+   const attacks=uniq([...leg.combinationPairIds.map(pairId=>key('pair-restricts-leg',pairId,edgeId)),
+    ...leg.exposedRootIds.map(rootId=>key('root-loss-blocks-leg',rootId,edgeId))]);
+   if(!legCandidates.has(legId)){
+    legCandidates.add(legId);
+    const gates=attacks.map(clearance);
+    candidates.push({id:legId,alternatives:[{id:'apply',requires:[assumption(key('leg-operation',edgeId)),...gates.map(g=>g.requires)],undercutWhen:gates.map(g=>g.attack)}]});
+   }
+   return attacks;
   });
-  // Clearance of each named restriction is required, never inferred from
-  // missing evidence. The path-level gate covers other context concerns.
-  const gates=uniq(contextualAttacks).map(clearance);
-  requires.push(...gates.map(g=>g.requires));
-  candidates.push({id,alternatives:[{id:'apply',requires,undercutWhen:[gate.attack,...gates.map(g=>g.attack)]}]});
+  candidates.push({id,alternatives:[{id:'apply',requires,undercutWhen:[gate.attack]}]});
   if(!pressureCandidates.has(p.pressureId))pressureCandidates.set(p.pressureId,[]);
   pressureCandidates.get(p.pressureId).push(id);
   pathRows.push({pathId:p.pathId,controlEdgeId:p.controlEdgeId,requiredLegIds,pressureId:p.pressureId,dependencyIds:[...p.dependencyIds],
