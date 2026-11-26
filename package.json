@@ -35,6 +35,7 @@
     "audit:pattern-outcome-efficacy": "node scripts/audit-pattern-outcome-efficacy.mjs",
     "audit:pattern-outcome-v10": "node scripts/audit-pattern-outcome-v10.mjs",
     "validate:pattern-outcome": "node scripts/validate-pattern-outcome.mjs",
+    "validate:pattern-outcome-native-p1": "node scripts/validate-pattern-outcome.mjs --p1-native",
     "benchmark:outcome": "node scripts/benchmark-outcome.mjs",
     "audit:pattern-outcome-prospective": "node scripts/audit-pattern-outcome-prospective.mjs",
     "audit:pattern-outcome-joint": "node scripts/audit-pattern-outcome-joint.mjs",
