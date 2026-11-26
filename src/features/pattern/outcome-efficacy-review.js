@@ -1,3 +1,4 @@
+import {inspectActionDiagnostics} from './outcome-action-diagnostic-contract.js';
 import {buildActionDiagnostics} from './outcome-action-diagnostics.js';
 import {SajuError} from '../../core/error.js';
 import {buildIntegratedOutcome,PATTERN_OUTCOME_INTEGRATED_VERSION} from './outcome-integrated.js';
@@ -41,6 +42,7 @@ export function buildOutcomeEfficacy(input,provider,birth){
  const monthChange=observeMonthChange(prior,branchContext,input.saju.pillars.month.branch);
  const roleCapacity=observeRoleCapacity(prior);
  const diagnostics=buildActionDiagnostics(prior,formation,combinationContext,result.regulationStrength);
+ const diagnosticFailures=inspectActionDiagnostics(diagnostics,prior.completeHour);
  const {rootContext,groundedSupply,interpositionReview}=diagnostics;
  const hiddenAccessContext=observeHiddenAccessContext(prior,branchContext,rootContext,groundedSupply);
  const officerSupplyContext=observeOfficerSupplyContext(roleCapacity,groundedSupply,interpositionReview,result.regulationStrength,prior.completeHour);
@@ -70,6 +72,6 @@ export function buildOutcomeEfficacy(input,provider,birth){
   const dependencyReview=observeRoleDependencies(demandReview,{resource:resourceDemandConditions,output:outputDemandConditions,officer:officerDemandConditions},groundedSupply,prior.completeHour);
   return {...m,status:[joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority,roleObjectives,killingStrategies,killingWealth,resourceStrategies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview].some(x=>x.status==='invalid-evidence')?'invalid-evidence':m.status,joint,combinationRoles,branchAccess,roleConditions,roleFlow,rolePriority:{...rolePriority,...policies,interactions,demandReview,resourceDemandConditions,outputDemandConditions,officerDemandConditions,dependencyReview}};
  });
- return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,hiddenAccessContext,...Object.values(diagnostics),resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
-  candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,hiddenAccessContext,...diagnostics,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
+ return {prior,climateResult:resolvedClimate,result:{...base,efficacyReview:{status:diagnosticFailures.length||[combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,hiddenAccessContext,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,...candidates,...mechanisms].some(q=>q.status==='invalid-evidence')?'invalid-evidence':prior.completeHour?'diagnostic':'partial',
+  ...(diagnosticFailures.length?{diagnosticFailures}:{}),candidates,mechanismReview:{version:'outcome-mechanism-hypothesis-v1',climate,combinationContext,branchContext,monthChange,roleCapacity,capacityComparisons,hiddenAccessContext,...diagnostics,resourceSupplyContext,outputSupplyContext,officerSupplyContext,branchPressure,monthCommandReview,candidates:mechanisms,selectionAuthority:false,effective:null},effective:null,selectionAuthority:false}}};
 }
