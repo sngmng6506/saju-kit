@@ -1,3 +1,4 @@
+import {strengthAuditFixtureNames,verifyStrengthAuditInventory} from './lib/strength-audit-inventory.mjs';
 import {readFileSync} from 'node:fs';
 import {analyzeStemForceEvidence} from '../src/core/stem-force.js';
 import {observeRelativeForce} from '../src/core/relative-force.js';
@@ -13,7 +14,9 @@ const read=name=>JSON.parse(readFileSync(new URL('../test/fixtures/'+name+'.json
 const args=process.argv.slice(2);
 if(args.length>1||args.some(x=>x!=='--basis-only'))throw Error('Usage: audit-pattern-strength-reference-coverage.mjs [--basis-only]');
 const basisOnly=args.includes('--basis-only');
-const cohort=buildReferenceCoverageCohort(read('strength-audit-v1'),read('pattern-classical-v2'));
+const audit=read('strength-audit-v1');
+const sourceInventory=verifyStrengthAuditInventory(strengthAuditFixtureNames.map(name=>({name,cases:read(name).cases})),audit);
+const cohort=buildReferenceCoverageCohort(audit,read('pattern-classical-v2'));
 const observations=cohort.rows.map(({id,pillars})=>{
  let stage='rootContext';
  try{
@@ -34,5 +37,5 @@ const observations=cohort.rows.map(({id,pillars})=>{
  }catch(e){return {id,error:stage+': '+String(e?.message??e)};}
 });
 const report=summarizeReferenceCoverage(cohort,observations);
-console.log(JSON.stringify({...report,mode:basisOnly?'basis-only':'conditional-synthesis',passed:report.invalid===0},null,2));
+console.log(JSON.stringify({...report,sourceInventory,mode:basisOnly?'basis-only':'conditional-synthesis',passed:report.invalid===0},null,2));
 if(report.invalid)process.exitCode=1;
