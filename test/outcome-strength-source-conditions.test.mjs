@@ -9,7 +9,7 @@ function fixture(completeHour=true,rooted=true){
  const nodes=[
   ['day:stem','day','wood'],['month:stem','month','water'],['hour:stem','hour','earth'],['year:stem','year','fire'],
   ['day:branch:metal','day','metal'],['day:branch:wood','day','wood'],['day:branch:fire','day','fire'],['day:branch:water','day','water']
- ].map(([id,position,element])=>({id,position,element,rootIds:rooted?[id+':root']:[]}));
+ ].filter(([,position])=>completeHour||position!=='hour').map(([id,position,element])=>({id,position,element,rootIds:rooted?[id+':root']:[]}));
  const targets=nodes.filter(n=>n.id.endsWith(':stem')).map(n=>n.id),positions=['year','month','day','hour'];
  const actions=nodes.flatMap(a=>nodes.flatMap(b=>{
   const r=elementRelation(a.element,b.element);
