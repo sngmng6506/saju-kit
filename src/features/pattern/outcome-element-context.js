@@ -1,3 +1,4 @@
+import {reviewRootPreservation} from './outcome-root-preservation.js';
 import {evaluateContextualStrength} from './outcome-contextual-strength.js';
 import {elementRelation} from '../../core/elements.js';
 import {evaluateArguments} from './outcome-argumentation.js';
@@ -208,13 +209,16 @@ export function reviewElementContexts(prior,root,supply,source){
   const outputNodes=allNodes.filter(n=>left(element,n.element,'generate')&&active(n));
   const contextAxes={'visible':axes.visible,'substantial-root-basis':axes.substantialRoot,
    'controller-basis':!axes.noRootedControllerBasis,'output-basis':outputNodes.length>0};
+  const rootPreservation=reviewRootPreservation({prior,root,element});
+  if(rootPreservation.status!==status)return empty('root-preservation-'+rootPreservation.reason);
   const contextualStrength=evaluateContextualStrength({completeHour:complete,element,
+   rootSlotIds:rootPreservation.substantialSlotIds,
    axes:Object.fromEntries(Object.entries(contextAxes).map(([k,v])=>[k,complete?v:null])),
    evidenceRefs:{visible:evidenceRefs.visible,'substantial-root-basis':evidenceRefs.substantialRoot,
     'controller-basis':evidenceRefs.noRootedControllerBasis,'output-basis':[ref('groundedSupply',supply.version??'grounded-supply-review-v1','nodes'),
      ...outputNodes.map(n=>ref('groundedSupply',n.nodeId,'state'))]}});
   if(contextualStrength.status!==status)return empty('contextual-strength');
-  profiles.push({element,contextualStrength,visibleIds:v.map(a=>a.id),slotIds:rs.map(s=>s.id),substantialSlotIds:substantial.map(s=>s.id),
+  profiles.push({element,rootPreservation,contextualStrength,visibleIds:v.map(a=>a.id),slotIds:rs.map(s=>s.id),substantialSlotIds:substantial.map(s=>s.id),
    cleanPrincipalSlotIds:clean.filter(s=>s.role==='principal').map(s=>s.id),contestedSlotIds:contested.map(s=>s.id),
    seasonRelation,principalRelation,seasonalStatus:seasonRelation.type==='same'?'season-element':seasonRelation.type==='generate'&&seasonRelation.direction==='left-to-right'?'season-generated':'other-season-context',
    generatorNodeIds:generators.map(n=>n.nodeId),burdenNodeIds:burdens.map(n=>n.nodeId),controllerNodeIds:controllers.map(n=>n.nodeId),
