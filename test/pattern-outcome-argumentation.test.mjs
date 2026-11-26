@@ -71,6 +71,7 @@ test('source variants preserve structural scope and all actual effects remain un
  for(const c of packet.cases)for(const complete of [true,false]){
   const x=build(c.pillars,complete),a=audit(x,!complete);assert.deepEqual(a.errors,[],c.id);n++;
   assert.equal(a.counts.actions,a.counts.effectsUnresolved);
+  assert.equal(a.counts.actions,a.counts.generation+a.counts.control);
   if(complete){actions+=a.counts.actions;support+=a.counts.structural.supported;oppose+=a.counts.structural.opposed;unknown+=a.counts.structural.unresolved;}
   else assert.equal(a.counts.structural.unresolved,a.counts.actions);
  }
