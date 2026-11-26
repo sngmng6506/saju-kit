@@ -738,3 +738,55 @@ The next gate is native verification and independent review of the
 semantic predicates: deep usable support and excessive control/drain
 remain uncomputed. Do not add a decision-authority bridge until that
 gate is satisfied.
+
+## P3-B5 — Retrospective reference coverage
+
+The six strength reference fixture inventories are now shared between the
+historical audited evaluator and the new coverage runner. The latter
+requires exact normalized pillar/label/fixture identity and full coverage
+of all 76 directional audit records; duplicate normalized charts, missing
+records and stale labels are rejected. The primary cohort requires
+explicit natal direction, ordinary scope and a checked source record.
+There are 53 primary records (26 strong, 27 weak; 49 electronic-text,
+4 scan-reviewed) and 23 secondary records. These are historical records,
+not newly checked sources or independent gold.
+
+The separate 81-case classical pattern fixture has 67 chapter-family-only
+and 14 review-only cases, 13 source-selected-family annotations, zero
+formation labels and zero assistant labels. It shares 34 exact chart
+records with the strength audit cohort. A chapter-family label cannot
+be converted into a formation, rescue, assistant or strength verdict.
+
+At revision 287d32c the actual core source dependency subset (18 modules,
+source-level import resolution, not native Node ESM) was run for all 76
+audited charts without errors. Of the primary records, 16 of 26 strong
+references lack season support and 5 of 27 weak references have season
+support. All 26 strong references have at least one substantial literal
+root; all 27 weak references have a local literal control or outgoing
+generation relation. These are retrospective structural observations,
+not evidence of effective roots or actual burden, nor universal necessary
+conditions. No model parameters, historical labels or runtime decision
+authority were changed.
+
+The new runner separately reads the exact day-actor synthesis state
+possibilities from the production root/supply/replenishment/burden/
+strength chain. Strict supported is distinguished from conflicting,
+unavailable and execution-invalid; matching possibility is not accuracy.
+The basis-only mode reports all synthesis possibilities unevaluated.
+The 53 primary synthesis possibilities remain unexecuted in this
+environment. No empirical or independent accuracy claim is made.
+Seven reference-contract tests passed against actual fixture data and
+source modules in isolated JavaScript. The native runner and full
+regression remain pending.
+
+Run:
+```sh
+node --test test/outcome-strength-reference-coverage.test.mjs
+npm run audit:pattern-strength-reference-coverage -- --basis-only
+npm run audit:pattern-strength-reference-coverage
+```
+The first two are registered in focused/full validation; the more
+expensive complete synthesis coverage audit is a separate command.
+Next, examine expressivity gaps and both-direction possibilities without
+choosing guard values to fit historical labels. Seek separately reviewed
+passages for the exact semantic guard, not just a directional conclusion.
