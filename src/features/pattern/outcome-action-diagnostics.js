@@ -1,3 +1,4 @@
+import {synthesizeContextualStrength} from './outcome-strength-synthesis.js';
 import {reviewBurden} from './outcome-burden-review.js';
 import {reviewReplenishment} from './outcome-replenishment-review.js';
 import {reviewControlSynthesis} from './outcome-control-synthesis.js';
@@ -54,5 +55,6 @@ export function buildActionDiagnostics(prior,formation,combinationContext,streng
  const conditionalJoint=reviewConditionalJoint(prior,jointConstraintReview);
  const replenishmentReview=reviewReplenishment(prior,rootContext,groundedSupply);
  const burdenReview=reviewBurden(prior,replenishmentReview);
- return {rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,combinationPolicyReview,clashPolicyReview,interpositionPolicyReview,jointConstraintReview,dayBalanceDirectionReview,elementContextReview,contactConstraintSensitivity,modeledConsequenceReview,actionSynthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,replenishmentReview,burdenReview};
+ const strengthSynthesis=synthesizeContextualStrength({completeHour:prior.completeHour,nodes:replenishmentReview.nodes,targets:replenishmentReview.targets,burden:burdenReview.analysis});
+ return {rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,combinationPolicyReview,clashPolicyReview,interpositionPolicyReview,jointConstraintReview,dayBalanceDirectionReview,elementContextReview,contactConstraintSensitivity,modeledConsequenceReview,actionSynthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint,replenishmentReview,burdenReview,strengthSynthesis};
 }
