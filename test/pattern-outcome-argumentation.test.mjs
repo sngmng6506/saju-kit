@@ -13,7 +13,7 @@ import {elementRelation} from '../src/core/elements.js';
 import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
 import {reviewModeledConsequences} from '../src/features/pattern/outcome-modeled-consequences.js';
-import {controls as coverageControls,replayModeledCoverage,summarizeModeledCoverage} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
+import {controls as coverageControls,routeControls,replayModeledCoverage,summarizeModeledCoverage} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -754,4 +754,30 @@ test('source-side release proof survives only target pressure and rejects mismat
  assert.equal(consequenceReview(forged).reason,'generation-source-screen-proof');
  const partial=consequenceReview(consequenceFixture('wood',false));assert.equal(partial.status,'partial',partial.reason);
  assert.ok(partial.actions.flatMap(a=>a.clauses).filter(c=>c.directReleasePropositionId).every(c=>c.directReleaseState==='unresolved'&&c.actualReceptionState==='unresolved'));
+});
+
+test('exact interposition leg proofs support both route families but not actual relief',()=>{
+ for(const c of routeControls)for(const complete of [true,false]){
+  const r=replayModeledCoverage(c.pillars,complete);
+  assert.deepEqual(r.invalid,[],c.id);
+  const q=r.interpositionRoutes.find(q=>q.pathId===JSON.stringify(c.route));
+  assert.equal(q?.state,complete?c.expectedRoute:'unresolved',c.id);
+  assert.equal(q.actualReliefState,'unresolved');
+  assert.equal(q.actualReceptionState,'unresolved');
+  assert.equal(q.sourceApplicability,'unresolved');
+  assert.equal(r.actualEffectPromoted,false);
+  if(q.state==='supported'){
+   assert.deepEqual(q.missingPremiseIds,[]);
+   assert.deepEqual(q.dependencyIds,[]);
+   assert.ok(q.proof.support.rank>=1);
+   assert.equal(q.proof.opposition.rank,null);
+   assert.equal(q.legProofs.length,c.route[0]==='mediation'?2:1);
+   if(c.route[0]==='mediation')assert.deepEqual(q.legProofs.map(p=>p.mode),['entry-full-generation','exit-source-generation']);
+  }
+  if(complete&&c.id==='protection-helper-pressure'){
+   assert.equal(q.structuralState,'dependency-unresolved');
+   assert.deepEqual(q.missingPremiseIds,[q.gatePropositionId]);
+  }
+  if(!complete)assert.ok(r.interpositionRoutes.every(p=>p.state==='unresolved'));
+ }
 });
