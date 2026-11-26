@@ -66,7 +66,10 @@ export function synthesizeActionReview(prior,argument,source,element,day,joint,m
   const clauses=[];let direct=null,combined=null;
   for(const def of defs){
    const x=sc.get(def.id),y=ec.get(def.id),z=mc.get(def.id);
-   if(x.predicate!==def.predicate||!unresolved(x.predicateState)||!unresolved(x.applicability)||x.effectConfirmed!==null||
+   const predicateActor=actors.get(def.role==='source'?a.from:a.to);
+   if(x.predicateActorId!==predicateActor.id||x.predicateElement!==predicateActor.element||y.predicateElement!==predicateActor.element||
+    y.modeledApplicability!==(complete&&y.modelPredicateState==='supported'?'supported':'unresolved')||
+    x.predicate!==def.predicate||!unresolved(x.predicateState)||!unresolved(x.applicability)||x.effectConfirmed!==null||
     y.predicate!==def.predicate||!unresolved(y.actualPredicateState)||!unresolved(y.actualEffectState)||
     y.authority!=='experimental-model-assumption-only')return empty('source-authority');
    const row={clauseId:def.id,predicate:def.predicate,predicateActorId:x.predicateActorId,
@@ -77,7 +80,7 @@ export function synthesizeActionReview(prior,argument,source,element,day,joint,m
     const mid=describe(mg,z.modelPropositionId,'modeledConsequenceReview');
     direct=describe(mg,a.kind==='generate'?z.directReleasePropositionId:z.directInjuryPropositionId,'modeledConsequenceReview');
     combined=describe(mg,z.propositionId,'modeledConsequenceReview');
-    if(!mid||!direct||!combined||mid.state!==y.modelPredicateState||z.structuralPropositionId!==a.structuralPropositionId||
+    if(!mid||!direct||!combined||mid.propositionId!==key('element-model',predicateActor.element,def.predicate)||mid.state!==y.modelPredicateState||z.structuralPropositionId!==a.structuralPropositionId||
      direct.kind!==(a.kind==='generate'?'modeled-direct-release-tendency':'modeled-direct-injury-tendency')||
      combined.kind!==(a.kind==='generate'?'modeled-source-release':'modeled-target-injury')||
      direct.subject!==key(a.edgeId,def.id)||combined.subject!==direct.subject||
@@ -85,7 +88,7 @@ export function synthesizeActionReview(prior,argument,source,element,day,joint,m
      !unresolved(z.actualEffectState)||combined.state==='supported'&&direct.state!=='supported'||
      a.kind==='generate'&&!unresolved(z.actualReceptionState))return empty('consequence-proof');
     row.modelProof=mid;
-   }else if(z.propositionId!==null||!unresolved(z.state))return empty('unmodeled-clause');
+   }else if(z.propositionId!==null||!unresolved(z.state)||!unresolved(y.modelPredicateState))return empty('unmodeled-clause');
    clauses.push(row);
   }
   if(!direct||!combined)return empty('missing-consequence');
