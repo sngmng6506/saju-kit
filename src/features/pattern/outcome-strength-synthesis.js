@@ -1,3 +1,4 @@
+import {compileIndependentSupply} from './outcome-independent-supply.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {positiveProofFrontier} from './outcome-positive-frontier.js';
 import {analyzeGuardedFrontier} from './outcome-guarded-frontier.js';
@@ -8,16 +9,18 @@ const same=(a,b)=>key(a)===key(b);
 const lit=(propositionId,sign='for')=>({propositionId,sign});
 const semantic=['deep-root-available','control-exceeds-support','drain-exceeds-support'];
 const demandGuard='wealth-demand-exceeds-support';
+const supplyGuard='indirect-support-sufficient';
+export const SUPPLY_STRENGTH_VERSION='p3-strength-synthesis-supply-v3';
 export const DEMAND_STRENGTH_VERSION='p3-strength-synthesis-demand-v2';
 // Reuse the burden proof packet, not its verdicts. Actor-local projections
 // of the source-inspired element policy are experimental, not replacements.
 export function synthesizeContextualStrength({completeHour,nodes,targets,burden,policy='rooted-operation'}={}){
- const demand=policy==='literal-demand',version=demand?DEMAND_STRENGTH_VERSION:STRENGTH_SYNTHESIS_VERSION;
- const semanticIds=demand?[...semantic,demandGuard]:semantic;
+ const supply=policy==='indirect-support',demand=supply||policy==='literal-demand',version=supply?SUPPLY_STRENGTH_VERSION:demand?DEMAND_STRENGTH_VERSION:STRENGTH_SYNTHESIS_VERSION;
+ const semanticIds=supply?[...semantic,demandGuard,supplyGuard]:demand?[...semantic,demandGuard]:semantic;
  const status=completeHour?'diagnostic':'partial';
  const base={version,completeHour,selectionAuthority:false,effective:null,actualStrengthState:'unresolved'};
  const empty=reason=>({...base,status:'invalid-evidence',reason,rows:[],summary:null});
- if(!['rooted-operation','literal-demand'].includes(policy)||typeof completeHour!=='boolean'||burden?.status!==status||burden.completeHour!==completeHour||burden.selectionAuthority!==false||burden.effective!==null||
+ if(!['rooted-operation','literal-demand','indirect-support'].includes(policy)||typeof completeHour!=='boolean'||burden?.status!==status||burden.completeHour!==completeHour||burden.selectionAuthority!==false||burden.effective!==null||
   burden.actualMagnitudeComparison!=='unresolved'||!Array.isArray(nodes)||!Array.isArray(targets)||new Set(targets).size!==targets.length)return empty('upstream');
  try{
   const original=burden.packet,baseline=evaluateArguments(original);
@@ -66,6 +69,13 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
     }
     m.exposure=exposure;
    }
+   if(supply){
+    const q=compileIndependentSupply({packet:original,nodes,targetId:t});
+    if(q.status!=='diagnostic')return empty('indirect-'+q.reason);
+    for(const p of q.propositions)add(p.id,p.subject,p.kind,p.level);
+    rules.push(...q.rules);
+    m.indirectSupport={propositionId:q.propositionId,seedIds:q.seedIds,linkIds:q.linkIds,actualReplenishmentState:'unresolved'};
+   }
    manifests.push(m);
   }
   const positivePacket={...original,evidence,propositions:[...propositions],rules:[...rules]};
@@ -78,6 +88,7 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
    const basisByKind=new Map([['substantial-root-basis',m.direct],['controller-basis',controlBasis],['output-basis',drainBasis]]);
    const bases=[m.direct,controlBasis,drainBasis];
    if(demand){basisByKind.set('wealth-demand-basis',m.exposure['outgoing-control']);bases.push(m.exposure['outgoing-control']);}
+   if(supply){basisByKind.set('indirect-support-basis',m.indirectSupport.propositionId);bases.push(m.indirectSupport.propositionId);}
    const requirements=semanticIds.map((k,i)=>({guard:guards[i],basis:bases[i]}));
    const strong=add(key('conditional-strength',t,'strong'),t,'source-inspired-actor-strength','structural-hypothesis'),weak=add(key('conditional-strength',t,'weak'),t,'source-inspired-actor-weakness','structural-hypothesis');
    const terminal=[];
@@ -86,6 +97,7 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
     for(const d of alternatives)if(d.target==='strong')d.requires.push(lit(demandGuard,'against'));
     alternatives.push({id:'wealth-demand-weakness',target:'weak',requires:[lit('visible'),lit('wealth-demand-basis'),lit(demandGuard)],source:'https://www.donglishuzhai.net/chapter/3746.html'});
    }
+   if(supply)alternatives.push({id:'indirect-support-strength',target:'strong',requires:[lit('visible'),lit('indirect-support-basis'),lit(supplyGuard),lit('control-exceeds-support','against'),lit('drain-exceeds-support','against'),lit(demandGuard,'against')],source:'https://changxianyi.com/guji/ziping/wz-20260914/chapter-007/'});
    for(const d of alternatives){
     const bs=d.requires.filter(p=>basisByKind.has(p.propositionId));
     const gs=d.requires.filter(p=>guard.has(p.propositionId));
@@ -119,6 +131,6 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
   }
   return {...base,status,reason:null,packet,judgments:result.judgments,ruleResults:result.ruleResults,rows,
    summary:{targets:rows.length,analysisStatus:rows.every(r=>r.analysis.status==='diagnostic')&&completeHour?'diagnostic':completeHour?'unavailable':'partial',actualEffectsConfirmed:0},
-   limitations:['actor-local-projection-not-element-strength','root-seeded-action-not-actual-burden',...(demand?['literal-exposure-not-operation','wealth-demand-guard-unreviewed','alternative-research-policy-not-runtime-default']:[]),'guard-truth-requires-modeled-basis-only','no-magnitude-comparison','local-state-possibility-not-chart-wide-joint-feasibility','no-selection-authority']};
+   limitations:['actor-local-projection-not-element-strength','root-seeded-action-not-actual-burden',...(demand?['literal-exposure-not-operation','wealth-demand-guard-unreviewed','alternative-research-policy-not-runtime-default']:[]),'guard-truth-requires-modeled-basis-only',...(supply?['recipient-excluded-origin-not-independent-physical-capacity','indirect-support-sufficiency-unreviewed']:[]),'no-magnitude-comparison','local-state-possibility-not-chart-wide-joint-feasibility','no-selection-authority']};
  }catch(e){return empty(e instanceof Error?e.message:'invalid-reference');}
 }
