@@ -15,26 +15,26 @@ export function inspectProofObligations(owner,targets,scope='complete'){
   const k=key(r.conclusion);if(!byConclusion.has(k))byConclusion.set(k,[]);byConclusion.get(k).push(r);
  }
  if(targets.some(t=>!t||!js.has(t.propositionId)||!['for','against'].includes(t.sign))||new Set(targets.map(key)).size!==targets.length)return empty('target-identity');
- const visit=t=>{
-  const k=key(t);if(nodes.has(k))return;
+ const pending=[...targets];
+ while(pending.length){
+  const t=pending.pop(),k=key(t);if(nodes.has(k))continue;
   const j=js.get(t.propositionId),rules=byConclusion.get(k)??[];
   const node={id:k,propositionId:t.propositionId,sign:t.sign,kind:j.kind,level:j.level,subject:j.subject,state:j.state,
    requestedRank:rank(j,t.sign),contraryRank:rank(j,t.sign==='for'?'against':'for'),terminal:null,alternatives:[]};
   nodes.set(k,node);
-  if(node.requestedRank!==null){node.terminal='established';return;}
-  if(j.level==='effect-hypothesis'){node.terminal='effect-authority-absent';return;}
-  if(j.level==='observation'){node.terminal=node.contraryRank!==null?'contrary-observation':'observation-unestablished';return;}
-  if(!rules.length){node.terminal=node.contraryRank!==null?'contrary-hypothesis-no-rule':'hypothesis-no-rule';return;}
+  if(node.requestedRank!==null){node.terminal='established';continue;}
+  if(j.level==='effect-hypothesis'){node.terminal='effect-authority-absent';continue;}
+  if(j.level==='observation'){node.terminal=node.contraryRank!==null?'contrary-observation':'observation-unestablished';continue;}
+  if(!rules.length){node.terminal=node.contraryRank!==null?'contrary-hypothesis-no-rule':'hypothesis-no-rule';continue;}
   for(const r of rules){
    const q=rs.get(r.id),active=q.status==='premises-unresolved';
    node.alternatives.push({ruleId:r.id,policyId:r.policyId,status:q.status,
     missing:q.missing.map(key),undercuts:(q.undercuts??[]).map(x=>({literal:key(x),witnesses:x.witnesses}))});
    // Inactive alternatives retain their scope/undercut reason, not an
    // invented missing observation that would make the rule applicable.
-   if(active)for(const p of q.missing)visit(p);
+   if(active)pending.push(...q.missing);
   }
- };
- for(const t of targets)visit(t);
+ }
  const rows=targets.map(t=>{
   const seen=new Set(),terminals=new Map(),inactive=new Map(),cycles=new Set();
   // Iterative depth-first traversal with path membership distinguishes
