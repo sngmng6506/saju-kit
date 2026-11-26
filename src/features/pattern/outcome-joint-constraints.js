@@ -53,6 +53,7 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   paths=index(interposition.paths,a=>a.pathId),pairs=index(combination.pairs,a=>a.pairId),combActions=index(combination.actions,a=>a.edgeId),
   slots=index(clash.slots,a=>a.slotId),reliefs=index(clash.reliefs,a=>a.id),clashActions=index(clash.actions,a=>a.edgeId);
  if([actors,sup,args,judgments,sources,ipActions,paths,pairs,combActions,slots,reliefs,clashActions].some(x=>!x))return empty('identity');
+ if([...reliefs.values()].some(r=>!unresolved(r.actualReliefState)||!Array.isArray(r.positions)||!Array.isArray(r.competingFormationIds)))return empty('relief-contract');
  const actions=[],roots=new Map(),byActor=new Map(),reliefCompetition=[],pairCompetition=[],pathRows=[],assumptions=new Map(),candidates=[];
  const assumption=id=>{if(!assumptions.has(id))assumptions.set(id,{id,state:'unresolved'});return lit(id);};
  const clearance=id=>({requires:lit(id,'against'),attack:assumption(id)});
@@ -104,6 +105,7 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
     for(const id of p.donor.groundedRootIds){if(!rememberRoot(id,a.edgeId,role,'incoming-observed',pathId))return empty('incoming-root');rootIds.push(id);}
    }
   }
+  if(cl&&(!Array.isArray(cl.substantialRootIds)||!Array.isArray(cl.residualRootIds)))return empty('exposure-contract');
   const exposed=cl?[...cl.substantialRootIds,...cl.residualRootIds]:[];
   if(exposed.some(id=>!slots.has(id)))return empty('exposure-binding');
   actions.push({edgeId:a.edgeId,effectPropositionId:e.id,kind:a.kind,from:a.from,to:a.to,rootIds:uniq(rootIds),exposedRootIds:uniq(exposed),
@@ -124,12 +126,25 @@ export function reviewJointConstraints(prior,supply,argument,source,interpositio
   const requires=[assumption(key('source-context',p.pathId)),assumption(key('path-operation',p.pathId)),gate.requires,
    ...requiredLegIds.map(e=>assumption(key('leg-operation',e)))];
   // A pressure with no in-scope alternative is not cleared by absence.
+  if(new Set(p.dependencyIds).size!==p.dependencyIds.length)return empty('dependency-identity');
   for(const dep of p.dependencyIds)requires.push(lit(key('pressure',dep)));
-  candidates.push({id,alternatives:[{id:'apply',requires,undercutWhen:[gate.attack]}]});
+  // Explicit, leg-specific restriction predicates are shared between paths.
+  // A pair or exposed root is not itself a blocker. Only an independently
+  // established restriction of this exact leg may undercut the conditional.
+  const contextualAttacks=requiredLegIds.flatMap(edgeId=>{
+   const leg=actionMap.get(edgeId);
+   return [...leg.combinationPairIds.map(pairId=>key('pair-restricts-leg',pairId,edgeId)),
+    ...leg.exposedRootIds.map(rootId=>key('root-loss-blocks-leg',rootId,edgeId))];
+  });
+  // Clearance of each named restriction is required, never inferred from
+  // missing evidence. The path-level gate covers other context concerns.
+  const gates=uniq(contextualAttacks).map(clearance);
+  requires.push(...gates.map(g=>g.requires));
+  candidates.push({id,alternatives:[{id:'apply',requires,undercutWhen:[gate.attack,...gates.map(g=>g.attack)]}]});
   if(!pressureCandidates.has(p.pressureId))pressureCandidates.set(p.pressureId,[]);
   pressureCandidates.get(p.pressureId).push(id);
   pathRows.push({pathId:p.pathId,controlEdgeId:p.controlEdgeId,requiredLegIds,pressureId:p.pressureId,dependencyIds:[...p.dependencyIds],
-   combinationPairIds:uniq([p.helperId,p.controllerId,p.targetId].flatMap(id=>byActor.get(id)??[])),
+   combinationPairIds:uniq([p.helperId,p.controllerId,p.targetId].flatMap(id=>byActor.get(id)??[])),conditionalRestrictionIds:uniq(contextualAttacks),
    sharedRootIds:uniq(requiredLegIds.flatMap(id=>actionMap.get(id).rootIds)),scenarioPropositionId:id,actualEffectState:'unresolved'});
  }
  for(const a of actions)if(a.interpositionPathIds.some(id=>paths.get(id)?.controlEdgeId!==a.edgeId))return empty('path-coverage');
