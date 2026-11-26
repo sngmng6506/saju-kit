@@ -34,7 +34,7 @@ for(const c of cases)for(const completeHour of [true,false]){
   for(const [field,expected] of Object.entries(r.diagnosticFields))compare(issues,field,m[field],expected);
   // Native/replay now share a composition owner. Parity checks integration
   // and transport, not independent correctness of the same implementation.
-  const added=['generationSynthesis','interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint'];
+  const added=['generationSynthesis','interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint','replenishmentReview'];
   for(const field of added){
    const q=m[field];
    if(!q||q.status!==status||q.completeHour!==completeHour||q.selectionAuthority!==false||q.effective!==null)
@@ -43,7 +43,7 @@ for(const c of cases)for(const completeHour of [true,false]){
   const gen=m.generationSynthesis;
   if(gen?.actions?.some(x=>x.actualReleaseState!=='unresolved'||x.actualSupplyState!=='unresolved'||x.actualReceptionState!=='unresolved'||x.actualBenefitState!=='unresolved'||x.receptionState!=='unresolved'))
    issues.push({field:'generationSynthesis',reason:'generation-effect-promotion'});
-  for(const field of ['interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint'])
+  for(const field of ['interactionDependencies','interactionScenarios','interactionProofs','conditionalJoint','replenishmentReview'])
    if(m[field]?.summary?.actualEffectsConfirmed!==0)issues.push({field,reason:'actual-effect-promotion'});
   if(!completeHour&&(m.interactionScenarios?.space?.status!=='partial'||m.interactionProofs?.summary?.analysisStatus!=='partial'||m.conditionalJoint?.analysis?.status!=='partial'))
    issues.push({field:'interactionDiagnostics',reason:'partial-scenario-promotion'});
