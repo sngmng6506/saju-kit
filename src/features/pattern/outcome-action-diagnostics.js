@@ -1,0 +1,54 @@
+import {reviewControlSynthesis} from './outcome-control-synthesis.js';
+import {observeGroundedSupply} from './outcome-grounded-supply.js';
+import {reviewInterpositionPolicy} from './outcome-interposition-policy.js';
+import {reviewSourceEffectPolicy} from './outcome-source-effect-policy.js';
+import {observeArgumentReview} from './outcome-argument-review.js';
+import {observeLocalityContext} from './outcome-locality-context.js';
+import {observePressureDependencyReview} from './outcome-pressure-dependency.js';
+import {observeInterpositionReview} from './outcome-interposition-review.js';
+import {reviewContactConstraintSensitivity} from './outcome-contact-constraint-sensitivity.js';
+import {synthesizeActionReview} from './outcome-action-synthesis.js';
+import {reviewModeledConsequences} from './outcome-modeled-consequences.js';
+import {reviewElementContexts} from './outcome-element-context.js';
+import {reviewDayBalanceDirection} from './outcome-day-balance-direction.js';
+import {reviewJointConstraints} from './outcome-joint-constraints.js';
+import {reviewClashPolicy} from './outcome-clash-policy.js';
+import {observeClashResidualContext} from './outcome-clash-residual.js';
+import {observeRootContext} from './outcome-root-context.js';
+import {reviewCombinationPolicy} from './outcome-combination-policy.js';
+import {observeCombinationResidualContext} from './outcome-combination-residual.js';
+import {reviewGenerationSynthesis} from './outcome-generation-synthesis.js';
+import {reviewInteractionDependencies} from './outcome-interaction-dependencies.js';
+import {reviewInteractionScenarios} from './outcome-interaction-scenarios.js';
+import {reviewInteractionProofs} from './outcome-interaction-proof-review.js';
+import {reviewConditionalJoint} from './outcome-conditional-joint-review.js';
+
+// Single composition owner for chart-level action diagnostics. Callers own
+// birth/strength/formation provenance; this layer has no selection authority.
+export function buildActionDiagnostics(prior,formation,combinationContext,strength){
+ const rootContext=observeRootContext(prior,formation);
+ const groundedSupply=observeGroundedSupply(prior,rootContext);
+ const clashResidualContext=observeClashResidualContext(prior,formation,rootContext,groundedSupply);
+ const combinationResidualContext=observeCombinationResidualContext(prior,formation,combinationContext,rootContext,groundedSupply);
+ const interpositionReview=observeInterpositionReview(prior,rootContext,groundedSupply);
+ const pressureDependencyReview=observePressureDependencyReview(prior,rootContext,groundedSupply,interpositionReview);
+ const localityContext=observeLocalityContext(prior,groundedSupply,interpositionReview,pressureDependencyReview);
+ const argumentReview=observeArgumentReview(prior,groundedSupply,pressureDependencyReview,localityContext);
+ const sourceEffectReview=reviewSourceEffectPolicy(prior,argumentReview,groundedSupply,strength);
+ const combinationPolicyReview=reviewCombinationPolicy(prior,combinationResidualContext,groundedSupply,argumentReview);
+ const clashPolicyReview=reviewClashPolicy(prior,clashResidualContext,groundedSupply,argumentReview);
+ const interpositionPolicyReview=reviewInterpositionPolicy(prior,groundedSupply,interpositionReview,pressureDependencyReview,argumentReview);
+ const jointConstraintReview=reviewJointConstraints(prior,groundedSupply,argumentReview,sourceEffectReview,interpositionPolicyReview,combinationPolicyReview,clashPolicyReview);
+ const dayBalanceDirectionReview=reviewDayBalanceDirection(prior,argumentReview,jointConstraintReview,strength);
+ const elementContextReview=reviewElementContexts(prior,rootContext,groundedSupply,sourceEffectReview);
+ const contactConstraintSensitivity=reviewContactConstraintSensitivity(prior,rootContext,groundedSupply,combinationPolicyReview,clashPolicyReview,jointConstraintReview);
+ const modeledConsequenceReview=reviewModeledConsequences(prior,groundedSupply,argumentReview,pressureDependencyReview,jointConstraintReview,elementContextReview);
+ const actionSynthesis=synthesizeActionReview(prior,argumentReview,sourceEffectReview,elementContextReview,dayBalanceDirectionReview,jointConstraintReview,modeledConsequenceReview,contactConstraintSensitivity);
+ const controlSynthesis=reviewControlSynthesis(prior,rootContext,pressureDependencyReview,argumentReview,modeledConsequenceReview,actionSynthesis);
+ const generationSynthesis=reviewGenerationSynthesis(prior,rootContext,groundedSupply,argumentReview,modeledConsequenceReview,actionSynthesis);
+ const interactionDependencies=reviewInteractionDependencies(prior,rootContext,groundedSupply,pressureDependencyReview,argumentReview,jointConstraintReview,modeledConsequenceReview,actionSynthesis,generationSynthesis,controlSynthesis);
+ const interactionScenarios=reviewInteractionScenarios(prior,rootContext,pressureDependencyReview,argumentReview,interactionDependencies);
+ const interactionProofs=reviewInteractionProofs(prior,jointConstraintReview,modeledConsequenceReview,generationSynthesis,controlSynthesis);
+ const conditionalJoint=reviewConditionalJoint(prior,jointConstraintReview);
+ return {rootContext,groundedSupply,clashResidualContext,combinationResidualContext,interpositionReview,pressureDependencyReview,localityContext,argumentReview,sourceEffectReview,combinationPolicyReview,clashPolicyReview,interpositionPolicyReview,jointConstraintReview,dayBalanceDirectionReview,elementContextReview,contactConstraintSensitivity,modeledConsequenceReview,actionSynthesis,controlSynthesis,generationSynthesis,interactionDependencies,interactionScenarios,interactionProofs,conditionalJoint};
+}
