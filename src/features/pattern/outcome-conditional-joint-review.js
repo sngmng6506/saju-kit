@@ -1,3 +1,4 @@
+import {describeSemanticBridge} from './outcome-semantic-bridges.js';
 import {compileJointScenario} from './outcome-joint-constraints.js';
 import {evaluateConditionalArguments} from './outcome-conditional-arguments.js';
 const VERSION='p2-conditional-joint-review-v1';
@@ -16,6 +17,13 @@ export function reviewConditionalJoint(prior,joint){
   const {assumptions,candidates}=joint.scenario;
   const packet=compileJointScenario({scope,assumptions,candidates});
   if(!packet||assumptions.some(a=>a.state!=='unresolved')||joint.scenario.judgments.some(j=>j.state!=='unresolved'))return empty('scenario-authority');
+  const assumptionBridges=assumptions.map(a=>{
+   const identity=JSON.parse(a.id);
+   if(!Array.isArray(identity))throw Error('assumption-identity');
+   const [kind,...subject]=identity,bridge=describeSemanticBridge(kind,subject);
+   if(!bridge||!['leg-operation','source-context','path-operation','path-obstruction','pair-restricts-leg','root-loss-blocks-leg','pressure-relief-operation','external-pressure-relief'].includes(kind))throw Error('assumption-bridge');
+   return {id:a.id,...bridge};
+  });
   const variables=assumptions.map(a=>({id:a.id,value:null}));
   const bindings=assumptions.map(a=>({propositionId:a.id,formula:{op:'var',id:a.id}}));
   const targets=candidates.map(c=>({id:c.id,propositionId:c.id}));
@@ -29,7 +37,7 @@ export function reviewConditionalJoint(prior,joint){
    paths.some(p=>p.scenarioPropositionId!==key('path',p.pathId)||p.actualEffectState!=='unresolved'))return empty('path-coverage');
   const analysis=evaluateConditionalArguments({packet,expected:joint.scenario,variables,bindings,targets});
   if(!['diagnostic','partial','unavailable'].includes(analysis.status)||analysis.admissibleCount===0)return empty('conditional-closure');
-  return {...base,status,reason:null,manifest,analysis,summary:{analysisStatus:analysis.status,assumptions:variables.length,targets:targets.length,
+  return {...base,status,reason:null,manifest,assumptionBridges,analysis,summary:{analysisStatus:analysis.status,assumptions:variables.length,targets:targets.length,
    invariantSupported:analysis.status==='diagnostic'?analysis.targets.filter(t=>t.invariantState==='supported').length:null,
    possibleSupported:analysis.status==='diagnostic'?analysis.targets.filter(t=>t.counts.supported>0).length:null,
    actualEffectsConfirmed:0},limitations:['explicit-joint-assumptions-not-observed-facts','no-reviewed-force-basis-bridge','conditional-readiness-not-effective-relief','no-selection-authority']};
