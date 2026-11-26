@@ -1261,3 +1261,66 @@ and `npm run audit:pattern-joint-residual-pressure`.
 Next prioritize exact route-specific support preservation/partial
 relief semantics and scope limitations; do not read joint logical
 possibility as capacity, magnitude, or a validated strength verdict.
+
+## P3-B7d-5 — Exact supply preservation under explicit route interruption
+
+The generic research query replays a canonical replenishment packet
+with a specified set of links removed. It validates the exact original
+network prefix and rejects alternate rules deriving its basis. Only
+derived propositions are cloned: retention, access, and operation
+observations are identical in both networks. The original network
+and the cut projection are evaluated in the same assignment. Original
+judgments and rule results are preserved. The shared positive
+constraint solver distinguishes survival, loss, incoming alternatives,
+direct-root-only survival, and recipient-excluded incoming origin.
+It checks that removal cannot create a new basis, and that independent
+incoming origin cannot exist without an incoming basis. All feasible
+witnesses are replayed. The existing independent supply compiler
+prevents counting the recipient's own root recycled through a loop
+as an independent source; common physical roots still do not imply
+independent capacity.
+
+The domain adapter uses the exact generation link already shared by
+the protected resource-to-day action in the burden packet. Each
+scenario requires selected interference pressures and excludes their
+local full-relief propositions. Complete interruption of the selected
+links is an additional explicit counterfactual assumption, NOT a
+consequence of uncovered pressure. Other links are not assumed
+actually safe. Scenarios cover individual pressures, all pressures
+on one shared protected link, and all exposed links when multiple
+links exist. This is not exhaustive subset enumeration; no amount
+of partial mitigation, actual supply loss, or actual strength is
+computed. Direct roots and indirect alternatives may coexist.
+A rootless or incompatible condition must not be counted as loss.
+Partial scope abstains; scenario/solver limits return unavailable.
+
+At e736eef (42 actual modules in isolated source-level JavaScript;
+unchanged pinned upstream sources, updated replay adapter), all 53
+primary charts executed without invalid or unavailable results.
+19 charts had exposed resource-supply links (24 link records,
+31 interference pressure records). 42 cut scenarios and 378 joint
+queries were evaluated. 30 scenarios admit the selected uncovered
+pressure condition; all 30 permit loss of the modeled supply basis,
+26 also permit surviving basis and a recipient-excluded incoming
+origin, and 21 permit direct-root-only survival. These possibilities
+can occur in different assignments. Four feasible scenarios permit
+loss but no surviving basis within the modeled cut. 13 charts have
+at least one independent-origin survival scenario. The remaining
+12 scenarios have incompatible pressure conditions, not verified
+absence of actual harm. XU14 has three conditional cuts of one
+protected link, all admitting both survival and loss; XU26 has no
+mapped interference link and remains out of scope. None of these
+results determines actual replenishment quantity or partial relief.
+
+Six new and nine existing isolated tests passed, including exhaustive
+graph closure for the 128 assignments of the cyclic three-node
+fixture, rejection of changed link identity, complete and partial
+scope, and recipient-root recycling. Full native Node ESM/V10
+regression and independent classical validation remain pending.
+No production strength or selection policy changed.
+Run:
+`node --test test/outcome-supply-preservation.test.mjs`
+and `npm run audit:pattern-supply-preservation`.
+Next investigate nonlocal and hidden interaction coverage without
+automatically treating all literal contacts as effective, and obtain
+independent signed evidence about actual route preservation and loss.
