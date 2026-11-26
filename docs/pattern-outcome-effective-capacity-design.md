@@ -851,3 +851,73 @@ Nine source coverage contract tests passed in isolated JS. Native
 full-repository and V10 validation still require a clean checkout:
 `node --test test/outcome-strength-reference-coverage.test.mjs` and
 `npm run audit:pattern-strength-reference-coverage`.
+
+## P3-B7a/b — Literal burden demand versus rooted operation
+
+The default rooted-operation synthesis (v1) is unchanged. The opt-in
+`policy: 'literal-demand'` synthesis (v2) distinguishes literal action
+exposure from rooted hypothetical operation. The action inventory is
+bound to the existing operation-rule identity, endpoints, premises and
+per-actor group membership. Every literal action receives one fixed
+positive observation; the three exposure groups derive their own
+structural propositions. Existing replenishment and rooted-operation
+judgments and rule results are preserved. No literal fact asserts
+operation, drain magnitude, injury or effective expenditure.
+
+The experimental v2 maps the control and drain excess guards to literal
+exposure rather than rooted-operation bases, and adds a separate wealth
+demand guard for outgoing control. The root-strength alternative also
+requires the explicit negative wealth-demand guard. Missing root support
+alone never implies weakness. All four guards remain unresolved in the
+baseline. Excess guards require their corresponding exposure, but
+exposure does not establish excess. Negative hypothetical guards are
+not clearance evidence inferred from silence. These rules improve
+representability only: the excess predicates are not independently
+computable, and the wealth guard's sufficient-condition interpretation
+is a research hypothesis rather than a validated classical rule.
+
+Source scope: 子平真詮 論財 (https://www.donglishuzhai.net/chapter/3746.html),
+論財取運 (https://www.donglishuzhai.net/chapter/3747.html), and the
+commentary (https://ncc.com.tw/fate/paleo/bg/bg_034.htm) distinguish
+wealth context and the body's ability to bear wealth. They do not
+establish a general numerical expenditure rule or validate the new
+guard. The v2 mapping is not used to select strength, pattern,
+assistant, or useful element.
+
+The generic positive frontier now permits fixed positive observation
+facts, representing each with an empty assumption term. Canonical
+packet validation still applies; negative facts and non-observation
+facts are excluded. Witness replay retains these facts and varies only
+unfixed observations. Partial scope still publishes no conditional
+state inventory. This is a general extension of the monotone fragment,
+not a special case for a particular chart.
+
+Paired source-level run at da3caa38 (33 actual modules, pinned core
+sources unchanged from bb3ab7a, both policies, all 76 audited charts):
+
+| Cohort | Policy | Both | Strong only | Weak only | Neither | Reference direction expressible |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Primary (53) | v1 | 40 | 1 | 11 | 1 | 51 |
+| Primary (53) | v2 | 41 | 0 | 12 | 0 | 53 |
+| All (76) | v1 | 59 | 1 | 15 | 1 | 73 |
+| All (76) | v2 | 60 | 0 | 16 | 0 | 75 |
+
+No invalid or unavailable cases in either policy. XU14 moves from
+strong-only to both; XU26 moves from neither to weak-only. The
+secondary W12 direct-root gap remains. All other possibilities remain
+unchanged. The 53/53 primary expressivity is not accuracy or prospective
+validation, since the same retrospective cohort motivated the change.
+The both-direction count increases, so the new policy does not solve
+discrimination. No historical reference label was edited.
+
+Six new tests (five demand-policy tests and one fixed-fact test) and
+16 existing isolated tests passed, 22 total. They include exhaustive
+local witness replay, absence-of-support non-inference, partial scope,
+and forged inventory rejection. The full native Node/V10 regression
+remains unexecuted. The CLI now provides paired comparison while
+preserving baseline failures and reporting alternate failures separately:
+`npm run audit:pattern-strength-reference-coverage -- --compare-demand`.
+Next: investigate independent support sufficiency, particularly
+indirect supply, then define and independently validate directional
+guard predicates. Do not promote this exploratory policy simply because
+it covers the development corpus.
