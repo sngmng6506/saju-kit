@@ -1,0 +1,122 @@
+{
+  "version": "p1-4d-direct-residual-replay-v1",
+  "execution": "Production core module bodies in JS isolate; fixture/URL adapters; no public V10/native Node run",
+  "base": "2ad3debc69aacffa0bcdb96fa22812a185d2961c",
+  "comparedBranch": "work/p1-4d-direct-residual",
+  "replays": 40,
+  "legacyClauseParity": true,
+  "coverage": {
+    "eligible": 82,
+    "directInjurySupported": 0,
+    "directSupportedResidualUnresolved": 0,
+    "supported": 0,
+    "unresolved": 82,
+    "modelSupported": 0,
+    "structureSupported": 2,
+    "bothSupported": 0,
+    "blockers": {
+      "element-model": 82,
+      "structural-screen": 80,
+      "direct-grounded-source-basis": 39,
+      "no-observed-combination-or-clash-reference": 47,
+      "no-other-observed-context-blocker": 69,
+      "source-pressure-screen-clear": 44,
+      "no-observed-interposition-candidate": 35,
+      "adjacent-visible-action": 40,
+      "target-pressure-screen-clear": 33
+    },
+    "singleBlockers": {},
+    "families": {
+      "modeled-target-injury": {
+        "eligible": 35,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 2,
+        "bothSupported": 0
+      },
+      "modeled-source-release": {
+        "eligible": 47,
+        "supported": 0,
+        "modelSupported": 0,
+        "structureSupported": 0,
+        "bothSupported": 0
+      }
+    }
+  },
+  "routeCounts": {
+    "screen-blocked": 184
+  },
+  "controls": [
+    {
+      "id": "release",
+      "scope": "complete",
+      "state": "supported",
+      "direct": null,
+      "candidates": []
+    },
+    {
+      "id": "release",
+      "scope": "partial",
+      "state": "unresolved",
+      "direct": null,
+      "candidates": []
+    },
+    {
+      "id": "injury",
+      "scope": "complete",
+      "state": "supported",
+      "direct": "supported",
+      "candidates": []
+    },
+    {
+      "id": "injury",
+      "scope": "partial",
+      "state": "unresolved",
+      "direct": "unresolved",
+      "candidates": []
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "complete",
+      "state": "unresolved",
+      "direct": null,
+      "candidates": []
+    },
+    {
+      "id": "release-contested-root",
+      "scope": "partial",
+      "state": "unresolved",
+      "direct": null,
+      "candidates": []
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "complete",
+      "state": "unresolved",
+      "direct": "supported",
+      "candidates": [
+        {
+          "pathId": "[\"protection\",\"hour:stem\",\"month:stem\",\"day:stem\"]",
+          "kind": "protection",
+          "helperNodeId": "hour:stem",
+          "dependencyIds": [],
+          "otherBlockers": [
+            "helper-root-not-observed",
+            "nonlocal-protection-chain"
+          ],
+          "structuralDependencyRank": null,
+          "structuralState": "screen-blocked",
+          "actualReliefState": "unresolved"
+        }
+      ]
+    },
+    {
+      "id": "injury-interposition",
+      "scope": "partial",
+      "state": "unresolved",
+      "direct": "unresolved",
+      "candidates": []
+    }
+  ],
+  "errors": []
+}
