@@ -687,3 +687,54 @@ reviewed semantic comparison of actual replenishment, control, and
 drain without interpreting logical implication as magnitude or
 inventing independent quantitative capacity. No actual-strength
 predicate is resolved here.
+
+## P3-B3e — Shared conditional strength synthesis (actor projection)
+
+The existing contextual-strength policy owns the three source-inspired
+alternatives; the new synthesis consumes copies of those definitions.
+It extends the exact burden proof packet, preserves all original
+judgments and rule results, and projects the policy onto each visible
+actor. Element-wide legacy and contextual-strength results are unchanged.
+An actor's direct-root basis uses exactly the same root retention/access
+premises as its replenishment seed; indirect supply is not direct root.
+Incoming-control and outgoing-generation burden propositions come from
+the shared rooted action packet, not the broad element-level axes.
+Outgoing-control expenditure remains a diagnostic, not a new weakness
+rule. This is a narrower actor-local experimental scope, not equivalent
+to the older element-wide model.
+
+For each actor, a true deep-root, excessive-control or excessive-drain
+guard requires its corresponding modeled direct-root or rooted action
+basis. These are necessary conditions within the modeled scope, not
+sufficient tests of the semantic predicates. False guards are explicit
+hypothetical assignments, not clearance inferred from missing evidence.
+All actual semantic predicates remain unresolved in baseline evidence.
+The three policy alternatives retain their paired signed contrasts.
+No strength feedback is used to establish a root, supply or burden.
+
+The symbolic guarded frontier algorithm applies only to terminal signed
+rules, each having one positive Horn basis proposition and a conjunction
+of explicit Boolean guard literals. After fixing the guard assignment,
+true-guard requirements and requested support/opposition are positive
+DNFs. For each four-valued state it searches products of minimal terms,
+rejecting unions satisfying an excluded monotone DNF. A witness exists
+iff such a union exists, since adding true variables cannot make an
+excluded positive DNF false. No scenario counts or probabilities are
+reported. Witnesses list true observation IDs; all others are false.
+Every returned witness is replayed using the actual combined argument
+engine. Individual actor states are exact within this bounded fragment;
+they are not a chart-wide joint outcome or physical feasibility model.
+Guard and work limits return no truncated state inventory; the positive
+frontier has its own existing resource limits.
+
+The native and development compositions expose strengthSynthesis.
+It does not drive pattern, outcome or useful-element selection.
+Six isolated tests passed against the actual JavaScript implementation,
+including comparison against all 512 assignments of the three-actor
+fixture's six base and three local guard variables. Native replay tests
+are registered but not executed. A new checkout attempt failed DNS
+resolution of github.com. Full native regression is still required.
+The next gate is native verification and independent review of the
+semantic predicates: deep usable support and excessive control/drain
+remain uncomputed. Do not add a decision-authority bridge until that
+gate is satisfied.
