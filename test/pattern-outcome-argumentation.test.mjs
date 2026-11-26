@@ -9,6 +9,9 @@ import {evaluateClashScenario,reviewClashPolicy,clashSourcePolicies} from '../sr
 import {observeClashResidualContext} from '../src/features/pattern/outcome-clash-residual.js';
 import {evaluateJointScenario,reviewJointConstraints} from '../src/features/pattern/outcome-joint-constraints.js';
 import {resolveDayDirection,reviewDayBalanceDirection} from '../src/features/pattern/outcome-day-balance-direction.js';
+import {elementRelation} from '../src/core/elements.js';
+import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
+import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -496,6 +499,77 @@ test('native day-balance direction replay preserves original scope and decision 
   assert.deepEqual(r,reviewDayBalanceDirection(x.prior,m.argumentReview,m.jointConstraintReview,native.regulationStrength),c.id);
   assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'));assert.equal(native.decisionReview.status,'abstained');
   if(!complete)assert.ok(r.actions.every(a=>a.directionFit==='unresolved'));n++;
+ }
+ assert.equal(n,24);
+});
+
+function elementModelFixture(completeHour=true){
+ const base={status:completeHour?'diagnostic':'partial',completeHour,selectionAuthority:false};
+ const positions=completeHour?['year','month','day','hour']:['year','month','day'];
+ const visible=positions.map(position=>({id:'visible:'+position,position,layer:'visible',stem:position==='day'?'병':'임',element:position==='day'?'fire':'water',contacts:[],graphNodeId:position+':stem'}));
+ const hidden=positions.map(position=>({id:'hidden:'+position+':계',position,layer:'hidden',stem:'계',element:'water',hiddenRole:'principal',contacts:[],graphNodeId:position+':branch:water'}));
+ const actors=[...visible,...hidden].map(a=>({...a,seasonal:{seasonRelation:elementRelation('water',a.element),principalRelation:elementRelation('water',a.element)}}));
+ const slots=hidden.map(a=>({id:a.id,position:a.position,stem:a.stem,element:a.element,role:a.hiddenRole,state:'uncontested-substantial-observation',effectiveRoot:null}));
+ const occurrences=actors.map(a=>({id:a.id,uncontestedRootIds:a.element==='water'?slots.map(s=>s.id):[],contestedRootIds:[],seasonal:{monthBranchContested:false}}));
+ const nodes=actors.map(a=>({nodeId:a.graphNodeId,position:a.position,element:a.element,occurrenceIds:[a.id],contacts:[],groundedRootIds:a.layer==='hidden'?[a.id]:a.element==='water'?slots.map(s=>s.id):[],contestedRootIds:[],
+  state:a.element==='water'?'grounded-observation':completeHour?'no-substantial-root-observed':'partial',independentSupplyConfirmed:null}));
+ const actions=actors.flatMap(a=>actors.filter(b=>a.position!==b.position||a.layer!==b.layer).flatMap(b=>{
+  const rel=elementRelation(a.element,b.element);
+  return rel.direction==='left-to-right'?[{edgeId:a.id+'>'+b.id,from:a.id,to:b.id,kind:rel.type,effective:null,selectionAuthority:false}]:[];
+ }));
+ const sourceActions=actions.filter(e=>e.from.startsWith('visible:')&&e.to.startsWith('visible:')).map(e=>({
+  ...e,actualEffectPropositionId:'effect:'+e.edgeId,actualEffectState:'unresolved',effectConfirmed:null,
+  clauses:sourceEffectClauses().filter(c=>c.kind==='control'&&c.fromElement==='water'&&c.toElement==='fire').map(c=>({clauseId:c.id,predicateActorId:e.to,predicateElement:'fire',predicate:c.predicate,predicateState:'unresolved',effectConfirmed:null}))
+ }));
+ return {prior:{completeHour,stemForce:{occurrences:actors}},root:{...base,rootEffectConfirmed:null,slots,occurrences},supply:{...base,effectiveSupply:null,nodes,actions},source:{...base,effectConfirmed:null,actions:sourceActions}};
+}
+const elementReview=x=>reviewElementContexts(x.prior,x.root,x.supply,x.source);
+test('element context model resolves bounded strong and weak contrasts without count scores',()=>{
+ const r=elementReview(elementModelFixture());assert.equal(r.status,'diagnostic',r.reason);
+ const water=r.elements.find(e=>e.element==='water'),fire=r.elements.find(e=>e.element==='fire');
+ assert.equal(water.model.strongState,'supported');assert.equal(water.model.weakState,'opposed');
+ assert.equal(fire.model.weakState,'supported');assert.equal(fire.model.strongState,'opposed');
+ assert.equal(water.cleanPrincipalSlotIds.length,4);
+ assert.ok(r.elements.filter(e=>!['water','fire'].includes(e.element)).every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
+ assert.ok(r.elements.every(e=>e.actualStrengthState==='unresolved'&&e.excessState==='unresolved'&&e.deficiencyState==='unresolved'));
+ assert.ok(r.actions.every(a=>a.clauses.find(c=>c.predicate==='weak').modeledApplicability==='supported'));
+ assert.ok(r.actions.every(a=>a.clauses.every(c=>c.actualPredicateState==='unresolved'&&c.actualEffectState==='unresolved')));
+ assert.ok(r.actions.every(a=>a.clauses.find(c=>c.predicate==='resistant').modeledApplicability==='unresolved'));
+});
+test('element model contrasts require each independent condition and never infer weak from not strong',()=>{
+ const r=elementReview(elementModelFixture());
+ const p=r.elements.find(e=>e.element==='water'),refs=Object.fromEntries(p.model.evidence.map(e=>[e.propositionId,e.refs]));
+ const run=axes=>evaluateElementContextModel({completeHour:true,element:p.element,axes,evidenceRefs:refs});
+ for(const axis of ['seasonSupports','principalSupports','cleanPrincipalRoot','clearContacts','monthContextClear','noRootedBurdenBasis']){
+  const q=run({...p.axes,[axis]:null});assert.equal(q.strongState,'unresolved');assert.equal(q.weakState,'unresolved');
+ }
+ const q=run({...p.axes,substantialRoot:false});assert.equal(q.status,'invalid-evidence');
+ const fire=r.elements.find(e=>e.element==='fire');
+ const fr=Object.fromEntries(fire.model.evidence.map(e=>[e.propositionId,e.refs]));
+ for(const axis of ['noRootedGeneratorBasis','localGroundedControlCoverage','substantialRoot','seasonSupports','principalSupports']){
+  const x=evaluateElementContextModel({completeHour:true,element:'fire',axes:{...fire.axes,[axis]:null},evidenceRefs:fr});
+  assert.equal(x.weakState,'unresolved');assert.equal(x.strongState,'unresolved');
+ }
+});
+test('element review rejects omitted root basis forged predicates and partial-scope promotion',()=>{
+ const x=elementModelFixture();x.supply.nodes[0].groundedRootIds=[];x.supply.nodes[0].state='no-substantial-root-observed';
+ assert.equal(elementReview(x).status,'invalid-evidence');
+ const y=elementModelFixture();y.source.actions[0].clauses[0].predicateState='supported';assert.equal(elementReview(y).status,'invalid-evidence');
+ const z=elementModelFixture();z.prior.stemForce.occurrences[0].seasonal.seasonRelation={type:'same',direction:'left-to-right'};assert.equal(elementReview(z).status,'invalid-evidence');
+ const partial=elementReview(elementModelFixture(false));assert.equal(partial.status,'partial',partial.reason);
+ assert.ok(partial.elements.every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
+});
+test('native element context review preserves five-element inventory and source authority across packet variants',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete),native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  const m=native.efficacyReview.mechanismReview,r=m.elementContextReview;
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id+':'+r.reason);assert.equal(r.elements.length,5,c.id);
+  assert.deepEqual(r,reviewElementContexts(x.prior,m.rootContext,m.groundedSupply,m.sourceEffectReview),c.id);
+  assert.equal(r.actions.length,m.sourceEffectReview.actions.length,c.id);
+  assert.ok(r.elements.every(e=>e.actualStrengthState==='unresolved'&&e.excessState==='unresolved'&&e.deficiencyState==='unresolved'));
+  if(!complete)assert.ok(r.elements.every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
+  assert.equal(native.decisionReview.status,'abstained');n++;
  }
  assert.equal(n,24);
 });
