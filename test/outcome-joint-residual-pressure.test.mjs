@@ -39,6 +39,8 @@ test('fixed positive facts cannot be disabled and contradictory proposition requ
  const qs=[{id:'a',required:['A'],excluded:['B'],fixed:[]},{id:'b',required:['A'],excluded:[],fixed:[{id:'x',value:false}]},{id:'c',required:['C'],excluded:[],fixed:[]},{id:'d',required:['A'],excluded:['A'],fixed:[]}];
  const q=queryPositiveProofConstraints(p,qs);assert.equal(q.status,'diagnostic',q.reason);
  assert.deepEqual(q.queries.map(x=>x.feasible),[false,false,true,false]);assert.deepEqual(q.queries[2].witness,[]);
+ const collision={...p,evidence:[{...fact('x'),id:key('constraint-witness',0)}]};
+ assert.equal(queryPositiveProofConstraints(collision,[qs[2]]).queries[0].feasible,true);
  assert.equal(queryPositiveProofConstraints(packet,[{...qs[0],required:['unknown']}]).status,'invalid-evidence');
  assert.equal(queryPositiveProofConstraints(packet,Array.from({length:257},(_,i)=>({...qs[0],id:String(i)}))).status,'unavailable');
  assert.equal(queryPositiveProofConstraints({...packet,scope:'partial'},qs).status,'partial');
@@ -71,6 +73,8 @@ test('chart-wide queries include exact shared proof variables and preserve basel
   assert.ok(new Set(d.participants.map(p=>p.pressureId)).size>1);
   assert.equal(d.actualCapacityState,'unresolved');
   assert.equal(d.lostUnderExplicitRemoval.length+d.survivingAlternativeUnderRemoval.length,d.participants.length);
+  assert.deepEqual(d.requiredAcrossPressureIds,[...new Set(d.lostUnderExplicitRemoval.map(p=>p.pressureId))]);
+  if(d.lostUnderExplicitRemoval.length&&d.survivingAlternativeUnderRemoval.length){assert.equal(d.removalQuery.feasible,true);assert.ok(!d.removalQuery.witness.includes(d.variableId));}
  }
  // Check every claimed removal result by a distinct constraint query.
  const p=auditResidualPressure(x,{includeProof:true}).proof.packet;
