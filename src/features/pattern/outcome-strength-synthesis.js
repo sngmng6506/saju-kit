@@ -1,3 +1,4 @@
+import {strengthGuardIds,strengthGuardPropositionId} from './outcome-strength-guard-contract.js';
 import {compileIndependentSupply} from './outcome-independent-supply.js';
 import {evaluateArguments} from './outcome-argumentation.js';
 import {positiveProofFrontier} from './outcome-positive-frontier.js';
@@ -7,14 +8,14 @@ export const STRENGTH_SYNTHESIS_VERSION='p3-strength-synthesis-v1';
 const key=(...xs)=>JSON.stringify(xs);
 const same=(a,b)=>key(a)===key(b);
 const lit=(propositionId,sign='for')=>({propositionId,sign});
-const semantic=['deep-root-available','control-exceeds-support','drain-exceeds-support'];
-const demandGuard='wealth-demand-exceeds-support';
-const supplyGuard='indirect-support-sufficient';
+const semantic=strengthGuardIds.slice(0,3);
+const demandGuard=strengthGuardIds[3];
+const supplyGuard=strengthGuardIds[4];
 export const SUPPLY_STRENGTH_VERSION='p3-strength-synthesis-supply-v3';
 export const DEMAND_STRENGTH_VERSION='p3-strength-synthesis-demand-v2';
 // Reuse the burden proof packet, not its verdicts. Actor-local projections
 // of the source-inspired element policy are experimental, not replacements.
-export function synthesizeContextualStrength({completeHour,nodes,targets,burden,policy='rooted-operation'}={}){
+export function synthesizeContextualStrength({completeHour,nodes,targets,burden,policy='rooted-operation',scenarioRestrictions=[]}={}){
  const supply=policy==='indirect-support',demand=supply||policy==='literal-demand',version=supply?SUPPLY_STRENGTH_VERSION:demand?DEMAND_STRENGTH_VERSION:STRENGTH_SYNTHESIS_VERSION;
  const semanticIds=supply?[...semantic,demandGuard,supplyGuard]:demand?[...semantic,demandGuard]:semantic;
  const status=completeHour?'diagnostic':'partial';
@@ -22,6 +23,7 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
  const empty=reason=>({...base,status:'invalid-evidence',reason,rows:[],summary:null});
  if(!['rooted-operation','literal-demand','indirect-support'].includes(policy)||typeof completeHour!=='boolean'||burden?.status!==status||burden.completeHour!==completeHour||burden.selectionAuthority!==false||burden.effective!==null||
   burden.actualMagnitudeComparison!=='unresolved'||!Array.isArray(nodes)||!Array.isArray(targets)||new Set(targets).size!==targets.length)return empty('upstream');
+ if(!Array.isArray(scenarioRestrictions)||scenarioRestrictions.some(r=>!r||!targets.includes(r.targetId)||!semanticIds.includes(r.guard)||typeof r.value!=='boolean')||new Set(scenarioRestrictions.map(r=>key(r.targetId,r.guard))).size!==scenarioRestrictions.length)return empty('scenario-restriction-contract');
  try{
   const original=burden.packet,baseline=evaluateArguments(original);
   if(baseline.status!==status||!same(baseline.judgments,burden.judgments)||!same(baseline.ruleResults,burden.ruleResults)||original.evidence.length)return empty('proof-replay');
@@ -83,7 +85,7 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
   if(!['diagnostic','partial','unavailable'].includes(frontier.status))return empty('positive-frontier');
   const rows=[];
   for(const m of manifests){
-   const t=m.targetId,guards=semanticIds.map(k=>add(key('strength-guard',t,k),t,k,'observation')),guard=new Map(semanticIds.map((k,i)=>[k,guards[i]]));
+   const t=m.targetId,guards=semanticIds.map(k=>add(strengthGuardPropositionId(t,k),t,k,'observation')),guard=new Map(semanticIds.map((k,i)=>[k,guards[i]]));
    const controlBasis=demand?m.exposure['incoming-control']:m.control,drainBasis=demand?m.exposure['outgoing-generation']:m.drain;
    const basisByKind=new Map([['substantial-root-basis',m.direct],['controller-basis',controlBasis],['output-basis',drainBasis]]);
    const bases=[m.direct,controlBasis,drainBasis];
@@ -109,9 +111,10 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
      terminal.push({target:out,sign,basis,guards:conditions});
     }
    }
-   const analysis=frontier.status==='diagnostic'?analyzeGuardedFrontier({frontiers:frontier.frontiers,guards,requirements,targets:[strong,weak],rules:terminal}):{status:frontier.status,reason:frontier.reason,targets:[]};
+   const fixedGuards=scenarioRestrictions.filter(r=>r.targetId===t).map(r=>({id:guard.get(r.guard),value:r.value}));
+   const analysis=frontier.status==='diagnostic'?analyzeGuardedFrontier({frontiers:frontier.frontiers,guards,requirements,targets:[strong,weak],rules:terminal,fixedGuards}):{status:frontier.status,reason:frontier.reason,targets:[]};
    if(!['diagnostic','partial','unavailable'].includes(analysis.status))return empty('guarded-frontier');
-   rows.push({...m,strongPropositionId:strong,weakPropositionId:weak,guardIds:guards,requirements,terminal,analysis,actualStrengthState:'unresolved'});
+   rows.push({...m,strongPropositionId:strong,weakPropositionId:weak,guardIds:guards,requirements,terminal,analysis,...(fixedGuards.length?{scenarioRestrictions:fixedGuards,scenarioFeasible:analysis.status==='diagnostic'?analysis.targets.every(t=>t.possibleStates.length>0):null}:{}),actualStrengthState:'unresolved'});
   }
   const packet={...original,evidence,propositions,rules},result=evaluateArguments(packet);
   if(result.status!==status||!same(result.judgments.slice(0,baseline.judgments.length),baseline.judgments)||!same(result.ruleResults.slice(0,baseline.ruleResults.length),baseline.ruleResults))return empty('original-proof-parity');
@@ -126,10 +129,10 @@ export function synthesizeContextualStrength({completeHour,nodes,targets,burden,
     const truth=new Set(witness);
     const hypothetical=propositions.filter(p=>p.level==='observation'&&!fixed.has(p.id)).map((p,i)=>({id:key('strength-witness',i),propositionId:p.id,sign:truth.has(p.id)?'for':'against',refs:[{owner:'strength-synthesis-witness',id:p.id,field:'hypothetical'}],applicability:'complete-only'}));
     const replay=evaluateArguments({...packet,evidence:[...evidence,...hypothetical]}),js=new Map(replay.judgments.map(j=>[j.id,j.state]));
-    if(replay.status!=='diagnostic'||js.get(t.id)!==state||r.requirements.some(q=>truth.has(q.guard)&&js.get(q.basis)!=='supported'))return empty('witness-replay');
+    if(replay.status!=='diagnostic'||js.get(t.id)!==state||(r.scenarioRestrictions??[]).some(g=>truth.has(g.id)!==g.value)||r.requirements.some(q=>truth.has(q.guard)&&js.get(q.basis)!=='supported'))return empty('witness-replay');
    }
   }
-  return {...base,status,reason:null,packet,judgments:result.judgments,ruleResults:result.ruleResults,rows,
+  return {...base,status,reason:null,...(scenarioRestrictions.length?{scenarioRestrictionAuthority:'hypothetical-only'}:{}),packet,judgments:result.judgments,ruleResults:result.ruleResults,rows,
    summary:{targets:rows.length,analysisStatus:rows.every(r=>r.analysis.status==='diagnostic')&&completeHour?'diagnostic':completeHour?'unavailable':'partial',actualEffectsConfirmed:0},
    limitations:['actor-local-projection-not-element-strength','root-seeded-action-not-actual-burden',...(demand?['literal-exposure-not-operation','wealth-demand-guard-unreviewed','alternative-research-policy-not-runtime-default']:[]),'guard-truth-requires-modeled-basis-only',...(supply?['recipient-excluded-origin-not-independent-physical-capacity','indirect-support-sufficiency-unreviewed']:[]),'no-magnitude-comparison','local-state-possibility-not-chart-wide-joint-feasibility','no-selection-authority']};
  }catch(e){return empty(e instanceof Error?e.message:'invalid-reference');}
