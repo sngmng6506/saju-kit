@@ -43,7 +43,10 @@ export function queryPositiveProofConstraints(packet,queries){
   for(const q of queries){
    const witness=solve(q);
    if(witness!==null){
-    const truth=new Set([...fixedFacts,...witness]),evidence=[...packet.evidence,...observations.filter(id=>!fixedFacts.has(id)).map((id,i)=>({id:key('constraint-witness',i),propositionId:id,sign:truth.has(id)?'for':'against',refs:[{owner:'positive-constraint-witness',id,field:'hypothetical'}],applicability:'complete-only'}))];
+    const truth=new Set([...fixedFacts,...witness]),usedIds=new Set(packet.evidence.map(e=>e.id));
+    let serial=0;
+    const nextId=()=>{let id;do{id=key('constraint-witness',serial++);}while(usedIds.has(id));usedIds.add(id);return id;};
+    const evidence=[...packet.evidence,...observations.filter(id=>!fixedFacts.has(id)).map(id=>({id:nextId(),propositionId:id,sign:truth.has(id)?'for':'against',refs:[{owner:'positive-constraint-witness',id,field:'hypothetical'}],applicability:'complete-only'}))];
     const replay=evaluateArguments({...packet,evidence}),j=new Map(replay.judgments.map(x=>[x.id,x.state]));
     if(replay.status!=='diagnostic'||q.required.some(id=>j.get(id)!=='supported')||q.excluded.some(id=>j.get(id)==='supported')||q.fixed.some(x=>truth.has(x.id)!==x.value))return empty('invalid-evidence','witness-replay');
    }
