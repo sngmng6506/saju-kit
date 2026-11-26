@@ -7,6 +7,8 @@ import {observeCombinationContext} from '../src/features/pattern/outcome-combina
 import {observeCombinationResidualContext} from '../src/features/pattern/outcome-combination-residual.js';
 import {evaluateClashScenario,reviewClashPolicy,clashSourcePolicies} from '../src/features/pattern/outcome-clash-policy.js';
 import {observeClashResidualContext} from '../src/features/pattern/outcome-clash-residual.js';
+import {evaluateJointScenario,reviewJointConstraints} from '../src/features/pattern/outcome-joint-constraints.js';
+import {reviewSourceEffectPolicy} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -359,6 +361,75 @@ test('native clash policy preserves 24 packet variants and exact residual scope'
   assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'&&!a.actualUndercuts.length));
   const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
   assert.deepEqual(native.efficacyReview.mechanismReview.clashPolicyReview,r,c.id);assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
+});
+
+const jointLit=(propositionId,sign='for')=>({propositionId,sign});
+const jointAlt=(id,requires,undercutWhen=[])=>({id,requires:requires.map(x=>typeof x==='string'?jointLit(x):x),undercutWhen:undercutWhen.map(x=>jointLit(x))});
+test('joint closure preserves alternatives, explicit opposition and unseeded cycles',()=>{
+ const candidates=[
+  {id:'A',alternatives:[jointAlt('cycle',['B']),jointAlt('seed',['seed'],['block'])]},
+  {id:'B',alternatives:[jointAlt('from-A',['A'])],rebutWhen:[jointLit('counter')]},
+  {id:'C',alternatives:[jointAlt('via-B',['B']),jointAlt('independent',['other'])]}
+ ];
+ const run=(seed,block,other='unresolved',counter='unresolved',scope='complete')=>evaluateJointScenario({scope,candidates,assumptions:[{id:'seed',state:seed},{id:'block',state:block},{id:'other',state:other},{id:'counter',state:counter}]});
+ const state=(r,id)=>r.judgments.find(x=>x.id===id).state;
+ let r=run('unresolved','unresolved');assert.ok(r.judgments.every(j=>j.state==='unresolved'));
+ r=run('supported','opposed');assert.equal(state(r,'C'),'supported');
+ r=run('supported','supported','supported');assert.equal(state(r,'A'),'unresolved');assert.equal(state(r,'B'),'unresolved');assert.equal(state(r,'C'),'supported');
+ r=run('supported','opposed','unresolved','supported');assert.equal(state(r,'B'),'conflicting');
+ r=run('supported','opposed','supported','supported','partial');assert.ok(r.judgments.every(j=>j.state==='unresolved'));
+ assert.equal(evaluateJointScenario({scope:'complete',assumptions:[],candidates:[{id:'a',alternatives:[jointAlt('x',['unknown'])]}]}).status,'invalid-evidence');
+});
+function jointFixture(complete=true){
+ const base={status:complete?'diagnostic':'partial',completeHour:complete,selectionAuthority:false,effective:null},u='unresolved';
+ const a={id:'visible:year',layer:'visible'},b={id:'visible:month',layer:'visible'},c={id:'visible:day',layer:'visible'},h={id:'hidden:year:갑',layer:'hidden'};
+ const edges=[[a,b,'generate'],[b,c,'generate'],[a,c,'control']].map(([x,y,kind])=>({edgeId:x.id+'>'+y.id,from:x.id,to:y.id,kind,effectPropositionId:'effect:'+x.id+'>'+y.id}));
+ const [ab,bc,ac]=edges;
+ const pairId='pair',pathId='mediation',pressureId='pressure',slotId=h.id;
+ const occ=[a,b,c].map(x=>({id:x.id,directRoot:{uncontestedRootIds:[],contestedRootIds:x===a?[slotId]:[]},paths:[],groundedPathIds:[]}));
+ occ[1].paths=[{id:'incoming',recipientId:b.id,upstream:'observed',donor:{groundedRootIds:[slotId]}}];occ[1].groundedPathIds=['incoming'];
+ const effectRows=edges.map(e=>({id:e.effectPropositionId,subject:e.edgeId,kind:'actual-action-effective',level:'effect-hypothesis',state:u,support:{rank:null},opposition:{rank:null}}));
+ const source={...base,effectConfirmed:null,actions:edges.map(e=>({edgeId:e.edgeId,actualEffectPropositionId:e.effectPropositionId,actualEffectState:u,clauses:[]}))};
+ const pair={pairId,participantIds:[a.id,b.id],competitorPairIds:[],actualRestrictionState:u,actualTransformationState:u,actualRetentionState:u};
+ const combination={...base,pairs:[pair],actions:edges.map(e=>({edgeId:e.edgeId,fromPairIds:[a.id,b.id].includes(e.from)?[pairId]:[],toPairIds:[a.id,b.id].includes(e.to)?[pairId]:[],originalEffectPropositionId:e.effectPropositionId,actualEffectState:u}))};
+ const clash={...base,slots:[{slotId}],reliefs:[],actions:[ab,ac].map(e=>({edgeId:e.edgeId,substantialRootIds:[slotId],residualRootIds:[],originalEffectPropositionId:e.effectPropositionId,actualEffectState:u}))};
+ const interposition={...base,actions:[{edgeId:ac.edgeId,actualEffectPropositionId:ac.effectPropositionId,actualEffectState:u,pathIds:[pathId]}],paths:[{pathId,kind:'mediation',helperId:b.id,controllerId:a.id,targetId:c.id,controlEdgeId:ac.edgeId,legEdgeIds:[ab.edgeId,bc.edgeId,ac.edgeId],pressureId,dependencyIds:['external'],sourcePolicyId:'tongguan',actualEffectState:u}]};
+ return {prior:{completeHour:complete,stemForce:{occurrences:[a,b,c,h]}},supply:{...base,effectiveSupply:null,occurrences:occ},argument:{...base,actions:edges,judgments:effectRows},source,interposition,combination,clash};
+}
+const jointReview=x=>reviewJointConstraints(x.prior,x.supply,x.argument,x.source,x.interposition,x.combination,x.clash);
+test('joint production binds shared physical roots and exact leg restrictions without promotion',()=>{
+ const r=jointReview(jointFixture());assert.equal(r.status,'diagnostic');assert.equal(r.actions.length,3);assert.equal(r.sharedRoots.length,1);
+ assert.equal(r.sharedRoots[0].independentCapacityConfirmed,null);assert.equal(r.paths.length,1);
+ const path=r.paths[0];assert.equal(path.requiredLegIds.length,2);assert.ok(!path.requiredLegIds.includes(path.controlEdgeId));
+ assert.ok(path.conditionalRestrictionIds.some(id=>JSON.parse(id)[0]==='pair-restricts-leg'));
+ assert.ok(path.conditionalRestrictionIds.some(id=>JSON.parse(id)[0]==='root-loss-blocks-leg'));
+ assert.ok(r.scenario.judgments.every(j=>j.state==='unresolved'));assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'));
+ const assumptions=r.scenario.assumptions.map(a=>({...a,state:['path-obstruction','pair-restricts-leg','root-loss-blocks-leg'].includes(JSON.parse(a.id)[0])?'opposed':'supported'}));
+ const go=as=>evaluateJointScenario({scope:'complete',assumptions:as,candidates:r.scenario.candidates});
+ const state=x=>x.judgments.find(j=>j.id===path.scenarioPropositionId).state;
+ assert.equal(state(go(assumptions)),'supported');
+ const restriction=path.conditionalRestrictionIds.find(id=>JSON.parse(id)[0]==='pair-restricts-leg');
+ assert.equal(state(go(assumptions.map(a=>a.id===restriction?{...a,state:'conflicting'}:a))),'unresolved');
+ assert.equal(state(go(assumptions.map(a=>JSON.parse(a.id)[0]==='external-pressure-relief'?{...a,state:'unresolved'}:a))),'unresolved');
+ assert.equal(jointReview(jointFixture(false)).status,'partial');
+});
+test('joint review rejects foreign identity and keeps unmatched routes unassessed',()=>{
+ const x=jointFixture();x.interposition.paths[0].legEdgeIds[0]='foreign';assert.equal(jointReview(x).status,'invalid-evidence');
+ const y=jointFixture();y.argument.judgments[0].state='supported';assert.equal(jointReview(y).status,'invalid-evidence');
+ const z=jointFixture();z.interposition.paths[0].sourcePolicyId=null;const r=jointReview(z);assert.equal(r.status,'diagnostic');assert.equal(r.paths[0].scenarioPropositionId,null);
+});
+test('native joint constraint review replays all 24 variants with no effect promotion',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete);
+  const native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  const m=native.efficacyReview.mechanismReview,r=m.jointConstraintReview;
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id);
+  assert.deepEqual(r,reviewJointConstraints(x.prior,m.groundedSupply??x.supply,m.argumentReview,m.sourceEffectReview,m.interpositionPolicyReview,m.combinationPolicyReview,m.clashPolicyReview),c.id);
+  assert.equal(r.actions.length,m.argumentReview.actions.length,c.id);
+  assert.ok(r.actions.every(a=>a.actualEffectState==='unresolved'));assert.equal(native.decisionReview.status,'abstained');n++;
  }
  assert.equal(n,24);
 });
