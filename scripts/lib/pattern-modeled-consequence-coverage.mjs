@@ -16,6 +16,7 @@ import {reviewCombinationPolicy} from '../../src/features/pattern/outcome-combin
 import {reviewClashPolicy} from '../../src/features/pattern/outcome-clash-policy.js';
 import {reviewJointConstraints} from '../../src/features/pattern/outcome-joint-constraints.js';
 import {reviewElementContexts} from '../../src/features/pattern/outcome-element-context.js';
+import {reviewContactConstraintSensitivity} from '../../src/features/pattern/outcome-contact-constraint-sensitivity.js';
 import {reviewModeledConsequences} from '../../src/features/pattern/outcome-modeled-consequences.js';
 // Synthetic literal-pillar controls, not calendar-verified births or
 // independent classical labels. Each contrast changes one pillar.
@@ -46,9 +47,10 @@ export function replayModeledCoverage(pillars,completeHour){
  const combinationResidual=observeCombinationResidualContext(prior,formation,combination,root,supply),clashResidual=observeClashResidualContext(prior,formation,root,supply);
  const ip=reviewInterpositionPolicy(prior,supply,interposition,pressure,argument),cp=reviewCombinationPolicy(prior,combinationResidual,supply,argument),cl=reviewClashPolicy(prior,clashResidual,supply,argument);
  const joint=reviewJointConstraints(prior,supply,argument,source,ip,cp,cl),element=reviewElementContexts(prior,root,supply,source);
+ const contact=reviewContactConstraintSensitivity(prior,root,supply,cp,cl,joint);
  const modeled=reviewModeledConsequences(prior,supply,argument,pressure,joint,element);
  const expected=completeHour?'diagnostic':'partial';
- const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled})
+ const invalid=Object.entries({root,supply,interposition,pressure,locality,argument,source,combination,combinationResidual,clashResidual,ip,cp,cl,joint,element,modeled,contact})
   .filter(([,r])=>r.status!==expected).map(([owner,r])=>({owner,status:r.status,reason:r.reason??null}));
  const judgments=new Map(modeled.judgments.map(j=>[j.id,j.state]));
  const rows=modeled.actions.flatMap(a=>a.clauses.filter(c=>c.propositionId!==null).map(c=>{
@@ -64,7 +66,7 @@ export function replayModeledCoverage(pillars,completeHour){
    modelSupportRuleIds:p?.model.judgments.find(j=>j.id===JSON.parse(c.modelPropositionId)[2])?.support.witnesses.filter(w=>w.kind==='rule').map(w=>w.id)??[],
    resourceWitnesses:p?.resourceWitnesses??[],monthPrincipalRootIds:p?.monthPrincipalRootIds??[]};
  }));
- return {invalid,rows,interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
+ return {invalid,rows,contact,interpositionRoutes:modeled.interpositionRoutes,actionCount:modeled.actions.length,actualEffectPromoted:modeled.judgments.some(j=>j.level==='effect-hypothesis'&&j.state!=='unresolved')};
 }
 export function summarizeModeledCoverage(rows){
  const blockers={},singleBlockers={},families={};
