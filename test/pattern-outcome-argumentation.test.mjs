@@ -672,6 +672,19 @@ test('production core replay establishes both modeled consequences and withdraws
   assert.equal(r.actualEffectPromoted,false,c.id);
   const q=r.rows.find(a=>a.edgeId==='visible:month>visible:day'&&a.kind===c.kind);
   assert.equal(q?.state,complete?c.expected:'unresolved',c.id);
+  if(c.expectedModel)assert.equal(q.modelState,complete?c.expectedModel:'unresolved',c.id);
+  if(complete&&c.id==='resource-backed-release'){
+   assert.equal(q.axes.noRootedBurdenBasis,false);
+   assert.equal(q.axes.noRootedControllerBasis,true);
+   assert.deepEqual(q.modelSupportRuleIds,['strong-resource-model']);
+   assert.ok(q.resourceWitnesses.length>0);
+   assert.ok(q.resourceWitnesses.every(w=>w.rootIds.every(id=>!q.monthPrincipalRootIds.includes(id)&&id.split(':')[1]!=='month')));
+  }
+  if(complete&&c.id==='resource-basis-removed'){
+   assert.equal(q.axes.independentLocalResourceBasis,false);
+   assert.deepEqual(q.blockers,['element-model']);
+  }
+  if(complete&&c.id==='resource-with-rooted-controller')assert.equal(q.axes.noRootedControllerBasis,false);
   if(!complete)assert.ok(r.rows.every(a=>a.state==='unresolved'&&(a.directInjuryState==null||a.directInjuryState==='unresolved')));
   if(complete&&c.id==='injury-interposition'){
    assert.equal(q.modelState,'supported');assert.equal(q.structuralState,'supported');
@@ -690,4 +703,19 @@ test('coverage counts jointly unsatisfied and single missing premises without in
  const r=summarizeModeledCoverage(rows);assert.equal(r.eligible,3);assert.equal(r.supported,1);assert.equal(r.unresolved,2);
  assert.equal(r.modelSupported,2);assert.equal(r.structureSupported,2);assert.equal(r.bothSupported,2);
  assert.deepEqual(r.singleBlockers,{'no-observed-interposition-candidate':1});
+});
+
+test('resource-backed alternative requires its own independent premises and never infers weakness from failure',()=>{
+ const p=elementReview(elementModelFixture()).elements.find(e=>e.element==='water');
+ const refs=Object.fromEntries(p.model.evidence.map(e=>[e.propositionId,e.refs]));
+ const axes={...p.axes,noRootedBurdenBasis:false,noRootedGeneratorBasis:false,cleanMonthPrincipalRoot:true,independentLocalResourceBasis:true,noRootedControllerBasis:true};
+ const run=overrides=>evaluateElementContextModel({completeHour:true,element:'water',axes:{...axes,...overrides},evidenceRefs:refs});
+ assert.equal(run({}).strongState,'supported');
+ assert.deepEqual(run({}).judgments.find(j=>j.id==='strong').support.witnesses,[{kind:'rule',id:'strong-resource-model'}]);
+ for(const k of ['visible','seasonSupports','principalSupports','cleanMonthPrincipalRoot','clearContacts','monthContextClear','independentLocalResourceBasis','noRootedControllerBasis']){
+  const q=run({[k]:null});assert.equal(q.strongState,'unresolved',k);assert.equal(q.weakState,'unresolved',k);
+ }
+ assert.equal(run({noRootedControllerBasis:false}).strongState,'unresolved');
+ assert.equal(run({noRootedGeneratorBasis:true}).status,'invalid-evidence');
+ assert.equal(run({substantialRoot:false}).status,'invalid-evidence');
 });
