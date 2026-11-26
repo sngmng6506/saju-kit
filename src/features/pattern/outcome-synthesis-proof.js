@@ -27,11 +27,13 @@ export function describeSynthesisProof(g,id,owner){
 }
 
 // Bind an exported proof to its replayed judgment and expected source.
-// Alternatives are presentation data; only signed witnesses are bound here.
+// Bind alternatives as well: forged missing premises or undercuts must
+// not survive a projection of the replayed graph.
 export function bindSynthesisProof(g,p,owner,kind,subject){
  const j=g?.judgments.get(p?.propositionId);
  return !!j&&p.owner===owner&&p.kind===kind&&p.subject===subject&&p.level===j.level&&j.kind===kind&&j.subject===subject&&p.state===j.state&&
-  same(p.proof,{support:j.support,opposition:j.opposition});
+  same(p.proof,{support:j.support,opposition:j.opposition})&&
+  same(p.alternatives,describeSynthesisProof(g,j.id,owner).alternatives);
 }
 export function preservesSynthesisProofs(original,extended){
  return !!original&&!!extended&&[...original.judgments].every(([id,j])=>same(j,extended.judgments.get(id)));
