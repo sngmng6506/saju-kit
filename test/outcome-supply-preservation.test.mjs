@@ -14,7 +14,7 @@ const result=(q,id)=>q.queries.find(r=>r.id===id).feasible;
 test('cut distinguishes surviving alternative and total modeled loss in the same graph',()=>{
  const x=network(),q=querySupplyCut({...x,removedLinkIds:['ac']});
  assert.equal(q.status,'diagnostic',q.reason);assert.equal(result(q,'basis-survives'),true);assert.equal(result(q,'basis-lost'),true);
- assert.equal(result(q,'incoming-survives'),true);assert.equal(result(q,'direct-without-incoming'),false);
+ assert.equal(result(q,'incoming-survives'),true);assert.equal(result(q,'independent-origin-survives'),true);assert.equal(result(q,'direct-without-incoming'),false);
  assert.equal(result(q,'impossible-new-basis'),false);assert.equal(q.actualSupplyState,'unresolved');
  const all=querySupplyCut({...x,removedLinkIds:['ac','bc']});
  assert.equal(all.status,'diagnostic',all.reason);assert.equal(result(all,'basis-survives'),false);assert.equal(result(all,'basis-lost'),true);
@@ -79,4 +79,12 @@ test('rootless and partial chart do not imply supply loss',()=>{
  const q=auditSupplyPreservation(fixture(true,false));assert.equal(q.status,'diagnostic',q.reason);
  assert.equal(q.summary.conditionPossible,0);assert.equal(q.summary.lossPossible,0);assert.equal(q.actualSupplyState,'unresolved');
  const p=auditSupplyPreservation(fixture(false));assert.equal(p.status,'partial');assert.deepEqual(p.rows,[]);
+});
+
+test('recipient-root recycling is not independent origin after a route cut',()=>{
+ const nodes=[{id:'a',rootIds:[]},{id:'b',rootIds:['s']},{id:'c',rootIds:['r']}],links=[{id:'ac',from:'a',to:'c',kind:'peer'},{id:'ca',from:'c',to:'a',kind:'peer'},{id:'bc',from:'b',to:'c',kind:'generate'}],targets=['a','b','c'],completeHour=true;
+ const x={nodes,links,targets,completeHour},packet=compileReplenishmentNetwork(x).packet;
+ const q=querySupplyCut({...x,packet,targetId:'c',removedLinkIds:['bc']});
+ assert.equal(q.status,'diagnostic',q.reason);assert.equal(result(q,'incoming-survives'),true);assert.equal(result(q,'independent-origin-survives'),false);
+ assert.equal(result(q,'direct-without-incoming'),true);assert.equal(result(q,'impossible-independent-without-incoming'),false);
 });
