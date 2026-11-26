@@ -12,6 +12,7 @@ import {resolveDayDirection,reviewDayBalanceDirection} from '../src/features/pat
 import {elementRelation} from '../src/core/elements.js';
 import {sourceEffectClauses} from '../src/features/pattern/outcome-source-effect-policy.js';
 import {evaluateElementContextModel,reviewElementContexts} from '../src/features/pattern/outcome-element-context.js';
+import {reviewModeledConsequences} from '../src/features/pattern/outcome-modeled-consequences.js';
 import {evaluateArguments} from '../src/features/pattern/outcome-argumentation.js';
 import {observeArgumentReview} from '../src/features/pattern/outcome-argument-review.js';
 import {summarizeArgumentReview} from '../scripts/lib/pattern-outcome-argument-audit.mjs';
@@ -503,10 +504,10 @@ test('native day-balance direction replay preserves original scope and decision 
  assert.equal(n,24);
 });
 
-function elementModelFixture(completeHour=true){
+function elementModelFixture(completeHour=true,targetElement='fire'){
  const base={status:completeHour?'diagnostic':'partial',completeHour,selectionAuthority:false};
  const positions=completeHour?['year','month','day','hour']:['year','month','day'];
- const visible=positions.map(position=>({id:'visible:'+position,position,layer:'visible',stem:position==='day'?'병':'임',element:position==='day'?'fire':'water',contacts:[],graphNodeId:position+':stem'}));
+ const visible=positions.map(position=>({id:'visible:'+position,position,layer:'visible',stem:position==='day'?(targetElement==='wood'?'갑':'병'):'임',element:position==='day'?targetElement:'water',contacts:[],graphNodeId:position+':stem'}));
  const hidden=positions.map(position=>({id:'hidden:'+position+':계',position,layer:'hidden',stem:'계',element:'water',hiddenRole:'principal',contacts:[],graphNodeId:position+':branch:water'}));
  const actors=[...visible,...hidden].map(a=>({...a,seasonal:{seasonRelation:elementRelation('water',a.element),principalRelation:elementRelation('water',a.element)}}));
  const slots=hidden.map(a=>({id:a.id,position:a.position,stem:a.stem,element:a.element,role:a.hiddenRole,state:'uncontested-substantial-observation',effectiveRoot:null}));
@@ -519,7 +520,7 @@ function elementModelFixture(completeHour=true){
  }));
  const sourceActions=actions.filter(e=>e.from.startsWith('visible:')&&e.to.startsWith('visible:')).map(e=>({
   ...e,actualEffectPropositionId:'effect:'+e.edgeId,actualEffectState:'unresolved',effectConfirmed:null,
-  clauses:sourceEffectClauses().filter(c=>c.kind==='control'&&c.fromElement==='water'&&c.toElement==='fire').map(c=>({clauseId:c.id,predicateActorId:e.to,predicateElement:'fire',predicate:c.predicate,predicateState:'unresolved',effectConfirmed:null}))
+  clauses:sourceEffectClauses().filter(c=>c.kind===e.kind&&c.fromElement==='water'&&c.toElement===targetElement).map(c=>({clauseId:c.id,predicateActorId:c.role==='source'?e.from:e.to,predicateElement:c.role==='source'?'water':targetElement,predicate:c.predicate,predicateState:'unresolved',effectConfirmed:null}))
  }));
  return {prior:{completeHour,stemForce:{occurrences:actors}},root:{...base,rootEffectConfirmed:null,slots,occurrences},supply:{...base,effectiveSupply:null,nodes,actions},source:{...base,effectConfirmed:null,actions:sourceActions}};
 }
@@ -571,6 +572,88 @@ test('native element context review preserves five-element inventory and source 
   assert.equal(r.actions.length,m.sourceEffectReview.actions.length,c.id);
   assert.ok(r.elements.every(e=>e.actualStrengthState==='unresolved'&&e.excessState==='unresolved'&&e.deficiencyState==='unresolved'));
   if(!complete)assert.ok(r.elements.every(e=>e.model.strongState==='unresolved'&&e.model.weakState==='unresolved'));
+  assert.equal(native.decisionReview.status,'abstained');n++;
+ }
+ assert.equal(n,24);
+});
+
+function consequenceFixture(target='fire',complete=true){
+ const x=elementModelFixture(complete,target),element=elementReview(x);
+ assert.equal(element.status,complete?'diagnostic':'partial',element.reason);
+ const base={status:element.status,completeHour:complete,selectionAuthority:false,effective:null};
+ const byActor=new Map(x.prior.stemForce.occurrences.map(a=>[a.id,a]));
+ const propositions=[],evidence=[],rules=[],actions=[],jointActions=[],pressures=[];
+ for(const n of x.supply.nodes)n.kind=n.occurrenceIds[0].startsWith('visible:')?'visible-stem':'local-branch-constituents';
+ for(const e of x.source.actions){
+  const sid='screen:'+e.edgeId,eid=e.actualEffectPropositionId,oid='observed:'+e.edgeId;
+  propositions.push({id:sid,subject:e.edgeId,kind:e.kind==='generate'?'existing-generation-screen-met':'stable-source-profile-dominance',level:'structural-hypothesis'},
+   {id:eid,subject:e.edgeId,kind:'actual-action-effective',level:'effect-hypothesis'},
+   {id:oid,subject:e.edgeId,kind:'synthetic-screen-premise',level:'observation'});
+  evidence.push({id:'fact:'+oid,propositionId:oid,sign:'for',refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
+  rules.push({id:'rule:'+sid,policyId:'synthetic-screen-test',conclusion:{propositionId:sid,sign:'for'},premises:[{propositionId:oid,sign:'for'}],refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
+  actions.push({edgeId:e.edgeId,from:e.from,to:e.to,kind:e.kind,structuralPropositionId:sid,effectPropositionId:eid});
+  jointActions.push({...actions.at(-1),actualEffectState:'unresolved',combinationPairIds:[],exposedRootIds:[]});
+  const row=x.supply.actions.find(a=>a.edgeId===e.edgeId);
+  row.sourceBasis=complete?'direct-root-observed':'partial';row.contextBlockers=[];row.sourcePressure=[];row.targetPressure=[];
+  if(e.kind==='control'){
+   const from=byActor.get(e.from),to=byActor.get(e.to);
+   pressures.push({id:JSON.stringify([from.graphNodeId,to.graphNodeId]),controllerNodeId:from.graphNodeId,targetNodeId:to.graphNodeId,local:Math.abs(['year','month','day','hour'].indexOf(from.position)-['year','month','day','hour'].indexOf(to.position))===1,candidatePathIds:[],neutralizationConfirmed:null,effective:null});
+  }
+ }
+ const result=evaluateArguments({scope:complete?'complete':'partial',propositions,evidence,rules});
+ return {...x,element,argument:{...base,propositions,evidence,rules,actions,judgments:result.judgments,ruleResults:result.ruleResults},joint:{...base,actions:jointActions},pressure:{...base,pressures}};
+}
+const consequenceReview=x=>reviewModeledConsequences(x.prior,x.supply,x.argument,x.pressure,x.joint,x.element);
+const consequenceClause=(r,edge)=>r.actions.find(a=>a.edgeId===edge).clauses.find(c=>c.propositionId!==null);
+test('modeled consequences derive actual signed model proofs for both release and injury without generic effect promotion',()=>{
+ const edge='visible:month>visible:day';
+ for(const [target,kind] of [['fire','modeled-target-injury'],['wood','modeled-source-release']]){
+  const x=consequenceFixture(target),r=consequenceReview(x);assert.equal(r.status,'diagnostic',r.reason);
+  const c=consequenceClause(r,edge);assert.equal(c.kind,kind);assert.equal(c.state,'supported');assert.ok(c.proof.support.rank>=2);
+  assert.equal(c.proof.opposition.rank,null);
+  assert.equal(consequenceClause(r,'visible:year>visible:day').state,'unresolved');
+  assert.ok(r.judgments.filter(j=>j.level==='effect-hypothesis').every(j=>j.state==='unresolved'));
+  assert.ok(r.actions.flatMap(a=>a.clauses).filter(c=>c.propositionId===null).every(c=>c.state==='unresolved'));
+ }
+});
+test('modeled consequence withdraws on exact-edge interference or failed premise without asserting an opposite effect',()=>{
+ const edge='visible:month>visible:day';
+ const mutations=[
+  x=>{x.joint.actions.find(a=>a.edgeId===edge).combinationPairIds=['candidate'];},
+  x=>{x.joint.actions.find(a=>a.edgeId===edge).exposedRootIds=['candidate'];},
+  x=>{x.pressure.pressures.find(p=>p.local).candidatePathIds=['possible-protection'];},
+  x=>{x.supply.actions.find(a=>a.edgeId===edge).sourcePressure=[{donorState:'context-review'}];},
+  x=>{x.supply.actions.find(a=>a.edgeId===edge).contextBlockers=['nonlocal-context'];},
+  x=>{x.supply.actions.find(a=>a.edgeId===edge).sourceBasis='no-screened-source-basis';},
+  x=>{
+   const oid='observed:'+edge;
+   x.argument.evidence.push({id:'opposition:'+oid,propositionId:oid,sign:'against',refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
+   x.argument.rules.push({id:'oppose:'+oid,policyId:'synthetic-screen-test',conclusion:{propositionId:'screen:'+edge,sign:'against'},premises:[{propositionId:oid,sign:'against'}],refs:[{owner:'synthetic-fixture',id:oid,field:'state'}],applicability:'complete-only'});
+   const a=evaluateArguments({scope:'complete',propositions:x.argument.propositions,evidence:x.argument.evidence,rules:x.argument.rules});
+   x.argument.judgments=a.judgments;x.argument.ruleResults=a.ruleResults;
+  }
+ ];
+ for(const mutate of mutations){
+  const x=consequenceFixture();mutate(x);const r=consequenceReview(x);assert.equal(r.status,'diagnostic',r.reason);
+  const c=consequenceClause(r,edge);assert.equal(c.state,'unresolved');assert.equal(c.proof.opposition.rank,null);
+ }
+});
+test('modeled consequence rejects tampered proof and clause authority and abstains with missing hour',()=>{
+ const x=consequenceFixture();x.element.elements.find(p=>p.element==='fire').model.weakState='opposed';assert.equal(consequenceReview(x).status,'invalid-evidence');
+ const y=consequenceFixture();y.argument.judgments[0].state='unresolved';assert.equal(consequenceReview(y).status,'invalid-evidence');
+ const z=consequenceFixture();z.element.actions[0].clauses[0].actualPredicateState='supported';assert.equal(consequenceReview(z).status,'invalid-evidence');
+ const partial=consequenceReview(consequenceFixture('fire',false));assert.equal(partial.status,'partial',partial.reason);
+ assert.ok(partial.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
+});
+test('native modeled consequence review replays 24 packet variants with actual effects and decision authority unchanged',()=>{
+ const packet=JSON.parse(readFileSync(new URL('./fixtures/pattern-outcome-role-policy-source-v1.json',import.meta.url),'utf8'));let n=0;
+ for(const c of packet.cases)for(const complete of [true,false]){
+  const x=build(c.pillars,complete),native=analyzePatternOutcomeV10({saju:x.saju,birthBasis:'verified-chart',policy:PATTERN_OUTCOME_V10_VERSION});
+  const m=native.efficacyReview.mechanismReview,r=m.modeledConsequenceReview;
+  assert.equal(r.status,complete?'diagnostic':'partial',c.id+':'+r.reason);
+  assert.deepEqual(r,reviewModeledConsequences(x.prior,m.groundedSupply,m.argumentReview,m.pressureDependencyReview,m.jointConstraintReview,m.elementContextReview),c.id);
+  assert.equal(r.actions.length,m.argumentReview.actions.length);assert.ok(r.judgments.filter(j=>j.level==='effect-hypothesis').every(j=>j.state==='unresolved'));
+  if(!complete)assert.ok(r.actions.flatMap(a=>a.clauses).every(c=>c.state==='unresolved'));
   assert.equal(native.decisionReview.status,'abstained');n++;
  }
  assert.equal(n,24);
