@@ -27,5 +27,5 @@ export function buildLiteralStrengthInput(pillars,{basisOnly=false,onStage=()=>{
  onStage('groundedSupply');const supply=check('groundedSupply',observeGroundedSupply(prior,root));
  onStage('replenishmentReview');const replenishment=check('replenishmentReview',reviewReplenishment(prior,root,supply));
  onStage('burdenReview');const burden=check('burdenReview',reviewBurden(prior,replenishment));
- return {basis,burden,input:{completeHour:true,nodes:replenishment.nodes,links:replenishment.links,targets:replenishment.targets,burden:burden.analysis}};
+ return {basis,burden,input:{completeHour:true,nodes:replenishment.nodes,links:replenishment.links,stemForce,targets:replenishment.targets,burden:burden.analysis}};
 }
