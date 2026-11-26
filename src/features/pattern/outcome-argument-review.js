@@ -17,7 +17,7 @@ export function observeArgumentReview(prior,supply,pressure,locality){
   local=index(locality.relations,e=>e.edgeId),press=index(pressure.pressures,p=>p.id),raw=index(prior.relativeForce?.edges,e=>e.id);
  if(!actors||!obs||!actions||!local||!press||!raw||obs.size!==actors.size||actions.size!==raw.size)return empty('identity');
  const visible=[...actions.values()].filter(e=>actors.get(e.from)?.layer==='visible'&&actors.get(e.to)?.layer==='visible');
- if(visible.length!==local.size)return empty('visible-coverage');
+ if(visible.length!==local.size||[...actions.values()].some(e=>!actors.has(e.from)||!actors.has(e.to)||!raw.has(e.edgeId)))return empty('visible-coverage');
  const propositions=[],evidence=[],rules=[],rows=[];
  const add=(subject,kind,level)=>{const p={id:id(subject,kind),subject,kind,level};propositions.push(p);return p.id;};
  const fact=(p,value,refs)=>{
@@ -59,6 +59,10 @@ export function observeArgumentReview(prior,supply,pressure,locality){
     p.comparison?.original!==e.controlComparison)return empty('pressure-binding');
    structural=add(subject,'stable-source-profile-dominance','structural-hypothesis');
    const observation=add(subject,'stable-control-profile-contrast','observation');
+   const rel=p.comparison?.sensitivity,reverse=rel==='left-evidence-dominates'?'right-evidence-dominates':'left-evidence-dominates';
+   const expectedContrast=!complete?'partial':['left-evidence-dominates','right-evidence-dominates'].includes(rel)&&p.comparison.original===rel&&p.comparison.nonseason===rel&&p.comparison.seasonOnly!==reverse?
+    rel==='left-evidence-dominates'?'controller-evidence-dominance-stable':'target-evidence-dominance-stable':'direction-not-stable';
+   if(p.contrast!==expectedContrast)return empty('contrast-parity');
    const value=p.contrast==='controller-evidence-dominance-stable'?true:p.contrast==='target-evidence-dominance-stable'?false:null;
    fact(observation,value,[ref('pressureDependencyReview',p.id,'contrast'),ref('pressureDependencyReview',p.id,'comparison')]);
    for(const sign of ['for','against'])rule(structural,sign,[lit(observation,sign)],ref('pressureDependencyReview',p.id,'contrast'));
