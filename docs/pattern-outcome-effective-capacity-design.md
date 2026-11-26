@@ -546,3 +546,47 @@ The source-inspired alternative for conditional strength requires visible scope,
 The three semantic predicates still require operational definitions and independent source-based counterexamples. In particular, a burden exceeding support is a comparative semantic condition, not yet a computable independent measure of strength. No circular use of an existing strong/weak verdict as evidence for that condition is allowed. This version therefore improves representability and diagnostic proof obligations, not actual strength prediction. It is deliberately isolated from `modeledConsequenceReview`, pattern selection and useful-element authority. All actual strength fields remain unresolved.
 
 Verification: `node --test test/outcome-contextual-strength.test.mjs test/pattern-outcome-argumentation.test.mjs`. Six new isolated tests and four existing element-model fixture tests (with projection assertions) executed against actual JavaScript modules. Native whole-repository regression remains pending. Next: implement provenance-bound operational root-preservation and replenishment evidence, and independently review each comparison premise; only then evaluate new rule authority.
+
+## P3-B3b — Physical root preservation and conditional strength binding
+
+Root preservation is projected from the existing physical hidden-stem ledger
+and its exact incident clash/relief references, not a separate root calculator.
+Each physical substantial slot has a single Boolean retention hypothesis,
+reused across every same-element actor reference. The grade, pillar position,
+distance, exact-stem/same-element relation and contact metadata are preserved
+as separate attributes, not converted to weights. Residual roots are retained
+in the inventory but excluded from this substantial-root scenario. This
+inherits the existing substantial-root scope and is not a universal
+classical claim that residual roots cannot contribute.
+
+All substantial slot retention variables are unknown, including clean slots.
+A clash or candidate relief is not damage or restoration. The retained-basis
+queries (any substantial, none, principal, middle, month, exact-stem and
+same-element actor references) use a common assignment. An empty literal
+inventory is distinguished from hypothetical loss of observed roots.
+Assignments are abstract counterfactuals, not physically validated
+completions; same-branch contact correlation and actor-specific usable access
+remain unmodeled. Shared slot use is not independent capacity.
+
+The existing contextual strength evaluator accepts the exact substantial
+slot ID inventory in the element review and adds one necessary-condition
+constraint: deep usable direct-root support implies that at least one of
+these slots is retained. The converse is not asserted. The independent
+deep-root semantic predicate remains unknown, as do access and depth;
+the scenario constraint adds no evidence to the baseline argument graph.
+Both analyses use identical slot variable IDs within each element's domain,
+but report separate denominators because the strength scenario also varies
+semantic burden predicates. No chart-wide joint feasibility is claimed.
+
+Tests: four new root-preservation tests, six existing contextual-strength
+tests and four existing element-model fixture tests passed using isolated
+actual JavaScript modules. Two substantial slots produce four retention
+assignments, three with any surviving root. With three strength semantic
+variables the combined domain has 32 assignments, 28 after excluding
+deep-root support with no retained slot, and three strictly strong-support
+assignments in the all-structural-bases fixture. These are counts, not
+probabilities. Native full-chart and V10 regression remain unverified.
+
+Next: construct provenance-bound replenishment alternatives from direct
+roots and resource/peer supply witnesses, reuse retention identities, and
+model access requirements without making a circular strength assumption.
