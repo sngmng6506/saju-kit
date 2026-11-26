@@ -1,3 +1,4 @@
+import {buildSharedForceBasis,compareSharedForceBasis} from './outcome-shared-force-basis.js';
 import {evaluateContextualForceComparison} from './outcome-contextual-force.js';
 import {compareForceCompletionEnvelope} from '../../core/relative-force.js';
 // Pressure topology, not a force estimator. A grounded proof of the
@@ -87,6 +88,8 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
   pathMap=index(neutral.paths,p=>p.id),pairs=index(root.comparisons,p=>key(p.left,p.right));
  if(!actors||!obs||!nodes||!raw||!actions||!contexts||!pathMap||!pairs||actors.size!==obs.size||raw.size!==actions.size||
   [...actors.keys()].some(id=>!obs.has(id))||contexts.size!==[...actors.values()].filter(a=>a.layer==='visible').length)return empty();
+ const sharedForceBasis=buildSharedForceBasis(prior,root);
+ if(sharedForceBasis.status!==status)return empty();
  const graph=new Map();
  for(const a of actors.values()){if(!nodes.has(a.graphNodeId))return empty();if(!graph.has(a.graphNodeId))graph.set(a.graphNodeId,a);}
  const pressures=[],pressureMap=new Map();
@@ -111,6 +114,10 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
     comparisonDiagnostics=diagnoseControlContrast({completeHour:complete,originalLeft:prior.relativeForce.profiles[source.id]?.axes,
      originalRight:prior.relativeForce.profiles[a.id]?.axes,sensitivityLeft:so?.sensitivityAxes,sensitivityRight:ta?.sensitivityAxes,pair:p,reversed:!forward,pressureId:key(e.from,target)});
     if(!comparisonDiagnostics)return empty();
+    const shared=compareSharedForceBasis(sharedForceBasis,source.id,a.id);
+    if(![status,'unavailable'].includes(shared.status))return empty();
+    if(complete&&!same(shared.independentRelations,comparisonDiagnostics.views.sensitivity.possibleRelations))return empty();
+    comparisonDiagnostics.sharedBasis=shared;
    }
    const rel=comparison?.sensitivity;
    const contrast=!complete?'partial':!comparison?'hidden-comparison-unavailable':
@@ -177,6 +184,6 @@ export function observePressureDependencyReview(prior,root,supply,interposition)
   generation.push({edgeId:e.edgeId,from:e.from,to:e.to,sourcePressureIds,targetPressureIds,otherBlockers:nonpressure,state,
    originalScreen:e.generationScreen,unresolvedPressureIds:dependencies.filter(id=>!ranks.has(id)),effective:null});
  }
- return {...base,status,pressures,paths,generation,unseededCycles:closure.unseededCycles,
+ return {...base,status,pressures,paths,generation,sharedForceBasis,unseededCycles:closure.unseededCycles,
   limitations:['evidence-dominance-not-magnitude','least-closure-no-self-seeding','structural-chain-not-pressure-relief','no-screen-promotion','hidden-target-not-evaluated','no-role-selection']};
 }
