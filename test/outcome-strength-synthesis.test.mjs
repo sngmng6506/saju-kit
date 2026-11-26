@@ -73,3 +73,17 @@ test('a required term cannot satisfy a negative monotone condition by adding var
  assert.deepEqual(q.targets[0].possibleStates,['opposed','conflicting','unresolved']);
  assert.equal(q.targets[0].witnesses.supported,null);
 });
+
+import {replayModeledCoverage,controls,routeControls} from '../scripts/lib/pattern-modeled-consequence-coverage.mjs';
+for(const c of [...controls,...routeControls])for(const complete of [true,false]){
+ test('native strength synthesis replay '+c.id+' '+complete,()=>{
+  const r=replayModeledCoverage(c.pillars,complete,{includeSynthesisInputs:true}),q=r.strengthSynthesis;
+  assert.deepEqual(r.invalid,[]);
+  assert.deepEqual(q,synthesizeContextualStrength(r.strengthSynthesisInput));
+  assert.equal(q.status,complete?'diagnostic':'partial');
+  assert.equal(q.selectionAuthority,false);assert.equal(q.effective,null);
+  assert.equal(q.actualStrengthState,'unresolved');assert.equal(q.summary.actualEffectsConfirmed,0);
+  assert.equal(q.rows.length,complete?4:3);
+  if(!complete)assert.equal(q.summary.analysisStatus,'partial');
+ });
+}
