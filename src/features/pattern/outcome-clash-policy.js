@@ -93,6 +93,15 @@ export function reviewClashPolicy(prior,residual,supply,argument){
   slotRows.push({slotId:id,position:s.position,substantial:s.substantial,clashIds:[...clashIds],directionIds:clashIds.map(c=>directionKey(c,s.position)),
    reliefAlternatives:alternatives,actualDamageState:'unresolved',actualPreservationState:'unresolved',actualRestorationState:'unresolved',effective:null});
  }
+ // Every visible actor's literal exposed-root references must match the
+ // residual owner's occurrence inventory, including shared physical slots.
+ for(const actor of actors.values()){
+  if(actor.layer!=='visible')continue;
+  if(!Array.isArray(actor.roots))return empty('literal-root-contract');
+  const expected=actor.roots.filter(r=>slots.has('hidden:'+r.position+':'+r.stem)).map(r=>'hidden:'+r.position+':'+r.stem);
+  const row=occurrences.get(actor.id);
+  if(!!row!==!!expected.length||row&&(!Array.isArray(row.exposedSubstantialRootIds)||!Array.isArray(row.exposedResidualRootIds)||!setEqual([...row.exposedSubstantialRootIds,...row.exposedResidualRootIds],expected)))return empty('occurrence-coverage');
+ }
  for(const a of occurrences.values()){
   const actor=actors.get(a.id);
   if(!absent(a)||!actor||actor.layer!=='visible'||a.element!==actor.element||
