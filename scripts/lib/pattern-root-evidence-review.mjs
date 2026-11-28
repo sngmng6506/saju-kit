@@ -42,10 +42,11 @@ export function replayRootRestrictions({completeHour,nodes,links,targets,seeds,r
  try{
   const c=compileReplenishmentNetwork({completeHour,nodes,links,targets});
   if(!['diagnostic','partial'].includes(c.status)||!Array.isArray(seeds)||!Array.isArray(restrictions))return empty('invalid-evidence','inventory');
-  const ids=new Set(nodes.map(n=>n.id)),seen=new Set();
+  const ids=new Set(nodes.map(n=>n.id)),seen=new Set(),roles=new Map();
   for(const s of seeds){
    if(!s||!ids.has(s.nodeId)||typeof s.slotId!=='string'||!s.slotId||!['principal','middle','residual'].includes(s.role)||seen.has(access(s.nodeId,s.slotId)))return empty('invalid-evidence','seed-contract');
-   seen.add(access(s.nodeId,s.slotId));
+   if(roles.has(s.slotId)&&roles.get(s.slotId)!==s.role)return empty('invalid-evidence','physical-slot-conflict');
+   roles.set(s.slotId,s.role);seen.add(access(s.nodeId,s.slotId));
   }
   const sorted=a=>[...a].sort();
   if(!same(sorted(seeds.filter(s=>s.role!=='residual').map(s=>access(s.nodeId,s.slotId))),sorted(nodes.flatMap(n=>n.rootIds.map(r=>access(n.id,r))))))return empty('invalid-evidence','baseline-seed-coverage');
@@ -105,4 +106,17 @@ export function reviewAndReplayRoots(intake,digest,batches,buildInput){
   return {...base,status:rows.some(r=>r.status!=='diagnostic')?'invalid-evidence':'diagnostic-unverified-review',review,rows,actualAccuracy:null,
    summary:{charts:rows.length,netRestrictions:rows.reduce((n,r)=>n+(r.restrictions?.length??0),0),contactClaims:rows.reduce((n,r)=>n+r.contactReviews.length,0),narrowedTargets:rows.flatMap(r=>r.rows).filter(r=>r.policies.some(p=>!same(p.before,p.after))).length}};
  }catch(e){return {...base,status:'invalid-evidence',reason:String(e?.message??e),rows:[]};}
+}
+
+export function selectRootReviewIntake(intake,selectors=[]){
+ if(intake?.version!=='p1-5b-intake-v1'||!Array.isArray(intake.candidates)||!Array.isArray(selectors)||selectors.some(s=>typeof s!=='string'||!s.trim())||new Set(selectors).size!==selectors.length)throw Error('selector-contract');
+ if(!selectors.length)return intake;
+ const selected=new Set();
+ for(const id of selectors){
+  const exact=intake.candidates.filter(c=>c.id===id);
+  const matches=exact.length?exact:intake.candidates.filter(c=>{try{const x=JSON.parse(c.id);return Array.isArray(x)&&x.length===2&&x[1]===id;}catch{return false;}});
+  if(matches.length!==1||selected.has(matches[0].id))throw Error('chart-selector:'+id);
+  selected.add(matches[0].id);
+ }
+ return {...intake,candidates:intake.candidates.filter(c=>selected.has(c.id))};
 }
