@@ -1461,3 +1461,88 @@ and `npm run audit:pattern-extended-supply`.
 Next compare semantic evidence for access restrictions and investigate
 the root/availability assumptions behind remaining gaps before
 using extended supply in actual strength adjudication.
+
+## P3-B7d-7a — Root seed eligibility and contextual access sensitivity
+
+The source discussion in Zi Ping Zhen Quan, chapter on seasonal
+strength (https://donglishuzhai.net/chapter/3719.html), distinguishes
+heavier roots from lighter tomb/residual roots and rejects the blanket
+need to clash open a tomb root. Xu's commentary
+(https://www.ncc.com.tw/fate/paleo/bg/bg_032.htm) further discusses
+root context and distinctions in life stage. Neither establishes
+that the application's principal/middle/residual constituent roles
+are equivalent to classical root depth, that every residual
+constituent is accessible, or that a root survives every clash.
+The experimental extension treats a literal residual constituent as
+an optional seed, not an actual usable root or a strong verdict.
+
+The native research adapter replays the original root context and
+validates the local interaction/network proof. A visible actor can
+reference only its literal same-element constituents; a hidden
+donor can reference only its own constituents. Each physical slot
+has one retention identity; each actor-slot pair has its own access
+identity. The baseline substantial seed inventory must match exactly.
+The expanded network is projected into separate derived propositions
+with shared observations and unchanged local generation/peer links.
+All existing baseline proof judgments and rule results are preserved.
+Role, actor-relative life stage, position, distance, exact/same-element
+match, clash and formation identifiers remain separate observations.
+
+Ten research policies explicitly disable access to excluded seeds:
+substantial baseline, all constituents, residual only, principal only,
+middle only, uncontested only, month only, nonmonth only, exact or own
+constituent only, and near only (distance at most one). Except for the
+substantial baseline, these filters are applied to the full literal
+inventory, including residuals where the filter permits them. These
+are access sensitivity experiments, not actual evidence of loss or
+retention; disabling access is not physical erasure of a slot.
+Month position is not resolved monthly command. All-on reachability
+is checked by independent graph closure and canonical signed proof
+replay. Each residual-only alternative uses one explicit residual
+seed and a simple path with other seed-access variables false; its
+witness is replayed in both projections and must reach only the
+expanded one. Rootless cycles do not create support.
+
+At ca4a74d (33 source modules connected in isolated JavaScript;
+unchanged pinned dependencies and updated replay adapter), all 76
+historical charts, including 53 primary, executed without invalid
+or unavailable results. Four focused isolated tests passed.
+
+| Policy | All 304 reachable | All direct | Primary 212 reachable | Primary direct |
+| --- | ---: | ---: | ---: | ---: |
+| Substantial baseline | 294 | 249 | 202 | 175 |
+| All constituents | 298 | 274 | 206 | 193 |
+| Residual only | 245 | 165 | 173 | 117 |
+| Principal only | 258 | 176 | 181 | 133 |
+| Middle only | 230 | 153 | 157 | 102 |
+| Uncontested only | 253 | 206 | 175 | 145 |
+| Month only | 196 | 129 | 130 | 88 |
+| Nonmonth only | 291 | 260 | 202 | 182 |
+| Exact or own constituent only | 296 | 222 | 205 | 156 |
+| Near only | 294 | 244 | 204 | 172 |
+
+829 physical slot records, 1489 actor-slot seed candidates including
+528 residual candidates; primary 577, 1047, 374 respectively. These
+are chart-specific inventory records, not independent resources or
+empirical samples. 245 targets have an expanded-only residual seed
+witness under some assignment, and four previously unreachable
+targets gain reachability: W18 day/hour, XU21 day, XU27 hour. The
+uncontested filter differs from the all-constituent policy by 45
+reachable targets; this does not imply actual root loss from
+contacts. XU14 day is reachable with substantial roots and with
+residual seeds, but not under the uncontested-only or month-only
+restriction. XU26 day remains unreachable under every local seed
+policy. The nonlocal/hidden relay extension is not combined with the
+residual seed extension in this experiment.
+
+Run:
+`node --test test/outcome-root-seed-sensitivity.test.mjs`
+and `npm run audit:pattern-root-seed-sensitivity`.
+Native ESM/CLI and full V10 regression remain unexecuted. No production
+selection rule, historical reference label or actual root/strength
+judgment changed. The source interpretation is a desk review, not
+independent empirical validation. Next prioritize independent signed
+slot-retention and actor-access evidence, distinguishing clash,
+competing formation, and exact relief, before using these hypotheses
+as actual strength premises. Compare combined seed/relay policies only
+as a controlled experiment rather than enlarging the default model.
