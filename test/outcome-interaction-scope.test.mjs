@@ -69,11 +69,15 @@ test('missing edges and forged local proof or distance are rejected',()=>{
 });
 
 test('even a recompiled proof cannot introduce nonlocal or hidden-recipient relays',()=>{
- const x=fixture(),links=[...x.links,{id:'forged',kind:'peer',from:'day:branch:wood',to:'day:stem'}].filter(l=>l.id!=='forged');
+ const x=fixture(),links=x.links;
  const a=x.nodes.find(n=>n.id==='year:branch:water'),b=x.nodes.find(n=>n.id==='day:stem');
  const wide=[...links,{id:'nonlocal',kind:'generate',from:a.id,to:b.id}];
  const c=compileReplenishmentNetwork({...x,links:wide});
  assert.equal(c.status,'diagnostic');
  assert.equal(auditInteractionScope({...x,links:wide}).reason,'local-relay-coverage');
+ const hidden=[...links,{id:'hidden-relay',kind:'peer',from:'day:stem',to:'day:branch:wood'}];
+ const burden=compareReplenishmentBurden({...x,links:hidden,actions:x.burden.actionRows.map(({id,kind,from,to,actualOperationState})=>({id,kind,from,to,actualOperationState})),replenishmentPacket:compileReplenishmentNetwork({...x,links:hidden}).packet});
+ assert.equal(burden.status,'diagnostic',burden.reason);
+ assert.equal(auditInteractionScope({...x,links:hidden,burden}).reason,'local-relay-coverage');
  assert.equal(auditInteractionScope({...x,links:x.links.filter(l=>l.kind!=='peer')}).reason,'local-relay-coverage');
 });
