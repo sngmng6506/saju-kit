@@ -2,7 +2,6 @@ import {elementRelation} from '../../src/core/elements.js';
 import {compileReplenishmentNetwork} from '../../src/features/pattern/outcome-replenishment-network.js';
 import {compareReplenishmentBurden} from '../../src/features/pattern/outcome-burden-comparison.js';
 import {evaluateArguments} from '../../src/features/pattern/outcome-argumentation.js';
-import {positiveProofFrontier} from '../../src/features/pattern/outcome-positive-frontier.js';
 const key=(...xs)=>JSON.stringify(xs),same=(a,b)=>key(a)===key(b),lit=propositionId=>({propositionId,sign:'for'});
 const order=['year','month','day','hour'],elements=['wood','fire','earth','metal','water'];
 const distance=(a,b)=>Math.abs(order.indexOf(a.position)-order.indexOf(b.position));
@@ -57,6 +56,16 @@ export function auditInteractionScope({completeHour,nodes,links,targets,burden,s
   }
   const local=rows.filter(r=>r.scope==='local-visible'),extra=rows.filter(r=>r.scope!=='local-visible');
   if(!Array.isArray(burden?.actionRows)||!same(sorted(local.map(r=>r.id)),sorted(burden.actionRows.map(r=>r.id))))return empty('local-coverage');
+  // Do not accept a self-consistent but widened replenishment packet.
+  // Local supply must still have exactly the original generation/peer
+  // inventory, with visible recipients and distinct physical slots.
+  const targetSet=new Set(targets);
+  const expectedLinks=nodes.flatMap(a=>nodes.flatMap(b=>{
+   if(!targetSet.has(b.id)||slot(a)===slot(b)||distance(a,b)>1)return [];
+   const r=elementRelation(a.element,b.element);
+   return r.type==='same'?[key('peer',a.id,b.id)]:r.type==='generate'&&r.direction==='left-to-right'?[key('generate',a.id,b.id)]:[];
+  }));
+  if(links.some(l=>!l||!ns.has(l.from)||!ns.has(l.to))||!same(sorted(expectedLinks),sorted(links.map(l=>key(l.kind,l.from,l.to)))))return empty('local-relay-coverage');
   const c=compileReplenishmentNetwork({completeHour,nodes,links,targets});
   if(c.status!== (completeHour?'diagnostic':'partial'))return empty('network');
   const exact=compareReplenishmentBurden({completeHour,nodes,links,targets,actions:burden.actionRows.map(({id,kind,from,to,actualOperationState})=>({id,kind,from,to,actualOperationState})),replenishmentPacket:c.packet});
