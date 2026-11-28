@@ -1546,3 +1546,116 @@ slot-retention and actor-access evidence, distinguishing clash,
 competing formation, and exact relief, before using these hypotheses
 as actual strength premises. Compare combined seed/relay policies only
 as a controlled experiment rather than enlarging the default model.
+
+## P3-B7d-7b — Exact signed root evidence and supply replay
+
+Source review: Di Tian Sui, Earthly Branches
+(https://www.shidianguji.com/book/7654517725435265075/chapter/1m5zgml2zaqkp)
+describes directional clash outcomes in terms of relative strength.
+Zi Ping Zhen Quan, clash and harmony resolution
+(https://www.mastervt.com/books/zipingzhenquanpingzhu/juan-1/chapter-009)
+also describes cases where resolving one contact produces another.
+Neither establishes automatic erasure of every constituent or
+restoration of every root from a candidate harmony. Retention is a
+net root-seed eligibility proposition, not physical disappearance.
+
+The existing blinded source review protocol now accepts six exact
+root-condition predicates: net slot retention, actor/slot access
+conditional on retention, slot-specific clash impairment,
+slot-specific formation impairment, exact clash/formation relief,
+and preservation of the exact original slot by that relief.
+The canonical chart adapter regenerates all tasks from validated
+root/formation and seed inventories, never from supplied strength
+labels, predictions or fabricated contacts. The generic target
+schema alone validates shape, not chart membership. The root CLI
+reconstructs the canonical packet from the selected intake and
+binds reviews with a SHA-256 digest. Two distinct declared reviewers
+must agree in ordinary natal scope and cite explicit condition
+evidence for a determinate sign. Silence, a final verdict, structural
+proxy and wrong scope remain undetermined. Schema validation is
+not independent authentication of a source or reviewer.
+
+Only agreed net retention and conditional access claims constrain
+root seed observation assignments. Local impairment, relief and
+preservation-by-relief are recorded separately; none is automatically
+a net restriction. Other concurrent contacts, the extent of damage,
+and the distinction between relief and retention remain unresolved.
+No new temporal restoration rule is inferred. The same physical
+slot retention variable applies to every actor using that slot.
+Actor access variables are distinct and access is conditional, so
+positive access alone is not proof of retention.
+
+The canonical local replenishment networks with substantial seeds
+and with all literal seeds are replayed separately, with their
+original rules unchanged. The exact minimum and maximum Boolean
+completions of the remaining observations give necessary and possible
+reachability in a positive monotone graph. Independent graph closure
+checks every computed endpoint. Reviewed signs are hypothetical
+restrictions, never promoted to production evidence. The restricted
+possible states cannot expand, and necessary states cannot shrink.
+No quantitative support, actual strength or new transformed roots
+are computed. Formation-dependent or uncertain review scope does not
+authorize the ordinary replay. Unreviewed operation variables remain
+unknown even when retention/access have determinate agreement.
+
+Desk source contrasts, not completed review batches:
+- XU10 (https://luckclub.cn/bazi/002/042/, lines 82–86):
+  Bing in the year may root in the clashed month Wu branch according
+  to Xu's commentary. In the application's hidden-stem convention
+  this is the residual Bing constituent. Candidate target
+  root-access(year:stem, hidden:month:병), not a determinate signed
+  label or proof of all Wu constituents' net preservation. This is
+  a direct counterexample to treating every clash as unconditional
+  loss of usable root or residual roles as unconditionally excluded.
+- W19 (https://luckclub.cn/bazi/003/009/, lines 348–350):
+  the text emphasizes Jia's two Yin lu roots despite autumn.
+  Candidate access targets day:stem to hidden:year:갑 and
+  hidden:day:갑. It does not separately determine all other actor
+  accesses or root retention under arbitrary contacts.
+- XU23 (https://luckclub.cn/bazi/002/040/, lines 123–126):
+  Jia seated on Yin and another Yin in the hour are cited in the
+  natal assessment; useful contrast for the exact day and hour
+  principal-root access tasks. Do not use the final strength verdict
+  itself as a source label.
+- XU14 (https://luckclub.cn/bazi/002/036/, lines 67–71) and XU26
+  (https://luckclub.cn/bazi/002/044/, lines 55–59) discuss resource
+  support and wealth/body context, not exact retained hidden slots.
+  The XU26 resource support passage remains an important gap for
+  any model requiring rooted supply. Do not force a root claim to
+  reproduce the final verdict. None of these desk readings qualifies
+  as a blinded independent review.
+
+At 4265d39, 37 actual modules were connected in isolated JavaScript
+with pinned unchanged upstream dependencies and the current review
+contract. The 53 primary charts generated 1887 unique source tasks:
+577 net slot retention, 1047 actor-slot access, 119 clash impairment,
+97 formation impairment, seven clash relief, 40 slot preservation
+by relief. The entire 76-chart inventory was also replayed with
+empty restrictions; all matched the unrestricted before/after states
+in both policies. At 8ba47b3, six new, four existing seed-sensitivity
+and six existing generic claim-review tests passed (16 total),
+including exhaustive 128 assignments of the seven-observation
+synthetic graph and both signs of five root restrictions, shared
+physical retention, actor-specific access, contact-only non-inference,
+chart selection identity, and invalid proxy review rejection.
+The final role-identity check was tested after the cohort run.
+
+Use chart-scoped review batches to avoid requiring all 1887 responses
+at once. Selectors are exact composite IDs or unambiguous short IDs;
+ambiguous/missing/duplicate selectors fail, and source order is
+preserved. The same selection must be used for packet, template and
+replay. Review files must remain outside the checkout:
+```sh
+npm run review:pattern-root-evidence -- inventory retrospective
+npm run review:pattern-root-evidence -- packet retrospective --chart XU10
+npm run review:pattern-root-evidence -- template retrospective --chart XU10
+npm run review:pattern-root-evidence -- replay retrospective ../root-A.json ../root-B.json --chart XU10
+```
+External intake remains supported. The retrospective queue is exposed
+development material, not independent gold. Actual completed blinded
+reviews: zero. Native Node ESM/CLI and full V10 regression are still
+pending. No existing production selection policy or reference label
+changed. Before extending the strength model again, collect actual
+source condition annotations and explicitly validate slot-level
+claims. The binary rooted reachability model cannot establish
+quantitative sufficiency or classical predictive validity.
