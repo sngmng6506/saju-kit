@@ -23,6 +23,7 @@ export const ACTION_DIAGNOSTIC_TEST_FILES=Object.freeze([
   "test/outcome-extended-supply.test.mjs",
   "test/outcome-root-seed-sensitivity.test.mjs",
   "test/outcome-root-evidence-review.test.mjs",
+  "test/outcome-root-independent-operation.test.mjs",
   "test/outcome-interaction-dependencies.test.mjs",
   "test/outcome-interaction-proof-review.test.mjs",
   "test/outcome-interaction-scenarios.test.mjs",
