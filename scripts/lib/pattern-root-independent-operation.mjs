@@ -82,6 +82,14 @@ export function auditRootIndependentOperation(input){
    a.noRootWitness=a.independentGuard?[a.operationVariableId,a.independentGuard]:null;
    if(a.noRootWitness){const j=run(new Set(a.noRootWitness));if(!j.get(a.alternativePropositionId)||j.get(a.rootedPropositionId)||nodes.some(n=>j.get(projection(n.id))))return empty('invalid-evidence','action-witness');}
   }
+  // An exact transfer is not derivable from either action ability or
+  // network reachability alone. Replay every premise removal separately.
+  for(const t of transfers){
+   const assumptions=[t.operationVariableId,t.ability,t.transfer];
+   if(new Set(assumptions).size!==3||assumptions.some(id=>roots.has(id))||!run(new Set(assumptions)).get(t.propositionId))return empty('invalid-evidence','transfer-premises');
+   for(const id of assumptions)if(run(new Set(assumptions.filter(x=>x!==id))).get(t.propositionId))return empty('invalid-evidence','transfer-premise-removal');
+   t.noRootWitness=assumptions;
+  }
   const rows=[];
   for(const targetId of targets){
    const row={targetId,rootedPossible:local.get(basis(targetId)),actionOnlySupplyPossible:actionOnly.get(projection(targetId)),receivedBasisPossible:on.get(projection(targetId)),noRootReceivedBasisPossible:nr.get(projection(targetId)),witness:null,actualReplenishmentState:'unresolved'};
