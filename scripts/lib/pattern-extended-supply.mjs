@@ -113,19 +113,46 @@ export function auditExtendedSupply(input){
    const r=evaluateArguments({...combined,evidence}),j=new Map(r.judgments.map(x=>[x.id,x.state]));
    return r.status==='diagnostic'&&j.get(newId)==='supported'&&(j.get(oldId)==='supported')===oldExpected;
   }
+  // Factorial access ablation: each disabled family removes all links
+  // requiring it. Cross-family links require both gates. Replay the
+  // same expanded packet under explicit false access observations.
+  const families=[
+   {id:'local-only',nonlocal:false,hiddenReception:false},
+   {id:'nonlocal-only',nonlocal:true,hiddenReception:false},
+   {id:'hidden-local-only',nonlocal:false,hiddenReception:true},
+   {id:'both',nonlocal:true,hiddenReception:true}
+  ];
+  const permitted=(l,p)=>(p.nonlocal||l.distance<=1)&&(p.hiddenReception||ns.get(l.to).kind==='visible-stem');
+  const closure=new Map();
+  for(const p of families){
+   const disabled=new Set(extra.flatMap(l=>l.gates).filter(g=>!p.nonlocal&&g.startsWith('["nonlocal-relay-access",')||!p.hiddenReception&&g.startsWith('["hidden-reception-access",')));
+   const evidence=obs.map((id,i)=>({id:key('relay-ablation',i),propositionId:id,sign:disabled.has(id)?'against':'for',refs:[{owner:'relay-ablation',id,field:'hypothetical'}],applicability:'complete-only'}));
+   const r=evaluateArguments({...combined,evidence});
+   if(r.status!=='diagnostic')return empty('invalid-evidence','ablation-replay');
+   closure.set(p.id,new Map(r.judgments.map(j=>[j.id,j.state])));
+  }
   const rows=[];
   for(const t of targets)for(const independent of t==='day:stem'?[false,true]:[false]){
    const q=compareRelayPaths({nodes,local,extra,targetId:t,excludeRecipient:independent});
    if(q.status!=='diagnostic')return empty(q.status,q.reason);
    const old=independent?independentLocal(t):basis(t),next=independent?independentExtended(t):expanded(t);
    if(!checkWitness(q.baseline,old,next,true)||!checkWitness(q.extensionOnly,old,next,false))return empty('invalid-evidence','witness-parity');
-   // All-on closure independently verifies both reachability negatives.
-   const evidence=obs.map((id,i)=>({id:key('relay-all-on',i),propositionId:id,sign:'for',refs:[{owner:'relay-witness',id,field:'hypothetical'}],applicability:'complete-only'}));
-   const on=evaluateArguments({...combined,evidence}),j=new Map(on.judgments.map(x=>[x.id,x.state]));
-   if(on.status!=='diagnostic'||(j.get(old)==='supported')!==!!q.baseline||(j.get(next)==='supported')!==!!q.extended)return empty('invalid-evidence','reachability-parity');
-   rows.push({targetId:t,scope:independent?'recipient-excluded':'all-origins',baselinePossible:!!q.baseline,extendedPossible:!!q.extended,extensionOnlyPossible:!!q.extensionOnly,witnesses:q,actualReplenishmentState:'unresolved'});
+   // Verify each ablation's exact reachability and differential witness.
+   const ablation=[];
+   for(const p of families){
+    const v=p.id==='both'?q:compareRelayPaths({nodes,local,extra:extra.filter(l=>permitted(l,p)),targetId:t,excludeRecipient:independent});
+    if(v.status!=='diagnostic')return empty(v.status,v.reason);
+    const j=closure.get(p.id);
+    if((j.get(old)==='supported')!==!!v.baseline||(j.get(next)==='supported')!==!!v.extended||!!v.baseline!==!!q.baseline||!checkWitness(v.extensionOnly,old,next,false))return empty('invalid-evidence','ablation-parity');
+    ablation.push({policy:p.id,reachable:!!v.extended,extensionOnlyPossible:!!v.extensionOnly,witness:v.extensionOnly});
+   }
+   const [l,n,h,b]=ablation;
+   if(l.reachable!==!!q.baseline||l.extensionOnlyPossible||b.reachable!==!!q.extended||b.extensionOnlyPossible!==!!q.extensionOnly||
+    [n,h].some(x=>l.reachable&&!x.reachable||x.reachable&&!b.reachable||x.extensionOnlyPossible&&!b.extensionOnlyPossible))return empty('invalid-evidence','ablation-monotonicity');
+   rows.push({targetId:t,scope:independent?'recipient-excluded':'all-origins',baselinePossible:!!q.baseline,extendedPossible:!!q.extended,extensionOnlyPossible:!!q.extensionOnly,witnesses:q,ablation,
+    jointFamiliesRequiredForNewReachability:b.reachable&&!n.reachable&&!h.reachable,actualReplenishmentState:'unresolved'});
   }
-  return {...base,status:'diagnostic',reason:null,rows,extraLinks:extra,summary:{localLinks:local.length,extraLinks:extra.length,nonlocalLinks:extra.filter(l=>l.distance>1).length,hiddenRecipientLinks:extra.filter(l=>ns.get(l.to).kind!=='visible-stem').length,targets:rows.length,newReachability:rows.filter(r=>!r.baselinePossible&&r.extendedPossible).length,extensionOnly:rows.filter(r=>r.extensionOnlyPossible).length,actualEffectsConfirmed:0},
+  return {...base,status:'diagnostic',reason:null,rows,extraLinks:extra,summary:{localLinks:local.length,extraLinks:extra.length,nonlocalLinks:extra.filter(l=>l.distance>1).length,hiddenRecipientLinks:extra.filter(l=>ns.get(l.to).kind!=='visible-stem').length,targets:rows.length,newReachability:rows.filter(r=>!r.baselinePossible&&r.extendedPossible).length,extensionOnly:rows.filter(r=>r.extensionOnlyPossible).length,jointFamiliesRequired:rows.filter(r=>r.jointFamiliesRequiredForNewReachability).length,ablation:families.map(p=>({policy:p.id,reachable:rows.filter(r=>r.ablation.find(a=>a.policy===p.id).reachable).length,extensionOnly:rows.filter(r=>r.ablation.find(a=>a.policy===p.id).extensionOnlyPossible).length})),actualEffectsConfirmed:0},
    limitations:['explicit-unreviewed-access-gates','not-effective-supply','shared-roots-not-capacity','no-within-branch-relays','no-strength-authority']};
  }catch(e){return empty('invalid-evidence',String(e?.message??e));}
 }
