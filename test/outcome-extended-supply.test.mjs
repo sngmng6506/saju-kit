@@ -81,3 +81,17 @@ test('rootless, partial and falsified peer observations do not promote supply',(
  const altered={...x,stemForce:{...x.stemForce,occurrences:x.stemForce.occurrences.map(b=>b===a?{...b,peers:[]}:b)}};
  assert.equal(auditExtendedSupply(altered).reason,'peer-scope-coverage');
 });
+
+test('factorial access ablation keeps cross-family paths out of single-family scenarios',()=>{
+ const q=auditExtendedSupply(fixture());assert.equal(q.status,'diagnostic',q.reason);
+ for(const r of q.rows){
+  const [local,nonlocal,hidden,both]=r.ablation;
+  assert.deepEqual(r.ablation.map(a=>a.policy),['local-only','nonlocal-only','hidden-local-only','both']);
+  assert.equal(local.reachable,r.baselinePossible);assert.equal(both.reachable,r.extendedPossible);assert.equal(local.extensionOnlyPossible,false);
+  for(const a of [nonlocal,hidden])if(a.witness)for(const id of a.witness.extraLinkIds){
+   const l=q.extraLinks.find(l=>l.id===id);
+   assert.ok(l.gates.every(g=>a.policy==='nonlocal-only'?!g.startsWith('["hidden-reception-access",'):!g.startsWith('["nonlocal-relay-access",')));
+  }
+  assert.equal(r.jointFamiliesRequiredForNewReachability,both.reachable&&!nonlocal.reachable&&!hidden.reachable);
+ }
+});
