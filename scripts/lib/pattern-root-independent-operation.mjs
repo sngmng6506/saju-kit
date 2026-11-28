@@ -8,7 +8,7 @@ const base={version:VERSION,selectionAuthority:false,effective:null,actualOperat
 // hypothesis may support action without a rooted source. A separate
 // transfer hypothesis is required to introduce a received supply basis.
 // No hidden source, new physical root, nonlocal relay, or strength rule.
-export function auditRootIndependentOperation(input){
+export function auditRootIndependentOperation(input,{includeProofPacket=false}={}){
  const empty=(status,reason)=>({...base,status,reason,actions:[],transfers:[],targets:[],summary:null});
  const rootAudit=auditRootSeedSensitivity(input);
  if(rootAudit.status!=='diagnostic')return empty(rootAudit.status,rootAudit.reason);
@@ -108,7 +108,7 @@ export function auditRootIndependentOperation(input){
    }
    rows.push(row);
   }
-  return {...base,status:'diagnostic',reason:null,actions,transfers,targets:rows,summary:{actions:actions.length,rootedActions:actions.filter(a=>a.rootedPossible).length,noRootActions:actions.filter(a=>a.noRootActionPossible).length,newActionPossibilities:actions.filter(a=>!a.rootedPossible&&a.alternativePossible).length,
+  return {...base,status:'diagnostic',reason:null,...(includeProofPacket?{proofPacket:combined}:{}),actions,transfers,targets:rows,summary:{actions:actions.length,rootedActions:actions.filter(a=>a.rootedPossible).length,noRootActions:actions.filter(a=>a.noRootActionPossible).length,newActionPossibilities:actions.filter(a=>!a.rootedPossible&&a.alternativePossible).length,
    visibleRootlessActionSources:actions.filter(a=>a.independentGuard&&a.sourceLiteralRootCount===0).length,transfers:transfers.length,targets:rows.length,newSupplyPossibilities:rows.filter(r=>!r.rootedPossible&&r.receivedBasisPossible).length,noRootSupplyPossibilities:rows.filter(r=>r.noRootReceivedBasisPossible).length,actualEffectsConfirmed:0},
    limitations:['independent-ability-and-transfer-unreviewed','no-root-completion-not-actual-root-absence','not-quantity-or-sufficiency','visible-sources-local-relays-only','no-production-authority']};
  }catch(e){return empty('invalid-evidence',String(e?.message??e));}

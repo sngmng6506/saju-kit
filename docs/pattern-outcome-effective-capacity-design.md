@@ -1740,3 +1740,33 @@ Node ESM/CLI and full V10 regression remain unexecuted. No runtime
 selection policy changed. Run:
 `node --test test/outcome-root-independent-operation.test.mjs`
 and `npm run audit:pattern-root-independent-operation`.
+
+
+## P3-B7d-8b — Purpose-specific conditional consequences
+
+The exact action proof packet is exposed only on explicit research request;
+its default diagnostic output is unchanged. The new research adapter extends
+that packet without changing the original judgments or rules. It verifies
+proof parity both without assumptions and for each supplied signed scenario.
+Direct day-reference generation/control is classified as replenishment,
+received control, output demand or control demand, not as an auspicious or
+inauspicious verdict. Replenishment additionally requires the original rooted
+action or an exact independent transfer, and a separate purpose condition.
+It cannot be inferred from independent action ability alone.
+
+Climate has independent temperature/moisture increase/decrease candidate
+conditions on each exact action, not an elemental lookup or a balance-role
+inference. A separate signed need (increase/decrease, not presence/absence)
+can support or oppose alignment; conflicting need evidence stays conflicting.
+Alignment is not actual usefulness, magnitude or sufficiency. An explicit
+negative purpose condition is not proof of the opposite direction. The
+argumentation engine still forbids promoting effect-hypothesis claims.
+No runtime selection or strength policy changes; no classical accuracy claim.
+Peer assistance, multi-hop purpose effects, seasonal conditions, actual
+source annotation and sufficiency are out of scope.
+
+Run `node --test test/outcome-action-purpose.test.mjs`,
+`npm run audit:pattern-action-purpose`, existing root-independent audit,
+and full V10. Native Node/fixture suite not yet executed. An isolated smoke
+check used the actual argumentation engine with a synthetic upstream packet
+(12 assertions); it is not a corpus or empirical result.

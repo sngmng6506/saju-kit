@@ -56,6 +56,7 @@
     "audit:pattern-outcome-proof-obligations": "node scripts/audit-pattern-outcome-proof-obligations.mjs",
     "audit:pattern-outcome-relative-force-sensitivity": "node scripts/audit-pattern-outcome-relative-force-sensitivity.mjs",
     "audit:pattern-root-independent-operation": "node scripts/audit-pattern-root-independent-operation.mjs",
+    "audit:pattern-action-purpose": "node scripts/audit-pattern-action-purpose.mjs",
     "review:pattern-root-evidence": "node scripts/review-pattern-root-evidence.mjs",
     "audit:pattern-root-seed-sensitivity": "node scripts/audit-pattern-root-seed-sensitivity.mjs",
     "audit:pattern-extended-supply": "node scripts/audit-pattern-extended-supply.mjs",
