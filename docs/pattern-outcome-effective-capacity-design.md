@@ -1324,3 +1324,70 @@ and `npm run audit:pattern-supply-preservation`.
 Next investigate nonlocal and hidden interaction coverage without
 automatically treating all literal contacts as effective, and obtain
 independent signed evidence about actual route preservation and loss.
+
+## P3-B7d-6a — Literal interaction scope and baseline-seeded extension
+
+The research-only interaction scope audit binds the existing stem-force
+occurrence inventory to the canonical replenishment graph nodes. It
+independently enumerates directed generation/control relations between
+distinct physical slots and verifies every incoming/outgoing constituent
+view. Relations are partitioned by distance (at most one pillar or
+nonlocal) and whether at least one participant is visible. Different
+hidden elements in the same physical branch are recorded as co-resident,
+not separate cross-slot actions. Co-residence does not refute any actual
+within-branch interaction. This is an inventory of generation/control,
+not an exhaustive classical interaction model or a new peer-relay model.
+
+The complete local-visible action set and local generation/peer relay
+inventory must match exactly. The local burden proof is recompiled and
+compared in full; even a recompiled but widened relay graph is rejected.
+Extra actions get distinct operation variables and structural hypotheses
+using the existing local source replenishment basis. They cannot derive
+local supply or seed new relay paths. For each extra action the minimum
+local source term plus its operation observation is a possible witness;
+the original local action identity and witnesses are retained. A joint
+positive completion is replayed against the extended canonical argument
+packet, and must realize precisely the possible rows. This is
+baseline-seeded expressivity, not effective operation, capacity or a
+proof that all actions physically coexist. The absent source basis
+does not refute an actual action. Partial scope retains observed
+relations but publishes no possibility claims.
+
+Final computational revision 4006abb: 32 actual modules connected in
+isolated JavaScript, using pinned unchanged upstream sources and the
+updated literal-chart replay adapter. Six isolated tests passed, and
+all 76 historical charts executed after the local relay hardening.
+No invalid or unavailable cases.
+
+| Scope | Primary literal | Primary baseline-seeded possible | All literal | All baseline-seeded possible |
+| --- | ---: | ---: | ---: | ---: |
+| Local visible-incident | 1093 | 946 | 1589 | 1386 |
+| Local hidden-hidden | 670 | 501 | 980 | 723 |
+| Nonlocal visible-incident | 747 | 645 | 1086 | 940 |
+| Nonlocal hidden-hidden | 724 | 547 | 1046 | 789 |
+| Total | 3234 | 2639 | 4701 | 3838 |
+
+Primary: 53 charts, 419 co-resident pairs, 376 local and 150 nonlocal
+day-stem incident actions. All: 76 charts, 615 co-resident pairs,
+544 local and 214 nonlocal day-stem incident actions. Every chart
+has at least one nonlocal day-stem incident relation. These are
+deduplicated chart-edge records, not independent empirical cases.
+XU14 has three nonlocal day-stem relations with local-source basis
+possibilities. XU26 has two nonlocal day-stem relations, neither with
+such a basis; other hidden/nonlocal relations can be seeded. This does
+not resolve the actual supply or weakness gap, nor imply that all
+hidden relations should become relays.
+
+The audit verifies the existing six source fixture inventories in
+the native CLI, reports primary and all cohorts separately and
+fails on incomplete execution. No default/runtime strength rule,
+classical label or selection authority was changed. Native Node ESM,
+the CLI and full V10 regression remain unexecuted in this environment.
+Run:
+`node --test test/outcome-interaction-scope.test.mjs`
+and `npm run audit:pattern-interaction-scope`.
+
+Next: compare explicit nonlocal and hidden access/relay hypotheses
+against the frozen local baseline, using the same action/slot
+identities. Do not introduce effective hidden-to-hidden supply or
+within-branch allocation merely because a literal relation exists.
