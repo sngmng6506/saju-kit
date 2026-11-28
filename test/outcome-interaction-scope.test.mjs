@@ -22,6 +22,9 @@ function fixture(completeHour=true,rooted=true){
  const occurrences=nodes.map(n=>({id:n.occurrenceIds[0],graphNodeId:n.id,position:n.position,element:n.element,stem:n.stem,layer:n.kind==='visible-stem'?'visible':'hidden',effectiveForce:null,confirmed:false,generationReceived:edges.filter(e=>e.to===n.id&&e.type==='generate'),controlReceived:edges.filter(e=>e.to===n.id&&e.type==='control'),outputAndControl:edges.filter(e=>e.from===n.id)}));
  const actions=edges.filter(e=>e.local&&(targets.includes(e.from)||targets.includes(e.to))).map(e=>({id:key(e.type,e.from,e.to),kind:e.type,from:e.from,to:e.to,actualOperationState:'unresolved'}));
  const links=actions.filter(a=>a.kind==='generate'&&targets.includes(a.to)).map(a=>({id:'link:'+a.id,kind:'generate',from:a.from,to:a.to}));
+ for(const a of nodes)for(const b of nodes){
+  if(a.id!==b.id&&targets.includes(b.id)&&a.element===b.element&&Math.abs(order.indexOf(a.position)-order.indexOf(b.position))<=1)links.push({id:key('peer',a.id,b.id),kind:'peer',from:a.id,to:b.id});
+ }
  const x={completeHour,nodes,links,targets};
  const burden=compareReplenishmentBurden({...x,actions,replenishmentPacket:compileReplenishmentNetwork(x).packet});
  return {...x,burden,stemForce:{completeHour,occurrences,selectionAuthority:false,effectsConfirmed:false}};
@@ -63,4 +66,14 @@ test('missing edges and forged local proof or distance are rejected',()=>{
  assert.equal(auditInteractionScope(change(es=>es.map((e,i)=>i?e:{...e,distance:99}))).reason,'edge-binding');
  assert.equal(auditInteractionScope({...x,burden:{...x.burden,judgments:[]}}).reason,'local-proof-replay');
  assert.equal(auditInteractionScope({...x,burden:{...x.burden,actionRows:x.burden.actionRows.slice(1)}}).reason,'local-coverage');
+});
+
+test('even a recompiled proof cannot introduce nonlocal or hidden-recipient relays',()=>{
+ const x=fixture(),links=[...x.links,{id:'forged',kind:'peer',from:'day:branch:wood',to:'day:stem'}].filter(l=>l.id!=='forged');
+ const a=x.nodes.find(n=>n.id==='year:branch:water'),b=x.nodes.find(n=>n.id==='day:stem');
+ const wide=[...links,{id:'nonlocal',kind:'generate',from:a.id,to:b.id}];
+ const c=compileReplenishmentNetwork({...x,links:wide});
+ assert.equal(c.status,'diagnostic');
+ assert.equal(auditInteractionScope({...x,links:wide}).reason,'local-relay-coverage');
+ assert.equal(auditInteractionScope({...x,links:x.links.filter(l=>l.kind!=='peer')}).reason,'local-relay-coverage');
 });
