@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {replayRootRestrictions,buildRootEvidencePacket,reviewAndReplayRoots} from '../scripts/lib/pattern-root-evidence-review.mjs';
+import {replayRootRestrictions,buildRootEvidencePacket,reviewAndReplayRoots,selectRootReviewIntake} from '../scripts/lib/pattern-root-evidence-review.mjs';
 import {buildLiteralStrengthInput} from '../scripts/lib/pattern-strength-replay.mjs';
 import {claimReviewTemplate,adjudicateClaims} from '../scripts/lib/pattern-outcome-claim-evaluation.mjs';
 import {validRootEvidenceTarget} from '../src/features/pattern/outcome-root-evidence-contract.js';
@@ -50,4 +50,29 @@ test('actual chart review binds exact inventory and separates contact from net r
  assert.equal(y.status,'diagnostic-unverified-review',y.reason);assert.deepEqual(y.rows[0].restrictions,[fixed(key('slot-retained',a.target.slotId),false)]);
  assert.equal(y.independentGoldCases,0);
  assert.equal(adjudicateClaims(p,digest,[batch('A',a.id),batch('B',a.id,'verdict-only')]).status,'invalid-review');
+});
+
+test('chart batch selection is deterministic and rejects ambiguous short IDs',()=>{
+ const c=id=>({id}),x={version:'p1-5b-intake-v1',candidates:[c(key('a','one')),c(key('a','two')),c(key('b','two'))]};
+ assert.deepEqual(selectRootReviewIntake(x,['one']).candidates,[x.candidates[0]]);
+ assert.deepEqual(selectRootReviewIntake(x,[x.candidates[2].id,'one']).candidates,[x.candidates[0],x.candidates[2]]);
+ for(const selectors of [['two'],['missing'],['one',x.candidates[0].id]])assert.throws(()=>selectRootReviewIntake(x,selectors),/chart-selector/);
+ assert.equal(replayRootRestrictions({...network,seeds:network.seeds.map((s,i)=>i===1?{...s,role:'middle'}:s)}).reason,'physical-slot-conflict');
+});
+test('minimum and maximum bounds agree with exhaustive independent graph reachability',()=>{
+ const ids=[key('slot-retained','r'),key('slot-retained','s'),key('root-access','a','r'),key('root-access','b','r'),key('root-access','c','s'),key('supply-operation','ac'),key('supply-operation','bc')];
+ const assignments=Array.from({length:2**ids.length},(_,m)=>new Set(ids.filter((_,i)=>m&(1<<i))));
+ for(const id of ids.slice(0,5))for(const value of [true,false]){
+  const q=replayRootRestrictions({...network,restrictions:[fixed(id,value)]});assert.equal(q.status,'diagnostic',q.reason);
+  const completions=assignments.filter(t=>t.has(id)===value);
+  for(const r of q.rows)for(const p of r.policies){
+   const outcomes=completions.map(t=>{
+    const reached=new Set(network.seeds.filter(s=>(p.policy==='all-constituents'||s.role!=='residual')&&t.has(key('slot-retained',s.slotId))&&t.has(key('root-access',s.nodeId,s.slotId))).map(s=>s.nodeId));
+    const direct=reached.has(r.targetId);
+    for(const l of network.links)if(reached.has(l.from)&&t.has(key('supply-operation',l.id)))reached.add(l.to);
+    return {direct,reach:reached.has(r.targetId)};
+   });
+   assert.deepEqual(p.after,{possible:outcomes.some(x=>x.reach),necessary:outcomes.every(x=>x.reach),directPossible:outcomes.some(x=>x.direct),directNecessary:outcomes.every(x=>x.direct)});
+  }
+ }
 });
