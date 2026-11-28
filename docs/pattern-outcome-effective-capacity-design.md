@@ -1659,3 +1659,84 @@ changed. Before extending the strength model again, collect actual
 source condition annotations and explicitly validate slot-level
 claims. The binary rooted reachability model cannot establish
 quantitative sufficiency or classical predictive validity.
+
+## P3-B7d-8a — Root-independent operation versus received basis
+
+The XU26 source passage was rechecked in Zi Ping Zhen Quan, chapter
+43 (https://luckclub.cn/bazi/002/043/, lines 59–66) and Xu's chapter
+44 commentary (https://luckclub.cn/bazi/002/044/, lines 55–59).
+The natal discussion uses fire/resource to support the day and
+adjust climate, with wealth and resource not interfering. It does
+not establish a particular local relay through Ji earth or that
+the absence of literal roots establishes an actor's ability.
+This is a literature/model coverage issue, not empirical validation.
+
+The research adapter freezes the canonical local burden proof,
+validates it through the existing root seed and scope audit, and
+adds a visible-source, edge-specific independent action ability
+hypothesis. It is an alternative to the original root-seeded action
+basis, sharing the exact original operation observation. No hidden
+source is given this alternative. The ability is not inferred from
+root absence, and it need not exclude rooted operation in another
+completion. A no-root witness explicitly falsifies all original
+retention/access observations; literal absence is separately counted
+using the full constituent inventory, including residuals.
+
+An exact local generation or peer transfer requires an additional
+received-basis hypothesis, besides the operation and independent
+ability observations. Peer transfer has its own exact ability
+identity. This starts a separate received-basis projection at the
+recipient, not a new physical root at the source. Existing rooted
+basis and local supply relays may feed this projection. It does not
+feed back into the frozen burden proof, nor automatically enable
+other outgoing control/generation actions. No cyclic graph alone
+can seed supply. A recipient may be reached via a chain after an
+explicit transfer; this is not a claim of conservation, independent
+capacity, or quantitative sufficiency. Nonlocal and residual seed
+extensions are not combined here. No actual action, supply or
+strength is established.
+
+The original proof judgments and rules are preserved. All-on
+baseline, action-only, action-plus-transfer, and root-disabled
+completions are replayed. Action-only never changes the supply
+projection. Independent graph closure checks the root-disabled
+received-basis outcomes. Each no-root action witness is replayed
+with no transfer or root access; each exact transfer witness and
+the removal of each of its three premises are checked. Each
+reachable target has a replayed no-root transfer/path witness.
+
+At 0cd3c99, 34 actual modules were connected in isolated source-level
+JavaScript with pinned unchanged upstream dependencies. Three focused
+tests and all 76 charts passed after the final premise checks.
+The 53-primary and all-76 counts:
+
+| Inventory | Primary | All |
+| --- | ---: | ---: |
+| Original local action rows | 1093 | 1589 |
+| Root-seeded possible | 946 | 1386 |
+| No-root action witness | 614 | 888 |
+| Newly expressible actions | 34 | 34 |
+| Visible-source action rows with no literal root | 62 | 104 |
+| Exact transfer candidates | 140 | 189 |
+| Visible targets | 212 | 304 |
+| Newly expressible received basis | 4 | 4 |
+| No-root received-basis witness | 125 | 168 |
+
+Counts are chart/action or chart/actor records, not independent
+empirical samples. 189 exact transfers each passed three individual
+premise-removal checks (567). Newly reachable targets: W18 day/hour
+and XU26 month/day. For XU26, one hypothetical path is year Ding
+generating month Ji, followed by Ji supporting day Wu. The year
+Ding remains without a received basis in the local projection.
+The year Ding's control action candidates are distinct from supply.
+This is one admissible modeled witness, not an established classical
+route; the original text also emphasizes placement and climate.
+No direction labels were used by the audit or changed.
+
+The next requirement is exact signed operation and received-basis
+review, and separating role support from climatic usefulness,
+rather than promoting all root-independent hypotheses. The native
+Node ESM/CLI and full V10 regression remain unexecuted. No runtime
+selection policy changed. Run:
+`node --test test/outcome-root-independent-operation.test.mjs`
+and `npm run audit:pattern-root-independent-operation`.
