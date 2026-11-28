@@ -16,7 +16,7 @@ export function buildLiteralStrengthInput(pillars,{basisOnly=false,onStage=()=>{
  if(!p?.complete||!p.sexagenary)throw Error('pillar-contract');
  const saju={pillars:Object.fromEntries(['year','month','day','hour'].map((x,i)=>[x,{stem:p.pillars[i][0],branch:p.pillars[i][1],text:p.pillars[i]}]))};
  const stemForce=analyzeStemForceEvidence({saju}),prior={completeHour:true,stemForce,relativeForce:observeRelativeForce(stemForce)};
- const root=observeRootContext(prior,analyzeFormationEvidence({saju})),basis=observeReferenceBasis(prior,root);
+ const formation=analyzeFormationEvidence({saju}),root=observeRootContext(prior,formation),basis=observeReferenceBasis(prior,root);
  onBasis(basis);
  if(basisOnly)return {basis};
  const check=(owner,r)=>{
@@ -27,5 +27,5 @@ export function buildLiteralStrengthInput(pillars,{basisOnly=false,onStage=()=>{
  onStage('groundedSupply');const supply=check('groundedSupply',observeGroundedSupply(prior,root));
  onStage('replenishmentReview');const replenishment=check('replenishmentReview',reviewReplenishment(prior,root,supply));
  onStage('burdenReview');const burden=check('burdenReview',reviewBurden(prior,replenishment));
- return {basis,burden,input:{completeHour:true,nodes:replenishment.nodes,links:replenishment.links,stemForce,targets:replenishment.targets,burden:burden.analysis}};
+ return {basis,burden,input:{completeHour:true,nodes:replenishment.nodes,links:replenishment.links,stemForce,prior,formation,root,targets:replenishment.targets,burden:burden.analysis}};
 }
