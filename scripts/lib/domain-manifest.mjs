@@ -20,6 +20,7 @@ export const ACTION_DIAGNOSTIC_TEST_FILES=Object.freeze([
   "test/outcome-joint-residual-pressure.test.mjs",
   "test/outcome-supply-preservation.test.mjs",
   "test/outcome-interaction-scope.test.mjs",
+  "test/outcome-extended-supply.test.mjs",
   "test/outcome-interaction-dependencies.test.mjs",
   "test/outcome-interaction-proof-review.test.mjs",
   "test/outcome-interaction-scenarios.test.mjs",
