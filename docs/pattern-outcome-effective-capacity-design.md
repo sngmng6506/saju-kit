@@ -1391,3 +1391,73 @@ Next: compare explicit nonlocal and hidden access/relay hypotheses
 against the frozen local baseline, using the same action/slot
 identities. Do not introduce effective hidden-to-hidden supply or
 within-branch allocation merely because a literal relation exists.
+
+## P3-B7d-6b — Gated extended supply and access-family ablation
+
+Research-only projection of the validated literal interaction inventory.
+The local burden proof and its observations remain unchanged. Extra
+generation relays reuse the exact action operation identity; extra peer
+relays get a distinct directed operation identity. Nonlocal relays
+require a per-relation nonlocal access hypothesis; receiving into a
+hidden constituent requires a shared recipient access hypothesis.
+A nonlocal hidden-reception relay requires both. These are unreviewed
+necessary gates of this experimental projection, not classical rules
+or sufficient real-world evidence. Hidden reception plus a subsequent
+operation is allowed to relay; independent physical throughput and
+separate provenance-specific transit restrictions are not modeled.
+No new root seeds, within-branch relays or capacity units are added.
+The peer inventory is cross-checked against every constituent view.
+
+The extended proof derives separate reachability propositions using
+the original root-retention, actor-root access and local operation
+variables. For the day actor it also projects a recipient-excluded
+network without the recipient's own seeds or outgoing relays.
+A bounded simple-path search gives exact possibility and
+extension-only witnesses in this restricted positive graph model.
+The latter is exact because each directed link has a distinct
+operation variable and each actor-root seed a distinct access
+variable; gates cannot alias either. With only one simple seeded
+path's observations true, a path using an added link cannot be
+bypassed in the local graph. Cycles without a seed do not produce
+supply. The canonical signed evaluator checks witnesses and all-on
+reachability, including four access-family ablations in the same
+packet. A disabled family explicitly falsifies its access gates.
+Budget exhaustion abstains. No effective supply or strength follows.
+
+Final computational revision 58de80d (33 modules connected in isolated
+source-level JavaScript using pinned unchanged upstream dependencies):
+all 76 charts, including 53 primary, completed. There are 943 local
+links and 3873 additional candidates (2075 nonlocal, 3294 hidden
+recipients, overlapping). For primary charts: 657 local, 2678 added
+(1438 nonlocal, 2262 hidden recipients). Targets comprise four visible
+actors and one additional recipient-excluded day query per chart,
+not independent cases.
+
+| Access policy | All 380 reachable | Primary 265 reachable | All extension-only witness |
+| --- | ---: | ---: | ---: |
+| Local only | 366 | 251 | 0 |
+| Nonlocal only (visible recipients) | 370 | 255 | 334 |
+| Hidden local only | 369 | 254 | 340 |
+| Both | 374 | 259 | 372 |
+
+Eight query rows gain reachability (six distinct chart/actor pairs in
+three charts): four under nonlocal-only, three under hidden-local-only,
+one requiring both. R04 gains the hour actor; W18 gains year (both),
+day and hour (hidden-local), and day recipient-excluded; XU27 gains
+hour and day plus day recipient-excluded (nonlocal). This is not eight
+independent charts. An extension-only witness can occur even where
+baseline reachability is already possible under a different assignment.
+XU26 still has no day supply basis even with both access families.
+This structural result is not a refutation of actual supply or a
+validation of actual weakness.
+
+Five new and six prior isolated tests passed; exhaustive comparison
+on the 8-observation fixture covered all 256 assignments for each
+of six target/scope queries. Native Node ESM/CLI and full V10
+regression remain pending. The default production policy and reference
+labels are unchanged. Run:
+`node --test test/outcome-extended-supply.test.mjs test/outcome-interaction-scope.test.mjs`
+and `npm run audit:pattern-extended-supply`.
+Next compare semantic evidence for access restrictions and investigate
+the root/availability assumptions behind remaining gaps before
+using extended supply in actual strength adjudication.
